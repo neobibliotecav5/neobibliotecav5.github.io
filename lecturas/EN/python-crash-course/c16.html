@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://www.w3.org/2002/06/xhtml2/ http://www.w3.org/MarkUp/SCHEMA/xhtml2.xsd">
+<head>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style></head>
+<body><div id="sbo-rt-content"><section>
+<header>
+<h1 class="chapter">
+<span class="ChapterNumber"><span epub:type="pagebreak" id="Page_329" title="329"></span>16</span><br/>
+<span class="ChapterTitle">Downloading Data</span></h1>
+</header>
+<figure class="opener">
+<img alt="" height="406" src="Images/chapterart.png" width="406"/>
+</figure>
+<p class="ChapterIntro">In this chapter, you’ll download datasets from online sources and create working visualizations of that data. You can find an incredible variety of data online, much of which hasn’t been examined thoroughly. The ability to analyze this data allows you to discover patterns and connections that no one else has found.</p>
+<p>We’ll access and visualize data stored in two common data formats: CSV and JSON. We’ll use Python’s <code>csv</code> module to process weather data stored in the CSV format and analyze high and low temperatures over time in two different locations. We’ll then use Matplotlib to generate a chart based on our downloaded data to display variations in temperature in two dissimilar environments: Sitka, Alaska, and Death Valley, California. Later in the chapter, we’ll use the <code>json</code> module to access earthquake data stored in the GeoJSON format and use Plotly to draw a world map showing the locations and magnitudes of recent earthquakes.</p>
+<p><span epub:type="pagebreak" id="Page_330" title="330"></span>By the end of this chapter, you’ll be prepared to work with various types of datasets in different formats, and you’ll have a deeper understanding of how to build complex visualizations. Being able to access and visualize online data is essential to working with a wide variety of real-world datasets.</p>
+<h2 id="h1-502703c16-0001">The CSV File Format</h2>
+<p class="BodyFirst">One simple way to store data in a text file is to write the data as a series of values separated by commas, called <em>comma-separated values</em>. The resulting files are <em>CSV</em> files. For example, here’s a chunk of weather data in CSV format:</p>
+<pre><code>"USW00025333","SITKA AIRPORT, AK US","2021-01-01",,"44","40"</code></pre>
+<p>This is an excerpt of weather data from January 1, 2021, in Sitka, Alaska. It includes the day’s high and low temperatures, as well as a number of other measurements from that day. CSV files can be tedious for humans to read, but programs can process and extract information from them quickly and accurately.</p>
+<p>We’ll begin with a small set of CSV-formatted weather data recorded in Sitka; it is available in this book’s resources at <a class="LinkURL" href="https://ehmatthes.github.io/pcc_3e">https://ehmatthes.github.io/pcc_3e</a>. Make a folder called <em>weather_data</em> inside the folder where you’re saving this chapter’s programs. Copy the file <em>sitka_weather_07-2021_simple.csv</em> into this new folder. (After you download this book’s resources, you’ll have all the files you need for this project.)</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	The weather data in this project was originally downloaded from <a class="LinkURL" href="https://ncdc.noaa.gov/cdo-web">https://ncdc.noaa.gov/cdo-web</a>.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h3 id="h2-502703c16-0001">Parsing the CSV File Headers</h3>
+<p class="BodyFirst">Python’s <code>csv</code> module in the standard library parses the lines in a CSV file and allows us to quickly extract the values we’re interested in. Let’s start by examining the first line of the file, which contains a series of headers for the data. These headers tell us what kind of information the data holds:</p>
+<p class="CodeLabel"><b>sitka_highs.py</b></p>
+<pre><code>from pathlib import Path
+import csv
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> path = Path('weather_data/sitka_weather_07-2021_simple.csv')
+lines = path.read_text().splitlines()
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> reader = csv.reader(lines)
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> header_row = next(reader)
+print(header_row)</code></pre>
+<p>We first import <code>Path</code> and the <code>csv</code> module. We then build a <code>Path</code> object that looks in the <em>weather_data</em> folder, and points to the specific weather data file we want to work with <span aria-label="annotation1" class="CodeAnnotation">❶</span>. We read the file and chain the <code>splitlines()</code> method to get a list of all lines in the file, which we assign to <code>lines</code>.</p>
+<p><span epub:type="pagebreak" id="Page_331" title="331"></span>Next, we build a <code>reader</code> object <span aria-label="annotation2" class="CodeAnnotation">❷</span>. This is an object that can be used to parse each line in the file. To make a reader object, call the function <code>csv.reader()</code> and pass it the list of lines from the CSV file.</p>
+<p>When given a <code>reader</code> object, the <code>next()</code> function returns the next line in the file, starting from the beginning of the file. Here we call <code>next()</code> only once, so we get the first line of the file, which contains the file headers <span aria-label="annotation3" class="CodeAnnotation">❸</span>. We assign the data that’s returned to <code>header_row</code>. As you can see, <code>header_row</code> contains meaningful, weather-related headers that tell us what information each line of data holds:</p>
+<pre><code>['STATION', 'NAME', 'DATE', 'TAVG', 'TMAX', 'TMIN']</code></pre>
+<p>The <code>reader</code> object processes the first line of comma-separated values in the file and stores each value as an item in a list. The header <code>STATION</code> represents the code for the weather station that recorded this data. The position of this header tells us that the first value in each line will be the weather station code. The <code>NAME</code> header indicates that the second value in each line is the name of the weather station that made the recording. The rest of the headers specify what kinds of information were recorded in each reading. The data we’re most interested in for now are the date (<code>DATE</code>), the high temperature (<code>TMAX</code>), and the low temperature (<code>TMIN</code>). This is a simple dataset that contains only temperature-related data. When you download your own weather data, you can choose to include a number of other measurements relating to wind speed, wind direction, and precipitation data.</p>
+<h3 id="h2-502703c16-0002">Printing the Headers and Their Positions</h3>
+<p class="BodyFirst">To make it easier to understand the file header data, let’s print each header and its position in the list:</p>
+<p class="CodeLabel"><b>sitka_highs.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">reader = csv.reader(lines)</span>
+<span class="LiteralGray">header_row = next(reader)</span>
+
+for index, column_header in enumerate(header_row):
+    print(index, column_header)</code></pre>
+<p>The <code>enumerate()</code> function returns both the index of each item and the value of each item as you loop through a list. (Note that we’ve removed the line <code>print(header_row)</code> in favor of this more detailed version.)</p>
+<p>Here’s the output showing the index of each header:</p>
+<pre><code>0 STATION
+1 NAME
+2 DATE
+3 TAVG
+4 TMAX
+5 TMIN</code></pre>
+<p><span epub:type="pagebreak" id="Page_332" title="332"></span>We can see that the dates and their high temperatures are stored in columns 2 and 4. To explore this data, we’ll process each row of data in <em>sitka_weather_07-2021_simple.csv</em> and extract the values with the indexes 2 and 4.</p>
+<h3 id="h2-502703c16-0003">Extracting and Reading Data</h3>
+<p class="BodyFirst">Now that we know which columns of data we need, let’s read in some of that data. First, we’ll read in the high temperature for each day:</p>
+<p class="CodeLabel"><b>sitka_highs.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">reader = csv.reader(lines)</span>
+<span class="LiteralGray">header_row = next(reader)</span>
+
+# Extract high temperatures.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> highs = []
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> for row in reader:
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     high = int(row[4])
+    highs.append(high)
+
+print(highs)</code></pre>
+<p>We make an empty list called <code>highs</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span> and then loop through the remaining rows in the file <span aria-label="annotation2" class="CodeAnnotation">❷</span>. The <code>reader</code> object continues from where it left off in the CSV file and automatically returns each line following its current position. Because we’ve already read the header row, the loop will begin at the second line where the actual data begins. On each pass through the loop we pull the data from index 4, corresponding to the header <code>TMAX</code>, and assign it to the variable <code>high</code> <span aria-label="annotation3" class="CodeAnnotation">❸</span>. We use the <code>int()</code> function to convert the data, which is stored as a string, to a numerical format so we can use it. We then append this value to <code>highs</code>.</p>
+<p>The following listing shows the data now stored in <code>highs</code>:</p>
+<pre><code>[61, 60, 66, 60, 65, 59, 58, 58, 57, 60, 60, 60, 57, 58, 60, 61, 63, 63, 70, 64, 59, 63, 61, 58, 59, 64, 62, 70, 70, 73, 66]</code></pre>
+<p>We’ve extracted the high temperature for each date and stored each value in a list. Now let’s create a visualization of this data.</p>
+<h3 id="h2-502703c16-0004">Plotting Data in a Temperature Chart</h3>
+<p class="BodyFirst">To visualize the temperature data we have, we’ll first create a simple plot of the daily highs using Matplotlib, as shown here:</p>
+<p class="CodeLabel"><b>sitka_highs.py</b></p>
+<pre><code><span class="LiteralGray">from pathlib import Path</span>
+<span class="LiteralGray">import csv</span>
+
+import matplotlib.pyplot as plt
+
+<span class="LiteralGray">path = Path('weather_data/sitka_weather_07-2021_simple.csv')</span>
+<span class="LiteralGray">lines = path.read_text().splitlines()</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic">--snip--</em>
+
+<span epub:type="pagebreak" id="Page_333" title="333"></span># Plot the high temperatures.
+plt.style.use('seaborn')
+fig, ax = plt.subplots()
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> ax.plot(highs, color='red')
+
+# Format plot.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> ax.set_title("Daily High Temperatures, July 2021", fontsize=24)
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> ax.set_xlabel('', fontsize=16)
+ax.set_ylabel("Temperature (F)", fontsize=16)
+ax.tick_params(labelsize=16)
+
+plt.show()</code></pre>
+<p>We pass the list of highs to <code>plot()</code> and pass <code>color='red'</code> to plot the points in red <span aria-label="annotation1" class="CodeAnnotation">❶</span>. (We’ll plot the highs in red and the lows in blue.) We then specify a few other formatting details, such as the title, font size, and labels <span aria-label="annotation2" class="CodeAnnotation">❷</span>, just as we did in <span class="xref" itemid="xref_target_Chapter 15">Chapter 15</span>. Because we have yet to add the dates, we won’t label the <em>x</em>-axis, but <code>ax.set_xlabel()</code> does modify the font size to make the default labels more readable <span aria-label="annotation3" class="CodeAnnotation">❸</span>. <a href="#figure16-1" id="figureanchor16-1">Figure 16-1</a> shows the resulting plot: a simple line graph of the high temperatures for July 2021 in Sitka, Alaska.</p>
+<figure>
+<img alt="" class="" height="362" src="Images/f16001.png" width="649"/>
+<figcaption><p><a id="figure16-1">Figure 16-1</a>: A line graph showing daily high temperatures for July 2021 in Sitka, Alaska</p></figcaption>
+</figure>
+<h3 id="h2-502703c16-0005">The datetime Module</h3>
+<p class="BodyFirst">Let’s add dates to our graph to make it more useful. The first date from the weather data file is in the second row of the file:</p>
+<pre><code>"USW00025333","SITKA AIRPORT, AK US","2021-07-01",,"61","53"</code></pre>
+<p>The data will be read in as a string, so we need a way to convert the string <code>"2021-07-01"</code> to an object representing this date. We can construct <span epub:type="pagebreak" id="Page_334" title="334"></span>an object representing July 1, 2021, using the <code>strptime()</code> method from the <code>datetime</code> module. Let’s see how <code>strptime()</code> works in a terminal session:</p>
+<pre><code>&gt;&gt;&gt; <b>from datetime import datetime</b>
+&gt;&gt;&gt; <b>first_date = datetime.strptime('2021-07-01', '%Y-%m-%d')</b>
+&gt;&gt;&gt; <b>print(first_date)</b>
+2021-07-01 00:00:00</code></pre>
+<p>We first import the <code>datetime</code> class from the <code>datetime</code> module. Then we call the method <code>strptime()</code> with the string containing the date we want to process as its first argument. The second argument tells Python how the date is formatted. In this example, <code>'%Y-'</code> tells Python to look for a four-digit year before the first dash; <code>'%m-'</code> indicates a two-digit month before the second dash; and <code>'%d'</code> means the last part of the string is the day of the month, from 1 to 31.</p>
+<p>The <code>strptime()</code> method can take a variety of arguments to determine how to interpret the date. <a href="#table16-1" id="tableanchor16-1">Table 16-1</a> shows some of these arguments.</p>
+<figure>
+<figcaption class="TableTitle"><p><a id="table16-1">Table 16-1</a>: Date and Time Formatting Arguments from the <code>datetime</code> Module</p></figcaption>
+<table border="1" id="table-502703c16-0001">
+<thead>
+<tr>
+<td><b>Argument</b></td>
+<td><b>Meaning</b></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>%A</code></td>
+<td>Weekday name, such as Monday</td>
+</tr>
+<tr>
+<td><code>%B</code></td>
+<td>Month name, such as January</td>
+</tr>
+<tr>
+<td><code>%m</code></td>
+<td>Month, as a number (01 to 12)</td>
+</tr>
+<tr>
+<td><code>%d</code></td>
+<td>Day of the month, as a number (01 to 31)</td>
+</tr>
+<tr>
+<td><code>%Y</code></td>
+<td>Four-digit year, such as 2019</td>
+</tr>
+<tr>
+<td><code>%y</code></td>
+<td>Two-digit year, such as 19</td>
+</tr>
+<tr>
+<td><code>%H</code></td>
+<td>Hour, in 24-hour format (00 to 23)</td>
+</tr>
+<tr>
+<td><code>%I</code></td>
+<td>Hour, in 12-hour format (01 to 12)</td>
+</tr>
+<tr>
+<td><code>%p</code></td>
+<td>AM or PM</td>
+</tr>
+<tr>
+<td><code>%M</code></td>
+<td>Minutes (00 to 59)</td>
+</tr>
+<tr>
+<td><code>%S</code></td>
+<td>Seconds (00 to 61)</td>
+</tr>
+</tbody>
+</table>
+</figure>
+<h3 id="h2-502703c16-0006">Plotting Dates</h3>
+<p class="BodyFirst">We can improve our plot by extracting dates for the daily high temperature readings, and using these dates on the <em>x</em>-axis:</p>
+<p class="CodeLabel"><b>sitka_highs.py</b></p>
+<pre><code><span class="LiteralGray">from pathlib import Path</span>
+<span class="LiteralGray">import csv</span>
+from datetime import datetime
+
+<span class="LiteralGray">import matplotlib.pyplot as plt</span>
+
+<span class="LiteralGray">path = Path('weather_data/sitka_weather_07-2021_simple.csv')</span>
+<span class="LiteralGray">lines = path.read_text().splitlines()</span>
+
+<span epub:type="pagebreak" id="Page_335" title="335"></span><span class="LiteralGray">reader = csv.reader(lines)</span>
+<span class="LiteralGray">header_row = next(reader)</span>
+
+# Extract dates and high temperatures.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> dates, highs = [], []
+<span class="LiteralGray">for row in reader:</span>
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     current_date = datetime.strptime(row[2], '%Y-%m-%d')
+<span class="LiteralGray">    high = int(row[4])</span>
+    dates.append(current_date)
+<span class="LiteralGray">    highs.append(high)</span>
+
+<span class="LiteralGray"># Plot the high temperatures.</span>
+<span class="LiteralGray">plt.style.use('seaborn')</span>
+<span class="LiteralGray">fig, ax = plt.subplots()</span>
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> ax.plot(dates, highs, color='red')
+
+<span class="LiteralGray"># Format plot.</span>
+<span class="LiteralGray">ax.set_title("Daily High Temperatures, July 2021", fontsize=24)</span>
+<span class="LiteralGray">ax.set_xlabel('', fontsize=16)</span>
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> fig.autofmt_xdate()
+<span class="LiteralGray">ax.set_ylabel("Temperature (F)", fontsize=16)</span>
+<span class="LiteralGray">ax.tick_params(labelsize=16)</span>
+
+<span class="LiteralGray">plt.show()</span></code></pre>
+<p>We create two empty lists to store the dates and high temperatures from the file <span aria-label="annotation1" class="CodeAnnotation">❶</span>. We then convert the data containing the date information (<code>row[2]</code>) to a <code>datetime</code> object <span aria-label="annotation2" class="CodeAnnotation">❷</span> and append it to <code>dates</code>. We pass the dates and the high temperature values to <code>plot()</code> <span aria-label="annotation3" class="CodeAnnotation">❸</span>. The call to <code>fig.autofmt_xdate()</code> <span aria-label="annotation4" class="CodeAnnotation">❹</span> draws the date labels diagonally to prevent them from overlapping. <a href="#figure16-2" id="figureanchor16-2">Figure 16-2</a> shows the improved graph.</p>
+<figure>
+<img alt="" class="" height="357" src="Images/f16002.png" width="646"/>
+<figcaption><p><a id="figure16-2">Figure 16-2</a>: The graph is more meaningful, now that it has dates on the <em>x</em>-axis.</p></figcaption>
+</figure>
+<h3 id="h2-502703c16-0007"><span epub:type="pagebreak" id="Page_336" title="336"></span>Plotting a Longer Timeframe</h3>
+<p class="BodyFirst">With our graph set up, let’s include additional data to get a more complete picture of the weather in Sitka. Copy the file <em>sitka_weather_2021_simple.csv</em>, which contains a full year’s worth of weather data for Sitka, to the folder where you’re storing the data for this chapter’s programs.</p>
+<p>Now we can generate a graph for the entire year’s weather:</p>
+<p class="CodeLabel"><b>sitka_highs.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+path = Path('weather_data/sitka_weather_2021_simple.csv')
+<span class="LiteralGray">lines = path.read_text().splitlines()</span>
+<em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray"># Format plot.</span>
+ax.set_title("Daily High Temperatures, 2021", fontsize=24)
+<span class="LiteralGray">ax.set_xlabel('', fontsize=16)</span>
+<em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>We modify the filename to use the new data file <em>sitka_weather_2021_simple.csv</em>, and we update the title of our plot to reflect the change in its content. <a href="#figure16-3" id="figureanchor16-3">Figure 16-3</a> shows the resulting plot.</p>
+<figure>
+<img alt="" class="" height="348" src="Images/f16003.png" width="646"/>
+<figcaption><p><a id="figure16-3">Figure 16-3</a>: A year’s worth of data</p></figcaption>
+</figure>
+<h3 id="h2-502703c16-0008">Plotting a Second Data Series</h3>
+<p class="BodyFirst">We can make our graph even more useful by including the low temperatures. We need to extract the low temperatures from the data file and then add them to our graph, as shown here:</p>
+<p class="CodeLabel"><b>sitka_highs_lows.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">reader = csv.reader(lines)</span>
+<span class="LiteralGray">header_row = next(reader)</span>
+
+# Extract dates, and high and low temperatures.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> dates, highs, lows = [], [], []
+<span class="LiteralGray">for row in reader:</span>
+<span epub:type="pagebreak" id="Page_337" title="337"></span><span class="LiteralGray">    current_date = datetime.strptime(row[2], '%Y-%m-%d')</span>
+<span class="LiteralGray">    high = int(row[4])</span>
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     low = int(row[5])
+<span class="LiteralGray">    dates.append(current_date)</span>
+<span class="LiteralGray">    highs.append(high)</span>
+    lows.append(low)
+
+# Plot the high and low temperatures.
+<span class="LiteralGray">plt.style.use('seaborn')</span>
+<span class="LiteralGray">fig, ax = plt.subplots()</span>
+<span class="LiteralGray">ax.plot(dates, highs, color='red')</span>
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> ax.plot(dates, lows, color='blue')
+
+<span class="LiteralGray"># Format plot.</span>
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> ax.set_title("Daily High and Low Temperatures, 2021", fontsize=24)
+<em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>We add the empty list <code>lows</code> to hold low temperatures <span aria-label="annotation1" class="CodeAnnotation">❶</span>, and then we extract and store the low temperature for each date from the sixth position in each row (<code>row[5]</code>) <span aria-label="annotation2" class="CodeAnnotation">❷</span>. We add a call to <code>plot()</code> for the low temperatures and color these values blue <span aria-label="annotation3" class="CodeAnnotation">❸</span>. Finally, we update the title <span aria-label="annotation4" class="CodeAnnotation">❹</span>. <a href="#figure16-4" id="figureanchor16-4">Figure 16-4</a> shows the resulting chart.</p>
+<figure>
+<img alt="" class="" height="348" src="Images/f16004.png" width="648"/>
+<figcaption><p><a id="figure16-4">Figure 16-4</a>: Two data series on the same plot</p></figcaption>
+</figure>
+<h3 id="h2-502703c16-0009">Shading an Area in the Chart</h3>
+<p class="BodyFirst">Having added two data series, we can now examine the range of temperatures for each day. Let’s add a finishing touch to the graph by using shading to show the range between each day’s high and low temperatures. To do so, we’ll use the <code>fill_between()</code> method, which takes a series of <em>x</em>-values and two series of <em>y</em>-values and fills the space between the two series of <em>y</em>-values:</p>
+<p class="CodeLabel"><b>sitka_highs_lows.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray"># Plot the high and low temperatures.</span>
+<span class="LiteralGray">plt.style.use('seaborn')</span>
+<span epub:type="pagebreak" id="Page_338" title="338"></span><span class="LiteralGray">fig, ax = plt.subplots()</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> ax.plot(dates, highs, color='red', alpha=0.5)
+ax.plot(dates, lows, color='blue', alpha=0.5)
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> ax.fill_between(dates, highs, lows, facecolor='blue', alpha=0.1)
+<em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>The <code>alpha</code> argument controls a color’s transparency <span aria-label="annotation1" class="CodeAnnotation">❶</span>. An <code>alpha</code> value of 0 is completely transparent, and a value of 1 (the default) is completely opaque. By setting <code>alpha</code> to 0.5, we make the red and blue plot lines appear lighter.</p>
+<p>We pass <code>fill_between()</code> the list <code>dates</code> for the <em>x</em>-values and then the two <em>y</em>-value series <code>highs</code> and <code>lows</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span>. The <code>facecolor</code> argument determines the color of the shaded region; we give it a low <code>alpha</code> value of 0.1 so the filled region connects the two data series without distracting from the information they represent. <a href="#figure16-5" id="figureanchor16-5">Figure 16-5</a> shows the plot with the shaded region between the highs and lows.</p>
+<figure>
+<img alt="" class="" height="346" src="Images/f16005.png" width="646"/>
+<figcaption><p><a id="figure16-5">Figure 16-5</a>: The region between the two datasets is shaded.</p></figcaption>
+</figure>
+<p>The shading helps make the range between the two datasets immediately apparent.</p>
+<h3 id="h2-502703c16-0010">Error Checking</h3>
+<p class="BodyFirst">We should be able to run the <em>sitka_highs_lows.py</em> code using data for any location. But some weather stations collect different data than others, and some occasionally malfunction and fail to collect some of the data they’re supposed to. Missing data can result in exceptions that crash our programs, unless we handle them properly.</p>
+<p>For example, let’s see what happens when we attempt to generate a temperature plot for Death Valley, California. Copy the file <em>death_valley_2021_simple.csv</em> to the folder where you’re storing the data for this chapter’s programs.</p>
+<p><span epub:type="pagebreak" id="Page_339" title="339"></span>First, let’s run the code to see the headers that are included in this data file:</p>
+<p class="CodeLabel"><b>death_valley_highs_lows.py</b></p>
+<pre><code>from pathlib import Path
+import csv
+
+path = Path('weather_data/death_valley_2021_simple.csv')
+lines = path.read_text().splitlines()
+
+reader = csv.reader(lines)
+header_row = next(reader)
+
+for index, column_header in enumerate(header_row):
+    print(index, column_header)</code></pre>
+<p>Here’s the output:</p>
+<pre><code>0 STATION
+1 NAME
+2 DATE
+3 TMAX
+4 TMIN
+5 TOBS</code></pre>
+<p>The date is in the same position, at index 2. But the high and low temperatures are at indexes 3 and 4, so we’ll need to change the indexes in our code to reflect these new positions. Instead of including an average temperature reading for the day, this station includes <code>TOBS</code>, a reading for a specific observation time.</p>
+<p>Change <em>sitka_highs_lows.py</em> to generate a graph for Death Valley using the indexes we just noted, and see what happens:</p>
+<p class="CodeLabel"><b>death_valley_highs_lows.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+path = Path('weather_data/death_valley_2021_simple.csv')
+<span class="LiteralGray">lines = path.read_text().splitlines()</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray"># Extract dates, and high and low temperatures.</span>
+<span class="LiteralGray">dates, highs, lows = [], [], []</span>
+<span class="LiteralGray">for row in reader:</span>
+<span class="LiteralGray">    current_date = datetime.strptime(row[2], '%Y-%m-%d')</span>
+    high = int(row[3])
+    low = int(row[4])
+<span class="LiteralGray">    dates.append(current_date)</span>
+<em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>We update the program to read from the Death Valley data file, and we change the indexes to correspond to this file’s <code>TMAX</code> and <code>TMIN</code> positions.</p>
+<p>When we run the program, we get an error:</p>
+<pre><code>Traceback (most recent call last):
+  File "death_valley_highs_lows.py", line 17, in &lt;module&gt;
+    high = int(row[3])
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> ValueError: invalid literal for int() with base 10: ''</code></pre>
+<p><span epub:type="pagebreak" id="Page_340" title="340"></span>The traceback tells us that Python can’t process the high temperature for one of the dates because it can’t turn an empty string (<code>''</code>) into an integer <span aria-label="annotation1" class="CodeAnnotation">❶</span>. Rather than looking through the data to find out which reading is missing, we’ll just handle cases of missing data directly.</p>
+<p>We’ll run error-checking code when the values are being read from the CSV file to handle exceptions that might arise. Here’s how to do this:</p>
+<p class="CodeLabel"><b>death_valley_highs_lows.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">for row in reader:</span>
+<span class="LiteralGray">    current_date = datetime.strptime(row[2], '%Y-%m-%d')</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     try:
+<span class="LiteralGray">        high = int(row[3])</span>
+<span class="LiteralGray">        low = int(row[4])</span>
+    except ValueError:
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span><span class="LiteralGray">         </span>print(f"Missing data for {current_date}")
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     else:
+<span class="LiteralGray">        dates.append(current_date)</span>
+<span class="LiteralGray">        highs.append(high)</span>
+<span class="LiteralGray">        lows.append(low)</span>
+
+<span class="LiteralGray"># Plot the high and low temperatures.</span>
+<em class="LiteralGrayItalic">--snip--</em>
+
+<span class="LiteralGray"># Format plot.</span>
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> title = "Daily High and Low Temperatures, 2021\nDeath Valley, CA"
+ax.set_title(title, fontsize=20)
+<span class="LiteralGray">ax.set_xlabel('', fontsize=16)</span>
+<em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>Each time we examine a row, we try to extract the date and the high and low temperature <span aria-label="annotation1" class="CodeAnnotation">❶</span>. If any data is missing, Python will raise a <code>ValueError</code> and we handle it by printing an error message that includes the date of the missing data <span aria-label="annotation2" class="CodeAnnotation">❷</span>. After printing the error, the loop will continue processing the next row. If all data for a date is retrieved without error, the <code>else</code> block will run and the data will be appended to the appropriate lists <span aria-label="annotation3" class="CodeAnnotation">❸</span>. Because we’re plotting information for a new location, we update the title to include the location on the plot, and we use a smaller font size to accommodate the longer title <span aria-label="annotation4" class="CodeAnnotation">❹</span>.</p>
+<p>When you run <em>death_valley_highs_lows.py</em> now, you’ll see that only one date had missing data:</p>
+<pre><code>Missing data for 2021-05-04 00:00:00</code></pre>
+<p>Because the error is handled appropriately, our code is able to generate a plot, which skips over the missing data. <a href="#figure16-6" id="figureanchor16-6">Figure 16-6</a> shows the resulting plot.</p>
+<p>Comparing this graph to the Sitka graph, we can see that Death Valley is warmer overall than southeast Alaska, as we expect. Also, the range of temperatures each day is greater in the desert. The height of the shaded region makes this clear.</p>
+<span epub:type="pagebreak" id="Page_341" title="341"></span><figure>
+<img alt="" class="" height="350" src="Images/f16006.png" width="654"/>
+<figcaption><p><a id="figure16-6">Figure 16-6</a>: Daily high and low temperatures for Death Valley</p></figcaption>
+</figure>
+<p>Many datasets you work with will have missing, improperly formatted, or incorrect data. You can use the tools you learned in the first half of this book to handle these situations. Here we used a <code>try</code>-<code>except</code>-<code>else</code> block to handle missing data. Sometimes you’ll use <code>continue</code> to skip over some data, or use <code>remove()</code> or <code>del</code> to eliminate some data after it’s been extracted. Use any approach that works, as long as the result is a meaningful, accurate visualization.</p>
+<h3 id="h2-502703c16-0011">Downloading Your Own Data</h3>
+<p class="BodyFirst">To download your own weather data, follow these steps:</p>
+<ol class="decimal">
+<li value="1">Visit the NOAA Climate Data Online site at <a class="LinkURL" href="https://www.ncdc.noaa.gov/cdo-web">https://www.ncdc.noaa.gov/cdo-web</a>. In the Discover Data By section, click <b>Search Tool</b>. In the Select a Dataset box, choose <b>Daily Summaries</b>.</li>
+<li value="2">Select a date range, and in the Search For section, choose <b>ZIP Codes</b>. Enter the ZIP code you’re interested in and click <b>Search</b>.</li>
+<li value="3">On the next page, you’ll see a map and some information about the area you’re focusing on. Below the location name, click <b>View Full Details</b>, or click the map and then click <b>Full Details</b>.</li>
+<li value="4">Scroll down and click <b>Station List</b> to see the weather stations that are available in this area. Click one of the station names and then click <b>Add to Cart</b>. This data is free, even though the site uses a shopping cart icon. In the upper-right corner, click the cart.</li>
+<li value="5">In Select the Output Format, choose <b>Custom GHCN-Daily CSV</b>. Make sure the date range is correct and click <b>Continue</b>.</li>
+<li value="6"><span epub:type="pagebreak" id="Page_342" title="342"></span>On the next page, you can select the kinds of data you want. You can download one kind of data (for example, focusing on air temperature) or you can download all the data available from this station. Make your choices and then click <b>Continue</b>.</li>
+<li value="7">On the last page, you’ll see a summary of your order. Enter your email address and click <b>Submit Order</b>. You’ll receive a confirmation that your order was received, and in a few minutes, you should receive another email with a link to download your data.</li>
+</ol>
+<p>The data you download should be structured just like the data we worked with in this section. It might have different headers than those you saw in this section, but if you follow the same steps we used here, you should be able to generate visualizations of the data you’re interested in.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c16-12">16-1.	Sitka Rainfall:</span> Sitka is located in a temperate rainforest, so it gets a fair amount of rainfall. In the data file <em>sitka_weather_2021_full.csv</em> is a header called <code>PRCP</code>, which represents daily rainfall amounts. Make a visualization focusing on the data in this column. You can repeat the exercise for Death Valley if you’re curious how little rainfall occurs in a desert.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c16-13">16-2.	Sitka–Death Valley Comparison:</span> The temperature scales on the Sitka and Death Valley graphs reflect the different data ranges. To accurately compare the temperature range in Sitka to that of Death Valley, you need identical scales on the <em>y</em>-axis. Change the settings for the <em>y</em>-axis on one or both of the charts in Figures 16-5 and 16-6. Then make a direct comparison between temperature ranges in Sitka and Death Valley (or any two places you want to compare).</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c16-14">16-3.	San Francisco:</span> Are temperatures in San Francisco more like temperatures in Sitka or temperatures in Death Valley? Download some data for San Francisco, and generate a high-low temperature plot for San Francisco to make a comparison.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c16-15">16-4.	Automatic Indexes:</span> In this section, we hardcoded the indexes corresponding to the <code>TMIN</code> and <code>TMAX</code> columns. Use the header row to determine the indexes for these values, so your program can work for Sitka or Death Valley. Use the station name to automatically generate an appropriate title for your graph as well.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c16-16">16-5.	Explore:</span> Generate a few more visualizations that examine any other weather aspect you’re interested in for any locations you’re curious about.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c16-0002">Mapping Global Datasets: GeoJSON Format</h2>
+<p class="BodyFirst">In this section, you’ll download a dataset representing all the earthquakes that have occurred in the world during the previous month. Then you’ll make a map showing the location of these earthquakes and how significant <span epub:type="pagebreak" id="Page_343" title="343"></span>each one was. Because the data is stored in the GeoJSON format, we’ll work with it using the <code>json</code> module. Using Plotly’s <code>scatter_geo()</code> plot, you’ll create visualizations that clearly show the global distribution of earthquakes.</p>
+<h3 id="h2-502703c16-0012">Downloading Earthquake Data</h3>
+<p class="BodyFirst">Make a folder called <em>eq_data</em> inside the folder where you’re saving this chapter’s programs. Copy the file <em>eq_1_day_m1.geojson</em> into this new folder. Earthquakes are categorized by their magnitude on the Richter scale. This file includes data for all earthquakes with a magnitude M1 or greater that took place in the last 24 hours (at the time of this writing). This data comes from one of the United States Geological Survey’s earthquake data feeds, at <a class="LinkURL" href="https://earthquake.usgs.gov/earthquakes/feed">https://earthquake.usgs.gov/earthquakes/feed</a>.</p>
+<h3 id="h2-502703c16-0013">Examining GeoJSON Data</h3>
+<p class="BodyFirst">When you open <em>eq_1_day_m1.geojson</em>, you’ll see that it’s very dense and hard to read:</p>
+<pre><code>{"type":"FeatureCollection","metadata":{"generated":1649052296000,...
+{"type":"Feature","properties":{"mag":1.6,"place":"63 km SE of Ped...
+{"type":"Feature","properties":{"mag":2.2,"place":"27 km SSE of Ca...
+{"type":"Feature","properties":{"mag":3.7,"place":"102 km SSE of S...
+{"type":"Feature","properties":{"mag":2.92000008,"place":"49 km SE...
+{"type":"Feature","properties":{"mag":1.4,"place":"44 km NE of Sus...
+<var>--snip--</var></code></pre>
+<p>This file is formatted more for machines than humans. But we can see that the file contains some dictionaries, as well as information that we’re interested in, such as earthquake magnitudes and locations.</p>
+<p>The <code>json</code> module provides a variety of tools for exploring and working with JSON data. Some of these tools will help us reformat the file so we can look at the raw data more easily before we work with it programmatically.</p>
+<p>Let’s start by loading the data and displaying it in a format that’s easier to read. This is a long data file, so instead of printing it, we’ll rewrite the data to a new file. Then we can open that file and scroll back and forth through the data more easily:</p>
+<p class="CodeLabel"><b>eq_explore_data.py</b></p>
+<pre><code>from pathlib import Path
+import json
+
+# Read data as a string and convert to a Python object.
+path = Path('eq_data/eq_data_1_day_m1.geojson')
+contents = path.read_text()
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> all_eq_data = json.loads(contents)
+
+# Create a more readable version of the data file.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> path = Path('eq_data/readable_eq_data.geojson')
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> readable_contents = json.dumps(all_eq_data, indent=4)
+path.write_text(readable_contents)</code></pre>
+<p><span epub:type="pagebreak" id="Page_344" title="344"></span>We read the data file as a string, and use <code>json.loads()</code> to convert the string representation of the file to a Python object <span aria-label="annotation1" class="CodeAnnotation">❶</span>. This is the same approach we used in <span class="xref" itemid="xref_target_Chapter 10">Chapter 10</span>. In this case, the entire dataset is converted to a single dictionary, which we assign to <code>all_eq_data</code>. We then define a new <code>path</code> where we can write this same data in a more readable format <span aria-label="annotation2" class="CodeAnnotation">❷</span>. The <code>json.dumps()</code> function that you saw in <span class="xref" itemid="xref_target_Chapter 10">Chapter 10</span> can take an optional <code>indent</code> argument <span aria-label="annotation3" class="CodeAnnotation">❸</span>, which tells it how much to indent nested elements in the data structure.</p>
+<p>When you look in your <em>eq_data</em> directory and open the file <em>readable_eq_data.json</em>, here’s the first part of what you’ll see:</p>
+<p class="CodeLabel"><b>readable_eq_data.json</b></p>
+<pre><code>{
+    "type": "FeatureCollection",
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     "metadata": {
+        "generated": 1649052296000,
+        "url": "https://earthquake.usgs.gov/earthquakes/.../1.0_day.geojson",
+        "title": "USGS Magnitude 1.0+ Earthquakes, Past Day",
+        "status": 200,
+        "api": "1.10.3",
+        "count": 160
+    },
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     "features": [
+    <em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>The first part of the file includes a section with the key <code>"metadata"</code><span aria-label="annotation1" class="CodeAnnotation">❶</span>. This tells us when the data file was generated and where we can find the data online. It also gives us a human-readable title and the number of earthquakes included in this file. In this 24-hour period, <code>160</code> earthquakes were recorded.</p>
+<p>This GeoJSON file has a structure that’s helpful for location-based data. The information is stored in a list associated with the key <code>"features"</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span>. Because this file contains earthquake data, the data is in list form where every item in the list corresponds to a single earthquake. This structure might look confusing, but it’s quite powerful. It allows geologists to store as much information as they need to in a dictionary about each earthquake, and then stuff all those dictionaries into one big list.</p>
+<p>Let’s look at a dictionary representing a single earthquake:</p>
+<p class="CodeLabel"><b>readable_eq_data.json</b></p>
+<pre><code>    <em class="LiteralGrayItalic">--snip--</em>
+        {
+            "type": "Feature",
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>             "properties": {
+                "mag": 1.6,
+<var>                --snip--</var>
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>                 "title": "M 1.6 - 27 km NNW of Susitna, Alaska"
+            },
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>             "geometry": {
+                "type": "Point",
+                "coordinates": [
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>                     -150.7585,
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>                     61.7591,
+                    56.3
+<span epub:type="pagebreak" id="Page_345" title="345"></span>                ]
+            },
+            "id": "ak0224bju1jx"
+        },</code></pre>
+<p>The key <code>"properties"</code> contains a lot of information about each earthquake <span aria-label="annotation1" class="CodeAnnotation">❶</span>. We’re mainly interested in the magnitude of each earthquake, associated with the key <code>"mag"</code>. We’re also interested in the <code>"title"</code> of each event, which provides a nice summary of its magnitude and location <span aria-label="annotation2" class="CodeAnnotation">❷</span>.</p>
+<p>The key <code>"geometry"</code> helps us understand where the earthquake occurred <span aria-label="annotation3" class="CodeAnnotation">❸</span>. We’ll need this information to map each event. We can find the longitude <span aria-label="annotation4" class="CodeAnnotation">❹</span> and the latitude <span aria-label="annotation5" class="CodeAnnotation">❺</span> for each earthquake in a list associated with the key <code>"coordinates"</code>.</p>
+<p>This file contains way more nesting than we’d use in the code we write, so if it looks confusing, don’t worry: Python will handle most of the complexity. We’ll only be working with one or two nesting levels at a time. We’ll start by pulling out a dictionary for each earthquake that was recorded in the 24-hour time period.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	When we talk about locations, we often say the location’s latitude first, followed by its longitude. This convention probably arose because humans discovered latitude long before we developed the concept of longitude. However, many geospatial frameworks list the longitude first and then the latitude, because this corresponds to the (<em>x</em>,<em> y</em>) convention we use in mathematical representations. The GeoJSON format follows the (longitude, latitude) convention. If you use a different framework, it’s important to learn what convention that framework follows.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h3 id="h2-502703c16-0014">Making a List of All Earthquakes</h3>
+<p class="BodyFirst">First, we’ll make a list that contains all the information about every earthquake that occurred.</p>
+<p class="CodeLabel"><b>eq_explore_data.py</b></p>
+<pre><code><span class="LiteralGray">from pathlib import Path</span>
+<span class="LiteralGray">import json</span>
+
+<span class="LiteralGray"># Read data as a string and convert to a Python object.</span>
+<span class="LiteralGray">path = Path('eq_data/eq_data_1_day_m1.geojson')</span>
+<span class="LiteralGray">contents = path.read_text()</span>
+<span class="LiteralGray">all_eq_data = json.loads(contents)</span>
+
+# Examine all earthquakes in the dataset.
+all_eq_dicts = all_eq_data['features']
+print(len(all_eq_dicts))</code></pre>
+<p>We take the data associated with the key <code>'features'</code> in the <code>all_eq_data</code> dictionary, and assign it to <code>all_eq_dicts</code>. We know this file contains records of 160 earthquakes, and the output verifies that we’ve captured all the earthquakes in the file:</p>
+<pre><code>160</code></pre>
+<p><span epub:type="pagebreak" id="Page_346" title="346"></span>Notice how short this code is. The neatly formatted file <em>readable_eq_data.json</em> has over 6,000 lines. But in just a few lines, we can read through all that data and store it in a Python list. Next, we’ll pull the magnitudes from each earthquake.</p>
+<h3 id="h2-502703c16-0015">Extracting Magnitudes</h3>
+<p class="BodyFirst">We can loop through the list containing data about each earthquake, and extract any information we want. Let’s pull out the magnitude of each earthquake:</p>
+<p class="CodeLabel"><b>eq_explore_data.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">all_eq_dicts = all_eq_data['features']</span>
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> mags = []
+for eq_dict in all_eq_dicts:
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     mag = eq_dict['properties']['mag']
+    mags.append(mag)
+
+print(mags[:10])</code></pre>
+<p>We make an empty list to store the magnitudes, and then loop through the list <code>all_eq_dicts</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>. Inside this loop, each earthquake is represented by the dictionary <code>eq_dict</code>. Each earthquake’s magnitude is stored in the <code>'properties'</code> section of this dictionary, under the key <code>'mag'</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span>. We store each magnitude in the variable <code>mag</code> and then append it to the list <code>mags</code>.</p>
+<p>We print the first <code>10</code> magnitudes, so we can see whether we’re getting the correct data:</p>
+<pre><code>[1.6, 1.6, 2.2, 3.7, 2.92000008, 1.4, 4.6, 4.5, 1.9, 1.8]</code></pre>
+<p>Next, we’ll pull the location data for each earthquake, and then we can make a map of the earthquakes.</p>
+<h3 id="h2-502703c16-0016">Extracting Location Data</h3>
+<p class="BodyFirst">The location data for each earthquake is stored under the key <code>"geometry"</code>. Inside the geometry dictionary is a <code>"coordinates"</code> key, and the first two values in this list are the longitude and latitude. Here’s how we’ll pull this data:</p>
+<p class="CodeLabel"><b>eq_explore_data.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">all_eq_dicts = all_eq_data['features']</span>
+
+mags, lons, lats = [], [], []
+<span class="LiteralGray">for eq_dict in all_eq_dicts:</span>
+<span class="LiteralGray">    mag = eq_dict['properties']['mag']</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     lon = eq_dict['geometry']['coordinates'][0]
+    lat = eq_dict['geometry']['coordinates'][1]
+<span class="LiteralGray">    mags.append(mag)</span>
+    lons.append(lon)
+<span epub:type="pagebreak" id="Page_347" title="347"></span>    lats.append(lat)
+
+<span class="LiteralGray">print(mags[:10])</span>
+print(lons[:5])
+print(lats[:5])</code></pre>
+<p>We make empty lists for the longitudes and latitudes. The code <code>eq_dict['geometry']</code> accesses the dictionary representing the geometry element of the earthquake <span aria-label="annotation1" class="CodeAnnotation">❶</span>. The second key, <code>'coordinates'</code>, pulls the list of values associated with <code>'coordinates'</code>. Finally, the <code>0</code> index asks for the first value in the list of coordinates, which corresponds to an earthquake’s longitude.</p>
+<p>When we print the first <code>5</code> longitudes and latitudes, the output shows that we’re pulling the correct data:</p>
+<pre><code><span class="LiteralGray">[1.6, 1.6, 2.2, 3.7, 2.92000008, 1.4, 4.6, 4.5, 1.9, 1.8]</span>
+[-150.7585, -153.4716, -148.7531, -159.6267, -155.248336791992]
+[61.7591, 59.3152, 63.1633, 54.5612, 18.7551670074463]</code></pre>
+<p>With this data, we can move on to mapping each earthquake.</p>
+<h3 id="h2-502703c16-0017">Building a World Map</h3>
+<p class="BodyFirst">Using the information we’ve pulled so far, we can build a simple world map. Although it won’t look presentable yet, we want to make sure the information is displayed correctly before focusing on style and presentation issues. Here’s the initial map:</p>
+<p class="CodeLabel"><b>eq_world_map.py</b></p>
+<pre><code><span class="LiteralGray">from pathlib import Path</span>
+<span class="LiteralGray">import json</span>
+
+import plotly.express as px
+
+<em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">for eq_dict in all_eq_dicts:</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic">--snip--</em>
+
+title = 'Global Earthquakes'
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> fig = px.scatter_geo(lat=lats, lon=lons, title=title)
+fig.show()</code></pre>
+<p>We import <code>plotly.express</code> with the alias <code>px</code>, just as we did in <span class="xref" itemid="xref_target_Chapter 15">Chapter 15</span>. The <code>scatter_geo()</code> function <span aria-label="annotation1" class="CodeAnnotation">❶</span> allows you to overlay a scatterplot of geographic data on a map. In the simplest use of this chart type, you only need to provide a list of latitudes and a list of longitudes. We pass the list <code>lats</code> to the <code>lat</code> argument, and <code>lons</code> to the <code>lon</code> argument.</p>
+<p>When you run this file, you should see a map that looks like the one in <a href="#figure16-7" id="figureanchor16-7">Figure 16-7</a>. This again shows the power of the Plotly Express library; in just three lines of code, we have a map of global earthquake activity.</p>
+<span epub:type="pagebreak" id="Page_348" title="348"></span><figure>
+<img alt="" class="keyline" height="429" src="Images/f16007.png" width="694"/>
+<figcaption><p><a id="figure16-7">Figure 16-7</a>: A simple map showing where all the earthquakes in the last 24 hours occurred</p></figcaption>
+</figure>
+<p>Now that we know the information in our dataset is being plotted correctly, we can make a few changes to make the map more meaningful and easier to read.</p>
+<h3 id="h2-502703c16-0018">Representing Magnitudes</h3>
+<p class="BodyFirst">A map of earthquake activity should show the magnitude of each earthquake. We can also include more data, now that we know the data is being plotted correctly.</p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray"># Read data as a string and convert to a Python object.</span>
+path = Path('eq_data/eq_data_30_day_m1.geojson')
+<span class="LiteralGray">contents = path.read_text()</span>
+<em class="LiteralGrayItalic">--snip--</em>
+
+<span class="LiteralGray">title = 'Global Earthquakes'</span>
+fig = px.scatter_geo(lat=lats, lon=lons, size=mags, title=title)
+<span class="LiteralGray">fig.show()</span></code></pre>
+<p>We load the file <em>eq_data_30_day_m1.geojson</em>, to include a full 30 days’ worth of earthquake activity. We also use the size argument in the <code>px.scatter_geo()</code> call, which specifies how the points on the map will be sized. We pass the list <code>mags</code> to <code>size</code>, so earthquakes with a higher magnitude will show up as larger points on the map.</p>
+<p>The resulting map is shown in <a href="#figure16-8" id="figureanchor16-8">Figure 16-8</a>. Earthquakes usually occur near tectonic plate boundaries, and the longer period of earthquake activity included in this map reveals the exact locations of these boundaries.</p>
+<span epub:type="pagebreak" id="Page_349" title="349"></span><figure>
+<img alt="" class="keyline" height="429" src="Images/f16008.png" width="694"/>
+<figcaption><p><a id="figure16-8">Figure 16-8</a>: The map now shows the magnitude of all earthquakes in the last 30 days.</p></figcaption>
+</figure>
+<p>This map is better, but it’s still difficult to pick out which points represent the most significant earthquakes. We can improve this further by using color to represent magnitudes as well.</p>
+<h3 id="h2-502703c16-0019">Customizing Marker Colors</h3>
+<p class="BodyFirst">We can use Plotly’s color scales to customize each marker’s color, according to the severity of the corresponding earthquake. We’ll also use a different projection for the base map.</p>
+<p class="CodeLabel"><b>eq_world_map.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+fig = px.scatter_geo(lat=lats, lon=lons, size=mags, title=title,
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         color=mags,
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         color_continuous_scale='Viridis',
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>         labels={'color':'Magnitude'},
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>         projection='natural earth',
+    )
+<span class="LiteralGray">fig.show()</span></code></pre>
+<p>All the significant changes here occur in the <code>px.scatter_geo()</code> function call. The <code>color</code> argument tells Plotly what values it should use to determine where each marker falls on the color scale <span aria-label="annotation1" class="CodeAnnotation">❶</span>. We use the <code>mags</code> list to determine the color for each point, just as we did with the <code>size</code> argument.</p>
+<p>The <code>color_continuous_scale</code> argument tells Plotly which color scale to use <span aria-label="annotation2" class="CodeAnnotation">❷</span>. <em>Viridis</em> is a color scale that ranges from dark blue to bright yellow, and it works well for this dataset. By default, the color scale on the right of the map is labeled <em>color</em>; this is not representative of what the colors actually mean. The <code>labels</code> argument, shown in <span class="xref" itemid="xref_target_Chapter 15">Chapter 15</span>, takes a dictionary as a value <span aria-label="annotation3" class="CodeAnnotation">❸</span>. We only need to set one custom label on this chart, making sure the color scale is labeled <em>Magnitude</em> instead of <em>color</em>.</p>
+<p><span epub:type="pagebreak" id="Page_350" title="350"></span>We add one more argument, to modify the base map over which the earthquakes are plotted. The <code>projection</code> argument accepts a number of common map projections <span aria-label="annotation4" class="CodeAnnotation">❹</span>. Here we use the <code>'natural earth'</code> projection, which rounds the ends of the map. Also, note the trailing comma after this last argument. When a function call has a long list of arguments spanning multiple lines like this, it’s common practice to add a trailing comma so you’re always ready to add another argument on the next line.</p>
+<p>When you run the program now, you’ll see a much nicer-looking map. In <a href="#figure16-9" id="figureanchor16-9">Figure 16-9</a>, the color scale shows the severity of individual earthquakes; the most severe earthquakes stand out as light-yellow points, in contrast to many darker points. You can also tell which regions of the world have more significant earthquake activity.</p>
+<figure>
+<img alt="" class="keyline" height="395" src="Images/f16009.png" width="638"/>
+<figcaption><p><a id="figure16-9">Figure 16-9</a>: In 30 days’ worth of earthquakes, color and size are used to represent the magnitude of each earthquake.</p></figcaption>
+</figure>
+<h3 id="h2-502703c16-0020">Other Color Scales</h3>
+<p class="BodyFirst">You can choose from a number of other color scales. To see the available color scales, enter the following two lines in a Python terminal session:</p>
+<pre><code>&gt;&gt;&gt; <b>import plotly.express as px</b>
+&gt;&gt;&gt; <b>px.colors.named_colorscales()</b>
+['aggrnyl', 'agsunset', 'blackbody', ..., 'mygbm']</code></pre>
+<p>Feel free to try out these color scales in the earthquake map, or with any dataset where continuously varying colors can help show patterns in the data.</p>
+<h3 id="h2-502703c16-0021">Adding Hover Text</h3>
+<p class="BodyFirst">To finish this map, we’ll add some informative text that appears when you hover over the marker representing an earthquake. In addition to showing the longitude and latitude, which appear by default, we’ll show the magnitude and provide a description of the approximate location as well.</p>
+<p><span epub:type="pagebreak" id="Page_351" title="351"></span>To make this change, we need to pull a little more data from the file:</p>
+<p class="CodeLabel"><b>eq_world_map.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> mags, lons, lats, eq_titles = [], [], [], []
+<span class="LiteralGray">    mag = eq_dict['properties']['mag']</span>
+<span class="LiteralGray">    lon = eq_dict['geometry']['coordinates'][0]</span>
+<span class="LiteralGray">    lat = eq_dict['geometry']['coordinates'][1]</span>
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     eq_title = eq_dict['properties']['title']
+<span class="LiteralGray">    mags.append(mag)</span>
+<span class="LiteralGray">    lons.append(lon)</span>
+<span class="LiteralGray">    lats.append(lat)</span>
+    eq_titles.append(eq_title)
+
+<span class="LiteralGray">title = 'Global Earthquakes'</span>
+<span class="LiteralGray">fig = px.scatter_geo(lat=lats, lon=lons, size=mags, title=title,</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">        projection='natural earth',</span>
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>         hover_name=eq_titles,
+<span class="LiteralGray">    )</span>
+<span class="LiteralGray">fig.show()</span></code></pre>
+<p>We first make a list called <code>eq_titles</code> to store the title of each earthquake <span aria-label="annotation1" class="CodeAnnotation">❶</span>. The <code>'title'</code> section of the data contains a descriptive name of the magnitude and location of each earthquake, in addition to its longitude and latitude. We pull this information and assign it to the variable <code>eq_title</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span>, and then append it to the list <code>eq_titles</code>.</p>
+<p>In the <code>px.scatter_geo()</code> call, we pass <code>eq_titles</code> to the <code>hover_name</code> argument <span aria-label="annotation3" class="CodeAnnotation">❸</span>. Plotly will now add the information from the title of each earthquake to the hover text on each point. When you run this program, you should be able to hover over any marker, see a description of where that earthquake took place, and read its exact magnitude. An example of this information is shown in <a href="#figure16-10" id="figureanchor16-10">Figure 16-10</a>.</p>
+<figure>
+<img alt="" class="keyline" height="340" src="Images/f16010.png" width="579"/>
+<figcaption><p><a id="figure16-10">Figure 16-10</a>: The hover text now includes a summary of each earthquake.</p></figcaption>
+</figure>
+<p>This is impressive! In less than 30 lines of code, we’ve created a visually appealing and meaningful map of global earthquake activity that also <span epub:type="pagebreak" id="Page_352" title="352"></span>illustrates the geological structure of the planet. Plotly offers a wide range of ways you can customize the appearance and behavior of your visualizations. Using Plotly’s many options, you can make charts and maps that show exactly what you want them to.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c16-27">16-6.	Refactoring:</span> The loop that pulls data from <code>all_eq_dicts</code> uses variables for the magnitude, longitude, latitude, and title of each earthquake before appending these values to their appropriate lists. This approach was chosen for clarity in how to pull data from a GeoJSON file, but it’s not necessary in your code. Instead of using these temporary variables, pull each value from <code>eq_dict</code> and append it to the appropriate list in one line. Doing so should shorten the body of this loop to just four lines.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c16-28">16-7.	Automated Title:</span> In this section, we used the generic title <em>Global Earthquakes</em>. Instead, you can use the title for the dataset in the metadata part of the GeoJSON file. Pull this value and assign it to the variable <code>title</code>.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c16-29">16-8.	Recent Earthquakes:</span> You can find online data files containing information about the most recent earthquakes over 1-hour, 1-day, 7-day, and 30-day periods. Go to <a class="LinkURL" href="https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php">https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php</a> and you’ll see a list of links to datasets for various time periods, focusing on earthquakes of different magnitudes. Download one of these datasets and create a visualization of the most recent earthquake activity.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c16-30">16-9.	World Fires: </span>In the resources for this chapter, you’ll find a file called <em>world_fires_1_day.csv</em>. This file contains information about fires burning in different locations around the globe, including the latitude, longitude, and brightness of each fire. Using the data-processing work from the first part of this chapter and the mapping work from this section, make a map that shows which parts of the world are affected by fires.</p>
+<p class="BoxBody">You can download more recent versions of this data at <a class="LinkURL" href="https://earthdata.nasa.gov/earth-observation-data/near-real-time/firms/active-fire-data">https://earthdata.nasa.gov/earth-observation-data/near-real-time/firms/active-fire-data</a>. You can find links to the data in CSV format in the <em>SHP, KML, and TXT Files</em> section.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c16-0003">Summary</h2>
+<p class="BodyFirst">In this chapter, you learned how to work with real-world datasets. You processed CSV and GeoJSON files, and extracted the data you want to focus on. Using historical weather data, you learned more about working with Matplotlib, including how to use the <code>datetime</code> module and how to plot multiple data series on one chart. You plotted geographical data on a world map in Plotly, and learned to customize the style of the map.</p>
+<p>As you gain experience working with CSV and JSON files, you’ll be able to process almost any data you want to analyze. You can download most online datasets in either or both of these formats. By working with these <span epub:type="pagebreak" id="Page_353" title="353"></span>formats, you’ll be able to learn how to work with other data formats more easily as well.</p>
+<p>In the next chapter, you’ll write programs that automatically gather their own data from online sources, and then you’ll create visualizations of that data. These are fun skills to have if you want to program as a hobby and are critical skills if you’re interested in programming professionally.</p>
+</section>
+</div></body>
+</html>

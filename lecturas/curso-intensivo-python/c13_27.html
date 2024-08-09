@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c13-0016">Respuesta a las colisiones entre naves alienígenas</h3>
+<p class="BodyFirst">Ahora tenemos que averiguar qué ocurrirá exactamente cuando un alienígena colisione con la nave. En lugar de destruir la instancia <code translate="no">ship</code> y crear una nueva, contaremos cuántas veces ha sido golpeada la nave mediante las estadísticas de seguimiento del juego. Las estadísticas de seguimiento también serán útiles para la puntuación.</p>
+<p>Escribamos una nueva clase, <code translate="no">GameStats</code>, para realizar el seguimiento de las estadísticas del juego, y guardémosla como <em translate="no">game_stats.py</em>:</p>
+<p class="CodeLabel" translate="no"><b>game_stats.py</b></p>
+<pre translate="no"><code translate="no">class GameStats:
+    """Track statistics for Alien Invasion."""
+
+    def __init__(self, ai_game):
+        """Initialize statistics."""
+        self.settings = ai_game.settings
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         self.reset_stats()
+
+    def reset_stats(self):
+        """Initialize statistics that can change during the game."""
+        self.ships_left = self.settings.ship_limit</code></pre>
+<p>Crearemos una instancia de <code translate="no">GameStats</code> para todo el tiempo que se ejecute <em translate="no">Alien Invasion</em>, pero necesitaremos restablecer algunas estadísticas cada vez que el jugador comience una nueva partida. Para ello, inicializaremos la mayoría de las estadísticas en el método <code translate="no">reset_stats()</code>, en lugar de hacerlo directamente en <code translate="no">__init__()</code>. Llamaremos a este método desde <code translate="no">__init__()</code> para que las estadísticas se establezcan correctamente cuando se cree por primera vez la instancia <code translate="no">GameStats</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Pero también podremos llamar a <code translate="no">reset_stats()</code> cada vez que el jugador empiece una nueva partida. Ahora mismo sólo tenemos una estadística, <code translate="no">ships_left</code>, cuyo valor cambiará a lo largo de la partida.</p>
+<p>El número de naves con las que comienza el jugador debe almacenarse en <em translate="no">settings.py</em> como <code translate="no">ship_limit</code>:</p>
+<p class="CodeLabel" translate="no"><b>settings.py</b></p>
+<pre translate="no"><code translate="no"><code translate="no">        </code><span class="LiteralGray"># Ship settings</span>
+        <span class="LiteralGray">self.ship_speed = 1.5</span>
+        self.ship_limit = 3</code></pre>
+<p><span epub:type="pagebreak" id="Page_272" title="272"></span>También tenemos que hacer algunos cambios en <em translate="no">alien_invasion.py</em> para crear una instancia de <code translate="no">GameStats</code>. En primer lugar, actualizaremos las sentencias <code translate="no">import</code> de la parte superior del archivo:</p>
+<p class="CodeLabel" translate="no"><b>alien_invasion.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">import sys</span>
+from time import sleep
+
+<span class="LiteralGray">import pygame</span>
+
+<span class="LiteralGray">from settings import Settings</span>
+from game_stats import GameStats
+<span class="LiteralGray">from ship import Ship</span>
+<em class="LiteralGrayItalic" translate="no">--snip--</em></code></pre>
+<p>Importamos la función <code translate="no">sleep()</code> del módulo <code translate="no">time</code> de la biblioteca estándar de Python, para que podamos pausar el juego un momento cuando la nave sea alcanzada. También importamos <code translate="no">GameStats</code>.</p>
+<p>Crearemos una instancia de <code translate="no">GameStats</code> en <code translate="no">__init__()</code>:</p>
+<p class="CodeLabel" translate="no"><b>alien_invasion.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    def __init__(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">        self.screen = pygame.display.set_mode(</span>
+<span class="LiteralGray">            (self.settings.screen_width, self.settings.screen_height))</span>
+<span class="LiteralGray">        pygame.display.set_caption("Alien Invasion")</span>
+
+        # Create an instance to store game statistics.
+        self.stats = GameStats(self)
+
+<span class="LiteralGray">        self.ship = Ship(self)</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic" translate="no">--snip--</em></code></pre>
+<p>Hacemos la instancia después de crear la ventana del juego, pero antes de definir otros elementos del juego, como la nave.</p>
+<p>Cuando un alien impacte contra la nave, restaremos 1 al número de naves restantes, destruiremos todos los alienígenas y balas existentes, crearemos una nueva flota y recolocaremos la nave en el centro de la pantalla. También pausaremos el juego un momento para que el jugador pueda darse cuenta de la colisión y reagruparse antes de que aparezca una nueva flota.</p>
+<p>Pongamos la mayor parte de este código en un nuevo método llamado <code translate="no">_ship_hit()</code>. Llamaremos a este método desde <code translate="no">_update_aliens()</code> cuando un alien impacte contra la nave:</p>
+<p class="CodeLabel" translate="no"><b>alien_invasion.py</b></p>
+<pre translate="no"><code translate="no">    def _ship_hit(self):
+        """Respond to the ship being hit by an alien."""
+        # Decrement ships_left.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         self.stats.ships_left -= 1
+
+        # Get rid of any remaining bullets and aliens.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         self.bullets.empty()
+        self.aliens.empty()
+
+        # Create a new fleet and center the ship.
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>         self._create_fleet()
+        self.ship.center_ship()
+
+<span epub:type="pagebreak" id="Page_273" title="273"></span>        # Pause.
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>         sleep(0.5)</code></pre>
+<p>El nuevo método <code translate="no">_ship_hit()</code> coordina la respuesta cuando un alienígena choca contra una nave. Dentro de <code translate="no">_ship_hit()</code>, el número de naves restantes se reduce en 1 <span aria-label="annotation1" class="CodeAnnotation">❶,</span> tras lo cual vaciamos los grupos <code translate="no">bullets</code> y <code translate="no">aliens</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span></p>
+<p>A continuación, creamos una nueva flota y centramos la nave <span aria-label="annotation3" class="CodeAnnotation">❸.</span>(Dentro de un momento añadiremos el método <code translate="no">center_ship()</code> a <code translate="no">Ship</code>.) A continuación, añadimos una pausa después de que se hayan realizado las actualizaciones de todos los elementos del juego, pero antes de que se haya dibujado ningún cambio en la pantalla, para que el jugador pueda ver que su nave ha sido golpeada <span aria-label="annotation4" class="CodeAnnotation">❹.</span> La llamada a <code translate="no">sleep()</code> detiene la ejecución del programa durante medio segundo, el tiempo suficiente para que el jugador vea que el alienígena ha golpeado la nave. Cuando finaliza la función <code translate="no">sleep()</code>, la ejecución del código pasa al método <code translate="no">_update_screen()</code>, que dibuja la nueva flota en la pantalla.</p>
+<p>En <code translate="no">_update_aliens()</code>, sustituimos la llamada a <code translate="no">print()</code> por una llamada a <code translate="no">_ship_hit()</code> cuando un alienígena golpea la nave:</p>
+<p class="CodeLabel" translate="no"><b>alien_invasion.py</b></p>
+<pre translate="no"><code translate="no">    <span class="LiteralGray">def _update_aliens(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">        if pygame.sprite.spritecollideany(self.ship, self.aliens):</span>
+            self._ship_hit()</code></pre>
+<p>Este es el nuevo método <code translate="no">center_ship()</code>, que pertenece a <em translate="no">ship.py</em>:</p>
+<p class="CodeLabel" translate="no"><b>ship.py</b></p>
+<pre translate="no"><code translate="no"><code translate="no">    </code>def center_ship(self):
+        """Center the ship on the screen."""
+        self.rect.midbottom = self.screen_rect.midbottom
+        self.x = float(self.rect.x)</code></pre>
+<p>Centramos la nave del mismo modo que en <code translate="no">__init__()</code>. Después de centrarla, reseteamos el atributo <code translate="no">self.x</code>, que nos permite seguir la posición exacta de la nave.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c13_26.html">anterior</a><a href="c13.html">Subtema 27 de 33: (Ver todo)</a><a href="c13_28.html">siguiente</a><br/></p>
+<br/><a href="c13_27.docx" target="_blank"></a></footer>
+</body>
+</html>

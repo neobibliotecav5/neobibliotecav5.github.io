@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch03lev1sec6">
+  Las listas son más potentes que las cadenas </h3>
+<p class="noindent">
+  "Ancas de araña, dedo de rana, ala de murciélago, mantequilla de babosa y caspa de serpiente" no es una lista de la compra muy normal (a menos que seas un mago), pero la utilizaremos como primer ejemplo de las diferencias entre cadenas y listas. Podríamos almacenar esta lista de artículos en la variable <span class="literal1" translate="no">
+   wizard_list
+  </span>utilizando una cadena como ésta: </p>
+<div class="image1">
+<img alt="Image" class="calibre35" src="../images/f0032-01.jpg" translate="no"/>
+</div>
+<pre class="pre" translate="no">&gt;&gt;&gt; wizard_list = <span class="green">'spider legs, toe of frog, bat wing, slug butter, snake dandruff'</span>
+&gt;&gt;&gt; <span class="violet">print</span>(wizard_list)
+<span class="blue1">spider legs, toe of frog, bat wing, slug butter, snake dandruff</span></pre>
+<p class="indent">
+  Pero también podríamos crear una <em class="calibre7">lista </em>, un objeto Python un tanto mágico que podemos manipular. Así es como se verían estos elementos escritos como una lista: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> wizard_list = [<span class="green">'spider legs'</span>, <span class="green">'toe of frog'</span>, <span class="green">'bat wing'</span>,
+                   <span class="green">'slug butter'</span>, <span class="green">'snake dandruff'</span>]
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(wizard_list)
+<span class="blue1">['spider legs', 'toe of frog', 'bat wing', 'slug butter',
+'snake dandruff']</span></pre>
+<p class="indent">
+  Para crear una lista hay que teclear un poco más que para crear una cadena, pero una lista es más útil que una cadena porque los elementos de la lista se pueden manipular fácilmente. Podemos imprimir un elemento de la lista introduciendo un número (llamado <em class="calibre7">posición del índice </em>) entre corchetes, así: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(wizard_list[2])
+<span class="blue1">bat wing</span></pre>
+<p class="indent">
+  Si esperabas que el segundo elemento fuera <span class="literal1" translate="no">
+   ‘toe of frog’
+  </span>, puede que te preguntes por qué se ha impreso <span class="literal1" translate="no">
+   ‘bat wing’
+  </span>. Esto es <span id="page_33">
+</span>porque las listas empiezan en la posición índice 0, de modo que el primer elemento de una lista es 0, el segundo es 1 y el <strong class="calibre5">tercero </strong>es 2. Puede que esto no tenga mucho sentido para los humanos, pero sí para los ordenadores. </p>
+<p class="indent">
+  También podemos cambiar un elemento de una lista. Quizá nuestro amigo mago nos acaba de decir que tenemos que cogerle lengua de caracol en vez de ala de murciélago. Así es como cambiaríamos el elemento de nuestra lista: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> wizard_list[2] = <span class="green">'snail tongue'</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(wizard_list)
+<span class="blue1">['spider legs', 'toe of frog', 'snail tongue', 'slug butter',
+'snake dandruff']</span></pre>
+<p class="indent">
+  Esto cambia el elemento en la posición 2 del índice, que antes era ala de murciélago, a lengua de caracol. </p>
+<p class="indent">
+  También podemos mostrar una sublista de los elementos de la lista. Para ello, utiliza dos puntos ( <span class="literal1" translate="no">
+   :
+  </span>) dentro de los corchetes. Por ejemplo, escribe lo siguiente para ver los elementos tercero a quinto de nuestra lista (un brillante conjunto de ingredientes para un delicioso bocadillo): </p>
+<div class="image1">
+<img alt="Image" class="calibre36" src="../images/f0033-01.jpg" translate="no"/>
+</div>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(wizard_list[2:5])
+<span class="blue1">['snail tongue', 'slug butter', 'snake dandruff']</span></pre>
+<p class="indent">
+  Escribir <span class="literal1" translate="no">
+   [2:5]
+  </span>equivale a decir: "Muestra los elementos desde la posición índice 2 hasta (pero sin incluir) la posición índice 5", es decir, los elementos 3, 4 y 5. </p>
+<p class="indent">
+  Las listas pueden utilizarse para almacenar todo tipo de elementos, como números: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> some_numbers = [1, 2, 5, 10, 20]</pre>
+<p class="indent">
+  También pueden contener cadenas: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> some_strings = [<span class="green">'Which'</span>, <span class="green">'Witch'</span>, <span class="green">'Is'</span>, <span class="green">'Which'</span>]</pre>
+<p class="indent">
+  Pueden tener mezclas de números y cadenas: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> numbers_and_strings = [<span class="green">'Why'</span>, <span class="green">'was'</span>, 6, <span class="green">'afraid'</span>, <span class="green">'of'</span>, 7, 
+                           <span class="green">'because'</span>, 7, 8, 9]
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(numbers_and_strings)
+<span class="blue1">['Why', 'was', 6, 'afraid', 'of', 7, 'because', 7, 8, 9]</span></pre>
+<p class="indent">
+<span id="page_34">
+</span>
+  Y las listas pueden incluso almacenar otras listas: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> numbers = [1, 2, 3, 4]
+<span class="brown">&gt;&gt;&gt;</span> strings = [<span class="green">'I'</span>, <span class="green">'kicked'</span>, <span class="green">'my'</span>, <span class="green">'toe'</span>, <span class="green">'and'</span>, <span class="green">'it'</span>, 
+               <span class="green">'is'</span>, <span class="green">'sore'</span>]
+<span class="brown">&gt;&gt;&gt;</span> mylist = [numbers, strings]
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(mylist)
+<span class="blue1">[[1, 2, 3, 4], ['I', 'kicked', 'my', 'toe', 'and', 'it',
+'is', 'sore']]</span></pre>
+<p class="indent">
+  Este ejemplo de lista dentro de lista crea tres variables: <span class="literal1" translate="no">
+   numbers
+  </span>con cuatro números, <span class="literal1" translate="no">
+   strings
+  </span>con ocho cadenas y <span class="literal1" translate="no">
+   mylist
+  </span>con <span class="literal1" translate="no">
+   numbers
+  </span>y <span class="literal1" translate="no">
+   strings
+  </span>. La tercera lista ( <span class="literal1" translate="no">
+   mylist
+  </span>) sólo tiene dos elementos porque es una lista de nombres de variables, no del contenido de las variables. </p>
+<p class="indent">
+  Podemos intentar imprimir los dos elementos de <span class="literal1" translate="no">
+   mylist
+  </span>por separado: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(mylist[0])
+<span class="blue1">[1, 2, 3, 4]</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(mylist[1])
+<span class="blue1">['I', 'kicked', 'my', 'toe', 'and', 'it', 'is', 'sore']</span></pre>
+<p class="indent">
+  Aquí podemos ver que <span class="literal1" translate="no">
+   mylist[0]
+  </span>contiene la lista de números, y <span class="literal1" translate="no">
+   mylist[1]
+  </span>es la lista de cadenas. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch03_6.html">anterior</a><a href="ch03.html">Subtema 7 de 14: (Ver todo)</a><a href="ch03_8.html">siguiente</a><br/></p>
+<br/><a href="ch03_7.docx" target="_blank"></a></footer>
+</body>
+</html>

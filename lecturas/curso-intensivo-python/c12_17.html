@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c12-0008">El método _actualizar_pantalla()</h3>
+<p class="BodyFirst">Para simplificar aún más <code translate="no">run_game()</code>, trasladaremos el código para actualizar la pantalla a un método independiente llamado <code translate="no">_update_screen()</code>:</p>
+<p class="CodeLabel" translate="no"><b>alien_invasion.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    def run_game(self):</span>
+<span class="LiteralGray">        """Start the main loop for the game."""</span>
+<span class="LiteralGray">        while True:</span>
+<span class="LiteralGray">            self._check_events()</span>
+<span class="LiteralGray">            </span>self._update_screen()
+<span class="LiteralGray">            self.clock.tick(60)</span>
+
+<span class="LiteralGray">    def _check_events(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+
+<span epub:type="pagebreak" id="Page_238" title="238"></span>    def _update_screen(self):
+        """Update images on the screen, and flip to the new screen."""
+       <span class="LiteralGray"> self.screen.fill(self.settings.bg_color)</span>
+<span class="LiteralGray">        self.ship.blitme()</span>
+
+<span class="LiteralGray">        pygame.display.flip()</span></code></pre>
+<p>Trasladamos el código que dibuja el fondo y la nave y voltea la pantalla a <code translate="no">_update_screen()</code>. Ahora el cuerpo del bucle principal en <code translate="no">run_game()</code> es mucho más sencillo. Es fácil ver que buscamos nuevos eventos, actualizamos la pantalla y hacemos tictac en el reloj en cada pasada por el bucle.</p>
+<p>Si ya has construido varios juegos, probablemente empezarás dividiendo tu código en métodos como éstos. Pero si nunca has abordado un proyecto como éste, es probable que al principio no sepas exactamente cómo estructurar tu código. Este enfoque te da una idea de un proceso de desarrollo realista: empiezas escribiendo tu código de la forma más sencilla posible, y luego lo refactorizas a medida que tu proyecto se hace más complejo.</p>
+<p>Ahora que hemos reestructurado el código para que sea más fácil añadir cosas, ¡podemos trabajar en los aspectos dinámicos del juego!</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c12_16.html">anterior</a><a href="c12.html">Subtema 17 de 43: (Ver todo)</a><a href="c12_18.html">siguiente</a><br/></p>
+<br/><a href="c12_17.docx" target="_blank"></a></footer>
+</body>
+</html>

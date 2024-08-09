@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Invocation</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Invocation"><div class="titlepage"><div><div><h1 class="title"><a id="invocation"/>Invocation</h1></div></div></div><p>Invoking a function suspends the execution of the current function, passing
+                control and parameters to the new function. In addition to the declared parameters,
+                every function receives two additional parameters: <code class="literal">this</code> and <code class="literal">arguments</code>. The <code class="literal">this</code> parameter is very important in object oriented
+                programming, and its value is determined by the <span class="emphasis"><em>invocation
+                    pattern</em></span>. There are four patterns of invocation in JavaScript: the
+                method invocation pattern, the function invocation pattern, the constructor
+                invocation pattern, and the apply invocation pattern. The patterns differ in how the
+                bonus parameter <code class="literal">this</code> is initialized.<a id="IDX-CHP-4-0186" class="indexterm"/></p><p>The invocation operator is a pair of parentheses that follow any expression that
+                produces a function value. The parentheses can contain zero or more expressions,
+                separated by commas. Each expression produces one argument value. Each of the
+                argument values will be assigned to the function's parameter names. There is no
+                runtime error when the number of arguments and the number of parameters do not
+                match. If there are too many argument values, the extra argument values will be
+                ignored. If there are too few argument values, the <code class="literal">undefined</code> value will be substituted for the missing values. There is
+                no type checking on the argument values: any type of value can be passed to any
+                    parameter.<a id="IDX-CHP-4-0187" class="indexterm"/><a id="IDX-CHP-4-0188" class="indexterm"/><a id="IDX-CHP-4-0189" class="indexterm"/></p><div class="sect2" title="The Method Invocation Pattern"><div class="titlepage"><div><div><h2 class="title"><a id="the_method_invocation_pattern"/>The Method Invocation Pattern</h2></div></div></div><p>When a function is stored as a property of an object, we call it a
+                        <span class="emphasis"><em>method</em></span>. When a method is invoked, <code class="literal">this</code> is bound to that object. If an invocation
+                    expression contains a refinement (that is, a <code class="literal">.</code> dot expression or <code class="literal">[</code><em class="replaceable"><code>subscript</code></em><code class="literal">]</code> expression), it is invoked as a method:<a id="IDX-CHP-4-0190" class="indexterm"/><a id="IDX-CHP-4-0191" class="indexterm"/></p><a id="I_programlisting4_d1e2521"/><pre class="programlisting">// Create myObject. It has a value and an increment
+// method. The increment method takes an optional
+// parameter. If the argument is not a number, then 1
+// is used as the default.
+
+var myObject = {
+    value: 0,
+    increment: function (inc) {
+        this.value += typeof inc === 'number' ? inc : 1;
+    }
+};
+
+myObject.increment(  );
+document.writeln(myObject.value);    // 1
+
+myObject.increment(2);
+document.writeln(myObject.value);    // 3</pre><p>A method can use <code class="literal">this</code> to access the object
+                    so that it can retrieve values from the object or modify the object. The binding
+                    of <code class="literal">this</code> to the object happens at invocation
+                    time. This very late binding makes functions that use <code class="literal">this</code> highly reusable. Methods that get their object context from
+                        <code class="literal">this</code> are called <span class="emphasis"><em>public
+                        methods</em></span>.</p></div><div class="sect2" title="The Function Invocation Pattern"><div class="titlepage"><div><div><h2 class="title"><a id="the_function_invocation_pattern"/>The Function Invocation Pattern</h2></div></div></div><p>When a function is not the property of an object, then it is invoked as a
+                        function:<a id="IDX-CHP-4-0192" class="indexterm"/><a id="IDX-CHP-4-0193" class="indexterm"/></p><a id="I_programlisting4_d1e2555"/><pre class="programlisting">var sum = add(3, 4);    // sum is 7</pre><p>When a function is invoked with this pattern, <code class="literal">this</code> is bound to the global object. This was a mistake in the
+                    design of the language. Had the language been designed correctly, when the inner
+                    function is invoked, <code class="literal">this</code> would still be
+                    bound to the <code class="literal">this</code> variable of the outer
+                    function. A consequence of this error is that a method cannot employ an inner
+                    function to help it do its work because the inner function does not share the
+                    method's access to the object as its <code class="literal">this</code> is
+                    bound to the wrong value. Fortunately, there is an easy workaround. If the
+                    method defines a variable and assigns it the value of <code class="literal">this</code>, the inner function will have access to <code class="literal">this</code> through that variable. By convention, the
+                    name of that variable is <code class="literal">that</code>:</p><a id="I_programlisting4_d1e2581"/><pre class="programlisting">// Augment myObject with a double method.
+
+myObject.double = function (  ) {
+    var that = this;    // Workaround.
+
+    var helper = function (  ) {
+        that.value = add(that.value, that.value);
+    };
+
+    helper(  );    // Invoke helper as a function.
+};
+
+// Invoke double as a method.
+
+myObject.double(  );
+document.writeln(myObject.value);     // 6 </pre></div><div class="sect2" title="The Constructor Invocation Pattern"><div class="titlepage"><div><div><h2 class="title"><a id="the_constructor_invocation_pattern"/>The Constructor Invocation Pattern</h2></div></div></div><p>JavaScript is a <span class="emphasis"><em>prototypal</em></span> inheritance language. That
+                    means that objects can inherit properties directly from other objects. The
+                    language is class-free.<a id="IDX-CHP-4-0194" class="indexterm"/><a id="IDX-CHP-4-0195" class="indexterm"/><a id="IDX-CHP-4-0196" class="indexterm"/><a id="IDX-CHP-4-0197" class="indexterm"/><a id="IDX-CHP-4-0198" class="indexterm"/></p><p>This is a radical departure from the current fashion. Most languages today are
+                        <span class="emphasis"><em>classical</em></span>. Prototypal inheritance is powerfully
+                    expressive, but is not widely understood. JavaScript itself is not confident in
+                    its prototypal nature, so it offers an object-making syntax that is reminiscent
+                    of the classical languages. Few classical programmers found prototypal
+                    inheritance to be acceptable, and classically inspired syntax obscures the
+                    language's true prototypal nature. It is the worst of both worlds.</p><p>If a function is invoked with the <code class="literal">new</code>
+                    prefix, then a new object will be created with a hidden link to the value of the
+                    function's <code class="literal">prototype</code> member, and <code class="literal">this</code> will be bound to that new object.</p><p>The <code class="literal">new</code> prefix also changes the behavior of
+                    the <code class="literal">return</code> statement. We will see more about
+                    that next.</p><a id="I_programlisting4_d1e2640"/><pre class="programlisting">// Create a constructor function called Quo.
+// It makes an object with a status property.
+
+var Quo = function (string) {
+    this.status = string;
+};
+
+// Give all instances of Quo a public method
+// called get_status.
+
+Quo.prototype.get_status = function (  ) {
+    return this.status;
+};
+
+// Make an instance of Quo.
+
+var myQuo = new Quo("confused");
+
+document.writeln(myQuo.get_status(  ));  // confused</pre><p>Functions that are intended to be used with the <code class="literal">new</code> prefix are called <span class="emphasis"><em>constructors</em></span>. By
+                    convention, they are kept in variables with a capitalized name. If a constructor
+                    is called without the <code class="literal">new</code> prefix, very bad
+                    things can happen without a compile-time or runtime warning, so the
+                    capitalization convention is really important.<a id="IDX-CHP-4-0199" class="indexterm"/></p><p>Use of this style of constructor functions is not recommended. We will see
+                    better alternatives in the next chapter.</p></div><div class="sect2" title="The Apply Invocation Pattern"><div class="titlepage"><div><div><h2 class="title"><a id="the_apply_invocation_pattern"/>The Apply Invocation Pattern</h2></div></div></div><p>Because JavaScript is a functional object-oriented language, functions can
+                    have methods.<a id="IDX-CHP-4-0200" class="indexterm"/><a id="IDX-CHP-4-0201" class="indexterm"/></p><p>The <code class="literal">apply</code> method lets us construct an array
+                    of arguments to use to invoke a function. It also lets us choose the value of
+                        <code class="literal">this</code>. The <code class="literal">apply</code> method takes two parameters. The first is the value that
+                    should be bound to <code class="literal">this</code>. The second is an
+                    array of parameters.</p><a id="I_programlisting4_d1e2687"/><pre class="programlisting">// Make an array of 2 numbers and add them.
+
+var array = [3, 4];
+var sum = add.apply(null, array);    // sum is 7
+
+// Make an object with a status member.
+
+var statusObject = {
+    status: 'A-OK'
+};
+
+// statusObject does not inherit from Quo.prototype,
+// but we can invoke the get_status method on
+// statusObject even though statusObject does not have
+// a get_status method.
+
+var status = Quo.prototype.get_status.apply(statusObject);
+    // status is 'A-OK'</pre></div></div></body></html>

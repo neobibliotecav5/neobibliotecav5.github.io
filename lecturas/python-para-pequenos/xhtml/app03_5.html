@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="app03lev1sec4">
+  La clase no tiene argumentos </h3>
+<p class="indent">
+  Un error común con el que tropiezan algunos lectores es un <span class="literal1" translate="no">
+   TypeError
+  </span>, normalmente visto por primera vez en el <a class="calibre6" href="ch11.xhtml#ch11">Capítulo 11 . </a>Es posible que veas un error similar al siguiente: </p>
+<pre class="pre" translate="no">b = Ball(canvas, <span class="green">'red'</span>)
+<span class="red">Traceback (most recent call last):
+  File "/usr/lib/python3.10/idlelib/run.py", line 573, in runcode
+    exec(code, self.locals)
+  File "&lt;pyshell#4&gt;", line 1, in &lt;module&gt;
+<span id="page_326"></span>TypeError: Ball() takes no arguments</span>
+</pre>
+<p class="indent">
+  El motivo suele ser la falta de guiones bajos. La clase <span class="literal1" translate="no">
+   Ball
+  </span>se define primero así: </p>
+<pre class="pre" translate="no"><span class="orange">class</span> Ball:
+    <span class="orange">def</span> __init__(self, canvas, color):
+        self.canvas = canvas
+        self.id = canvas.create_oval(10, 10, 25, 25, fill=color)
+        self.canvas.move(self.id, 245, 100)
+</pre>
+<p class="indent">
+  Sin embargo, si escribes mal la función <span class="literal1" translate="no">
+   __init__
+  </span>con un solo guión bajo a cada lado ( <span class="literal1" translate="no">
+   _init_
+  </span>), Python ya no la reconocerá como función de inicialización. Esta es la razón por la que llamar a <span class="literal1" translate="no">
+   Ball(...)
+  </span>con cualquier argumento produce un error: Python piensa que no hay ninguna función de inicialización a la que llamar (de hecho, crea una función de inicialización por defecto para ti que no tiene parámetros). </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="app03_4.html">anterior</a><a href="app03.html">Subtema 5 de 5: (Ver todo)</a><br/></p>
+<br/><a href="app03_5.docx" target="_blank"></a></footer>
+</body>
+</html>

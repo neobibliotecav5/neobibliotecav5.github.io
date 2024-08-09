@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c18-0007">Ver el proyecto</h3>
+<p class="BodyFirst">Asegurémonos de que Django ha configurado el proyecto correctamente. Introduce el comando <code class="bold" translate="no">runserver</code> para ver el proyecto en su estado actual:</p>
+<pre translate="no"><code translate="no">(ll_env)learning_log$ <b>python manage.py runserver</b>
+Watching for file changes with StatReloader
+Performing system checks...
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> System check identified no issues (0 silenced).
+May 19, 2022 - 21:52:35
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> Django version 4.1, using settings 'll_project.settings'
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.</code></pre>
+<p>Django debería iniciar un servidor llamado <em translate="no">development server</em>, para que puedas ver el proyecto en tu sistema y comprobar si funciona correctamente. Cuando solicitas una página introduciendo una URL en un navegador, el servidor Django responde a esa solicitud construyendo la página apropiada y enviándola al navegador.</p>
+<p>Django comprueba primero que el proyecto está configurado correctamente <span aria-label="annotation1" class="CodeAnnotation">❶;</span> a continuación, informa de la versión de Django en uso y del nombre del archivo de configuración en uso <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Por último, informa de la URL en la que se está sirviendo el proyecto <span aria-label="annotation3" class="CodeAnnotation">❸.</span> La URL <em translate="no">http://127.0.0.1:8000/</em> indica que el proyecto está a la escucha de peticiones en el puerto 8000 de tu ordenador, que se denomina localhost. El término <span epub:type="pagebreak" id="Page_378" title="378"></span> <em translate="no">localhost</em> se refiere a un servidor que sólo procesa peticiones en tu sistema; no permite que nadie más vea las páginas que estás desarrollando.</p>
+<p>Abre un navegador web e introduce la URL <em translate="no">http://localhost:8000/</em>, o <em translate="no">http://127.0.0.1:8000/</em> si la primera no funciona. Deberías ver algo como <a href="#figure18-1" id="figureanchor18-1">la Figura 18-1</a>: una página que Django crea para informarte de que todo funciona correctamente hasta el momento. Mantén el servidor en funcionamiento por ahora, pero cuando quieras detenerlo, pulsa CTRL-C en el terminal donde se emitió el comando <code translate="no">runserver</code>.</p>
+<figure><img alt="" class="keyline" height="398" src="Images/f18001.png" translate="no" width="694"/>
+<figcaption><p><a id="figure18-1">Figura 18-1</a>: Hasta ahora todo funciona correctamente.</p></figcaption></figure><aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c18_12.html">anterior</a><a href="c18.html">Subtema 13 de 41: (Ver todo)</a><a href="c18_14.html">siguiente</a><br/></p>
+<br/><a href="c18_13.docx" target="_blank"></a></footer>
+</body>
+</html>

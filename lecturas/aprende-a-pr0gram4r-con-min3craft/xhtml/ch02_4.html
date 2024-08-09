@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch02lev1sec03"><strong><span class="blue1">Ralentizar el teletransporte utilizando el módulo tiempo</span></strong></h3>
+<p class="noindent">Python ejecuta tu código lo más rápido posible. Pero puedes ralentizar la acción haciendo que tus programas esperen un cierto número de segundos antes de continuar.</p>
+<p class="indent">Para utilizar el tiempo en tus programas, necesitas el módulo <span class="literal">tiempo</span>, que contiene un conjunto de funciones preescritas relacionadas con el tiempo. Para utilizar el módulo <span class="literal">tiempo</span>, añade la siguiente línea de código al principio de tus programas:</p>
+<p class="programs" translate="no"><span class="orange">import</span> time</p>
+<p class="indent"><span epub:type="pagebreak" id="page_44"></span>El orden es muy importante cuando utilices el módulo del <span class="literal">tiempo</span> y la función <span class="literal">sleep()</span>, que forma parte del módulo del <span class="literal">tiempo</span>. La función <span class="literal">sleep</span> () hará que un programa espere un número determinado de segundos antes de continuar. Siempre debes importar el módulo del <span class="literal">tiempo</span> antes de utilizar la función sleep( <span class="literal">)</span>. Si no lo haces, Python no podrá encontrar la función dormir( <span class="literal">)</span> y se confundirá tanto que detendrá la ejecución de tu programa. Por eso es mejor importar cualquier módulo que utilices al principio de tu código. Todas tus declaraciones de <span class="literal">importación</span> se agruparán en la parte superior del programa. Por ejemplo, yo suelo incluir primero las líneas de código para conectarme a Minecraft, y luego añado la sentencia <span class="literal">import time</span> en la tercera línea.</p>
+<p class="indent">Aquí tienes un ejemplo de cómo utilizar la función <span class="literal">sleep()</span>:</p>
+<p class="programs" translate="no">time.sleep(5)</p>
+<p class="indent">Esta línea de código pausa tu programa durante cinco segundos. Puedes utilizar cualquier número, incluidos enteros y flotantes, como muestra el siguiente ejemplo:</p>
+<p class="programs" translate="no">time.sleep(0.2)</p>
+<p class="indent">Cuando tu programa llegue a esta línea de código, esperará 0,2 segundos. Ahora que ya puedes controlar el flujo del tiempo, ¡estás listo para la siguiente misión!</p>
+<h4 class="h4a" id="ch02lev2sec08"><strong>Misión 3: Recorrido de teletransporte</strong></h4>
+<p class="noindent">La belleza del teletransporte en Minecraft es que puedes enviar a tu jugador a cualquier parte. Usando todas las habilidades que has aprendido hasta ahora, ¡enviarás a tu jugador a un tour automatizado por todo tu mundo Minecraft!</p>
+<p class="indent">En esta misión, practicarás cambiando los valores de las variables modificando el código de la Misión nº 1<a href="ch02.xhtml#page_35">(página 35</a>) para teletransportar al jugador a varios lugares del mapa. El jugador se teletransportará a un lugar, esperará unos segundos y luego se teletransportará a otro lugar.</p>
+<ol>
+<li class="noindent"><p class="list">En IDLE, abre el programa <em>teleport.py</em><a href="ch02.xhtml#page_38">(página</a> 38) haciendo clic en <strong>Archivo</strong> <img alt="image" src="../images/arrow.jpg" translate="no"/> <strong>Abrir</strong> y seleccionando el archivo de tu carpeta <em>de variables</em>.</p></li>
+<li class="noindent"><p class="list">Guarda una copia del programa como <em>gira.</em> py en tu carpeta <em>de</em> variables.</p></li>
+<li class="noindent"><p class="list">Justo después del código que conecta tu programa con Minecraft, añade <span class="literal">import time</span>.</p></li>
+<li class="noindent"><p class="list">Al final del programa, añade <span class="literal">time.sleep(10)</span>.</p></li>
+<li class="noindent"><p class="list">Copia las líneas con las variables <span class="literal">x</span>, <span class="literal">y</span>, y <span class="literal">z</span> y la función <span class="literal">setTilePos()</span> y pégalas al final del programa, para que esas líneas aparezcan dos veces.</p></li>
+<li class="noindent"><p class="list"><span epub:type="pagebreak" id="page_45"></span>Cambia los valores de ambos conjuntos de variables <span class="literal">x</span>, <span class="literal">y</span> y <span class="literal">z</span> por los números que quieras. Puedes encontrar las coordenadas de cualquier posición de tu juego moviéndote hasta allí y anotando las coordenadas del jugador como hiciste anteriormente en este capítulo.</p></li>
+<li class="noindent"><p class="list">Guarda el programa.</p></li>
+<li class="noindent"><p class="list">Abre un mundo Minecraft y ejecuta el código.</p></li>
+</ol>
+<p class="indent">El resultado final debería ser así, con las nuevas coordenadas rellenadas:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>tour.py</em></span></p>
+<p class="programs" translate="no"><span class="red"># Connect to Minecraft</span><br translate="no"/><span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>mc = Minecraft.create()<br translate="no"/><span class="orange">import</span> time<br translate="no"/><br translate="no"/><span class="red"># Set x, y, and z variables to represent coordinates</span><br translate="no"/>x = <span class="red"># Fill in</span><br translate="no"/>y = <span class="red"># Fill in</span><br translate="no"/>z = <span class="red"># Fill in</span><br translate="no"/><br translate="no"/><span class="red"># Change the player's position</span><br translate="no"/>mc.player.setTilePos(x, y, z)<br translate="no"/><br translate="no"/><span class="red"># Wait 10 seconds</span><br translate="no"/>time.sleep(10)<br translate="no"/><br translate="no"/><span class="red"># Set x, y, and z variables to represent coordinates</span><br translate="no"/>x = <span class="red"># Fill in</span><br translate="no"/>y = <span class="red"># Fill in</span><br translate="no"/>z = <span class="red"># Fill in</span><br translate="no"/><br translate="no"/><span class="red"># Change the player's position</span><br translate="no"/>mc.player.setTilePos(x, y, z)</p>
+<p class="indent">El jugador debe teletransportarse al primer lugar, esperar 10 segundos y, a continuación, teletransportarse al segundo lugar, como se muestra en la <a href="ch02.xhtml#ch2fig11">Figura 2-11</a>.</p>
+<div class="sidebar">
+<p class="sidebart" id="ch02sb03"><strong>OBJETIVO EXTRA: MÁS TELETRANSPORTE</strong></p>
+<p class="noindent">Copia el código de <em>tour.py</em> para mover al jugador tantas veces como quieras. Sustituye el <span class="literal">10</span> de la función <span class="literal">time.sleep(10)</span> por un valor distinto. Incluso podrías utilizar un número distinto para cada función sleep <span class="literal">()</span>, de modo que el jugador espere un tiempo distinto en cada lugar.</p>
+<p class="indent">Luego edita el código para que entre teletransporte y teletransporte sólo cambie una de las variables <span class="literal">x</span>, <span class="literal">y</span> y <span class="literal">z</span>. ¡No hace falta que cambies todas las variables cada vez! Prueba también a utilizar valores flotantes en lugar de enteros.</p>
+</div>
+<div class="image"><span epub:type="pagebreak" id="page_46"></span><img alt="image" src="../images/f02-11.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch2fig11"></a><em>Figura 2-11: He establecido las coordenadas en mi programa para teletransportarme a mi casa y luego teletransportarme al desierto.</em></p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch02_3.html">anterior</a><a href="ch02.html">Subtema 4 de 6: (Ver todo)</a><a href="ch02_5.html">siguiente</a><br/></p>
+<br/><a href="ch02_4.docx" target="_blank"></a></footer>
+</body>
+</html>

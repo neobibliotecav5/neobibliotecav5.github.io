@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c10-0019">Guardar y leer datos generados por el usuario</h3>
+<p class="BodyFirst">Guardar datos con <code translate="no">json</code> es útil cuando trabajas con datos generados por el usuario, porque si no almacenas la información de tu usuario de alguna manera, la perderás cuando el programa deje de ejecutarse. Veamos un ejemplo en el que pedimos al usuario su nombre la primera vez que ejecuta un programa y luego recordamos su nombre cuando vuelva a ejecutar el programa.</p>
+<p>Empecemos por almacenar el nombre del usuario:</p>
+<p class="CodeLabel" translate="no"><b>remember_me.py</b></p>
+<pre translate="no"><code translate="no">from pathlib import Path
+import json
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> username = input("What is your name? ")
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> path = Path('username.json')
+contents = json.dumps(username)
+path.write_text(contents)
+
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> print(f"We'll remember you when you come back, {username}!")</code></pre>
+<p>Primero pedimos un nombre de usuario para almacenarlo <span aria-label="annotation1" class="CodeAnnotation">❶.</span> A continuación, escribimos los datos que acabamos de recoger en un archivo llamado <em translate="no">username.json</em> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Luego imprimimos un mensaje informando al usuario de que hemos almacenado su información <span aria-label="annotation3" class="CodeAnnotation">❸:</span></p>
+<pre translate="no"><code translate="no">What is your name? <b>Eric</b>
+We'll remember you when you come back, Eric!</code></pre>
+<p><span epub:type="pagebreak" id="Page_203" title="203"></span>Ahora escribamos un nuevo programa que salude a un usuario cuyo nombre ya ha sido almacenado:</p>
+<p class="CodeLabel" translate="no"><b>greet_user.py</b></p>
+<pre translate="no"><code translate="no">from pathlib import Path
+import json
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> path = Path('username.json')
+contents = path.read_text()
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> username = json.loads(contents)
+
+print(f"Welcome back, {username}!")</code></pre>
+<p>Leemos el contenido del fichero de datos <span aria-label="annotation1" class="CodeAnnotation">❶</span> y luego utilizamos <code translate="no">json.loads()</code> para asignar los datos recuperados a la variable <code translate="no">username</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Como hemos recuperado el nombre de usuario, podemos darle la bienvenida con un saludo personalizado:</p>
+<pre translate="no"><code translate="no">Welcome back, Eric!</code></pre>
+<p>Necesitamos combinar estos dos programas en un único archivo. Cuando alguien ejecute <em translate="no">remember_me.py</em>, queremos recuperar su nombre de usuario de la memoria si es posible; si no, le pediremos un nombre de usuario y lo almacenaremos en <em translate="no">username.json</em> para la próxima vez. Podríamos escribir aquí un bloque <code translate="no">try</code>-<code translate="no">except</code> para responder adecuadamente si <em translate="no">username.json</em> no existe, pero en su lugar utilizaremos un práctico método del módulo <code translate="no">pathlib</code>:</p>
+<p class="CodeLabel" translate="no"><b>remember_me.py</b></p>
+<pre translate="no"><code translate="no">from pathlib import Path
+import json
+
+path = Path('username.json')
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> if path.exists():
+    contents = path.read_text()
+    username = json.loads(contents)
+    print(f"Welcome back, {username}!")
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> else:
+    username = input("What is your name? ")
+    contents = json.dumps(username)
+    path.write_text(contents)
+    print(f"We'll remember you when you come back, {username}!")</code></pre>
+<p>Hay muchos métodos útiles que puedes utilizar con los objetos <code translate="no">Path</code>. El método <code translate="no">exists()</code> devuelve <code translate="no">True</code> si existe un archivo o carpeta y <code translate="no">False</code> si no existe. Aquí utilizamos <code translate="no">path.exists()</code> para averiguar si ya se ha almacenado un nombre de usuario <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Si <em translate="no">username.json</em> existe, cargamos el nombre de usuario e imprimimos un saludo personalizado al usuario.</p>
+<p>Si el archivo <em translate="no">username.json</em> no existe <span aria-label="annotation2" class="CodeAnnotation">❷,</span> pedimos un nombre de usuario y almacenamos el valor que introduzca el usuario. También imprimimos el mensaje familiar de que nos acordaremos de ellos cuando vuelvan.</p>
+<p>Sea cual sea el bloque que se ejecute, el resultado es un nombre de usuario y un saludo apropiado. Si es la primera vez que se ejecuta el programa, ésta es la salida:</p>
+<pre translate="no"><code translate="no">What is your name? <b>Eric</b>
+We'll remember you when you come back, Eric!</code></pre>
+<p><span epub:type="pagebreak" id="Page_204" title="204"></span>Si no:</p>
+<pre translate="no"><code translate="no">Welcome back, Eric!</code></pre>
+<p>Esta es la salida que ves si el programa ya se ha ejecutado al menos una vez. Aunque los datos de esta sección son sólo una cadena, el programa funcionaría igual de bien con cualquier dato que pueda convertirse a una cadena con formato JSON. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c10_33.html">anterior</a><a href="c10.html">Subtema 34 de 37: (Ver todo)</a><a href="c10_35.html">siguiente</a><br/></p>
+<br/><a href="c10_34.docx" target="_blank"></a></footer>
+</body>
+</html>

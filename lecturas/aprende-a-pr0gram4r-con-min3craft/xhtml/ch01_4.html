@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch01lev1sec03"><strong><span class="blue1">Configurar tu Raspberry Pi</span></strong></h3>
+<p class="noindent">Accede a tu Raspberry Pi e inicia el escritorio con el comando <span class="literal">startx</span>. (Si utilizas la versión más reciente del sistema operativo de la Raspberry Pi, no necesitarás introducir este comando).</p>
+<p class="indent">Dependiendo de tu Raspberry Pi, puede que tengas instaladas dos o tres versiones diferentes de Python. Para este libro, utilizarás la versión más reciente de Python: Python 3.</p>
+<p class="indent">Por defecto, el ordenador Raspberry Pi viene instalado con una versión simplificada de Minecraft llamada Minecraft: Pi Edition. Todo lo que necesitas para empezar a programar tu mundo de Minecraft con Python ya está instalado. Si eres nuevo en el uso de una Raspberry Pi, puedes encontrar instrucciones para empezar en el sitio web oficial, <em><a href="http://www.raspberrypi.org/">http://www.raspberrypi.org/.</a></em></p>
+<p class="indent">Si utilizas una imagen de tarjeta SD antigua (creada antes de agosto de 2014), puede que Minecraft no esté instalado. Es fácil instalarlo si no está ya. Primero tendrás que conectarte a Internet con tu Raspberry Pi. Puedes encontrar una guía para conectar tu Raspberry Pi a Internet en <em><a href="http://www.raspberrypi.org/">http://www.raspberrypi.org/.</a></em></p>
+<p class="indent">Una vez que estés conectado a Internet, sigue estos pasos:</p>
+<ol>
+<li class="noindent"><p class="list">En el escritorio, haz doble clic en <strong>LXTerminal</strong>.</p></li>
+<li class="noindent"><p class="list">Una vez abierto LXTerminal, introduce este comando:</p>
+<p class="programs" translate="no">$ <span class="codestrong">sudo apt-get update</span></p></li>
+<li class="noindent"><p class="list">Una vez finalizada la actualización, introduce este comando:</p>
+<p class="programs" translate="no">$ <span class="codestrong">sudo apt-get install minecraft-pi</span></p></li>
+<li class="noindent"><p class="list">Espera a que finalice la instalación. Minecraft ya está instalado.</p></li>
+</ol>
+<p class="indent">Minecraft en la Raspberry Pi tiene algunas limitaciones en comparación con la edición de escritorio. El mundo del juego es mucho más pequeño, y faltan muchos bloques y otras características (como el Modo Supervivencia), pero aún así podrás escribir y ejecutar todos los increíbles programas de este libro.</p>
+<p class="indent">Antes de continuar, vamos a crear una carpeta donde puedas guardar tus programas Python. En la barra de tareas, haz clic en el icono del explorador de archivos. Abre la carpeta <em>Documentos</em> y, a continuación, haz clic con el botón derecho del ratón en el fondo del explorador de archivos y selecciona <strong>Crear nueva</strong>... <img alt="image" src="../images/arrow.jpg" translate="no"/> <strong>Carpeta</strong>. Nombra la carpeta <em>Minecraft Python</em> y haz clic en <strong>Aceptar</strong>.</p>
+<div class="note">
+<p class="notet"><strong><span class="notes">NOTA</span></strong></p>
+<p class="notep"><em>Si utilizas una Raspberry Pi original, verás que algunos de los programas de este libro se ejecutan lentamente debido a las limitaciones de la Raspberry Pi. La Raspberry Pi 2 tendrá menos problemas de velocidad.</em></p>
+</div>
+<p class="indent"><span epub:type="pagebreak" id="page_23"></span>Para abrir Minecraft, haz clic en el menú de inicio en la esquina superior izquierda del escritorio. (Si utilizas una versión anterior del sistema operativo de la Raspberry Pi, el menú de inicio estará en la esquina inferior izquierda). Ve a <strong>Juegos</strong> y haz clic en <strong>Minecraft</strong>. Se abrirá Minecraft. La primera vez que abras Minecraft, tendrás que hacer clic en <strong>Crear Mundo</strong>.</p>
+<p class="indent">Como norma general, no cambies el tamaño de la ventana, ya que podrías encontrarte con algunos problemas.</p>
+<p class="indent">A veces, cuando abras otras ventanas o cuadros de diálogo (como la confirmación de que quieres guardar un archivo en Python), se esconderán detrás de la ventana de Minecraft. Simplemente minimiza Minecraft cuando quieras utilizar otras ventanas. Si tienes algún problema, prueba a reiniciar tu Raspberry Pi después de instalar Minecraft.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch01_3.html">anterior</a><a href="ch01.html">Subtema 4 de 6: (Ver todo)</a><a href="ch01_5.html">siguiente</a><br/></p>
+<br/><a href="ch01_4.docx" target="_blank"></a></footer>
+</body>
+</html>

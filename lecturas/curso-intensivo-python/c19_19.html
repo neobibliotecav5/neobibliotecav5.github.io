@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c19-0011">Proteger los temas de un usuario</h3>
+<p class="BodyFirst">Aún no hemos restringido el acceso a las páginas de temas, por lo que cualquier usuario registrado podría probar un montón de URLs (como <em translate="no">http://localhost:8000/topics/1/</em>) y recuperar las páginas de temas que coincidan.</p>
+<p>Pruébalo tú mismo. Mientras estás conectado como el usuario propietario de todos los temas, copia la URL o anota el ID en la URL de un tema, y luego desconéctate y vuelve a conectarte como un usuario diferente. Introduce la URL de ese tema. Deberías poder leer las entradas, aunque hayas iniciado sesión como un usuario diferente.</p>
+<p>Arreglaremos esto ahora realizando una comprobación antes de recuperar las entradas solicitadas en la función de vista <code translate="no">topic()</code>:</p>
+<p class="CodeLabel" translate="no"><b>learning_logs/views.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">from django.shortcuts import render, redirect</span>
+<span class="LiteralGray">from django.contrib.auth.decorators import login_required</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> from django.http import Http404
+
+<em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">@login_required</span>
+<span class="LiteralGray">def topic(request, topic_id):</span>
+<span class="LiteralGray">    """Show a single topic and all its entries."""</span>
+<span class="LiteralGray">    topic = Topic.objects.get(id=topic_id)</span>
+    # Make sure the topic belongs to the current user.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     if topic.owner != request.user:
+        raise Http404
+
+<span class="LiteralGray">    entries = topic.entry_set.order_by('-date_added')</span>
+<span class="LiteralGray">    context = {'topic': topic, 'entries': entries}</span>
+<span class="LiteralGray">    return render(request, 'learning_logs/topic.html', context)</span>
+<em class="LiteralGrayItalic" translate="no">--snip--</em></code></pre>
+<p><span epub:type="pagebreak" id="Page_429" title="429"></span>Una respuesta 404 es una respuesta de error estándar que se devuelve cuando un recurso solicitado no existe en un servidor. Aquí importamos la excepción <code translate="no">Http404</code> <span aria-label="annotation1" class="CodeAnnotation">❶,</span> que lanzaremos si el usuario solicita un tema al que no debería tener acceso. Tras recibir una solicitud de tema, nos aseguramos de que el usuario del tema coincide con el usuario conectado en ese momento antes de mostrar la página. Si el propietario del tema solicitado no coincide con el usuario actual, lanzamos la excepción <code translate="no">Http404</code> <span aria-label="annotation2" class="CodeAnnotation">❷,</span> y Django devuelve una página de error 404.</p>
+<p>Ahora, si intentas ver las entradas de los temas de otro usuario, verás un mensaje de "Página no encontrada" de Django. En el <span class="xref" itemid="xref_target_Chapter 20">Capítulo 20</span>, configuraremos el proyecto para que los usuarios vean una página de error adecuada en lugar de una página de depuración.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c19_18.html">anterior</a><a href="c19.html">Subtema 19 de 23: (Ver todo)</a><a href="c19_20.html">siguiente</a><br/></p>
+<br/><a href="c19_19.docx" target="_blank"></a></footer>
+</body>
+</html>

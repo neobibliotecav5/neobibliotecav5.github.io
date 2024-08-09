@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch02lev1sec4">
+  Las variables son como etiquetas </h3>
+<p class="noindent">
+  La palabra <em class="calibre7">variable </em>en programación describe un lugar para almacenar información, como números, texto, listas de números y texto, etc. Una variable es esencialmente una etiqueta para algo. </p>
+<p class="indent">
+  Por ejemplo, para crear una variable llamada <span class="literal1" translate="no">
+   fred
+  </span>, utilizamos un signo igual ( <span class="literal1" translate="no">
+   =
+  </span>) y luego le decimos a Python de qué información debe ser etiqueta la variable. Aquí, creamos la variable <span class="literal1" translate="no">
+   fred
+  </span>y le decimos a Python que es una etiqueta para el número 100 (ten en cuenta que esto no significa que otra variable no pueda tener el mismo valor): </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> fred = 100</pre>
+<p class="indent">
+  Para encontrar el valor de una variable, introduce <span class="literal1" translate="no">
+   print
+  </span>en la Shell de Python, seguido del nombre de la variable entre paréntesis, así: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(fred)
+<span class="blue1">100</span></pre>
+<p class="indent">
+  También podemos decirle a Python que cambie la variable <span class="literal1" translate="no">
+   fred
+  </span>para que etiquete otra cosa. Por ejemplo, así es como se cambia <span class="literal1" translate="no">
+   fred
+  </span>por el número 200: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> fred = 200
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(fred)
+<span class="blue1">200</span></pre>
+<p class="indent">
+  En la primera línea, decimos que <span class="literal1" translate="no">
+   fred
+  </span>etiqueta a un número <span class="literal1" translate="no">
+   200
+  </span>. En la segunda línea, imprimimos el valor de <span class="literal1" translate="no">
+   fred
+  </span>, sólo para confirmar el cambio. Python imprime el resultado en la última línea. </p>
+<p class="indent">
+<span id="page_20">
+</span>
+  También podemos utilizar más de una etiqueta (o variable) para el mismo elemento: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> fred = 200
+<span class="brown">&gt;&gt;&gt;</span> john = fred
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(john)
+<span class="blue1">200</span></pre>
+<p class="indent">
+  En este ejemplo, le estamos diciendo a Python que queremos que el nombre (o variable) <span class="literal1" translate="no">
+   john
+  </span>etiquete lo mismo que <span class="literal1" translate="no">
+   fred
+  </span>utilizando el signo igual entre <span class="literal1" translate="no">
+   john
+  </span>y <span class="literal1" translate="no">
+   fred
+  </span>. </p>
+<p class="indent">
+  Por supuesto, <span class="literal1" translate="no">
+   fred
+  </span>probablemente no sea un nombre muy útil para una variable, porque lo más probable es que no nos diga nada sobre para qué se utiliza la variable. Llamemos a nuestra variable <span class="literal1" translate="no">
+   number_of_coins
+  </span>en lugar de <span class="literal1" translate="no">
+   fred
+  </span>, así: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> number_of_coins = 200
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(number_of_coins)
+<span class="blue1">200</span></pre>
+<p class="indent">
+  Esto deja claro que estamos hablando de 200 monedas. Los nombres de las variables pueden estar formados por letras, números y el carácter de subrayado ( <span class="literal1" translate="no">
+   _
+  </span>), pero no pueden empezar por un número. Puedes utilizar desde letras sueltas (como <span class="literal1" translate="no">
+   a
+  </span>) hasta frases largas para los nombres de las variables. (Una variable no puede contener un espacio, así que utiliza un guión bajo para separar las palabras.) A veces, si estás haciendo algo rápido, lo mejor es un nombre de variable corto. El nombre que elijas debe depender de lo significativo que necesites que sea el nombre de la variable. </p>
+<p class="indent">
+  Ahora que ya sabes cómo crear variables, veamos cómo utilizarlas. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch02_4.html">anterior</a><a href="ch02.html">Subtema 5 de 7: (Ver todo)</a><a href="ch02_6.html">siguiente</a><br/></p>
+<br/><a href="ch02_5.docx" target="_blank"></a></footer>
+</body>
+</html>

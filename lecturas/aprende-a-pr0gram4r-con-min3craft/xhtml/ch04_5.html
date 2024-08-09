@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch04lev1sec04"><span epub:type="pagebreak" id="page_75"></span><strong><span class="blue1">Unir cadenas</span></strong></h3>
+<p class="noindent">A menudo, necesitarás imprimir una combinación de cadenas. Esto se llama unir, o <em>concatenar</em>, cadenas, y Python lo hace fácil.</p>
+<p class="indent">En el <a href="ch03.xhtml#ch03">Capítulo 3</a> utilizamos el operador de suma<span class="literal">(+</span>) para sumar números, pero también puedes utilizarlo para concatenar cadenas. Por ejemplo:</p>
+<p class="programs" translate="no">firstName = <span class="green">"Charles"</span><br translate="no"/>lastName = <span class="green">"Christopher"</span><br translate="no"/><span class="rose">print</span>(firstName + lastName)</p>
+<p class="indent">La salida de <span class="literal">print(</span> ) será <span class="literal">"CarlosCristóbal"</span>. Si quieres un carácter de espacio entre los valores, puedes añadir un espacio utilizando el operador de suma de esta forma:</p>
+<p class="programs" translate="no"><span class="rose">print</span>(firstName + <span class="green">" "</span> + lastName)</p>
+<p class="indent">Python suele ofrecer varias formas de conseguir el mismo resultado. En este caso, podrías utilizar una coma para crear el espacio:</p>
+<p class="programs" translate="no"><span class="rose">print</span>(firstName, lastName)</p>
+<p class="indent">Ambas sentencias darán como resultado <span class="literal">"Charles Christopher"</span>. También puedes concatenar cadenas codificadas con variables que sean cadenas. Sólo tienes que escribir el valor como escribirías cualquier otra cadena:</p>
+<p class="programs" translate="no"><span class="rose">print</span>(<span class="green">"His name is "</span> + firstName + <span class="green">" "</span> + lastName)</p>
+<p class="indent">Esto dará como resultado "Se llama <span class="literal"> Carlos Cristóbal</span>".</p>
+<p class="indent">Unir bloques de texto es útil, pero a veces querrás unir cadenas con otro tipo de datos, como un entero. Python no te permitirá concatenar una cadena con un entero; en este caso, tienes que decirle a Python que primero convierta el entero en una cadena. Vamos a intentarlo.</p>
+<h4 class="h4" id="ch04lev2sec03"><strong><span class="blue1">Convertir números en cadenas</span></strong></h4>
+<p class="noindent">Convertir un tipo de variable en otro es muy práctico. Por ejemplo, imagina que almacenas el número de manzanas de oro que tienes, que es un número entero, en una variable llamada <span class="literal">misManzanasDeOro</span>. Quieres presumir ante tus amigos de cuántas manzanas doradas tienes, porque son raras y te gusta presumir. Podrías imprimir un mensaje como " <span class="literal">Mi alijo no tan secreto de manzanas doradas: "</span>, seguido del valor almacenado en <span class="literal">misManzanasDoradas</span>. Pero antes de poder incluir el valor de <span class="literal">misManzanasDoradas</span> en el mensaje impreso, tienes que decirle a Python que cambie el número entero de <span class="literal">misManzanasDoradas</span> por una cadena.</p>
+<p class="indent">La función <span class="literal">str(</span> ) convierte tipos de datos que no son cadenas, como enteros y flotantes, en cadenas. Para convertir a cadena, pon el valor que quieres convertir dentro de los paréntesis de la función str( <span class="literal">)</span>.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_76"></span>Volvamos a tu almacén de manzanas de oro. Digamos que has puesto <span class="literal">misManzanasDoradas</span> a 2, y quieres que Python trate ese 2 como una cadena en lugar de como un entero. Así es como imprimirías tu mensaje:</p>
+<p class="programs" translate="no"><span class="rose">print</span>(<span class="green">"My not-so-secret golden apple stash: "</span> + <span class="rose">str</span>(myGoldenApples))</p>
+<p class="indent">Esta sentencia muestra la cadena <span class="literal">"Mi alijo no tan secreto de manzanas de oro: 2"</span>. También puedes convertir valores flotantes en cadenas. Supongamos que te has comido media manzana golden, y ahora <span class="literal">misManzanasGolden</span> almacenan 1,5 manzanas. <span class="literal">str(misManzanasGolden)</span> funciona igual con el 1,5 que con el 2. Convierte el 1,5 en una cadena para que puedas incluirlo en tu mensaje.</p>
+<p class="indent">Una vez convertidos los números en cadenas, puedes concatenarlos como quieras. ¡Vamos a divertirnos convirtiendo números en cadenas y concatenándolas!</p>
+<h4 class="h4" id="ch04lev2sec04"><strong><span class="blue1">Concatenar números enteros y flotantes</span></strong></h4>
+<p class="noindent">Si quieres concatenar dos datos, deben ser cadenas. Pero el signo más se utiliza tanto para sumar como para concatenar, así que si concatenas enteros, flotantes y otros números, Python intentará sumarlos en su lugar. Debes cambiar los valores numéricos a cadenas para poder unirlos utilizando la concatenación.</p>
+<p class="indent">Para unir dos números en lugar de sumarlos, sólo tienes que utilizar el método <span class="literal">str()</span>:</p>
+<p class="programs" translate="no"><span class="rose">print</span>(<span class="rose">str</span>(19) + <span class="rose">str</span>(84))</p>
+<p class="indent">Como le has dicho a Python que trate los números 19 y 84 como cadenas y los concatene, esta sentencia produce <span class="literal">1984</span> en lugar de <span class="literal">103</span>, la suma de 19 y 84.</p>
+<p class="indent">Puedes utilizar la concatenación tantas veces como quieras dentro de una sentencia. Por ejemplo:</p>
+<p class="programs" translate="no"><span class="rose">print</span>(<span class="green">"The year is "</span> + <span class="rose">str</span>(19) + <span class="rose">str</span>(84))</p>
+<p class="indent">Esta línea de código da como resultado <span class="literal">El año es 1984</span>.</p>
+<p class="indent">Ahora que ya tienes un poco de práctica en el uso de la concatenación, ¡pon a prueba tus nuevas habilidades en la siguiente misión!</p>
+<h4 class="h4a" id="ch04lev2sec05"><strong>Misión nº 13: Añadir nombres de usuario al chat</strong></h4>
+<p class="noindent">Cuando juegas una partida con más de dos personas, puede ser confuso averiguar quién está escribiendo un mensaje en el chat de Minecraft. La solución obvia es incluir el nombre del usuario al principio de su mensaje. En esta misión, modificarás el programa de la Misión nº 12 para incluir un nombre de usuario en todos los mensajes enviados al chat.</p>
+<p class="indent">Abre <em>messageInput.</em> py en IDLE y guárdalo como un nuevo archivo llamado <em>userChat.py</em> en la carpeta <em>strings</em>. A continuación, añade código para introducir el nombre del usuario antes de introducir su mensaje. El mensaje enviado al chat debe tener en <span epub:type="pagebreak" id="page_77"></span>el siguiente formato: <span class="literal">"Anna: Necesito TNT".</span> Tendrás que utilizar la concatenación para cumplir esta misión.</p>
+<p class="indent">En el programa, busca esta línea de código:</p>
+<p class="programs" translate="no">message = <span class="rose">input</span>(<span class="green">"Enter your message: "</span>)</p>
+<p class="indent">En la línea anterior, tienes que añadir otra variable llamada nombre de <span class="literal">usuario</span> y establecer su valor en <span class="literal">input("Por favor, introduce un nombre de usuario: ")</span>. Después de añadir la variable <span class="literal">nombredeusuario</span>, busca esta línea:</p>
+<p class="programs" translate="no">mc.postToChat(message)</p>
+<p class="indent">Usando la concatenación, une las cadenas <span class="literal">nombredeusuario</span> y <span class="literal">mensaje</span> dentro de la función <span class="literal">postToChat()</span>. Añade <span class="literal">": "</span> entre las dos cadenas para que la salida tenga dos puntos y un espacio entre la variable nombre de <span class="literal">usuario</span> y la variable <span class="literal">mensaje</span>. <a href="ch04.xhtml#ch4fig3">La Figura 4-3</a> muestra el aspecto que debería tener la salida del programa terminado.</p>
+<div class="image"><img alt="image" src="../images/f04-03.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch4fig3"></a><em>Figura 4-3: Ahora, cuando publico en el chat utilizando mi programa, aparece mi nombre de usuario.</em></p>
+<p class="indent">Guarda tu programa actualizado y ejecútalo. En el intérprete de comandos de Python se te pedirá que introduzcas un nombre de usuario. Escribe tu nombre y pulsa <small>INTRO</small>. A continuación se te pedirá que escribas un mensaje, así que hazlo también. Tu nombre de usuario y tu mensaje deberían aparecer en el chat de Minecraft.</p>
+<div class="sidebar">
+<p class="sidebart" id="ch04sb03"><strong>OBJETIVO EXTRA: UN USUARIO SIN NOMBRE</strong></p>
+<p class="noindent">¿Qué ocurre si dejas el nombre de usuario en blanco y pulsas <span class="literal">ENTER</span>? ¿A qué crees que se debe?</p>
+</div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch04_4.html">anterior</a><a href="ch04.html">Subtema 5 de 8: (Ver todo)</a><a href="ch04_6.html">siguiente</a><br/></p>
+<br/><a href="ch04_5.docx" target="_blank"></a></footer>
+</body>
+</html>

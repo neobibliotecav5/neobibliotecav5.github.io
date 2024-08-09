@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h2 id="h1-502703c02-0002">Variables</h2>
+<p class="BodyFirst">Intentemos utilizar una variable en <em translate="no">hello_world.py</em>. Añade una nueva línea al principio del archivo y modifica la segunda línea:</p>
+<p class="CodeLabel" translate="no"><b>hello_world.py</b></p>
+<pre translate="no"><code translate="no">message = "Hello Python world!"
+print(message)</code></pre>
+<p>Ejecuta este programa para ver qué ocurre. Deberías ver la misma salida que viste anteriormente:</p>
+<pre translate="no"><code translate="no">Hello Python world!</code></pre>
+<p>Hemos añadido un <em translate="no">variable</em> llamado <code translate="no">message</code>. Cada variable está conectada a un <em translate="no">value</em>, que es la información asociada a esa variable. En este caso, el valor es el texto <code translate="no">"Hello Python world!"</code>.</p>
+<p>Añadir una variable supone un poco más de trabajo para el intérprete de Python. Cuando procesa la primera línea, asocia la variable <code translate="no">message</code> al texto <code translate="no">"Hello Python world!"</code>. Cuando llega a la segunda línea, imprime en la pantalla el valor asociado a <code translate="no">message</code>.</p>
+<p>Vamos a ampliar este programa modificando <em translate="no">hello_world.py</em> para imprimir un segundo mensaje. Añade una línea en blanco a <em translate="no">hello_world.py</em>, y luego añade dos nuevas líneas de código:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">message = "Hello Python world!"</span>
+<span class="LiteralGray">print(message)</span>
+
+message = "Hello Python Crash Course world!"
+print(message)</code></pre>
+<p>Ahora, cuando ejecutes <em translate="no">hello_world.py</em>, deberías ver dos líneas de salida:</p>
+<pre translate="no"><code translate="no">Hello Python world!
+Hello Python Crash Course world!</code></pre>
+<p>Puedes cambiar el valor de una variable en tu programa en cualquier momento, y Python siempre mantendrá un registro de su valor actual.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c02_2.html">anterior</a><a href="c02.html">Subtema 3 de 33: (Ver todo)</a><a href="c02_4.html">siguiente</a><br/></p>
+<br/><a href="c02_3.docx" target="_blank"></a></footer>
+</body>
+</html>

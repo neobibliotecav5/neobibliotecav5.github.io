@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch03lev1sec5">
+  Multiplicar cadenas </h3>
+<p class="noindent">
+  ¿Cuánto es 10 multiplicado por 5? La respuesta es 50, por supuesto. Pero, ¿qué es 10 multiplicado por <em class="calibre7">? </em>Aquí tienes la respuesta de Python: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(10 * <span class="green">'a'</span>)
+<span class="blue1">aaaaaaaaaa</span></pre>
+<p class="indent">
+  Los programadores de Python pueden multiplicar cadenas por varias razones, como para alinear el texto con un número específico de espacios al mostrar mensajes en la Shell de Python. Prueba a imprimir la siguiente letra en la Shell de Python (selecciona <strong class="calibre5">Archivo </strong> <strong class="calibre5">▸ Nuevo </strong><strong class="calibre5">Archivo </strong>, e introduce el siguiente código): </p>
+<pre class="pre" translate="no">spaces = ' ' * 25
+<span class="violet">print</span>('<span class="green">{} 12 Butts Wynd'</span>)
+<span class="violet">print</span>(<span class="green">'{} Twinklebottom Heath'</span>)
+<span class="violet">print</span>(<span class="green">'{} West Snoring'</span>)
+<span class="violet">print</span>()
+<span class="violet">print</span>()
+<span class="violet">print</span>(<span class="green">'Dear Sir'</span>)
+<span class="violet">print</span>()
+<span id="page_31"></span><span class="violet">print</span>(<span class="green">'I wish to report that tiles are missing from the'</span>)
+<span class="violet">print</span>(<span class="green">'outside toilet roof.'</span>)
+<span class="violet">print</span>(<span class="green">'I think it was bad wind the other night that blew them away.'</span>)
+<span class="violet">print</span>()
+<span class="violet">print</span>(<span class="green">'Regards'</span>)
+<span class="violet">print</span>(<span class="green">'Malcolm Dithering'</span>)</pre>
+<p class="indent">
+  Una vez que hayas escrito el código en la ventana de la Shell de Python, selecciona Archivo <strong class="calibre5">▸ </strong> <strong class="calibre5">Guardar como </strong>. Nombra tu archivo <em class="calibre7">micarta.py . </em>A continuación, puedes ejecutar el código (como hemos hecho anteriormente) seleccionando <strong class="calibre5">Ejecutar ▸ </strong> <strong class="calibre5">Ejecutar módulo </strong>. </p>
+<p class="indent">
+  En la primera línea de este ejemplo, creamos la variable <span class="literal1" translate="no">
+   spaces
+  </span>multiplicando un carácter de espacio por 25. A continuación, utilizamos esa variable en las tres líneas siguientes para alinear el texto a la derecha de la Shell de Python. Puedes ver el resultado de estas sentencias <span class="literal1" translate="no">
+   print
+  </span>a continuación: </p>
+<div class="image1" id="ch03fig01">
+<img alt="Image" class="calibre34" src="../images/03fig01.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">Figura 3-1: Ejecución del código de letras en </em>la Shell de Python</p>
+<div class="sidebar">
+<p class="side-title">
+   ¿QUÉ SON LOS ARCHIVOS Y LAS CARPETAS?  </p>
+<p class="sb-para">
+   Un <em class="calibre7">archivo </em>son datos (o información) de algún tipo que pueden almacenarse en tu ordenador. Los archivos pueden ser fotos, vídeos, libros electrónicos e incluso el informe escolar que escribiste en Microsoft Word.  </p>
+<p class="sb-para">
+   Una <em class="calibre7">carpeta </em>(también llamada <em class="calibre7">directorio </em>) es una colección de otras carpetas y archivos. Cuando hiciste clic en <strong class="calibre5">Guardar como </strong>para guardar tu archivo <em class="calibre7">micarta.py </em>, se almacenó en una carpeta.  </p>
+<p class="sb-para">
+   Como veremos, los archivos y las carpetas son muy importantes en programación.  </p>
+</div>
+<p class="indent">
+<span id="page_32">
+</span>
+  Además de utilizar la multiplicación para alinear, también podemos utilizarla para llenar la pantalla de mensajes molestos. Prueba con el siguiente ejemplo: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(1000 * <span class="green">'snirt'</span>)</pre>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch03_5.html">anterior</a><a href="ch03.html">Subtema 6 de 14: (Ver todo)</a><a href="ch03_7.html">siguiente</a><br/></p>
+<br/><a href="ch03_6.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Floating Point</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="Floating Point"><div class="titlepage"><div><div><h1 class="title"><a id="floating_point"></a>Punto flotante</h1></div></div></div><p>Los números binarios de punto flotante son ineptos para manejar fracciones decimales, por lo que 0,1 + 0,2 no es igual a 0,3. Éste es el error del que se informa con más frecuencia en JavaScript, y es una consecuencia intencionada de haber adoptado la Norma IEEE para la Aritmética de Punto Flotante Binario (IEEE 754). Esta norma es adecuada para muchas aplicaciones, pero viola la mayoría de las cosas que aprendiste sobre los números en la escuela secundaria. Afortunadamente, la aritmética de enteros en coma flotante es exacta, por lo que los errores de representación decimal pueden evitarse mediante el escalado.<a class="indexterm" id="IDX-APP-A-0519"></a><a class="indexterm" id="IDX-APP-A-0520"></a></p><p>Por ejemplo, los valores en dólares pueden convertirse en valores enteros en céntimos multiplicándolos por 100. A continuación, los céntimos se pueden sumar con exactitud. La suma puede dividirse por 100 para volver a convertirla en dólares. La gente tiene una expectativa razonable cuando cuenta dinero de que los resultados serán exactos.</p></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="apas08.html">← Anterior</a><a href="apas10.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="apas09.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\apas09.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

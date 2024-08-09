@@ -1,0 +1,521 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Chapter 8. Methods</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="chapter" title="Chapter 8. Methods"><div class="titlepage"><div><div><h1 class="title"><a id="methods"></a>Capítulo 8. Métodos</h1></div></div></div><div class="epigraph"><p>Aunque esto sea una locura, hay método en ello.<a class="indexterm" id="IDX-CHP-8-0475"></a></p><div class="attribution"><span>-William<span class="attribution">Shakespeare</span>,<span class="attribution"> <span class="emphasis"><em translate="no">The Tragedy of Hamlet, Prince of
+                    Denmark</em></span></span></span></div></div><p>JavaScript incluye un pequeño conjunto de métodos estándar que están disponibles en los tipos estándar.</p><div class="variablelist"><dl><dt><span class="term">
+<span class="strong"><strong>Matriz</strong></span></span></dt><dd><p></p><div class="variablelist"><dl><dt><span class="term"><span class="emphasis"><em translate="no">array</em></span>.concat(<span class="emphasis"><em translate="no">item</em></span>...)</span></dt><dd><p>El método <code class="literal" translate="no">concat</code> produce un nuevo array que contiene una copia superficial de este    <em class="replaceable" translate="no"><code translate="no">array</code></em> con la  <em class="replaceable" translate="no"><code translate="no">item</code></em>s. Si  <em class="replaceable" translate="no"><code translate="no">item</code></em> es una matriz, cada uno de sus elementos se añade individualmente. Consulta también        <em class="replaceable" translate="no"><code translate="no">array</code></em><code class="literal" translate="no">.push(</code><em class="replaceable" translate="no"><code translate="no">item</code></em><code class="literal" translate="no">...)</code> más adelante en este capítulo.</p><a id="I_programlisting8_d1e6477"></a><pre class="programlisting" translate="no">var a = ['a', 'b', 'c'];
+var b = ['x', 'y', 'z'];
+var c = a.concat(b, true);
+// c is ['a', 'b', 'c', 'x', 'y', 'z', true]</pre></dd><dt><span class="term"><span class="emphasis"><em translate="no">array</em></span>.join(<span class="emphasis"><em translate="no">separator</em></span>)</span></dt><dd><p>El método <code class="literal" translate="no">join</code> hace una cadena a partir de una cadena <em class="replaceable" translate="no"><code translate="no">array</code></em> . Para ello, crea una cadena con cada uno de los elementos de . <em class="replaceable" translate="no"><code translate="no">array</code></em> y luego los concatena con un signo     <em class="replaceable" translate="no"><code translate="no">separator</code></em> entre ellos. Por defecto <em class="replaceable" translate="no"><code translate="no">separator</code></em> es <code class="literal" translate="no">','</code>. Para unir sin separación, utiliza una cadena vacía como el elemento        <em class="replaceable" translate="no"><code translate="no">separator</code></em>.</p><p>Si estás ensamblando una cadena a partir de un gran número de trozos, suele ser más rápido poner los trozos en una matriz y <code class="literal" translate="no">join</code> que concatenarlos con el operador <code class="literal" translate="no">+</code>:</p><a id="I_programlisting8_d1e6520"></a><pre class="programlisting" translate="no">var a = ['a', 'b', 'c'];
+a.push('d');
+var c = a.join('');    // c is 'abcd';</pre></dd><dt><span class="term"><span class="emphasis"><em translate="no">array</em></span>.pop( )</span></dt><dd><p>Los métodos <code class="literal" translate="no">pop</code> y <code class="literal" translate="no">push</code> hacen que un  <em class="replaceable" translate="no"><code translate="no">array</code></em> funcione como una pila. El método <code class="literal" translate="no">pop</code> elimina y devuelve el último elemento de esta    <em class="replaceable" translate="no"><code translate="no">array</code></em> . Si el elemento        <em class="replaceable" translate="no"><code translate="no">array</code></em> es <code class="literal" translate="no">empty</code>, devuelve <code class="literal" translate="no">undefined</code>.</p><a id="I_programlisting8_d1e6555"></a><pre class="programlisting" translate="no">var a = ['a', 'b', 'c'];
+var c = a.pop(  );    // a is ['a', 'b'] &amp; c is 'c'</pre><p><code class="literal" translate="no">pop</code> puede implementarse así:</p><a id="I_programlisting8_d1e6561"></a><pre class="programlisting" translate="no">Array.method('pop', function (  ) {
+    return this.splice(this.length - 1, 1)[0];
+});</pre></dd><dt><span class="term"><span class="emphasis"><em translate="no">array</em></span>.push(<span class="emphasis"><em translate="no">item</em></span>...)</span></dt><dd><p>El método <code class="literal" translate="no">push</code> añade      <em class="replaceable" translate="no"><code translate="no">items</code></em> al final de una matriz. A diferencia del método <code class="literal" translate="no">concat</code>, éste modifica el elemento <em class="replaceable" translate="no"><code translate="no">array</code></em> y añade los elementos del array enteros. Devuelve la nueva longitud de la matriz      <em class="replaceable" translate="no"><code translate="no">array</code></em>:</p><a id="I_programlisting8_d1e6589"></a><pre class="programlisting" translate="no">var a = ['a', 'b', 'c'];
+var b = ['x', 'y', 'z'];
+var c = a.push(b, true);
+// a is ['a', 'b', 'c', ['x', 'y', 'z'], true]
+// c is 5;</pre><p><code class="literal" translate="no">push</code> puede implementarse así:</p><a id="I_programlisting8_d1e6595"></a><pre class="programlisting" translate="no">Array.method('push', function (  ) {
+    this.splice.apply(
+        this,
+        [this.length, 0].concat(Array.prototype.slice.apply(arguments)));
+    return this.length;
+});</pre></dd><dt><span class="term"><span class="emphasis"><em translate="no">array</em></span>.inversa( )</span></dt><dd><p>El método <code class="literal" translate="no">reverse</code> modifica el <em class="replaceable" translate="no"><code translate="no">array</code></em> invirtiendo el orden de los elementos. Devuelve la función        <em class="replaceable" translate="no"><code translate="no">array</code></em>:</p><a id="I_programlisting8_d1e6614"></a><pre class="programlisting" translate="no">var a = ['a', 'b', 'c'];
+var b = a.reverse(  );
+// both a and b are ['c', 'b', 'a']</pre></dd><dt><span class="term"><span class="emphasis"><em translate="no">array</em></span>.shift( )</span></dt><dd><p>El método <code class="literal" translate="no">shift</code> elimina el primer elemento de un elemento <em class="replaceable" translate="no"><code translate="no">array</code></em> y lo devuelve. Si <em class="replaceable" translate="no"><code translate="no">array</code></em> está vacío, devuelve <code class="literal" translate="no">undefined</code>. <code class="literal" translate="no">shift</code> suele ser mucho más lento que <code class="literal" translate="no">pop</code>:</p><a id="I_programlisting8_d1e6643"></a><pre class="programlisting" translate="no">var a = ['a', 'b', 'c'];
+var c = a.shift(  );    // a is ['b', 'c'] &amp; c is 'a'</pre><p><code class="literal" translate="no">shift</code> puede implementarse así:</p><a id="I_programlisting8_d1e6649"></a><pre class="programlisting" translate="no">Array.method('shift', function (  ) {
+    return this.splice(0, 1)[0];
+});</pre></dd><dt><span class="term"><span class="emphasis"><em translate="no">array</em></span>.slice(<span class="emphasis"><em translate="no">start</em></span>, <span class="emphasis"><em translate="no">end</em></span> )</span></dt><dd><p>El método <code class="literal" translate="no">slice</code> hace una copia superficial de una parte de un archivo <em class="replaceable" translate="no"><code translate="no">array</code></em>
+                                    . El primer elemento copiado será     <em class="replaceable" translate="no"><code translate="no">array</code></em>
+<code class="literal" translate="no">[</code>
+<em class="replaceable" translate="no"><code translate="no">start</code></em>
+<code class="literal" translate="no">]</code>. Se detendrá antes de copiar <em class="replaceable" translate="no"><code translate="no">array</code></em>
+<code class="literal" translate="no">[</code>
+<em class="replaceable" translate="no"><code translate="no">end</code></em>
+<code class="literal" translate="no">]</code>. El parámetro          <em class="replaceable" translate="no"><code translate="no">end</code></em> es opcional, y por defecto es <em class="replaceable" translate="no"><code translate="no">array</code></em>
+<code class="literal" translate="no">.length</code>. Si alguno de los parámetros es negativo <em class="replaceable" translate="no"><code translate="no">array</code></em>
+<code class="literal" translate="no">.length</code> se les sumará para intentar que no sean negativos. Si  <em class="replaceable" translate="no"><code translate="no">start</code></em> es mayor o igual que   <em class="replaceable" translate="no"><code translate="no">array</code></em>
+<code class="literal" translate="no">.length</code>el resultado será una nueva matriz vacía. No confundas <code class="literal" translate="no">slice</code> con <code class="literal" translate="no">splice</code>. Consulta también        <em class="replaceable" translate="no"><code translate="no">string</code></em>
+<code class="literal" translate="no">.slice</code> más adelante en este capítulo.</p><a id="I_programlisting8_d1e6734"></a><pre class="programlisting" translate="no">var a = ['a', 'b', 'c'];
+var b = a.slice(0, 1);    // b is ['a']
+var c = a.slice(1);       // c is ['b', 'c']
+var d = a.slice(1, 2);    // d is ['b']</pre></dd><dt><span class="term"><span class="emphasis"><em translate="no">array</em></span>.ordenar(<span class="emphasis"><em translate="no">comparefn</em></span>)</span></dt><dd><p>El método <code class="literal" translate="no">sort</code> ordena el contenido de un archivo <em class="replaceable" translate="no"><code translate="no">array</code></em> en su lugar. Ordena matrices de números incorrectamente:</p><a id="I_programlisting8_d1e6753"></a><pre class="programlisting" translate="no">var n = [4, 8, 15, 16, 23, 42];
+n.sort(  );
+// n is [15, 16, 23, 4, 42, 8]</pre><p>La función de comparación por defecto de JavaScript asume que los elementos a ordenar son cadenas. No es lo suficientemente inteligente como para comprobar el tipo de los elementos antes de compararlos, por lo que convierte los números en cadenas mientras los compara, garantizando un resultado escandalosamente incorrecto.</p><p>Afortunadamente, puedes sustituir la función de comparación por la tuya propia. Tu función de comparación debe tomar dos parámetros y devolver <code class="literal" translate="no">0</code> si los dos parámetros son iguales, un número negativo si el primer parámetro debe ir primero, y un número positivo si el segundo parámetro debe ir primero. (A los veteranos puede que les recuerde a la sentencia aritmética <code class="literal" translate="no">IF</code>de FORTRAN II).</p><a id="I_programlisting8_d1e6765"></a><pre class="programlisting" translate="no">n.sort(function (a, b) {
+    return a − b;
+});
+// n is [4, 8, 15, 16, 23, 42];</pre><p>Esa función ordena números, pero no ordena cadenas. Si queremos poder ordenar cualquier matriz de valores simples, debemos esforzarnos más:</p><a id="I_programlisting8_d1e6769"></a><pre class="programlisting" translate="no">var m = ['aa', 'bb', 'a', 4, 8, 15, 16, 23, 42];
+m.sort(function (a, b) {
+    if (a === b) {
+        return 0;
+    }
+    if (typeof a === typeof b) {
+        return a &lt; b ? −1 : 1;
+    }
+    return typeof a &lt; typeof b ? −1 : 1;
+});
+// m is [4, 8, 15, 16, 23, 42, 'a', 'aa', 'bb']</pre><p>Si las mayúsculas y minúsculas no son significativas, tu función de comparación debe convertir los operandos a minúsculas antes de compararlos. Consulta también <em class="replaceable" translate="no"><code translate="no">string</code></em>
+<code class="literal" translate="no">.localeCompare</code> más adelante en este capítulo.</p><p>Con una función de comparación más inteligente, podemos ordenar una matriz de objetos. Para facilitar las cosas en el caso general, escribiremos una función que haga funciones de comparación:</p><a id="I_programlisting8_d1e6781"></a><pre class="programlisting" translate="no">// Function by takes a member name string and returns
+// a comparison function that can be used to sort an
+// array of objects that contain that member.
+
+var by = function (name) {
+    return function (o, p) {
+        var a, b;
+        if (typeof o === 'object' &amp;&amp; typeof p === 'object' &amp;&amp; o &amp;&amp; p) {
+            a = o[name];
+            b = p[name];
+            if (a === b) {
+                return 0;
+            }
+            if (typeof a === typeof b) {
+                return a &lt; b ? −1 : 1;
+            }
+            return typeof a &lt; typeof b ? −1 : 1;
+        } else {
+            throw {
+                name: 'Error',
+                message: 'Expected an object when sorting by ' + name;
+            };
+        }
+    };
+};
+
+var s = [
+    {first: 'Joe',   last: 'Besser'},
+    {first: 'Moe',   last: 'Howard'},
+    {first: 'Joe',   last: 'DeRita'},
+    {first: 'Shemp', last: 'Howard'},
+    {first: 'Larry', last: 'Fine'},
+    {first: 'Curly', last: 'Howard'}
+];
+s.sort(by('first'));    // s is [
+//    {first: 'Curly', last: 'Howard'},
+//    {first: 'Joe',   last: 'DeRita'},
+//    {first: 'Joe',   last: 'Besser'},
+//    {first: 'Larry', last: 'Fine'},
+//    {first: 'Moe',   last: 'Howard'},
+//    {first: 'Shemp', last: 'Howard'}
+// ]</pre><p>El método <code class="literal" translate="no">sort</code> no es estable, por lo que:</p><a id="I_programlisting8_d1e6789"></a><pre class="programlisting" translate="no">s.sort(by('first')).sort(by('last'));</pre><p>no garantiza que produzca la secuencia correcta. Si quieres ordenar por varias claves, de nuevo tendrás que hacer más trabajo. Podemos modificar <code class="literal" translate="no">by</code> para que tome un segundo parámetro, otro método <code class="literal" translate="no">compare</code>que será llamado para romper los empates cuando la clave mayor produzca una coincidencia:</p><a id="I_programlisting8_d1e6799"></a><pre class="programlisting" translate="no">// Function by takes a member name string and an
+// optional minor comparison function and returns
+// a comparison function that can be used to sort an
+// array of objects that contain that member. The
+// minor comparison function is used to break ties
+// when the o[name] and p[name] are equal.
+
+var by = function (name, minor) {
+    return function (o, p) {
+        var a, b;
+        if (o &amp;&amp; p &amp;&amp; typeof o === 'object' &amp;&amp; typeof p === 'object') {
+            a = o[name];
+            b = p[name];
+            if (a === b) {
+                return typeof minor === 'function' ? minor(o, p) : 0;
+            }
+            if (typeof a === typeof b) {
+                return a &lt; b ? −1 : 1;
+            }
+            return typeof a &lt; typeof b ? −1 : 1;
+        } else {
+            throw {
+                name: 'Error',
+                message: 'Expected an object when sorting by ' + name;
+            };
+        }
+    };
+};
+
+s.sort(by('last', by('first')));    // s is [
+//    {first: 'Joe',   last: 'Besser'},
+//    {first: 'Joe',   last: 'DeRita'},
+//    {first: 'Larry', last: 'Fine'},
+//    {first: 'Curly', last: 'Howard'},
+//    {first: 'Moe',   last: 'Howard'},
+//    {first: 'Shemp', last: 'Howard'}
+// ]</pre></dd><dt><span class="term"><span class="emphasis"><em translate="no">array</em></span>.splice(<span class="emphasis"><em translate="no">start</em></span>, <span class="emphasis"><em translate="no">deleteCount</em></span>, <span class="emphasis"><em translate="no">item</em></span>...)</span></dt><dd><p>El método <code class="literal" translate="no">splice</code> elimina elementos de un <em class="replaceable" translate="no"><code translate="no">array</code></em>sustituyéndolos por nuevos <em class="replaceable" translate="no"><code translate="no">item</code></em> s. El parámetro          <em class="replaceable" translate="no"><code translate="no">start</code></em> es el número de una posición dentro de <em class="replaceable" translate="no"><code translate="no">array</code></em> . El parámetro          <em class="replaceable" translate="no"><code translate="no">deleteCount</code></em> es el número de elementos que hay que borrar a partir de esa posición. Si hay parámetros adicionales, esos    <em class="replaceable" translate="no"><code translate="no">item</code></em> s se insertarán en la posición. Devuelve un array que contiene los elementos borrados.</p><p>El uso más popular de <code class="literal" translate="no">splice</code> es borrar elementos de una matriz. No confundas <code class="literal" translate="no">splice</code> con <code class="literal" translate="no">slice</code>:</p><a id="I_programlisting8_d1e6851"></a><pre class="programlisting" translate="no">var a = ['a', 'b', 'c'];
+var r = a.splice(1, 1, 'ache', 'bug');
+// a is ['a', 'ache', 'bug', 'c']
+// r is ['b']</pre><p><code class="literal" translate="no">splice</code> puede implementarse así:</p><a id="I_programlisting8_d1e6857"></a><pre class="programlisting" translate="no">Array.method('splice', function (start, deleteCount) {
+    var max = Math.max,
+        min = Math.min,
+        delta,
+        element,
+        insertCount = max(arguments.length - 2, 0),
+        k = 0,
+        len = this.length,
+        new_len,
+        result = [],
+        shift_count;
+
+    start = start || 0;
+    if (start &lt; 0) {
+        start += len;
+    }
+    start = max(min(start, len), 0);
+    deleteCount = max(min(typeof deleteCount === 'number' ?
+            deleteCount : len, len − start), 0);
+    delta = insertCount − deleteCount;
+    new_len = len + delta;
+    while (k &lt; deleteCount) {
+        element = this[start + k];
+        if (element !== undefined) {
+            result[k] = element;
+        }
+        k += 1;
+    }
+    shift_count = len - start - deleteCount;
+    if (delta &lt; 0) {
+        k = start + insertCount;
+        while (shift_count) {
+            this[k] = this[k − delta];
+            k += 1;
+            shift_count −= 1;
+        }
+        this.length = new_len;
+    } else if (delta &gt; 0) {
+        k = 1;
+        while (shift_count) {
+            this[new_len − k] = this[len − k];
+            k += 1;
+            shift_count −= 1;
+         }
+            this.length = new_len;
+     }
+    for (k = 0; k &lt; insertCount; k += 1) {
+        this[start + k] = arguments[k + 2];
+    }
+    return result;
+});</pre></dd><dt><span class="term"><span class="emphasis"><em translate="no">array</em></span>.unshift(<span class="emphasis"><em translate="no">item</em></span>...)</span></dt><dd><p>El método <code class="literal" translate="no">unshift</code> es como el método <code class="literal" translate="no">push</code>, salvo que coloca la <em class="replaceable" translate="no"><code translate="no">item</code></em> s al principio de este <em class="replaceable" translate="no"><code translate="no">array</code></em> en lugar de al final. Devuelve el <em class="replaceable" translate="no"><code translate="no">array</code></em> nuevo <code class="literal" translate="no">length</code>:</p><a id="I_programlisting8_d1e6889"></a><pre class="programlisting" translate="no">var a = ['a', 'b', 'c'];
+var r = a.unshift('?', '@');
+// a is ['?', '@', 'a', 'b', 'c']
+// r is 5</pre><p><code class="literal" translate="no">unshift</code> puede implementarse así:</p><a id="I_programlisting8_d1e6895"></a><pre class="programlisting" translate="no">Array.method('unshift', function (  ) {
+    this.splice.apply(this,
+        [0, 0].concat(Array.prototype.slice.apply(arguments)));
+    return this.length;
+});</pre></dd></dl></div></dd><dt><span class="term">
+<span class="strong"><strong>Función</strong></span></span></dt><dd><p></p><div class="variablelist"><dl><dt><span class="term"><span class="emphasis"><em translate="no">function</em></span>.aplicar(<span class="emphasis"><em translate="no">thisArg</em></span>, <span class="emphasis"><em translate="no">argArray</em></span> )</span></dt><dd><p>El método <code class="literal" translate="no">apply</code> invoca a <em class="replaceable" translate="no"><code translate="no">function</code></em>pasando el objeto que se vinculará a <code class="literal" translate="no">this</code>y una matriz opcional de argumentos. El método <code class="literal" translate="no">apply</code> se utiliza en el patrón de invocación apply<a class="xref" href="ch04.html" title="Chapter 4. Functions">(Capítulo 4</a>):</p><a id="I_programlisting8_d1e6932"></a><pre class="programlisting" translate="no">Function.method('bind', function (that) {
+
+// Return a function that will call this function as
+// though it is a method of that object.
+
+    var method = this,
+        slice = Array.prototype.slice,
+        args = slice.apply(arguments, [1]);
+    return function (  ) {
+        return method.apply(that,
+            args.concat(slice.apply(arguments, [0])));
+    };
+});
+
+var x = function (  ) {
+    return this.value;
+}.bind({value: 666});
+alert(x(  )); // 666</pre></dd></dl></div></dd><dt><span class="term">
+<span class="strong"><strong>Número</strong></span></span></dt><dd><p></p><div class="variablelist"><dl><dt><span class="term"><span class="emphasis"><em translate="no">number</em></span>.toExponencial(<span class="emphasis"><em translate="no">fractionDigits</em></span>)</span></dt><dd><p>El método <code class="literal" translate="no">toExponential</code> convierte este <em class="replaceable" translate="no"><code translate="no">number</code></em> en una cadena con forma exponencial. El parámetro opcional        <em class="replaceable" translate="no"><code translate="no">fractionDigits</code></em> controla el número de decimales. Debe estar entre 0 y 20:</p><a id="I_programlisting8_d1e6961"></a><pre class="programlisting" translate="no">document.writeln(Math.PI.toExponential(0));
+document.writeln(Math.PI.toExponential(2));
+document.writeln(Math.PI.toExponential(7));
+document.writeln(Math.PI.toExponential(16));
+document.writeln(Math.PI.toExponential(  ));
+
+// Produces
+
+3e+0
+3.14e+0
+3.1415927e+0
+3.1415926535897930e+0
+3.141592653589793e+0</pre></dd><dt><span class="term"><span class="emphasis"><em translate="no">number</em></span>.toFixed(<span class="emphasis"><em translate="no">fractionDigits</em></span>)</span></dt><dd><p>El método <code class="literal" translate="no">toFixed</code> convierte esta <em class="replaceable" translate="no"><code translate="no">number</code></em> en una cadena con forma decimal. El parámetro opcional        <em class="replaceable" translate="no"><code translate="no">fractionDigits</code></em> controla el número de decimales. Debe estar entre 0 y 20. El valor por defecto es 0:</p><a id="I_programlisting8_d1e6983"></a><pre class="programlisting" translate="no">document.writeln(Math.PI.toFixed(0));
+document.writeln(Math.PI.toFixed(2));
+document.writeln(Math.PI.toFixed(7));
+document.writeln(Math.PI.toFixed(16));
+document.writeln(Math.PI.toFixed(  ));
+
+// Produces
+
+3
+3.14
+3.1415927
+3.1415926535897930
+3</pre></dd><dt><span class="term"><span class="emphasis"><em translate="no">number</em></span>.toPrecision(<span class="emphasis"><em translate="no">precision</em></span>)</span></dt><dd><p>El método <code class="literal" translate="no">toPrecision</code> convierte esto <em class="replaceable" translate="no"><code translate="no">number</code></em> a una cadena en forma decimal. El parámetro opcional        <em class="replaceable" translate="no"><code translate="no">precision</code></em> controla el número de dígitos de precisión. Debe estar entre 1 y 21:</p><a id="I_programlisting8_d1e7005"></a><pre class="programlisting" translate="no">document.writeln(Math.PI.toPrecision(2));
+document.writeln(Math.PI.toPrecision(7));
+document.writeln(Math.PI.toPrecision(16));
+document.writeln(Math.PI.toPrecision(  ));
+
+// Produces
+
+3.1
+3.141593
+3.141592653589793
+3.141592653589793</pre></dd><dt><span class="term"><span class="emphasis"><em translate="no">number</em></span>.toString(<span class="emphasis"><em translate="no">radix</em></span>)</span></dt><dd><p>El método <code class="literal" translate="no">toString</code> convierte esto <em class="replaceable" translate="no"><code translate="no">number</code></em> en una cadena. El parámetro opcional <em class="replaceable" translate="no"><code translate="no">radix</code></em> controla el radix, o base. Debe estar entre 2 y 36. Por defecto       <em class="replaceable" translate="no"><code translate="no">radix</code></em> es la base 10. El parámetro          <em class="replaceable" translate="no"><code translate="no">radix</code></em> se suele utilizar con números enteros, pero se puede utilizar con cualquier número.</p><p>El caso más común, <em class="replaceable" translate="no"><code translate="no">number</code></em>
+<code class="literal" translate="no">.toString( )</code>puede escribirse más sencillamente como <code class="literal" translate="no">String(</code><em class="replaceable" translate="no"><code translate="no">number</code></em>
+<code class="literal" translate="no">)</code>:</p><a id="I_programlisting8_d1e7050"></a><pre class="programlisting" translate="no">document.writeln(Math.PI.toString(2));
+document.writeln(Math.PI.toString(8));
+document.writeln(Math.PI.toString(16));
+document.writeln(Math.PI.toString(  ));
+
+// Produces
+
+11.001001000011111101101010100010001000010110100011
+3.1103755242102643
+3.243f6a8885a3
+3.141592653589793</pre></dd></dl></div></dd><dt><span class="term">
+<span class="strong"><strong>Objeto</strong></span></span></dt><dd><p></p><div class="variablelist"><dl><dt><span class="term"><span class="emphasis"><em translate="no">object</em></span>.hasPropiedad(<span class="emphasis"><em translate="no">name</em></span>)</span></dt><dd><p>El método <code class="literal" translate="no">hasOwnProperty</code> devuelve <code class="literal" translate="no">true</code> si el objeto      <em class="replaceable" translate="no"><code translate="no">object</code></em> contiene una propiedad <em class="replaceable" translate="no"><code translate="no">name</code></em> . No se examina la cadena de prototipos. Este método es inútil si la propiedad         <em class="replaceable" translate="no"><code translate="no">name</code></em> es <code class="literal" translate="no">hasOwnProperty</code>:</p><a id="I_programlisting8_d1e7089"></a><pre class="programlisting" translate="no">var a = {member: true};
+var b = Object.create(a);              // from Chapter 3
+var t = a.hasOwnProperty('member');   // t is true
+var u = b.hasOwnProperty('member');   // u is false
+var v = b.member;                     // v is true</pre></dd></dl></div></dd><dt><span class="term">
+<span class="strong"><strong>RegExp</strong></span></span></dt><dd><p></p><div class="variablelist"><dl><dt><span class="term"><span class="emphasis"><em translate="no">regexp</em></span>.exec(<span class="emphasis"><em translate="no">string</em></span>)</span></dt><dd><p>El método <code class="literal" translate="no">exec</code> es el más potente (y lento) de los métodos que utilizan expresiones regulares. Si coincide con éxito con el  <em class="replaceable" translate="no"><code translate="no">regexp</code></em> y el  <em class="replaceable" translate="no"><code translate="no">string</code></em>devuelve una matriz. El elemento 0 de la matriz contendrá la subcadena que coincida con el elemento <em class="replaceable" translate="no"><code translate="no">regexp</code></em> . El elemento 1 es el texto capturado por el grupo 1, el elemento 2 es el texto capturado por el grupo 2, y así sucesivamente. Si la coincidencia falla, devuelve <code class="literal" translate="no">null</code>.</p><p>Si el elemento <em class="replaceable" translate="no"><code translate="no">regexp</code></em> tiene una bandera <code class="literal" translate="no">g</code>, las cosas son un poco más complicadas. La búsqueda no empieza en la posición 0 de la cadena, sino en la posición <em class="replaceable" translate="no"><code translate="no">regexp</code></em>
+<code class="literal" translate="no">.lastIndex</code> (que inicialmente es cero). Si la coincidencia es correcta, entonces        <em class="replaceable" translate="no"><code translate="no">regexp</code></em>
+<code class="literal" translate="no">.lastIndex</code> se pondrá en la posición del primer carácter después de la coincidencia. Una coincidencia fallida vuelve a <em class="replaceable" translate="no"><code translate="no">regexp</code></em>
+<code class="literal" translate="no">.lastIndex</code> a 0.</p><p>Esto te permite buscar varias apariciones de un patrón en una cadena llamando a <code class="literal" translate="no">exec</code>en un bucle. Hay que tener cuidado con un par de cosas. Si sales del bucle antes de tiempo, debes poner a 0 <em class="replaceable" translate="no"><code translate="no">regexp</code></em>
+<code class="literal" translate="no">.lastIndex</code> a 0 antes de volver a entrar en el bucle. Además, el factor <code class="literal" translate="no">^</code> sólo coincide cuando      <em class="replaceable" translate="no"><code translate="no">regexp</code></em>
+<code class="literal" translate="no">.lastIndex</code> es 0:</p><a id="I_programlisting8_d1e7172"></a><pre class="programlisting" translate="no">// Break a simple html text into tags and texts.
+// (See string.replace for the entityify method.)
+
+// For each tag or text, produce an array containing
+// [0] The full matched tag or text
+// [1] The /, if there is one
+// [2] The tag name
+// [3] The attributes, if any
+
+var text = '&lt;html&gt;&lt;body bgcolor=linen&gt;&lt;p&gt;' +
+        'This is &lt;b&gt;bold&lt;\/b&gt;!&lt;\/p&gt;&lt;\/body&gt;&lt;\/html&gt;';
+var tags = /[^&lt;&gt;]+|&lt;(\/?)([A-Za-z]+)([^&lt;&gt;]*)&gt;/g;
+var a, i;
+
+while ((a = tags.exec(text))) {
+    for (i = 0; i &lt; a.length; i += 1) {
+        document.writeln(('// [' + i + '] ' + a[i]).entityify(  ));
+    }
+    document.writeln(  );
+}
+
+// Result:
+
+// [0] &lt;html&gt;
+// [1]
+// [2] html
+// [3]
+
+// [0] &lt;body bgcolor=linen&gt;
+// [1]
+// [2] body
+// [3]  bgcolor=linen
+
+// [0] &lt;p&gt;
+// [1]
+// [2] p
+// [3]
+
+// [0] This is
+// [1] undefined
+// [2] undefined
+// [3] undefined
+
+// [0] &lt;b&gt;
+// [1]
+// [2] b
+// [3]
+
+// [0] bold
+// [1] undefined
+// [2] undefined
+// [3] undefined
+
+// [0] &lt;/b&gt;
+// [1] /
+// [2] b
+// [3]
+
+// [0] !
+// [1] undefined
+// [2] undefined
+// [3] undefined
+
+// [0] &lt;/p&gt;
+// [1] /
+// [2] p
+// [3]
+
+// [0] &lt;/body&gt;
+// [1] /
+// [2] body
+// [3]
+
+// [0] &lt;/html&gt;
+// [1] /
+// [2] html
+// [3]</pre></dd><dt><span class="term"><span class="emphasis"><em translate="no">regexp</em></span>.test(<span class="emphasis"><em translate="no">string</em></span>)</span></dt><dd><p>El método <code class="literal" translate="no">test</code> es el más sencillo (y rápido) de los métodos que utilizan expresiones regulares. Si el factor <em class="replaceable" translate="no"><code translate="no">regexp</code></em> coincide con <em class="replaceable" translate="no"><code translate="no">string</code></em>devuelve <code class="literal" translate="no">true</code>; en caso contrario, devuelve <code class="literal" translate="no">false</code>. No utilices la bandera <code class="literal" translate="no">g</code> con este método:</p><a id="I_programlisting8_d1e7204"></a><pre class="programlisting" translate="no">var b = /&amp;.+;/.test('frank &amp;amp; beans');
+// b is true</pre><p><code class="literal" translate="no">test</code> podría implementarse como</p><a id="I_programlisting8_d1e7210"></a><pre class="programlisting" translate="no">RegExp.method('test', function (string) {
+    return this.exec(string) !== null;
+});</pre></dd></dl></div></dd>
+<dt><span class="term"><span class="strong"><strong>Cadena</strong></span></span></dt><dd><p></p><div class="variablelist"><dl><dt><span class="term"><span class="emphasis"><em translate="no">string</em></span>.charAt(<span class="emphasis"><em translate="no">pos</em></span>)</span></dt><dd><p>El método <code class="literal" translate="no">charAt</code> devuelve el carácter en la posición <em class="replaceable" translate="no"><code translate="no">pos</code></em> de este <em class="replaceable" translate="no"><code translate="no">string</code></em>. Si <em class="replaceable" translate="no"><code translate="no">pos</code></em> es menor que cero o mayor o igual que <em class="replaceable" translate="no"><code translate="no">string</code></em><code class="literal" translate="no">.length</code> , devuelve la cadena vacía. JavaScript no tiene un tipo de carácter.</p></dd> El<dd><p>resultado de este método es una cadena:</p><a id="I_programlisting8_d1e7249"></a><pre class="programlisting" translate="no">var name = 'Curly';
+var initial = name.charAt(0);    // initial is 'C'</pre> <p><code class="literal" translate="no">charAt</code> podría implementarse como:</p><a id="I_programlisting8_d1e7255"></a><pre class="programlisting" translate="no">String.method('charAt', function (pos) {
+return this.slice(pos, pos + 1);
+});</pre> </dd><dt><span class="term"><span class="emphasis"><em translate="no">string</em></span>.charCodeAt(<span class="emphasis"><em translate="no">pos</em></span>)</span></dt><dd><p>El método <code class="literal" translate="no">charCodeAt</code> es igual que <code class="literal" translate="no">charAt</code> excepto que, en lugar de devolver una cadena, devuelve una representación entera del valor del punto de código del carácter en la posición <em class="replaceable" translate="no"><code translate="no">pos</code></em> de ese <em class="replaceable" translate="no"><code translate="no">string</code></em>. Si <em class="replaceable" translate="no"><code translate="no">pos</code></em> es menor que cero o mayor o igual que <em class="replaceable" translate="no"><code translate="no">string</code></em><code class="literal" translate="no">.length</code></p></dd>, devuelve<dd><p> <code class="literal" translate="no">NaN</code>:</p></dd><dd><a id="I_programlisting8_d1e7293"></a><pre class="programlisting" translate="no">var name = 'Curly';
+var initial = name.charCodeAt(0);    // initial is 67</pre> </dd><dt><span class="term"><span class="emphasis"><em translate="no">string</em></span>.concat(<span class="emphasis"><em translate="no">string</em></span>...</span></dt>)<dd><p>El método <code class="literal" translate="no">concat</code> crea una nueva cadena concatenando otras cadenas. Se utiliza poco porque el operador <code class="literal" translate="no">+</code> es más cómodo:</p><a id="I_programlisting8_d1e7312"></a><pre class="programlisting" translate="no">var s = 'C'.concat('a', 't');    // s is 'Cat'</pre> </dd><dt><span class="term"><span class="emphasis"><em translate="no">string</em></span> .</span></dt><dt><span class="term">indexOf(<span class="emphasis"><em translate="no">searchString</em></span></span></dt>,<dt><span class="term"> <span class="emphasis"><em translate="no">position</em></span> )</span></dt>El método<dd><p> <code class="literal" translate="no">indexOf</code> busca una <em class="replaceable" translate="no"><code translate="no">searchString</code></em> dentro de una <em class="replaceable" translate="no"><code translate="no">string</code></em>. Si lo encuentra, devuelve la posición del primer carácter coincidente; en caso contrario, devuelve -1. El parámetro opcional <em class="replaceable" translate="no"><code translate="no">position</code></em>hace que la búsqueda comience en la posición especificada en <em class="replaceable" translate="no"><code translate="no">string</code></em></p></dd>:<dd><a id="I_programlisting8_d1e7343"></a><pre class="programlisting" translate="no">var text = 'Mississippi';
+var p = text.indexOf('ss');    // p is 2
+p = text.indexOf('ss', 3);     // p is 5
+p = text.indexOf('ss', 6);     // p is −1</pre> </dd><dt><span class="term"><span class="emphasis"><em translate="no">string</em></span>.lastIndexOf(<span class="emphasis"><em translate="no">searchString</em></span></span></dt>,<dt><span class="term"> <span class="emphasis"><em translate="no">position</em></span> )</span></dt><dd><p>El método <code class="literal" translate="no">lastIndexOf</code> es como el método <code class="literal" translate="no">indexOf</code>, salvo que busca desde el final de la cadena en lugar de desde el principio:</p><a id="I_programlisting8_d1e7365"></a><pre class="programlisting" translate="no">var text = 'Mississippi';
+var p = text.lastIndexOf('ss');    // p is 5
+p = text.lastIndexOf('ss', 3);     // p is 2
+p = text.lastIndexOf('ss', 6);     // p is 5</pre> </dd><dt><span class="term"><span class="emphasis"><em translate="no">string</em></span>.localeCompare(<span class="emphasis"><em translate="no">that</em></span>)</span></dt><dd><p>El método <code class="literal" translate="no">localeCompare</code> compara dos cadenas. No se especifican las reglas para comparar las cadenas. Si la cadena <em class="replaceable" translate="no"><code translate="no">string</code></em> es menor que <em class="replaceable" translate="no"><code translate="no">that</code></em>, el resultado es negativo. Si son iguales, el resultado es cero. Esto es similar a la convención para la función de comparación <em class="replaceable" translate="no"><code translate="no">array</code></em><code class="literal" translate="no">.sort</code> :</p><a id="I_programlisting8_d1e7393"></a><pre class="programlisting" translate="no">var m = ['AAA', 'A', 'aa', 'a', 'Aa', 'aaa'];
+m.sort(function (a, b) {
+    return a.localeCompare(b);
+});
+// m (in some locale) is
+//      ['a', 'A', 'aa', 'Aa', 'aaa', 'AAA']</pre> </dd><dt><span class="term"><span class="emphasis"><em translate="no">string</em></span>.match(<span class="emphasis"><em translate="no">regexp</em></span>)</span></dt><dd><p>El método <code class="literal" translate="no">match</code> compara una cadena y una expresión regular. La forma de hacerlo depende de la bandera <code class="literal" translate="no">g</code>. Si no existe la bandera <code class="literal" translate="no">g</code>, el resultado de llamar a <em class="replaceable" translate="no"><code translate="no">string</code></em><code class="literal" translate="no">.match(</code> <em class="replaceable" translate="no"><code translate="no">regexp</code></em> <code class="literal" translate="no">)</code> es el mismo que llamar a <em class="replaceable" translate="no"><code translate="no">regexp</code></em><code class="literal" translate="no">.exec(</code> <em class="replaceable" translate="no"><code translate="no">string</code></em> <code class="literal" translate="no">)</code> .</p></dd> Sin<dd><p>embargo, si <em class="replaceable" translate="no"><code translate="no">regexp</code></em> tiene la bandera <code class="literal" translate="no">g</code>, entonces produce una matriz de todas las coincidencias pero excluye los grupos de captura:</p><a id="I_programlisting8_d1e7447"></a><pre class="programlisting" translate="no">var text = '&lt;html&gt;&lt;body bgcolor=linen&gt;&lt;p&gt;' +
+        'This is &lt;b&gt;bold&lt;\/b&gt;!&lt;\/p&gt;&lt;\/body&gt;&lt;\/html&gt;';
+var tags = /[^&lt;&gt;]+|&lt;(\/?)([A-Za-z]+)([^&lt;&gt;]*)&gt;/g;
+var a, i;
+
+a = text.match(tags);
+for (i = 0; i &lt; a.length; i += 1) {
+    document.writeln(('// [' + i + '] ' + a[i]).entityify(  ));
+}
+
+// The result is
+
+// [0] &lt;html&gt;
+// [1] &lt;body bgcolor=linen&gt;
+// [2] &lt;p&gt;
+// [3] This is
+// [4] &lt;b&gt;
+// [5] bold
+// [6] &lt;/b&gt;
+// [7] !
+// [8] &lt;/p&gt;
+// [9] &lt;/body&gt;
+// [10] &lt;/html&gt;</pre> </dd><dt><span class="term"><span class="emphasis"><em translate="no">string</em></span>.replace(<span class="emphasis"><em translate="no">searchValue</em></span></span></dt>,<dt><span class="term"> <span class="emphasis"><em translate="no">replaceValue</em></span> )</span></dt><dd><p>El método <code class="literal" translate="no">replace</code> realiza una operación de búsqueda y reemplazo en este <em class="replaceable" translate="no"><code translate="no">string</code></em>, produciendo una nueva cadena. El argumento <em class="replaceable" translate="no"><code translate="no">searchValue</code></em> puede ser una cadena o un objeto de expresión regular.</p> Si es una cadena<p>, <span class="emphasis"><em translate="no">only</em></span> reemplazará la primera</p><p>ocurrencia</p><p>de <em class="replaceable" translate="no"><code translate="no">searchValue</code></em>, por lo que:</p><a id="I_programlisting8_d1e7478"></a><pre class="programlisting" translate="no">var result = "mother_in_law".replace('_', '-');</pre><p>producirá <code class="literal" translate="no">"mother-in_law"</code></p>,<p>que puede ser una decepción.</p><p>Si <em class="replaceable" translate="no"><code translate="no">searchValue</code></em> es una expresión regular y si tiene la bandera <code class="literal" translate="no">g</code>, entonces reemplazará todas las ocurrencias.</p><p>Si no tiene el indicador <code class="literal" translate="no">g</code>, sólo sustituirá la primera aparición</p>.<p> <em class="replaceable" translate="no"><code translate="no">replaceValue</code></em> puede ser una cadena o una función.</p><p>Si <em class="replaceable" translate="no"><code translate="no">replaceValue</code></em> es una cadena, el carácter <code class="literal" translate="no">$</code> tiene un significado especial:</p><a id="I_programlisting8_d1e7507"></a><pre class="programlisting" translate="no">// Capture 3 digits within parens
+
+var oldareacode = /\((\d{3})\)/g;
+var p = '(555)666-1212'.replace(oldareacode, '$1-');
+// p is '555-666-1212'</pre> <div class="informaltable"><table style="border-collapse: collapse;border-top: 0.5pt solid ; border-bottom: 0.5pt solid ; border-left: 0.5pt solid ; border-right: 0.5pt solid ; "><colgroup><col/><col/></colgroup> <thead><tr><th style="text-align: left" valign="bottom"><p>Sustitución de</p></th></tr></thead></table></div> la<div class="informaltable"><table style="border-collapse: collapse;border-top: 0.5pt solid ; border-bottom: 0.5pt solid ; border-left: 0.5pt solid ; border-right: 0.5pt solid ; "><thead><tr><th style="text-align: left" valign="bottom"><p>secuencia del dólar</p></th></tr></thead></table></div></dd><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">$$</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">$</code>
+</p>
+</td></tr><dd><div class="informaltable"><table style="border-collapse: collapse;border-top: 0.5pt solid ; border-bottom: 0.5pt solid ; border-left: 0.5pt solid ; border-right: 0.5pt solid ; "><tbody><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">$&amp;</code>
+</p>
+</td> <td style="text-align: left" valign="top"><p>El texto coincidente</p></td></tr></tbody></table></div></dd><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">$</code>
+<em class="replaceable" translate="no"><code translate="no">number</code></em>
+</p>
+</td><dd><div class="informaltable"><table style="border-collapse: collapse;border-top: 0.5pt solid ; border-bottom: 0.5pt solid ; border-left: 0.5pt solid ; border-right: 0.5pt solid ; "><tbody><tr><td style="text-align: left" valign="top"><p>Texto del grupo de captura</p></td></tr></tbody></table></div></dd><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">$`</code>
+</p>
+</td><dd><div class="informaltable"><table style="border-collapse: collapse;border-top: 0.5pt solid ; border-bottom: 0.5pt solid ; border-left: 0.5pt solid ; border-right: 0.5pt solid ; "><tbody><tr><td style="text-align: left" valign="top"><p>El texto que precede a la</p></td></tr> coincid</tbody></table></div>encia<div class="informaltable"><table style="border-collapse: collapse;border-top: 0.5pt solid ; border-bottom: 0.5pt solid ; border-left: 0.5pt solid ; border-right: 0.5pt solid ; "><tbody><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">$'</code>
+</p>
+</td><td style="text-align: left" valign="top"><p>El texto que sigue a la coincidencia</p></td></tr></tbody></table></div><p>Si</p> el<p> <em class="replaceable" translate="no"><code translate="no">replaceValue</code></em> es una función, se llamará a ésta para cada coincidencia, y la cadena devuelta por la función se utilizará como texto de sustitución. El primer parámetro que se pasa a la función es el texto coincidente. El segundo parámetro es el texto del grupo de captura 1, el siguiente parámetro es el texto del grupo de captura 2, y así sucesivamente:</p><a id="I_programlisting8_d1e7570"></a><pre class="programlisting" translate="no">String.method('entityify', function (  ) {
+
+    var character = {
+        '&lt;' : '&amp;lt;',
+        '&gt;' : '&amp;gt;',
+        '&amp;' : '&amp;amp;',
+        '"' : '&amp;quot;'
+    };
+
+// Return the string.entityify method, which
+// returns the result of calling the replace method.
+// Its replaceValue function returns the result of
+// looking a character up in an object. This use of
+// an object usually outperforms switch statements.
+
+    return function (  ) {
+        return this.replace(/[&lt;&gt;&amp;"]/g, function (c) {
+            return character[c];
+        });
+    };
+}(  ));
+alert("&lt;&amp;&gt;".entityify(  ));  // &amp;lt;&amp;amp;&amp;gt;</pre> </dd><dt><span class="term"><span class="emphasis"><em translate="no">string</em></span>.search(<span class="emphasis"><em translate="no">regexp</em></span>)</span></dt><dd><p>El método <code class="literal" translate="no">search</code> es como el método <code class="literal" translate="no">indexOf</code>, salvo que toma un objeto de expresión regular en lugar de una cadena. Devuelve la posición del primer carácter de la primera coincidencia, si la hay, o -1 si la búsqueda falla. La bandera <code class="literal" translate="no">g</code> se ignora. No hay parámetro <em class="replaceable" translate="no"><code translate="no">position</code></em>:</p><a id="I_programlisting8_d1e7595"></a><pre class="programlisting" translate="no">var text = 'and in it he says "Any damn fool could';
+var pos = text.search(/["']/);    // pos is 18</pre> </dd><dt><span class="term"><span class="emphasis"><em translate="no">string</em></span>.slice(<span class="emphasis"><em translate="no">start</em></span></span></dt>,<dt><span class="term"> <span class="emphasis"><em translate="no">end</em></span> )</span></dt><dd><p>El método <code class="literal" translate="no">slice</code> crea una nueva cadena copiando una parte de otra <em class="replaceable" translate="no"><code translate="no">string</code></em>. Si el parámetro <em class="replaceable" translate="no"><code translate="no">start</code></em> es negativo, le añade <em class="replaceable" translate="no"><code translate="no">string</code></em><code class="literal" translate="no">.length</code> . El parámetro <em class="replaceable" translate="no"><code translate="no">end</code></em> es opcional, y su valor por defecto es <em class="replaceable" translate="no"><code translate="no">string</code></em><code class="literal" translate="no">.length</code> . Si el parámetro <em class="replaceable" translate="no"><code translate="no">end</code></em> es negativo, se le añade <em class="replaceable" translate="no"><code translate="no">string</code></em><code class="literal" translate="no">.length</code> . El parámetro <em class="replaceable" translate="no"><code translate="no">end</code></em> es uno mayor que la posición del último carácter. Para obtener <code class="literal" translate="no">n</code> caracteres a partir de la posición <code class="literal" translate="no">p</code>, utiliza <em class="replaceable" translate="no"><code translate="no">string</code></em><code class="literal" translate="no">.slice(p, p + n)</code> . Consulta también <em class="replaceable" translate="no"><code translate="no">string</code></em><code class="literal" translate="no">.substring</code> y <em class="replaceable" translate="no"><code translate="no">array</code></em><code class="literal" translate="no">.slice</code> , más adelante y anteriormente en este capítulo, respectivamente.</p><a id="I_programlisting8_d1e7674"></a><pre class="programlisting" translate="no">var text = 'and in it he says "Any damn fool could';
+var a = text.slice(18);
+// a is '"Any damn fool could'
+var b = text.slice(0, 3);
+// b is 'and'
+var c = text.slice(−5);
+// c is 'could'
+var d = text.slice(19, 32);
+// d is 'Any damn fool'</pre> </dd><dt><span class="term"><span class="emphasis"><em translate="no">string</em></span>.split(<span class="emphasis"><em translate="no">separator</em></span></span></dt>,<dt><span class="term"> <span class="emphasis"><em translate="no">limit</em></span> )</span></dt><dd><p>El método <code class="literal" translate="no">split</code> crea una matriz de cadenas dividiendo este <em class="replaceable" translate="no"><code translate="no">string</code></em> en trozos. El parámetro opcional <em class="replaceable" translate="no"><code translate="no">limit</code></em> puede limitar el número de trozos que se dividirán.</p> El parámetro<p> <em class="replaceable" translate="no"><code translate="no">separator</code></em> puede ser una cadena o una expresión regular.</p><p>Si <em class="replaceable" translate="no"><code translate="no">separator</code></em> es la cadena vacía, se produce una matriz de caracteres simples</p>:<a id="I_programlisting8_d1e7707"></a><pre class="programlisting" translate="no">var digits = '0123456789';
+var a = digits.split('', 5);
+// a is ['0', '1', '2', '3', '4']</pre><p>De lo contrario, se buscan en <em class="replaceable" translate="no"><code translate="no">string</code></em> todas las apariciones de <em class="replaceable" translate="no"><code translate="no">separator</code></em>. Cada unidad de texto entre los separadores se copia en la matriz.</p><p>La bandera <code class="literal" translate="no">g</code> se ignora:</p><a id="I_programlisting8_d1e7720"></a><pre class="programlisting" translate="no">var ip = '192.168.1.0';
+var b = ip.split('.');
+// b is ['192', '168', '1', '0']
+
+var c = '|a|b|c|'.split('|');
+// c is ['', 'a', 'b', 'c', '']
+
+var text = 'last,  first ,middle';
+var d = text.split(/\s*,\s*/);
+// d is [
+//    'last',
+//    'first',
+//    'middle'
+// ]</pre><p>Hay que tener cuidado con algunos casos especiales.</p> El<p>texto de los grupos de captura se incluirá en la división</p>:<a id="I_programlisting8_d1e7724"></a><pre class="programlisting" translate="no">var e = text.split(/\s*(,)\s*/);
+// e is [
+//    'last',
+//    ',',
+//    'first',
+//    ',',
+//    'middle'
+// ]</pre><p>Algunas implementaciones suprimen las cadenas vacías en la matriz de salida cuando <em class="replaceable" translate="no"><code translate="no">separator</code></em> es una expresión regular</p>:<a id="I_programlisting8_d1e7731"></a><pre class="programlisting" translate="no">var f = '|a|b|c|'.split(/\|/);
+// f is ['a', 'b', 'c'] on some systems, and
+// f is ['', 'a', 'b', 'c', ''] on others</pre></dd><dt><span class="term"><span class="emphasis"><em translate="no">string</em></span>.substring(<span class="emphasis"><em translate="no">start</em></span>, <span class="emphasis"><em translate="no">end</em> &lt;/span&gt; )<dd><p>El método <code class="literal" translate="no">substring</code> es igual que el método <code class="literal" translate="no">slice</code>, salvo que no gestiona el ajuste para parámetros negativos. No hay razón para utilizar el método <code class="literal" translate="no">substring</code>. Utiliza en su lugar <code class="literal" translate="no">slice</code>.</p></dd><dt><span class="term"><span class="emphasis"><em translate="no">string</em></span>.toLocaleMinúsculas( )</span></dt><dd><p>El método <code class="literal" translate="no">toLocaleLowerCase</code>produce una nueva cadena que se hace convirtiendo esta    <em class="replaceable" translate="no"><code translate="no">string</code></em> a minúsculas utilizando las reglas de la configuración regional. Esto es principalmente en beneficio del turco, porque en ese idioma `I' se convierte a <code class="literal" translate="no">1</code>, no a `i'.</p></dd><dt><span class="term"><span class="emphasis"><em translate="no">string</em></span>.toLocaleMayúsculas( )</span></dt><dd><p>El método <code class="literal" translate="no">toLocaleUpperCase</code>produce una nueva cadena que se hace convirtiendo esta    <em class="replaceable" translate="no"><code translate="no">string</code></em> a mayúsculas utilizando las reglas de la configuración regional. Esto es principalmente en beneficio del turco, porque en ese idioma `i' se convierte a `<span class="inlinemediaobject"><a id="I_inlinemediaobject8_d1e7791"></a><img alt="" src="httpatomoreillycomsourceoreillyimages238710.png" translate="no"/></span>y no a "I".</p></dd><dt><span class="term"><span class="emphasis"><em translate="no">string</em></span>.aMayúsculas( )</span></dt><dd><p>El método <code class="literal" translate="no">toLowerCase</code> produce una nueva cadena que se hace convirtiendo esta    <em class="replaceable" translate="no"><code translate="no">string</code></em> a minúsculas.</p></dd><dt><span class="term"><span class="emphasis"><em translate="no">string</em></span>.aMayúsculas( )</span></dt><dd><p>El método <code class="literal" translate="no">toUpperCase</code> produce una nueva cadena convirtiendo esto    <em class="replaceable" translate="no"><code translate="no">string</code></em> a mayúsculas.</p></dd><dt><span class="term">String.fromCharCode(<span class="emphasis"><em translate="no">char</em></span>...)</span></dt><dd><p>La función <code class="literal" translate="no">String.fromCharCode</code>produce una cadena a partir de una serie de números.</p><a id="I_programlisting8_d1e7837"></a><pre class="programlisting" translate="no">var a = String.fromCharCode(67, 97, 116);
+// a is 'Cat'</pre></dd></span></span></dt></dl></div></dd></dl></div></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="ch07s03.html">← Anterior</a><a href="ch09.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="ch08.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\ch08.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

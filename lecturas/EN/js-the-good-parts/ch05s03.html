@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Prototypal</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Prototypal"><div class="titlepage"><div><div><h1 class="title"><a id="prototypal"/>Prototypal</h1></div></div></div><p>In a purely prototypal pattern, we dispense with classes. We focus instead on the
+                objects. Prototypal inheritance is conceptually simpler than classical inheritance:
+                a new object can inherit the properties of an old object. This is perhaps
+                unfamiliar, but it is really easy to understand. You start by making a useful
+                object. You can then make many more objects that are like that one. The
+                classification process of breaking an application down into a set of nested abstract
+                classes can be completely avoided.<a id="IDX-CHP-5-0274" class="indexterm"/></p><p>Let's start by using an object literal to make a useful object:</p><a id="I_programlisting5_d1e3889"/><pre class="programlisting">var myMammal = {
+    name : 'Herb the Mammal',
+    get_name : function (  ) {
+        return this.name;
+    },
+    says : function (  ) {
+        return this.saying || '';
+    }
+};</pre><p>Once we have an object that we like, we can make more instances with the <code class="literal">Object.create</code> method from <a class="xref" href="ch03.html" title="Chapter 3. Objects">Chapter 3</a>.
+                We can then customize the new instances:</p><a id="I_programlisting5_d1e3898"/><pre class="programlisting">var myCat = Object.create(myMammal);
+myCat.name = 'Henrietta';
+myCat.saying = 'meow';
+myCat.purr = function (n) {
+    var i, s = '';
+    for (i = 0; i &lt; n; i += 1) {
+        if (s) {
+            s += '-';
+        }
+        s += 'r';
+    }
+    return s;
+};
+myCat.get_name = function (  ) {
+    return this.says() + ' ' + this.name + ' ' + this.says();
+};</pre><p>This is <span class="emphasis"><em>differential inheritance</em></span>. By customizing a new
+                object, we specify the differences from the object on which it is based.<a id="IDX-CHP-5-0275" class="indexterm"/><a id="IDX-CHP-5-0276" class="indexterm"/></p><p>Sometimes is it useful for data structures to inherit from other data structures.
+                Here is an example: Suppose we are parsing a language such as JavaScript or
+                    T<sub>E</sub>X in which a pair of curly braces indicates a scope.
+                Items defined in a scope are not visible outside of the scope. In a sense, an inner
+                scope inherits from its outer scope. JavaScript objects are very good at
+                representing this relationship. The <code class="literal">block</code>
+                function is called when a left curly brace is encountered. The <code class="literal">parse</code> function will look up symbols from <code class="literal">scope</code>, and augment <code class="literal">scope</code> when it defines new symbols:</p><a id="I_programlisting5_d1e3930"/><pre class="programlisting">var block = function (  ) {
+
+// Remember the current scope. Make a new scope that
+// includes everything from the current one.
+
+    var oldScope = scope;
+    scope = Object.create(scope);
+
+// Advance past the left curly brace.
+
+    advance('{');
+
+// Parse using the new scope.
+
+    parse(scope);
+
+// Advance past the right curly brace and discard the
+// new scope, restoring the old one.
+
+    advance('}');
+    scope = oldScope;
+};</pre></div></body></html>

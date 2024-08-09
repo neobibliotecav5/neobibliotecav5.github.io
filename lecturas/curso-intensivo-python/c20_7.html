@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c20-0005">Estilizar la página de inicio de sesión</h3>
+<p class="BodyFirst">Hemos refinado el aspecto general de la página de inicio de sesión, pero el propio formulario de inicio de sesión aún no tiene ningún estilo. Hagamos que el formulario tenga un aspecto coherente con el resto de la página modificando <em translate="no">login.html</em>:</p>
+<p class="CodeLabel" translate="no"><b>login.html</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">{% extends 'learning_logs/base.html' %}</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> {% load django_bootstrap5 %}
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> {% block page_header %}
+  &lt;h2&gt;Log in to your account.&lt;/h2&gt;
+{% endblock page_header %}
+
+<span class="LiteralGray">{% block content %}</span>
+
+<span epub:type="pagebreak" id="Page_442" title="442"></span><span class="LiteralGray">  &lt;form action="{% url 'accounts:login' %}" method='post'&gt;</span>
+<span class="LiteralGray">    {% csrf_token %}</span>
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     {% bootstrap_form form %}
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>     {% bootstrap_button button_type="submit" content="Log in" %}
+<span class="LiteralGray">  &lt;/form&gt;</span>
+
+<span class="LiteralGray">{% endblock content %}</span></code></pre>
+<p>Primero cargamos las etiquetas de la plantilla <code translate="no">bootstrap5</code> en esta plantilla <span aria-label="annotation1" class="CodeAnnotation">❶.</span> A continuación, definimos el bloque <code translate="no">page_header</code>, que indica al usuario de qué página se trata <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Observa que hemos eliminado el bloque <code translate="no">{% if form.errors %}</code> de la plantilla; django-bootstrap5 gestiona los errores de formulario automáticamente.</p>
+<p>Para mostrar el formulario, utilizamos la etiqueta de plantilla <code translate="no">{% bootstrap_form %}</code> <span aria-label="annotation3" class="CodeAnnotation">❸;</span> ésta sustituye al elemento <code translate="no">{{ form.as_div }}</code> que utilizábamos en el <span class="xref" itemid="xref_target_Chapter 19">capítulo 19</span>. La etiqueta de plantilla <code translate="no">{% booststrap_form %}</code> inserta las reglas de estilo de Bootstrap en los elementos individuales del formulario a medida que éste se muestra. Para generar el botón de envío, utilizamos la etiqueta <code translate="no">{% bootstrap_button %}</code> con argumentos que lo designan como botón de envío, y le damos la etiqueta <code translate="no">Log in</code> <span aria-label="annotation4" class="CodeAnnotation">❹.</span></p>
+<p><a href="#figure20-2" id="figureanchor20-2">La Figura 20-2</a> muestra ahora el formulario de acceso. La página está mucho más limpia, con un estilo coherente y un propósito claro. Prueba a iniciar sesión con un nombre de usuario o contraseña incorrectos; verás que incluso los mensajes de error tienen un estilo coherente y se integran bien con el conjunto del sitio.</p>
+<figure><img alt="" class="keyline" height="406" src="Images/f20002.png" translate="no" width="624"/>
+<figcaption><p><a id="figure20-2">Figura 20-2</a>: La página de inicio de sesión estilizada con Bootstrap</p></figcaption></figure>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c20_6.html">anterior</a><a href="c20.html">Subtema 7 de 37: (Ver todo)</a><a href="c20_8.html">siguiente</a><br/></p>
+<br/><a href="c20_7.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch03lev1sec4">
+  Incrustar valores en cadenas </h3>
+<p class="noindent">
+  Si quieres mostrar un mensaje utilizando el contenido de una variable, puedes incrustarla en una cadena especial, llamada cadena <em class="calibre7">f </em>(también conocida como <em class="calibre7">cadena literal formateada </em>). Coloca llaves alrededor del nombre de la variable, que será sustituido por el valor real. ( <em class="calibre7">Incrustar valores </em>, también conocido como <em class="calibre7">sustitución de cadenas </em>, es el lenguaje de programación para "insertar valores"). </p>
+<p class="indent">
+  Por ejemplo, para que Python calcule o almacene el número de puntos que has marcado en un partido, y luego lo añada a una frase como "He marcado 10 puntos", añade un <span class="literal1" translate="no">
+   f
+  </span>antes de la primera comilla y luego sustituye el número 10 por la variable rodeada de llaves <span class="literal1" translate="no">
+   {}
+  </span>, así: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> myscore = 1000
+<span class="brown">&gt;&gt;&gt;</span> message = f<span class="green">'I scored {myscore} points'</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(message)
+<span class="blue1">I scored 1000 points</span></pre>
+<p class="indent">
+  Aquí, creamos la variable <span class="literal1" translate="no">
+   myscore
+  </span>con el valor <span class="literal1" translate="no">
+   1000
+  </span>y la variable <span class="literal1" translate="no">
+   message
+  </span>que contiene la cadena f <span class="green">
+<span class="literal1" translate="no">
+    'I scored {myscore}
+    <span id="page_30">
+</span>
+    points'
+   </span>
+</span>
+  . En la línea siguiente, llamamos a <span class="literal1" translate="no">
+   print(message)
+  </span>para ver el resultado de nuestra sustitución de cadena. El resultado de imprimir este mensaje es <span class="literal1" translate="no">
+   I scored 1000 points
+  </span>. No necesitamos utilizar una variable para el mensaje. Podríamos hacer el mismo ejemplo y utilizar sólo esto: </p>
+<pre class="pre" translate="no"><span class="violet">print</span>(f<span class="green">'I scored {myscore} points'</span>)</pre>
+<p class="indent">
+  También podemos utilizar más de una variable en una cadena: </p>
+<pre class="pre" translate="no">&gt;&gt;&gt; first = 0
+&gt;&gt;&gt; second = 8
+&gt;&gt;&gt; <span class="violet">print</span>(f<span class="green">'What did the number {first} say to the number {second}? Nice belt!!'</span>)
+<span class="blue1">What did the number 0 say to the number 8? Nice belt!!</span></pre>
+<p class="indent">
+  Incluso podemos poner expresiones en una cadena f, así: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(f<span class="green">'Two plus two equals {2 + 2}'</span>)
+<span class="blue1">Two plus two equals 4</span></pre>
+<p class="indent">
+  En este ejemplo, Python evalúa la ecuación simple entre las llaves, de modo que la cadena impresa contiene el resultado. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch03_4.html">anterior</a><a href="ch03.html">Subtema 5 de 14: (Ver todo)</a><a href="ch03_6.html">siguiente</a><br/></p>
+<br/><a href="ch03_5.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Floating Point</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Floating Point"><div class="titlepage"><div><div><h1 class="title"><a id="floating_point"/>Floating Point</h1></div></div></div><p>Binary floating-point numbers are inept at handling decimal fractions, so 0.1 +
+                0.2 is not equal to 0.3. This is the most frequently reported bug in JavaScript, and
+                it is an intentional consequence of having adopted the IEEE Standard for Binary
+                Floating-Point Arithmetic (IEEE 754). This standard is well-suited for many
+                applications, but it violates most of the things you learned about numbers in middle
+                school. Fortunately, integer arithmetic in floating point is exact, so decimal
+                representation errors can be avoided by scaling.<a id="IDX-APP-A-0519" class="indexterm"/><a id="IDX-APP-A-0520" class="indexterm"/></p><p>For example, dollar values can be converted to whole cents values by multiplying
+                them by 100. The cents then can be accurately added. The sum can be divided by 100
+                to convert back into dollars. People have a reasonable expectation when they count
+                money that the results will be exact.</p></div></body></html>

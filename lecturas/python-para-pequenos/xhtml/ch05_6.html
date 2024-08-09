@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch05lev1sec5">
+  SENTENCIAS IF Y ELIF </h3>
+<p class="noindent">
+  Podemos ampliar aún más una sentencia <span class="literal1" translate="no">
+   if
+  </span>con <span class="literal1" translate="no">
+   elif
+  </span>, que es la abreviatura de <em class="calibre7">else-if . </em>Estas sentencias difieren de las if-then-else en que puede haber más de una <span class="literal1" translate="no">
+   elif
+  </span>en la misma sentencia. Por ejemplo, podemos comprobar si la edad de una persona es 10, 11 o 12 (y así sucesivamente) y hacer que nuestro programa haga algo diferente en función de la respuesta: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> age = 12
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">if</span> age == 10:
+        <span class="violet">print</span>(<span class="green">'What do you call an unhappy cranberry?'</span>)
+        <span class="violet">print</span>(<span class="green">'A blueberry!'</span>)
+    <span class="orange">elif</span> age == 11:
+        <span class="violet">print</span>(<span class="green">'What did the green grape say to the blue grape?'</span>)
+        <span class="violet">print</span>(<span class="green">'Breathe! Breathe!'</span>)
+    <span class="orange">elif</span> age == 12:
+<span id="page_62"></span>        <span class="violet">print</span>(<span class="green">'What did 0 say to 8?'</span>)
+        <span class="violet">print</span>(<span class="green">'Hi guys!'</span>)
+    <span class="orange">elif</span> age == 13:
+        <span class="violet">print</span>(<span class="green">"Why wasn't 10 afraid of 7?"</span>)
+        <span class="violet">print</span>(<span class="green">'Because rather than eating 9, 7 8 pi.'</span>)
+    <span class="orange">else</span>:
+        <span class="violet">print</span>(<span class="green">'Huh?'</span>)
+
+<span class="blue1">What did 0 say to 8?
+Hi guys!</span></pre>
+<p class="indent">
+  En este ejemplo, la sentencia <span class="literal1" translate="no">
+   if
+  </span>de la segunda línea comprueba si el valor de <span class="literal1" translate="no">
+   age
+  </span>es igual a 10. Si es así, se ejecuta la función <span class="literal1" translate="no">
+   print
+  </span>que viene a continuación. Sin embargo, como hemos puesto <span class="literal1" translate="no">
+   age
+  </span>igual a 12, el ordenador salta a la siguiente parte de la sentencia <span class="literal1" translate="no">
+   if
+  </span>(la primera <span class="literal1" translate="no">
+   elif
+  </span>o <em class="calibre7">else if </em>) y comprueba si el valor de <span class="literal1" translate="no">
+   age
+  </span>es igual a 11. No lo es, por lo que el ordenador ejecuta la función . No lo es, así que el ordenador salta a la siguiente <span class="literal1" translate="no">
+   elif
+  </span>para ver si <span class="literal1" translate="no">
+   age
+  </span>es igual a 12. Lo es, así que esta vez el ordenador ejecuta la siguiente llamada a <span class="literal1" translate="no">
+   print
+  </span>. </p>
+<p class="indent">
+  Cuando introduzcas este código en IDLE, se sangrará automáticamente, así que asegúrate de pulsar la tecla RETROCESO (o la tecla SUPR si utilizas un Mac) una vez que hayas escrito cada sentencia <span class="literal1" translate="no">
+   print
+  </span>. De este modo, tus frases <span class="literal1" translate="no">
+   if
+  </span>, <span class="literal1" translate="no">
+   elif
+  </span>y <span class="literal1" translate="no">
+   else
+  </span>comenzarán en el margen izquierdo. Esta es la misma posición en la que estaría la sentencia <span class="literal1" translate="no">
+   if
+  </span>, si no existiera el prompt ( <span class="literal1" translate="no">
+   &gt;&gt;&gt;
+  </span>). </p>
+<div class="image1">
+<img alt="Image" class="calibre58" src="../images/f0062-01.jpg" translate="no"/>
+</div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch05_5.html">anterior</a><a href="ch05.html">Subtema 6 de 11: (Ver todo)</a><a href="ch05_7.html">siguiente</a><br/></p>
+<br/><a href="ch05_6.docx" target="_blank"></a></footer>
+</body>
+</html>

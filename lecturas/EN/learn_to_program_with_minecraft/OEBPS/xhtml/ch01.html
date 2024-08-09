@@ -1,0 +1,434 @@
+<html lang="en-us" xml:lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xmlns:ns="http://www.w3.org/2001/10/synthesis">
+<head>
+<title>Learn to Program with Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+</head>
+<body>
+<h2 class="h2" id="ch01"><span epub:type="pagebreak" id="page_1"></span><strong><span class="blue1"><span class="big">1</span></span></strong><br/><strong>SETTING UP FOR YOUR ADVENTURE</strong></h2>
+<div class="image1"><img alt="image" src="../images/common01.jpg"/></div>
+<p class="noindent">Before you can start making cool Python programs for your Minecraft world, you need to set up Minecraft, Python, and a few other things on your computer. In this chapter, I’ll show you how to install and run all the required software. Installing the software and setting up your computer is the hardest part of this book, so grab an adult or technical friend if you need help. Take it slow and follow each step closely or things might not work as expected.</p>
+<p class="indent">You have a few options, depending on what kind of computer you have. You can use Minecraft on your Windows PC or Mac, or you can use Mine-craft: Pi Edition on a Raspberry Pi computer. If you’re using a Windows PC, just keep reading. If you’re using a Mac, flip to “<a href="ch01.xhtml#ch01lev1sec02">Setting Up Your Mac</a>” on <a href="ch01.xhtml#page_13">page 13</a>. If you’re using a Raspberry Pi, flip to “<a href="ch01.xhtml#ch01lev1sec03">Setting Up Your Raspberry Pi</a>” on <a href="ch01.xhtml#page_22">page 22</a>.</p>
+<p class="indent">If you have any issues during setup, see the appendix on <a href="app02.xhtml#page_289">page 289</a> for troubleshooting help.</p>
+<div class="note">
+<p class="notet"><span epub:type="pagebreak" id="page_2"></span><strong><span class="notes">NOTE</span></strong></p>
+<p class="notep"><em>For more information and updates to these instructions, visit the book’s website at</em> <a href="https://www.nostarch.com/programwithminecraft/">https://www.nostarch.com/programwithminecraft/</a>.</p>
+</div>
+<h3 class="h3" id="ch01lev1sec01"><strong><span class="blue1">Setting Up Your Windows PC</span></strong></h3>
+<p class="noindentb">You need to install five things so you can control Minecraft with Python:</p>
+<p class="bull">• Minecraft</p>
+<p class="bull">• Python 3</p>
+<p class="bull">• Java</p>
+<p class="bull">• Minecraft Python API</p>
+<p class="bull">• Spigot Minecraft Server</p>
+<p class="noindentt">In this section, I’ll guide you through installing each of these on your computer. Let’s start with Minecraft.</p>
+<h4 class="h4" id="ch01lev2sec01"><strong><span class="blue1">Installing Minecraft</span></strong></h4>
+<p class="noindent">If you already own Minecraft and have the latest version installed on your PC, skip ahead to “<a href="ch01.xhtml#ch01lev2sec02">Installing Python</a>” on <a href="ch01.xhtml#page_3">page 3</a>. If you’re not sure whether you have the latest version of Minecraft, follow the steps in this section to install the latest version.</p>
+<p class="indent">If you don’t already own the game, you can buy a copy from the official Minecraft website, <em><a href="https://minecraft.net/">https://minecraft.net/</a></em>. You might need to grab a grown-up to help you with that! Remember the username and password you use when you purchase Minecraft—you’ll need it to log in later.</p>
+<p class="indent">After you’ve purchased Minecraft, follow these steps to install Mine-craft on your PC:</p>
+<ol>
+<li class="noindent"><p class="list">Go to <em><a href="https://minecraft.net/download/">https://minecraft.net/download/</a></em>.</p></li>
+<li class="noindent"><p class="list">Under the Minecraft for Windows section, find the <em>Minecraft.msi</em> link and click it to download it. If you’re given the option to save or open the file, select <strong>Save File</strong>.</p></li>
+<li class="noindent"><p class="list">Wait for the file to download and then open it. If a dialog pops up asking whether you want to run this file, click <strong>Run</strong>. Don’t worry, we know this file is safe!</p></li>
+<li class="noindent"><p class="list">When the Minecraft Setup Wizard opens, click <strong>Next</strong>. Then click <strong>Next</strong> once more. Then click <strong>Install</strong>.</p></li>
+<li class="noindent"><p class="list">You might be asked whether you want to install Minecraft. Of course you do! Click <strong>Yes</strong>. Wait a bit while Minecraft installs. I got a glass of water and a cookie while the game installed.</p></li>
+<li class="noindent"><p class="list">After the installation completes, click <strong>Finish</strong>.</p></li>
+</ol>
+<p class="indent">Minecraft should now be installed.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_3"></span>You know what would be a great idea? Playing Minecraft, of course. Take a few minutes to get it up and running:</p>
+<ol>
+<li class="noindent"><p class="list">To open Minecraft, click the <strong>Start Menu</strong> (or press the Windows key on your keyboard), find Minecraft in the list of programs, and click the icon.</p></li>
+<li class="noindent"><p class="list">Minecraft will start up and might install updates.</p></li>
+<li class="noindent"><p class="list">The login window will open next. Enter the username and password you used when you purchased Minecraft and click <strong>Log In</strong>.</p></li>
+<li class="noindent"><p class="list">Click <strong>Play</strong>. Minecraft will download a couple more updates before opening.</p></li>
+<li class="noindent"><p class="list">Finally, click <strong>Single Player</strong> <img alt="image" src="../images/arrow.jpg"/> <strong>Create New World</strong>. Name your world whatever you want and click <strong>Create New World</strong>. The world will generate, and you can play to your heart’s content.</p></li>
+</ol>
+<p class="indent">Have some fun! If you’ve never played Minecraft before, try playing around for a while, until it gets dark in your Minecraft world. Watch out for monsters! Note that when you use Minecraft with Python, you’ll be using a multiplayer game world, which will be different from this world. We’ll get to that in “<a href="ch01.xhtml#ch01lev2sec05">Running Spigot and Creating a Game Profile</a>” on <a href="ch01.xhtml#page_7">page 7</a>.</p>
+<p class="indent">Back to work! It’s time to install Python. To free your cursor from Mine-craft, just press <small>ESC</small> on your keyboard. Close Minecraft before continuing the rest of the installation.</p>
+<h4 class="h4" id="ch01lev2sec02"><strong><span class="blue1">Installing Python</span></strong></h4>
+<p class="noindent">Python is the programming language you’ll learn in this book. Let’s install it now.</p>
+<ol>
+<li class="noindent"><p class="list">Go to <em><a href="http://www.python.org/downloads/">http://www.python.org/downloads/</a></em>.</p></li>
+<li class="noindent"><p class="list">Click the button labeled <strong>Download Python 3.5.0</strong>. (This is the latest version of Python 3 at the time of this writing, but you might see a later version. Install the most recent version.)</p></li>
+<li class="noindent"><p class="list">Python will begin to download. If you’re asked to choose between saving or opening the file, select <strong>Save File</strong>.</p></li>
+<li class="noindent"><p class="list">When the installer has downloaded, click it. If a dialog pops up asking whether you want to run the file, click <strong>Run</strong>.</p></li>
+<li class="noindent"><p class="list">When the installer opens, select the <em>Add Python 3.5 to Path</em> checkbox, as shown at the bottom of <a href="ch01.xhtml#ch1fig1">Figure 1-1</a>. Then click <strong>Install Now</strong>.</p>
+<div class="image"><span epub:type="pagebreak" id="page_4"></span><img alt="image" src="../images/f01-01.jpg"/></div>
+<p class="figcap"><a id="ch1fig1"></a><em>Figure 1-1: Make sure you select Add Python 3.5 to Path.</em></p></li>
+<li class="noindent"><p class="list">A dialog might ask whether you want to allow the program to install software on the computer. Click <strong>Yes</strong> and then wait for Python to install. I stood up to close the window while it was installing, and the installation had finished when I sat back down.</p></li>
+<li class="noindent"><p class="list">Click <strong>Finish</strong>. Python is now installed.</p></li>
+</ol>
+<h4 class="h4" id="ch01lev2sec03"><strong><span class="blue1">Installing Java</span></strong></h4>
+<p class="noindent">Now that Minecraft and Python are both installed, you’ll have to set things up so that they can talk to each other. You’ll use a program called Spigot to do that, but in order for Spigot to work, you first need to make sure Java is installed on your computer. Let’s do that now.</p>
+<p class="indent">First, check whether Java is already installed:</p>
+<ol>
+<li class="noindent"><p class="list">Click the <strong>Start Menu</strong> (or press the Windows key on your keyboard) and enter <span class="literal"><span class="codestrong">cmd</span></span> in the search box. Open the program called cmd.</p></li>
+<li class="noindent"><p class="list">You’ll see a window with a black background and a prompt (mine says <span class="literal">C:\Users\Craig&gt;</span>). At the prompt, type <span class="literal"><span class="codestrong">java -version</span></span> and press <small>ENTER</small>.</p></li>
+<li class="noindent"><p class="list">If you see a message like the one in <a href="ch01.xhtml#ch1fig2">Figure 1-2</a> and the Java version (that’s the number after the first period) is 7 or newer, the correct Java version is already installed. Skip ahead to “<a href="ch01.xhtml#ch01lev2sec04">Installing the Minecraft Python API and Spigot</a>” on <a href="ch01.xhtml#page_6">page 6</a>.</p></li>
+<li class="noindent"><p class="list">If you get a message that says that Java is not recognized or the version is older than 7, install it using the following instructions.</p></li>
+</ol>
+<div class="image"><span epub:type="pagebreak" id="page_5"></span><img alt="image" src="../images/f01-02.jpg"/></div>
+<p class="figcap"><a id="ch1fig2"></a><em>Figure 1-2: After entering the</em> <span class="literal"><span class="codeitalic">java -version</span></span> <em>command, I can see that Java is installed.</em></p>
+<p class="indent">To install Java, follow these steps:</p>
+<ol>
+<li class="noindent"><p class="list">Go to <em><a href="http://www.java.com/en/download/">http://www.java.com/en/download/</a></em>.</p></li>
+<li class="noindent"><p class="list">Click the <strong>Free Java Download</strong> button. Then click the <strong>Agree and Start Free Download</strong> button.</p></li>
+<li class="noindent"><p class="list">When the installer has downloaded, click it. If a dialog pops up asking whether you want to let the program make changes to your computer, choose <strong>Yes</strong>.</p></li>
+<li class="noindent"><p class="list">When the installer opens, click <strong>Install</strong>.</p></li>
+<li class="noindent"><p class="list">This bit is super important! If a page opens that asks if you want to install another program, such as the Ask Search App, a Yahoo! search bar, or something else, uncheck the box so that this extra program will not install. That’s just another program that you don’t need.</p></li>
+<li class="noindent"><p class="list">You might be asked if you want to set Yahoo! as your homepage. You probably don’t. Select <strong>Do not update browser settings</strong> and click <strong>Next</strong>.</p></li>
+<li class="noindent"><p class="list">Wait while Java installs. I wrote a short message to a friend before it installed. Click <strong>Close</strong> when it finishes.</p></li>
+</ol>
+<p class="indent">Now let’s check whether Java has installed properly:</p>
+<ol>
+<li class="noindent"><p class="list">Click the <strong>Start Menu</strong> and enter <span class="literal"><span class="codestrong">cmd</span></span> in the search box. Open the cmd program.</p></li>
+<li class="noindent"><p class="list">In the cmd window, type <span class="literal"><span class="codestrong">java -version</span></span> at the prompt and press <small>ENTER</small>.</p></li>
+<li class="noindent"><p class="list">If you see a message like the one in <a href="ch01.xhtml#ch1fig2">Figure 1-2</a>, Java installed correctly. If you get an error that says “‘Java’ is not recognized as an internal or external command, operable program or batch file,” Java hasn’t installed properly. To fix this, try reinstalling Java and running it again. If you still get this error after reinstalling, go to <em><a href="http://www.java.com/en/download/help/path.xml">http://www.java.com/en/download/help/path.xml</a></em> for more information.</p></li>
+</ol>
+<p class="indent">That’s it! Java is set up and ready to run the Minecraft server! Let’s get to that next.</p>
+<h4 class="h4" id="ch01lev2sec04"><span epub:type="pagebreak" id="page_6"></span><strong><span class="blue1">Installing the Minecraft Python API and Spigot</span></strong></h4>
+<p class="noindent">Next you need to install the Minecraft Python API and the Minecraft server on your computer.</p>
+<p class="indent"><em>API</em> stands for <em>application programming interface</em>. It lets programs communicate with applications that other people have created. In this case, the Minecraft Python API allows programs that you write in Python to communicate with Minecraft. For example, you could write a Python program that uses the API to tell Minecraft to make a block in the game or to change the position of the player.</p>
+<p class="indent">A standard Minecraft single-player game doesn’t support an API. Instead, your programs will interact with a Minecraft <em>server</em>, which allows the use of APIs. Minecraft servers are mostly used online so that many people can play together in a single game world. But you can also run a server on your own computer and play by yourself. Both multiplayer and single-player Minecraft servers allow you to use an API with Minecraft. In this book, you’ll be using a single-player Minecraft server called Spigot on your computer.</p>
+<p class="indent">Now that you know what an API and a server do, let’s get them installed on your computer. I’ve created a handy download so you can get these set up quickly. Just follow these steps:</p>
+<ol>
+<li class="noindent"><p class="list">Go to <em><a href="https://www.nostarch.com/programwithminecraft/">https://www.nostarch.com/programwithminecraft/</a></em> and download the <em>Minecraft Tools.zip</em> file for Windows.</p></li>
+<li class="noindent"><p class="list">When the file has downloaded, right-click it and choose <strong>Extract All</strong>. You’ll be asked where you want to put the extracted files. Click the <strong>Browse</strong> button and go to your <em>My Documents</em> folder. Click the <strong>Make a New Folder</strong> button and call the new folder <em>Minecraft Python</em>. Select this folder and click <strong>OK</strong>. Click <strong>Extract</strong> to extract the files.</p></li>
+<li class="noindent"><p class="list">Go to the <em>Minecraft Python</em> folder in your <em>My Documents</em> folder, where you should see the extracted files.</p></li>
+<li class="noindent"><p class="list">Open the <em>Minecraft Tools</em> folder. Its contents are shown in <a href="ch01.xhtml#ch1fig3">Figure 1-3</a>.</p></li>
+<li class="noindent"><p class="list">Double-click the file called <em>Install_API</em>. This will open a new window and install the Minecraft Python API. If you get a warning message, click <strong>Run Anyway</strong>.</p></li>
+<li class="noindent"><p class="list">When the installation completes, press any key to finish.</p></li>
+</ol>
+<div class="note">
+<p class="notet"><strong><span class="notes">NOTE</span></strong></p>
+<p class="notep"><em>If you get an error message that says pip is not recognized, that means you didn’t install Python correctly. Go back to “<a href="ch01.xhtml#ch01lev2sec02">Installing Python</a>” on <a href="ch01.xhtml#page_3">page 3</a> and reinstall Python. Make sure you select the checkbox that says</em> Add Python 3.5 to Path.</p>
+</div>
+<div class="image"><span epub:type="pagebreak" id="page_7"></span><img alt="image" src="../images/f01-03.jpg"/></div>
+<p class="figcap"><a id="ch1fig3"></a><em>Figure 1-3: The</em> Minecraft Tools <em>folder</em></p>
+<p class="indent">The Minecraft Python API and Minecraft server are now installed. The final step is to run the server. We’ll do that in the next section.</p>
+<h4 class="h4" id="ch01lev2sec05"><strong><span class="blue1">Running Spigot and Creating a Game Profile</span></strong></h4>
+<p class="noindent">When Spigot runs for the first time, it’ll create a Minecraft world for you, but you need to do some setup before you can use it for the first time. You’ll need to set up a profile to make sure Spigot and Minecraft are always running the same version.</p>
+<p class="indent">To start Spigot, follow these steps:</p>
+<ol>
+<li class="noindent"><p class="list">Go to your <em>Minecraft Python</em> folder and open your <em>Minecraft Tools</em> folder.</p></li>
+<li class="noindent"><p class="list">In the <em>Minecraft Tools</em> folder, double-click the <em>Start_Server</em> file. If you get a message asking whether you want to allow access, click <strong>Allow</strong>.</p></li>
+<li class="noindent"><p class="list">A window will appear and begin to set up the server. Once the setup is finished, scroll to the top of the text in the window. Near the top (around the third or fourth line), you should see text saying <span class="literal">Starting minecraft server version <span class="codeitalic">x</span>.<span class="codeitalic">x</span>.<span class="codeitalic">x</span></span>. For example, in <a href="ch01.xhtml#ch1fig4">Figure 1-4</a>, the server version is 1.9.2.</p></li>
+<li class="noindent"><p class="list">Make a note of the version number shown on your screen, and keep this window open.</p></li>
+</ol>
+<div class="image"><span epub:type="pagebreak" id="page_8"></span><img alt="image" src="../images/f01-04.jpg"/></div>
+<p class="figcap"><a id="ch1fig4"></a><em>Figure 1-4: The version of this server is 1.9.2.</em></p>
+<h5 class="h5" id="ch01lev3sec01"><strong>Choosing the Right Minecraft Version</strong></h5>
+<p class="noindent">Now that you know which server version you’re using, you can set up the game profile:</p>
+<ol>
+<li class="noindent"><p class="list">Open the Minecraft launcher, but don’t click Start Game quite yet.</p></li>
+<li class="noindent"><p class="list">In the bottom-left corner of the Minecraft launcher, click the <strong>New Profile</strong> button. This will open the Profile Editor window.</p></li>
+<li class="noindent"><p class="list">In the Profile Name field, type <span class="literal"><span class="codestrong">Learn to Program with Minecraft</span></span>.</p></li>
+<li class="noindent"><p class="list">In the Version Selection section, use the <strong>Use version</strong> drop-down menu to select the version of the server that you’re using. For example, in <a href="ch01.xhtml#ch1fig5">Figure 1-5</a>, I am using version 1.9.2.</p></li>
+<li class="noindent"><p class="list">Click the <strong>Save Profile</strong> button. Your profile has now been set up.</p>
+<div class="image"><img alt="image" src="../images/f01-05.jpg"/></div>
+<p class="figcap"><a id="ch1fig5"></a><em>Figure 1-5: I’ve created a profile called</em> Learn to Program with Minecraft <em>that uses version 1.9.2.</em></p></li>
+</ol>
+<p class="indent"><span epub:type="pagebreak" id="page_9"></span>From now on, every time you want to use Minecraft with this book, select the <strong>Learn to Program with Minecraft</strong> profile in the drop-down menu in the bottom-left corner of the Minecraft launcher. You can swap back to the latest version of Minecraft at any time by changing this drop-down menu to the <em>(default)</em> option.</p>
+<h5 class="h5" id="ch01lev3sec02"><strong>Creating the World</strong></h5>
+<p class="noindent">Now that you have a profile set up, it’s time to get into your new Minecraft world:</p>
+<ol>
+<li class="noindent"><p class="list">Open Minecraft and click <strong>Multiplayer</strong>.</p></li>
+<li class="noindent"><p class="list">Click the <strong>Add Server</strong> button.</p></li>
+<li class="noindent"><p class="list">In the Server Name box, name your server <span class="literal"><span class="codestrong">Minecraft Python World</span></span>, and in the Server Address box, type <span class="literal"><span class="codestrong">localhost</span></span>, as shown in <a href="ch01.xhtml#ch1fig6">Figure 1-6</a>. Then click <strong>Done</strong>.</p>
+<div class="image"><img alt="image" src="../images/f01-06.jpg"/></div>
+<p class="figcap"><a id="ch1fig6"></a><em>Figure 1-6: Setting up the server</em></p></li>
+<li class="noindent"><p class="list">Double-click <strong>Minecraft Python World</strong>, and the world created by Spigot will open.</p></li>
+</ol>
+<p class="indent">Let’s have a quick look at your new Minecraft world on the Spigot server. The world is set up in Creative Mode so you can fly around. Double-tap the spacebar to fly. Holding the spacebar will make you fly higher, and holding <small>SHIFT</small> will lower you toward the ground. If you want to stop flying, just double-tap the spacebar again.</p>
+<h4 class="h4" id="ch01lev2sec06"><span epub:type="pagebreak" id="page_10"></span><strong><span class="blue1">Starting Over with a New World</span></strong></h4>
+<p class="noindent">Creating a brand-new Minecraft world with a server is a little different from creating a new world in single-player mode. First, you need to disconnect from the current server:</p>
+<ol>
+<li class="noindent"><p class="list">Press <small>ESC</small> in the game and then click <strong>Disconnect</strong> to return to your server list.</p></li>
+<li class="noindent"><p class="list">Stop your server by closing the cmd window it’s running in.</p></li>
+</ol>
+<p class="indent">Then, follow these steps to make a copy of the server and create a new world:</p>
+<ol>
+<li class="noindent"><p class="list">Go to the <em>Minecraft Python</em> folder. Right-click the <em>Minecraft Tools</em> folder and click <strong>Copy</strong>.</p></li>
+<li class="noindent"><p class="list">Right-click anywhere in the <em>Minecraft Python</em> folder and click <strong>Paste</strong>. This will create a copy of the <em>Minecraft Tools</em> folder with the name <em>Minecraft Tools - Copy</em>.</p></li>
+<li class="noindent"><p class="list">Right-click the <em>Minecraft Tools - Copy</em> folder and click <strong>Rename</strong>. I named the new folder <em>New World</em>, but you can name yours anything you want.</p></li>
+<li class="noindent"><p class="list">Open the <em>New World</em> folder (or whatever you named it) and then open the <em>server</em> folder.</p></li>
+<li class="noindent"><p class="list">In the <em>server</em> folder, select the <em>world</em>, <em>world_nether</em>, and <em>world_the_end</em> folders, as shown in <a href="ch01.xhtml#ch1fig7">Figure 1-7</a>. Press <small>DELETE</small> to delete these.</p>
+<div class="image"><img alt="image" src="../images/f01-07.jpg"/></div>
+<p class="figcap"><a id="ch1fig7"></a><em>Figure 1-7: I’ve highlighted the folders that you need to delete.</em></p></li>
+<li class="noindent"><p class="list">Still in the <em>server</em> folder, click the <em>start</em> file. (Note that it’s important to click this <em>start</em> file inside of the <em>server</em> folder, not the original <em>Start_Server</em> file!) This will start the server again and generate a new world.</p></li>
+<li class="noindent"><p class="list"><span epub:type="pagebreak" id="page_11"></span>Now when you open Minecraft and open the Minecraft Python World, you will see a newly generated world.</p></li>
+</ol>
+<p class="indent">You can repeat this process to create a new world as many times as you want. If you want to open the old world, you can still run it by clicking the <em>Start_Server</em> file in the <em>Minecraft Tools</em> folder.</p>
+<p class="indent">To delete a world and replace it with a new one, just delete the <em>world</em>, <em>world_nether</em>, and <em>world_the_end</em> folders in the folder of the world you want to replace.</p>
+<h4 class="h4" id="ch01lev2sec07"><strong><span class="blue1">Playing Offline</span></strong></h4>
+<p class="noindent">If you don’t have access to an Internet connection, you’ll get an error when you try to connect to the Minecraft server from your Minecraft game. You can fix this by changing the server’s properties. First, make sure you have closed the server window. Then open the <em>Minecraft Python</em> folder, then the <em>Minecraft Tools</em> folder, and then the <em>server</em> folder. Open the <em>server.properties</em> file in a text editor, such as Notepad, and change the <span class="literal">online-mode</span> setting (<a href="ch01.xhtml#ch1fig8">Figure 1-8</a>) from <span class="literal">true</span> to <span class="literal">false</span>. Save the changes. Then go back to your <em>Minecraft Tools</em> folder and double-click <em>Start_Server</em> to start the server again. Now you’ll be able to play offline.</p>
+<div class="image"><img alt="image" src="../images/f01-08.jpg"/></div>
+<p class="figcap"><a id="ch1fig8"></a><em>Figure 1-8: Change the highlighted setting from</em> <span class="literal"><span class="codeitalic">true</span></span> <em>to</em> <span class="literal"><span class="codeitalic">false</span></span>.</p>
+<h4 class="h4" id="ch01lev2sec08"><strong><span class="blue1">Switching to Survival Mode</span></strong></h4>
+<p class="noindent">I’ve set the default game mode for your Minecraft server to Creative Mode. This will make things easier for you when you’re writing and running Python programs because you won’t have to worry about the player losing health, getting hungry, or being attacked.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_12"></span>But you might want to test some programs in Survival Mode just for fun. It’s easy to switch the server from Creative Mode to Survival Mode and back.</p>
+<p class="indent">To switch the server from Creative Mode to Survival Mode, follow these steps:</p>
+<ol>
+<li class="noindent"><p class="list">Open the <em>Minecraft Tools</em> folder. Inside this folder open the <em>server</em> folder.</p></li>
+<li class="noindent"><p class="list">Find the <em>server.properties</em> file and open it with a text editor, such as Notepad.</p></li>
+<li class="noindent"><p class="list">In the file, find the line that says <span class="literal">gamemode=1</span> and change it to <span class="literal">gamemode=0</span>, as shown in <a href="ch01.xhtml#ch1fig9">Figure 1-9</a>.</p>
+<div class="image"><img alt="image" src="../images/f01-09.jpg"/></div>
+<p class="figcap"><a id="ch1fig9"></a><em>Figure 1-9: I’ve switched to Survival Mode by setting</em> <span class="literal"><span class="codeitalic">gamemode</span></span> <em>to</em> <span class="literal"><span class="codeitalic">0</span></span>.</p></li>
+<li class="noindent"><p class="list">Save the file and close it.</p></li>
+<li class="noindent"><p class="list">Start the server by clicking the <em>Start_Server</em> file in the <em>Minecraft Tools</em> folder. When you join the Minecraft Python World game, it will now be in Survival Mode.</p></li>
+</ol>
+<p class="indent">You can change back to Creative Mode at any time. Just repeat these steps, but in step 3, change <span class="literal">gamemode=0</span> to <span class="literal">gamemode=1</span> in the <em>server.properties</em> file.</p>
+<p class="indent">Now you’re set up on your PC! Next let’s meet IDLE, which is where you’ll be writing your code. Skip ahead to “<a href="ch01.xhtml#ch01lev1sec04">Getting to Know IDLE</a>” on <a href="ch01.xhtml#page_23">page 23</a>.</p>
+<h3 class="h3" id="ch01lev1sec02"><span epub:type="pagebreak" id="page_13"></span><strong><span class="blue1">Setting Up Your Mac</span></strong></h3>
+<p class="noindentb">You need to install five things so you can control Minecraft with Python:</p>
+<p class="bull">• Minecraft</p>
+<p class="bull">• Python 3</p>
+<p class="bull">• Java Development Kit</p>
+<p class="bull">• Minecraft Python API</p>
+<p class="bull">• Spigot Minecraft Server</p>
+<p class="indentt">In this section, I’ll guide you through installing each of these on your computer. Let’s start with Minecraft.</p>
+<h4 class="h4" id="ch01lev2sec09"><strong><span class="blue1">Installing Minecraft</span></strong></h4>
+<p class="noindent">If you already own Minecraft and have the latest version installed on your Mac, skip ahead to “<a href="ch01.xhtml#ch01lev2sec02">Installing Python</a>” on <a href="ch01.xhtml#page_15">page 15</a>. If you’re not sure whether you have the latest version of Minecraft, follow the steps in this section to install the latest version.</p>
+<p class="indent">If you don’t already own the game, you can buy a copy from the official Minecraft website, <em><a href="https://minecraft.net/">https://minecraft.net/</a></em>. You might need to grab a grown-up to help you with that! Remember the username and password you use when you purchase Minecraft—you’ll need it to log in later.</p>
+<p class="indent">After you’ve purchased Minecraft, follow these steps to install Mine-craft on your Mac:</p>
+<ol>
+<li class="noindent"><p class="list">Go to <em><a href="https://minecraft.net/download/">https://minecraft.net/download/</a></em>.</p></li>
+<li class="noindent"><p class="list">Under the Minecraft for Mac OS X section, find the <em>Minecraft.dmg</em> link and click it to download it. (If the Minecraft for Mac OS X section isn’t visible, click <strong>Show all platforms</strong>.)</p></li>
+<li class="noindent"><p class="list">Wait for the file to download (I looked out the window for a moment) and then open it. When the window pops up, drag the Minecraft icon to the <em>Applications</em> folder as shown in <a href="ch01.xhtml#ch1fig10">Figure 1-10</a>.</p>
+<div class="image"><img alt="image" src="../images/f01-10.jpg"/></div>
+<p class="figcap"><a id="ch1fig10"></a><em>Figure 1-10: Drag the Minecraft icon into the</em> Applications <em>folder to install it.</em></p></li>
+</ol>
+<p class="indent">Minecraft should now be installed.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_14"></span>You know what would be a great idea? Playing Minecraft, of course. Take a few minutes to get it up and running:</p>
+<ol>
+<li class="noindent"><p class="list">To open Minecraft, click the Finder icon on the Dock to open the file browser.</p></li>
+<li class="noindent"><p class="list">In the sidebar, click <strong>Applications</strong>.</p></li>
+<li class="noindent"><p class="list">Find Minecraft in the <em>Applications</em> folder as shown in <a href="ch01.xhtml#ch1fig11">Figure 1-11</a>. Double-click it and select <strong>Open</strong>.</p>
+<div class="image"><img alt="image" src="../images/f01-11.jpg"/></div>
+<p class="figcap"><a id="ch1fig11"></a><em>Figure 1-11: Find Minecraft in the</em> Applications <em>folder.</em></p></li>
+<li class="noindent"><p class="list">You might be asked whether you want to open Minecraft, because it was downloaded from the Internet. Click <strong>Open</strong>.</p></li>
+<li class="noindent"><p class="list">Minecraft will start up and might install updates.</p></li>
+<li class="noindent"><p class="list">The login window will open next. Enter the username and password you used when you purchased Minecraft and click <strong>Log In</strong>.</p></li>
+<li class="noindent"><p class="list">Click <strong>Play</strong>. Minecraft will download a couple more updates, then open.</p></li>
+<li class="noindent"><p class="list">Finally, click <strong>Single Player</strong> <img alt="image" src="../images/arrow.jpg"/> <strong>Create New World</strong>. Name your world whatever you want and click <strong>Create New World</strong>. The world will generate, and you can play to your heart’s content.</p></li>
+</ol>
+<p class="indent">Have some fun! If you’ve never played Minecraft before, try playing around for a while, until it gets dark in your Minecraft world. Watch out for monsters! Note that when you use Minecraft with Python, you’ll be using a multiplayer game world, which will be different from this world. We’ll get to that in “<a href="ch01.xhtml#ch01lev2sec05">Running Spigot and Creating a Game Profile</a>” on <a href="ch01.xhtml#page_18">page 18</a>.</p>
+<p class="indent">Back to work! It’s time to install Python. To free your cursor from Mine-craft, just press <small>ESC</small> on your keyboard. Close Minecraft before continuing the rest of the installation.</p>
+<h4 class="h4" id="ch01lev2sec10"><span epub:type="pagebreak" id="page_15"></span><strong><span class="blue1">Installing Python</span></strong></h4>
+<p class="noindent">Python is the programming language you’ll learn in this book. Let’s install it now.</p>
+<ol>
+<li class="noindent"><p class="list">Go to <em><a href="https://www.python.org/downloads/mac-osx/">https://www.python.org/downloads/mac-osx/</a></em>.</p></li>
+<li class="noindent"><p class="list">Click the link that says <strong>Latest Python 3 Release - Python 3.5.0</strong>. (This is the latest version of Python 3 at the time of this writing, but you might see a later version. Install the most recent version.) Python will begin to download.</p></li>
+<li class="noindent"><p class="list">When the installer has downloaded, click it.</p></li>
+<li class="noindent"><p class="list">When the installer opens, click <strong>Continue</strong> three times. You’ll be asked to agree to the terms of the software license agreement. Click <strong>Agree</strong>.</p></li>
+<li class="noindent"><p class="list">Click <strong>Install</strong> and then wait for Python to install. I checked the weather forecast while I waited.</p></li>
+<li class="noindent"><p class="list">Click <strong>Close</strong>. Python is now installed.</p></li>
+</ol>
+<h4 class="h4" id="ch01lev2sec11"><strong><span class="blue1">Installing Java</span></strong></h4>
+<p class="noindent">Now that Minecraft and Python are both installed, you’ll have to set things up so that they can talk to each other. You’ll use a program called Spigot to do that, but in order for Spigot to work, you first need to install the latest Java Development Kit (JDK) on your computer. Let’s do that now:</p>
+<ol>
+<li class="noindent"><p class="list">Go to <em><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a></em> and click the <strong>Java Download</strong> button.</p></li>
+<li class="noindent"><p class="list">Select <strong>Accept License Agreement</strong> and then click the download file listed for <strong>Mac OS X</strong>.</p></li>
+<li class="noindent"><p class="list">When the installer has downloaded, click it.</p></li>
+<li class="noindent"><p class="list">When the installer opens, double-click the <strong>Install</strong> icon.</p></li>
+<li class="noindent"><p class="list">When asked for your password, enter it.</p></li>
+<li class="noindent"><p class="list">Wait for Java to install. Click <strong>Close</strong> when it finishes.</p></li>
+</ol>
+<p class="indent">Now let’s test whether the JDK has installed properly:</p>
+<ol>
+<li class="noindent"><p class="list">Open <strong>System Preferences</strong>.</p></li>
+<li class="noindent"><p class="list">You should see a Java icon under System Preferences, as shown in <a href="ch01.xhtml#ch1fig12">Figure 1-12</a>.</p></li>
+</ol>
+<div class="image"><span epub:type="pagebreak" id="page_16"></span><img alt="image" src="../images/f01-12.jpg"/></div>
+<p class="figcap"><a id="ch1fig12"></a><em>Figure 1-12: Java is installed.</em></p>
+<p class="indent">That’s it! Java is set up and ready to run the Minecraft sever! Let’s get to that next.</p>
+<h4 class="h4" id="ch01lev2sec12"><strong><span class="blue1">Installing the Minecraft Python API and Spigot</span></strong></h4>
+<p class="noindent">Next you need to install the Minecraft Python API and the Minecraft server on your computer.</p>
+<p class="indent"><em>API</em> stands for <em>application programming interface</em>. It lets programs communicate with applications that other people have created. In this case, the Minecraft Python API allows programs that you write in Python to communicate with Minecraft. For example, you could write a Python program that uses the API to tell Minecraft to make a block in the game or to change the position of the player.</p>
+<p class="indent">A standard Minecraft single-player game does not support an API. Instead, your programs will interact with a Minecraft <em>server</em>, which allows the use of APIs. Minecraft servers are mostly used online so that many people can play together in a single game world. You can also run a server on your own computer and play by yourself. Both multiplayer and single-player Minecraft servers allow you to use an API with Minecraft. In this book, you’ll be using a single-player Minecraft server called Spigot on your computer.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_17"></span>Now that you know what an API and a server do, let’s get them installed on your computer. I’ve created a handy download so you can get these set up quickly. Just follow these steps:</p>
+<ol>
+<li class="noindent"><p class="list">Go to <em><a href="https://www.nostarch.com/programwithminecraft/">https://www.nostarch.com/programwithminecraft/</a></em> and download the <em>MinecraftToolsMac.zip</em> file.</p></li>
+<li class="noindent"><p class="list">When the file has downloaded, open the <em>Downloads</em> folder and click <strong>Show in Finder</strong>.</p></li>
+<li class="noindent"><p class="list">In Finder, <small>CONTROL</small>-click on the file and then select <strong>Copy MinecraftToolsMac.zip</strong>.</p></li>
+<li class="noindent"><p class="list">Go to your <em>Documents</em> folder. <small>CONTROL</small>-click in the folder and select <strong>New Folder</strong>. Call the new folder <em>MinecraftPython</em>. Make sure you don’t include a space in the name of the folder.</p></li>
+<li class="noindent"><p class="list">Open the <em>MinecraftPython</em> folder. <small>CONTROL</small>-click in the folder and select <strong>Paste Item</strong>. The <em>MinecraftToolsMac.zip</em> file will be copied here.</p></li>
+<li class="noindent"><p class="list"><small>CONTROL</small>-click and choose <strong>Open With</strong> <img alt="image" src="../images/arrow.jpg"/> <strong>Archive Utility</strong>. When Archive Utility has opened the zip file, you’ll have a new folder called <em>MinecraftTools</em>.</p></li>
+<li class="noindent"><p class="list">Open the <em>MinecraftTools</em> folder. Its contents are shown in <a href="ch01.xhtml#ch1fig13">Figure 1-13</a>.</p>
+<div class="image"><img alt="image" src="../images/f01-13.jpg"/></div>
+<p class="figcap"><a id="ch1fig13"></a><em>Figure 1-13: The contents of the</em> MinecraftTools <em>folder</em></p></li>
+<li class="noindent"><p class="list"><small>CONTROL</small>-click the file called <em>Install_API.command</em> and select <strong>Open</strong>. This will open a new window. Enter your password to install the Minecraft Python API.</p>
+<div class="note">
+<p class="notet"><strong><span class="notes">NOTE</span></strong></p>
+<p class="notep"><em>If you get an error that says</em> Install_API.command <em>can’t be opened because it is from an unidentified developer, click <strong>System Preferences</strong>, and then click <strong>Security and Privacy</strong>. You will see a message that says “Install_API.command was not opened because it is from an unidentified developer.” Click <strong>Open Anyway</strong>. Then the window should pop up.</em></p>
+</div></li>
+<li class="noindent"><p class="list">When the installation completes, close the window.</p></li>
+</ol>
+<p class="indent"><span epub:type="pagebreak" id="page_18"></span>The Minecraft Python API and Minecraft server are now installed. The final step is to run the server. We’ll do that next.</p>
+<h4 class="h4" id="ch01lev2sec13"><strong><span class="blue1">Running Spigot and Creating a Game Profile</span></strong></h4>
+<p class="noindent">When Spigot runs for the first time, it’ll create a Minecraft world for you, but you need to do some setup before you can use it for the first time. You’ll need to set up a profile to make sure Spigot and Minecraft are always running the same version.</p>
+<p class="indent">To start Spigot, follow these steps:</p>
+<ol>
+<li class="noindent"><p class="list">Go to your <em>MinecraftPython</em> folder and open your <em>MinecraftTools</em> folder.</p></li>
+<li class="noindent"><p class="list">In the <em>MinecraftTools</em> folder, <small>CONTROL</small>-click the <em>Start_Server</em> file and select <strong>Open</strong>. (If you get an error message, go to <strong>System Preferences</strong> and then to <strong>Security and Privacy</strong> and click <strong>Open Anyway</strong>.)</p></li>
+<li class="noindent"><p class="list">Once the setup is finished, scroll to the top of the text in the window. Near the top (around the third or fourth line), you should see text saying <span class="literal">Starting minecraft server version <span class="codeitalic">x</span>.<span class="codeitalic">x</span>.<span class="codeitalic">x</span></span>. For example, in <a href="ch01.xhtml#ch1fig14">Figure 1-14</a>, the server version is 1.9.</p>
+<div class="image"><img alt="image" src="../images/f01-14.jpg"/></div>
+<p class="figcap"><a id="ch1fig14"></a><em>Figure 1-14: The version of this server is 1.9.</em></p></li>
+<li class="noindent"><p class="list">Make a note of the version number shown on your screen, and keep this window open.</p></li>
+</ol>
+<h5 class="h5" id="ch01lev3sec03"><strong>Choosing the Right Minecraft Version</strong></h5>
+<p class="noindent">Now that you know which server version you’re using, you can set up the game profile:</p>
+<ol>
+<li class="noindent"><p class="list">Open the <strong>Minecraft launcher</strong>, but don’t click Start Game quite yet.</p></li>
+<li class="noindent"><p class="list"><span epub:type="pagebreak" id="page_19"></span>In the bottom-left corner of the Minecraft launcher, click the <strong>New Profile</strong> button. This will open the Profile Editor window.</p></li>
+<li class="noindent"><p class="list">In the Profile Name field, type <span class="literal"><span class="codestrong">Learn to Program with Minecraft</span></span>.</p></li>
+<li class="noindent"><p class="list">In the Version Selection section, use the <strong>Use version</strong> drop-down menu to select the version of the server that you’re using. For example, in <a href="ch01.xhtml#ch1fig15">Figure 1-15</a>, I’m using version 1.9.</p>
+<div class="image"><img alt="image" src="../images/f01-15.jpg"/></div>
+<p class="figcap"><a id="ch1fig15"></a><em>Figure 1-15: I’ve created a profile called</em> Learn to Program with Minecraft <em>that uses version 1.9.</em></p></li>
+<li class="noindent"><p class="list">Click the <strong>Save Profile</strong> button. Your profile has now been set up.</p></li>
+</ol>
+<p class="indent">From now on, every time you want to use Minecraft with this book, select the <strong>Learn to Program with Minecraft</strong> profile in the drop-down menu in the bottom-left corner of the Minecraft launcher. You can swap back to the latest version of Minecraft at any time by changing this drop-down menu to the <em>(default)</em> option.</p>
+<h5 class="h5" id="ch01lev3sec04"><strong>Creating the World</strong></h5>
+<p class="noindent">Now that you have a profile set up, it’s time to get into your new Minecraft world:</p>
+<ol>
+<li class="noindent"><p class="list">Open Minecraft and click <strong>Multiplayer</strong>.</p></li>
+<li class="noindent"><p class="list">Click the <strong>Add Server</strong> button.</p></li>
+<li class="noindent"><p class="list">In the Server Name box, name your server <span class="literal"><span class="codestrong">Minecraft Python World</span></span>, and in the Server Address box, type <span class="literal"><span class="codestrong">localhost</span></span>, as shown in <a href="ch01.xhtml#ch1fig16">Figure 1-16</a>. Then click <strong>Done</strong>.</p></li>
+<li class="noindent"><p class="list">Double-click <strong>Minecraft Python World</strong>, and the world created by Spigot will open.</p></li>
+</ol>
+<div class="image"><span epub:type="pagebreak" id="page_20"></span><img alt="image" src="../images/f01-16.jpg"/></div>
+<p class="figcap"><a id="ch1fig16"></a><em>Figure 1-16: Add the server so that you can access it easily in the future.</em></p>
+<p class="indent">Let’s have a quick look at your new Minecraft world on the Spigot server. The world is set up in Creative Mode so you can fly around. Double-tap the spacebar to fly. Holding the spacebar will make you fly higher, and holding <small>SHIFT</small> will lower you toward the ground. If you want to stop flying, just double-tap the spacebar again.</p>
+<h4 class="h4" id="ch01lev2sec14"><strong><span class="blue1">Starting Over with a New World</span></strong></h4>
+<p class="noindent">Creating a brand-new Minecraft world with a server is a little different from creating a new world in single-player mode. First, you need to disconnect from the current server:</p>
+<ol>
+<li class="noindent"><p class="list">Press <small>ESC</small> in the game and then click <strong>Disconnect</strong> to return to your server list.</p></li>
+<li class="noindent"><p class="list">Stop your server by closing the terminal window it’s running in.</p></li>
+</ol>
+<p class="indent">Then, follow these steps to make a copy of the server and create a new world:</p>
+<ol>
+<li class="noindent"><p class="list">Go to the <em>MinecraftPython</em> folder. <small>CONTROL</small>-click the <em>MinecraftTools</em> folder and click <strong>Copy</strong>.</p></li>
+<li class="noindent"><p class="list"><small>CONTROL</small>-click anywhere in the folder and click <strong>Paste</strong>. This will create a copy of the <em>MinecraftTools</em> folder with the name <em>MinecraftTools copy</em>.</p></li>
+<li class="noindent"><p class="list"><small>CONTROL</small>-click the <em>MinecraftTools copy</em> folder and click <strong>Rename</strong>. I named the new folder <em>New World</em>, but you can name yours anything you want.</p></li>
+<li class="noindent"><p class="list">Open the <em>New World</em> folder (or whatever you named it) and then open the <em>server</em> folder.</p></li>
+<li class="noindent"><p class="list">In the <em>server</em> folder, select the <em>world</em>, <em>world_nether</em>, and <em>world_the_end</em> folders. Press <small>SHIFT-DELETE</small> to delete these.</p></li>
+<li class="noindent"><p class="list"><span epub:type="pagebreak" id="page_21"></span>Go back to the <em>New World</em> folder and click the <em>Start_Server</em> file. This will start the server again and generate a new world.</p></li>
+<li class="noindent"><p class="list">Now when you open Minecraft and open the Minecraft Python World you will see a newly generated world.</p></li>
+</ol>
+<p class="indent">You can repeat this process to create a new world as many times as you want. If you want to open the old world, you can still run it by clicking the <em>Start_Server</em> file in the <em>MinecraftTools</em> folder instead of the <em>New World</em> folder.</p>
+<p class="indent">To delete a world and replace it with a new one, just delete the <em>world</em>, <em>world_nether</em>, and <em>world_the_end</em> folders in the folder of the world you want to replace.</p>
+<h4 class="h4" id="ch01lev2sec15"><strong><span class="blue1">Playing Offline</span></strong></h4>
+<p class="noindent">If you don’t have access to an Internet connection, you’ll get an error when you try to connect to the Minecraft server from your Minecraft game. You can fix this by changing the server’s properties. First, make sure you have closed the server window. Then open the <em>MinecraftPython</em> folder, then the <em>MinecraftTools</em> folder, and then the <em>server</em> folder. Open the <em>server.properties</em> file in a text editor, such as TextEdit, and change the <span class="literal">online-mode</span> setting from <span class="literal">true</span> to <span class="literal">false</span> (see <a href="ch01.xhtml#ch1fig8">Figure 1-8</a> on <a href="ch01.xhtml#page_11">page 11</a>). Save the changes. Then go back to your <em>MinecraftTools</em> folder and click <em>Start_Server</em> to start the server again. Now you’ll be able to play offline.</p>
+<h4 class="h4" id="ch01lev2sec16"><strong><span class="blue1">Switching to Survival Mode</span></strong></h4>
+<p class="noindent">I’ve set the default game mode for your Minecraft server to Creative Mode. This will make things easier for you when you’re writing and running Python programs because you won’t have to worry about the player losing health, getting hungry, or being attacked.</p>
+<p class="indent">But you might want to test some programs in Survival Mode just for fun. It’s easy to switch the server from Creative Mode to Survival Mode and back.</p>
+<p class="indent">To switch the server from Creative Mode to Survival Mode, follow these steps:</p>
+<ol>
+<li class="noindent"><p class="list">Open the <em>MinecraftTools</em> folder. Inside this folder open the <em>server</em> folder.</p></li>
+<li class="noindent"><p class="list">Find the <em>server.properties</em> file and open it with a text editor, such as TextEdit.</p></li>
+<li class="noindent"><p class="list">In the file, find the line that says <span class="literal">gamemode=1</span> and change it to <span class="literal">gamemode=0</span> (see <a href="ch01.xhtml#ch1fig9">Figure 1-9</a> on <a href="ch01.xhtml#page_12">page 12</a>).</p></li>
+<li class="noindent"><p class="list">Save the file and close it.</p></li>
+<li class="noindent"><p class="list">Start the server by clicking the <em>Start_Server</em> file in the <em>MinecraftTools</em> folder. When you join the Minecraft Python World game, it will now be in Survival Mode.</p></li>
+</ol>
+<p class="indent">You can change back to Creative Mode at any time. Just repeat these steps, but in step 3, change <span class="literal">gamemode=0</span> to <span class="literal">gamemode=1</span> in the <em>server.properties</em> file.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_22"></span>Now you’re set up on your Mac! Next let’s meet IDLE, which is where you’ll be writing your code. Flip to “<a href="ch01.xhtml#ch01lev1sec04">Getting to Know IDLE</a>” on <a href="ch01.xhtml#page_23">page 23</a>.</p>
+<h3 class="h3" id="ch01lev1sec03"><strong><span class="blue1">Setting Up Your Raspberry Pi</span></strong></h3>
+<p class="noindent">Log in to your Raspberry Pi and start the desktop with the <span class="literal">startx</span> command. (If you’re using the most recent version of the Raspberry Pi operating system, you won’t need to enter this command.)</p>
+<p class="indent">Depending on your Raspberry Pi, you might have two or three different versions of Python installed. For this book, you’ll use the most recent version of Python: Python 3.</p>
+<p class="indent">By default, the Raspberry Pi computer comes installed with a simplified version of Minecraft called Minecraft: Pi Edition. Everything you need to get started programming your Minecraft world with Python is already installed. If you’re new to using a Raspberry Pi, you can find instructions for getting started on the official website, <em><a href="http://www.raspberrypi.org/">http://www.raspberrypi.org/</a></em>.</p>
+<p class="indent">If you’re using an older SD card image (created before August 2014), you might find that Minecraft is not installed. It’s easy to install if it isn’t already there. First you’ll need to connect to the Internet with your Raspberry Pi. You can find a guide for connecting your Raspberry Pi to the Internet at <em><a href="http://www.raspberrypi.org/">http://www.raspberrypi.org/</a></em>.</p>
+<p class="indent">Once you’re connected to the Internet, follow these steps:</p>
+<ol>
+<li class="noindent"><p class="list">On the desktop, double-click <strong>LXTerminal</strong>.</p></li>
+<li class="noindent"><p class="list">Once LXTerminal is open, enter this command:</p>
+<p class="programs">$ <span class="codestrong">sudo apt-get update</span></p></li>
+<li class="noindent"><p class="list">Once the update has finished, enter this command:</p>
+<p class="programs">$ <span class="codestrong">sudo apt-get install minecraft-pi</span></p></li>
+<li class="noindent"><p class="list">Wait until the installation is complete. Minecraft is now installed.</p></li>
+</ol>
+<p class="indent">There are some limitations to Minecraft on the Raspberry Pi compared to the desktop edition. The game world is a lot smaller, and a lot of blocks and other features (such as Survival Mode) are missing, but you’ll still be able to write and run all the awesome programs in this book.</p>
+<p class="indent">Before we move on, let’s create a folder where you can store your Python programs. On the taskbar, click the file browser icon. Open the <em>Documents</em> folder, and then right-click in the background of the file browser and select <strong>Create New...</strong> <img alt="image" src="../images/arrow.jpg"/> <strong>Folder</strong>. Name the folder <em>Minecraft Python</em> and click <strong>OK</strong>.</p>
+<div class="note">
+<p class="notet"><strong><span class="notes">NOTE</span></strong></p>
+<p class="notep"><em>If you’re using an original Raspberry Pi, you’ll find that some of the programs in this book run slowly due to limitations of the Raspberry Pi. The Raspberry Pi 2 will have fewer problems with speed.</em></p>
+</div>
+<p class="indent"><span epub:type="pagebreak" id="page_23"></span>To open Minecraft, click the start menu in the top-left corner of the desktop. (If you’re using an older version of the Raspberry Pi operating system, the start menu will be in the bottom-left corner.) Go to <strong>Games</strong> and click <strong>Minecraft</strong>. Minecraft will open. The first time you open Minecraft, you’ll have to click <strong>Create World</strong>.</p>
+<p class="indent">As a general rule, don’t resize the window, as you might encounter some problems.</p>
+<p class="indent">Sometimes when you open other windows or dialogs (such as confirmation that you want to save a file in Python), they’ll hide behind the Mine-craft window. Just minimize Minecraft when you want to use other windows. If you’re having any issues, try restarting your Raspberry Pi after installing Minecraft.</p>
+<h3 class="h3" id="ch01lev1sec04"><strong><span class="blue1">Getting to Know IDLE</span></strong></h3>
+<p class="noindentb">Now that you have everything installed and set up, let’s check out IDLE, the software you’ll be using to write and run your Python programs. Your Python installation includes IDLE, so you don’t need to install it separately. Let’s open IDLE now!</p>
+<p class="hanging"><strong>Windows</strong> Open the Start Menu and enter <span class="literal"><span class="codestrong">IDLE</span></span> in the search box.</p>
+<p class="hanging"><strong>Mac</strong> Open the <em>Applications</em> folder, open the <em>Python 3.5</em> folder, and click the IDLE icon.</p>
+<p class="hanging"><strong>Raspberry Pi</strong> On the desktop, double-click the IDLE icon labeled Python 3.</p>
+<p class="indentt">An IDLE window will open, as shown in <a href="ch01.xhtml#ch1fig17">Figure 1-17</a>. This window is called the Python shell. The Python shell is so awesome that it blew my mind when I learned how to program with Python!</p>
+<div class="image"><img alt="image" src="../images/f01-17.jpg"/></div>
+<p class="figcap"><a id="ch1fig17"></a><em>Figure 1-17: An IDLE window that is used for writing Python programs</em></p>
+<h4 class="h4" id="ch01lev2sec17"><span epub:type="pagebreak" id="page_24"></span><strong><span class="blue1">Getting to Know the Python Shell</span></strong></h4>
+<p class="noindent">The Python shell allows you to write and run programs one line at a time. You can write a line of code, instantly run it and see what happens, and then write another line. This is great because you can play around and test your code easily.</p>
+<p class="indent">In the window you should see three chevrons (<span class="literal">&gt;&gt;&gt;</span>) at the beginning of the line. This is called the <em>command prompt</em>. The command prompt is the Python shell telling you that it’s ready for you to give it a command. Let’s start with a really basic command: getting Python to add two numbers.</p>
+<p class="indent">Click in the Python shell, next to the command prompt, and type <span class="literal"><span class="codestrong">2 + 2</span></span>. Note that you don’t have to type the command prompt itself (<span class="literal">&gt;&gt;&gt;</span>). You should have something that looks like this:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> 2 + 2</p>
+<p class="indent">After you type this command, press <small>ENTER</small>. The Python shell will output the result. In this case it’s 4:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> 2 + 2<br/><span class="blue1">4</span></p>
+<p class="indent">You can also use the shell with text. Type this code into the Python shell and press <small>ENTER</small>:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> <span class="green">"W"</span> + <span class="green">"o"</span> * 5<br/><span class="blue1">Wooooo</span></p>
+<p class="indent">As you can see, this code outputs the word <span class="literal">Wooooo</span>. The number at the end of the command determines how many <em>o</em>’s there are in the word. By changing this number, you can change how long the word is. Try changing it to 20 (or any other number that you want):</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> <span class="green">"W"</span> + <span class="green">"o"</span> * 20<br/><span class="blue1">Woooooooooooooooooooo</span></p>
+<p class="indent">Woooooooooooooooooooo! The Python shell can be a lot of fun.</p>
+<p class="indent">Notice that IDLE colors the code. This is called <em>syntax highlighting</em>, and it makes the different parts of the code easier to see. All of the code in this book is the same color as it is in IDLE so the colors will match when you write your programs.</p>
+<p class="indent">Next let’s look at IDLE’s text editor.</p>
+<h4 class="h4" id="ch01lev2sec18"><strong><span class="blue1">Say Hello to IDLE’s Text Editor</span></strong></h4>
+<p class="noindent">When it comes to writing longer programs, you can’t use the shell. IDLE’s text editor is the solution! Unlike the shell, it doesn’t run a line of code immediately after you enter it. Instead, it runs the whole program when you tell it to.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_25"></span>In IDLE, click <strong>File</strong> on the menu bar and select <strong>New File</strong>. A new window will open that looks like the one in <a href="ch01.xhtml#ch1fig18">Figure 1-18</a>. This is the text editor.</p>
+<div class="image"><img alt="image" src="../images/f01-18.jpg"/></div>
+<p class="figcap"><a id="ch1fig18"></a><em>Figure 1-18: IDLE’s text editor</em></p>
+<p class="indent">“Hey!” I hear you say. “The text editor looks just like IDLE’s Python shell.” Well, yes it does, but there is one really big difference. The new window doesn’t have a command prompt (<span class="literal">&gt;&gt;&gt;</span>) at the beginning of each line.</p>
+<p class="indent">Let’s see what that means. On the first line of the text editor, type this code and press <small>ENTER</small>:</p>
+<p class="programs"><span class="rose">print</span>(2 + 2)</p>
+<p class="indent">Did you expect something to happen? Pressing <small>ENTER</small> doesn’t run the code here—it just creates a new line. Because the text editor doesn’t run code when you press <small>ENTER</small>, you can write as many lines as you want before running them. Let’s add a few more lines. This is what your file should look like when you’re done:</p>
+<p class="programs"><span class="rose">print</span>(2 + 2)<br/><span class="rose">print</span>(<span class="green">"W"</span> + <span class="green">"o"</span> * 20)<br/><span class="rose">print</span>(<span class="green">"PYTHON!"</span>)<br/><span class="rose">print</span>(<span class="green">"&lt;3s"</span>)<br/><span class="rose">print</span>(<span class="green">"Minecraft"</span>)</p>
+<p class="indent">Before you run your Python code from IDLE’s text editor, you need to save it. To save the program, click <strong>File</strong>, then <strong>Save As</strong>. Create a folder in your <em>Minecraft Python</em> folder called <em>Setting Up</em>. Save this program as <em>pythonLovesMinecraft.py</em> in the <em>Setting Up</em> folder.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_26"></span>Now let’s run it. Go to <strong>Run</strong> on the menu and click <strong>Run Module</strong>. The shell window will open and your program will run in it. The output is shown in <a href="ch01.xhtml#ch1fig19">Figure 1-19</a>.</p>
+<div class="image"><img alt="image" src="../images/f01-19.jpg"/></div>
+<p class="figcap"><a id="ch1fig19"></a><em>Figure 1-19: The output of the Python program</em></p>
+<p class="indent">Unlike in the shell, commands run from the text editor will not automatically output their results. This is why you use <span class="literal">print()</span> to output the results of your code. Don’t worry too much about the details now—you’ll learn all about this later in the book.</p>
+<p class="indent">Whenever you run programs from IDLE’s text editor, the shell will open to run the program. Even though you write the program in a separate window, IDLE always uses the shell to run your program.</p>
+<h4 class="h4" id="ch01lev2sec19"><strong><span class="blue1">When to Use the Python Shell and When to Use the Text Editor</span></strong></h4>
+<p class="noindent">Now that you’ve seen the difference between IDLE’s Python shell and IDLE’s text editor, you might be wondering when it’s better to use one over the other. As a general rule, I use the Python shell when I only want to test a few lines and I don’t intend to reuse them. As you follow along with this book, I recommend that you run the short examples using the Python shell.</p>
+<p class="indent">I use the text editor for programs that have quite a few lines of code or that I want to reuse. All of the missions in this book use the text editor so you can save your progress, but you can always play around in the shell whenever you want to try something out quickly.</p>
+<h4 class="h4" id="ch01lev2sec20"><span epub:type="pagebreak" id="page_27"></span><strong><span class="blue1">The Prompts Used in This Book</span></strong></h4>
+<p class="noindent">Throughout this book, whenever you see a piece of code that is written in IDLE’s Python shell, it will begin with the command prompt (<span class="literal">&gt;&gt;&gt;</span>) like this:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> <span class="rose">print</span>(<span class="green">"Wooooo Minecraft"</span>)</p>
+<p class="indent">I recommend that you copy the code into IDLE as you read so that you can familiarize yourself with it. Any output from the shell will be written on the next line:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> <span class="rose">print</span>(<span class="green">"Wooooo Minecraft"</span>)<br/><span class="blue1">Wooooo Minecraft</span></p>
+<p class="indent">Code that’s written in the text editor <em>won’t</em> begin with the command prompt, like so:</p>
+<p class="programs"><span class="rose">print</span>(<span class="green">"Adventures"</span>)</p>
+<p class="indent">The output for the code won’t automatically display on your computer. To show you what the output should look like when you run it, I’ll either explain it or display it in a new box. For example, running the code above should output:</p>
+<p class="programs"><span class="blue1">Adventures</span></p>
+<p class="indent">To make it easier for you to follow the explanations of the code in the book, I’ve included markers to point out what I’m talking about. Whenever you see one in the code, there’ll be a corresponding explanation in the text, and vice versa. The markers look like this:</p>
+<p class="indent"><span class="ent">➊</span> <span class="ent">➋</span> <span class="ent">➌</span> <span class="ent">➍</span> <span class="ent">➎</span> <span class="ent">➏</span></p>
+<h3 class="h3" id="ch01lev1sec05"><strong><span class="blue1">Testing Your Minecraft Python Setup</span></strong></h3>
+<p class="noindent">Let’s make sure you have all of the software installed correctly. To do this, we’ll take a quick dive into a very basic Python program that will interact with Minecraft.</p>
+<p class="indent">First things first: if you’re using a PC or a Mac, you need to open three pieces of software. Follow these steps:</p>
+<ol>
+<li class="noindent"><p class="list">Open Spigot by going to your <em>Minecraft Tools</em> folder and clicking <em>Start_Server</em>.</p></li>
+<li class="noindent"><p class="list">Open Minecraft and connect to the Spigot server by selecting <strong>Minecraft Python World</strong> from the multiplayer menu.</p></li>
+<li class="noindent"><p class="list">Hit <small>ESC</small> on your keyboard to free your cursor from the Minecraft window, and then open a Python shell in IDLE.</p></li>
+</ol>
+<p class="indent"><span epub:type="pagebreak" id="page_28"></span>You’ll need to have these three pieces of software open whenever you write programs that interact with Minecraft.</p>
+<p class="indent">If you’re using a Raspberry Pi, open IDLE and Minecraft.</p>
+<p class="indent">Now enter this line into your shell. Make sure that you enter lowercase and uppercase letters to match exactly!</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft</p>
+<p class="indent">Press <small>ENTER</small> so you’re on the next line in the shell. Then enter this line:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> mc = Minecraft.create()</p>
+<p class="indent">At this point, if you see an error message that looks something like <a href="ch01.xhtml#ch1fig20">Figure 1-20</a>, there’s something wrong.</p>
+<div class="image"><img alt="image" src="../images/f01-20.jpg"/></div>
+<p class="figcap"><a id="ch1fig20"></a><em>Figure 1-20: An error message that means I haven’t started Spigot</em></p>
+<p class="indent">Check these things in order: Do you have Minecraft open? Is Spigot running? Are you in the multiplayer world? Are you using the correct version of Python (3, not 2)? If the error occurred after you typed the first line, that means you didn’t install the API correctly. Go through the steps to install the API again. If the error happened after the second line, you might not have Java or Spigot installed correctly. Try reinstalling these things one at a time.</p>
+<p class="indent">The most common cause of this problem is that your computer is using an old version of Java to run the server. Make sure to install the latest version of Java and check the version number using the <span class="literal">java -version</span> command explained in “<a href="ch01.xhtml#ch01lev2sec03">Installing Java</a>” on <a href="ch01.xhtml#page_4">page 4</a> (for Windows) or “<a href="ch01.xhtml#ch01lev2sec03">Installing Java</a>” on <a href="ch01.xhtml#page_15">page 15</a> (for Mac).</p>
+<p class="indent"><span epub:type="pagebreak" id="page_29"></span>If you get an error that says <span class="literal">ImportError: No module named 'mcpi'</span>, you might be using an older version of Python. Make sure you have the latest version installed!</p>
+<p class="indent">If you don’t get an error message, add this line to the program in IDLE:</p>
+<p class="programs">mc.player.setTilePos(0, 120, 0)</p>
+<p class="indent">When you do this, the player will fly high into the air! This code tele-ports the player to a new position. You’ll learn more about this in <a href="ch02.xhtml#ch02">Chapter 2</a>. Turn the page to get started!<span epub:type="pagebreak" id="page_30"></span></p>
+</body>
+</html>

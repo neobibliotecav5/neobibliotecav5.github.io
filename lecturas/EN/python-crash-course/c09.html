@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://www.w3.org/2002/06/xhtml2/ http://www.w3.org/MarkUp/SCHEMA/xhtml2.xsd">
+<head>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style></head>
+<body><div id="sbo-rt-content"><section>
+<header>
+<h1 class="chapter">
+<span class="ChapterNumber"><span epub:type="pagebreak" id="Page_157" title="157"></span>9</span><br/>
+<span class="ChapterTitle">Classes</span></h1>
+</header>
+<figure class="opener">
+<img alt="" height="406" src="Images/chapterart.png" width="406"/>
+</figure>
+<p class="ChapterIntro"><em>Object-oriented programming (OOP</em><em>)</em> is one of the most effective approaches to writing software. In object-oriented programming, you write <em>classes</em> that represent real-world things and situations, and you create <em>objects</em> based on these classes. When you write a class, you define the general behavior that a whole category of objects can have.</p>
+<p>When you create individual objects from the class, each object is automatically equipped with the general behavior; you can then give each object whatever unique traits you desire. You’ll be amazed how well real-world situations can be modeled with object-oriented programming.</p>
+<p>Making an object from a class is called <em>instantiation</em>, and you work with <em>instances</em> of a class. In this chapter you’ll write classes and create instances of those classes. You’ll specify the kind of information that can be stored in instances, and you’ll define actions that can be taken with these instances. You’ll also write classes that extend the functionality of existing classes, so similar classes can share common functionality, and you can do more with <span epub:type="pagebreak" id="Page_158" title="158"></span>less code. You’ll store your classes in modules and import classes written by other programmers into your own program files.</p>
+<p>Learning about object-oriented programming will help you see the world as a programmer does. It’ll help you understand your code—not just what’s happening line by line, but also the bigger concepts behind it. Knowing the logic behind classes will train you to think logically, so you can write programs that effectively address almost any problem you encounter.</p>
+<p>Classes also make life easier for you and the other programmers you’ll work with as you take on increasingly complex challenges. When you and other programmers write code based on the same kind of logic, you’ll be able to understand each other’s work. Your programs will make sense to the people you work with, allowing everyone to accomplish more.</p>
+<h2 id="h1-502703c09-0001">Creating and Using a Class</h2>
+<p class="BodyFirst">You can model almost anything using classes. Let’s start by writing a simple class, <code>Dog</code>, that represents a dog—not one dog in particular, but any dog. What do we know about most pet dogs? Well, they all have a name and an age. We also know that most dogs sit and roll over. Those two pieces of information (name and age) and those two behaviors (sit and roll over) will go in our <code>Dog</code> class because they’re common to most dogs. This class will tell Python how to make an object representing a dog. After our class is written, we’ll use it to make individual instances, each of which represents one specific dog.</p>
+<h3 id="h2-502703c09-0001">Creating the Dog Class</h3>
+<p class="BodyFirst">Each instance created from the <code>Dog</code> class will store a <code>name</code> and an <code>age</code>, and we’ll give each dog the ability to <code>sit()</code> and <code>roll_over()</code>:</p>
+<p class="CodeLabel"><b>dog.py</b></p>
+<pre><code><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> class Dog:
+    """A simple attempt to model a dog."""
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     def __init__(self, name, age):
+        """Initialize name and age attributes."""
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>         self.name = name
+        self.age = age
+
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>     def sit(self):
+        """Simulate a dog sitting in response to a command."""
+        print(f"{self.name} is now sitting.")
+
+    def roll_over(self):
+        """Simulate rolling over in response to a command."""
+        print(f"{self.name} rolled over!")</code></pre>
+<p>There’s a lot to notice here, but don’t worry. You’ll see this structure throughout this chapter and have lots of time to get used to it. We first define a class called <code>Dog</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>. By convention, capitalized names refer to classes in Python. There are no parentheses in the class definition because we’re creating this class from scratch. We then write a docstring describing what this class does.</p>
+<h3 id="h2-502703c09-0002"><span epub:type="pagebreak" id="Page_159" title="159"></span>The __init__() Method</h3>
+<p class="BodyFirst">A function that’s part of a class is a <em>method</em>. Everything you learned about functions applies to methods as well; the only practical difference for now is the way we’ll call methods. The <code>__init__()</code> method <span aria-label="annotation2" class="CodeAnnotation">❷</span> is a special method that Python runs automatically whenever we create a new instance based on the <code>Dog</code> class. This method has two leading underscores and two trailing underscores, a convention that helps prevent Python’s default method names from conflicting with your method names. Make sure to use two underscores on each side of <code>__init__()</code>. If you use just one on each side, the method won’t be called automatically when you use your class, which can result in errors that are difficult to identify.</p>
+<p>We define the <code>__init__()</code> method to have three parameters: <code>self</code>, <code>name</code>, and <code>age</code>. The <code>self</code> parameter is required in the method definition, and it must come first, before the other parameters. It must be included in the definition because when Python calls this method later (to create an instance of <code>Dog</code>), the method call will automatically pass the <code>self</code> argument. Every method call associated with an instance automatically passes <code>self</code>, which is a reference to the instance itself; it gives the individual instance access to the attributes and methods in the class. When we make an instance of <code>Dog</code>, Python will call the <code>__init__()</code> method from the <code>Dog</code> class. We’ll pass <code>Dog()</code> a name and an age as arguments; <code>self</code> is passed automatically, so we don’t need to pass it. Whenever we want to make an instance from the <code>Dog</code> class, we’ll provide values for only the last two parameters, <code>name</code> and <code>age</code>.</p>
+<p>The two variables defined in the body of the <code>__init__()</code> method each have the prefix <code>self</code> <span aria-label="annotation3" class="CodeAnnotation">❸</span>. Any variable prefixed with <code>self</code> is available to every method in the class, and we’ll also be able to access these variables through any instance created from the class. The line <code>self.name = name</code> takes the value associated with the parameter <code>name</code> and assigns it to the variable <code>name</code>, which is then attached to the instance being created. The same process happens with <code>self.age = age</code>. Variables that are accessible through instances like this are called <em>attributes</em>.</p>
+<p>The <code>Dog</code> class has two other methods defined: <code>sit()</code> and <code>roll_over()</code> <span aria-label="annotation4" class="CodeAnnotation">❹</span>. Because these methods don’t need additional information to run, we just define them to have one parameter, <code>self</code>. The instances we create later will have access to these methods. In other words, they’ll be able to sit and roll over. For now, <code>sit()</code> and <code>roll_over()</code> don’t do much. They simply print a message saying the dog is sitting or rolling over. But the concept can be extended to realistic situations: if this class were part of a computer game, these methods would contain code to make an animated dog sit and roll over. If this class was written to control a robot, these methods would direct movements that cause a robotic dog to sit and roll over.</p>
+<h3 id="h2-502703c09-0003">Making an Instance from a Class</h3>
+<p class="BodyFirst">Think of a class as a set of instructions for how to make an instance. The <code>Dog</code> class is a set of instructions that tells Python how to make individual instances representing specific dogs.</p>
+<p><span epub:type="pagebreak" id="Page_160" title="160"></span>Let’s make an instance representing a specific dog:</p>
+<pre><code><span class="LiteralGray">class Dog:</span>
+<em class="LiteralGrayItalic">    --snip--</em>
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> my_dog = Dog('Willie', 6)
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> print(f"My dog's name is {my_dog.name}.")
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> print(f"My dog is {my_dog.age} years old.")</code></pre>
+<p>The <code>Dog</code> class we’re using here is the one we just wrote in the previous example. Here, we tell Python to create a dog whose name is <code>'Willie'</code> and whose age is <code>6</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>. When Python reads this line, it calls the <code>__init__()</code> method in <code>Dog</code> with the arguments <code>'Willie'</code> and <code>6</code>. The <code>__init__()</code> method creates an instance representing this particular dog and sets the <code>name</code> and <code>age</code> attributes using the values we provided. Python then returns an instance representing this dog. We assign that instance to the variable <code>my_dog</code>. The naming convention is helpful here; we can usually assume that a capitalized name like <code>Dog</code> refers to a class, and a lowercase name like <code>my_dog</code> refers to a single instance created from a class.</p>
+<h4 id="h3-502703c09-0001">Accessing Attributes</h4>
+<p class="BodyFirst">To access the attributes of an instance, you use dot notation. We access the value of <code>my_dog</code>’s attribute <code>name</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span> by writing:</p>
+<pre><code>my_dog.name</code></pre>
+<p>Dot notation is used often in Python. This syntax demonstrates how Python finds an attribute’s value. Here, Python looks at the instance <code>my_dog</code> and then finds the attribute <code>name</code> associated with <code>my_dog</code>. This is the same attribute referred to as <code>self.name</code> in the class <code>Dog</code>. We use the same approach to work with the attribute <code>age</code> <span aria-label="annotation3" class="CodeAnnotation">❸</span>.</p>
+<p>The output is a summary of what we know about <code>my_dog</code>:</p>
+<pre><code>My dog's name is Willie.
+My dog is 6 years old.</code></pre>
+<h4 id="h3-502703c09-0002">Calling Methods</h4>
+<p class="BodyFirst">After we create an instance from the class <code>Dog</code>, we can use dot notation to call any method defined in <code>Dog</code>. Let’s make our dog sit and roll over:</p>
+<pre><code><span class="LiteralGray">class Dog:</span>
+<em class="LiteralGrayItalic">    --snip--</em>
+
+<span class="LiteralGray">my_dog = Dog('Willie', 6)</span>
+my_dog.sit()
+my_dog.roll_over()</code></pre>
+<p><span epub:type="pagebreak" id="Page_161" title="161"></span>To call a method, give the name of the instance (in this case, <code>my_dog</code>) and the method you want to call, separated by a dot. When Python reads <code>my_dog.sit()</code>, it looks for the method <code>sit()</code> in the class <code>Dog</code> and runs that code. Python interprets the line <code>my_dog.roll_over()</code> in the same way.</p>
+<p>Now Willie does what we tell him to:</p>
+<pre><code>Willie is now sitting.
+Willie rolled over!</code></pre>
+<p>This syntax is quite useful. When attributes and methods have been given appropriately descriptive names like <code>name</code>, <code>age</code>, <code>sit()</code>, and <code>roll_over()</code>, we can easily infer what a block of code, even one we’ve never seen before, is supposed to do.</p>
+<h4 id="h3-502703c09-0003">Creating Multiple Instances</h4>
+<p class="BodyFirst">You can create as many instances from a class as you need. Let’s create a second dog called <code>your_dog</code>:</p>
+<pre><code><span class="LiteralGray">class Dog:</span>
+<em class="LiteralGrayItalic">    --snip--</em>
+
+<span class="LiteralGray">my_dog = Dog('Willie', 6)</span>
+your_dog = Dog('Lucy', 3)
+
+print(f"My dog's name is {my_dog.name}.")
+print(f"My dog is {my_dog.age} years old.")
+my_dog.sit()
+
+print(f"\nYour dog's name is {your_dog.name}.")
+print(f"Your dog is {your_dog.age} years old.")
+your_dog.sit()</code></pre>
+<p>In this example we create a dog named Willie and a dog named Lucy. Each dog is a separate instance with its own set of attributes, capable of the same set of actions:</p>
+<pre><code>My dog's name is Willie.
+My dog is 6 years old.
+Willie is now sitting.
+
+Your dog's name is Lucy.
+Your dog is 3 years old.
+Lucy is now sitting.</code></pre>
+<p>Even if we used the same name and age for the second dog, Python would still create a separate instance from the <code>Dog</code> class. You can make as many instances from one class as you need, as long as you give each instance a unique variable name or it occupies a unique spot in a list or dictionary.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2><span epub:type="pagebreak" id="Page_162" title="162"></span>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c09-04">9-1. Restaurant:</span> Make a class called <code>Restaurant</code>. The <code>__init__()</code> method for <code>Restaurant</code> should store two attributes: a <code>restaurant_name</code> and a <code>cuisine_type</code>. Make a method called <code>describe_restaurant()</code> that prints these two pieces of information, and a method called <code>open_restaurant()</code> that prints a message indicating that the restaurant is open.</p>
+<p class="BoxBody">Make an instance called <code>restaurant</code> from your class. Print the two attributes individually, and then call both methods.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c09-05">9-2. Three Restaurants:</span> Start with your class from Exercise 9-1. Create three different instances from the class, and call <code>describe_restaurant()</code> for each instance.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c09-06">9-3. Users:</span> Make a class called <code>User</code>. Create two attributes called <code>first_name</code> and <code>last_name</code>, and then create several other attributes that are typically stored in a user profile. Make a method called <code>describe_user()</code> that prints a summary of the user’s information. Make another method called <code>greet_user()</code> that prints a personalized greeting to the user.</p>
+<p class="BoxBody">Create several instances representing different users, and call both methods for each user.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c09-0002">Working with Classes and Instances</h2>
+<p class="BodyFirst">You can use classes to represent many real-world situations. Once you write a class, you’ll spend most of your time working with instances created from that class. One of the first tasks you’ll want to do is modify the attributes associated with a particular instance. You can modify the attributes of an instance directly or write methods that update attributes in specific ways.</p>
+<h3 id="h2-502703c09-0004">The Car Class</h3>
+<p class="BodyFirst">Let’s write a new class representing a car. Our class will store information about the kind of car we’re working with, and it will have a method that summarizes this information:</p>
+<p class="CodeLabel"><b>car.py</b></p>
+<pre><code>class Car:
+    """A simple attempt to represent a car."""
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     def __init__(self, make, model, year):
+        """Initialize attributes to describe a car."""
+        self.make = make
+        self.model = model
+        self.year = year
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     def get_descriptive_name(self):
+        """Return a neatly formatted descriptive name."""
+        long_name = f"{self.year} {self.make} {self.model}"
+<span epub:type="pagebreak" id="Page_163" title="163"></span>        return long_name.title()
+
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> my_new_car = Car('audi', 'a4', 2024)
+print(my_new_car.get_descriptive_name())</code></pre>
+<p>In the <code>Car</code> class, we define the <code>__init__()</code> method with the <code>self</code> parameter first <span aria-label="annotation1" class="CodeAnnotation">❶</span>, just like we did with the <code>Dog</code> class. We also give it three other parameters: <code>make</code>, <code>model</code>, and <code>year</code>. The <code>__init__()</code> method takes in these parameters and assigns them to the attributes that will be associated with instances made from this class. When we make a new <code>Car</code> instance, we’ll need to specify a make, model, and year for our instance.</p>
+<p>We define a method called <code>get_descriptive_name()</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span> that puts a car’s <code>year</code>, <code>make</code>, and <code>model</code> into one string neatly describing the car. This will spare us from having to print each attribute’s value individually. To work with the attribute values in this method, we use <code>self.make</code>, <code>self.model</code>, and <code>self.year</code>. Outside of the class, we make an instance from the <code>Car</code> class and assign it to the variable <code>my_new_car</code> <span aria-label="annotation3" class="CodeAnnotation">❸</span>. Then we call <code>get_descriptive_name()</code> to show what kind of car we have:</p>
+<pre><code>2024 Audi A4</code></pre>
+<p>To make the class more interesting, let’s add an attribute that changes over time. We’ll add an attribute that stores the car’s overall mileage.</p>
+<h3 id="h2-502703c09-0005">Setting a Default Value for an Attribute</h3>
+<p class="BodyFirst">When an instance is created, attributes can be defined without being passed in as parameters. These attributes can be defined in the <code>__init__()</code> method, where they are assigned a default value.</p>
+<p>Let’s add an attribute called <code>odometer_reading</code> that always starts with a value of 0. We’ll also add a method <code>read_odometer()</code> that helps us read each car’s odometer:</p>
+<pre><code><span class="LiteralGray">class Car:</span>
+
+<span class="LiteralGray">    def __init__(self, make, model, year):</span>
+<span class="LiteralGray">        """Initialize attributes to describe a car."""</span>
+<span class="LiteralGray">        self.make = make</span>
+<span class="LiteralGray">        self.model = model</span>
+<span class="LiteralGray">        self.year = year</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         self.odometer_reading = 0
+
+    <span class="LiteralGray">def get_descriptive_name(self):</span>
+<em class="LiteralGrayItalic">        --snip--</em>
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     def read_odometer(self):
+        """Print a statement showing the car's mileage."""
+        print(f"This car has {self.odometer_reading} miles on it.")
+
+<span class="LiteralGray">my_new_car = Car('audi', 'a4', 2024)</span>
+<span class="LiteralGray">print(my_new_car.get_descriptive_name())</span>
+my_new_car.read_odometer()</code></pre>
+<p><span epub:type="pagebreak" id="Page_164" title="164"></span>This time, when Python calls the <code>__init__()</code> method to create a new instance, it stores the make, model, and year values as attributes, like it did in the previous example. Then Python creates a new attribute called <code>odometer_reading</code> and sets its initial value to 0 <span aria-label="annotation1" class="CodeAnnotation">❶</span>. We also have a new method called <code>read_odometer()</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span> that makes it easy to read a car’s mileage.</p>
+<p>Our car starts with a mileage of 0:</p>
+<pre><code>2024 Audi A4
+This car has 0 miles on it.</code></pre>
+<p>Not many cars are sold with exactly 0 miles on the odometer, so we need a way to change the value of this attribute.</p>
+<h3 id="h2-502703c09-0006">Modifying Attribute Values</h3>
+<p class="BodyFirst">You can change an attribute’s value in three ways: you can change the value directly through an instance, set the value through a method, or increment the value (add a certain amount to it) through a method. Let’s look at each of these approaches.</p>
+<h4 id="h3-502703c09-0004">Modifying an Attribute’s Value Directly</h4>
+<p class="BodyFirst">The simplest way to modify the value of an attribute is to access the attribute directly through an instance. Here we set the odometer reading to 23 directly:</p>
+<pre><code><span class="LiteralGray">class Car:</span>
+<em class="LiteralGrayItalic">    --snip--</em>
+
+<span class="LiteralGray">my_new_car = Car('audi', 'a4', 2024)</span>
+<span class="LiteralGray">print(my_new_car.get_descriptive_name())</span>
+
+my_new_car.odometer_reading = 23
+<span class="LiteralGray">my_new_car.read_odometer()</span></code></pre>
+<p>We use dot notation to access the car’s <code>odometer_reading</code> attribute, and set its value directly. This line tells Python to take the instance <code>my_new_car</code>, find the attribute <code>odometer_reading</code> associated with it, and set the value of that attribute to 23:</p>
+<pre><code>2024 Audi A4
+This car has 23 miles on it.</code></pre>
+<p>Sometimes you’ll want to access attributes directly like this, but other times you’ll want to write a method that updates the value for you.</p>
+<h4 id="h3-502703c09-0005">Modifying an Attribute’s Value Through a Method</h4>
+<p class="BodyFirst">It can be helpful to have methods that update certain attributes for you. Instead of accessing the attribute directly, you pass the new value to a method that handles the updating internally.</p>
+<p><span epub:type="pagebreak" id="Page_165" title="165"></span>Here’s an example showing a method called <code>update_odometer()</code>:</p>
+<pre><code><span class="LiteralGray">class Car:</span>
+<em class="LiteralGrayItalic">    --snip--</em>
+
+    def update_odometer(self, mileage):
+        """Set the odometer reading to the given value."""
+        self.odometer_reading = mileage
+
+<span class="LiteralGray">my_new_car = Car('audi', 'a4', 2024)</span>
+<span class="LiteralGray">print(my_new_car.get_descriptive_name())</span>
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> my_new_car.update_odometer(23)
+<span class="LiteralGray">my_new_car.read_odometer()</span></code></pre>
+<p>The only modification to <code>Car</code> is the addition of <code>update_odometer()</code>. This method takes in a mileage value and assigns it to <code>self.odometer_reading</code>. Using the <code>my_new_car</code> instance, we call <code>update_odometer()</code> with <code>23</code> as an argument <span aria-label="annotation1" class="CodeAnnotation">❶</span>. This sets the odometer reading to 23, and <code>read_odometer()</code> prints the reading:</p>
+<pre><code>2024 Audi A4
+This car has 23 miles on it.</code></pre>
+<p>We can extend the method <code>update_odometer()</code> to do additional work every time the odometer reading is modified. Let’s add a little logic to make sure no one tries to roll back the odometer reading:</p>
+<pre><code><span class="LiteralGray">class Car:</span>
+<em class="LiteralGrayItalic">    --snip--</em>
+
+<span class="LiteralGray">    def update_odometer(self, mileage):</span>
+        """
+        Set the odometer reading to the given value.
+        Reject the change if it attempts to roll the odometer back.
+        """
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         if mileage &gt;= self.odometer_reading:
+<span class="LiteralGray">            self.odometer_reading = mileage</span>
+        else:
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>             print("You can't roll back an odometer!")</code></pre>
+<p>Now <code>update_odometer()</code> checks that the new reading makes sense before modifying the attribute. If the value provided for <code>mileage</code> is greater than or equal to the existing mileage, <code>self.odometer_reading</code>, you can update the odometer reading to the new mileage <span aria-label="annotation1" class="CodeAnnotation">❶</span>. If the new mileage is less than the existing mileage, you’ll get a warning that you can’t roll back an odometer <span aria-label="annotation2" class="CodeAnnotation">❷</span>.</p>
+<h4 id="h3-502703c09-0006">Incrementing an Attribute’s Value Through a Method</h4>
+<p class="BodyFirst">Sometimes you’ll want to increment an attribute’s value by a certain amount, rather than set an entirely new value. Say we buy a used car and put 100 miles <span epub:type="pagebreak" id="Page_166" title="166"></span>on it between the time we buy it and the time we register it. Here’s a method that allows us to pass this incremental amount and add that value to the odometer reading:</p>
+<pre><code><span class="LiteralGray">class Car:</span>
+    <em class="LiteralGrayItalic">--snip--</em>
+
+<span class="LiteralGray">    def update_odometer(self, mileage):</span>
+<em class="LiteralGrayItalic">        --snip--</em>
+
+    def increment_odometer(self, miles):
+        """Add the given amount to the odometer reading."""
+        self.odometer_reading += miles
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> my_used_car = Car('subaru', 'outback', 2019)
+print(my_used_car.get_descriptive_name())
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> my_used_car.update_odometer(23_500)
+my_used_car.read_odometer()
+
+my_used_car.increment_odometer(100)
+my_used_car.read_odometer()</code></pre>
+<p>The new method <code>increment_odometer()</code> takes in a number of miles, and adds this value to <code>self.odometer_reading</code>. First, we create a used car, <code>my_used_car</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>. We set its odometer to 23,500 by calling <code>update_odometer()</code> and passing it <code>23_500</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span>. Finally, we call <code>increment_odometer()</code> and pass it <code>100</code> to add the 100 miles that we drove between buying the car and registering it:</p>
+<pre><code>2019 Subaru Outback
+This car has 23500 miles on it.
+This car has 23600 miles on it.</code></pre>
+<p>You can modify this method to reject negative increments so no one uses this function to roll back an odometer as well.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	You can use methods like this to control how users of your program update values such as an odometer reading, but anyone with access to the program can set the odometer reading to any value by accessing the attribute directly. Effective security takes extreme attention to detail in addition to basic checks like those shown here.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c09-10">9-4. Number Served:</span> Start with your program from Exercise 9-1 (<span class="xref" itemid="xref_target_page 162">page 162</span>). Add an attribute called <code>number_served</code> with a default value of 0. Create an instance called <code>restaurant</code> from this class. Print the number of customers the restaurant has served, and then change this value and print it again.</p>
+<p class="BoxBody"><span epub:type="pagebreak" id="Page_167" title="167"></span>Add a method called <code>set_number_served()</code> that lets you set the number of customers that have been served. Call this method with a new number and print the value again.</p>
+<p class="BoxBody">Add a method called <code>increment_number_served()</code> that lets you increment the number of customers who’ve been served. Call this method with any number you like that could represent how many customers were served in, say, a day of business.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c09-11">9-5. Login Attempts:</span> Add an attribute called <code>login_attempts</code> to your <code>User</code> class from Exercise 9-3 (<span class="xref" itemid="xref_target_page 162">page 162</span>). Write a method called <code>increment_login_attempts()</code> that increments the value of <code>login_attempts</code> by 1. Write another method called <code>reset_login_attempts()</code> that resets the value of <code>login_attempts</code> to 0.</p>
+<p class="BoxBody">Make an instance of the <code>User</code> class and call <code>increment_login_attempts()</code> several times. Print the value of <code>login_attempts</code> to make sure it was incremented properly, and then call <code>reset_login_attempts()</code>. Print <code>login_attempts</code> again to make sure it was reset to 0.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c09-0003">Inheritance</h2>
+<p class="BodyFirst">You don’t always have to start from scratch when writing a class. If the class you’re writing is a specialized version of another class you wrote, you can use <em>inheritance</em>. When one class <em>inherits</em> from another, it takes on the attributes and methods of the first class. The original class is called the <em>parent class</em>, and the new class is the <em>child class</em>. The child class can inherit any or all of the attributes and methods of its parent class, but it’s also free to define new attributes and methods of its own.</p>
+<h3 id="h2-502703c09-0007">The __init__() Method for a Child Class</h3>
+<p class="BodyFirst">When you’re writing a new class based on an existing class, you’ll often want to call the <code>__init__()</code> method from the parent class. This will initialize any attributes that were defined in the parent <code>__init__()</code> method and make them available in the child class.</p>
+<p>As an example, let’s model an electric car. An electric car is just a specific kind of car, so we can base our new <code>ElectricCar</code> class on the <code>Car</code> class we wrote earlier. Then we’ll only have to write code for the attributes and behaviors specific to electric cars.</p>
+<p>Let’s start by making a simple version of the <code>ElectricCar</code> class, which does everything the <code>Car</code> class does:</p>
+<p class="CodeLabel"><b>electric_car.py</b></p>
+<pre><code><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> <span class="LiteralGray">class Car:</span>
+<span class="LiteralGray">    """A simple attempt to represent a car."""</span>
+
+<span class="LiteralGray">    def __init__(self, make, model, year):</span>
+<span class="LiteralGray">        """Initialize attributes to describe a car.""</span>
+<span class="LiteralGray">        self.make = make</span>
+<span class="LiteralGray">        self.model = model</span>
+<span epub:type="pagebreak" id="Page_168" title="168"></span><span class="LiteralGray">        self.year = year</span>
+<span class="LiteralGray">        self.odometer_reading = 0</span>
+
+<span class="LiteralGray">    def get_descriptive_name(self):</span>
+<span class="LiteralGray">        """Return a neatly formatted descriptive name."""</span>
+<span class="LiteralGray">        long_name = f"{self.year} {self.make} {self.model}"</span>
+<span class="LiteralGray">        return long_name.title()</span>
+
+<span class="LiteralGray">    def read_odometer(self):</span>
+<span class="LiteralGray">        """Print a statement showing the car's mileage."""</span>
+<span class="LiteralGray">        print(f"This car has {self.odometer_reading} miles on it.")</span>
+
+<span class="LiteralGray">    def update_odometer(self, mileage):</span>
+<span class="LiteralGray">        """Set the odometer reading to the given value."""</span>
+<span class="LiteralGray">        if mileage &gt;= self.odometer_reading:</span>
+<span class="LiteralGray">            self.odometer_reading = mileage</span>
+<span class="LiteralGray">        else:</span>
+<span class="LiteralGray">            print("You can't roll back an odometer!")</span>
+
+<span class="LiteralGray">    def increment_odometer(self, miles):</span>
+<span class="LiteralGray">        """Add the given amount to the odometer reading."""</span>
+<span class="LiteralGray">        self.odometer_reading += miles</span>
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> class ElectricCar(Car):
+    """Represent aspects of a car, specific to electric vehicles."""
+
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     def __init__(self, make, model, year):
+        """Initialize attributes of the parent class."""
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>         super().__init__(make, model, year)
+
+
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span> my_leaf = ElectricCar('nissan', 'leaf', 2024)
+print(my_leaf.get_descriptive_name())</code></pre>
+<p>We start with <code>Car</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>. When you create a child class, the parent class must be part of the current file and must appear before the child class in the file. We then define the child class, <code>ElectricCar</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span>. The name of the parent class must be included in parentheses in the definition of a child class. The <code>__init__()</code> method takes in the information required to make a <code>Car</code> instance <span aria-label="annotation3" class="CodeAnnotation">❸</span>.</p>
+<p>The <code>super()</code> function <span aria-label="annotation4" class="CodeAnnotation">❹</span> is a special function that allows you to call a method from the parent class. This line tells Python to call the <code>__init__()</code> method from <code>Car</code>, which gives an <code>ElectricCar</code> instance all the attributes defined in that method. The name <em>super</em> comes from a convention of calling the parent class a <em>superclass</em> and the child class a <em>subclass</em>.</p>
+<p>We test whether inheritance is working properly by trying to create an electric car with the same kind of information we’d provide when making a regular car. We make an instance of the <code>ElectricCar</code> class and assign it to <code>my_leaf</code> <span aria-label="annotation5" class="CodeAnnotation">❺</span>. This line calls the <code>__init__()</code> method defined in <code>ElectricCar</code>, which in turn tells Python to call the <code>__init__()</code> method defined in the parent class <code>Car</code>. We provide the arguments <code>'nissan'</code>, <code>'leaf'</code>, and <code>2024</code>.</p>
+<p><span epub:type="pagebreak" id="Page_169" title="169"></span>Aside from <code>__init__()</code>, there are no attributes or methods yet that are particular to an electric car. At this point we’re just making sure the electric car has the appropriate <code>Car</code> behaviors:</p>
+<pre><code>2024 Nissan Leaf</code></pre>
+<p>The <code>ElectricCar</code> instance works just like an instance of <code>Car</code>, so now we can begin defining attributes and methods specific to electric cars.</p>
+<h3 id="h2-502703c09-0008">Defining Attributes and Methods for the Child Class</h3>
+<p class="BodyFirst">Once you have a child class that inherits from a parent class, you can add any new attributes and methods necessary to differentiate the child class from the parent class.</p>
+<p>Let’s add an attribute that’s specific to electric cars (a battery, for example) and a method to report on this attribute. We’ll store the battery size and write a method that prints a description of the battery:</p>
+<pre><code><span class="LiteralGray">class Car:</span>
+<em class="LiteralGrayItalic">    --snip--</em>
+
+<span class="LiteralGray">class ElectricCar(Car):</span>
+<span class="LiteralGray">    """Represent aspects of a car, specific to electric vehicles."""</span>
+
+<span class="LiteralGray">    def __init__(self, make, model, year):</span>
+<span class="LiteralGray">        </span>"""
+        Initialize attributes of the parent class.
+        Then initialize attributes specific to an electric car.
+        """
+<span class="LiteralGray">        super().__init__(make, model, year)</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         self.battery_size = 40
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     def describe_battery(self):
+        """Print a statement describing the battery size."""
+        print(f"This car has a {self.battery_size}-kWh battery.")
+
+<span class="LiteralGray">my_leaf = ElectricCar('nissan', 'leaf', 2024)</span>
+<span class="LiteralGray">print(my_leaf.get_descriptive_name())</span>
+my_leaf.describe_battery()</code></pre>
+<p>We add a new attribute <code>self.battery_size</code> and set its initial value to <code>40</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>. This attribute will be associated with all instances created from the <code>ElectricCar</code> class but won’t be associated with any instances of <code>Car</code>. We also add a method called <code>describe_battery()</code> that prints information about the battery <span aria-label="annotation2" class="CodeAnnotation">❷</span>. When we call this method, we get a description that is clearly specific to an electric car:</p>
+<pre><code>2024 Nissan Leaf
+This car has a 40-kWh battery.</code></pre>
+<p>There’s no limit to how much you can specialize the <code>ElectricCar</code> class. You can add as many attributes and methods as you need to model an <span epub:type="pagebreak" id="Page_170" title="170"></span>electric car to whatever degree of accuracy you need. An attribute or method that could belong to any car, rather than one that’s specific to an electric car, should be added to the <code>Car</code> class instead of the <code>ElectricCar</code> class. Then anyone who uses the <code>Car</code> class will have that functionality available as well, and the <code>ElectricCar</code> class will only contain code for the information and behavior specific to electric vehicles.</p>
+<h3 id="h2-502703c09-0009">Overriding Methods from the Parent Class</h3>
+<p class="BodyFirst">You can override any method from the parent class that doesn’t fit what you’re trying to model with the child class. To do this, you define a method in the child class with the same name as the method you want to override in the parent class. Python will disregard the parent class method and only pay attention to the method you define in the child class.</p>
+<p>Say the class <code>Car</code> had a method called <code>fill_gas_tank()</code>. This method is meaningless for an all-electric vehicle, so you might want to override this method. Here’s one way to do that:</p>
+<pre><code>class ElectricCar(Car):
+<em class="LiteralGrayItalic">    --snip--</em>
+
+    def fill_gas_tank(self):
+        """Electric cars don't have gas tanks."""
+        print("This car doesn't have a gas tank!")</code></pre>
+<p>Now if someone tries to call <code>fill_gas_tank()</code> with an electric car, Python will ignore the method <code>fill_gas_tank()</code> in <code>Car</code> and run this code instead. When you use inheritance, you can make your child classes retain what you need and override anything you don’t need from the parent class.</p>
+<h3 id="h2-502703c09-0010">Instances as Attributes</h3>
+<p class="BodyFirst">When modeling something from the real world in code, you may find that you’re adding more and more detail to a class. You’ll find that you have a growing list of attributes and methods and that your files are becoming lengthy. In these situations, you might recognize that part of one class can be written as a separate class. You can break your large class into smaller classes that work together; this approach is called <em>composition</em>.</p>
+<p>For example, if we continue adding detail to the <code>ElectricCar</code> class, we might notice that we’re adding many attributes and methods specific to the car’s battery. When we see this happening, we can stop and move those attributes and methods to a separate class called <code>Battery</code>. Then we can use a <code>Battery</code> instance as an attribute in the <code>ElectricCar</code> class:</p>
+<pre><code><span class="LiteralGray">class Car:</span>
+<em class="LiteralGrayItalic">    --snip--</em>
+
+class Battery:
+    """A simple attempt to model a battery for an electric car."""
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     def __init__(self, battery_size=40):
+<span epub:type="pagebreak" id="Page_171" title="171"></span>        """Initialize the battery's attributes."""
+        self.battery_size = battery_size
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     def describe_battery(self):
+        """Print a statement describing the battery size."""
+        print(f"This car has a {self.battery_size}-kWh battery.")
+
+
+<span class="LiteralGray">class ElectricCar(Car):</span>
+<span class="LiteralGray">    """Represent aspects of a car, specific to electric vehicles."""</span>
+
+<span class="LiteralGray">    def __init__(self, make, model, year):</span>
+<span class="LiteralGray">        """</span>
+<span class="LiteralGray">        Initialize attributes of the parent class.</span>
+<span class="LiteralGray">        Then initialize attributes specific to an electric car.</span>
+<span class="LiteralGray">        """</span>
+<span class="LiteralGray">        super().__init__(make, model, year)</span>
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>         self.battery = Battery()
+
+<span class="LiteralGray">my_leaf = ElectricCar('nissan', 'leaf', 2024)</span>
+<span class="LiteralGray">print(my_leaf.get_descriptive_name())</span>
+my_leaf.battery.describe_battery()</code></pre>
+<p>We define a new class called <code>Battery</code> that doesn’t inherit from any other class. The <code>__init__()</code> method <span aria-label="annotation1" class="CodeAnnotation">❶</span> has one parameter, <code>battery_size</code>, in addition to <code>self</code>. This is an optional parameter that sets the battery’s size to 40 if no value is provided. The method <code>describe_battery()</code> has been moved to this class as well <span aria-label="annotation2" class="CodeAnnotation">❷</span>.</p>
+<p>In the <code>ElectricCar</code> class, we now add an attribute called <code>self.battery</code> <span aria-label="annotation3" class="CodeAnnotation">❸</span>. This line tells Python to create a new instance of <code>Battery</code> (with a default size of 40, because we’re not specifying a value) and assign that instance to the attribute <code>self.battery</code>. This will happen every time the <code>__init__()</code> method is called; any <code>ElectricCar</code> instance will now have a <code>Battery</code> instance created automatically.</p>
+<p>We create an electric car and assign it to the variable <code>my_leaf</code>. When we want to describe the battery, we need to work through the car’s <code>battery</code> attribute:</p>
+<pre><code>my_leaf.battery.describe_battery()</code></pre>
+<p>This line tells Python to look at the instance <code>my_leaf</code>, find its <code>battery</code> attribute, and call the method <code>describe_battery()</code> that’s associated with the <code>Battery</code> instance assigned to the attribute.</p>
+<p>The output is identical to what we saw previously:</p>
+<pre><code>2024 Nissan Leaf
+This car has a 40-kWh battery.</code></pre>
+<p>This looks like a lot of extra work, but now we can describe the battery in as much detail as we want without cluttering the <code>ElectricCar</code> class. Let’s <span epub:type="pagebreak" id="Page_172" title="172"></span>add another method to <code>Battery</code> that reports the range of the car based on the battery size:</p>
+<pre><code><span class="LiteralGray">class Car:</span>
+<em class="LiteralGrayItalic">    --snip--</em>
+
+<span class="LiteralGray">class Battery:</span>
+<em class="LiteralGrayItalic">    --snip--</em>
+
+    def get_range(self):
+        """Print a statement about the range this battery provides."""
+        if self.battery_size == 40:
+            range = 150
+        elif self.battery_size == 65:
+            range = 225
+
+        print(f"This car can go about {range} miles on a full charge.")
+
+<span class="LiteralGray">class ElectricCar(Car):</span>
+<em class="LiteralGrayItalic">    --snip--</em>
+
+<span class="LiteralGray">my_leaf = ElectricCar('nissan', 'leaf', 2024)</span>
+<span class="LiteralGray">print(my_leaf.get_descriptive_name())</span>
+<span class="LiteralGray">my_leaf.battery.describe_battery()</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> my_leaf.battery.get_range()</code></pre>
+<p>The new method <code>get_range()</code> performs some simple analysis. If the battery’s capacity is 40 kWh, <code>get_range()</code> sets the range to 150 miles, and if the capacity is 65 kWh, it sets the range to 225 miles. It then reports this value. When we want to use this method, we again have to call it through the car’s <code>battery</code> attribute <span aria-label="annotation1" class="CodeAnnotation">❶</span>.</p>
+<p>The output tells us the range of the car based on its battery size:</p>
+<pre><code>2024 Nissan Leaf
+This car has a 40-kWh battery.
+This car can go about 150 miles on a full charge.</code></pre>
+<h3 id="h2-502703c09-0011">Modeling Real-World Objects</h3>
+<p class="BodyFirst">As you begin to model more complicated things like electric cars, you’ll wrestle with interesting questions. Is the range of an electric car a property of the battery or of the car? If we’re only describing one car, it’s probably fine to maintain the association of the method <code>get_range()</code> with the <code>Battery</code> class. But if we’re describing a manufacturer’s entire line of cars, we probably want to move <code>get_range()</code> to the <code>ElectricCar</code> class. The <code>get_range()</code> method would still check the battery size before determining the range, but it would report a range specific to the kind of car it’s associated with. Alternatively, we could maintain the association of the <code>get_range()</code> method with the battery but pass it a parameter such as <code>car_model</code>. The <code>get_range()</code> method would then report a range based on the battery size and car model.</p>
+<p>This brings you to an interesting point in your growth as a programmer. When you wrestle with questions like these, you’re thinking at a higher <span epub:type="pagebreak" id="Page_173" title="173"></span>logical level rather than a syntax-focused level. You’re thinking not about Python, but about how to represent the real world in code. When you reach this point, you’ll realize there are often no right or wrong approaches to modeling real-world situations. Some approaches are more efficient than others, but it takes practice to find the most efficient representations. If your code is working as you want it to, you’re doing well! Don’t be discouraged if you find you’re ripping apart your classes and rewriting them several times using different approaches. In the quest to write accurate, efficient code, everyone goes through this process.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c09-17">9-6. Ice Cream Stand:</span> An ice cream stand is a specific kind of restaurant. Write a class called <code>IceCreamStand</code> that inherits from the <code>Restaurant</code> class you wrote in Exercise 9-1 (<span class="xref" itemid="xref_target_page 162">page 162</span>) or Exercise 9-4 (<span class="xref" itemid="xref_target_page 166">page 166</span>). Either version of the class will work; just pick the one you like better. Add an attribute called <code>flavors</code> that stores a list of ice cream flavors. Write a method that displays these flavors. Create an instance of <code>IceCreamStand</code>, and call this method.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c09-18">9-7. Admin:</span> An administrator is a special kind of user. Write a class called <code>Admin</code> that inherits from the <code>User</code> class you wrote in Exercise 9-3 (<span class="xref" itemid="xref_target_page 162">page 162</span>) or Exercise 9-5 (<span class="xref" itemid="xref_target_page 167">page 167</span>). Add an attribute, <code>privileges</code>, that stores a list of strings like <code>"can add post"</code>, <code>"can delete post"</code>, <code>"can ban user"</code>, and so on. Write a method called <code>show_privileges()</code> that lists the administrator’s set of privileges. Create an instance of <code>Admin</code>, and call your method.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c09-19">9-8. Privileges:</span> Write a separate <code>Privileges</code> class. The class should have one attribute, <code>privileges</code>, that stores a list of strings as described in Exercise 9-7. Move the <code>show_privileges()</code> method to this class. Make a <code>Privileges</code> instance as an attribute in the <code>Admin</code> class. Create a new instance of <code>Admin</code> and use your method to show its privileges.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c09-20">9-9. Battery Upgrade:</span> Use the final version of <em>electric_car.py</em> from this section. Add a method to the <code>Battery</code> class called <code>upgrade_battery()</code>. This method should check the battery size and set the capacity to 65 if it isn’t already. Make an electric car with a default battery size, call <code>get_range()</code> once, and then call <code>get_range()</code> a second time after upgrading the battery. You should see an increase in the car’s range.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c09-0004">Importing Classes</h2>
+<p class="BodyFirst">As you add more functionality to your classes, your files can get long, even when you use inheritance and composition properly. In keeping with the overall philosophy of Python, you’ll want to keep your files as uncluttered as possible. To help, Python lets you store classes in modules and then import the classes you need into your main program.</p>
+<h3 id="h2-502703c09-0012"><span epub:type="pagebreak" id="Page_174" title="174"></span>Importing a Single Class</h3>
+<p class="BodyFirst">Let’s create a module containing just the <code>Car</code> class. This brings up a subtle naming issue: we already have a file named <em>car.py</em> in this chapter, but this module should be named <em>car.py</em> because it contains code representing a car. We’ll resolve this naming issue by storing the <code>Car</code> class in a module named <em>car.py</em>, replacing the <em>car.py</em> file we were previously using. From now on, any program that uses this module will need a more specific filename, such as <em>my_car.py</em>. Here’s <em>car.py</em> with just the code from the class <code>Car</code>:</p>
+<p class="CodeLabel"><b>car.py</b></p>
+<pre><code><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> """A class that can be used to represent a car."""
+
+<span class="LiteralGray">class Car:</span>
+<span class="LiteralGray">    """A simple attempt to represent a car."""</span>
+
+<span class="LiteralGray">    def __init__(self, make, model, year):</span>
+<span class="LiteralGray">        """Initialize attributes to describe a car."""</span>
+<span class="LiteralGray">        self.make = make</span>
+<span class="LiteralGray">        self.model = model</span>
+<span class="LiteralGray">        self.year = year</span>
+<span class="LiteralGray">        self.odometer_reading = 0</span>
+
+<span class="LiteralGray">    def get_descriptive_name(self):</span>
+<span class="LiteralGray">        """Return a neatly formatted descriptive name."""</span>
+<span class="LiteralGray">        long_name = f"{self.year} {self.make} {self.model}"</span>
+<span class="LiteralGray">        return long_name.title()</span>
+
+<span class="LiteralGray">    def read_odometer(self):</span>
+<span class="LiteralGray">        """Print a statement showing the car's mileage."""</span>
+<span class="LiteralGray">        print(f"This car has {self.odometer_reading} miles on it.")</span>
+
+<span class="LiteralGray">    def update_odometer(self, mileage):</span>
+<span class="LiteralGray">        """</span>
+<span class="LiteralGray">        Set the odometer reading to the given value.</span>
+<span class="LiteralGray">        Reject the change if it attempts to roll the odometer back.</span>
+<span class="LiteralGray">        """</span>
+<span class="LiteralGray">        if mileage &gt;= self.odometer_reading:</span>
+<span class="LiteralGray">            self.odometer_reading = mileage</span>
+<span class="LiteralGray">        else:</span>
+<span class="LiteralGray">            print("You can't roll back an odometer!")</span>
+
+<span class="LiteralGray">    def increment_odometer(self, miles):</span>
+<span class="LiteralGray">        """Add the given amount to the odometer reading."""</span>
+<span class="LiteralGray">        self.odometer_reading += miles</span></code></pre>
+<p>We include a module-level docstring that briefly describes the contents of this module <span aria-label="annotation1" class="CodeAnnotation">❶</span>. You should write a docstring for each module you create.</p>
+<p>Now we make a separate file called <em>my_car.py</em>. This file will import the <code>Car</code> class and then create an instance from that class:</p>
+<p class="CodeLabel"><b>my_car.py</b></p>
+<pre><code><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> from car import Car
+
+my_new_car = Car('audi', 'a4', 2024)
+print(my_new_car.get_descriptive_name())
+
+<span epub:type="pagebreak" id="Page_175" title="175"></span>my_new_car.odometer_reading = 23
+my_new_car.read_odometer()</code></pre>
+<p>The <code>import</code> statement <span aria-label="annotation1" class="CodeAnnotation">❶</span> tells Python to open the <code>car</code> module and import the class <code>Car</code>. Now we can use the <code>Car</code> class as if it were defined in this file. The output is the same as we saw earlier:</p>
+<pre><code>2024 Audi A4
+This car has 23 miles on it.</code></pre>
+<p>Importing classes is an effective way to program. Picture how long this program file would be if the entire <code>Car</code> class were included. When you instead move the class to a module and import the module, you still get all the same functionality, but you keep your main program file clean and easy to read. You also store most of the logic in separate files; once your classes work as you want them to, you can leave those files alone and focus on the higher-level logic of your main program.</p>
+<h3 id="h2-502703c09-0013">Storing Multiple Classes in a Module</h3>
+<p class="BodyFirst">You can store as many classes as you need in a single module, although each class in a module should be related somehow. The classes <code>Battery</code> and <code>ElectricCar</code> both help represent cars, so let’s add them to the module <em>car.py</em>.</p>
+<p class="CodeLabel"><b>car.py</b></p>
+<pre><code>"""A set of classes used to represent gas and electric cars."""
+
+<span class="LiteralGray">class Car:</span>
+<em class="LiteralGrayItalic">    --snip--</em>
+
+<span class="LiteralGray">class Battery:</span>
+<span class="LiteralGray">    """A simple attempt to model a battery for an electric car."""</span>
+
+<span class="LiteralGray">    def __init__(self, battery_size=40):</span>
+<span class="LiteralGray">        """Initialize the battery's attributes."""</span>
+<span class="LiteralGray">        self.battery_size = battery_size</span>
+
+<span class="LiteralGray">    def describe_battery(self):</span>
+<span class="LiteralGray">        """Print a statement describing the battery size."""</span>
+<span class="LiteralGray">        print(f"This car has a {self.battery_size}-kWh battery.")</span>
+
+<span class="LiteralGray">    def get_range(self):</span>
+<span class="LiteralGray">        """Print a statement about the range this battery provides."""</span>
+<span class="LiteralGray">        if self.battery_size == 40:</span>
+<span class="LiteralGray">            range = 150</span>
+<span class="LiteralGray">        elif self.battery_size == 65:</span>
+<span class="LiteralGray">            range = 225</span>
+
+<span class="LiteralGray">        print(f"This car can go about {range} miles on a full charge.")</span>
+
+<span class="LiteralGray">class ElectricCar(Car):</span>
+<span class="LiteralGray">    """Models aspects of a car, specific to electric vehicles."""</span>
+
+<span class="LiteralGray">    def __init__(self, make, model, year):</span>
+<span class="LiteralGray">        """</span>
+<span epub:type="pagebreak" id="Page_176" title="176"></span><span class="LiteralGray">        Initialize attributes of the parent class.</span>
+<span class="LiteralGray">        Then initialize attributes specific to an electric car.</span>
+<span class="LiteralGray">        """</span>
+<span class="LiteralGray">        super().__init__(make, model, year)</span>
+<span class="LiteralGray">        self.battery = Battery()</span></code></pre>
+<p>Now we can make a new file called <em>my_electric_car.py</em>, import the <code>ElectricCar</code> class, and make an electric car:</p>
+<p class="CodeLabel"><b>my_electric_car.py</b></p>
+<pre><code>from car import ElectricCar
+
+my_leaf = ElectricCar('nissan', 'leaf', 2024)
+print(my_leaf.get_descriptive_name())
+my_leaf.battery.describe_battery()
+my_leaf.battery.get_range()</code></pre>
+<p>This has the same output we saw earlier, even though most of the logic is hidden away in a module:</p>
+<pre><code>2024 Nissan Leaf
+This car has a 40-kWh battery.
+This car can go about 150 miles on a full charge.</code></pre>
+<h3 id="h2-502703c09-0014">Importing Multiple Classes from a Module</h3>
+<p class="BodyFirst">You can import as many classes as you need into a program file. If we want to make a regular car and an electric car in the same file, we need to import both classes, <code>Car</code> and <code>ElectricCar</code>:</p>
+<p class="CodeLabel"><b>my_cars.py</b></p>
+<pre><code><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> from car import Car, ElectricCar
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> my_mustang = Car('ford', 'mustang', 2024)
+print(my_mustang.get_descriptive_name())
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> my_leaf = ElectricCar('nissan', 'leaf', 2024)
+print(my_leaf.get_descriptive_name())</code></pre>
+<p>You import multiple classes from a module by separating each class with a comma <span aria-label="annotation1" class="CodeAnnotation">❶</span>. Once you’ve imported the necessary classes, you’re free to make as many instances of each class as you need.</p>
+<p>In this example we make a gas-powered Ford Mustang <span aria-label="annotation2" class="CodeAnnotation">❷</span> and then an electric Nissan Leaf <span aria-label="annotation3" class="CodeAnnotation">❸</span>:</p>
+<pre><code>2024 Ford Mustang
+2024 Nissan Leaf</code></pre>
+<h3 id="h2-502703c09-0015">Importing an Entire Module</h3>
+<p class="BodyFirst">You can also import an entire module and then access the classes you need using dot notation. This approach is simple and results in code that is easy to read. Because every call that creates an instance of a class includes the module name, you won’t have naming conflicts with any names used in the current file.</p>
+<p><span epub:type="pagebreak" id="Page_177" title="177"></span>Here’s what it looks like to import the entire <code>car</code> module and then create a regular car and an electric car:</p>
+<p class="CodeLabel"><b>my_cars.py</b></p>
+<pre><code><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> import car
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> my_mustang = car.Car('ford', 'mustang', 2024)
+<span class="LiteralGray">print(my_mustang.get_descriptive_name())</span>
+
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> my_leaf = car.ElectricCar('nissan', 'leaf', 2024)
+<span class="LiteralGray">print(my_leaf.get_descriptive_name())</span></code></pre>
+<p>First we import the entire <code>car</code> module <span aria-label="annotation1" class="CodeAnnotation">❶</span>. We then access the classes we need through the <var>module_name</var>.<var>ClassName</var> syntax. We again create a Ford Mustang <span aria-label="annotation2" class="CodeAnnotation">❷</span>, and a Nissan Leaf <span aria-label="annotation3" class="CodeAnnotation">❸</span>.</p>
+<h3 id="h2-502703c09-0016">Importing All Classes from a Module</h3>
+<p class="BodyFirst">You can import every class from a module using the following syntax:</p>
+<pre><code>from <var>module_name</var> import *</code></pre>
+<p>This method is not recommended for two reasons. First, it’s helpful to be able to read the <code>import</code> statements at the top of a file and get a clear sense of which classes a program uses. With this approach it’s unclear which classes you’re using from the module. This approach can also lead to confusion with names in the file. If you accidentally import a class with the same name as something else in your program file, you can create errors that are hard to diagnose. I show this here because even though it’s not a recommended approach, you’re likely to see it in other people’s code at some point.</p>
+<p>If you need to import many classes from a module, you’re better off importing the entire module and using the <var>module_name.ClassName</var> syntax. You won’t see all the classes used at the top of the file, but you’ll see clearly where the module is used in the program. You’ll also avoid the potential naming conflicts that can arise when you import every class in a module.</p>
+<h3 id="h2-502703c09-0017">Importing a Module into a Module</h3>
+<p class="BodyFirst">Sometimes you’ll want to spread out your classes over several modules to keep any one file from growing too large and avoid storing unrelated classes in the same module. When you store your classes in several modules, you may find that a class in one module depends on a class in another module. When this happens, you can import the required class into the first module.</p>
+<p>For example, let’s store the <code>Car</code> class in one module and the <code>ElectricCar</code> and <code>Battery</code> classes in a separate module. We’ll make a new module called <em>electric_car.py</em>—replacing the <em>electric_car.py</em> file we created earlier—and copy just the <code>Battery</code> and <code>ElectricCar</code> classes into this file:</p>
+<p class="CodeLabel"><b>electric_car.py</b></p>
+<pre><code>"""A set of classes that can be used to represent electric cars."""
+
+from car import Car
+
+<span epub:type="pagebreak" id="Page_178" title="178"></span><span class="LiteralGray">class Battery:</span>
+<em class="LiteralGrayItalic">    --snip--</em>
+
+<span class="LiteralGray">class ElectricCar(Car):</span>
+<em class="LiteralGrayItalic">    --snip--</em></code></pre>
+<p>The class <code>ElectricCar</code> needs access to its parent class <code>Car</code>, so we import <code>Car</code> directly into the module. If we forget this line, Python will raise an error when we try to import the <code>electric_car</code> module. We also need to update the <code>Car</code> module so it contains only the <code>Car</code> class:</p>
+<p class="CodeLabel"><b>car.py</b></p>
+<pre><code>"""A class that can be used to represent a car."""
+
+<span class="LiteralGray">class Car:</span>
+<em class="LiteralGrayItalic">    --snip--</em></code></pre>
+<p>Now we can import from each module separately and create whatever kind of car we need:</p>
+<p class="CodeLabel"><b>my_cars.py</b></p>
+<pre><code>from car import Car
+from electric_car import ElectricCar
+
+my_mustang = Car('ford', 'mustang', 2024)
+print(my_mustang.get_descriptive_name())
+
+my_leaf = ElectricCar('nissan', 'leaf', 2024)
+print(my_leaf.get_descriptive_name())</code></pre>
+<p>We import <code>Car</code> from its module, and <code>ElectricCar</code> from its module. We then create one regular car and one electric car. Both cars are created correctly:</p>
+<pre><code>2024 Ford Mustang
+2024 Nissan Leaf</code></pre>
+<h3 id="h2-502703c09-0018">Using Aliases</h3>
+<p class="BodyFirst">As you saw in <span class="xref" itemid="xref_target_Chapter 8">Chapter 8</span>, aliases can be quite helpful when using modules to organize your projects’ code. You can use aliases when importing classes as well.</p>
+<p>As an example, consider a program where you want to make a bunch of electric cars. It might get tedious to type (and read) <code>ElectricCar</code> over and over again. You can give <code>ElectricCar</code> an alias in the import statement:</p>
+<pre><code>from electric_car import ElectricCar as EC</code></pre>
+<p>Now you can use this alias whenever you want to make an electric car:</p>
+<pre><code>my_leaf = EC('nissan', 'leaf', 2024)</code></pre>
+<p><span epub:type="pagebreak" id="Page_179" title="179"></span>You can also give a module an alias. Here’s how to import the entire <code>electric_car</code> module using an alias:</p>
+<pre><code>import electric_car as ec</code></pre>
+<p>Now you can use this module alias with the full class name:</p>
+<pre><code>my_leaf = ec.ElectricCar('nissan', 'leaf', 2024)</code></pre>
+<h3 id="h2-502703c09-0019">Finding Your Own Workflow</h3>
+<p class="BodyFirst">As you can see, Python gives you many options for how to structure code in a large project. It’s important to know all these possibilities so you can determine the best ways to organize your projects as well as understand other people’s projects.</p>
+<p>When you’re starting out, keep your code structure simple. Try doing everything in one file and moving your classes to separate modules once everything is working. If you like how modules and files interact, try storing your classes in modules when you start a project. Find an approach that lets you write code that works, and go from there.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c09-29">9-10. Imported Restaurant:</span> Using your latest <code>Restaurant</code> class, store it in a module. Make a separate file that imports <code>Restaurant</code>. Make a <code>Restaurant</code> instance, and call one of <code>Restaurant</code>’s methods to show that the <code>import</code> statement is working properly.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c09-30">9-11. Imported Admin:</span> Start with your work from Exercise 9-8 (<span class="xref" itemid="xref_target_page 173">page 173</span>). Store the classes <code>User</code>, <code>Privileges</code>, and <code>Admin</code> in one module. Create a separate file, make an <code>Admin</code> instance, and call <code>show_privileges()</code> to show that everything is working correctly.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c09-31">9-12. Multiple Modules:</span> Store the <code>User</code> class in one module, and store the <code>Privileges</code> and <code>Admin</code> classes in a separate module. In a separate file, create an <code>Admin</code> instance and call <code>show_privileges()</code> to show that everything is still working correctly.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c09-0005">The Python Standard Library</h2>
+<p class="BodyFirst">The <em>Python standard library</em> is a set of modules included with every Python installation. Now that you have a basic understanding of how functions and classes work, you can start to use modules like these that other programmers have written. You can use any function or class in the standard library by including a simple <code>import</code> statement at the top of your file. Let’s look at one module, <code>random</code>, which can be useful in modeling many real-world situations.</p>
+<p><span epub:type="pagebreak" id="Page_180" title="180"></span>One interesting function from the random module is <code>randint()</code>. This function takes two integer arguments and returns a randomly selected integer between (and including) those numbers.</p>
+<p>Here’s how to generate a random number between 1 and 6:</p>
+<pre><code>&gt;&gt;&gt; <b>from random import randint</b>
+&gt;&gt;&gt; <b>randint(1, 6)</b>
+3</code></pre>
+<p>Another useful function is <code>choice()</code>. This function takes in a list or tuple and returns a randomly chosen element:</p>
+<pre><code>&gt;&gt;&gt; <b>from random import choice</b>
+&gt;&gt;&gt; <b>players = ['charles', 'martina', 'michael', 'florence', 'eli']</b>
+&gt;&gt;&gt; <b>first_up = choice(players)</b>
+&gt;&gt;&gt; <b>first_up</b>
+'florence'</code></pre>
+<p>The <code>random</code> module shouldn’t be used when building security-related applications, but it works well for many fun and interesting projects.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	You can also download modules from external sources. You’ll see a number of these examples in Part II, where we’ll need external modules to complete each project.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2> Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c09-32">9-13. Dice:</span> Make a class <code>Die</code> with one attribute called <code>sides</code>, which has a default value of 6. Write a method called <code>roll_die()</code> that prints a random number between 1 and the number of sides the die has. Make a 6-sided die and roll it 10 times.</p>
+<p class="BoxBody">Make a 10-sided die and a 20-sided die. Roll each die 10 times.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c09-33">9-14. Lottery:</span> Make a list or tuple containing a series of 10 numbers and 5 letters. Randomly select 4 numbers or letters from the list and print a message saying that any ticket matching these 4 numbers or letters wins a prize.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c09-34">9-15. Lottery Analysis:</span> You can use a loop to see how hard it might be to win the kind of lottery you just modeled. Make a list or tuple called <code>my_ticket</code>. Write a loop that keeps pulling numbers until your ticket wins. Print a message reporting how many times the loop had to run to give you a winning ticket.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c09-35">9-16. Python Module of the Week:</span> One excellent resource for exploring the Python standard library is a site called <em>Python Module of the Week</em>. Go to <a class="LinkURL" href="https://pymotw.com">https://pymotw.com</a> and look at the table of contents. Find a module that looks interesting to you and read about it, perhaps starting with the <code>random</code> module.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c09-0006"><span epub:type="pagebreak" id="Page_181" title="181"></span>Styling Classes</h2>
+<p class="BodyFirst">A few styling issues related to classes are worth clarifying, especially as your programs become more complicated.</p>
+<p>Class names should be written in <em>CamelCase</em>. To do this, capitalize the first letter of each word in the name, and don’t use underscores. Instance and module names should be written in lowercase, with underscores between words.</p>
+<p>Every class should have a docstring immediately following the class definition. The docstring should be a brief description of what the class does, and you should follow the same formatting conventions you used for writing docstrings in functions. Each module should also have a docstring describing what the classes in a module can be used for.</p>
+<p>You can use blank lines to organize code, but don’t use them excessively. Within a class you can use one blank line between methods, and within a module you can use two blank lines to separate classes.</p>
+<p>If you need to import a module from the standard library and a module that you wrote, place the import statement for the standard library module first. Then add a blank line and the import statement for the module you wrote. In programs with multiple import statements, this convention makes it easier to see where the different modules used in the program come from.</p>
+<h2 id="h1-502703c09-0007">Summary</h2>
+<p class="BodyFirst">In this chapter, you learned how to write your own classes. You learned how to store information in a class using attributes and how to write methods that give your classes the behavior they need. You learned to write <code>__init__()</code> methods that create instances from your classes with exactly the attributes you want. You saw how to modify the attributes of an instance directly and through methods. You learned that inheritance can simplify the creation of classes that are related to each other, and you learned to use instances of one class as attributes in another class to keep each class simple.</p>
+<p>You saw how storing classes in modules and importing classes you need into the files where they’ll be used can keep your projects organized. You started learning about the Python standard library, and you saw an example based on the <code>random</code> module. Finally, you learned to style your classes using Python conventions.</p>
+<p>In <span class="xref" itemid="xref_target_Chapter 10">Chapter 10</span>, you’ll learn to work with files so you can save the work you’ve done in a program and the work you’ve allowed users to do. You’ll also learn about <em>exceptions</em>, a special Python class designed to help you respond to errors when they arise.</p>
+</section>
+</div></body>
+</html>

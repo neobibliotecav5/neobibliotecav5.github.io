@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch11lev1sec3">
+<span class="calibre2" id="page_174">
+</span>
+  Crear la clase Pelota </h3>
+<p class="noindent">
+  Ahora crearemos la clase de la pelota. Empezaremos con el código que necesitamos para que la pelota se dibuje a sí misma en el lienzo. Tenemos que hacer lo siguiente </p>
+<ol class="calibre9">
+<li class="noindent1">
+   Crear un <span class="literal1" translate="no">
+    class
+   </span>llamado <span class="literal1" translate="no">
+    Ball
+   </span>que tome como parámetros el lienzo y el color de la pelota que vamos a dibujar.  </li>
+<li class="noindent1">
+   Guarda el lienzo como una variable objeto porque dibujaremos nuestra bola en él.  </li>
+<li class="noindent1">
+   Dibuja un círculo relleno en el lienzo utilizando el valor del parámetro <span class="literal1" translate="no">
+    color
+   </span>como color de relleno.  </li>
+<li class="noindent1">
+   Guarda el identificador que devuelve <span class="literal1" translate="no">
+    tkinter
+   </span>cuando dibuja el círculo (óvalo) porque vamos a utilizarlo para mover la bola por la pantalla.  </li>
+<li class="noindent1">
+   Mueve el óvalo al centro del lienzo.  </li>
+</ol>
+<p class="indent">
+  Este código debe añadirse justo después de las tres primeras líneas del archivo (después de <span class="literal1" translate="no">
+   import time
+  </span>): </p>
+<pre class="pre" translate="no"><span class="gray">from tkinter import *
+import random
+import time</span>
+
+<span class="orange">class</span> Ball:
+    <span class="orange">def</span> __init__(self, canvas, color):
+        self.canvas = canvas
+        self.id = canvas.create_oval(10, 10, 25, 25, fill=color)
+        self.canvas.move(self.id, 245, 100)
+
+    <span class="orange">def</span> draw(self):
+        <span class="orange">pass</span></pre>
+<p class="indent">
+  En primer lugar, nombramos a nuestra clase <span class="literal1" translate="no">
+   Ball
+  </span>. Luego creamos una función de inicialización (como se describe en "Inicializar un objeto" en <a class="calibre6" href="ch08.xhtml#ch08lev1sec11">la página 109 </a>) que toma los parámetros <span class="literal1" translate="no">
+   canvas
+  </span>y <span class="literal1" translate="no">
+   color
+  </span>. Establecemos la variable de objeto <span class="literal1" translate="no">
+   canvas
+  </span>con el valor del parámetro del mismo nombre. A continuación, llamamos a la función <span class="literal1" translate="no">
+   create_oval
+  </span>con cinco parámetros: coordenadas <em class="calibre7">x e </em> <em class="calibre7">y </em>de la esquina superior izquierda (10 y 10), <em class="calibre7">coordenadas </em> <em class="calibre7">x e </em> <em class="calibre7">y </em>de la esquina inferior derecha (25 y 25) y el color de relleno del óvalo. </p>
+<p class="indent">
+<span id="page_175">
+</span>
+  La función <span class="literal1" translate="no">
+   create_oval
+  </span>devuelve un identificador para la forma que ha dibujado, que almacenamos en la variable de objeto <span class="literal1" translate="no">
+   id
+  </span>. Movemos el óvalo al centro del lienzo (coordenadas 245, 100). El lienzo sabe qué mover porque utilizamos el identificador de forma almacenado ( <span class="literal1" translate="no">
+   id
+  </span>) para identificarlo. </p>
+<p class="indent">
+  En las dos últimas líneas de la clase <span class="literal1" translate="no">
+   Ball
+  </span>, creamos la función <span class="literal1" translate="no">
+   draw
+  </span>con <span class="literal1" translate="no">
+   def
+  </span><span class="literal1" translate="no">
+   draw(self)
+  </span> , y el cuerpo de la función es simplemente la palabra clave <span class="literal1" translate="no">
+   pass
+  </span>. De momento, no hace nada, pero en breve añadiremos más cosas a esta función. </p>
+<div class="image1">
+<img alt="Image" class="calibre121" src="../images/f0175-01.jpg" translate="no"/>
+</div>
+<p class="indent">
+  Ahora que hemos creado nuestra clase <span class="literal1" translate="no">
+   Ball
+  </span>, necesitamos crear un objeto de esta clase (recuerda: una clase describe lo que puede hacer, pero el objeto es lo que realmente lo hace). Añade este código al final del programa para crear un objeto bola roja: </p>
+<pre class="pre" translate="no">ball = Ball(canvas, <span class="green">'red'</span>)</pre>
+<p class="indent" id="para95">
+  Puedes ejecutar este programa utilizando <strong class="calibre5">Ejecutar </strong><strong class="calibre5">▸ Ejecutar Módulo . </strong>Si haces esto fuera de IDLE, el lienzo aparecerá durante una fracción de segundo y luego desaparecerá. Para evitar que la ventana se cierre inmediatamente, tenemos que añadir un bucle de animación, que se llama <em class="calibre7">bucle </em>principal de nuestro juego. (IDLE ya tiene un bucle principal, por eso la ventana no desaparece cuando lo ejecutas allí). </p>
+<p class="indent">
+  Un bucle principal es la parte central de un programa que generalmente controla la mayor parte de lo que hace. Nuestro bucle principal, de momento, sólo le dice a <span class="literal1" translate="no">
+   tkinter
+  </span>que redibuje la pantalla. El bucle, también llamado <em class="calibre7">bucle infinito </em>, sigue ejecutándose para siempre (o al menos hasta que cerremos la ventana), diciéndole constantemente a <span class="literal1" translate="no">
+   tkinter
+  </span>que redibuje la pantalla y durmiendo después durante una centésima de segundo mediante <span class="literal1" translate="no">
+   time.sleep
+  </span>. Añadiremos este código al final de nuestro programa: </p>
+<pre class="pre" translate="no">ball = Ball(canvas, <span class="green">'red'</span>)
+
+<span class="orange">while</span> <span class="violet">True</span>:
+    tk.update_idletasks()
+    tk.update()
+    time.sleep(0.01)</pre>
+<p class="noindent">
+<span id="page_176">
+</span>
+  Ahora, si ejecutas el código, la bola debería aparecer en el centro del lienzo, como se muestra en la Figura 11-2 <a class="calibre6" href="ch11.xhtml#ch11fig02">. </a></p>
+<div class="image1" id="ch11fig02">
+<img alt="Image" class="calibre122" src="../images/11fig02.jpg" translate="no"/>
+</div>
+<p class="figcap">
+
+   Figura<em class="calibre7">11-2: </em>Pelota en el centro del lienzo</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch11_3.html">anterior</a><a href="ch11.html">Subtema 4 de 7: (Ver todo)</a><a href="ch11_5.html">siguiente</a><br/></p>
+<br/><a href="ch11_4.docx" target="_blank"></a></footer>
+</body>
+</html>

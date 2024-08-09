@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch10lev1sec04"><strong><span class="blue1">Bucles for-else</span></strong></h3>
+<p class="noindent">También puedes utilizar la sentencia <span class="literal">else</span> con un bucle <span class="literal">for</span>. Cuando utilizas <span class="literal">else</span> con un bucle <span class="literal">for</span>, se ejecuta después de que el bucle <span class="literal">for</span> llegue al final de la lista. Si el bucle <span class="literal">for</span> no llega al final de su lista, la sentencia <span class="literal">else</span> no se ejecutará.</p>
+<p class="indent">Por ejemplo, aquí tienes un trozo de código que imprime los ingredientes de un bocadillo y luego utiliza una sentencia <span class="literal">else</span>:</p>
+<p class="programs" translate="no">sandwich = [<span class="green">"Bread"</span>, <span class="green">"Butter"</span>, <span class="green">"Tuna"</span>, <span class="green">"Lettuce"</span>, <span class="green">"Mayonnaise"</span>, <span class="green">"Bread"</span>]<br translate="no"/><br translate="no"/><span class="orange">for</span> ingredient <span class="orange">in</span> sandwich:<br translate="no"/> <span class="rose">print</span>(ingredient)<br translate="no"/><span class="orange">else</span>:<br translate="no"/> <span class="rose">print</span>(<span class="green">"This is the end of the sandwich."</span>)</p>
+<p class="indent">Cuando ejecutas este código, imprime lo siguiente:</p>
+<p class="programs" translate="no"><span class="blue1">Bread</span><br translate="no"/><span class="blue1">Butter</span><br translate="no"/><span class="blue1">Tuna</span><br translate="no"/><span class="blue1">Lettuce</span><br translate="no"/><span class="blue1">Mayonnaise</span><br translate="no"/><span class="blue1">Bread</span><br translate="no"/><span class="blue1">This is the end of the sandwich.</span></p>
+<p class="indent"><span epub:type="pagebreak" id="page_211"></span>Podrías pensar que este código es lo mismo que escribir lo siguiente:</p>
+<p class="programs" translate="no"><span class="orange">for</span> ingredient <span class="orange">in</span> sandwich:<br translate="no"/> <span class="rose">print</span>(ingredient)<br translate="no"/><span class="rose">print</span>(<span class="green">"This is the end of the sandwich."</span>)</p>
+<p class="indent">Pues sí. Ambos trozos de código harán lo mismo. Entonces, ¿qué sentido tiene utilizar <span class="literal">else</span> con un bucle <span class="literal">for</span>? Bueno, cuando se utiliza con una sentencia <span class="literal">break</span>, la sentencia <span class="literal">else</span> se comportará de forma diferente. Veámoslo a continuación.</p>
+<h4 class="h4" id="ch10lev2sec08"><strong><span class="blue1">Romper un bucle for-else</span></strong></h4>
+<p class="noindent">Utilizar una sentencia <span class="literal">break</span> para salir de un bucle <span class="literal">for</span> es una forma de evitar que se ejecute la sentencia <span class="literal">else</span>.</p>
+<p class="indent">El siguiente ejemplo incorpora una sentencia <span class="literal">break</span> dentro de una sentencia <span class="literal">if</span>. El bucle se romperá si el elemento actual es <span class="literal">"Mayonesa"</span>:</p>
+<p class="programs" translate="no">sandwich = [<span class="green">"Bread"</span>, <span class="green">"Butter"</span>, <span class="green">"Tuna"</span>, <span class="green">"Lettuce"</span>, <span class="green">"Mayonnaise"</span>, <span class="green">"Bread"</span>]<br translate="no"/><br translate="no"/><span class="orange">for</span> ingredient <span class="orange">in</span> sandwich:<br translate="no"/> <span class="orange">if</span> ingredient == <span class="green">"Mayonnaise"</span>:<br translate="no"/> <span class="rose">print</span>(<span class="green">"I don't like mayonnaise on my sandwich."</span>)<br translate="no"/> <span class="orange">break<br translate="no"/>    else</span>:<br translate="no"/> <span class="rose">print</span>(ingredient)<br translate="no"/><span class="orange">else</span>:<br translate="no"/> <span class="rose">print</span>(<span class="green">"This is the end of the sandwich."</span>)</p>
+<p class="indent">¿Puedes predecir cuál será la salida? Piénsalo antes de ejecutar este código, y luego ejecútalo a ver qué pasa.</p>
+<h4 class="h4a" id="ch10lev2sec09"><strong>Misión nº 60: El buscador de diamantes</strong></h4>
+<p class="noindent">A veces, cuando juego a Minecraft con amigos, no me dejan utilizar programas Python para generar bloques de diamantes. Pero sigo necesitando diamantes para armaduras, herramientas y para construir castillos de diamantes. Excavar en busca de diamantes es bastante fácil, pero no siempre los encuentras.</p>
+<p class="indent">Para ahorrar algo de tiempo, escribí un programa que comprueba si hay algún mineral de diamante directamente debajo de mí. El programa obtiene mi posición actual y luego utiliza un bucle <span class="literal">for</span> para comprobar uno a uno los bloques que hay debajo de mí para ver si son mineral de diamante. Si se encuentra mineral de diamante, el programa me dice a qué profundidad está el mineral; si no se encuentra mineral de diamante, el programa publica un mensaje para decirme que no hay mineral de diamante debajo de mí.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_212"></span>Crea un nuevo programa y guárdalo como <em>diamondSurvey.py</em> en la carpeta <em>forLoops</em>.</p>
+<p class="indent">Utiliza un bucle <span class="literal">for</span> para cambiar el valor de la variable <span class="literal">y</span> en -1 cada vez que el bucle itere. En total, el bucle debe repetirse 50 veces para comprobar 50 bloques de profundidad. En cada iteración, utiliza una sentencia <span class="literal">if</span> para comprobar si el bloque en esa posición es mineral de diamante (bloque ID 56). Si es un bloque de mineral de diamante, envía un mensaje al chat para decir a qué distancia está el bloque por debajo del jugador y rompe el bucle. Si no se encuentran bloques de mineral de diamante, utiliza una sentencia <span class="literal">else</span> en tu bucle <span class="literal">for</span> para enviar un mensaje que diga que no hay bloques de mineral de diamante directamente debajo del jugador.</p>
+<p class="indent">La<a href="ch10.xhtml#ch10fig6">Figura 10-6</a> muestra el programa en funcionamiento.</p>
+<div class="image"><img alt="image" src="../images/f10-06.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch10fig6"></a><em>Figura 10-6: Parece que hay un bloque de mineral de diamante cuatro bloques por debajo de mí. ¡Es hora de empezar a cavar!</em></p>
+<div class="sidebar">
+<p class="sidebart" id="ch10sb03"><strong>OBJETIVO EXTRA: ORO EN LAS COLINAS</strong></p>
+<p class="noindent">Cambia el programa <em>diamondSurvey.</em> py para que busque también otros bloques de mineral, como mineral de hierro o mineral de oro.</p>
+</div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch10_4.html">anterior</a><a href="ch10.html">Subtema 5 de 7: (Ver todo)</a><a href="ch10_6.html">siguiente</a><br/></p>
+<br/><a href="ch10_5.docx" target="_blank"></a></footer>
+</body>
+</html>

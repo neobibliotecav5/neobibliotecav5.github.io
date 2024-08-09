@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Chapter 2. Grammar</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="chapter" title="Chapter 2. Grammar"><div class="titlepage"><div><div><h1 class="title"><a id="grammar"/>Chapter 2. Grammar</h1></div></div></div><div class="epigraph"><p>I know it well: I read it in the grammar long ago.<a id="IDX-CHP-2-0009" class="indexterm"/></p><div class="attribution"><span>—<span class="attribution">William Shakespeare, <span class="emphasis"><em>The Tragedy of Titus
+                Andronicus</em></span></span></span></div></div><p>This chapter introduces the grammar of the good parts of JavaScript, presenting a
+            quick overview of how the language is structured. We will represent the grammar with
+            railroad diagrams.</p><p>The rules for interpreting these diagrams are simple:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>You start on the left edge and follow the tracks to the right edge.</p></li><li class="listitem"><p>As you go, you will encounter literals in ovals, and rules or descriptions in
+                    rectangles.</p></li><li class="listitem"><p>Any sequence that can be made by following the tracks is legal.</p></li><li class="listitem"><p>Any sequence that cannot be made by following the tracks is not legal.</p></li><li class="listitem"><p>Railroad diagrams with one bar at each end allow whitespace to be inserted
+                    between any pair of tokens. Railroad diagrams with two bars at each end do
+                        not.<a id="IDX-CHP-2-0010" class="indexterm"/><a id="IDX-CHP-2-0011" class="indexterm"/></p></li></ul></div><p>The grammar of the good parts presented in this chapter is significantly simpler than
+            the grammar of the whole language.</p><div class="sect1" title="Whitespace"><div class="titlepage"><div><div><h1 class="title"><a id="whitespace"/>Whitespace</h1></div></div></div><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject2_d1e493"/><img src="httpatomoreillycomsourceoreillyimages238840.png" alt="image with no caption"/></div></div><p>Whitespace can take the form of formatting characters or comments. Whitespace is
+                usually insignificant, but it is occasionally necessary to use whitespace to
+                separate sequences of characters that would otherwise be combined into a single
+                token. For example, in:<a id="IDX-CHP-2-0012" class="indexterm"/></p><a id="I_programlisting2_d1e505"/><pre class="programlisting">var that = this;</pre><p>the space between <code class="literal">var</code> and <code class="literal">that</code> cannot be removed, but the other spaces can be
+                removed.</p><p>JavaScript offers two forms of comments, block comments formed with <code class="literal">/* */</code> and line-ending comments starting with <code class="literal">//</code>. Comments should be used liberally to improve the
+                readability of your programs. Take care that the comments always accurately describe
+                the code. Obsolete comments are worse than no comments.<a id="IDX-CHP-2-0013" class="indexterm"/><a id="IDX-CHP-2-0014" class="indexterm"/><a id="IDX-CHP-2-0015" class="indexterm"/></p><p>The <code class="literal">/* */</code> form of block comments came from a
+                language called PL/I. PL/I chose those strange pairs as the symbols for comments
+                because they were unlikely to occur in that language's programs, except perhaps in
+                string literals. In JavaScript, those pairs can also occur in regular expression
+                literals, so block comments are not safe for commenting out blocks of code. For
+                example:</p><a id="I_programlisting2_d1e537"/><pre class="programlisting">/*
+    var rm_a = /a*/.match(s);
+*/</pre><p>causes a syntax error. So, it is recommended that <code class="literal">/*
+                    */</code> comments be avoided and <code class="literal">//</code>
+                comments be used instead. In this book, <code class="literal">//</code> will
+                be used exclusively.</p></div></div></body></html>

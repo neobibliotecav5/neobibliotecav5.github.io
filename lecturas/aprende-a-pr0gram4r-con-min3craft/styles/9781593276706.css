@@ -1,0 +1,766 @@
+@font-face
+{
+	font-family: "TradeGothicLTStd";
+	src: url(../fonts/TradeGothicLTStd.otf);
+	font-style: normal;
+	font-weight: normal;
+}
+@font-face
+{
+	font-family: "TradeGothicLTStd";
+	src: url(../fonts/TradeGothicLTStd-Obl.otf);
+	font-style: italic;
+	font-weight: normal;
+}
+@font-face
+{
+	font-family: "TradeGothicLTStd";
+	src: url(../fonts/TradeGothicLTStd-Bold.otf);
+	font-style: normal;
+	font-weight: bold;
+}
+@font-face
+{
+	font-family: "TradeGothicLTStd";
+	src: url(../fonts/TradeGothicLTStd-BoldObl.otf);
+	font-style: italic;
+	font-weight: bold;
+}
+@font-face
+{
+	font-family: "JansonTextLTStd";
+	src: url(../fonts/JansonTextLTStd-Bold.otf);
+	font-style: normal;
+	font-weight: bold;
+}
+@font-face
+{
+	font-family: "JansonTextLTStd";
+	src: url(../fonts/JansonTextLTStd-BoldItalic.otf);
+	font-style: italic;
+	font-weight: bold;
+}
+@font-face
+{
+	font-family: "JansonTextLTStd";
+	src: url(../fonts/JansonTextLTStd-Italic.otf);
+	font-style: italic;
+	font-weight: normal;
+}
+@font-face
+{
+	font-family: "JansonTextLTStd";
+	src: url(../fonts/JansonTextLTStd-Roman.otf);
+	font-style: normal;
+	font-weight: normal;
+}
+@font-face
+{
+	font-family: "ArialUnicodeMS";
+	src: url(../fonts/ARIALUNI.ttf);
+	font-style: normal;
+	font-weight: normal;
+}
+@font-face
+{
+	font-family: "Courier";
+	src: url(../fonts/Courier.otf);
+	font-style: normal;
+	font-weight: normal;
+}
+@font-face
+{
+	font-family: "Courier";
+	src: url(../fonts/Courier-Bold.otf);
+	font-style: normal;
+	font-weight: bold;
+}
+@font-face
+{
+	font-family: "Courier";
+	src: url(../fonts/Courier-Oblique.otf);
+	font-style: italic;
+	font-weight: normal;
+}
+@font-face
+{
+	font-family: "Courier";
+	src: url(../fonts/Courier-BoldOblique.otf);
+	font-style: italic;
+	font-weight: bold;
+}
+@page
+{
+        margin: 1.2em;
+}
+body
+{
+	margin-top: 0.2em;
+	margin-bottom: 0.2em;
+}
+.cover
+{
+	text-align: center;
+}
+.h1
+{
+	font-family: "TradeGothicLTStd";
+	font-size: 200%;
+	margin-top: 1em;
+	margin-bottom: 0.1em;
+	text-align: center;
+}
+.subtitle
+{
+	font-family: "TradeGothicLTStd";
+	font-size: 125%;
+	margin-top: 0.2em;
+	margin-bottom: 0.5em;
+	text-align: center;
+}
+.author
+{
+	font-family: "TradeGothicLTStd";
+	font-size: 125%;
+	margin-top: 5em;
+	margin-bottom: 0.5em;
+	text-align: center;
+}
+.pub1
+{
+	font-family: "TradeGothicLTStd";
+	margin-top: 0.8em;
+	margin-bottom: 0.5em;
+	text-align: center;
+}
+.h2
+{
+	font-family: "TradeGothicLTStd";
+	font-size: 160%;
+	margin-top: 0.5em;
+	margin-bottom: 1em;
+	text-align: center;
+}
+.h2a
+{
+	font-family: "TradeGothicLTStd";
+	font-size: 140%;
+	margin-top: 0.5em;
+	margin-bottom: 0.3em;
+	text-align: left;
+}
+.h2e
+{
+	font-family: "TradeGothicLTStd";
+	font-size: 170%;
+	margin-top: 0.8em;
+	margin-bottom: 0.5em;
+	text-align: center;
+}
+.h3
+{
+	font-family: "TradeGothicLTStd";
+	font-size: 140%;
+	margin-top: 1em;
+	margin-bottom: 0.3em;
+	margin-left: 0em;
+	text-align: left;
+}
+.h3c
+{
+	font-family: "TradeGothicLTStd";
+	font-size: 140%;
+	margin-top: 1em;
+	margin-bottom: 0.7em;
+	margin-left: 0em;
+	text-align: center;
+}
+.h3i
+{
+	font-family: "TradeGothicLTStd";
+	font-size: 130%;
+	margin-top: 1em;
+	margin-bottom: 0.3em;
+	margin-left: 0em;
+	text-align: left;
+}
+.h4
+{
+	font-family: "TradeGothicLTStd";
+	font-size: 130%;
+	margin-top: 1em;
+	margin-bottom: 0.3em;
+	margin-left: 0em;
+	text-align: left;
+}
+.h5
+{
+	font-family: "TradeGothicLTStd";
+	font-size: 120%;
+	margin-top: 1.3em;
+	margin-bottom: 0.3em;
+	margin-left: 0em;
+	text-align: left;
+}
+.h4a
+{
+	font-family: "TradeGothicLTStd";
+	font-size: 130%;
+	margin-top: 1em;
+	margin-bottom: 0.3em;
+	margin-left: 0em;
+	text-align: left;
+	background-color: #0075BE;
+	color: #FFFFFF;
+	padding: 0.2em;
+}
+div.pub
+{
+	 margin-top: 6em;
+	 text-align: center;
+}
+div.image
+{
+	 margin: 0 auto;
+	 margin-top: 1em;
+	 margin-bottom: 0.5em;
+	 padding: 0;
+	 text-align: center;
+	 max-width: 99%;
+	 max-height: 99%;
+	 clear: both;
+}
+div.image21
+{
+	 margin: 0 auto;
+	 margin-top: 1em;
+	 margin-bottom: 0.5em;
+	 padding: 0;
+	 text-align: left;
+	 max-width: 99%;
+	 max-height: 99%;
+	 clear: both;
+}
+div.imager
+{
+	 margin: 0 auto;
+	 margin-top: 1em;
+	 margin-bottom: 0.5em;
+	 padding: 0;
+	 text-align: right;
+	 max-width: 99%;
+	 max-height: 99%;
+	 clear: both;
+}
+div.image1
+{
+	 margin: 0 auto;
+	 margin-top: 0.5em;
+	 margin-bottom: 0.5em;
+	 padding: 0;
+	 text-align: left;
+	 max-width: 99%;
+	 max-height: 99%;
+	 clear: both;
+}
+div.image2
+{
+	 margin: 0 auto;
+	 margin-top: 1.8em;
+	 margin-bottom: 0.5em;
+	 padding: 0;
+	 text-align: left;
+	 max-width: 99%;
+	 max-height: 99%;
+	 clear: both;
+}
+.noindent
+{
+	font-family: "JansonTextLTStd";
+	margin-top: 0.2em;
+	margin-bottom: 0.1em;
+	margin-left: 0em;
+	text-align: justify;
+}
+.noindentc
+{
+	font-family: "JansonTextLTStd";
+	margin-top: 1.5em;
+	margin-bottom: 0.1em;
+	margin-left: 0em;
+	text-align: left;
+}
+.noindenttop
+{
+	font-family: "JansonTextLTStd";
+	margin-top: 3em;
+	margin-bottom: 0.1em;
+	margin-left: 0em;
+	text-align: justify;
+}
+.noindent2
+{
+	font-family: "JansonTextLTStd";
+	font-size: 115%;
+	margin-top: 0.2em;
+	margin-bottom: 0.1em;
+	margin-left: 0em;
+	text-align: justify;
+}
+.noindentz
+{
+	font-family: "JansonTextLTStd";
+	margin-top: 0.3em;
+	margin-bottom: 0.1em;
+	margin-left: 0em;
+	text-align: justify;
+}
+.noindenta
+{
+	font-family: "JansonTextLTStd";
+	margin-top: 0.2em;
+	margin-bottom: 0.1em;
+	margin-left: 0em;
+	text-align: justify;
+}
+.list
+{
+	font-family: "JansonTextLTStd";
+	margin-top: 0.2em;
+	margin-bottom: 0.1em;
+	margin-left: 0em;
+	text-align: justify;
+}
+.noindentt
+{
+	font-family: "JansonTextLTStd";
+	margin-top: 0.8em;
+	margin-bottom: 0.1em;
+	margin-left: 0em;
+	text-align: justify;
+}
+.noindentb
+{
+	font-family: "JansonTextLTStd";
+	margin-top: 0.2em;
+	margin-bottom: 0.8em;
+	margin-left: 0em;
+	text-align: justify;
+}
+.indent
+{
+	font-family: "JansonTextLTStd";
+	margin-top: 0.2em;
+	margin-bottom: 0.1em;
+	margin-left: 0em;
+	text-indent: 1.3em;
+	text-align: justify;
+}
+.indentt
+{
+	font-family: "JansonTextLTStd";
+	margin-top: 0.8em;
+	margin-bottom: 0.1em;
+	margin-left: 0em;
+	text-indent: 1.3em;
+	text-align: justify;
+}
+.indentb
+{
+	font-family: "JansonTextLTStd";
+	margin-top: 0.2em;
+	margin-bottom: 0.8em;
+	margin-left: 0em;
+	text-indent: 1.3em;
+	text-align: justify;
+}
+.programs
+{
+	font-family: "Courier";
+	font-size: 0.8em;
+	margin-top: 0.8em;
+	margin-bottom: 0.8em;
+	margin-left: 0em;
+	text-align: left;
+	border-top: solid black 0.1em;
+	border-bottom: solid black 0.1em;
+	padding: 0.5em 0.1em 0.5em 0.1em;
+}
+.codestrong
+{
+	font-family: "Courier";
+	font-weight: bold;
+}
+.codeitalic
+{
+	font-family: "Courier";
+	font-style: italic;
+}
+.literal
+{
+	font-family: "Courier";
+	font-size: 0.8em;
+}
+.table
+{
+	font-family: "JansonTextLTStd";
+	margin-top: 0.2em;
+	margin-bottom: 0.1em;
+	margin-left: 0.2em;
+	text-align: justify;
+}
+.sidebar
+{
+	margin-top: 1em;
+	margin-bottom: 1em;
+	background-color: #FFCF59;
+	border-radius: 1em;
+	padding: 0.5em;
+}
+.sidebart
+{
+	font-family: "TradeGothicLTStd";
+	font-size: 110%;
+	margin-top: 0.3em;
+	margin-bottom: 0.5em;
+	text-align: center;
+}
+.topbot
+{
+	margin-top: 0.3em;
+	margin-bottom: 1em;
+	margin-left: 0em;
+	border-top: solid black 0.1em;
+	border-bottom: solid black 0.1em;
+}
+.copya
+{
+	font-family: "JansonTextLTStd";
+	font-size: 90%;
+	margin-top: 3em;
+	margin-bottom: 0.1em;
+	margin-left: 0em;
+}
+.copy1
+{
+	font-family: "JansonTextLTStd";
+	font-size: 90%;
+	margin-top: 0.8em;
+	margin-bottom: 0.1em;
+	margin-left: 0em;
+}
+.copy1a
+{
+	font-family: "JansonTextLTStd";
+	font-size: 90%;
+	margin-top: 1.5em;
+	margin-bottom: 0.1em;
+	margin-left: 0em;
+}
+.copy
+{
+	font-family: "JansonTextLTStd";
+	font-size: 90%;
+	margin-top: 0.1em;
+	margin-bottom: 0.1em;
+	margin-left: 0em;
+}
+.toc
+{
+	font-family: "JansonTextLTStd";
+	margin-top: 0.7em;
+	margin-bottom: 0.1em;
+	margin-left: 0em;
+	text-align: left;
+}
+.tocfm
+{
+	font-family: "JansonTextLTStd";
+	margin-top: 1em;
+	margin-bottom: 0.1em;
+	margin-left: 0em;
+	text-align: left;
+}
+.tocchap
+{
+	font-family: "JansonTextLTStd";
+	margin-top: 1em;
+	margin-bottom: 0.3em;
+	margin-left: 0em;
+	text-align: left;
+}
+.tocsec
+{
+	font-family: "JansonTextLTStd";
+	margin-top: 0.1em;
+	margin-bottom: 0.1em;
+	margin-left: 0em;
+	text-align: left;
+}
+.tocsec1
+{
+	font-family: "JansonTextLTStd";
+	margin-top: 0.1em;
+	margin-bottom: 0.1em;
+	margin-left: 3.7em;
+	text-align: left;
+}
+.tocbm
+{
+	font-family: "JansonTextLTStd";
+	margin-top: 1em;
+	margin-bottom: 0.1em;
+	margin-left: 0em;
+	text-align: left;
+}
+.bull
+{
+	font-family: "JansonTextLTStd";
+	margin-top: 0.5em;
+	margin-bottom: 0.1em;
+	margin-left: 0.8em;
+	text-indent: -0.8em;
+}
+.big
+{
+	font-size: 230%;
+}
+.figcap
+{
+	font-family: "TradeGothicLTStd";
+	font-size: 90%;
+        margin-top: 0.2em;
+	margin-bottom: 1em;
+	margin-left: 0em;
+	text-align: left;
+	page-break-before: avoid;
+}
+.examplet
+{
+	font-family: "TradeGothicLTStd";
+	margin-top: 0.2em;
+	margin-bottom: 1em;
+	margin-left: 0em;
+	text-align: left;
+	page-break-before: avoid;
+}
+.tablet
+{
+	font-family: "TradeGothicLTStd";
+	margin-top: 1em;
+	margin-bottom: 0.2em;
+	margin-left: 0em;
+	text-align: left;
+	page-break-after: avoid;
+}
+.indexmain
+{
+	font-family: "JansonTextLTStd";
+	margin-top: 0.2em;
+	margin-bottom: 0.1em;
+	margin-left: 4.3em;
+	text-indent: -4.3em;
+	text-align: left;
+}
+.indexsub
+{
+	font-family: "JansonTextLTStd";
+	margin-top: 0.1em;
+	margin-bottom: 0.1em;
+	margin-left: 4.5em;
+	text-indent: -2.8em;
+	text-align: left;
+}
+.indexsub1
+{
+	font-family: "JansonTextLTStd";
+	margin-top: 0.1em;
+	margin-bottom: 0.1em;
+	margin-left: 4.5em;
+	text-indent: -1.5em;
+	text-align: left;
+}
+.table_th
+{
+	border-bottom: solid black 0.1em;
+	padding: 0.2em;
+}
+a
+{
+	text-decoration: none;
+	color: #000000;
+}
+.ded
+{
+	font-family: "JansonTextLTStd";
+	margin-top: 5em;
+	margin-bottom: 5em;
+	text-align: center;
+}
+.note
+{
+	margin-top: 1em;
+	margin-bottom: 1em;
+	border: solid black 0.1em;
+	margin-left: 0em;
+	text-align: left;
+	padding: 0em 0.5em 0.5em 0em;
+}
+.notet
+{
+	font-family: "TradeGothicLTStd";
+	font-size: 110%;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	margin-left: 0.1em;
+}
+.notep
+{
+	font-family: "JansonTextLTStd";
+	margin-top: 0.2em;
+	margin-bottom: 0.1em;
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+	text-align: justify;
+}
+.boxtitle
+{
+	font-family: "TradeGothicLTStd";
+	font-size: 140%;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	text-align: left;
+}
+.box
+{
+	margin-top: 1em;
+	margin-bottom: 1em;
+	border-radius: 0.5em;
+	border: solid black 0.2em;
+	padding: 0.5em;
+	margin-left: 1em;
+	margin-right: 1em;
+}
+.box1
+{
+	margin-top: 1em;
+	margin-bottom: 1em;
+	border-radius: 0.5em;
+	border: solid black 0.1em;
+	padding: 0.5em;
+}
+.box2
+{
+	margin-top: 1em;
+	margin-bottom: 1em;
+	border-radius: 0.5em;
+	border: solid #0075BE 0.2em;
+	padding: 0.5em;
+}
+.boxtitle1
+{
+	font-family: "TradeGothicLTStd";
+	font-size: 150%;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	text-align: center;
+}
+.ent
+{
+	font-family: "ArialUnicodeMS";
+	src: url(../fonts/ARIALUNI.ttf);
+}
+.sidenote
+{
+	font-family: "JansonTextLTStd";
+	margin-top: 1em;
+	margin-bottom: 0.1em;
+	margin-left: 0em;
+}
+img
+{
+	 max-width: 99%;
+	 max-height: 99%;
+}
+.hanging
+{
+	font-family: "JansonTextLTStd";
+	margin-top: 0.2em;
+	margin-bottom: 0.1em;
+	margin-left: 1.5em;
+	text-align: justify;
+}
+.blue
+{
+	color: #0075BE;
+}
+.mer
+{
+	color: #751112;
+}
+.blue1
+{
+	color: #3953A4;
+}
+.green
+{
+	color: #05A84A;
+}
+.rose
+{
+	color: #89278A;
+}
+.orange
+{
+	color: #F17722;
+}
+.red
+{
+	color: #ED1D24;
+}
+.ash
+{
+	color: #939598;
+}
+.notes
+{
+	background-color: #0075BE;
+	color: #FFFFFF;
+	padding: 0.3em;
+}
+.warnings
+{
+	background-color: #ED1D24;
+	color: #FFFFFF;
+	padding: 0.3em;
+}
+.hints
+{
+	background-color: #F17722;
+	color: #FFFFFF;
+	padding: 0.3em;
+}
+.sidebarp
+{
+	font-family: "JansonTextLTStd";
+	font-size: 120%;
+	margin-top: 1em;
+	margin-bottom: 0.3em;
+	margin-left: 0em;
+	text-align: justify;
+}
+.middle
+{
+	vertical-align: middle;
+}
+.yellow1
+{
+	background-color: #F8951D;
+	color: #FFFFFF;
+	padding: 0.5em;
+	border-radius: 0.5em;
+}
+.yellow
+{
+	color: #F8951D;
+}

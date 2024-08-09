@@ -1,0 +1,116 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Recursion</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="Recursion"><div class="titlepage"><div><div><h1 class="title"><a id="recursion"></a>Recursión</h1></div></div></div><p>A <span class="emphasis"><em translate="no">recursive</em></span> función es una función que se llama a sí misma, directa o indirectamente. La recursión es una potente técnica de programación en la que un problema se divide en un conjunto de subproblemas similares, cada uno de los cuales se resuelve con una solución trivial. Generalmente, una función recursiva se llama a sí misma para resolver sus subproblemas.<a class="indexterm" id="IDX-CHP-4-0215"></a><a class="indexterm" id="IDX-CHP-4-0216"></a><a class="indexterm" id="IDX-CHP-4-0217"></a><a class="indexterm" id="IDX-CHP-4-0214"></a><a class="indexterm" id="IDX-CHP-4-0218"></a></p><p>Las Torres de Hanoi es un famoso rompecabezas. El equipo incluye tres postes y un conjunto de discos de varios diámetros con agujeros en sus centros. El equipo apila todos los discos en el poste de origen, con los discos más pequeños encima de los más grandes. El objetivo es desplazar la pila hasta el poste de destino moviendo un disco cada vez a otro poste, sin colocar nunca un disco más grande sobre un disco más pequeño. Este puzzle tiene una solución recursiva trivial:</p><a id="I_programlisting4_d1e2957"></a><pre class="programlisting" translate="no">var hanoi = function hanoi(disc, src, aux, dst) {
+    if (disc &gt; 0) {
+        hanoi(disc − 1, src, dst, aux);
+        document.writeln('Move disc ' + disc +
+                ' from ' + src + ' to ' + dst);
+        hanoi(disc − 1, aux, src, dst);
+    }
+};
+
+hanoi(3, 'Src', 'Aux', 'Dst');</pre><p>Produce esta solución para tres discos:</p><a id="I_programlisting4_d1e2961"></a><pre class="programlisting" translate="no">Move disc 1 from Src to Dst
+Move disc 2 from Src to Aux
+Move disc 1 from Dst to Aux
+Move disc 3 from Src to Dst
+Move disc 1 from Aux to Src
+Move disc 2 from Aux to Dst
+Move disc 1 from Src to Dst</pre><p>La función <code class="literal" translate="no">hanoi</code> mueve una pila de discos de un poste a otro, utilizando el poste auxiliar si es necesario. Divide el problema en tres subproblemas. En primer lugar, descubre el disco inferior moviendo la subpila que tiene encima hasta el poste auxiliar. A continuación, puede desplazar el disco inferior al poste de destino. Por último, puede mover la subpila desde el poste auxiliar hasta el poste de destino. El movimiento de la subpila se gestiona llamándose a sí misma recursivamente para resolver esos subproblemas.</p><p>A la función <code class="literal" translate="no">hanoi</code> se le pasa el número del disco que debe mover y los tres puestos que debe utilizar. Cuando se llama a sí misma, debe tratar el disco que está por encima del disco en el que está trabajando en ese momento. Eventualmente, se le llamará con un número de disco inexistente. En ese caso, no hace nada. Ese acto de no hacer nada nos da la seguridad de que la función no recurre eternamente.</p><p>Las funciones recursivas pueden ser muy eficaces en la manipulación de estructuras de árbol como el Modelo de Objetos del Documento (DOM) del navegador. A cada llamada recursiva se le da un trozo más pequeño del árbol sobre el que trabajar:<a class="indexterm" id="IDX-CHP-4-0219"></a><a class="indexterm" id="IDX-CHP-4-0220"></a><a class="indexterm" id="IDX-CHP-4-0221"></a></p><a id="I_programlisting4_d1e2990"></a><pre class="programlisting" translate="no">// Define a walk_the_DOM function that visits every
+// node of the tree in HTML source order, starting
+// from some given node. It invokes a function,
+// passing it each node in turn. walk_the_DOM calls
+// itself to process each of the child nodes.
+
+var walk_the_DOM = function walk(node, func) {
+    func(node);
+    node = node.firstChild;
+    while (node) {
+        walk(node, func);
+        node = node.nextSibling;
+    }
+};
+
+// Define a getElementsByAttribute function. It
+// takes an attribute name string and an optional
+// matching value. It calls walk_the_DOM, passing it a
+// function that looks for an attribute name in the
+// node. The matching nodes are accumulated in a
+// results array.
+
+var getElementsByAttribute = function (att, value) {
+    var results = [];
+
+    walk_the_DOM(document.body, function (node) {
+        var actual = node.nodeType === 1 &amp;&amp; node.getAttribute(att);
+        if (typeof actual === 'string' &amp;&amp;
+                (actual === value || typeof value !== 'string')) {
+            results.push(node);
+        }
+    });
+
+    return results;
+};</pre><p>Algunos lenguajes ofrecen la función <span class="emphasis"><em translate="no">tail recursion optimization</em></span>. Esto significa que si una función devuelve el resultado de invocarse a sí misma recursivamente, entonces la invocación se sustituye por un bucle, lo que puede acelerar significativamente las cosas. Lamentablemente, JavaScript no proporciona actualmente una optimización de la recursividad de cola. Las funciones que recurren muy profundamente pueden fallar al agotar la pila de retorno:<a class="indexterm" id="IDX-CHP-4-0222"></a><a class="indexterm" id="IDX-CHP-4-0223"></a><a class="indexterm" id="IDX-CHP-4-0224"></a></p><a id="I_programlisting4_d1e3013"></a><pre class="programlisting" translate="no">// Make a factorial function with tail
+// recursion. It is tail recursive because
+// it returns the result of calling itself.
+
+// JavaScript does not currently optimize this form.
+
+var factorial = function factorial(i, a) {
+    a = a || 1;
+    if (i &lt; 2) {
+        return a;
+    }
+    return factorial(i − 1, a * i);
+};
+
+document.writeln(factorial(4));    // 24</pre></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="ch04s07.html">← Anterior</a><a href="ch04s09.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="ch04s08.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\ch04s08.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

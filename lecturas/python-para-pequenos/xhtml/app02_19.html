@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="app02lev1sec18">
+<span class="calibre2" id="page_315">
+</span>
+  Las funciones max y min </h3>
+<p class="noindent">
+  La función <span class="literal1" translate="no">
+   max
+  </span>devuelve el mayor elemento de una lista, tupla o cadena. Por ejemplo, aquí tienes cómo utilizarla con una lista de números: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> numbers = [5, 4, 10, 30, 22]
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="violet">max</span>(numbers))
+<span class="blue1">30</span>
+</pre>
+<p class="indent">
+  Puedes hacer exactamente lo mismo con una cadena o una lista de cadenas: </p>
+<div class="image1">
+<img alt="Image" class="calibre195" src="../images/f0315-01.jpg" translate="no"/>
+</div>
+<pre class="calibre32" translate="no">&gt;&gt;&gt; strings = <span class="blue1">'stringSTRING'</span>
+&gt;&gt;&gt; <span class="violet">print</span>(<span class="violet">max</span>(strings))
+<span class="blue1">t</span>
+&gt;&gt;&gt; strings = [<span class="green">'s'</span>, <span class="green">'t'</span>, <span class="green">'r'</span>, <span class="green">'i'</span>, <span class="green">'n'</span>, <span class="green">'g'</span>, <span class="green">'S'</span>, <span class="green">'T'</span>, <span class="green">'R'</span>, <span class="green">'I'</span>, <span class="green">'N'</span>, <span class="green">'G'</span>]
+&gt;&gt;&gt; <span class="violet">print</span>(<span class="violet">max</span>(strings))
+<span class="blue1">t</span>
+</pre>
+<p class="indent">
+  Las letras se ordenan alfabéticamente, pero las minúsculas van después de las mayúsculas, así que <span class="literal1" translate="no">
+   t
+  </span>es más que <span class="literal1" translate="no">
+   T
+  </span>. Pero no tienes por qué utilizar listas, tuplas o cadenas. También puedes llamar directamente a la función max e introducir en los paréntesis, como parámetros, los elementos que quieras comparar: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="violet">max</span>(10, 300, 450, 50, 90))
+<span class="blue1">450</span>
+</pre>
+<p class="indent">
+  La función <span class="literal1" translate="no">
+   min
+  </span>funciona como <span class="literal1" translate="no">
+   max
+  </span>, salvo que devuelve el elemento más pequeño de la lista, tupla o cadena. Este es nuestro ejemplo de lista de números utilizando <span class="literal1" translate="no">
+   min
+  </span>en lugar de <span class="literal1" translate="no">
+   max
+  </span>: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> numbers = [5, 4, 10, 30, 22]
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="violet">min</span>(numbers))
+<span class="blue1">4</span>
+</pre>
+<p class="indent">
+  Supón que estás jugando a un juego de adivinanzas con un equipo de cuatro jugadores, y cada uno tiene que adivinar un número que sea menor que tu número. Si algún jugador adivina por encima de tu número, todos los jugadores pierden, pero si todos adivinan por debajo, ganan. Podríamos utilizar <span id="page_316">
+</span> <span class="literal1" translate="no">
+   max
+  </span> para averiguar rápidamente si alguna de las suposiciones es mayor, de este modo: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> guess_this_number = 61
+<span class="brown">&gt;&gt;&gt;</span> player_guesses = [12, 15, 70, 45]
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">if</span> <span class="violet">max</span>(player_guesses) &gt; guess_this_number:
+        <span class="violet">print</span>(<span class="green">'Boom! You all lose'</span>)
+    <span class="orange">else</span>:
+        <span class="violet">print</span>(<span class="green">'You win'</span>)
+
+<span class="blue1">Boom! You all lose</span>
+</pre>
+<p class="indent">
+  En este ejemplo, almacenamos el número a adivinar utilizando la variable <span class="literal1" translate="no">
+   guess_this_number
+  </span>. Las suposiciones de los miembros del equipo se almacenan en la lista <span class="literal1" translate="no">
+   player_guesses
+  </span>. La sentencia <span class="literal1" translate="no">
+   if
+  </span>comprueba el máximo adivinado con el número de <span class="literal1" translate="no">
+   guess_this_number
+  </span>, y si algún jugador adivina por encima del número, imprimimos el mensaje "¡Boom! Todos habéis perdido". </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="app02_18.html">anterior</a><a href="app02.html">Subtema 19 de 25: (Ver todo)</a><a href="app02_20.html">siguiente</a><br/></p>
+<br/><a href="app02_19.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/><title>Appendix E. JSON</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h1 class="title"><a id="json_syntax"></a>Sintaxis JSON</h1><p>JSON tiene seis tipos de valores: objetos, matrices, cadenas, números, booleanos (<code class="literal" translate="no">true</code> y <code class="literal" translate="no">false</code>), y el valor especial <code class="literal" translate="no">null</code>. Los espacios en blanco (espacios, tabuladores, retornos de carro y caracteres de nueva línea) pueden insertarse antes o después de cualquier valor. Esto puede hacer que los textos JSON sean más fáciles de leer para los humanos. Los espacios en blanco pueden omitirse para reducir los costes de transmisión o almacenamiento.<a class="indexterm" id="IDX-APP-E-0690"></a><a class="indexterm" id="IDX-APP-E-0691"></a><a class="indexterm" id="IDX-APP-E-0692"></a><a class="indexterm" id="IDX-APP-E-0693"></a><a class="indexterm" id="IDX-APP-E-0694"></a><a class="indexterm" id="IDX-APP-E-0695"></a></p><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject_d1e11138"></a><img alt="image with no caption" src="httpatomoreillycomsourceoreillyimages238742.png" translate="no"/></div></div><p>Un objeto JSON es un contenedor desordenado de pares nombre/valor. Un nombre puede ser cualquier cadena. Un valor puede ser cualquier valor JSON, incluidas matrices y objetos. Los objetos JSON pueden anidarse a cualquier profundidad, pero generalmente es más eficaz mantenerlos relativamente planos. La mayoría de los lenguajes tienen una característica que mapea fácilmente a los objetos JSON, como un objeto, struct, registro, diccionario, tabla hash, lista de propiedades o matriz asociativa.<a class="indexterm" id="IDX-APP-E-0696"></a></p><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject_d1e11151"></a><img alt="image with no caption" src="httpatomoreillycomsourceoreillyimages238850.png" translate="no"/></div></div><p>La matriz JSON es una secuencia ordenada de valores. Un valor puede ser cualquier valor JSON, incluidas las matrices y los objetos. La mayoría de los lenguajes tienen una característica que se mapea fácilmente en las matrices JSON, como una matriz, un vector, una lista o una secuencia.</p><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject_d1e11159"></a><img alt="image with no caption" src="httpatomoreillycomsourceoreillyimages238740.png" translate="no"/></div></div><p>Una cadena JSON va entre comillas dobles. El carácter <code class="literal" translate="no">\</code> se utiliza para el escape. JSON permite escapar el carácter <code class="literal" translate="no">/</code> para que JSON pueda incrustarse en etiquetas HTML <code class="literal" translate="no"></code>. HTML no permite la secuencia <code class="literal" translate="no">&lt;/</code> excepto para iniciar la etiqueta <code class="literal" translate="no">&lt;/script&gt;</code>. JSON permite <code class="literal" translate="no">&lt;\/</code>, que produce el mismo resultado pero no confunde a HTML.<a class="indexterm" id="IDX-APP-E-0697"></a></p><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject_d1e11191"></a><img alt="image with no caption" src="httpatomoreillycomsourceoreillyimages238824.png" translate="no"/></div></div><p>Los números JSON son como los números JavaScript. No se permite un cero a la izquierda en los números enteros porque algunos lenguajes lo utilizan para indicar el octal. Ese tipo de confusión radix no es deseable en un formato de intercambio de datos. Un número puede ser entero, real o científico.<a class="indexterm" id="IDX-APP-E-0698"></a></p><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject_d1e11204"></a><img alt="image with no caption" src="httpatomoreillycomsourceoreillyimages238814.png" translate="no"/></div></div><p>Eso es todo. Eso es todo en JSON. Los objetivos de diseño de JSON eran ser mínimo, portátil, textual y un subconjunto de JavaScript. Cuanto menos tengamos que ponernos de acuerdo para interoperar, más fácilmente podremos interoperar.</p><a id="I_programlisting_d1e11212"></a><pre class="programlisting" translate="no">[
+    {
+        "first": "Jerome",
+        "middle": "Lester",
+        "last": "Howard",
+        "nick-name": "Curly",
+        "born": 1903,
+        "died": 1952,
+        "quote": "nyuk-nyuk-nyuk!"
+    },
+    {
+        "first": "Harry",
+        "middle": "Moses",
+        "last": "Howard",
+        "nick-name": "Moe",
+        "born": 1897,
+        "died": 1975,
+        "quote": "Why, you!"
+    },
+    {
+        "first": "Louis",
+        "last": "Feinberg",
+        "nick-name": "Larry",
+        "born": 1902,
+        "died": 1975,
+        "quote": "I'm sorry. Moe, it was an accident!"
+    }
+]</pre>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ape_1.html">anterior</a><a href="ape.html">Subtema 2 de 2: (Ver todo)</a><br/></p>
+<br/><a href="ape_2.docx" target="_blank"></a></footer>
+</body>
+</html>

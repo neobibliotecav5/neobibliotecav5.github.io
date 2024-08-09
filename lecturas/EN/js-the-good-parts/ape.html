@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Appendix E. JSON</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="appendix" title="Appendix E. JSON"><div class="titlepage"><div><div><h1 class="title"><a id="json"/>Appendix E. JSON</h1></div></div></div><div class="epigraph"><p>Farewell: the leisure and the fearful time Cuts off the ceremonious vows of love
+                And ample interchange of sweet discourse, Which so long sunder'd friends should
+                dwell upon: God give us leisure for these rites of love! Once more, adieu: be
+                valiant, and speed well!</p><div class="attribution"><span>—<span class="attribution">William Shakespeare, <span class="emphasis"><em>The Tragedy of Richard the
+                Third</em></span></span></span></div></div><p>JavaScript Object Notation (JSON) is a lightweight data interchange format. It is
+            based on JavaScript's object literal notation, one of JavaScript's best parts. Even
+            though it is a subset of JavaScript, it is language independent. It can be used to
+            exchange data between programs written in all modern programming languages. It is a text
+            format, so it is readable by humans and machines. It is easy to implement and easy to
+            use. There is a lot of material about JSON at <a class="ulink" href="http://www.JSON.org/">http://www.JSON.org/</a>.<a id="IDX-APP-E-0689" class="indexterm"/></p><div class="sect1" title="JSON Syntax"><div class="titlepage"><div><div><h1 class="title"><a id="json_syntax"/>JSON Syntax</h1></div></div></div><p>JSON has six kinds of values: objects, arrays, strings, numbers, booleans
+                    (<code class="literal">true</code> and <code class="literal">false</code>), and the special value <code class="literal">null</code>. Whitespace (spaces, tabs, carriage returns, and newline characters)
+                may be inserted before or after any value. This can make JSON texts easier for
+                humans to read. Whitespace may be omitted to reduce transmission or storage
+                    costs.<a id="IDX-APP-E-0690" class="indexterm"/><a id="IDX-APP-E-0691" class="indexterm"/><a id="IDX-APP-E-0692" class="indexterm"/><a id="IDX-APP-E-0693" class="indexterm"/><a id="IDX-APP-E-0694" class="indexterm"/><a id="IDX-APP-E-0695" class="indexterm"/></p><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject_d1e11138"/><img src="httpatomoreillycomsourceoreillyimages238742.png" alt="image with no caption"/></div></div><p>A JSON object is an unordered container of name/value pairs. A name can be any
+                string. A value can be any JSON value, including arrays and objects. JSON objects
+                can be nested to any depth, but generally it is most effective to keep them
+                relatively flat. Most languages have a feature that maps easily to JSON objects,
+                such as an object, struct, record, dictionary, hash table, property list, or
+                associative array.<a id="IDX-APP-E-0696" class="indexterm"/></p><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject_d1e11151"/><img src="httpatomoreillycomsourceoreillyimages238850.png" alt="image with no caption"/></div></div><p>The JSON array is an ordered sequence of values. A value can be any JSON value,
+                including arrays and objects. Most languages have a feature that maps easily onto
+                JSON arrays, such as an array, vector, list, or sequence.</p><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject_d1e11159"/><img src="httpatomoreillycomsourceoreillyimages238740.png" alt="image with no caption"/></div></div><p>A JSON string is wrapped in double quotes. The <code class="literal">\</code> character is used for escapement. JSON allows the <code class="literal">/</code> character to be escaped so that JSON can be embedded
+                in HTML <code class="literal">&lt;script&gt;</code> tags. HTML does not allow
+                the sequence <code class="literal">&lt;/</code> except to start the <code class="literal">&lt;/script&gt;</code> tag. JSON allows <code class="literal">&lt;\/</code>, which produces the same result but does not
+                confuse HTML.<a id="IDX-APP-E-0697" class="indexterm"/></p><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject_d1e11191"/><img src="httpatomoreillycomsourceoreillyimages238824.png" alt="image with no caption"/></div></div><p>JSON numbers are like JavaScript numbers. A leading zero is not allowed on
+                integers because some languages use that to indicate the octal. That kind of radix
+                confusion is not desirable in a data interchange format. A number can be an integer,
+                real, or scientific.<a id="IDX-APP-E-0698" class="indexterm"/></p><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject_d1e11204"/><img src="httpatomoreillycomsourceoreillyimages238814.png" alt="image with no caption"/></div></div><p>That's it. That is all of JSON. JSON's design goals were to be minimal, portable,
+                textual, and a subset of JavaScript. The less we need to agree on in order to
+                interoperate, the more easily we can interoperate.</p><a id="I_programlisting_d1e11212"/><pre class="programlisting">[
+    {
+        "first": "Jerome",
+        "middle": "Lester",
+        "last": "Howard",
+        "nick-name": "Curly",
+        "born": 1903,
+        "died": 1952,
+        "quote": "nyuk-nyuk-nyuk!"
+    },
+    {
+        "first": "Harry",
+        "middle": "Moses",
+        "last": "Howard",
+        "nick-name": "Moe",
+        "born": 1897,
+        "died": 1975,
+        "quote": "Why, you!"
+    },
+    {
+        "first": "Louis",
+        "last": "Feinberg",
+        "nick-name": "Larry",
+        "born": 1902,
+        "died": 1975,
+        "quote": "I'm sorry. Moe, it was an accident!"
+    }
+]</pre></div></div></body></html>

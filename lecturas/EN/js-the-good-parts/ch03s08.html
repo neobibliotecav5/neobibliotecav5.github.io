@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Delete</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Delete"><div class="titlepage"><div><div><h1 class="title"><a id="delete"/>Delete</h1></div></div></div><p>The <code class="literal">delete</code> operator can be used to remove a
+                property from an object. It will remove a property from the object if it has one. It
+                will not touch any of the objects in the prototype linkage.<a id="IDX-CHP-3-0179" class="indexterm"/></p><p>Removing a property from an object may allow a property from the prototype linkage
+                to shine through:</p><a id="I_programlisting3_d1e2321"/><pre class="programlisting">another_stooge.nickname    // 'Moe'
+
+// Remove nickname from another_stooge, revealing
+// the nickname of the prototype.
+
+delete another_stooge.nickname;
+
+another_stooge.nickname    // 'Curly'</pre></div></body></html>

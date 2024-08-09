@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c11-0010">Una clase para probar</h3>
+<p class="BodyFirst">Probar una clase es similar a probar una función, porque gran parte del trabajo consiste en probar el comportamiento de los métodos de la clase. Sin embargo, hay algunas diferencias, así que vamos a escribir una clase para probar. Considera una clase que ayude a administrar encuestas anónimas:</p>
+<p class="CodeLabel" translate="no"><b>survey.py</b></p>
+<pre translate="no"><code translate="no">class AnonymousSurvey:
+    """Collect anonymous answers to a survey question."""
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     def __init__(self, question):
+        """Store a question, and prepare to store responses."""
+        self.question = question
+        self.responses = []
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     def show_question(self):
+        """Show the survey question."""
+        print(self.question)
+
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     def store_response(self, new_response):
+        """Store a single response to the survey."""
+        self.responses.append(new_response)
+
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>     def show_results(self):
+        """Show all the responses that have been given."""
+        print("Survey results:")
+        for response in self.responses:
+            print(f"- {response}")</code></pre>
+<p>Esta clase comienza con una pregunta de encuesta que tú proporcionas <span aria-label="annotation1" class="CodeAnnotation">❶</span> e incluye una lista vacía para almacenar las respuestas. La clase tiene métodos para imprimir la pregunta de la encuesta <span aria-label="annotation2" class="CodeAnnotation">❷,</span> añadir una nueva respuesta a la lista de respuestas <span aria-label="annotation3" class="CodeAnnotation">❸,</span> e imprimir todas las respuestas almacenadas en la lista <span aria-label="annotation4" class="CodeAnnotation">❹.</span> Para crear una instancia a partir de esta clase, todo lo que tienes que proporcionar <span epub:type="pagebreak" id="Page_219" title="219"></span>es una pregunta. Una vez que tengas una instancia que represente una encuesta concreta, muestra la pregunta de la encuesta con <code translate="no">show_question()</code>, almacena una respuesta utilizando <code translate="no">store_response()</code>, y muestra los resultados con <code translate="no">show_results()</code>.</p>
+<p>Para demostrar que la clase <code translate="no">AnonymousSurvey</code> funciona, vamos a escribir un programa que utilice la clase:</p>
+<p class="CodeLabel" translate="no"><b>language_survey.py</b></p>
+<pre translate="no"><code translate="no">from survey import AnonymousSurvey
+
+# Define a question, and make a survey.
+question = "What language did you first learn to speak?"
+language_survey = AnonymousSurvey(question)
+
+# Show the question, and store responses to the question.
+language_survey.show_question()
+print("Enter 'q' at any time to quit.\n")
+while True:
+    response = input("Language: ")
+    if response == 'q':
+        break
+    language_survey.store_response(response)
+
+# Show the survey results.
+print("\nThank you to everyone who participated in the survey!")
+language_survey.show_results()</code></pre>
+<p>Este programa define una pregunta (<code translate="no">"What language did you first learn to speak?"</code>) y crea un objeto <code translate="no">AnonymousSurvey</code> con esa pregunta. El programa llama a <code translate="no">show_question()</code> para mostrar la pregunta y luego pide respuestas. Cada respuesta se almacena a medida que se recibe. Cuando se han introducido todas las respuestas (el usuario introduce <code translate="no">q</code> para salir), <code translate="no">show_results()</code> imprime los resultados de la encuesta:</p>
+<pre translate="no"><code translate="no">What language did you first learn to speak?
+Enter 'q' at any time to quit.
+
+Language: <b>English</b>
+Language: <b>Spanish</b>
+Language: <b>English</b>
+Language: <b>Mandarin</b>
+Language: <b>q</b>
+
+Thank you to everyone who participated in the survey!
+Survey results:
+- English
+- Spanish
+- English
+- Mandarin</code></pre>
+<p>Esta clase funciona para una simple encuesta anónima, pero supongamos que queremos mejorar <code translate="no">AnonymousSurvey</code> y el módulo en el que se encuentra, <code translate="no">survey</code>. Podríamos permitir que cada usuario introdujera más de una respuesta, podríamos escribir un método para listar sólo las respuestas únicas e informar de cuántas veces se ha dado cada respuesta, o incluso podríamos escribir otra clase para gestionar las encuestas no anónimas.</p>
+<p><span epub:type="pagebreak" id="Page_220" title="220"></span>Implementar tales cambios podría afectar al comportamiento actual de la clase <code translate="no">AnonymousSurvey</code>. Por ejemplo, es posible que, al intentar permitir que cada usuario introduzca varias respuestas, cambiemos accidentalmente el modo en que se gestionan las respuestas únicas. Para asegurarnos de que no rompemos el comportamiento existente mientras desarrollamos este módulo, podemos escribir pruebas para la clase.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c11_17.html">anterior</a><a href="c11.html">Subtema 18 de 22: (Ver todo)</a><a href="c11_19.html">siguiente</a><br/></p>
+<br/><a href="c11_18.docx" target="_blank"></a></footer>
+</body>
+</html>

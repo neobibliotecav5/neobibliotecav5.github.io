@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch09lev1sec03"><strong><span class="blue1">Tratar las cadenas como listas</span></strong></h3>
+<p class="noindent">Las cadenas pueden tratarse como listas, porque una cadena también es una <em>secuencia</em> de datos. Puedes acceder a caracteres individuales de una cadena utilizando su índice; sin embargo, no puedes cambiar los caracteres de cada posición del índice utilizando las funciones <span class="literal">añadir</span> o <span class="literal">insertar</span>, porque las cadenas son <em>inmutables</em>. Esto significa que no se pueden modificar.</p>
+<p class="indent">El siguiente código imprimirá la segunda letra de la cadena <span class="literal">"Uva"</span>:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> flavor = <span class="green">"Grape"</span><br translate="no"/><span class="mer">&gt;&gt;&gt;</span> <span class="rose">print</span>(flavor[1])<br translate="no"/><span class="blue1">r</span></p>
+<p class="indent">Esto demuestra que puedes acceder a partes de una cadena como si fueran elementos de una lista. Por ejemplo, podrías acceder a las primeras letras del nombre y apellidos de alguien para imprimir sus iniciales:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> firstName = <span class="green">"Lyra"</span><br translate="no"/><span class="mer">&gt;&gt;&gt;</span> lastName = <span class="green">"Jones"</span><br translate="no"/><span class="mer">&gt;&gt;&gt;</span> initials = firstName[0] + <span class="green">" "</span> + lastName[0]<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> <span class="rose">print</span>(initials)<br translate="no"/><span class="blue1">L J</span></p>
+<p class="indent">La nueva cadena <span class="literal">"L J</span> " que obtienes accediendo a partes de una cadena mediante posiciones de índice se denomina <em>subcadena</em>. Ten en cuenta que el índice de una cadena también cuenta desde cero.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch09_3.html">anterior</a><a href="ch09.html">Subtema 4 de 8: (Ver todo)</a><a href="ch09_5.html">siguiente</a><br/></p>
+<br/><a href="ch09_4.docx" target="_blank"></a></footer>
+</body>
+</html>

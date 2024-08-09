@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c17-0006"><span epub:type="pagebreak" id="Page_361" title="361"></span>Resumen de los principales repositorios</h3>
+<p class="BodyFirst">Cuando hagamos una visualización de estos datos, querremos incluir más de un repositorio. Escribamos un bucle para imprimir la información seleccionada sobre cada repositorio que devuelva la llamada a la API, de forma que podamos incluirlos todos en la visualización:</p>
+<p class="CodeLabel" translate="no"><b>python_repos.py</b></p>
+<pre translate="no"><code translate="no"><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray"># Explore information about the repositories.</span>
+<span class="LiteralGray">repo_dicts = response_dict['items']</span>
+<span class="LiteralGray">print(f"Repositories returned: {len(repo_dicts)}")</span>
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> print("\nSelected information about each repository:")
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> for repo_dict in repo_dicts:
+<span class="LiteralGray">    print(f"\nName: {repo_dict['name']}")</span>
+<span class="LiteralGray">    print(f"Owner: {repo_dict['owner']['login']}")</span>
+<span class="LiteralGray">    print(f"Stars: {repo_dict['stargazers_count']}")</span>
+<span class="LiteralGray">    print(f"Repository: {repo_dict['html_url']}")</span>
+<span class="LiteralGray">    print(f"Description: {repo_dict['description']}")</span></code></pre>
+<p>Primero imprimimos un mensaje introductorio <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Después hacemos un bucle a través de todos los diccionarios en <code translate="no">repo_dicts</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Dentro del bucle, imprimimos el nombre de cada proyecto, su propietario, cuántas estrellas tiene, su URL en GitHub y la descripción del proyecto:</p>
+<pre translate="no"><code translate="no">Status code: 200
+Total repositories: 248
+Complete results: True
+Repositories returned: 30
+
+Selected information about each repository:
+
+Name: public-apis
+Owner: public-apis
+Stars: 191494
+Repository: https://github.com/public-apis/public-apis
+Description: A collective list of free APIs
+
+Name: system-design-primer
+Owner: donnemartin
+Stars: 179952
+Repository: https://github.com/donnemartin/system-design-primer
+Description: Learn how to design large-scale systems. Prep for the system
+  design interview.  Includes Anki flashcards.
+<var>--snip--</var>
+
+Name: PayloadsAllTheThings
+Owner: swisskyrepo
+Stars: 37227
+Repository: https://github.com/swisskyrepo/PayloadsAllTheThings
+Description: A list of useful payloads and bypass for Web Application Security
+  and Pentest/CTF</code></pre>
+<p><span epub:type="pagebreak" id="Page_362" title="362"></span>En estos resultados aparecen algunos proyectos interesantes, y puede que merezca la pena echar un vistazo a unos cuantos. Pero no pases demasiado tiempo aquí, porque estamos a punto de crear una visualización que hará que los resultados sean mucho más fáciles de leer.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c17_7.html">anterior</a><a href="c17.html">Subtema 8 de 20: (Ver todo)</a><a href="c17_9.html">siguiente</a><br/></p>
+<br/><a href="c17_8.docx" target="_blank"></a></footer>
+</body>
+</html>

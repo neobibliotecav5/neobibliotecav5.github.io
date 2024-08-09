@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch08lev1sec1">
+  Clasificación de las cosas </h3>
+<p class="noindent">
+  En Python, los objetos se definen mediante <em class="calibre7">clases </em>, que clasifican los objetos en grupos. Por ejemplo, el diagrama de árbol de <a class="calibre6" href="ch08.xhtml#ch08fig01">la Figura 8-1 </a>muestra las clases en las que encajan las jirafas y las aceras basándonos en nuestras definiciones anteriores. </p>
+<div class="image" id="ch08fig01">
+<img alt="Image" class="calibre73" src="../images/08fig01.jpg" translate="no"/>
+</div>
+<p class="figcap">
+
+   Figura<em class="calibre7">8-1: Diagrama en árbol de algunas </em>clases</p>
+<p class="indent">
+  La clase principal es <span class="literal1" translate="no">
+   Thing
+  </span>. Debajo de la clase <span class="literal1" translate="no">
+   Thing
+  </span>, tenemos <span class="literal1" translate="no">
+   Inanimate
+  </span>y <span class="literal1" translate="no">
+   Animate
+  </span>. Estas clases se dividen a su vez en <span class="literal1" translate="no">
+   Sidewalk
+  </span>para <span class="literal1" translate="no">
+   Inanimate
+  </span>, y <span class="literal1" translate="no">
+   Animal
+  </span>, <span class="literal1" translate="no">
+   Mammal
+  </span>, y <span class="literal1" translate="no">
+   Giraffe
+  </span>para <span class="literal1" translate="no">
+   Animate
+  </span>. </p>
+<p class="indent">
+  Podemos utilizar clases para organizar fragmentos de código. Por ejemplo, considera el módulo <span class="literal1" translate="no">
+   turtle
+  </span>. Todas las cosas que puede hacer el módulo tortuga de Python -como avanzar, retroceder, girar a la izquierda y a la derecha- son funciones de la clase <span class="literal1" translate="no">
+   Turtle
+  </span>. <span id="page_97">
+</span>Un objeto es un miembro de una clase, y podemos crear cualquier número de objetos para una clase, a lo que nos referiremos en breve. </p>
+<p class="indent">
+  Ahora vamos a crear el mismo conjunto de clases que aparece en nuestro diagrama de árbol, empezando por arriba. Definimos las clases utilizando la palabra clave <span class="literal1" translate="no">
+   class
+  </span>seguida de un nombre. <span class="literal1" translate="no">
+   Thing
+  </span>es la clase más amplia, así que la crearemos primero: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> Thing:
+        <span class="orange">pass</span>
+</pre>
+<p class="indent">
+  Llamamos a la clase <span class="literal1" translate="no">
+   Thing
+  </span>y utilizamos la sentencia <span class="literal1" translate="no">
+   pass
+  </span>para que Python sepa que no vamos a dar más información. La palabra clave <span class="literal1" translate="no">
+   pass
+  </span>se utiliza cuando queremos proporcionar una clase o función pero no queremos dar más detalles por el momento. </p>
+<p class="indent">
+  A continuación, añadiremos las demás clases y construiremos algunas relaciones entre ellas. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch08_1.html">anterior</a><a href="ch08.html">Subtema 2 de 14: (Ver todo)</a><a href="ch08_3.html">siguiente</a><br/></p>
+<br/><a href="ch08_2.docx" target="_blank"></a></footer>
+</body>
+</html>

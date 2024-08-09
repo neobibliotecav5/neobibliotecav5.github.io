@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch10lev1sec10">
+  Mostrar texto </h3>
+<p class="noindent">
+  Además de dibujar formas, también puedes escribir en el lienzo utilizando la función <span class="literal1" translate="no">
+   create_text
+  </span>. Esta función sólo toma dos coordenadas -las <em class="calibre7">posiciones </em> <em class="calibre7">x e </em> <em class="calibre7">y </em>del texto- junto con un parámetro con nombre para el texto a mostrar. En el código siguiente, creamos nuestro lienzo como antes y luego mostramos una frase situada en las coordenadas ( <span class="literal1" translate="no">
+   150, 100
+  </span>). Guarda este código como <em class="calibre7">texto.py : </em></p>
+<pre class="pre" translate="no"><span class="orange">from</span> tkinter <span class="orange">import</span> *
+tk = Tk()
+canvas = Canvas(tk, width=400, height=400)
+canvas.pack()
+canvas.create_text(150, 100, text=<span class="green">'There once was a man from Toulouse,'</span>)
+</pre>
+<p class="indent">
+  La función <span class="literal1" translate="no">
+   create_text
+  </span>puede tomar otros parámetros útiles, como un color de relleno del texto. En el código siguiente, llamamos a la función <span class="literal1" translate="no">
+   create
+  </span><span class="literal1" translate="no">
+   _text
+  </span> con las coordenadas ( <span class="literal1" translate="no">
+   130, 120
+  </span>), el texto que queremos mostrar y un color de relleno rojo: </p>
+<pre class="pre" translate="no">canvas.create_text(130, 120, text=<span class="green">'Who rode around on a moose.'</span>, fill=<span class="green">'red'</span>)
+</pre>
+<p class="indent">
+<span id="page_156">
+</span>
+  También puedes especificar la <em class="calibre7">fuente </em>, o el tipo de letra utilizado para el texto mostrado, como una tupla con el nombre de la fuente y el tamaño del texto. Por ejemplo, la tupla para la fuente <em class="calibre7">Times </em>de tamaño 20 es ( <span class="literal1" translate="no">
+   'Times', 20
+  </span>). En el código siguiente, mostramos el texto utilizando la fuente <em class="calibre7">Times </em>de tamaño 15, la fuente <em class="calibre7">Helvetica </em>de tamaño 20 y la fuente <em class="calibre7">Courier </em>de tamaños 22 y 30: </p>
+<div class="image">
+<img alt="Image" class="calibre113" src="../images/f0156-01.jpg" translate="no"/>
+</div>
+<pre class="pre" translate="no">canvas.create_text(150, 150, text=<span class="green">'He said, "It\'s my curse,'</span>, font=(<span class="green">'Times'</span>, 15))
+canvas.create_text(200, 200, text=<span class="green">'But it could be worse,'</span>, font=(<span class="green">'Helvetica'</span>, 20))
+canvas.create_text(220, 250, text=<span class="green">'My cousin rides round'</span>, font=(<span class="green">'Courier'</span>, 22))
+canvas.create_text(220, 300, text=<span class="green">'on a goose."'</span>, font=(<span class="green">'Courier'</span>, 30))
+</pre>
+<p class="indent">
+<a class="calibre6" href="ch10.xhtml#ch10fig15">La Figura 10-15 </a>muestra el resultado de estas funciones utilizando las tres fuentes especificadas en cinco tamaños diferentes. </p>
+<div class="image" id="ch10fig15">
+<img alt="Image" class="calibre106" src="../images/10fig15.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figura 10-15: Dibujar texto con <span class="literal">tkinter </span></em></p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch10_10.html">anterior</a><a href="ch10.html">Subtema 11 de 17: (Ver todo)</a><a href="ch10_12.html">siguiente</a><br/></p>
+<br/><a href="ch10_11.docx" target="_blank"></a></footer>
+</body>
+</html>

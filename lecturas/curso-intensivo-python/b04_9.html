@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h2 id="h1-502703b04-0006">Añadir archivos al repositorio</h2>
+<p class="BodyFirst">Añadamos los dos archivos al repositorio y comprobemos de nuevo el estado:</p>
+<pre translate="no"><code translate="no"><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> git_practice$ <b>git add .</b>
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> git_practice$ <b>git status</b>
+On branch main
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached &lt;file&gt;..." to unstage)
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>       new file:   .gitignore
+      new file:   hello_git.py
+
+git_practice$</code></pre>
+<p>El comando <code translate="no">git add .</code> añade al repositorio todos los archivos de un proyecto que aún no estén siendo rastreados <span aria-label="annotation1" class="CodeAnnotation">❶,</span> siempre que no estén listados en <em translate="no">.gitignore</em>. No confirma los archivos; sólo le dice a Git que empiece a prestarles atención. Cuando comprobamos el estado del proyecto ahora, podemos ver que Git reconoce algunos cambios que necesitan ser confirmados <span aria-label="annotation2" class="CodeAnnotation">❷.</span> La etiqueta <em translate="no">new file</em> significa que estos archivos se han añadido recientemente al repositorio <span aria-label="annotation3" class="CodeAnnotation">❸.</span></p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="b04_8.html">anterior</a><a href="b04.html">Subtema 9 de 16: (Ver todo)</a><a href="b04_10.html">siguiente</a><br/></p>
+<br/><a href="b04_9.docx" target="_blank"></a></footer>
+</body>
+</html>

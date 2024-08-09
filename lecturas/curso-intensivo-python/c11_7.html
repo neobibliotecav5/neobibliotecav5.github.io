@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h2 id="h1-502703c11-0002">Probar una función</h2>
+<p class="BodyFirst">Para aprender a probar, necesitamos código que probar. He aquí una función sencilla que recibe un nombre y un apellido y devuelve un nombre completo con un formato claro:</p>
+<p class="CodeLabel" translate="no"><b>name_function.py</b></p>
+<pre translate="no"><code translate="no">def get_formatted_name(first, last):
+    """Generate a neatly formatted full name."""
+    full_name = f"{first} {last}"
+    return full_name.title()</code></pre>
+<p>La función <code translate="no">get_formatted_name()</code> combina el nombre y los apellidos con un espacio intermedio para completar un nombre completo, y luego escribe en mayúsculas y devuelve el nombre completo. Para comprobar que <code translate="no">get_formatted_name()</code> funciona, vamos a crear un programa que utilice esta función. El programa <em translate="no">names.py</em> permite a los usuarios introducir un nombre y un apellido, y ver un nombre completo formateado ordenadamente:</p>
+<p class="CodeLabel" translate="no"><b>names.py</b></p>
+<pre translate="no"><code translate="no">from name_function import get_formatted_name
+
+print("Enter 'q' at any time to quit.")
+while True:
+    first = input("\nPlease give me a first name: ")
+    if first == 'q':
+        break
+    last = input("Please give me a last name: ")
+    if last == 'q':
+        break
+
+    formatted_name = get_formatted_name(first, last)
+    print(f"\tNeatly formatted name: {formatted_name}.")</code></pre>
+<p><span epub:type="pagebreak" id="Page_212" title="212"></span>Este programa importa <code translate="no">get_formatted_name()</code> de <em translate="no">name_function.py</em>. El usuario puede introducir una serie de nombres y apellidos y ver los nombres completos formateados que se generan:</p>
+<pre translate="no"><code translate="no">Enter 'q' at any time to quit.
+
+Please give me a first name: <b>janis</b>
+Please give me a last name: <b>joplin</b>
+       Neatly formatted name: Janis Joplin.
+
+Please give me a first name: <b>bob</b>
+Please give me a last name: <b>dylan</b>
+        Neatly formatted name: Bob Dylan.
+
+Please give me a first name: <b>q</b></code></pre>
+<p>Podemos ver que los nombres generados aquí son correctos. Pero digamos que queremos modificar <code translate="no">get_formatted_name()</code> para que también pueda manejar segundos nombres. Al hacerlo, queremos asegurarnos de que no rompemos la forma en que la función gestiona los nombres que sólo tienen nombre y apellidos. Podríamos probar nuestro código ejecutando <em translate="no">names.py</em> e introduciendo un nombre como <code translate="no">Janis Joplin</code> cada vez que modificamos <code translate="no">get_formatted_name()</code>, pero eso se volvería tedioso. Afortunadamente, <code translate="no">pytest</code> proporciona una forma eficaz de automatizar la comprobación de la salida de una función. Si automatizamos las pruebas de <code translate="no">get_formatted_name()</code>, siempre podremos estar seguros de que la función funcionará cuando se le den los tipos de nombres para los que hemos escrito pruebas.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c11_6.html">anterior</a><a href="c11.html">Subtema 7 de 22: (Ver todo)</a><a href="c11_8.html">siguiente</a><br/></p>
+<br/><a href="c11_7.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c13-0008">Comprobar si un alienígena ha tocado el borde</h3>
+<p class="BodyFirst">Necesitamos un método para comprobar si un alienígena está en uno de los bordes, y tenemos que modificar <code translate="no">update()</code> para permitir que cada alienígena se mueva en la dirección adecuada. Este código forma parte de la clase <code translate="no">Alien</code>:</p>
+<p class="CodeLabel" translate="no"><b>alien.py</b></p>
+<pre translate="no"><code translate="no"><code translate="no">    </code>def check_edges(self):
+    <code translate="no">    </code>"""Return True if alien is at edge of screen."""
+    <code translate="no">    </code>screen_rect = self.screen.get_rect()
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     <code translate="no">    </code>return (self.rect.right &gt;= screen_rect.right) or (self.rect.left &lt;= 0)
+
+<code translate="no">    </code><span class="LiteralGray">def update(self):</span>
+    <code translate="no">    </code>"""Move the alien right or left."""
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     <code translate="no">    </code>self.x += self.settings.alien_speed * self.settings.fleet_direction
+<code translate="no">    </code><span class="LiteralGray">    self.rect.x = self.x</span></code></pre>
+<p>Podemos llamar al nuevo método <code translate="no">check_edges()</code> sobre cualquier alienígena para ver si está en el borde izquierdo o derecho. El alienígena está en el borde derecho si el atributo <code translate="no">right</code> de su <code translate="no">rect</code> es mayor o igual que el atributo <code translate="no">right</code> del <code translate="no">rect</code> de la pantalla. Está en el borde izquierdo si su valor <code translate="no">left</code> es menor o igual que 0 <span aria-label="annotation1" class="CodeAnnotation">❶.</span> En lugar de poner esta prueba condicional en un bloque <code translate="no">if</code>, ponemos la prueba directamente en la sentencia <code translate="no">return</code>. Este método devolverá <code translate="no">True</code> si el alienígena está en el borde derecho o izquierdo, y <code translate="no">False</code> si no está en ninguno de los bordes.</p>
+<p>Modificamos el método <code translate="no">update()</code> para permitir el movimiento hacia la izquierda o la derecha multiplicando la velocidad del alienígena por el valor de <code translate="no">fleet_direction</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Si <code translate="no">fleet_direction</code> es 1, el valor de <code translate="no">alien_speed</code> se sumará a la posición actual del alienígena, moviéndolo hacia la derecha; si <code translate="no">fleet_direction</code> es -1, el valor se restará de la posición del alienígena, moviéndolo hacia la izquierda.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c13_14.html">anterior</a><a href="c13.html">Subtema 15 de 33: (Ver todo)</a><a href="c13_16.html">siguiente</a><br/></p>
+<br/><a href="c13_15.docx" target="_blank"></a></footer>
+</body>
+</html>

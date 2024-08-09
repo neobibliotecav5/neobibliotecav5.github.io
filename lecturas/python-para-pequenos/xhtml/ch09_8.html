@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch09lev1sec7">
+<span class="calibre2" id="page_127">
+</span>
+  Una función para dibujar cuadrados </h3>
+<p class="noindent">
+  Ahora haremos algunos experimentos más con formas. Utilizaremos la función dibujar cuadrado del principio del capítulo y le pasaremos el tamaño del cuadrado como parámetro: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">def</span> mysquare(size):
+        <span class="orange">for</span> x <span class="orange">in</span> <span class="violet">range</span>(1, 5):
+            t.forward(size)
+            t.left(90)
+</pre>
+<p class="indent">
+  Prueba tu función llamándola con el tamaño 50, así: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> mysquare(50)
+</pre>
+<p class="indent">
+  Esto produce el cuadrado pequeño de <a class="calibre6" href="ch09.xhtml#ch09fig09">la Figura 9-9 . </a></p>
+<div class="image" id="ch09fig09">
+<img alt="Image" class="calibre90" src="../images/09fig09.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">Figura 9-9: Tortuga dibujando un </em>cuadrado pequeño</p>
+<p class="indent">
+  Ahora vamos a probar nuestra función con distintos tamaños. El código siguiente crea cinco cuadrados consecutivos de tamaño 25, 50, 75, 100 y 125: </p>
+<span id="page_128">
+</span>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> t.reset()
+<span class="brown">&gt;&gt;&gt;</span> mysquare(25)
+<span class="brown">&gt;&gt;&gt;</span> mysquare(50)
+<span class="brown">&gt;&gt;&gt;</span> mysquare(75)
+<span class="brown">&gt;&gt;&gt;</span> mysquare(100)
+<span class="brown">&gt;&gt;&gt;</span> mysquare(125)
+</pre>
+<p class="indent">
+  Estos cuadrados deberían tener el aspecto de <a class="calibre6" href="ch09.xhtml#ch09fig10">la Figura 9-10 . </a></p>
+<div class="image" id="ch09fig10">
+<img alt="Image" class="calibre16" src="../images/09fig10.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figura 9-10: Tortuga dibujando múltiples </em>cuadrados</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch09_7.html">anterior</a><a href="ch09.html">Subtema 8 de 12: (Ver todo)</a><a href="ch09_9.html">siguiente</a><br/></p>
+<br/><a href="ch09_8.docx" target="_blank"></a></footer>
+</body>
+</html>

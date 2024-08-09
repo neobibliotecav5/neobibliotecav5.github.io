@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c16-0013">Examinar los datos GeoJSON</h3>
+<p class="BodyFirst">Cuando abras <em translate="no">eq_1_day_m1.geojson</em>, verás que es muy denso y difícil de leer:</p>
+<pre translate="no"><code translate="no">{"type":"FeatureCollection","metadata":{"generated":1649052296000,...
+{"type":"Feature","properties":{"mag":1.6,"place":"63 km SE of Ped...
+{"type":"Feature","properties":{"mag":2.2,"place":"27 km SSE of Ca...
+{"type":"Feature","properties":{"mag":3.7,"place":"102 km SSE of S...
+{"type":"Feature","properties":{"mag":2.92000008,"place":"49 km SE...
+{"type":"Feature","properties":{"mag":1.4,"place":"44 km NE of Sus...
+<var>--snip--</var></code></pre>
+<p>Este archivo está formateado más para máquinas que para humanos. Pero podemos ver que el archivo contiene algunos diccionarios, así como información que nos interesa, como las magnitudes y ubicaciones de los terremotos.</p>
+<p>El módulo <code translate="no">json</code> proporciona diversas herramientas para explorar y trabajar con datos JSON. Algunas de estas herramientas nos ayudarán a reformatear el archivo para que podamos ver los datos en bruto más fácilmente antes de trabajar con ellos mediante programación.</p>
+<p>Empecemos por cargar los datos y mostrarlos en un formato más fácil de leer. Se trata de un archivo de datos largo, así que en lugar de imprimirlo, reescribiremos los datos en un nuevo archivo. Así podremos abrir ese archivo y desplazarnos hacia adelante y hacia atrás por los datos más fácilmente:</p>
+<p class="CodeLabel" translate="no"><b>eq_explore_data.py</b></p>
+<pre translate="no"><code translate="no">from pathlib import Path
+import json
+
+# Read data as a string and convert to a Python object.
+path = Path('eq_data/eq_data_1_day_m1.geojson')
+contents = path.read_text()
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> all_eq_data = json.loads(contents)
+
+# Create a more readable version of the data file.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> path = Path('eq_data/readable_eq_data.geojson')
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> readable_contents = json.dumps(all_eq_data, indent=4)
+path.write_text(readable_contents)</code></pre>
+<p><span epub:type="pagebreak" id="Page_344" title="344"></span>Leemos el archivo de datos como una cadena, y utilizamos <code translate="no">json.loads()</code> para convertir la representación de cadena del archivo en un objeto ❶ de Python <span aria-label="annotation1" class="CodeAnnotation">.</span> Este es el mismo enfoque que utilizamos en el <span class="xref" itemid="xref_target_Chapter 10">Capítulo 10</span>. En este caso, todo el conjunto de datos se convierte en un único diccionario, que asignamos a <code translate="no">all_eq_data</code>. A continuación, definimos un nuevo <code translate="no">path</code> en el que podemos escribir estos mismos datos en un formato ❷ más legible <span aria-label="annotation2" class="CodeAnnotation">.</span> La función <code translate="no">json.dumps()</code> que viste en el <span class="xref" itemid="xref_target_Chapter 10">Capítulo</span> 10 puede tomar un argumento opcional <code translate="no">indent</code> <span aria-label="annotation3" class="CodeAnnotation">❸,</span> que le indica cuánto sangrar los elementos anidados en la estructura de datos.</p>
+<p>Cuando busques en tu directorio <em translate="no">eq_data</em> y abras el archivo <em translate="no">readable_eq_data.json</em>, esto es lo primero que verás:</p>
+<p class="CodeLabel" translate="no"><b>readable_eq_data.json</b></p>
+<pre translate="no"><code translate="no">{
+    "type": "FeatureCollection",
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     "metadata": {
+        "generated": 1649052296000,
+        "url": "https://earthquake.usgs.gov/earthquakes/.../1.0_day.geojson",
+        "title": "USGS Magnitude 1.0+ Earthquakes, Past Day",
+        "status": 200,
+        "api": "1.10.3",
+        "count": 160
+    },
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     "features": [
+    <em class="LiteralGrayItalic" translate="no">--snip--</em></code></pre>
+<p>La primera parte del archivo incluye una sección con la clave <code translate="no">"metadata"</code><span aria-label="annotation1" class="CodeAnnotation">❶.</span> Esto nos indica cuándo se generó el archivo de datos y dónde podemos encontrar los datos en Internet. También nos da un título legible por humanos y el número de terremotos incluidos en este archivo. En este periodo de 24 horas, se registraron <code translate="no">160</code> terremotos.</p>
+<p>Este archivo GeoJSON tiene una estructura que resulta útil para los datos basados en la ubicación. La información se almacena en una lista asociada a la clave <code translate="no">"features"</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Como este archivo contiene datos sobre terremotos, los datos están en forma de lista, donde cada elemento de la lista corresponde a un único terremoto. Esta estructura puede parecer confusa, pero es bastante potente. Permite a los geólogos almacenar toda la información que necesiten en un diccionario sobre cada terremoto, y luego meter todos esos diccionarios en una gran lista.</p>
+<p>Veamos un diccionario que representa un único terremoto:</p>
+<p class="CodeLabel" translate="no"><b>readable_eq_data.json</b></p>
+<pre translate="no"><code translate="no">    <em class="LiteralGrayItalic" translate="no">--snip--</em>
+        {
+            "type": "Feature",
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>             "properties": {
+                "mag": 1.6,
+<var>                --snip--</var>
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>                 "title": "M 1.6 - 27 km NNW of Susitna, Alaska"
+            },
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>             "geometry": {
+                "type": "Point",
+                "coordinates": [
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>                     -150.7585,
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>                     61.7591,
+                    56.3
+<span epub:type="pagebreak" id="Page_345" title="345"></span>                ]
+            },
+            "id": "ak0224bju1jx"
+        },</code></pre>
+<p>La clave <code translate="no">"properties"</code> contiene mucha información sobre cada terremoto <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Nos interesa sobre todo la magnitud de cada terremoto, asociada a la clave <code translate="no">"mag"</code>. También nos interesa el <code translate="no">"title"</code> de cada suceso, que proporciona un buen resumen de su magnitud y localización <span aria-label="annotation2" class="CodeAnnotation">❷.</span></p>
+<p>La clave <code translate="no">"geometry"</code> nos ayuda a comprender dónde se produjo el terremoto <span aria-label="annotation3" class="CodeAnnotation">❸.</span> Necesitaremos esta información para cartografiar cada suceso. Podemos encontrar la longitud <span aria-label="annotation4" class="CodeAnnotation">❹</span> y la latitud <span aria-label="annotation5" class="CodeAnnotation">❺</span> de cada terremoto en una lista asociada a la clave <code translate="no">"coordinates"</code>.</p>
+<p>Este archivo contiene mucho más anidamiento del que utilizaríamos en el código que escribimos, así que si te parece confuso, no te preocupes: Python se encargará de la mayor parte de la complejidad. Sólo trabajaremos con uno o dos niveles de anidamiento cada vez. Empezaremos sacando un diccionario para cada terremoto que se haya registrado en el periodo de 24 horas.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c16_17.html">anterior</a><a href="c16.html">Subtema 18 de 29: (Ver todo)</a><a href="c16_19.html">siguiente</a><br/></p>
+<br/><a href="c16_18.docx" target="_blank"></a></footer>
+</body>
+</html>

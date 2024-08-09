@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h2 id="h1-502703c17-0003">La API de Hacker News</h2>
+<p class="BodyFirst">Para explorar cómo utilizar las llamadas a la API en otros sitios, echemos un vistazo rápido a Hacker News<a class="LinkURL" href="https://news.ycombinator.com">(https://news.ycombinator.com)</a>. En Hacker News, la gente comparte artículos sobre programación y tecnología y participa en animados debates sobre esos artículos. La API de Hacker News proporciona acceso a datos sobre todos los envíos y comentarios del sitio, y puedes utilizar la API sin tener que registrarte para obtener una clave.</p>
+<p>La siguiente llamada devuelve información sobre el artículo principal actual en el momento de escribir este artículo:</p>
+<pre translate="no"><code translate="no">https://hacker-news.firebaseio.com/v0/item/31353677.json</code></pre>
+<p>Cuando introduzcas esta URL en un navegador, verás que el texto de la página está encerrado entre llaves, lo que significa que es un diccionario. Pero la respuesta es difícil de examinar sin un formato mejor. Pasemos esta URL por el método <code translate="no">json.dumps()</code>, como hicimos en el proyecto terremoto del <span class="xref" itemid="xref_target_Chapter 16">Capítulo 16</span>, para poder explorar el tipo de información que se devuelve sobre un artículo:</p>
+<p class="CodeLabel" translate="no"><b>hn_article.py</b></p>
+<pre translate="no"><code translate="no">import requests
+import json
+
+# Make an API call, and store the response.
+url = "https://hacker-news.firebaseio.com/v0/item/31353677.json"
+r = requests.get(url)
+print(f"Status code: {r.status_code}")
+
+# Explore the structure of the data.
+response_dict = r.json()
+response_string = json.dumps(response_dict, indent=4)
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> print(response_string)</code></pre>
+<p><span epub:type="pagebreak" id="Page_369" title="369"></span>Todo en este programa debería resultarte familiar, porque lo hemos utilizado todo en los dos capítulos anteriores. La principal diferencia aquí es que podemos imprimir la cadena de respuesta formateada <span aria-label="annotation1" class="CodeAnnotation">❶</span> en lugar de escribirla en un archivo, porque la salida no es especialmente larga.</p>
+<p>La salida es un diccionario de información sobre el artículo con el ID <code translate="no">31353677</code>:</p>
+<pre translate="no"><code translate="no">{
+    "by": "sohkamyung",
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     "descendants": 302,
+    "id": 31353677,
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     "kids": [
+        31354987,
+        31354235,
+        <var>--snip--</var>
+    ],
+    "score": 785,
+    "time": 1652361401,
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     "title": "Astronomers reveal first image of the black hole
+        at the heart of our galaxy",
+    "type": "story",
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>     "url": "https://public.nrao.edu/news/.../"
+}</code></pre>
+<p>El diccionario contiene una serie de claves con las que podemos trabajar. La clave <code translate="no">"descendants"</code> nos indica el número de comentarios que ha recibido el artículo <span aria-label="annotation1" class="CodeAnnotation">❶.</span> La clave <code translate="no">"kids"</code> proporciona los ID de todos los comentarios realizados directamente en respuesta a este envío <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Cada uno de estos comentarios puede tener también comentarios propios, por lo que el número de descendientes que tiene un envío suele ser mayor que su número de hijos. Podemos ver el título del artículo que se está discutiendo <span aria-label="annotation3" class="CodeAnnotation">❸</span> y también una URL del artículo que se está discutiendo <span aria-label="annotation4" class="CodeAnnotation">❹.</span></p>
+<p>La siguiente URL devuelve una lista simple de todos los ID de los principales artículos actuales de Hacker News:</p>
+<pre translate="no"><code translate="no">https://hacker-news.firebaseio.com/v0/topstories.json</code></pre>
+<p>Podemos utilizar esta llamada para averiguar qué artículos están en la página principal en este momento, y luego generar una serie de llamadas a la API similares a la que acabamos de examinar. Con este enfoque, podemos imprimir un resumen de todos los artículos que están en la portada de Hacker News en este momento:</p>
+<p class="CodeLabel" translate="no"><b>hn_submissions.py</b></p>
+<pre translate="no"><code translate="no">from operator import itemgetter
+
+import requests
+
+# Make an API call and check the response.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> url = "https://hacker-news.firebaseio.com/v0/topstories.json"
+r = requests.get(url)
+print(f"Status code: {r.status_code}")
+
+# Process information about each submission.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> submission_ids = r.json()
+<span epub:type="pagebreak" id="Page_370" title="370"></span><span aria-label="annotation3" class="CodeAnnotationHang">❸</span> submission_dicts = []
+for submission_id in submission_ids[:5]:
+    # Make a new API call for each submission.
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>     url = f"https://hacker-news.firebaseio.com/v0/item/{submission_id}.json"
+    r = requests.get(url)
+    print(f"id: {submission_id}\tstatus: {r.status_code}")
+    response_dict = r.json()
+
+    # Build a dictionary for each article.
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>     submission_dict = {
+        'title': response_dict['title'],
+        'hn_link': f"https://news.ycombinator.com/item?id={submission_id}",
+        'comments': response_dict['descendants'],
+    }
+<span aria-label="annotation6" class="CodeAnnotationHang">❻</span>     submission_dicts.append(submission_dict)
+
+<span aria-label="annotation7" class="CodeAnnotationHang">❼</span> submission_dicts = sorted(submission_dicts, key=itemgetter('comments'),
+                            reverse=True)
+
+<span aria-label="annotation8" class="CodeAnnotationHang">❽</span> for submission_dict in submission_dicts:
+    print(f"\nTitle: {submission_dict['title']}")
+    print(f"Discussion link: {submission_dict['hn_link']}")
+    print(f"Comments: {submission_dict['comments']}")</code></pre>
+<p>Primero, hacemos una llamada a la API e imprimimos el estado de la respuesta <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Esta llamada a la API devuelve una lista que contiene los ID de hasta 500 de los artículos más populares de Hacker News en el momento en que se realiza la llamada. A continuación, convertimos el objeto respuesta en una lista Python <span aria-label="annotation2" class="CodeAnnotation">❷,</span> que asignamos a <code translate="no">submission_ids</code>. Utilizaremos estos ID para construir un conjunto de diccionarios, cada uno de los cuales contiene información sobre uno de los envíos actuales.</p>
+<p>Creamos una lista vacía llamada <code translate="no">submission_dicts</code> para almacenar estos diccionarios <span aria-label="annotation3" class="CodeAnnotation">❸.</span> A continuación, recorremos en bucle los ID de las 30 mejores presentaciones. Hacemos una nueva llamada a la API para cada envío generando una URL que incluya el valor actual de <code translate="no">submission_id</code> <span aria-label="annotation4" class="CodeAnnotation">❹.</span> Imprimimos el estado de cada solicitud junto con su ID, para saber si se ha realizado correctamente.</p>
+<p>A continuación, creamos un diccionario para el envío que se está procesando actualmente <span aria-label="annotation5" class="CodeAnnotation">❺.</span> Almacenamos el título del envío, un enlace a la página de discusión de ese artículo y el número de comentarios que ha recibido hasta el momento. Después añadimos cada <code translate="no">submission_dict</code> a la lista <code translate="no">submission_dicts</code> <span aria-label="annotation6" class="CodeAnnotation">❻.</span></p>
+<p>Cada envío en Hacker News se clasifica según una puntuación general basada en una serie de factores, entre ellos cuántas veces ha sido votado, cuántos comentarios ha recibido y lo reciente que es el envío. Queremos ordenar la lista de diccionarios por el número de comentarios. Para ello, utilizamos una función llamada <code translate="no">itemgetter()</code> <span aria-label="annotation7" class="CodeAnnotation">❼,</span> que procede del módulo <code translate="no">operator</code>. Le pasamos a esta función la clave <code translate="no">'comments'</code>, y extrae el valor asociado a esa clave de cada diccionario de la lista. A continuación, la función <code translate="no">sorted()</code> utiliza este valor como base para ordenar la lista. Ordenamos la lista en orden inverso, para colocar primero las historias más comentadas.</p>
+<p>Una vez ordenada la lista, la recorremos en bucle <span aria-label="annotation8" class="CodeAnnotation">❽</span> e imprimimos tres datos sobre cada uno de los envíos principales: el título, un enlace <span epub:type="pagebreak" id="Page_371" title="371"></span>a la página de discusión y el número de comentarios que tiene actualmente el envío:</p>
+<pre translate="no"><code translate="no">Status code: 200
+id: 31390506    status: 200
+id: 31389893    status: 200
+id: 31390742    status: 200
+<var>--snip--</var>
+
+Title: Fly.io: The reclaimer of Heroku's magic
+Discussion link: https://news.ycombinator.com/item?id=31390506
+Comments: 134
+
+Title: The weird Hewlett Packard FreeDOS option
+Discussion link: https://news.ycombinator.com/item?id=31389893
+Comments: 64
+
+Title: Modern JavaScript Tutorial
+Discussion link: https://news.ycombinator.com/item?id=31390742
+Comments: 20
+<var>--snip--</var></code></pre>
+<p>Utilizarías un proceso similar para acceder a la información y analizarla con cualquier API. Con estos datos, podrías hacer una visualización que mostrara qué envíos han inspirado los debates recientes más activos. Esta es también la base de las aplicaciones que proporcionan una experiencia de lectura personalizada para sitios como Hacker News. Para saber más sobre a qué tipo de información puedes acceder a través de la API de Hacker News, visita la página de documentación en <a class="LinkURL" href="https://github.com/HackerNews/API">https://github.com/HackerNews/API.</a></p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c17_16.html">anterior</a><a href="c17.html">Subtema 17 de 20: (Ver todo)</a><a href="c17_18.html">siguiente</a><br/></p>
+<br/><a href="c17_17.docx" target="_blank"></a></footer>
+</body>
+</html>

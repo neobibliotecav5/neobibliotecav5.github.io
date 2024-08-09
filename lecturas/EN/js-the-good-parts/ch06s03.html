@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Delete</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Delete"><div class="titlepage"><div><div><h1 class="title"><a id="delete-id1"/>Delete</h1></div></div></div><p>Since JavaScript's arrays are really objects, the <code class="literal">delete</code> operator can be used to remove elements from an
+                    array:<a id="IDX-CHP-6-0301" class="indexterm"/><a id="IDX-CHP-6-0302" class="indexterm"/><a id="IDX-CHP-6-0303" class="indexterm"/><a id="IDX-CHP-6-0304" class="indexterm"/><a id="IDX-CHP-6-0305" class="indexterm"/></p><a id="I_programlisting6_d1e4500"/><pre class="programlisting">delete numbers[2];
+// numbers is ['zero', 'one', undefined, 'shi', 'go']</pre><p>Unfortunately, that leaves a hole in the array. This is because the elements to
+                the right of the deleted element retain their original names. What you usually want
+                is to decrement the names of each of the elements to the right.</p><p>Fortunately, JavaScript arrays have a <code class="literal">splice</code>
+                method. It can do surgery on an array, deleting some number of elements and
+                replacing them with other elements. The first argument is an ordinal in the array.
+                The second argument is the number of elements to delete. Any additional arguments
+                get inserted into the array at that point:</p><a id="I_programlisting6_d1e4509"/><pre class="programlisting">numbers.splice(2, 1);
+// numbers is ['zero', 'one', 'shi', 'go']</pre><p>The property whose value is <code class="literal">'shi'</code> has its key
+                changed from <code class="literal">'3'</code> to <code class="literal">'2'</code>. Because every property after the deleted property must be
+                removed and reinserted with a new key, this might not go quickly for large
+                arrays.</p></div></body></html>

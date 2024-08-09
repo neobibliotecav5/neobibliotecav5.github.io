@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h2 id="h1-502703b05-0001"><span epub:type="pagebreak" id="Page_494" title="494"></span>Comprender las implantaciones</h2>
+<p class="BodyFirst">Cuando trates de solucionar un intento de despliegue concreto, es útil tener una idea clara de cómo funciona un despliegue típico. <em translate="no">Deployment</em> se refiere al proceso de tomar un proyecto que funciona en tu sistema local, y copiar ese proyecto a un servidor remoto de forma que pueda responder a las peticiones de cualquier usuario de Internet. El entorno remoto difiere de un sistema local típico en varios aspectos importantes: probablemente no sea el mismo sistema operativo (SO) que el que estás utilizando, y lo más probable es que sea uno de los muchos servidores virtuales de un único servidor físico.</p>
+<p>Cuando despliegas un proyecto, o <em translate="no">push</em> al servidor remoto, hay que seguir los siguientes pasos:</p>
+<ul>
+<li>Crear un servidor virtual en una máquina física en un centro de datos.</li>
+<li>Establecer una conexión entre el sistema local y el servidor remoto.</li>
+<li>Copia el código del proyecto en el servidor remoto.</li>
+<li>Identifica todas las dependencias del proyecto e instálalas en el servidor remoto.</li>
+<li>Configura una base de datos y ejecuta las migraciones existentes.</li>
+<li>Copia los archivos estáticos (CSS, archivos JavaScript y archivos multimedia) en un lugar donde puedan servirse con eficacia.</li>
+<li>Inicia un servidor para gestionar las solicitudes entrantes.</li>
+<li>Comienza a dirigir las solicitudes entrantes al proyecto, una vez que esté preparado para gestionarlas.</li>
+</ul>
+<p>Si tienes en cuenta todo lo que conlleva un despliegue, no es de extrañar que los despliegues fracasen a menudo. Afortunadamente, una vez que comprendas lo que debería estar ocurriendo, tendrás más posibilidades de identificar lo que ha ido mal. Si puedes identificar lo que ha ido mal, tal vez puedas identificar una solución que haga que el siguiente intento de despliegue tenga éxito.</p>
+<p>Puedes desarrollar localmente en un tipo de SO y enviar a un servidor que ejecute un SO diferente. Es importante que sepas a qué tipo de sistema estás enviando el software, porque eso puede ayudarte a solucionar algunos problemas. En el momento de escribir esto, un servidor remoto básico en Platform.sh ejecuta Debian Linux; la mayoría de los servidores remotos son sistemas basados en Linux.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="b05_1.html">anterior</a><a href="b05.html">Subtema 2 de 12: (Ver todo)</a><a href="b05_3.html">siguiente</a><br/></p>
+<br/><a href="b05_2.docx" target="_blank"></a></footer>
+</body>
+</html>

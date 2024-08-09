@@ -1,0 +1,63 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Prototype</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="Prototype"><div class="titlepage"><div><div><h1 class="title"><a id="prototype"></a>Prototipo</h1></div></div></div><p>Todo objeto está vinculado a un objeto prototipo del que puede heredar propiedades. Todos los objetos creados a partir de literales de objeto están vinculados a <code class="literal" translate="no">Object.prototype</code>, un objeto que viene de serie con JavaScript.<a class="indexterm" id="IDX-CHP-3-0163"></a></p><p>Cuando creas un nuevo objeto, puedes seleccionar el objeto que debe ser su prototipo. El mecanismo que proporciona JavaScript para hacer esto es desordenado y complejo, pero puede simplificarse significativamente. Añadiremos un método <code class="literal" translate="no">create</code> a la función <code class="literal" translate="no">Object</code>. El método <code class="literal" translate="no">beget</code> crea un nuevo objeto que utiliza un objeto antiguo como prototipo. En el próximo capítulo hablaremos mucho más sobre las funciones.</p><a id="I_programlisting3_d1e2150"></a><pre class="programlisting" translate="no">if (typeof Object.create !== 'function') {
+     Object.create = function (o) {
+         var F = function () {};
+         F.prototype = o;
+         return new F();
+     };
+}
+var another_stooge = Object.create(stooge);</pre><p>El enlace prototipo no tiene ningún efecto sobre la actualización. Cuando hacemos cambios en un objeto, el prototipo del objeto no se toca:<a class="indexterm" id="IDX-CHP-3-0164"></a></p><a id="I_programlisting3_d1e2161"></a><pre class="programlisting" translate="no">another_stooge['first-name'] = 'Harry';
+another_stooge['middle-name'] = 'Moses';
+another_stooge.nickname = 'Moe';</pre><p>El enlace prototipo sólo se utiliza en la recuperación. Si intentamos recuperar el valor de una propiedad de un objeto, y si el objeto carece del nombre de la propiedad, entonces JavaScript intenta recuperar el valor de la propiedad del objeto prototipo. Y si ese objeto carece de la propiedad, entonces pasa a <span class="emphasis"><em translate="no">its</em></span> prototipo, y así sucesivamente hasta que el proceso llega finalmente a <code class="literal" translate="no">Object.prototype</code>. Si la propiedad deseada no existe en ninguna parte de la cadena de prototipos, entonces el resultado es el valor <code class="literal" translate="no">undefined</code>. A esto se le llama <span class="emphasis"><em translate="no">delegation</em></span>.<a class="indexterm" id="IDX-CHP-3-0165"></a><a class="indexterm" id="IDX-CHP-3-0166"></a><a class="indexterm" id="IDX-CHP-3-0167"></a><a class="indexterm" id="IDX-CHP-3-0168"></a></p><p>La relación prototipo es una relación dinámica. Si añadimos una nueva propiedad a un prototipo, esa propiedad será visible inmediatamente en todos los objetos que se basen en ese prototipo:</p><a id="I_programlisting3_d1e2196"></a><pre class="programlisting" translate="no">stooge.profession = 'actor';
+another_stooge.profession    // 'actor'</pre><p>Veremos más sobre la cadena de prototipos en <a class="xref" href="ch06.html" title="Chapter 6. Arrays">el Capítulo 6</a>.</p></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="ch03s04.html">← Anterior</a><a href="ch03s06.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="ch03s05.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\ch03s05.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

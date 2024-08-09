@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch01lev1sec05"><strong><span class="blue1">Probando tu configuración de Minecraft Python</span></strong></h3>
+<p class="noindent">Vamos a asegurarnos de que tienes todo el software instalado correctamente. Para ello, nos sumergiremos rápidamente en un programa Python muy básico que interactuará con Minecraft.</p>
+<p class="indent">Lo primero es lo primero: si utilizas un PC o un Mac, tienes que abrir tres programas. Sigue estos pasos:</p>
+<ol>
+<li class="noindent"><p class="list">Abre Spigot yendo a tu carpeta <em>Minecraft Tools</em> y haciendo clic en <em>Start_Server</em>.</p></li>
+<li class="noindent"><p class="list">Abre Minecraft y conéctate al servidor Spigot seleccionando <strong>Minecraft Python World</strong> en el menú multijugador.</p></li>
+<li class="noindent"><p class="list">Pulsa <small>ESC</small> en el teclado para liberar el cursor de la ventana de Minecraft y, a continuación, abre un intérprete de comandos Python en IDLE.</p></li>
+</ol>
+<p class="indent"><span epub:type="pagebreak" id="page_28"></span>Necesitarás tener estas tres piezas de software abiertas siempre que escribas programas que interactúen con Minecraft.</p>
+<p class="indent">Si utilizas una Raspberry Pi, abre IDLE y Minecraft.</p>
+<p class="indent">Ahora introduce esta línea en tu shell. Asegúrate de que introduces minúsculas y mayúsculas para que coincidan exactamente.</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft</p>
+<p class="indent">Pulsa <small>ENTER</small> para que estés en la siguiente línea del intérprete de comandos. A continuación, introduce esta línea:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> mc = Minecraft.create()</p>
+<p class="indent">En este punto, si ves un mensaje de error parecido al de <a href="ch01.xhtml#ch1fig20">la Figura 1-20</a>, algo va mal.</p>
+<div class="image"><img alt="image" src="../images/f01-20.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch1fig20"></a><em>Figura 1-20: Un mensaje de error que significa que no he iniciado Spigot</em></p>
+<p class="indent">Comprueba estas cosas en orden: ¿Tienes Minecraft abierto? ¿Está funcionando Spigot? ¿Estás en el mundo multijugador? ¿Estás utilizando la versión correcta de Python (3, no 2)? Si el error se ha producido después de escribir la primera línea, significa que no has instalado la API correctamente. Repite los pasos para instalar de nuevo la API. Si el error se produjo después de la segunda línea, puede que no tengas Java o Spigot instalados correctamente. Intenta reinstalar estas cosas de una en una.</p>
+<p class="indent">La causa más común de este problema es que tu ordenador esté utilizando una versión antigua de Java para ejecutar el servidor. Asegúrate de instalar la última versión de Java y comprueba el número de versión utilizando el comando <span class="literal">java -version</span> explicado en "<a href="ch01.xhtml#ch01lev2sec03">Instalar Java</a>" en <a href="ch01.xhtml#page_4">la página 4</a> (para Windows) o "<a href="ch01.xhtml#ch01lev2sec03">Instalar Java</a>" en <a href="ch01.xhtml#page_15">la página 15</a> (para Mac).</p>
+<p class="indent"><span epub:type="pagebreak" id="page_29"></span>Si aparece un error que dice <span class="literal">ImportError: No module named 'mcpi'</span>, puede que estés utilizando una versión antigua de Python. Asegúrate de que tienes instalada la última versión.</p>
+<p class="indent">Si no recibes un mensaje de error, añade esta línea al programa en IDLE:</p>
+<p class="programs" translate="no">mc.player.setTilePos(0, 120, 0)</p>
+<p class="indent">Cuando lo hagas, ¡el jugador volará por los aires! Este código teletransporta al jugador a una nueva posición. Aprenderás más sobre esto en <a href="ch02.xhtml#ch02">el Capítulo 2</a>. ¡Pasa página para empezar!<span epub:type="pagebreak" id="page_30"></span></p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch01_5.html">anterior</a><a href="ch01.html">Subtema 6 de 6: (Ver todo)</a><br/></p>
+<br/><a href="ch01_6.docx" target="_blank"></a></footer>
+</body>
+</html>

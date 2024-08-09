@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703b05-0002">Lee el registro de salida</h3>
+<p class="BodyFirst">Como ya se ha dicho, la salida del registro que ves cuando ejecutas un comando como <code translate="no">platform push </code>puede ser a la vez informativa e intimidatoria. Lee el siguiente fragmento de la salida del registro, tomado de un intento diferente de utilizar <code translate="no">platform push</code>, y comprueba si puedes detectar el problema:</p>
+<pre translate="no"><code translate="no"><var>--snip--</var>
+Collecting soupsieve==2.3.2.post1
+  Using cached soupsieve-2.3.2.post1-py3-none-any.whl (37 kB)
+Collecting sqlparse==0.4.2
+  Using cached sqlparse-0.4.2-py3-none-any.whl (42 kB)
+Installing collected packages: platformshconfig, sqlparse,...
+Successfully installed Django-4.1 asgiref-3.5.2 beautifulsoup4-4.11.1...
+W: ERROR: Could not find a version that satisfies the requirement gunicorrn
+W: ERROR: No matching distribution found for gunicorrn
+
+130 static files copied to '/app/static'.
+
+Executing pre-flight checks...
+<var>--snip--</var></code></pre>
+<p>Cuando falla un intento de despliegue, una buena estrategia consiste en examinar la salida del registro y ver si puedes detectar algo que parezca una advertencia o un error. Las advertencias son bastante comunes; a menudo son mensajes sobre los próximos cambios en las dependencias de un proyecto, para ayudar a los desarrolladores a abordar los problemas antes de que causen fallos reales.</p>
+<p>Un push correcto puede tener advertencias, pero no debería tener errores. En este caso, Platform.sh no pudo encontrar la forma de instalar el requisito <code translate="no">gunicorrn</code>. Se trata de un error tipográfico en el archivo <em translate="no">requirements_remote.txt</em>, que debía incluir <code translate="no">gunicorn</code> (con un <em translate="no">r</em>). No siempre es fácil detectar el problema de raíz en la salida del registro, especialmente cuando el problema causa un montón de errores y advertencias en cascada. Al igual que cuando lees un rastreo en tu sistema local, es una buena idea fijarse bien en los primeros errores que aparecen, y también en los últimos. La mayoría de los errores intermedios suelen ser paquetes internos que se quejan de que algo ha ido mal, y pasan mensajes sobre el error a otros paquetes internos. El error real que podemos solucionar suele ser uno de los primeros o últimos errores de la lista.</p>
+<p><span epub:type="pagebreak" id="Page_497" title="497"></span>A veces, serás capaz de detectar el error, y otras veces, no tendrás ni idea de lo que significa la salida. Sin duda merece la pena intentarlo, y utilizar la salida del registro para diagnosticar con éxito un error es una sensación tremendamente satisfactoria. A medida que pases más tiempo examinando los resultados del registro, mejorarás en la identificación de la información más significativa para ti.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="b05_5.html">anterior</a><a href="b05.html">Subtema 6 de 12: (Ver todo)</a><a href="b05_7.html">siguiente</a><br/></p>
+<br/><a href="b05_6.docx" target="_blank"></a></footer>
+</body>
+</html>

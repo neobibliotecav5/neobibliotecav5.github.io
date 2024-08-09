@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c11-0012">Utilizar dispositivos</h3>
+<p class="BodyFirst">En <em translate="no">test_survey.py</em>, creamos una nueva instancia de <code translate="no">AnonymousSurvey</code> en cada función de prueba. Esto está bien en el breve ejemplo con el que estamos trabajando, pero en un proyecto del mundo real con decenas o cientos de pruebas, esto sería problemático.</p>
+<p>En las pruebas, un <em translate="no">fixture</em> ayuda a configurar un entorno de pruebas. A menudo, esto significa crear un recurso que es utilizado por más de una prueba. Creamos un fixture en <code translate="no">pytest</code> escribiendo una función con el decorador <code translate="no">@pytest.fixture</code>. Un <em translate="no">decorator</em> es una directiva que se coloca justo antes de la definición de una función; Python aplica esta directiva a la función antes de que se ejecute, para alterar cómo se comporta el código de la función. No te preocupes si esto te parece complicado; puedes empezar a utilizar decoradores de paquetes de terceros antes de aprender a escribirlos tú mismo.</p>
+<p>Utilicemos un fixture para crear una única instancia de encuesta que pueda utilizarse en ambas funciones de prueba en <em translate="no">test_survey.py</em>:</p>
+<pre translate="no"><code translate="no">import pytest
+<span class="LiteralGray">from survey import AnonymousSurvey</span>
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> @pytest.fixture
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> def language_survey():
+    """A survey that will be available to all test functions."""
+<span epub:type="pagebreak" id="Page_222" title="222"></span>    question = "What language did you first learn to speak?"
+    language_survey = AnonymousSurvey(question)
+    return language_survey
+
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> def test_store_single_response(language_survey):
+    <span class="LiteralGray">"""Test that a single response is stored properly."""</span>
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>     <span class="LiteralGray">language_survey.store_response('English')</span>
+<span class="LiteralGray">    assert 'English' in language_survey.responses</span>
+
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span> def test_store_three_responses(language_survey):
+    <span class="LiteralGray">"""Test that three individual responses are stored properly."""</span>
+    <span class="LiteralGray">responses = ['English', 'Spanish', 'Mandarin']</span>
+<span class="LiteralGray">    for response in responses:</span>
+<span aria-label="annotation6" class="CodeAnnotationHang">❻</span><span class="LiteralGray">         language_survey.store_response(response)</span>
+
+<span class="LiteralGray">    for response in responses:</span>
+<span class="LiteralGray">        assert response in language_survey.responses</span></code></pre>
+<p>Ahora necesitamos importar <code translate="no">pytest</code>, porque estamos utilizando un decorador que está definido en <code translate="no">pytest</code>. Aplicamos el decorador <code translate="no">@pytest.fixture</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span> a la nueva función <code translate="no">language_survey()</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Esta función construye un objeto <code translate="no">AnonymousSurvey</code> y devuelve la nueva encuesta.</p>
+<p>Observa que las definiciones de ambas funciones de prueba han cambiado <span aria-label="annotation3" class="CodeAnnotation"></span> <span aria-label="annotation5" class="CodeAnnotation">❸❺;</span> cada función de prueba tiene ahora un parámetro llamado <code translate="no">language_survey</code>. Cuando un parámetro de una función de prueba coincida con el nombre de una función con el decorador <code translate="no">@pytest.fixture</code>, el accesorio se ejecutará automáticamente y el valor devuelto se pasará a la función de prueba. En este ejemplo, la función <code translate="no">language_survey()</code> suministra tanto a <code translate="no">test_store_single_response()</code> como a <code translate="no">test_store_three_responses()</code> una instancia de <code translate="no">language_survey</code>.</p>
+<p>No hay código nuevo en ninguna de las dos funciones de prueba, pero fíjate en que se han eliminado dos líneas de cada función <span aria-label="annotation4" class="CodeAnnotation"></span> <span aria-label="annotation6" class="CodeAnnotation">❹❻:</span> la línea que definía una pregunta y la que creaba un objeto <code translate="no">AnonymousSurvey</code>.</p>
+<p>Cuando volvemos a ejecutar el archivo de prueba, ambas pruebas siguen pasando. Estas pruebas serían especialmente útiles si intentáramos ampliar <code translate="no">AnonymousSurvey</code> para gestionar múltiples respuestas para cada persona. Después de modificar el código para que acepte múltiples respuestas, podrías ejecutar estas pruebas y asegurarte de que no has afectado a la capacidad de almacenar una sola respuesta o una serie de respuestas individuales.</p>
+<p>Es casi seguro que la estructura anterior te parecerá complicada; contiene parte del código más abstracto que has visto hasta ahora. No es necesario que utilices fixtures de inmediato; es mejor escribir pruebas con mucho código repetitivo que no escribir ninguna prueba. Sólo tienes que saber que cuando hayas escrito suficientes pruebas como para que la repetición se interponga en tu camino, existe una forma bien establecida de tratar la repetición. Además, en ejemplos sencillos como éste, las fijaciones no hacen que el código sea más corto ni más fácil de seguir. Pero en proyectos con muchas pruebas, o en situaciones en las que se necesitan muchas líneas para construir un recurso que se utiliza en varias pruebas, las fijaciones pueden mejorar drásticamente tu código de prueba.</p>
+<p>Cuando quieras escribir un fixture, escribe una función que genere el recurso que utilizan varias funciones de prueba. Añade el decorador <code translate="no">@pytest.fixture</code> <span epub:type="pagebreak" id="Page_223" title="223"></span> a la nueva función, y añade el nombre de esta función como parámetro para cada función de prueba que utilice este recurso. A partir de ese momento, tus pruebas serán más cortas y más fáciles de escribir y mantener.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c11_19.html">anterior</a><a href="c11.html">Subtema 20 de 22: (Ver todo)</a><a href="c11_21.html">siguiente</a><br/></p>
+<br/><a href="c11_20.docx" target="_blank"></a></footer>
+</body>
+</html>

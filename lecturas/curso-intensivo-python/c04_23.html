@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c04-0014">Recorrer una porción</h3>
+<p class="BodyFirst">Puedes utilizar una porción en un bucle <code translate="no">for</code> si quieres recorrer un subconjunto de elementos de una lista. En el siguiente ejemplo, recorremos los tres primeros jugadores e imprimimos sus nombres como parte de una lista simple:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">players = ['charles', 'martina', 'michael', 'florence', 'eli']</span>
+
+print("Here are the first three players on my team:")
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> for player in players[:3]:
+    print(player.title())</code></pre>
+<p>En lugar de recorrer toda la lista de jugadores, Python recorre sólo los tres primeros nombres <span aria-label="annotation1" class="CodeAnnotation">❶:</span></p>
+<pre translate="no"><code translate="no">Here are the first three players on my team:
+Charles
+Martina
+Michael</code></pre>
+<p>Las listas son muy útiles en varias situaciones. Por ejemplo, cuando estás creando un juego, podrías añadir la puntuación final de un jugador a una lista cada vez que ese jugador termine de jugar. Luego podrías obtener las tres mejores puntuaciones de un jugador ordenando la lista en orden decreciente y tomando una porción que incluya sólo las tres primeras puntuaciones. Cuando trabajes con datos, puedes utilizar trozos para procesar tus datos en partes de un tamaño específico. O, cuando estés construyendo una aplicación web, puedes utilizar trozos para mostrar información en una serie de páginas con una cantidad adecuada de información en cada una de ellas.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c04_22.html">anterior</a><a href="c04.html">Subtema 23 de 41: (Ver todo)</a><a href="c04_24.html">siguiente</a><br/></p>
+<br/><a href="c04_23.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c07-0010">Mover elementos de una lista a otra</h3>
+<p class="BodyFirst">Considera una lista de usuarios recién registrados pero no verificados de un sitio web. Después de verificar a estos usuarios, ¿cómo podemos moverlos a otra lista de usuarios confirmados? Una forma sería utilizar un bucle <code translate="no">while</code> para extraer usuarios de la lista de usuarios no confirmados a medida que los verificamos y luego añadirlos a una lista separada de usuarios confirmados. Éste es el aspecto que podría tener ese código:</p>
+<p class="CodeLabel" translate="no"><b>confirmed_users.py</b></p>
+<pre translate="no"><code translate="no"># Start with users that need to be verified,
+#  and an empty list to hold confirmed users.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> unconfirmed_users = ['alice', 'brian', 'candace']
+confirmed_users = []
+
+# Verify each user until there are no more unconfirmed users.
+#  Move each verified user into the list of confirmed users.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> while unconfirmed_users:
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     current_user = unconfirmed_users.pop()
+
+    print(f"Verifying user: {current_user.title()}")
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>     confirmed_users.append(current_user)
+
+# Display all confirmed users.
+print("\nThe following users have been confirmed:")
+for confirmed_user in confirmed_users:
+    print(confirmed_user.title())</code></pre>
+<p>Empezamos con una lista de usuarios sin confirmar <span aria-label="annotation1" class="CodeAnnotation">❶</span> (Alice, Brian y Candace) y una lista vacía para contener los usuarios confirmados. El bucle <code translate="no">while</code> se ejecuta mientras la lista <code translate="no">unconfirmed_users</code> no esté vacía <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Dentro de este bucle, el método <code translate="no">pop()</code> elimina los usuarios no verificados de uno en uno desde el final de <code translate="no">unconfirmed_users</code> <span aria-label="annotation3" class="CodeAnnotation">❸.</span> Como Candace es la última de la lista <code translate="no">unconfirmed_users</code>, su nombre será el primero en ser eliminado, asignado a <code translate="no">current_user</code>, y añadido a la lista <code translate="no">confirmed_users</code> <span aria-label="annotation4" class="CodeAnnotation">❹.</span> El siguiente es Brian, y después Alice.</p>
+<p>Simulamos la confirmación de cada usuario imprimiendo un mensaje de verificación y añadiéndolo después a la lista de usuarios confirmados. A medida que se reduce la lista de usuarios no confirmados, crece la lista de usuarios confirmados. Cuando la lista de <span epub:type="pagebreak" id="Page_125" title="125"></span>usuarios no confirmados esté vacía, el bucle se detiene y se imprime la lista de usuarios confirmados:</p>
+<pre translate="no"><code translate="no">Verifying user: Candace
+Verifying user: Brian
+Verifying user: Alice
+
+The following users have been confirmed:
+Candace
+Brian
+Alice</code></pre>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c07_18.html">anterior</a><a href="c07.html">Subtema 19 de 23: (Ver todo)</a><a href="c07_20.html">siguiente</a><br/></p>
+<br/><a href="c07_19.docx" target="_blank"></a></footer>
+</body>
+</html>

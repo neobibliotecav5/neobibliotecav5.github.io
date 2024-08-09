@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<meta charset="utf-8"/>
+<title>Capítulo 3: Describir datos con estadísticas</title>
+<link href="style.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="core.css" media="all" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch03lev1sec07"><strong>Lectura de datos de archivos</strong></h3>
+<p class="noindent">En todos los programas de este capítulo, las listas de números que utilizamos en nuestros cálculos estaban explícitamente escritas, o <em>codificadas</em>, en los propios programas. Si quisieras encontrar las medidas para un conjunto de datos diferente, tendrías que introducir todo el nuevo conjunto de datos en el propio programa. También sabes cómo hacer programas que permitan al usuario introducir los datos como entrada, pero con grandes conjuntos de datos, no es muy conveniente hacer que el usuario introduzca largas listas de números cada vez que utiliza el programa.</p>
+<p class="indent">Una alternativa mejor es leer los datos del usuario desde un archivo. Veamos un ejemplo sencillo de cómo podemos leer números de un fichero y realizar operaciones matemáticas con ellos. En primer lugar, te mostraré cómo leer datos de un simple fichero de texto en el que cada línea del fichero contiene un nuevo elemento de datos. Después, te mostraré cómo leer de un archivo en el que los datos están almacenados en el conocido formato CSV de <a id="page_84"></a>, lo que te abrirá un montón de posibilidades, ya que hay montones de conjuntos de datos útiles que puedes descargar de Internet en formato CSV. (Si no estás familiarizado con el manejo de archivos en Python, consulta <a href="app02.html#app02">el Apéndice B</a> para una breve introducción).</p>
+<h4 class="h4" id="ch03lev2sec08"><strong><em>Lectura de datos de un archivo de texto</em></strong></h4>
+<p class="noindent">Tomemos un archivo, <em>misdatos.txt</em>, con la lista de donaciones (una por línea) durante el periodo A que hemos considerado al principio de este capítulo:</p>
+<p class="programs" translate="no">100<br translate="no"/>60<br translate="no"/>70<br translate="no"/>900<br translate="no"/>100<br translate="no"/>200<br translate="no"/>500<br translate="no"/>500<br translate="no"/>503<br translate="no"/>600<br translate="no"/>1000<br translate="no"/>1200</p>
+<p class="indent">El siguiente programa leerá este fichero e imprimirá la suma de los números almacenados en el fichero:</p>
+<p class="programs" translate="no">   # Find the sum of numbers stored in a file<br translate="no"/>   def sum_data(filename):<br translate="no"/>       s = 0<br translate="no"/><span class="ent">➊</span>     with open(filename) as f:<br translate="no"/>           for line in f:<br translate="no"/><span class="ent">➋</span>             s = s + float(line)<br translate="no"/>       print('Sum of the numbers: {0}'.format(s))<br translate="no"/><br translate="no"/>   if __name__ == '__main__':<br translate="no"/>       sum_data('mydata.txt')</p>
+<p class="indent">La función <span class="literal" translate="no">sum_data()</span> abre el archivo especificado por el argumento <span class="literal" translate="no">filename</span> en <span class="ent">➊</span> y lo lee línea a línea (<span class="literal" translate="no">f</span> se denomina <em>objeto archivo</em>, y puedes pensar que apunta a un archivo abierto). En <span class="ent">➋,</span> convertimos cada número en un número de coma flotante utilizando la función <span class="literal" translate="no">float()</span> y seguimos sumando hasta que hayamos leído todos los números. El número final, etiquetado <span class="literal" translate="no">s</span>, contiene la suma de los números, que se imprime al final de la función.</p>
+<p class="indent">Antes de ejecutar el programa, debes crear un archivo llamado <em>misdatos.txt</em> con los datos apropiados y guardarlo en el mismo directorio que tu programa. Puedes crear este archivo desde el propio IDLE pulsando <span class="ent">Archivo▸Nueva</span><strong>ventana</strong>, escribiendo los números (uno por línea) en la nueva ventana y guardando el archivo como <em>mydata</em>.txt en el mismo directorio que tu programa. Ahora, si ejecutas el programa, verás la siguiente salida:</p>
+<p class="programs" translate="no">Sum of the numbers: 5733.0</p>
+<p class="indent"><a id="page_85"></a>Todos nuestros programas de este capítulo han supuesto que los datos de entrada están disponibles en listas. Para utilizar nuestros programas anteriores con los datos de un fichero, primero tenemos que crear una lista a partir de esos datos. Una vez que tenemos una lista, podemos utilizar las funciones que hemos escrito antes para calcular la estadística correspondiente. El siguiente programa calcula la media de los números almacenados en el fichero <em>misdatos.txt</em>:</p>
+<p class="programs" translate="no">   '''<br translate="no"/>   Calculating the mean of numbers stored in a file<br translate="no"/>   '''<br translate="no"/>   def read_data(filename):<br translate="no"/><br translate="no"/>       numbers = []<br translate="no"/>       with open(filename) as f:<br translate="no"/>           for line in f:<br translate="no"/><span class="ent">➊</span>             numbers.append(float(line))<br translate="no"/><br translate="no"/>       return numbers<br translate="no"/><br translate="no"/>   def calculate_mean(numbers):<br translate="no"/>       s = sum(numbers)<br translate="no"/>       N = len(numbers)<br translate="no"/>       mean = s/N<br translate="no"/><br translate="no"/>       return mean<br translate="no"/><br translate="no"/>   if __name__ == '__main__':<br translate="no"/><span class="ent">➋</span>     data = read_data('mydata.txt')<br translate="no"/>       mean = calculate_mean(data)<br translate="no"/>       print('Mean: {0}'.format(mean))</p>
+<p class="indent">Antes de poder llamar a la función <span class="literal" translate="no">calculate_mean()</span>, tenemos que leer los números almacenados en el fichero y convertirlos en una lista. Para ello, utiliza la función <span class="literal" translate="no">read_data()</span>, que lee el fichero línea por línea. En lugar de sumar los números, esta función los convierte en números de coma flotante y los añade a la lista <span class="literal" translate="no">numbers</span> <span class="ent">➊.</span> Se devuelve la lista, y nos referimos a ella con la etiqueta <span class="literal" translate="no">data</span> <span class="ent">➋.</span> A continuación, invocamos la función <span class="literal" translate="no">calculate_mean()</span>, que devuelve la media de los datos. Por último, la imprimimos.</p>
+<p class="indent">Cuando ejecutes el programa, deberías ver la siguiente salida:</p>
+<p class="programs" translate="no">Mean: 477.75</p>
+<p class="indent">Por supuesto, verás un valor diferente para la media si los números de tu fichero son distintos de los de este ejemplo.</p>
+<p class="indent">Consulta <a href="app02.html#app02">el Apéndice B</a> para obtener consejos sobre cómo puedes pedir al usuario que introduzca el nombre del archivo y luego modificar tu programa en consecuencia. Esto permitirá al usuario de tu programa especificar cualquier archivo de datos.</p>
+<h4 class="h4" id="ch03lev2sec09"><a id="page_86"></a><strong><em>Lectura de datos de un archivo CSV</em></strong></h4>
+<p class="noindent">Un archivo de valores separados por comas (CSV) consta de filas y columnas con las columnas separadas entre sí por comas. Puedes visualizar un archivo CSV utilizando un editor de texto de tu sistema operativo o un software especializado, como Microsoft Excel, OpenOffice Calc o LibreOffice Calc.</p>
+<p class="indent">Aquí tienes un ejemplo de archivo CSV que contiene unos cuantos números y sus cuadrados:</p>
+<p class="programs" translate="no">Number,Squared<br translate="no"/>10,100<br translate="no"/>9,81<br translate="no"/>22,484</p>
+<p class="indent">La primera línea se denomina <em>cabecera</em>. En este caso, nos indica que las entradas de la primera columna de este archivo son números y las de la segunda columna son las casillas correspondientes. Las tres líneas siguientes, o filas, contienen un número y su casilla separados por una coma. Es posible leer los datos de este archivo utilizando un enfoque similar al que mostré para el archivo <em>.txt</em>. Sin embargo, la biblioteca estándar de Python tiene un módulo dedicado (<span class="literal" translate="no">csv</span>) para leer (y escribir) archivos CSV, que facilita un poco las cosas.</p>
+<p class="indent">Guarda los números y sus cuadrados en un archivo, <em>números.csv</em>, en el mismo directorio que tus programas. El siguiente programa muestra cómo leer este archivo y crear un gráfico de dispersión que muestre los números frente a sus cuadrados:</p>
+<p class="programs" translate="no">   import csv<br translate="no"/>   import matplotlib.pyplot as plt<br translate="no"/><br translate="no"/>   def scatter_plot(x, y):<br translate="no"/>       plt.scatter(x, y)<br translate="no"/>       plt.xlabel('Number')<br translate="no"/>       plt.ylabel('Square')<br translate="no"/>       plt.show()<br translate="no"/><br translate="no"/>   def read_csv(filename):<br translate="no"/><br translate="no"/>       numbers = []<br translate="no"/>       squared = []<br translate="no"/>       with open(filename) as f:<br translate="no"/><span class="ent">➊</span>         reader = csv.reader(f)<br translate="no"/>           next(reader)<br translate="no"/><span class="ent">➋</span>         for row in reader:<br translate="no"/>               numbers.append(int(row[0]))<br translate="no"/>               squared.append(int(row[1]))<br translate="no"/>           return numbers, squared<br translate="no"/><br translate="no"/>   if __name__ == '__main__':<br translate="no"/>       numbers, squared = read_csv('numbers.csv')<br translate="no"/>       scatter_plot(numbers, squared)</p>
+<p class="indent"><a id="page_87"></a>La función <span class="literal" translate="no">read_csv()</span> lee el archivo CSV utilizando la función <span class="literal" translate="no">reader()</span> definida en el módulo <span class="literal" translate="no">csv</span> (que se importa al principio del programa). Esta función se llama con el objeto de archivo <span class="literal" translate="no">f</span> que se le pasa como argumento <span class="ent">➊.</span> A continuación, esta función devuelve un <em>puntero</em> a la primera línea del archivo CSV. Sabemos que la primera línea del archivo es la cabecera, que queremos saltarnos, así que movemos el puntero a la línea siguiente utilizando la función <span class="literal" translate="no">next()</span>. A continuación, leemos cada línea del archivo con cada línea referida por la etiqueta <span class="literal" translate="no">row</span> <span class="ent">➋,</span> con <span class="literal" translate="no">row[0]</span> referida a la primera columna de los datos y <span class="literal" translate="no">row[1]</span> referida a la segunda. Para este archivo concreto, sabemos que estos dos números son enteros, así que utilizamos la función <span class="literal" translate="no">int()</span> para convertirlos de cadenas a enteros y almacenarlos en dos listas. A continuación, se devuelven las listas: una con los números y otra con los cuadrados.</p>
+<p class="indent">A continuación, llamamos a la función <span class="literal" translate="no">scatter_plot()</span> con estas dos listas para crear el gráfico de dispersión. La función <span class="literal" translate="no">find_corr_x_y()</span> que escribimos antes también se puede utilizar fácilmente para encontrar el coeficiente de correlación entre los dos conjuntos de números.</p>
+<p class="indent">Ahora vamos a tratar con un archivo CSV más complejo. Abre <em><a href="https://www.google.com/trends/correlate/">https://www.google.com/trends/correlate/</a></em> en tu navegador, introduce la consulta de búsqueda que desees (por ejemplo, <em>verano</em>) y haz clic en el botón <strong>Buscar correlaciones</strong>. Verás que se devuelven varios resultados bajo el título "Correlacionado con el verano", y el primer resultado es el que tiene la correlación más alta (el número situado inmediatamente a la izquierda de cada resultado). Haz clic en la opción <strong>Gráfico de dispersión</strong> situada encima del gráfico para ver un gráfico de dispersión con el <em>eje x</em> etiquetado como <em>verano</em> y el <em>eje y</em> etiquetado con el resultado superior. Ignora los números exactos trazados en ambos ejes, ya que sólo nos interesa la correlación y el gráfico de dispersión.</p>
+<p class="indent">Un poco más arriba del gráfico de dispersión, haz clic en <strong>Exportar datos como CSV</strong> y se iniciará la descarga de un archivo. Guarda este archivo en el mismo directorio que tus programas.</p>
+<p class="indent">Este archivo CSV es ligeramente diferente del que vimos antes. Al principio del archivo, verás varias líneas en blanco y líneas con el símbolo <span class="literal" translate="no">'#'</span> hasta que finalmente verás la cabecera y los datos. Estas líneas no nos son útiles: elimínalas a mano con el programa con el que hayas abierto el archivo, de modo que la primera línea del archivo sea la cabecera. Elimina también las líneas en blanco del final del archivo. Ahora guarda el archivo. Este paso -en el que limpiamos el archivo para que sea más fácil procesarlo con Python- suele denominarse <em>preprocesamiento de</em> los datos.</p>
+<p class="indent">La cabecera tiene varias columnas. La primera contiene la fecha de los datos de cada fila (cada fila tiene los datos correspondientes a la semana que comenzó en la fecha de esta columna). La segunda columna es la consulta de búsqueda que has introducido, la tercera columna muestra la consulta de búsqueda con <em>mayor</em> correlación con tu consulta de búsqueda, y las demás columnas incluyen una serie de otras consultas de búsqueda ordenadas en orden decreciente de correlación con tu consulta de búsqueda introducida. Los números de estas columnas son las <em>puntuaciones</em> z de las consultas de búsqueda correspondientes. La puntuación <em>z</em> indica la diferencia entre el número de veces que se buscó un término durante una semana concreta y la media general de búsquedas semanales de ese término. Una puntuación <em>z</em> positiva indica que el número de búsquedas fue superior a la media de esa semana, y una <em>puntuación z</em> negativa indica que fue inferior.</p>
+<p class="indent"><a id="page_88"></a>Por ahora, vamos a trabajar sólo con la segunda y la tercera columnas. Puedes utilizar la siguiente función <span class="literal" translate="no">read_csv()</span> para leer estas columnas:</p>
+<p class="programs" translate="no">   def read_csv(filename):<br translate="no"/><br translate="no"/>       with open(filename) as f:<br translate="no"/>           reader = csv.reader(f)<br translate="no"/>           next(reader)<br translate="no"/><br translate="no"/>           summer = []<br translate="no"/>           highest_correlated = []<br translate="no"/><span class="ent">➊</span>         for row in reader:<br translate="no"/>               summer.append(float(row[1]))<br translate="no"/>               highest_correlated.append(float(row[2]))<br translate="no"/><br translate="no"/>       return summer, highest_correlated</p>
+<p class="indent">Es muy parecida a la versión anterior de la función <span class="literal" translate="no">read_csv</span>; el principal cambio aquí es cómo añadimos los valores a cada lista a partir de <span class="ent">➊:</span> ahora estamos leyendo el segundo y el tercer miembro de cada fila, y los estamos almacenando como números en coma flotante.</p>
+<p class="indent">El siguiente programa utiliza esta función para calcular la correlación entre los valores de la consulta de búsqueda que has proporcionado y los valores de la consulta con mayor correlación con ella. También crea un gráfico de dispersión de estos valores:</p>
+<p class="programs" translate="no">   import matplotlib.pyplot as plt<br translate="no"/>   import csv<br translate="no"/><br translate="no"/>   if __name__ == '__main__':<br translate="no"/><span class="ent">➊</span>     summer, highest_correlated = read_csv('correlate-summer.csv')<br translate="no"/>       corr = find_corr_x_y(summer, highest_correlated)<br translate="no"/>       print('Highest correlation: {0}'.format(corr))<br translate="no"/>       scatter_plot(summer, highest_correlated)</p>
+<p class="indent">Suponiendo que el archivo CSV se guardó como <em>correlate-summer.csv</em>, llamamos a la función <span class="literal" translate="no">read_csv()</span> para leer los datos de la segunda y tercera columnas <span class="ent">➊.</span> A continuación, llamamos a la función <span class="literal" translate="no">find_corr_x_y()</span> que escribimos antes con las dos listas <span class="literal" translate="no">summer</span> y <span class="literal" translate="no">highest_correlated</span>. Nos devuelve el coeficiente de correlación, que luego imprimimos. Ahora, volvemos a llamar a la función <span class="literal" translate="no">scatter_plot()</span> que escribimos antes con estas dos listas. Antes de ejecutar este programa, tendrás que incluir las definiciones de las funciones <span class="literal" translate="no">read_csv()</span>, <span class="literal" translate="no">find_corr_x_y()</span> y <span class="literal" translate="no">scatter_plot()</span>.</p>
+<p class="indent">Al ejecutarlo, verás que imprime el coeficiente de correlación y también crea un gráfico de dispersión. Ambos deberían ser muy similares a los datos mostrados en el sitio web de Google correlate.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch03_7.html">anterior</a><a href="ch03.html">Subtema 8 de 10: (Ver todo)</a><a href="ch03_9.html">siguiente</a><br/></p>
+<br/><a href="ch03_8.docx" target="_blank"></a></footer>
+</body>
+</html>

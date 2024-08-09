@@ -1,0 +1,1673 @@
+.all {
+    background-color: #FFF;
+    border-collapse: collapse;
+    border-spacing: 2px;
+    display: table;
+    font-family: "JansonTextLTStd";
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-top: 0.4em;
+    text-indent: 0
+    }
+.author {
+    display: block;
+    font-family: "TradeGothicLTStd";
+    font-size: 1.41667em;
+    line-height: 1.2;
+    text-align: center;
+    margin: 6.5em 0 0.5em
+    }
+.big {
+    font-size: 1.41176em;
+    line-height: 1.2
+    }
+.blue {
+    color: #3564AF;
+    text-decoration: none;
+    word-wrap: break-word
+    }
+.blue1 {
+    color: #377ED0
+    }
+.blue2 {
+    color: #377ED0;
+    line-height: 1.2
+    }
+.brown {
+    color: #89280C
+    }
+.bull {
+    color: #000;
+    display: list-item;
+    font-family: "JansonTextLTStd";
+    margin-bottom: 0.1em;
+    margin-left: 0.8em;
+    margin-top: 0.5em;
+    text-align: left;
+    text-indent: -0.75em
+    }
+.calibre {
+    display: block;
+    font-size: 1em;
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0 5pt
+    }
+.calibre1 {
+    display: block
+    }
+.calibre2 {
+    line-height: 1.2
+    }
+.calibre3 {
+    font-weight: bold;
+    line-height: 1.2
+    }
+.calibre4 {
+    height: 146px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 126px
+    }
+.calibre5 {
+    font-weight: bold
+    }
+.calibre6 {
+    color: #000;
+    text-decoration: none;
+    word-wrap: break-word
+    }
+.calibre7 {
+    font-style: italic
+    }
+.calibre8 {
+    height: 230px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 600px
+    }
+.calibre9 {
+    display: block;
+    list-style-type: decimal;
+    margin-bottom: 1em;
+    margin-right: 0;
+    margin-top: 1em
+    }
+.calibre10 {
+    display: block;
+    line-height: 1.2
+    }
+.calibre11 {
+    height: 261px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 601px
+    }
+.calibre12 {
+    height: 350px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 602px
+    }
+.calibre13 {
+    height: 280px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 601px
+    }
+.calibre14 {
+    height: 278px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 526px
+    }
+.calibre15 {
+    height: 395px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 601px
+    }
+.calibre16 {
+    height: 416px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 601px
+    }
+.calibre17 {
+    height: 180px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 376px
+    }
+.calibre18 {
+    height: 236px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 676px
+    }
+.calibre19 {
+    height: 254px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 195px
+    }
+.calibre20 {
+    height: 213px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 675px
+    }
+.calibre21 {
+    height: 274px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 528px
+    }
+.calibre22 {
+    color: #3564AF;
+    display: block;
+    font-family: "TradeGothicLTStd";
+    list-style-type: disc;
+    margin-bottom: 1em;
+    margin-right: 0;
+    margin-top: 1em;
+    text-align: left
+    }
+.calibre23 {
+    display: table-column-group
+    }
+.calibre24 {
+    display: table-column;
+    width: 20%
+    }
+.calibre25 {
+    display: table-header-group;
+    vertical-align: middle
+    }
+.calibre26 {
+    display: table-row;
+    vertical-align: inherit
+    }
+.calibre27 {
+    display: table-row-group;
+    vertical-align: middle
+    }
+.calibre28 {
+    display: table-cell;
+    text-align: inherit;
+    vertical-align: top;
+    padding: 1px
+    }
+.calibre29 {
+    height: 306px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 600px
+    }
+.calibre30 {
+    height: 304px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 601px
+    }
+.calibre31 {
+    height: 272px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 256px
+    }
+.calibre32 {
+    display: block;
+    font-family: "UbuntuMono";
+    font-size: 0.75em;
+    text-align: left;
+    white-space: pre-wrap;
+    padding: 0.5em 0.1em;
+    margin: 0.8em 0;
+    border-top: black solid 0.2em;
+    border-bottom: black solid 0.2em
+    }
+.calibre33 {
+    height: 265px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 301px
+    }
+.calibre34 {
+    height: 257px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 600px
+    }
+.calibre35 {
+    height: 241px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 167px
+    }
+.calibre36 {
+    height: 164px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 211px
+    }
+.calibre37 {
+    height: 337px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 211px
+    }
+.calibre38 {
+    height: 267px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 173px
+    }
+.calibre39 {
+    display: table-column;
+    width: 50%
+    }
+.calibre40 {
+    height: 340px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 376px
+    }
+.calibre41 {
+    height: 298px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 601px
+    }
+.calibre42 {
+    height: 121px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 301px
+    }
+.calibre43 {
+    height: 512px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 601px
+    }
+.calibre44 {
+    height: 274px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 566px
+    }
+.calibre45 {
+    height: 376px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 376px
+    }
+.calibre46 {
+    height: 300px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 301px
+    }
+.calibre47 {
+    height: 352px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 602px
+    }
+.calibre48 {
+    height: 297px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 301px
+    }
+.calibre49 {
+    height: 419px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 601px
+    }
+.calibre50 {
+    height: 424px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 601px
+    }
+.calibre51 {
+    height: 205px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 301px
+    }
+.calibre52 {
+    height: 304px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 511px
+    }
+.calibre53 {
+    height: 305px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 410px
+    }
+.calibre54 {
+    display: table-column;
+    width: 30%
+    }
+.calibre55 {
+    display: table-column;
+    width: 70%
+    }
+.calibre56 {
+    height: 264px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 181px
+    }
+.calibre57 {
+    height: 176px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 210px
+    }
+.calibre58 {
+    height: 163px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 233px
+    }
+.calibre59 {
+    height: 230px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 226px
+    }
+.calibre60 {
+    height: 194px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 211px
+    }
+.calibre61 {
+    height: 238px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 151px
+    }
+.calibre62 {
+    height: 180px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 242px
+    }
+.calibre63 {
+    height: 303px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 180px
+    }
+.calibre64 {
+    height: 199px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 226px
+    }
+.calibre65 {
+    height: 382px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 601px
+    }
+.calibre66 {
+    height: 321px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 316px
+    }
+.calibre67 {
+    height: 336px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 151px
+    }
+.calibre68 {
+    height: 223px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 188px
+    }
+.calibre69 {
+    height: 190px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 225px
+    }
+.calibre70 {
+    height: 264px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 151px
+    }
+.calibre71 {
+    height: 208px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 601px
+    }
+.calibre72 {
+    height: 233px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 188px
+    }
+.calibre73 {
+    height: 398px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 363px
+    }
+.calibre74 {
+    height: 246px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 395px
+    }
+.calibre75 {
+    height: 268px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 197px
+    }
+.calibre76 {
+    height: 310px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 189px
+    }
+.calibre77 {
+    height: 180px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 301px
+    }
+.calibre78 {
+    height: 221px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 225px
+    }
+.calibre79 {
+    height: 202px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 448px
+    }
+.calibre80 {
+    height: 230px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 113px
+    }
+.calibre81 {
+    height: 289px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 526px
+    }
+.calibre82 {
+    height: 374px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 526px
+    }
+.calibre83 {
+    height: 386px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 526px
+    }
+.calibre84 {
+    height: 477px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 601px
+    }
+.calibre85 {
+    height: 476px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 602px
+    }
+.calibre86 {
+    height: 224px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 210px
+    }
+.calibre87 {
+    height: 138px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 313px
+    }
+.calibre88 {
+    height: 195px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 360px
+    }
+.calibre89 {
+    height: 476px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 601px
+    }
+.calibre90 {
+    height: 415px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 601px
+    }
+.calibre91 {
+    height: 178px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 226px
+    }
+.calibre92 {
+    height: 160px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 151px
+    }
+.calibre93 {
+    height: 415px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 600px
+    }
+.calibre94 {
+    height: 389px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 563px
+    }
+.calibre95 {
+    height: 385px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 556px
+    }
+.calibre96 {
+    height: 445px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 556px
+    }
+.calibre97 {
+    height: 298px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 563px
+    }
+.calibre98 {
+    height: 155px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 226px
+    }
+.calibre99 {
+    height: 123px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 264px
+    }
+.calibre100 {
+    height: 227px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 601px
+    }
+.calibre101 {
+    height: 331px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 300px
+    }
+.calibre102 {
+    height: 557px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 526px
+    }
+.calibre103 {
+    height: 288px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 525px
+    }
+.calibre104 {
+    height: 254px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 526px
+    }
+.calibre105 {
+    height: 474px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 526px
+    }
+.calibre106 {
+    height: 565px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 526px
+    }
+.calibre107 {
+    height: 271px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 151px
+    }
+.calibre108 {
+    height: 388px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 527px
+    }
+.calibre109 {
+    height: 564px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 526px
+    }
+.calibre110 {
+    height: 240px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 526px
+    }
+.calibre111 {
+    height: 168px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 326px
+    }
+.calibre112 {
+    height: 278px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 527px
+    }
+.calibre113 {
+    height: 178px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 227px
+    }
+.calibre114 {
+    height: 298px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 526px
+    }
+.calibre115 {
+    height: 306px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 526px
+    }
+.calibre116 {
+    height: 242px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 255px
+    }
+.calibre117 {
+    height: 203px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 301px
+    }
+.calibre118 {
+    height: 148px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 151px
+    }
+.calibre119 {
+    height: 388px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 451px
+    }
+.calibre120 {
+    height: 394px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 300px
+    }
+.calibre121 {
+    height: 398px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 211px
+    }
+.calibre122 {
+    height: 453px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 526px
+    }
+.calibre123 {
+    height: 245px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 451px
+    }
+.calibre124 {
+    height: 214px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 181px
+    }
+.calibre125 {
+    height: 121px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 121px
+    }
+.calibre126 {
+    height: 237px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 200px
+    }
+.calibre127 {
+    height: 444px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 526px
+    }
+.calibre128 {
+    height: 216px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 188px
+    }
+.calibre129 {
+    height: 255px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 264px
+    }
+.calibre130 {
+    height: 197px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 367px
+    }
+.calibre131 {
+    height: 237px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 373px
+    }
+.calibre132 {
+    height: 174px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 188px
+    }
+.calibre133 {
+    height: 508px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 601px
+    }
+.calibre134 {
+    height: 360px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 264px
+    }
+.calibre135 {
+    height: 153px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 91px
+    }
+.calibre136 {
+    height: 418px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 601px
+    }
+.calibre137 {
+    height: 495px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 226px
+    }
+.calibre138 {
+    height: 182px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 512px
+    }
+.calibre139 {
+    height: 144px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 162px
+    }
+.calibre140 {
+    height: 308px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 226px
+    }
+.calibre141 {
+    height: 218px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 601px
+    }
+.calibre142 {
+    height: 443px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 226px
+    }
+.calibre143 {
+    height: 387px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 564px
+    }
+.calibre144 {
+    height: 362px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 361px
+    }
+.calibre145 {
+    height: 361px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 362px
+    }
+.calibre146 {
+    height: 380px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 226px
+    }
+.calibre147 {
+    height: 296px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 226px
+    }
+.calibre148 {
+    height: 195px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 189px
+    }
+.calibre149 {
+    height: 636px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 602px
+    }
+.calibre150 {
+    height: 241px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 224px
+    }
+.calibre151 {
+    height: 93px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 376px
+    }
+.calibre152 {
+    height: 140px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 374px
+    }
+.calibre153 {
+    height: 290px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 241px
+    }
+.calibre154 {
+    height: 256px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 300px
+    }
+.calibre155 {
+    height: 222px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 237px
+    }
+.calibre156 {
+    height: 277px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 241px
+    }
+.calibre157 {
+    height: 220px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 114px
+    }
+.calibre158 {
+    height: 399px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 377px
+    }
+.calibre159 {
+    height: 399px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 376px
+    }
+.calibre160 {
+    height: 398px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 377px
+    }
+.calibre161 {
+    height: 308px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 263px
+    }
+.calibre162 {
+    height: 228px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 196px
+    }
+.calibre163 {
+    height: 237px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 181px
+    }
+.calibre164 {
+    height: 388px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 151px
+    }
+.calibre165 {
+    display: table-column;
+    width: 17%
+    }
+.calibre166 {
+    display: table-column;
+    width: 18%
+    }
+.calibre167 {
+    display: table-column;
+    width: 13%
+    }
+.calibre168 {
+    height: 46px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 36px
+    }
+.calibre169 {
+    height: 50px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 41px
+    }
+.calibre170 {
+    height: 47px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 46px
+    }
+.calibre171 {
+    height: 170px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 362px
+    }
+.calibre172 {
+    height: 287px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 527px
+    }
+.calibre173 {
+    height: 230px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 489px
+    }
+.calibre174 {
+    height: 140px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 264px
+    }
+.calibre175 {
+    height: 323px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 263px
+    }
+.calibre176 {
+    height: 182px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 601px
+    }
+.calibre177 {
+    height: 263px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 263px
+    }
+.calibre178 {
+    height: 335px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 263px
+    }
+.calibre179 {
+    height: 370px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 621px
+    }
+.calibre180 {
+    height: 354px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 677px
+    }
+.calibre181 {
+    height: 284px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 677px
+    }
+.calibre182 {
+    height: 467px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 676px
+    }
+.calibre183 {
+    height: 233px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 526px
+    }
+.calibre184 {
+    height: 788px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 841px
+    }
+.calibre185 {
+    height: 108px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 194px
+    }
+.calibre186 {
+    height: 249px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 151px
+    }
+.calibre187 {
+    height: 245px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 211px
+    }
+.calibre188 {
+    height: 17px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 30px
+    }
+.calibre189 {
+    height: 24px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 195px
+    }
+.calibre190 {
+    height: 56px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 191px
+    }
+.calibre191 {
+    height: 63px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 230px
+    }
+.calibre192 {
+    height: 199px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 254px
+    }
+.calibre193 {
+    height: 152px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 226px
+    }
+.calibre194 {
+    height: 112px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 347px
+    }
+.calibre195 {
+    height: 368px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 185px
+    }
+.calibre196 {
+    font-size: 0.75em;
+    line-height: normal;
+    vertical-align: super
+    }
+.calibre197 {
+    height: 181px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 263px
+    }
+.calibre198 {
+    height: 188px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 225px
+    }
+.calibre199 {
+    height: 239px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 601px
+    }
+.calibre200 {
+    font-size: 0.75em;
+    line-height: normal;
+    vertical-align: sub
+    }
+.calibre201 {
+    height: 1084px;
+    max-height: 99%;
+    max-width: 99%;
+    width: 800px
+    }
+.center {
+    display: block;
+    font-family: "JansonTextLTStd";
+    text-align: center;
+    margin: 0 0 1.7em
+    }
+.codeitalic {
+    font-family: "UbuntuMono";
+    font-style: italic
+    }
+.codestrong {
+    font-family: "UbuntuMono";
+    font-size: 0.75em;
+    font-weight: bold
+    }
+.copy {
+    display: block;
+    font-family: "JansonTextLTStd";
+    font-size: 0.75em;
+    margin: 0.8em 0 0.1em
+    }
+.copy1 {
+    display: block;
+    font-family: "JansonTextLTStd";
+    font-size: 0.75em;
+    margin: 1em 0 0.1em
+    }
+.cover {
+    display: block;
+    margin-bottom: 0.2em;
+    margin-top: 0.2em;
+    text-align: center
+    }
+.ded {
+    display: block;
+    font-family: "JansonTextLTStd";
+    text-align: center;
+    margin: 4em 0 1.5em
+    }
+.ded1 {
+    display: block;
+    font-family: "JansonTextLTStd";
+    text-align: center;
+    margin: 1.3em 0 1.5em
+    }
+.ent {
+    font-family: "ArialUnicodeMS";
+    src: url(fonts/ARIALUNI.ttf)
+    }
+.figcap {
+    display: block;
+    font-family: "TradeGothicLTStd";
+    font-size: 0.75em;
+    page-break-before: avoid;
+    text-align: left;
+    margin: 0.2em 0 1em
+    }
+.gray {
+    color: gray
+    }
+.green {
+    color: #33AB53
+    }
+.h {
+    color: #3564AF;
+    display: block;
+    font-family: "TradeGothicLTStd";
+    font-size: 2em;
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: center;
+    margin: 1em 0 0.1em
+    }
+.h1 {
+    color: #3564AF;
+    display: block;
+    font-family: "TradeGothicLTStd";
+    font-size: 1.41667em;
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: left;
+    text-transform: uppercase;
+    margin: 1.5em 0 0.4em
+    }
+.h1a {
+    display: block;
+    font-family: "TradeGothicLTStd";
+    font-size: 1.41667em;
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: center;
+    margin: 0.5em 0 0.1em
+    }
+.h1d {
+    color: #3564AF;
+    display: block;
+    font-family: "TradeGothicLTStd";
+    font-size: 1.41667em;
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: center;
+    margin: 0.3em 0 0.1em
+    }
+.h2 {
+    color: #3564AF;
+    display: block;
+    font-family: "TradeGothicLTStd";
+    font-size: 1.41667em;
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 1em 0
+    }
+.h2a {
+    display: block;
+    font-size: 1.41667em;
+    font-weight: bold;
+    line-height: 1.2;
+    margin: 0.83em 0
+    }
+.h2f {
+    color: #3564AF;
+    display: block;
+    font-family: "TradeGothicLTStd";
+    font-size: 1.41667em;
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: left;
+    text-transform: uppercase;
+    margin: 1.2em 0 0.6em
+    }
+.h2fa {
+    color: #3564AF;
+    display: block;
+    font-family: "TradeGothicLTStd";
+    font-size: 1.41667em;
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 1.2em 0 0.6em
+    }
+.h3 {
+    color: #EE8D21;
+    display: block;
+    font-family: "TradeGothicLTStd";
+    font-size: 1.125em;
+    font-weight: bold;
+    line-height: 1.2;
+    text-transform: uppercase;
+    margin: 1em 0 0.3em
+    }
+.h3i {
+    color: #377ED0;
+    display: block;
+    font-family: "TradeGothicLTStd";
+    font-size: 1.125em;
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: left;
+    margin: 1.5em 0 0.4em
+    }
+.image {
+    display: block;
+    text-align: center;
+    padding: 0;
+    margin: 1em auto
+    }
+.image1 {
+    clear: both;
+    display: block;
+    text-align: left;
+    padding: 0;
+    margin: 1em auto 0.5em
+    }
+.imagec {
+    clear: both;
+    display: block;
+    max-height: 99%;
+    max-width: 99%;
+    text-align: center;
+    padding: 0;
+    margin: 1em auto 0.5em
+    }
+.indent {
+    display: block;
+    font-family: "JansonTextLTStd";
+    text-align: left;
+    text-indent: 1.3em;
+    margin: 0.2em 0
+    }
+.indexmain {
+    display: block;
+    font-family: "JansonTextLTStd";
+    text-align: left;
+    text-indent: -3.3em;
+    margin: 0.2em 0 0.1em 3.3em
+    }
+.indexsub {
+    display: block;
+    font-family: "JansonTextLTStd";
+    text-align: left;
+    text-indent: -1.3em;
+    margin: 0.1em 0 0.1em 2.4em
+    }
+.indexsubsub {
+    display: block;
+    font-family: "JansonTextLTStd";
+    text-align: left;
+    text-indent: -1.5em;
+    margin: 0.1em 0 0.1em 3.8em
+    }
+.literal {
+    font-family: "UbuntuMono";
+    font-size: 1em
+    }
+.literal1 {
+    font-family: "UbuntuMono";
+    font-size: 0.75em
+    }
+.middle {
+    height: 23px;
+    max-height: 99%;
+    max-width: 99%;
+    vertical-align: middle;
+    width: 17px
+    }
+.noindent {
+    display: block;
+    font-family: "JansonTextLTStd";
+    text-align: left;
+    margin: 0.2em 0 0.1em
+    }
+.noindent1 {
+    display: list-item;
+    font-family: "JansonTextLTStd";
+    margin-bottom: 0.1em;
+    margin-left: 0;
+    margin-top: 0.2em;
+    text-align: left
+    }
+.noindent2 {
+    color: #000;
+    display: list-item;
+    font-family: "JansonTextLTStd";
+    margin-bottom: 0.1em;
+    margin-left: 0;
+    margin-top: 0.2em;
+    text-align: left
+    }
+.noindentt {
+    display: block;
+    font-family: "JansonTextLTStd";
+    text-align: left;
+    margin: 0.8em 0 0.1em
+    }
+.note {
+    display: block;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-top: 1em;
+    text-align: left;
+    padding: 0 0.5em 0.5em 0
+    }
+.notep {
+    display: block;
+    font-family: "JansonTextLTStd";
+    text-align: justify;
+    margin: 0.2em 0.5em 0.1em
+    }
+.notes {
+    background-color: #3564AF;
+    color: #FFF;
+    line-height: 1.2;
+    padding: 0.3em
+    }
+.notet {
+    display: block;
+    font-family: "TradeGothicLTStd";
+    font-size: 1.125em;
+    line-height: 1.2;
+    margin: 0.5em 0 0.5em 0.1em
+    }
+.orange {
+    color: #F9B949
+    }
+.pre {
+    display: block;
+    font-family: "UbuntuMono";
+    font-size: 0.75em;
+    text-align: left;
+    white-space: pre-wrap;
+    padding: 0.5em 0.1em;
+    margin: 0.6em 0;
+    border-top: black solid 0.1em;
+    border-bottom: black solid 0.1em
+    }
+.pre1 {
+    display: block;
+    font-family: "UbuntuMono";
+    font-size: 0.75em;
+    text-align: left;
+    padding: 0.5em 0.1em;
+    margin: 0.6em 0
+    }
+.pub {
+    display: block;
+    margin-bottom: 0.2em;
+    margin-top: 3em;
+    text-align: center
+    }
+.pub1 {
+    display: block;
+    font-family: "TradeGothicLTStd";
+    text-align: center;
+    margin: 1em 0 0.5em
+    }
+.red {
+    color: #F00
+    }
+.sb-para {
+    display: block;
+    margin: 1em 0
+    }
+.side-title {
+    display: block;
+    font-family: "TradeGothicLTStd";
+    font-weight: bold;
+    text-align: center;
+    margin: 0.5em 0
+    }
+.sidebar {
+    background-color: #C4CAE7;
+    border-radius: 0.3em;
+    display: block;
+    margin-bottom: 0.2em;
+    margin-top: 0.2em;
+    padding: 0.3em;
+    border: #3564AF solid 0.1em
+    }
+.subtitle {
+    display: block;
+    font-family: "TradeGothicLTStd";
+    font-size: 1.41667em;
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: center;
+    margin: 0.7em 0 1.5em
+    }
+.taba {
+    display: block;
+    font-family: "JansonTextLTStd";
+    margin-bottom: 0.1em;
+    margin-right: 0;
+    margin-top: 0.1em;
+    text-align: left
+    }
+.tabcap {
+    display: block;
+    font-family: "TradeGothicLTStd";
+    font-size: 0.75em;
+    page-break-after: avoid;
+    text-align: left;
+    margin: 1em 0 0.2em
+    }
+.table-1bw_bot {
+    display: table-cell;
+    font-family: "JansonTextLTStd";
+    margin-bottom: 0.1em;
+    margin-left: 0;
+    margin-top: 0.1em;
+    text-align: inherit;
+    vertical-align: top;
+    padding: 1px;
+    border-bottom: black solid 0.2em
+    }
+.table-h {
+    display: table-cell;
+    font-family: "JansonTextLTStd";
+    font-weight: bold;
+    margin-bottom: 0.1em;
+    margin-left: 0;
+    margin-top: 0.1em;
+    vertical-align: top;
+    padding: 1px;
+    border-top: black solid 0.15em;
+    border-bottom: black solid 0.15em
+    }
+.toc {
+    display: block;
+    font-family: "JansonTextLTStd";
+    font-size: 1em;
+    text-align: left;
+    margin: 0.5em 0 0
+    }
+.toc-fm {
+    color: #3564AF;
+    display: block;
+    font-family: "JansonTextLTStd";
+    font-weight: bold;
+    text-align: left;
+    margin: 1.5em 0 0.2em
+    }
+.toc-fm1 {
+    display: block;
+    font-family: "JansonTextLTStd";
+    text-align: left;
+    margin: 0.1em 0
+    }
+.toc-lev {
+    display: block;
+    font-family: "JansonTextLTStd";
+    text-align: left;
+    margin: 0.1em 0 0.1em 3.3em
+    }
+.toc-parta {
+    color: #3564AF;
+    display: block;
+    font-family: "JansonTextLTStd";
+    font-size: 1em;
+    font-weight: bold;
+    text-align: left;
+    margin: 1.5em 0 0.1em
+    }
+.toc1 {
+    color: #3564AF;
+    display: block;
+    font-family: "JansonTextLTStd";
+    font-size: 1em;
+    font-weight: bold;
+    text-align: left;
+    margin: 1.5em 0 1em
+    }
+.toca {
+    display: block;
+    font-family: "JansonTextLTStd";
+    font-size: 1em;
+    text-align: left;
+    margin: 1.5em 0 0
+    }
+.violet {
+    color: #A4479B
+    }

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>=</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="="><div class="titlepage"><div><div><h1 class="title"><a id="equals"/>=</h1></div></div></div><p>JSLint does not expect to see an assignment statement in the condition part of an
+                    <code class="literal">if</code> or <code class="literal">while</code> statement. This is because it is more likely that:<a id="IDX-APP-C-0646" class="indexterm"/></p><a id="I_programlisting_d1e10225"/><pre class="programlisting">if (a = b) {
+    ...
+}</pre><p>was intended to be:</p><a id="I_programlisting_d1e10229"/><pre class="programlisting">if (a == b) {
+    ...
+}</pre></div></body></html>

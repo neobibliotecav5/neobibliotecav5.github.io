@@ -1,0 +1,89 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Methods</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="Methods"><div class="titlepage"><div><div><h1 class="title"><a id="methods-id1"></a>Métodos</h1></div></div></div><p>JavaScript proporciona un conjunto de métodos para actuar sobre matrices. Los métodos son funciones almacenadas en <code class="literal" translate="no">Array.prototype</code>. En el <a class="xref" href="ch03.html" title="Chapter 3. Objects">Capítulo 3</a>, vimos que <code class="literal" translate="no">Object.prototype</code> puede aumentarse. <code class="literal" translate="no">Array.prototype</code> también puede aumentarse.<a class="indexterm" id="IDX-CHP-6-0310"></a><a class="indexterm" id="IDX-CHP-6-0311"></a><a class="indexterm" id="IDX-CHP-6-0312"></a><a class="indexterm" id="IDX-CHP-6-0313"></a></p><p>Por ejemplo, supongamos que queremos añadir un método <code class="literal" translate="no">array</code>que nos permita realizar cálculos sobre una matriz:</p><a id="I_programlisting6_d1e4668"></a><pre class="programlisting" translate="no">Array.method('reduce', function (f, value) {
+    var i;
+    for (i = 0; i &lt; this.length; i += 1) {
+        value = f(this[i], value);
+    }
+    return value;
+});</pre><p>Al añadir una función a <code class="literal" translate="no">Array.prototype</code>, todas las matrices heredan el método. En este caso, definimos un método <code class="literal" translate="no">reduce</code> que toma una función y un valor inicial. Para cada elemento de la matriz, llama a la función con un elemento y el valor, y calcula un nuevo valor. Cuando termina, devuelve el valor. Si pasamos una función que suma dos números, calcula la suma. Si pasamos una función que multiplica dos números, calcula el producto:</p><a id="I_programlisting6_d1e4678"></a><pre class="programlisting" translate="no">// Create an array of numbers.
+
+var data = [4, 8, 15, 16, 23, 42];
+
+// Define two simple functions. One will add two
+// numbers. The other will multiply two numbers.
+
+var add = function (a, b) {
+    return a + b;
+};
+
+var mult = function (a, b) {
+    return a * b;
+};
+
+// Invoke the data's reduce method, passing in the
+// add function.
+
+var sum = data.reduce(add, 0);    // sum is 108
+
+// Invoke the reduce method again, this time passing
+// in the multiply function.
+
+var product = data.reduce(mult, 1);
+    // product is 7418880</pre><p>Como una matriz es en realidad un objeto, podemos añadir métodos directamente a una matriz individual:</p><a id="I_programlisting6_d1e4682"></a><pre class="programlisting" translate="no">// Give the data array a total function.
+
+data.total = function (  ) {
+    return this.reduce(add, 0);
+};
+
+total = data.total(  );    // total is 108</pre><p>Como la cadena <code class="literal" translate="no">'total'</code> no es un número entero, añadir una propiedad <code class="literal" translate="no">total</code> a una matriz no cambia su <code class="literal" translate="no">length</code>. Las matrices son más útiles cuando los nombres de las propiedades son enteros, pero siguen siendo objetos, y los objetos pueden aceptar cualquier cadena como nombre de propiedad.</p><p>No es útil utilizar el método <code class="literal" translate="no"><code class="literal" translate="no">Object.</code>create</code> del <a class="xref" href="ch03.html" title="Chapter 3. Objects">Capítulo 3</a> en matrices, porque produce un objeto, no una matriz. El objeto producido heredará los valores y métodos de la matriz, pero no tendrá la propiedad especial <code class="literal" translate="no">length</code>.</p></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="ch06s05.html">← Anterior</a><a href="ch06s07.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="ch06s06.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\ch06s06.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

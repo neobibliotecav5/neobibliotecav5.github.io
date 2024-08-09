@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<meta charset="utf-8"/>
+<title>Capítulo 4: Álgebra y matemáticas simbólicas con SymPy</title>
+<link href="style.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="core.css" media="all" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch04lev1sec02"><strong>Trabajar con expresiones</strong></h3>
+<p class="noindent">Ahora que sabemos cómo definir nuestras propias expresiones simbólicas, vamos a aprender más sobre cómo utilizarlas en nuestros programas.</p>
+<h4 class="h4" id="ch04lev2sec01"><strong><em>Factorizar y expandir expresiones</em></strong></h4>
+<p class="noindent">La función <span class="literal" translate="no">factor()</span> descompone una expresión en sus factores, y la función <span class="literal" translate="no">expand()</span> expande una expresión, expresándola como una suma de términos individuales. Probemos estas funciones con la identidad algebraica básica <sup>x2</sup> - <sup>y2</sup> =<em>(x</em> + <em>y</em>)<em>(x</em> - <em>y</em>). El lado izquierdo de la identidad es la versión expandida, y el lado derecho representa la factorización correspondiente. Como tenemos dos símbolos en la identidad, crearemos dos objetos <span class="literal" translate="no">Symbol</span>:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">from sympy import Symbol</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">x = Symbol('x')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">y = Symbol('y')</span></p>
+<p class="indent"><a id="page_97"></a>A continuación, importamos la función <span class="literal" translate="no">factor()</span> y la utilizamos para convertir la versión expandida (en el lado izquierdo de la identidad) en la versión factorizada (en el lado derecho):</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">from sympy import factor</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">expr = x**2 - y**2</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">factor(expr)</span><br translate="no"/>(x - y)*(x + y)</p>
+<p class="indent">Como era de esperar, obtenemos la versión factorizada de la expresión. Ahora vamos a expandir los factores para recuperar la versión expandida original:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">factors = factor(expr)</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">expand(factors)</span><br translate="no"/>x**2 - y**2</p>
+<p class="indent">Almacenamos la expresión factorizada en una nueva etiqueta, <span class="literal" translate="no">factors</span>, y luego llamamos a la función <span class="literal" translate="no">expand()</span> con ella. Al hacerlo, recibimos la expresión original con la que empezamos. Probémoslo con la identidad más complicada <sup>x3</sup> + <em>3x2y</em> + <sup>3xy2</sup> + <sup>y3</sup> =<em>(x</em> + <em>y</em><sup>)3</sup>:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">expr = x**3 + 3*x**2*y + 3*x*y**2 + y**3</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">factors = factor(expr)</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">factors</span><br translate="no"/>(x + y)**3<br translate="no"/><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">expand(factors)</span><br translate="no"/>x**3 + 3*x**2*y + 3*x*y**2 + y**3</p>
+<p class="indent">La función <span class="literal" translate="no">factor()</span> es capaz de factorizar la expresión y, a continuación, la función <span class="literal" translate="no">expand()</span> expande la expresión factorizada para volver a la expresión original.</p>
+<p class="indent">Si intentas factorizar una expresión para la que no hay factorización posible, la función <span class="literal" translate="no">factor()</span> devuelve la expresión original. Por ejemplo, mira lo siguiente:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">expr = x + y + x*y</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">factor(expr)</span><br translate="no"/>x*y + x + y</p>
+<p class="indent">Del mismo modo, si pasas una expresión a <span class="literal" translate="no">expand()</span> que no puede expandirse más, devuelve la misma expresión.</p>
+<h4 class="h4" id="ch04lev2sec02"><strong><em>Impresión bonita</em></strong></h4>
+<p class="noindent">Si quieres que las expresiones con las que hemos estado trabajando tengan un aspecto más bonito cuando las imprimas, puedes utilizar la función <span class="literal" translate="no">pprint()</span>. Esta función imprimirá la expresión de forma que se parezca más a como la escribiríamos normalmente en papel. Por ejemplo, aquí tienes una expresión:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">expr = x*x + 2*x*y + y*y</span></p>
+<p class="indent"><a id="page_98"></a>Si la imprimimos como hemos estado haciendo hasta ahora o utilizamos la función <span class="literal" translate="no">print()</span>, este es su aspecto:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">expr</span><br translate="no"/>x**2 + 2*x*y + y**2</p>
+<p class="indent">Ahora, utilicemos la función <span class="literal" translate="no">pprint()</span> para imprimir la expresión anterior:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">from sympy import pprint</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">pprint(expr)</span><br translate="no"/>x<sup>2</sup> + 2·x·y + y<sup>2</sup></p>
+<p class="indent">La expresión tiene ahora un aspecto mucho más limpio; por ejemplo, en lugar de tener un montón de feos asteriscos, los exponentes aparecen encima del resto de los números.</p>
+<p class="indent">También puedes cambiar el orden de los términos al imprimir una expresión. Considera la expresión 1 +<em>2x</em> + <sup>2x2</sup>:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">expr = 1 + 2*x + 2*x**2</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">pprint(expr)</span><br translate="no"/>2·x<sup>2</sup> + 2·x + 1</p>
+<p class="indent">Los términos están dispuestos en el orden de potencias de <em>x</em>, de mayor a menor. Si quieres la expresión en el orden inverso, con la mayor potencia de <em>x</em> en último lugar, puedes hacerlo con la función <span class="literal" translate="no">init_printing()</span>, como se indica a continuación:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">from sympy import init_printing</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">init_printing(order='rev-lex')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">pprint(expr)</span><br translate="no"/>1 + 2·x + 2·x<sup>2</sup></p>
+<p class="indent">Primero se importa la función <span class="literal" translate="no">init_printing()</span> y se llama con el argumento de palabra clave <span class="literal" translate="no">order='rev-lex'</span>. Esto indica que queremos que SymPy imprima las expresiones de modo que estén en <em>orden lexicográfico inverso</em>. En este caso, el argumento de palabra clave indica a Python que imprima primero los términos de menor potencia.</p>
+<div class="note">
+<p class="notet"><strong><span class="bordera">NOTA</span></strong></p>
+<p class="noindent"><em>Aunque aquí hemos utilizado la</em> función <span class="literal" translate="no"><span class="codeitalic">init_printing()</span></span> <em>para establecer el orden de impresión de las expresiones, esta función puede utilizarse de muchas otras formas para configurar cómo se imprime una expresión. Para conocer más opciones y saber más sobre la impresión en SymPy, consulta la documentación en</em> <a href="http://docs.sympy.org/latest/tutorial/printing.html">http://docs.sympy.org/latest/tutorial/printing.html.</a></p>
+</div>
+<p class="indent">Apliquemos lo que hemos aprendido hasta ahora para implementar un programa de impresión de series.</p>
+<h5 class="h5" id="ch04lev3sec01"><a id="page_99"></a><strong>Imprimir una serie</strong></h5>
+<p class="noindent">Considera la siguiente serie:</p>
+<div class="image2"><img alt="image" src="images/e0099-01.jpg" translate="no"/></div>
+<p class="indent">Escribamos un programa que pida al usuario que introduzca un número, <em>n</em>, e imprima esta serie para ese número. En la serie, <em>x</em> es un símbolo y <em>n</em> es un número entero introducido por el usuario del programa. El término <em>n</em>de esta serie viene dado por</p>
+<div class="image2"><img alt="image" src="images/e0099-02.jpg" translate="no"/></div>
+<p class="indent">Podemos imprimir esta serie utilizando el siguiente programa:</p>
+<p class="programs" translate="no">   '''<br translate="no"/>   Print the series:<br translate="no"/>   x + x**2 + x**3 + ... + x**n<br translate="no"/>       ____  _____         _____<br translate="no"/>         2    3              n<br translate="no"/>   '''<br translate="no"/><br translate="no"/>   from sympy import Symbol, pprint, init_printing<br translate="no"/>   def print_series(n):<br translate="no"/><br translate="no"/>       # Initialize printing system with reverse order<br translate="no"/>       init_printing(order='rev-lex')<br translate="no"/><br translate="no"/>       x = Symbol('x')<br translate="no"/><span class="ent">➊</span>     series = x<br translate="no"/><span class="ent">➋</span>         for i in range(2, n+1):<br translate="no"/><span class="ent">➌</span>         series = series + (x**i)/i<br translate="no"/>       pprint(series)<br translate="no"/><br translate="no"/>   if __name__ == '__main__':<br translate="no"/>       n = input('Enter the number of terms you want in the series: ')<br translate="no"/><span class="ent">➍</span>     print_series(int(n))</p>
+<p class="indent">La función <span class="literal" translate="no">print_series()</span> acepta como parámetro un número entero, <span class="literal" translate="no">n</span>, que es el número de términos de la serie que se imprimirán. Observa que convertimos la entrada en un número entero utilizando la función <span class="literal" translate="no">int()</span> al llamar a la función en <span class="ent">➍.</span> A continuación, llamamos a la función <span class="literal" translate="no">init_printing()</span> para que la serie se imprima en orden lexicográfico inverso.</p>
+<p class="indent">En <span class="ent">➊,</span> creamos la etiqueta, <span class="literal" translate="no">series</span>, y establecemos su valor inicial como <span class="literal" translate="no">x</span>. A continuación, definimos un bucle <span class="literal" translate="no">for</span> que iterará sobre los enteros de 2 a <span class="literal" translate="no">n</span> en <span class="ent">➋.</span> Cada vez que el bucle itera, añade cada término a <span class="literal" translate="no">series</span> en <span class="ent">➌,</span> como sigue:</p>
+<p class="programs" translate="no">i = 2, series = x + x**2 / 2<br translate="no"/>i = 3, series = x + x**2/2 + x**3/3<br translate="no"/><br translate="no"/>--<span class="codeitalic">snip</span>--</p>
+<p class="indent"><a id="page_100"></a>El valor de <span class="literal" translate="no">series</span> comienza siendo simplemente <span class="literal" translate="no">x</span>, pero con cada iteración, <span class="literal" translate="no">x**i/i</span> se añade al valor de <span class="literal" translate="no">series</span> hasta completar la serie que queremos. Aquí puedes ver un buen uso de la suma SymPy. Por último, la función <span class="literal" translate="no">pprint()</span> se utiliza para imprimir la serie.</p>
+<p class="indent">Cuando ejecutas el programa, te pide que introduzcas un número y luego imprime la serie hasta ese término:</p>
+<p class="programs" translate="no">Enter the number of terms you want in the series: <span class="codestrong">5</span><br translate="no"/><br translate="no"/>    x<sup>2</sup> x<sup>3</sup> x<sup>4</sup> x<sup>5</sup><br translate="no"/>x + -- + -- + -- + --<br translate="no"/>    2    3    4    5</p>
+<p class="indent">Pruébalo cada vez con un número diferente de términos. A continuación veremos cómo calcular la suma de esta serie para un determinado valor de <em>x</em>.</p>
+<h4 class="h4" id="ch04lev2sec03"><strong><em>Sustitución de valores</em></strong></h4>
+<p class="noindent">Veamos cómo podemos utilizar SymPy para introducir valores en una expresión algebraica. Esto nos permitirá calcular el valor de la expresión para determinados valores de las variables. Considera la expresión matemática <sup>x2</sup> + <em>2xy</em> + <sup>y2</sup>, que puede definirse así:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">x = Symbol('x')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">y = Symbol('y')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">x*x + x*y + x*y + y*y</span><br translate="no"/>x**2 + 2*x*y + y**2</p>
+<p class="indent">Si quieres evaluar esta expresión, puedes sustituir los símbolos por números utilizando el método <span class="literal" translate="no">subs()</span>:</p>
+<p class="programs" translate="no"><span class="ent">➊</span> &gt;&gt;&gt; <span class="codestrong">expr = x*x + x*y + x*y + y*y</span><br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">res = expr.subs({x:1, y:2})</span></p>
+<p class="indent">Primero, creamos una nueva etiqueta para referirnos a la expresión en <span class="ent">➊,</span> y luego llamamos al método <span class="literal" translate="no">subs()</span>. El argumento del método <span class="literal" translate="no">subs()</span> es un <em>diccionario</em> Python que contiene las dos etiquetas de símbolos y los valores numéricos que queremos sustituir por cada símbolo. Comprobemos el resultado:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">res</span><br translate="no"/>9</p>
+<p class="indent">También puedes expresar un símbolo en términos de otro y sustituirlo en consecuencia, utilizando el método <span class="literal" translate="no">subs()</span>. Por ejemplo, si supieras que <em>x</em> = 1 - <em>y</em>, así es como podrías evaluar la expresión anterior:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">expr.subs({x:1-y})</span><br translate="no"/>y**2 + 2*y*(-y + 1) + (-y + 1)**2</p>
+<div class="sidebar">
+<p class="sidebart"><a id="page_101"></a><strong>DICCIONARIOS PYTHON</strong></p>
+<p class="noindent">Un diccionario es otro tipo de estructura de datos en Python (las listas y las tuplas son otros ejemplos de estructuras de datos, que ya has visto antes). Los diccionarios contienen pares clave-valor dentro de llaves, donde cada clave se empareja con un valor, separados por dos puntos. En el listado de código anterior, hemos introducido el diccionario <span class="literal" translate="no">{x:1, y:2}</span> como argumento del método <span class="literal" translate="no">subs()</span>. Este diccionario tiene dos pares clave-valor -<span class="literal" translate="no">x:1</span> y <span class="literal" translate="no">y:2</span>, donde <span class="literal" translate="no">x</span> y <span class="literal" translate="no">y</span> son las claves y <span class="literal" translate="no">1</span> y <span class="literal" translate="no">2</span> son los valores correspondientes. Puedes recuperar un valor de un diccionario introduciendo su clave asociada entre paréntesis, del mismo modo que recuperaríamos un elemento de una lista utilizando su índice. Por ejemplo, aquí creamos un diccionario simple y luego recuperamos el valor correspondiente a <span class="literal" translate="no">key1</span>:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">sampledict = {"key1": 5, "key2": 20}</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">sampledict["key1"]</span><br translate="no"/>5</p>
+<p class="indent">Para saber más sobre diccionarios, consulta <a href="app02.html#app02">el Apéndice B</a>.</p>
+</div>
+<p class="indent">Si quieres simplificar aún más el resultado -por ejemplo, si hay términos que se anulan entre sí-, podemos utilizar la función <span class="literal" translate="no">simplify()</span> de SymPy, como se indica a continuación:</p>
+<p class="programs" translate="no"><span class="ent">➊</span> &gt;&gt;&gt; <span class="codestrong">expr_subs = expr.subs({x:1-y})</span><br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">from sympy import simplify</span><br translate="no"/><span class="ent">➋</span> &gt;&gt;&gt; <span class="codestrong">simplify(expr_subs)</span><br translate="no"/>   1</p>
+<p class="indent">En <span class="ent">➊,</span> creamos una nueva etiqueta, <span class="literal" translate="no">expr_subs</span>, para referirnos al resultado de sustituir <em>x</em> = 1 - <em>y</em> en la expresión. A continuación, importamos la función <span class="literal" translate="no">simplify()</span> de SymPy y la llamamos en <span class="ent">➋.</span> El resultado resulta ser 1 porque los demás términos de la expresión se anulan entre sí.</p>
+<p class="indent">Aunque en el ejemplo anterior había una versión simplificada de la expresión, tuviste que pedirle a SymPy que la simplificara utilizando la función <span class="literal" translate="no">simplify()</span>. Una vez más, esto se debe a que SymPy no realiza ninguna simplificación si no se le pide que lo haga.</p>
+<p class="indent">La función <span class="literal" translate="no">simplify()</span> también puede simplificar expresiones complicadas, como las que incluyen logaritmos y funciones trigonométricas, pero no entraremos en eso aquí.</p>
+<h5 class="h5" id="ch04lev3sec02"><a id="page_102"></a><strong>Calcular el valor de una serie</strong></h5>
+<p class="noindent">Volvamos al programa de impresión de series. Además de imprimir la serie, queremos que nuestro programa sea capaz de hallar el valor de la serie para un valor concreto de <em>x</em>. Es decir, ahora nuestro programa tomará dos datos de entrada del usuario: el número de términos de la serie y el valor de <em>x</em> para el que se calculará el valor de la serie. A continuación, el programa mostrará tanto la serie como la suma. El siguiente programa amplía el programa de impresión de series para incluir estas mejoras:</p>
+<p class="programs" translate="no">   '''<br translate="no"/>   Print the series:<br translate="no"/>   x + x**2 + x**3 + ... + x**n<br translate="no"/>       ____  _____         _____<br translate="no"/>         2     3             n<br translate="no"/>   '''<br translate="no"/><br translate="no"/>   from sympy import Symbol, pprint, init_printing<br translate="no"/>   def print_series(n, x_value):<br translate="no"/><br translate="no"/>       # Initialize printing system with reverse order<br translate="no"/>       init_printing(order='rev-lex')<br translate="no"/><br translate="no"/>       x = Symbol('x')<br translate="no"/>       series = x<br translate="no"/>       for i in range(2, n+1):<br translate="no"/>           series = series + (x**i)/i<br translate="no"/><br translate="no"/>       pprint(series)<br translate="no"/><br translate="no"/>       # Evaluate the series at x_value<br translate="no"/><span class="ent">➊</span>     series_value = series.subs({x:x_value})<br translate="no"/>       print('Value of the series at {0}: {1}'.format(x_value, series_value))<br translate="no"/><br translate="no"/>   if __name__ == '__main__':<br translate="no"/>       n = input('Enter the number of terms you want in the series: ')<br translate="no"/><span class="ent">➋</span>     x_value = input('Enter the value of x at which you want to evaluate the series: ')<br translate="no"/><br translate="no"/>       print_series(int(n), float(x_value))</p>
+<p class="indent">La función <span class="literal" translate="no">print_series()</span> toma ahora un argumento adicional, <span class="literal" translate="no">x_value</span>, que es el valor de <span class="literal" translate="no">x</span> para el que debe evaluarse la serie. En <span class="ent">➊,</span> utilizamos el método <span class="literal" translate="no">subs()</span> para realizar la evaluación y la etiqueta <span class="literal" translate="no">series_value</span> para referirnos al resultado. En la línea siguiente, mostramos el resultado.</p>
+<p class="indent">La sentencia de entrada adicional en <span class="ent">➋</span> pide al usuario que introduzca el valor de <span class="literal" translate="no">x</span> utilizando la etiqueta <span class="literal" translate="no">x_value</span> para referirse a él. Antes de llamar a la función <span class="literal" translate="no">print_series()</span>, convertimos este valor en su equivalente en coma flotante utilizando la función <span class="literal" translate="no">float()</span>.</p>
+<p class="indent"><a id="page_103"></a>Si ejecutas ahora el programa, te pedirá las dos entradas e imprimirá la serie y el valor de la serie:</p>
+<p class="programs" translate="no">Enter the number of terms you want in the series: <span class="codestrong">5</span><br translate="no"/>Enter the value of x at which you want to evaluate the series: <span class="codestrong">1.2</span><br translate="no"/><br translate="no"/>    x<sup>2</sup> x<sup>3</sup> x<sup>4</sup> x<sup>5</sup><br translate="no"/>x + -- + -- + -- + --<br translate="no"/>    2    3    4    5<br translate="no"/>Value of the series at 1.2: 3.51206400000000</p>
+<p class="indent">En esta ejecución de ejemplo, pedimos cinco términos de la serie, con <span class="literal" translate="no">x</span> fijado en 1,2, y el programa imprime y evalúa la serie.</p>
+<h4 class="h4" id="ch04lev2sec04"><strong><em>Convertir cadenas en expresiones matemáticas</em></strong></h4>
+<p class="noindent">Hasta ahora, hemos estado escribiendo expresiones individuales cada vez que queríamos hacer algo con ellas. Sin embargo, ¿qué pasaría si quisieras escribir un programa más general que pudiera manipular cualquier expresión proporcionada por el usuario? Para ello, necesitamos una forma de convertir la entrada del usuario, que es una cadena, en algo con lo que podamos realizar operaciones matemáticas. La función <span class="literal" translate="no">sympify()</span> de SymPy nos ayuda a hacer exactamente eso. La función se llama así porque convierte la cadena en un objeto SymPy que permite aplicar las funciones de SymPy a la entrada. Veamos un ejemplo:</p>
+<p class="programs" translate="no"><span class="ent">➊</span> &gt;&gt;&gt; <span class="codestrong">from sympy import sympify</span><br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">expr = input('Enter a mathematical expression: ')</span><br translate="no"/>   Enter a mathematical expression: <span class="codestrong">x**2 + 3*x + x**3 + 2*x</span><br translate="no"/><span class="ent">➋</span> &gt;&gt;&gt; <span class="codestrong">expr = sympify(expr)</span></p>
+<p class="indent">Primero importamos la función <span class="literal" translate="no">sympify()</span> en <span class="ent">➊.</span> A continuación, utilizamos la función <span class="literal" translate="no">input()</span> para pedir una expresión matemática como entrada, utilizando la etiqueta <span class="literal" translate="no">expr</span> para referirnos a ella. A continuación, llamamos a la función <span class="literal" translate="no">sympify()</span> con <span class="literal" translate="no">expr</span> como argumento en <span class="ent">➋</span> y utilizamos la misma etiqueta para referirnos a la expresión convertida.</p>
+<p class="indent">Puedes realizar varias operaciones con esta expresión. Por ejemplo, probemos a multiplicar la expresión por 2:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">2*expr</span><br translate="no"/>2*x**3 + 2*x**2 + 10*x</p>
+<p class="indent">¿Qué ocurre cuando el usuario proporciona una expresión no válida? Veámoslo:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">expr = input('Enter a mathematical expression: ')</span><br translate="no"/>Enter a mathematical expression: <span class="codestrong">x**2 + 3*x + x**3 + 2x</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">expr = sympify(expr)</span><br translate="no"/>Traceback (most recent call last):<br translate="no"/>  File "&lt;pyshell#146&gt;", line 1, in <br translate="no"/>    expr = sympify(expr)<br translate="no"/>  File "/usr/lib/python3.3/site-packages/sympy/core/sympify.py", line 180, in sympify<br translate="no"/>    raise SympifyError('could not parse %r' % a)<br translate="no"/>sympy.core.sympify.SympifyError: SympifyError: "could not parse 'x**2 + 3*x + x**3 + 2x'"</p>
+<p class="indent"><a id="page_104"></a>La última línea nos dice que <span class="literal" translate="no">sympify()</span> no es capaz de convertir la expresión de entrada suministrada. Como este usuario no añadió un operador entre <span class="literal" translate="no">2</span> y <span class="literal" translate="no">x</span>, SymPy no entiende lo que significa. Tu programa debería esperar una entrada no válida de este tipo e imprimir un mensaje de error si se produce. Veamos cómo podemos hacerlo capturando la excepción <span class="literal" translate="no">SympifyError</span>:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">from sympy import sympify</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">from sympy.core.sympify import SympifyError</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">expr = input('Enter a mathematical expression: ')</span><br translate="no"/>Enter a mathematical expression: <span class="codestrong">x**2 + 3*x + x**3 + 2x</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">try:</span><br translate="no"/> <span class="codestrong">expr = sympify(expr)</span><br translate="no"/><span class="codestrong">except SympifyError:</span><br translate="no"/> <span class="codestrong">print('Invalid input')</span><br translate="no"/><br translate="no"/>Invalid input</p>
+<p class="indent">Los dos cambios en el programa anterior son que importamos la clase de excepción <span class="literal" translate="no">SympifyError</span> del módulo <span class="literal" translate="no">sympy.core.sympify</span> y llamamos a la función <span class="literal" translate="no">sympify()</span> en un bloque <span class="literal" translate="no">try...except</span>. Ahora, si se produce una excepción <span class="literal" translate="no">SympifyError</span>, se imprime un mensaje de error.</p>
+<h5 class="h5" id="ch04lev3sec03"><strong>Multiplicador de expresiones</strong></h5>
+<p class="noindent">Apliquemos la función <span class="literal" translate="no">sympify()</span> para escribir un programa que calcule el producto de dos expresiones:</p>
+<p class="programs" translate="no">   '''<br translate="no"/>   Product of two expressions<br translate="no"/>   '''<br translate="no"/><br translate="no"/>   from sympy import expand, sympify<br translate="no"/>   from sympy.core.sympify import SympifyError<br translate="no"/><br translate="no"/>   def product(expr1, expr2):<br translate="no"/>       prod = expand(expr1*expr2)<br translate="no"/>       print(prod)<br translate="no"/><br translate="no"/>   if __name__=='__main__':<br translate="no"/><span class="ent">➊</span>     expr1 = input('Enter the first expression: ')<br translate="no"/><span class="ent">➋</span>     expr2 = input('Enter the second expression: ')<br translate="no"/><br translate="no"/>       try:<br translate="no"/>           expr1 = sympify(expr1)<br translate="no"/>           expr2 = sympify(expr2)<br translate="no"/>       except SympifyError:<br translate="no"/>           print('Invalid input')<br translate="no"/>       else:<br translate="no"/><span class="ent">➌</span>         product(expr1, expr2)</p>
+<p class="indent">En <span class="ent">➊</span> y <span class="ent">➋,</span> pedimos al usuario que introduzca las dos expresiones. A continuación, las convertimos a una forma comprensible para SymPy utilizando la función <span class="literal" translate="no">sympify()</span> <a id="page_105"></a> en un bloque <span class="literal" translate="no">try...except</span>. Si la conversión tiene éxito (indicado por el bloque <span class="literal" translate="no">else</span> ), llamamos a la función <span class="literal" translate="no">product()</span> en <span class="ent">➌.</span> En esta función, calculamos el producto de las dos expresiones y lo imprimimos. Observa cómo utilizamos la función <span class="literal" translate="no">expand()</span> para imprimir el producto de forma que todos sus términos se expresen como una suma de sus términos constituyentes.</p>
+<p class="indent">Aquí tienes un ejemplo de ejecución del programa:</p>
+<p class="programs" translate="no">Enter the first expression: <span class="codestrong">x**2 + x*2 + x</span><br translate="no"/>Enter the second expression: <span class="codestrong">x**3 + x*3 + x</span><br translate="no"/>x**5 + 3*x**4 + 4*x**3 + 12*x**2</p>
+<p class="indent">La última línea muestra el producto de las dos expresiones. La entrada también puede tener más de un símbolo en cualquiera de las expresiones:</p>
+<p class="programs" translate="no">Enter the first expression: <span class="codestrong">x*y+x</span><br translate="no"/>Enter the second expression: <span class="codestrong">x*x+y</span><br translate="no"/>x**3*y + x**3 + x*y**2 + x*y</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch04_2.html">anterior</a><a href="ch04.html">Subtema 3 de 7: (Ver todo)</a><a href="ch04_4.html">siguiente</a><br/></p>
+<br/><a href="ch04_3.docx" target="_blank"></a></footer>
+</body>
+</html>

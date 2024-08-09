@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Semicolon Insertion</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Semicolon Insertion"><div class="titlepage"><div><div><h1 class="title"><a id="semicolon_insertion"/>Semicolon Insertion</h1></div></div></div><p>JavaScript has a mechanism that tries to correct faulty programs by automatically
+                inserting semicolons. Do not depend on this. It can mask more serious
+                    errors.<a id="IDX-APP-A-0506" class="indexterm"/><a id="IDX-APP-A-0507" class="indexterm"/></p><p>It sometimes inserts semicolons in places where they are not welcome. Consider the
+                consequences of semicolon insertion on the <code class="literal">return</code>
+                statement. If a <code class="literal">return</code> statement returns a value,
+                that value expression must begin on the same line as the <code class="literal">return</code>:</p><a id="I_programlisting_d1e8239"/><pre class="programlisting">return
+{
+    status: true
+};</pre><p>This appears to return an object containing a <code class="literal">status</code> member. Unfortunately, semicolon insertion turns it into a
+                statement that returns <code class="literal">undefined</code>. There is no
+                warning that semicolon insertion caused the misinterpretation of the program. The
+                problem can be avoided if the <code class="literal">{</code> is placed at the
+                end of the previous line and not at the beginning of the next line:</p><a id="I_programlisting_d1e8252"/><pre class="programlisting">return {
+    status: true
+};</pre></div></body></html>

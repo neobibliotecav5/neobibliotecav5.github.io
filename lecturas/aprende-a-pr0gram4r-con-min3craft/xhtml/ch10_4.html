@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch10lev1sec03"><span epub:type="pagebreak" id="page_209"></span><strong><span class="blue1">Bucle sobre un diccionario</span></strong></h3>
+<p class="noindent">También puedes utilizar un bucle <span class="literal">for</span> para recorrer un diccionario. Cuando utilices un diccionario con un bucle <span class="literal">for</span>, la sintaxis es la misma que la de un bucle <span class="literal">for</span> con una lista; sin embargo, el bucle sólo iterará a través de las claves del diccionario.</p>
+<p class="indent">Por ejemplo, el siguiente código imprime la variable del bucle <span class="literal">for</span> cada vez que el bucle itera. En este caso, imprime la clave de cada elemento del diccionario:</p>
+<p class="programs" translate="no">inventory = {<span class="green">'gems'</span>: 5, <span class="green">'potions'</span>: 2, <span class="green">'boxes'</span>: 1}<br translate="no"/><br translate="no"/><span class="orange">for</span> key <span class="orange">in</span> inventory:<br translate="no"/> <span class="rose">print</span>(key)</p>
+<p class="indent">Este código imprime lo siguiente:</p>
+<p class="programs" translate="no"><span class="blue1">gems</span><br translate="no"/><span class="blue1">potions</span><br translate="no"/><span class="blue1">boxes</span></p>
+<p class="indent">Para imprimir el valor asociado a cada elemento del diccionario, debes utilizar la sintaxis <span class="literal">diccionario[clave]</span>. Aquí tienes cómo cambiar el código para que imprima el valor de cada elemento además de la clave:</p>
+<p class="programs" translate="no">inventory = {<span class="green">'gems'</span>: 5, <span class="green">'potions'</span>: 2, <span class="green">'boxes'</span>: 1}<br translate="no"/><br translate="no"/><span class="orange">for</span> key <span class="orange">in</span> inventory:<br translate="no"/> <span class="rose">print</span>(key + <span class="green">" "</span> + <span class="rose">str</span>(inventory[key]))</p>
+<p class="indent">Este ejemplo muestra ahora lo siguiente:</p>
+<p class="programs" translate="no"><span class="blue1">gems 5</span><br translate="no"/><span class="blue1">potions 2</span><br translate="no"/><span class="blue1">boxes 1</span></p>
+<p class="indent">Observa que esta salida es mucho más fácil de leer que el propio diccionario. Al utilizar un bucle para mostrar los valores de un diccionario, tienes mucho más control sobre cómo se muestra la información.</p>
+<h4 class="h4a" id="ch10lev2sec07"><strong>Misión 59: Marcador</strong></h4>
+<p class="noindent">Recuerda el juego <em>swordHitsScore.</em> py de la Misión 54<a href="ch09.xhtml#page_196">(página 196</a>). El juego registraba el número de bloques que un jugador golpeaba en un minuto. La puntuación se almacenaba en un diccionario junto con el nombre del jugador. Aunque el programa funcionaba bien, el marcador que aparecía al final del programa no mostraba las puntuaciones y los nombres en un formato muy legible. Sólo imprimía un diccionario sin ningún formato.</p>
+<p class="indent">Para mejorar el programa, en esta misión modificarás <em>swordHitsScore.</em> py para que imprima el diccionario <span class="literal">del</span> marcador en un formato fácil de leer. Para ello, utilizarás un bucle <span class="literal">for</span>.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_210"></span>Abre tu programa <em>swordHitsScore.</em> py (debe estar en la carpeta <em>listas</em> ) y guárdalo como <em>scoreBoard.</em> py en la carpeta <em>forLoops</em>. En el programa, busca y borra esta línea:</p>
+<p class="programs" translate="no"><span class="rose">print</span>(scoreboard)</p>
+<p class="indent">Sustituye esta línea por un bucle <span class="literal">for</span> que imprima el nombre de cada jugador y su puntuación. Estos valores se almacenan en el diccionario <span class="literal">del marcador</span>: el nombre de cada jugador es una clave del diccionario, y su puntuación es el valor de la clave.</p>
+<p class="indent">La<a href="ch10.xhtml#ch10fig5">Figura 10-5</a> muestra la salida actualizada.</p>
+<div class="image"><img alt="image" src="../images/f10-05.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch10fig5"></a><em>Figura 10-5: La salida del programa es ahora más fácil de leer.</em></p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch10_3.html">anterior</a><a href="ch10.html">Subtema 4 de 7: (Ver todo)</a><a href="ch10_5.html">siguiente</a><br/></p>
+<br/><a href="ch10_4.docx" target="_blank"></a></footer>
+</body>
+</html>

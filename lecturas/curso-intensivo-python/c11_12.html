@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c11-0006">Una prueba fallida</h3>
+<p class="BodyFirst">¿Qué aspecto tiene una prueba que falla? Modifiquemos <code translate="no">get_formatted_name()</code> para que pueda manejar segundos nombres, pero hagámoslo de forma que rompa la función para nombres con sólo nombre y apellidos, como Janis Joplin.</p>
+<p>Aquí tienes una nueva versión de <code translate="no">get_formatted_name()</code> que requiere un argumento de segundo nombre:</p>
+<p class="CodeLabel" translate="no"><b>name_function.py</b></p>
+<pre translate="no"><code translate="no">def get_formatted_name(first, middle, last):
+    <span class="LiteralGray">"""Generate a neatly formatted full name."""</span>
+    full_name = f"{first} {middle} {last}"
+    <span class="LiteralGray">return full_name.title()</span></code></pre>
+<p>Esta versión debería funcionar para las personas con segundo nombre, pero cuando la probamos, vemos que hemos roto la función para las personas que sólo tienen nombre y apellidos.</p>
+<p>Esta vez, al ejecutar <code class="bold" translate="no">pytest</code> obtenemos el siguiente resultado:</p>
+<pre translate="no"><code translate="no">$ <b>pytest</b>
+========================= test session starts =========================
+<var>--snip--</var>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> test_name_function.py F                                          [100%]
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> ============================== FAILURES ===============================
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> ________________________ test_first_last_name _________________________
+    def test_first_last_name():
+        """Do names like 'Janis Joplin' work?"""
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> &gt;       formatted_name = get_formatted_name('janis', 'joplin')
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span> E       TypeError: get_formatted_name() missing 1 required positional
+            argument: 'last'
+
+<span epub:type="pagebreak" id="Page_215" title="215"></span>test_name_function.py:5: TypeError
+======================= short test summary info =======================
+FAILED test_name_function.py::test_first_last_name - TypeError:
+    get_formatted_name() missing 1 required positional argument: 'last'
+========================== 1 failed in 0.04s ==========================</code></pre>
+<p>Hay mucha información aquí porque hay muchas cosas que puedes necesitar saber cuando falla una prueba. El primer elemento destacable de la salida es un único <code translate="no">F</code> <span aria-label="annotation1" class="CodeAnnotation">❶,</span> que nos indica que ha fallado una prueba. A continuación vemos una sección que se centra en <code translate="no">FAILURES</code> <span aria-label="annotation2" class="CodeAnnotation">❷,</span> porque las pruebas fallidas suelen ser lo más importante en lo que hay que centrarse en una ejecución de prueba. A continuación, vemos que <code translate="no">test_first_last_name()</code> fue la función de prueba que falló <span aria-label="annotation3" class="CodeAnnotation">❸.</span> Un corchete angular <span aria-label="annotation4" class="CodeAnnotation">❹</span> indica la línea de código que provocó el fallo de la prueba. El <code translate="no">E</code> de la línea siguiente <span aria-label="annotation5" class="CodeAnnotation">❺</span> muestra el error real que causó el fallo: un <code translate="no">TypeError</code> debido a la falta de un argumento posicional requerido, <code translate="no">last</code>. La información más importante se repite en un resumen más breve al final, de modo que cuando ejecutes muchas pruebas, puedas hacerte una idea rápida de qué pruebas fallaron y por qué.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c11_11.html">anterior</a><a href="c11.html">Subtema 12 de 22: (Ver todo)</a><a href="c11_13.html">siguiente</a><br/></p>
+<br/><a href="c11_12.docx" target="_blank"></a></footer>
+</body>
+</html>

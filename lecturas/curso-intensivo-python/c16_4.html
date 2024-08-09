@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c16-0001">Análisis de las cabeceras del archivo CSV</h3>
+<p class="BodyFirst">El módulo <code translate="no">csv</code> de la biblioteca estándar de Python analiza las líneas de un archivo CSV y nos permite extraer rápidamente los valores que nos interesan. Empecemos examinando la primera línea del archivo, que contiene una serie de cabeceras para los datos. Estas cabeceras nos indican qué tipo de información contienen los datos:</p>
+<p class="CodeLabel" translate="no"><b>sitka_highs.py</b></p>
+<pre translate="no"><code translate="no">from pathlib import Path
+import csv
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> path = Path('weather_data/sitka_weather_07-2021_simple.csv')
+lines = path.read_text().splitlines()
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> reader = csv.reader(lines)
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> header_row = next(reader)
+print(header_row)</code></pre>
+<p>Primero importamos <code translate="no">Path</code> y el módulo <code translate="no">csv</code>. A continuación, construimos un objeto <code translate="no">Path</code> que busca en la carpeta <em translate="no">weather_data</em>, y apunta al archivo de datos meteorológicos concreto con el que queremos trabajar <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Leemos el archivo y encadenamos el método <code translate="no">splitlines()</code> para obtener una lista de todas las líneas del archivo, que asignamos a <code translate="no">lines</code>.</p>
+<p><span epub:type="pagebreak" id="Page_331" title="331"></span>A continuación, construimos un objeto <code translate="no">reader</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Éste es un objeto que puede utilizarse para analizar cada línea del archivo. Para crear un objeto lector, llama a la función <code translate="no">csv.reader()</code> y pásale la lista de líneas del archivo CSV.</p>
+<p>Cuando se le da un objeto <code translate="no">reader</code>, la función <code translate="no">next()</code> devuelve la siguiente línea del archivo, empezando por el principio del archivo. Aquí llamamos a <code translate="no">next()</code> una sola vez, por lo que obtenemos la primera línea del archivo, que contiene las cabeceras del archivo <span aria-label="annotation3" class="CodeAnnotation">❸.</span> Asignamos los datos devueltos a <code translate="no">header_row</code>. Como puedes ver, <code translate="no">header_row</code> contiene cabeceras significativas, relacionadas con el tiempo, que nos indican qué información contiene cada línea de datos:</p>
+<pre translate="no"><code translate="no">['STATION', 'NAME', 'DATE', 'TAVG', 'TMAX', 'TMIN']</code></pre>
+<p>El objeto <code translate="no">reader</code> procesa la primera línea de valores separados por comas del archivo y almacena cada valor como un elemento de una lista. La cabecera <code translate="no">STATION</code> representa el código de la estación meteorológica que registró estos datos. La posición de esta cabecera nos indica que el primer valor de cada línea será el código de la estación meteorológica. La cabecera <code translate="no">NAME</code> indica que el segundo valor de cada línea es el nombre de la estación meteorológica que realizó la grabación. El resto de las cabeceras especifican qué tipo de información se registró en cada lectura. Los datos que más nos interesan por ahora son la fecha (<code translate="no">DATE</code>), la temperatura alta (<code translate="no">TMAX</code>) y la temperatura baja (<code translate="no">TMIN</code>). Se trata de un conjunto de datos sencillo que sólo contiene datos relacionados con la temperatura. Cuando descargues tus propios datos meteorológicos, puedes optar por incluir otra serie de mediciones relacionadas con la velocidad y dirección del viento, y datos sobre precipitaciones.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c16_3.html">anterior</a><a href="c16.html">Subtema 4 de 29: (Ver todo)</a><a href="c16_5.html">siguiente</a><br/></p>
+<br/><a href="c16_4.docx" target="_blank"></a></footer>
+</body>
+</html>

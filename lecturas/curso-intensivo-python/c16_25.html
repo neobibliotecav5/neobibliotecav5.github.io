@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c16-0019">Personalizar los colores de los marcadores</h3>
+<p class="BodyFirst">Podemos utilizar las escalas de color de Plotly para personalizar el color de cada marcador, según la gravedad del terremoto correspondiente. También utilizaremos una proyección diferente para el mapa base.</p>
+<p class="CodeLabel" translate="no"><b>eq_world_map.py</b></p>
+<pre translate="no"><code translate="no"><em class="LiteralGrayItalic" translate="no">--snip--</em>
+fig = px.scatter_geo(lat=lats, lon=lons, size=mags, title=title,
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         color=mags,
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         color_continuous_scale='Viridis',
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>         labels={'color':'Magnitude'},
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>         projection='natural earth',
+    )
+<span class="LiteralGray">fig.show()</span></code></pre>
+<p>Todos los cambios significativos aquí se producen en la llamada a la función <code translate="no">px.scatter_geo()</code>. El argumento <code translate="no">color</code> indica a Plotly qué valores debe utilizar para determinar dónde cae cada marcador en la escala de colores <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Utilizamos la lista <code translate="no">mags</code> para determinar el color de cada punto, igual que hicimos con el argumento <code translate="no">size</code>.</p>
+<p>El argumento <code translate="no">color_continuous_scale</code> indica a Plotly qué escala de color debe utilizar <span aria-label="annotation2" class="CodeAnnotation">❷.</span> <em translate="no">Viridis</em> es una escala de color que va del azul oscuro al amarillo brillante, y funciona bien para este conjunto de datos. Por defecto, la escala de colores de la derecha del mapa está etiquetada como <em translate="no">color</em>; esto no es representativo de lo que significan realmente los colores. El argumento <code translate="no">labels</code>, mostrado en el <span class="xref" itemid="xref_target_Chapter 15">Capítulo 15</span>, toma como valor un diccionario <span aria-label="annotation3" class="CodeAnnotation">❸.</span> Sólo tenemos que establecer una etiqueta personalizada en este gráfico, asegurándonos de que la escala de colores se etiqueta <em translate="no">Magnitude</em> en lugar de <em translate="no">color</em>.</p>
+<p><span epub:type="pagebreak" id="Page_350" title="350"></span>Añadimos un argumento más, para modificar el mapa base sobre el que se trazan los terremotos. El argumento <code translate="no">projection</code> acepta una serie de proyecciones cartográficas ❹ comunes <span aria-label="annotation4" class="CodeAnnotation">.</span> Aquí utilizamos la proyección <code translate="no">'natural earth'</code>, que redondea los extremos del mapa. Fíjate también en la coma que aparece después de este último argumento. Cuando una llamada a una función tiene una larga lista de argumentos que abarca varias líneas como ésta, es práctica común añadir una coma al final para que siempre estés preparado para añadir otro argumento en la línea siguiente.</p>
+<p>Cuando ejecutes ahora el programa, verás un mapa de aspecto mucho más agradable. En <a href="#figure16-9" id="figureanchor16-9">la Figura 16-9</a>, la escala de colores muestra la gravedad de los terremotos individuales; los terremotos más graves destacan como puntos de color amarillo claro, en contraste con muchos puntos más oscuros. También puedes saber qué regiones del mundo tienen una actividad sísmica más significativa.</p>
+<figure><img alt="" class="keyline" height="395" src="Images/f16009.png" translate="no" width="638"/>
+<figcaption><p><a id="figure16-9">Figura 16-9</a>: En 30 días de terremotos, el color y el tamaño se utilizan para representar la magnitud de cada terremoto.</p></figcaption></figure>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c16_24.html">anterior</a><a href="c16.html">Subtema 25 de 29: (Ver todo)</a><a href="c16_26.html">siguiente</a><br/></p>
+<br/><a href="c16_25.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://www.w3.org/2002/06/xhtml2/ http://www.w3.org/MarkUp/SCHEMA/xhtml2.xsd">
+<head>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style></head>
+<body><div id="sbo-rt-content"><section>
+<header>
+<h1 class="chapter">
+<span class="ChapterNumber"><span epub:type="pagebreak" id="Page_209" title="209"></span>11</span><br/>
+<span class="ChapterTitle">Testing Your Code</span></h1>
+</header>
+<figure class="opener">
+<img alt="" height="406" src="Images/chapterart.png" width="406"/>
+</figure>
+<p class="ChapterIntro">When you write a function or a class, you can also write tests for that code. Testing proves that your code works as it’s supposed to in response to all the kinds of input it’s designed to receive. When you write tests, you can be confident that your code will work correctly as more people begin to use your programs. You’ll also be able to test new code as you add it, to make sure your changes don’t break your program’s existing behavior. Every programmer makes mistakes, so every programmer must test their code often, to catch problems before users encounter them.</p>
+<p>In this chapter, you’ll learn to test your code using <code>pytest</code>. The <code>pytest</code> library is a collection of tools that will help you write your first tests quickly and simply, while supporting your tests as they grow in complexity along with your projects. Python doesn’t include <code>pytest</code> by default, so you’ll learn to install external libraries. Knowing how to install external libraries will make a wide variety of well-designed code available to you. These libraries will expand the kinds of projects you can work on immensely.</p>
+<p><span epub:type="pagebreak" id="Page_210" title="210"></span>You’ll learn to build a series of tests and check that each set of inputs results in the output you want. You’ll see what a passing test looks like and what a failing test looks like, and you’ll learn how a failing test can help you improve your code. You’ll learn to test functions and classes, and you’ll start to understand how many tests to write for a project.</p>
+<h2 id="h1-502703c11-0001">Installing pytest with pip</h2>
+<p class="BodyFirst">While Python includes a lot of functionality in the standard library, Python developers also depend heavily on third-party packages. A <em>third-party package</em> is a library that’s developed outside the core Python language. Some popular third-party libraries are eventually adopted into the standard library, and end up being included in most Python installations from that point forward. This happens most often with libraries that are unlikely to change much once they’ve had their initial bugs worked out. These kinds of libraries can evolve at the same pace as the overall language.</p>
+<p>Many packages, however, are kept out of the standard library so they can be developed on a timeline independent of the language itself. These packages tend to be updated more frequently than they would be if they were tied to Python’s development schedule. This is true of <code>pytest</code> and most of the libraries we’ll use in the second half of this book. You shouldn’t blindly trust every third-party package, but you also shouldn’t be put off by the fact that a lot of important functionality is implemented through such packages.</p>
+<h3 id="h2-502703c11-0001">Updating pip</h3>
+<p class="BodyFirst">Python includes a tool called pip that’s used to install third-party packages. Because pip helps install packages from external resources, it’s updated often to address potential security issues. So, we’ll start by updating pip.</p>
+<p>Open a new terminal window and issue the following command:</p>
+<pre><code>$ <b>python -m pip install --upgrade pip</b>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> Requirement already satisfied: pip in /.../python3.11/site-packages (22.0.4)
+<var>--snip--</var>
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> Successfully installed pip-22.1.2</code></pre>
+<p>The first part of this command, <code class="bold">python -m pip</code>, tells Python to run the module <code>pip</code>. The second part, <code class="bold">install --upgrade</code>, tells pip to update a package that’s already been installed. The last part, <code class="bold">pip</code>, specifies which third-party package should be updated. The output shows that my current version of pip, version 22.0.4 <span aria-label="annotation1" class="CodeAnnotation">❶</span>, was replaced by the latest version at the time of this writing, 22.1.2 <span aria-label="annotation2" class="CodeAnnotation">❷</span>.</p>
+<p>You can use this command to update any third-party package installed on your system:</p>
+<pre><code>$ <b>python -m pip install --upgrade</b> <var class="bold">package_name</var></code></pre>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	If you’re using Linux, pip may not be included with your installation of Python. If you get an error when trying to upgrade pip, see the instructions in <span class="xref" itemid="xref_target_Appendix A">Appendix A</span>.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h3 id="h2-502703c11-0002"><span epub:type="pagebreak" id="Page_211" title="211"></span>Installing pytest</h3>
+<p class="BodyFirst">Now that pip is up to date, we can install <code>pytest</code>:</p>
+<pre><code>$ <b>python -m pip install --user pytest</b>
+Collecting pytest
+<var>  --snip--</var>
+Successfully installed attrs-21.4.0 iniconfig-1.1.1 ...pytest-7.<var>x</var>.<var>x</var></code></pre>
+<p>We’re still using the core command <code class="bold">pip install</code>, without the <code class="bold">--upgrade</code> flag this time. Instead, we’re using the <code class="bold">--user</code> flag, which tells Python to install this package for the current user only. The output shows that the latest version of <code>pytest</code> was successfully installed, along with a number of other packages that <code>pytest</code> depends on.</p>
+<p>You can use this command to install many third-party packages:</p>
+<pre><code>$ <b>python -m pip install --user</b> <var class="bold">package_name</var></code></pre>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	If you have any difficulty running this command, try running the same command without the <code class="bold">--user</code> flag.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c11-0002">Testing a Function</h2>
+<p class="BodyFirst">To learn about testing, we need code to test. Here’s a simple function that takes in a first and last name, and returns a neatly formatted full name:</p>
+<p class="CodeLabel"><b>name_function.py</b></p>
+<pre><code>def get_formatted_name(first, last):
+    """Generate a neatly formatted full name."""
+    full_name = f"{first} {last}"
+    return full_name.title()</code></pre>
+<p>The function <code>get_formatted_name()</code> combines the first and last name with a space in between to complete a full name, and then capitalizes and returns the full name. To check that <code>get_formatted_name()</code> works, let’s make a program that uses this function. The program <em>names.py</em> lets users enter a first and last name, and see a neatly formatted full name:</p>
+<p class="CodeLabel"><b>names.py</b></p>
+<pre><code>from name_function import get_formatted_name
+
+print("Enter 'q' at any time to quit.")
+while True:
+    first = input("\nPlease give me a first name: ")
+    if first == 'q':
+        break
+    last = input("Please give me a last name: ")
+    if last == 'q':
+        break
+
+    formatted_name = get_formatted_name(first, last)
+    print(f"\tNeatly formatted name: {formatted_name}.")</code></pre>
+<p><span epub:type="pagebreak" id="Page_212" title="212"></span>This program imports <code>get_formatted_name()</code> from <em>name_function.py</em>. The user can enter a series of first and last names and see the formatted full names that are generated:</p>
+<pre><code>Enter 'q' at any time to quit.
+
+Please give me a first name: <b>janis</b>
+Please give me a last name: <b>joplin</b>
+       Neatly formatted name: Janis Joplin.
+
+Please give me a first name: <b>bob</b>
+Please give me a last name: <b>dylan</b>
+        Neatly formatted name: Bob Dylan.
+
+Please give me a first name: <b>q</b></code></pre>
+<p>We can see that the names generated here are correct. But say we want to modify <code>get_formatted_name()</code> so it can also handle middle names. As we do so, we want to make sure we don’t break the way the function handles names that have only a first and last name. We could test our code by running <em>names.py</em> and entering a name like <code>Janis Joplin</code> every time we modify <code>get_formatted_name()</code>, but that would become tedious. Fortunately, <code>pytest</code> provides an efficient way to automate the testing of a function’s output. If we automate the testing of <code>get_formatted_name()</code>, we can always be confident that the function will work when given the kinds of names we’ve written tests for.</p>
+<h3 id="h2-502703c11-0003">Unit Tests and Test Cases</h3>
+<p class="BodyFirst">There is a wide variety of approaches to testing software. One of the simplest kinds of test is a unit test. A <em>unit test</em> verifies that one specific aspect of a function’s behavior is correct. A <em>test case</em> is a collection of unit tests that together prove that a function behaves as it’s supposed to, within the full range of situations you expect it to handle.</p>
+<p>A good test case considers all the possible kinds of input a function could receive and includes tests to represent each of these situations. A test case with <em>full coverage</em> includes a full range of unit tests covering all the possible ways you can use a function. Achieving full coverage on a large project can be daunting. It’s often good enough to write tests for your code’s critical behaviors and then aim for full coverage only if the project starts to see widespread use.</p>
+<h3 id="h2-502703c11-0004">A Passing Test</h3>
+<p class="BodyFirst">With <code>pytest</code>, writing your first unit test is pretty straightforward. We’ll write a single test function. The test function will call the function we’re testing, and we’ll make an assertion about the value that’s returned. If our assertion is correct, the test will pass; if the assertion is incorrect, the test will fail.</p>
+<p><span epub:type="pagebreak" id="Page_213" title="213"></span>Here’s the first test of the function <code>get_formatted_name()</code>:</p>
+<p class="CodeLabel"><b>test_name_function.py</b></p>
+<pre><code>from name_function import get_formatted_name
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> def test_first_last_name():
+    """Do names like 'Janis Joplin' work?"""
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     formatted_name = get_formatted_name('janis', 'joplin')
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     assert formatted_name == 'Janis Joplin'</code></pre>
+<p>Before we run the test, let’s take a closer look at this function. The name of a test file is important; it must start with <em>test_</em>. When we ask <code>pytest</code> to run the tests we’ve written, it will look for any file that begins with <em>test_</em>, and run all of the tests it finds in that file.</p>
+<p>In the test file, we first import the function that we want to test: <code>get_formatted_name()</code>. Then we define a test function: in this case, <code>test_first_last_name()</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>. This is a longer function name than we’ve been using, for a good reason. First, test functions need to start with the word <em>test</em>, followed by an underscore. Any function that starts with <code>test_</code> will be <em>discovered</em> by <code>pytest</code>, and will be run as part of the testing process.</p>
+<p>Also, test names should be longer and more descriptive than a typical function name. You’ll never call the function yourself; <code>pytest</code> will find the function and run it for you. Test function names should be long enough that if you see the function name in a test report, you’ll have a good sense of what behavior was being tested.</p>
+<p>Next, we call the function we’re testing <span aria-label="annotation2" class="CodeAnnotation">❷</span>. Here we call <code>get_formatted_name()</code> with the arguments <code>'janis'</code> and <code>'joplin'</code>, just like we used when we ran <em>names.py</em>. We assign the return value of this function to <code>formatted_name</code>.</p>
+<p>Finally, we make an assertion <span aria-label="annotation3" class="CodeAnnotation">❸</span>. An <em>assertion</em> is a claim about a condition. Here we’re claiming that the value of <code>formatted_name</code> should be <code>'Janis Joplin'</code>.</p>
+<h3 id="h2-502703c11-0005">Running a Test</h3>
+<p class="BodyFirst">If you run the file <em>test_name_function.py</em> directly, you won’t get any output because we never called the test function. Instead, we’ll have <code>pytest</code> run the test file for us.</p>
+<p>To do this, open a terminal window and navigate to the folder that contains the test file. If you’re using VS Code, you can open the folder containing the test file and use the terminal that’s embedded in the editor window. In the terminal window, enter the command <code class="bold">pytest</code>. Here’s what you should see:</p>
+<pre><code>$ <b>pytest</b>
+========================= test session starts =========================
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> platform darwin -- Python 3.<var>x</var>.<var>x</var>, pytest-7.<var>x</var>.<var>x</var>, pluggy-1.<var>x</var>.<var>x</var>
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> rootdir: /.../python_work/chapter_11
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> collected 1 item
+
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> test_name_function.py .                                          [100%]
+========================== 1 passed in 0.00s ==========================</code></pre>
+<p><span epub:type="pagebreak" id="Page_214" title="214"></span>Let’s try to make sense of this output. First of all, we see some information about the system the test is running on <span aria-label="annotation1" class="CodeAnnotation">❶</span>. I’m testing this on a macOS system, so you may see some different output here. Most importantly, we can see which versions of Python, <code>pytest</code>, and other packages are being used to run the test.</p>
+<p>Next, we see the directory where the test is being run from <span aria-label="annotation2" class="CodeAnnotation">❷</span>: in my case, <em>python_work/chapter_11</em>. We can see that <code>pytest</code> found one test to run <span aria-label="annotation3" class="CodeAnnotation">❸</span>, and we can see the test file that’s being run <span aria-label="annotation4" class="CodeAnnotation">❹</span>. The single dot after the name of the file tells us that a single test passed, and the <code>100%</code> makes it clear that all of the tests have been run. A large project can have hundreds or thousands of tests, and the dots and percentage-complete indicator can be helpful in monitoring the overall progress of the test run.</p>
+<p>The last line tells us that one test passed, and it took less than 0.01 seconds to run the test.</p>
+<p>This output indicates that the function <code>get_formatted_name()</code> will always work for names that have a first and last name, unless we modify the function. When we modify <code>get_formatted_name()</code>, we can run this test again. If the test passes, we know the function will still work for names like Janis Joplin.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	If you’re not sure how to navigate to the right location in the terminal, see “<span class="xref" itemid="xref_target_Running Python Programs from a Terminal">Running Python Programs from a Terminal</span>” on <span class="xref" itemid="xref_target_page 11">page 11</span>. Also, if you see a message that the <code>pytest</code> command was not found, use the command <code>python -m pytest</code> instead.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h3 id="h2-502703c11-0006">A Failing Test</h3>
+<p class="BodyFirst">What does a failing test look like? Let’s modify <code>get_formatted_name()</code> so it can handle middle names, but let’s do so in a way that breaks the function for names with just a first and last name, like Janis Joplin.</p>
+<p>Here’s a new version of <code>get_formatted_name()</code> that requires a middle name argument:</p>
+<p class="CodeLabel"><b>name_function.py</b></p>
+<pre><code>def get_formatted_name(first, middle, last):
+    <span class="LiteralGray">"""Generate a neatly formatted full name."""</span>
+    full_name = f"{first} {middle} {last}"
+    <span class="LiteralGray">return full_name.title()</span></code></pre>
+<p>This version should work for people with middle names, but when we test it, we see that we’ve broken the function for people with just a first and last name.</p>
+<p>This time, running <code class="bold">pytest</code> gives the following output:</p>
+<pre><code>$ <b>pytest</b>
+========================= test session starts =========================
+<var>--snip--</var>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> test_name_function.py F                                          [100%]
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> ============================== FAILURES ===============================
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> ________________________ test_first_last_name _________________________
+    def test_first_last_name():
+        """Do names like 'Janis Joplin' work?"""
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> &gt;       formatted_name = get_formatted_name('janis', 'joplin')
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span> E       TypeError: get_formatted_name() missing 1 required positional
+            argument: 'last'
+
+<span epub:type="pagebreak" id="Page_215" title="215"></span>test_name_function.py:5: TypeError
+======================= short test summary info =======================
+FAILED test_name_function.py::test_first_last_name - TypeError:
+    get_formatted_name() missing 1 required positional argument: 'last'
+========================== 1 failed in 0.04s ==========================</code></pre>
+<p>There’s a lot of information here because there’s a lot you might need to know when a test fails. The first item of note in the output is a single <code>F</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>, which tells us that one test failed. We then see a section that focuses on <code>FAILURES</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span>, because failed tests are usually the most important thing to focus on in a test run. Next, we see that <code>test_first_last_name()</code> was the test function that failed <span aria-label="annotation3" class="CodeAnnotation">❸</span>. An angle bracket <span aria-label="annotation4" class="CodeAnnotation">❹</span> indicates the line of code that caused the test to fail. The <code>E</code> on the next line <span aria-label="annotation5" class="CodeAnnotation">❺</span> shows the actual error that caused the failure: a <code>TypeError</code> due to a missing required positional argument, <code>last</code>. The most important information is repeated in a shorter summary at the end, so when you’re running many tests, you can get a quick sense of which tests failed and why.</p>
+<h3 id="h2-502703c11-0007">Responding to a Failed Test</h3>
+<p class="BodyFirst">What do you do when a test fails? Assuming you’re checking the right conditions, a passing test means the function is behaving correctly and a failing test means there’s an error in the new code you wrote. So when a test fails, don’t change the test. If you do, your tests might pass, but any code that calls your function like the test does will suddenly stop working. Instead, fix the code that’s causing the test to fail. Examine the changes you just made to the function, and figure out how those changes broke the desired behavior.</p>
+<p>In this case, <code>get_formatted_name()</code> used to require only two parameters: a first name and a last name. Now it requires a first name, middle name, and last name. The addition of that mandatory middle name parameter broke the original behavior of <code>get_formatted_name()</code>. The best option here is to make the middle name optional. Once we do, our test for names like <code>Janis Joplin</code> should pass again, and we should be able to accept middle names as well. Let’s modify <code>get_formatted_name()</code> so middle names are optional and then run the test case again. If it passes, we’ll move on to making sure the function handles middle names properly.</p>
+<p>To make middle names optional, we move the parameter <code>middle</code> to the end of the parameter list in the function definition and give it an empty default value. We also add an <code>if</code> test that builds the full name properly, depending on whether a middle name is provided:</p>
+<p class="CodeLabel"><b>name_function.py</b></p>
+<pre><code>def get_formatted_name(first, last, middle=''):
+    <span class="LiteralGray">"""Generate a neatly formatted full name."""</span>
+    if middle:
+        full_name = f"{first} {middle} {last}"
+    else:
+        full_name = f"{first} {last}"
+    <span class="LiteralGray">return full_name.title()</span></code></pre>
+<p><span epub:type="pagebreak" id="Page_216" title="216"></span>In this new version of <code>get_formatted_name()</code>, the middle name is optional. If a middle name is passed to the function, the full name will contain a first, middle, and last name. Otherwise, the full name will consist of just a first and last name. Now the function should work for both kinds of names. To find out if the function still works for names like <code>Janis Joplin</code>, let’s run the test again:</p>
+<pre><code>$ <b>pytest</b>
+========================= test session starts =========================
+<var>--snip--</var>
+test_name_function.py .                                       [100%]
+========================== 1 passed in 0.00s ==========================</code></pre>
+<p>The test passes now. This is ideal; it means the function works for names like <code>Janis Joplin</code> again, without us having to test the function manually. Fixing our function was easier because the failed test helped us identify how the new code broke existing behavior.</p>
+<h3 id="h2-502703c11-0008">Adding New Tests</h3>
+<p class="BodyFirst">Now that we know <code>get_formatted_name()</code> works for simple names again, let’s write a second test for people who include a middle name. We do this by adding another test function to the file <em>test_name_function.py</em>:</p>
+<p class="CodeLabel"><b>test_name_function.py</b></p>
+<pre><code><span class="LiteralGray">from name_function import get_formatted_name</span>
+
+<span class="LiteralGray">def test_first_last_name():</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic">--snip--</em>
+
+def test_first_last_middle_name():
+    """Do names like 'Wolfgang Amadeus Mozart' work?"""
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     formatted_name = get_formatted_name(
+        'wolfgang', 'mozart', 'amadeus')
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     assert formatted_name == 'Wolfgang Amadeus Mozart'</code></pre>
+<p>We name this new function <code>test_first_last_middle_name()</code>. The function name must start with <code>test_</code> so the function runs automatically when we run <code class="bold">pytest</code>. We name the function to make it clear which behavior of <code>get_formatted_name()</code> we’re testing. As a result, if the test fails, we’ll know right away what kinds of names are affected.</p>
+<p>To test the function, we call <code>get_formatted_name()</code> with a first, last, and middle name <span aria-label="annotation1" class="CodeAnnotation">❶</span>, and then we make an assertion <span aria-label="annotation2" class="CodeAnnotation">❷</span> that the returned full name matches the full name (first, middle, and last) that we expect. When we run <code class="bold">pytest</code> again, both tests pass:</p>
+<pre><code>$ pytest
+========================= test session starts =========================
+<var>--snip--</var>
+collected 2 items
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> test_name_function.py ..                                         [100%]
+========================== 2 passed in 0.01s ==========================</code></pre>
+<p><span epub:type="pagebreak" id="Page_217" title="217"></span>The two dots <span aria-label="annotation1" class="CodeAnnotation">❶</span> indicate that two tests passed, which is also clear from the last line of output. This is great! We now know that the function still works for names like <code>Janis Joplin</code>, and we can be confident that it will work for names like <code>Wolfgang Amadeus Mozart</code> as well.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c11-09">11-1. City, Country:</span> Write a function that accepts two parameters: a city name and a country name. The function should return a single string of the form <var>City, Country</var>, such as <code>Santiago, Chile</code>. Store the function in a module called <em>city_functions.py</em>, and save this file in a new folder so <code>pytest</code> won’t try to run the tests we’ve already written.</p>
+<p class="BoxBody">Create a file called <em>test_cities.py</em> that tests the function you just wrote. Write a function called <code>test_city_country()</code> to verify that calling your function with values such as <code>'santiago'</code> and <code>'chile'</code> results in the correct string. Run the test, and make sure <code>test_city_country()</code> passes.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c11-10">11-2. Population:</span> Modify your function so it requires a third parameter, <code>population</code>. It should now return a single string of the form <var>City, Country – population xxx</var>, such as <code>Santiago, Chile – population 5000000</code>. Run the test again, and make sure <code>test_city_country()</code> fails this time.</p>
+<p class="BoxBody">Modify the function so the <code>population</code> parameter is optional. Run the test, and make sure <code>test_city_country()</code> passes again.</p>
+<p class="BoxBody">Write a second test called <code>test_city_country_population()</code> that verifies you can call your function with the values <code>'santiago'</code>, <code>'chile'</code>, and <code>'population=5000000'</code>. Run the tests one more time, and make sure this new test passes.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c11-0003">Testing a Class</h2>
+<p class="BodyFirst">In the first part of this chapter, you wrote tests for a single function. Now you’ll write tests for a class. You’ll use classes in many of your own programs, so it’s helpful to be able to prove that your classes work correctly. If you have passing tests for a class you’re working on, you can be confident that improvements you make to the class won’t accidentally break its current behavior.</p>
+<h3 id="h2-502703c11-0009">A Variety of Assertions</h3>
+<p class="BodyFirst">So far, you’ve seen just one kind of assertion: a claim that a string has a specific value. When writing a test, you can make any claim that can be expressed as a conditional statement. If the condition is <code>True</code> as expected, your assumption about how that part of your program behaves will be confirmed; you can be confident that no errors exist. If the condition you <span epub:type="pagebreak" id="Page_218" title="218"></span>assume is <code>True</code> is actually <code>False</code>, the test will fail and you’ll know there’s an issue to resolve. <a href="#table11-1" id="tableanchor11-1">Table 11-1</a> shows some of the most useful kinds of assertions you can include in your initial tests.</p>
+<figure>
+<figcaption class="TableTitle"><p><a id="table11-1">Table 11-1</a>: Commonly Used Assertion Statements in Tests</p></figcaption>
+<table border="1" id="table-502703c11-0001">
+<thead>
+<tr>
+<td><b>Assertion</b></td>
+<td><b>Claim</b></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>assert a == b</code></td>
+<td>Assert that two values are equal.</td>
+</tr>
+<tr>
+<td><code>assert a != b</code></td>
+<td>Assert that two values are not equal.</td>
+</tr>
+<tr>
+<td><code>assert a</code></td>
+<td>Assert that <code>a</code> evaluates to <code>True</code>.</td>
+</tr>
+<tr>
+<td><code>assert not a</code></td>
+<td>Assert that <code>a</code> evaluates to <code>False</code>.</td>
+</tr>
+<tr>
+<td><code>assert</code> <var>element</var><code> in </code><var>list</var></td>
+<td>Assert that an element is in a list.</td>
+</tr>
+<tr>
+<td><code>assert</code> <var>element</var><code> not in </code><var>list</var></td>
+<td>Assert that an element is not in a list.</td>
+</tr>
+</tbody>
+</table>
+</figure>
+<p>These are just a few examples; anything that can be expressed as a conditional statement can be included in a test.</p>
+<h3 id="h2-502703c11-0010">A Class to Test</h3>
+<p class="BodyFirst">Testing a class is similar to testing a function, because much of the work involves testing the behavior of the methods in the class. However, there are a few differences, so let’s write a class to test. Consider a class that helps administer anonymous surveys:</p>
+<p class="CodeLabel"><b>survey.py</b></p>
+<pre><code>class AnonymousSurvey:
+    """Collect anonymous answers to a survey question."""
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     def __init__(self, question):
+        """Store a question, and prepare to store responses."""
+        self.question = question
+        self.responses = []
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     def show_question(self):
+        """Show the survey question."""
+        print(self.question)
+
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     def store_response(self, new_response):
+        """Store a single response to the survey."""
+        self.responses.append(new_response)
+
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>     def show_results(self):
+        """Show all the responses that have been given."""
+        print("Survey results:")
+        for response in self.responses:
+            print(f"- {response}")</code></pre>
+<p>This class starts with a survey question that you provide <span aria-label="annotation1" class="CodeAnnotation">❶</span> and includes an empty list to store responses. The class has methods to print the survey question <span aria-label="annotation2" class="CodeAnnotation">❷</span>, add a new response to the response list <span aria-label="annotation3" class="CodeAnnotation">❸</span>, and print all the responses stored in the list <span aria-label="annotation4" class="CodeAnnotation">❹</span>. To create an instance from this class, all you <span epub:type="pagebreak" id="Page_219" title="219"></span>have to provide is a question. Once you have an instance representing a particular survey, you display the survey question with <code>show_question()</code>, store a response using <code>store_response()</code>, and show results with <code>show_results()</code>.</p>
+<p>To show that the <code>AnonymousSurvey</code> class works, let’s write a program that uses the class:</p>
+<p class="CodeLabel"><b>language_survey.py</b></p>
+<pre><code>from survey import AnonymousSurvey
+
+# Define a question, and make a survey.
+question = "What language did you first learn to speak?"
+language_survey = AnonymousSurvey(question)
+
+# Show the question, and store responses to the question.
+language_survey.show_question()
+print("Enter 'q' at any time to quit.\n")
+while True:
+    response = input("Language: ")
+    if response == 'q':
+        break
+    language_survey.store_response(response)
+
+# Show the survey results.
+print("\nThank you to everyone who participated in the survey!")
+language_survey.show_results()</code></pre>
+<p>This program defines a question (<code>"What language did you first learn to speak?"</code>) and creates an <code>AnonymousSurvey</code> object with that question. The program calls <code>show_question()</code> to display the question and then prompts for responses. Each response is stored as it is received. When all responses have been entered (the user inputs <code>q</code> to quit), <code>show_results()</code> prints the survey results:</p>
+<pre><code>What language did you first learn to speak?
+Enter 'q' at any time to quit.
+
+Language: <b>English</b>
+Language: <b>Spanish</b>
+Language: <b>English</b>
+Language: <b>Mandarin</b>
+Language: <b>q</b>
+
+Thank you to everyone who participated in the survey!
+Survey results:
+- English
+- Spanish
+- English
+- Mandarin</code></pre>
+<p>This class works for a simple anonymous survey, but say we want to improve <code>AnonymousSurvey</code> and the module it’s in, <code>survey</code>. We could allow each user to enter more than one response, we could write a method to list only unique responses and to report how many times each response was given, or we could even write another class to manage non-anonymous surveys.</p>
+<p><span epub:type="pagebreak" id="Page_220" title="220"></span>Implementing such changes would risk affecting the current behavior of the class <code>AnonymousSurvey</code>. For example, it’s possible that while trying to allow each user to enter multiple responses, we could accidentally change how single responses are handled. To ensure we don’t break existing behavior as we develop this module, we can write tests for the class.</p>
+<h3 id="h2-502703c11-0011">Testing the AnonymousSurvey Class</h3>
+<p class="BodyFirst">Let’s write a test that verifies one aspect of the way <code>AnonymousSurvey</code> behaves. We’ll write a test to verify that a single response to the survey question is stored properly:</p>
+<p class="CodeLabel"><b>test_survey.py</b></p>
+<pre><code>from survey import AnonymousSurvey
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> def test_store_single_response():
+    """Test that a single response is stored properly."""
+    question = "What language did you first learn to speak?"
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     language_survey = AnonymousSurvey(question)
+    language_survey.store_response('English')
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     assert 'English' in language_survey.responses</code></pre>
+<p>We start by importing the class we want to test, <code>AnonymousSurvey</code>. The first test function will verify that when we store a response to the survey question, the response will end up in the survey’s list of responses. A good descriptive name for this function is <code>test_store_single_response()</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>. If this test fails, we’ll know from the function name in the test summary that there was a problem storing a single response to the survey.</p>
+<p>To test the behavior of a class, we need to make an instance of the class. We create an instance called <code>language_survey</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span> with the question <code>"What language did you first learn to speak?"</code> We store a single response, <code>English</code>, using the <code>store_response()</code> method. Then we verify that the response was stored correctly by asserting that <code>English</code> is in the list <code>language_survey.responses</code> <span aria-label="annotation3" class="CodeAnnotation">❸</span>.</p>
+<p>By default, running the command <code class="bold">pytest</code> with no arguments will run all the tests that <code>pytest</code> discovers in the current directory. To focus on the tests in one file, pass the name of the test file you want to run. Here we’ll run just the one test we wrote for <code>AnonymousSurvey</code>:</p>
+<pre><code>$ <b>pytest test_survey.py</b>
+========================= test session starts =========================
+<var>--snip--</var>
+test_survey.py .                                                 [100%]
+========================== 1 passed in 0.01s ==========================</code></pre>
+<p>This is a good start, but a survey is useful only if it generates more than one response. Let’s verify that three responses can be stored correctly. To do this, we add another method to <code>TestAnonymousSurvey</code>:</p>
+<pre><code><span class="LiteralGray">from survey import AnonymousSurvey</span>
+
+<span class="LiteralGray">def test_store_single_response():</span>
+<span epub:type="pagebreak" id="Page_221" title="221"></span>    <em class="LiteralGrayItalic">--snip--</em>
+
+def test_store_three_responses():
+    """Test that three individual responses are stored properly."""
+    question = "What language did you first learn to speak?"
+    language_survey = AnonymousSurvey(question)
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     responses = ['English', 'Spanish', 'Mandarin']
+    for response in responses:
+        language_survey.store_response(response)
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     for response in responses:
+        assert response in language_survey.responses</code></pre>
+<p>We call the new function <code>test_store_three_responses()</code>. We create a survey object just like we did in <code>test_store_single_response()</code>. We define a list containing three different responses <span aria-label="annotation1" class="CodeAnnotation">❶</span>, and then we call <code>store_response()</code> for each of these responses. Once the responses have been stored, we write another loop and assert that each response is now in <code>language_survey.responses</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span>.</p>
+<p>When we run the test file again, both tests (for a single response and for three responses) pass:</p>
+<pre><code>$ <b>pytest test_survey.py</b>
+========================= test session starts =========================
+<var>--snip--</var>
+test_survey.py ..                                                [100%]
+========================== 2 passed in 0.01s ==========================</code></pre>
+<p>This works perfectly. However, these tests are a bit repetitive, so we’ll use another feature of <code>pytest</code> to make them more efficient.</p>
+<h3 id="h2-502703c11-0012">Using Fixtures</h3>
+<p class="BodyFirst">In <em>test_survey.py</em>, we created a new instance of <code>AnonymousSurvey</code> in each test function. This is fine in the short example we’re working with, but in a real-world project with tens or hundreds of tests, this would be problematic.</p>
+<p>In testing, a <em>fixture</em> helps set up a test environment. Often, this means creating a resource that’s used by more than one test. We create a fixture in <code>pytest</code> by writing a function with the decorator <code>@pytest.fixture</code>. A <em>decorator</em> is a directive placed just before a function definition; Python applies this directive to the function before it runs, to alter how the function code behaves. Don’t worry if this sounds complicated; you can start to use decorators from third-party packages before learning to write them yourself.</p>
+<p>Let’s use a fixture to create a single survey instance that can be used in both test functions in <em>test_survey.py</em>:</p>
+<pre><code>import pytest
+<span class="LiteralGray">from survey import AnonymousSurvey</span>
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> @pytest.fixture
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> def language_survey():
+    """A survey that will be available to all test functions."""
+<span epub:type="pagebreak" id="Page_222" title="222"></span>    question = "What language did you first learn to speak?"
+    language_survey = AnonymousSurvey(question)
+    return language_survey
+
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> def test_store_single_response(language_survey):
+    <span class="LiteralGray">"""Test that a single response is stored properly."""</span>
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>     <span class="LiteralGray">language_survey.store_response('English')</span>
+<span class="LiteralGray">    assert 'English' in language_survey.responses</span>
+
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span> def test_store_three_responses(language_survey):
+    <span class="LiteralGray">"""Test that three individual responses are stored properly."""</span>
+    <span class="LiteralGray">responses = ['English', 'Spanish', 'Mandarin']</span>
+<span class="LiteralGray">    for response in responses:</span>
+<span aria-label="annotation6" class="CodeAnnotationHang">❻</span><span class="LiteralGray">         language_survey.store_response(response)</span>
+
+<span class="LiteralGray">    for response in responses:</span>
+<span class="LiteralGray">        assert response in language_survey.responses</span></code></pre>
+<p>We need to import <code>pytest</code> now, because we’re using a decorator that’s defined in <code>pytest</code>. We apply the <code>@pytest.fixture</code> decorator <span aria-label="annotation1" class="CodeAnnotation">❶</span> to the new function <code>language_survey()</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span>. This function builds an <code>AnonymousSurvey</code> object and returns the new survey.</p>
+<p>Notice that the definitions of both test functions have changed <span aria-label="annotation3" class="CodeAnnotation">❸</span> <span aria-label="annotation5" class="CodeAnnotation">❺</span>; each test function now has a parameter called <code>language_survey</code>. When a parameter in a test function matches the name of a function with the <code>@pytest.fixture</code> decorator, the fixture will be run automatically and the return value will be passed to the test function. In this example, the function <code>language_survey()</code> supplies both <code>test_store_single_response()</code> and <code>test_store_three_responses()</code> with a <code>language_survey</code> instance.</p>
+<p>There’s no new code in either of the test functions, but notice that two lines have been removed from each function <span aria-label="annotation4" class="CodeAnnotation">❹</span> <span aria-label="annotation6" class="CodeAnnotation">❻</span>: the line that defined a question and the line that created an <code>AnonymousSurvey</code> object.</p>
+<p>When we run the test file again, both tests still pass. These tests would be particularly useful when trying to expand <code>AnonymousSurvey</code> to handle multiple responses for each person. After modifying the code to accept multiple responses, you could run these tests and make sure you haven’t affected the ability to store a single response or a series of individual responses.</p>
+<p>The structure above will almost certainly look complicated; it contains some of the most abstract code you’ve seen so far. You don’t need to use fixtures right away; it’s better to write tests that have a lot of repetitive code than to write no tests at all. Just know that when you’ve written enough tests that the repetition is getting in the way, there’s a well-established way to deal with the repetition. Also, fixtures in simple examples like this one don’t really make the code any shorter or simpler to follow. But in projects with many tests, or in situations where it takes many lines to build a resource that’s used in multiple tests, fixtures can drastically improve your test code.</p>
+<p>When you want to write a fixture, write a function that generates the resource that’s used by multiple test functions. Add the <code>@pytest.fixture</code> <span epub:type="pagebreak" id="Page_223" title="223"></span>decorator to the new function, and add the name of this function as a parameter for each test function that uses this resource. Your tests will be shorter and easier to write and maintain from that point forward.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c11-15">11-3. Employee:</span> Write a class called <code>Employee</code>. The <code>__init__()</code> method should take in a first name, a last name, and an annual salary, and store each of these as attributes. Write a method called <code>give_raise()</code> that adds $5,000 to the annual salary by default but also accepts a different raise amount.</p>
+<p class="BoxBody">Write a test file for <code>Employee</code> with two test functions, <code>test_give_default_raise()</code> and <code>test_give_custom_raise()</code>. Write your tests once without using a fixture, and make sure they both pass. Then write a fixture so you don’t have to create a new employee instance in each test function. Run the tests again, and make sure both tests still pass.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c11-0004">Summary</h2>
+<p class="BodyFirst">In this chapter, you learned to write tests for functions and classes using tools in the <code>pytest</code> module. You learned to write test functions that verify specific behaviors your functions and classes should exhibit. You saw how fixtures can be used to efficiently create resources that can be used in multiple test functions in a test file.</p>
+<p>Testing is an important topic that many newer programmers aren’t exposed to. You don’t have to write tests for all the simple projects you try as a new programmer. But as soon as you start to work on projects that involve significant development effort, you should test the critical behaviors of your functions and classes. You’ll be more confident that new work on your project won’t break the parts that work, and this will give you the freedom to make improvements to your code. If you accidentally break existing functionality, you’ll know right away, so you can still fix the problem easily. Responding to a failed test that you ran is much easier than responding to a bug report from an unhappy user.</p>
+<p>Other programmers will respect your projects more if you include some initial tests. They’ll feel more comfortable experimenting with your code and be more willing to work with you on projects. If you want to contribute to a project that other programmers are working on, you’ll be expected to show that your code passes existing tests and you’ll usually be expected to write tests for any new behavior you introduce to the project.</p>
+<p>Play around with tests to become familiar with the process of testing your code. Write tests for the most critical behaviors of your functions and classes, but don’t aim for full coverage in early projects unless you have a specific reason to do so.</p>
+</section>
+</div></body>
+</html>

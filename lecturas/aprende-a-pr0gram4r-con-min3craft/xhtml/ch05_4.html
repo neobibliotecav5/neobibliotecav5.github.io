@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch05lev1sec03"><strong><span class="blue1">Comparadores</span></strong></h3>
+<p class="noindent">Se te da muy bien comparar valores. Sabes que 5 es mayor que 2, que 8 y 8 son el mismo número y que 6 y 12 no son el mismo número. Un ordenador también es bueno comparando valores; sólo tienes que decirle exactamente <span epub:type="pagebreak" id="page_88"></span>qué tipo de comparación quieres escribiendo un símbolo llamado <em>comparador</em>. Por ejemplo, ¿quieres que compruebe si un valor es mayor que el otro, o quieres que compruebe si es menor?</p>
+<p class="indentb">Los comparadores (u <em>operadores de comparación</em>) de Python te permiten comparar datos. Python utiliza seis comparadores:</p>
+<p class="bull">- Igual a<span class="literal">(==</span>)</p>
+<p class="bull">- No igual a (<span class="literal">!=</span>)</p>
+<p class="bull">- Menor que (<span class="literal">&lt;</span>)</p>
+<p class="bull">- Menor o igual que (<span class="literal">&lt;=</span>)</p>
+<p class="bull">- Mayor que<span class="literal">(&gt;)</span></p>
+<p class="bull">- Mayor o igual que<span class="literal">(&gt;=</span>)</p>
+<p class="indentt">Cada comparador devuelve un valor booleano<span class="literal">(Verdadero</span> o <span class="literal">Falso</span>) que indica si se ha cumplido la condición. Veamos estos comparadores y exploremos cómo utilizarlos.</p>
+<h4 class="h4" id="ch05lev2sec02"><strong><span class="blue1">Igual a</span></strong></h4>
+<p class="noindent">Cuando quieras averiguar si dos valores son iguales, puedes utilizar el comparador igual a<span class="literal">(==</span>). Cuando los valores son iguales, la comparación devuelve el valor booleano <span class="literal">Verdadero</span>. Cuando los valores son diferentes, la comparación devuelve <span class="literal">Falso</span>.</p>
+<p class="indent">Por ejemplo, asignemos el valor de dos variables y utilicemos el operador igual a para compararlas:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> length = 2<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> width = 2<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> length == width<br translate="no"/><span class="blue1">True</span></p>
+<p class="indent">El resultado es <span class="literal">Verdadero</span> porque los valores de las variables <span class="literal">longitud</span> y <span class="literal">anchura</span> son iguales.</p>
+<p class="indent">Pero si son diferentes, el resultado es <span class="literal">Falso</span>:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> length = 4<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> width = 1<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> length == width<br translate="no"/><span class="blue1">False</span></p>
+<p class="indent">Puedes utilizar el comparador igual a en todos los tipos de variables: cadenas, enteros, flotantes y booleanos.</p>
+<p class="indent">Fíjate en que he utilizado <span class="literal">==</span> para comparar la <span class="literal">longitud</span> y la <span class="literal">anchura</span> en lugar de <span class="literal">=</span>, que se utiliza para establecer una variable. Python utiliza el operador <span class="literal">==</span> para diferenciar entre una comparación (preguntar si dos valores son iguales) y establecer una variable (hacer que una variable sea igual a algún valor). Intenta recordar esta diferencia para evitar errores en tu código. No te preocupes; ¡incluso yo cometo el error de utilizar <span class="literal">=</span> en lugar de <span class="literal">==</span> de vez en cuando!</p>
+<h4 class="h4a" id="ch05lev2sec03"><span epub:type="pagebreak" id="page_89"></span><strong>Misión nº 18: ¿Estoy nadando?</strong></h4>
+<p class="noindent">Ahora utilizarás comparadores para crear un programa que indique si estás o no en el agua. Los resultados se publicarán en el chat de Minecraft.</p>
+<p class="indent">Para averiguar el tipo de bloque en determinadas coordenadas, utilizarás la función <span class="literal">getBlock()</span>. Esta función toma las coordenadas como tres argumentos y devuelve el tipo de bloque como un número entero. Por ejemplo:</p>
+<p class="programs" translate="no">blockType = mc.getBlock(10, 18, 13)</p>
+<p class="indent">Aquí he almacenado el resultado de <span class="literal">mc.getBlock(10, 18, 13)</span> en una variable llamada <span class="literal">tipoBloque</span>. Si el tipo de bloque en las coordenadas (10, 18, 13) es melón (valor de bloque 103), la variable <span class="literal">blockType</span> tendrá el valor 103.</p>
+<p class="indent">Pongamos a trabajar la función <span class="literal">getBlock()</span>. El listado <a href="ch05.xhtml#ch5ex2">5-2</a> comprueba si el jugador está en tierra firme.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>swimming.py</em></span></p>
+<p class="programs" translate="no"><span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>mc = Minecraft.create()<br translate="no"/><br translate="no"/>pos = mc.player.getPos()<br translate="no"/>x = pos.x<br translate="no"/>y = pos.y<br translate="no"/>z = pos.z<br translate="no"/><br translate="no"/>blockType = mc.getBlock(x, y, z)<br translate="no"/>mc.postToChat(blockType == 0)</p>
+<p class="examplet"><a id="ch5ex2"></a><em>Listado 5-2: Este código comprueba el tipo de bloque donde están las piernas del jugador.</em></p>
+<p class="indent">Aquí, obtengo las tres coordenadas de la posición del jugador y paso esas coordenadas como argumentos a getBlock <span class="literal">()</span>. Almaceno el resultado de <span class="literal">mc.getBlock(x, y, z)</span> en <span class="literal">blockType</span>. La expresión blockType <span class="literal">== 0</span> comprueba si el bloque es aire; si es aire, sabes que estás parado en algún lugar de tu mundo Minecraft, la expresión es <span class="literal">True</span>, y <span class="literal">True</span> se publica en el chat. Si no es aire, se envía <span class="literal">False</span> al chat, ¡así que debes estar bajo el agua o quizás ahogándote en la arena!</p>
+<p class="indent">Copia <a href="ch05.xhtml#ch5ex2">el Listado 5-2</a> y guárdalo como <em>nadando.py</em> en el directorio <em><a href="ch05.xhtml#ch05">del Capítulo 5</a></em>. Luego cambia el código para que compruebe si el jugador está de pie en el agua (bloque tipo 9) y ejecútalo.</p>
+<p class="indent">Prueba a ponerte de pie en el agua y a ejecutar el programa. Asegúrate de que cuando el jugador está en el agua, el chat muestra <span class="literal">Verdadero</span>. Cuando el jugador no esté en el agua, el chat debe mostrar <span class="literal">Falso</span>.</p>
+<p class="indent">La salida del programa debe parecerse a <a href="ch05.xhtml#ch5fig2">la Figura 5-2</a>.</p>
+<div class="note">
+<p class="notet"><strong><span class="notes">NOTA</span></strong></p>
+<p class="notep"><em>En este punto, no podrás ejecutar este programa de forma continua. Deberás ejecutar el programa cada vez que quieras comprobar el bloque situado debajo del jugador. Esto se aplica también a todas las demás misiones de este capítulo.</em></p>
+</div>
+<div class="image"><span epub:type="pagebreak" id="page_90"></span><img alt="image" src="../images/f05-02.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch5fig2"></a><em>Figura 5-2: Aunque veo que estoy en el agua, Python me lo confirma amablemente.</em></p>
+<div class="sidebar">
+<p class="sidebart" id="ch05sb01"><strong>OBJETIVO EXTRA: ¡ESTOY VOLANDO!</strong></p>
+<p class="noindent">Con un par de cambios en el código, puedes comprobar si el bloque que <em>hay debajo de</em> ti es aire. Esto te indicaría que estás volando o saltando. ¿Cómo lo harías?</p>
+</div>
+<h4 class="h4" id="ch05lev2sec04"><strong><span class="blue1">No igual a</span></strong></h4>
+<p class="noindent">El comparador no igual a es lo contrario del comparador igual a. En lugar de comprobar si dos valores son iguales, comprueba si son diferentes. Cuando los dos valores son diferentes, la comparación se evalúa como <span class="literal">Verdadero</span>. Si son iguales, se evalúa como <span class="literal">Falso</span>.</p>
+<p class="indent">Supongamos que quieres asegurarte de que un objeto es un rectángulo pero no un cuadrado. Como un rectángulo no cuadrado tiene una longitud y una anchura diferentes, podrías escribir una comparación para comprobar que la longitud y la anchura no son iguales:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> width = 3<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> length = 2<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> width != length<br translate="no"/><span class="blue1">True</span></p>
+<p class="indent">La expresión <span class="literal">anchura != longitud</span> pregunta si los valores de <span class="literal">anchura</span> y <span class="literal">longitud</span> son diferentes.</p>
+<p class="indent">El resultado de esta comparación es <span class="literal">Verdadero</span> porque la variable <span class="literal">anchura</span> y la variable <span class="literal">longitud</span> tienen valores diferentes.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_91"></span>Pero si estos valores son iguales, la comparación devuelve <span class="literal">Falso</span>:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> width = 3<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> length = 3<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> width != length<br translate="no"/><span class="blue1">False</span></p>
+<p class="indent">El comparador no igual a también funciona con cadenas, enteros, flotantes y booleanos, igual que el comparador igual a.</p>
+<h4 class="h4a" id="ch05lev2sec05"><strong>Misión 19: ¿Estoy parado en algo más que aire?</strong></h4>
+<p class="noindent">Supongamos que quieres comprobar si estás sobre algo distinto del aire, como agua, lava, tierra, grava o cualquier otro tipo de bloque. En la Misión nº 18, comprobaste si el bloque en tu posición actual era aire, y resolviste cómo comprobar si estabas en el agua. Podrías copiar y pegar el programa muchas veces, cambiándolo ligeramente cada vez para comprobar si hay lava, tierra, grava, etc., uno por uno. Pero eso sería muy aburrido. En lugar de eso, utiliza el comparador no igual a para comprobar si estás bajo tierra, atrapado en arena, en el fondo del océano, ¡o incluso ahogándote en lava!</p>
+<p class="indent">Abre el programa de la Misión 18<em>(nadando.py</em>) y guárdalo como <em>notAir.py</em> en la carpeta de <em>booleanos</em>. Elimina la última línea del programa y sustitúyela por el Listado <a href="ch05.xhtml#ch5ex3">5-3</a>.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>notAir.py</em></span></p>
+<p class="programs" translate="no"><span class="ent">➊</span> notAir = blockType == 0<br translate="no"/>   mc.postToChat(<span class="green">"The player is not standing in air: "</span> + <span class="rose">str</span>(notAir))</p>
+<p class="examplet"><a id="ch5ex3"></a><em>Listado 5-3: Cambios en el programa de natación</em></p>
+<p class="indent">La última línea de este código imprimirá si no estás en el aire. El resultado de la comparación se almacena en la variable <span class="literal">noAire</span> <span class="ent">➊.</span> Cuando la comparación se evalúe como <span class="literal">Verdadero</span>, el valor de la variable <span class="literal">noAire</span> será <span class="literal">Verdadero</span>, y cuando la comparación se evalúe como <span class="literal">Falso</span>, el valor de la variable <span class="literal">noAire</span> será <span class="literal">Falso</span>.</p>
+<p class="indent">Pero la comparación de la primera línea no es del todo correcta <span class="ent">➊.</span> Actualmente comprueba si el <span class="literal">bloque Tipo</span> es igual a aire utilizando el comparador igual a<span class="literal">(==</span>). En lugar de eso, debería comprobar si la variable <span class="literal">bloqueTipo</span> no es igual a aire utilizando el comparador no igual a (<span class="literal">!=</span>). Cambia la primera línea para utilizar el comparador no igual a en lugar del comparador igual a. Esto comprobará si el bloque en la posición actual del jugador no es igual a aire.</p>
+<p class="indent">Cuando ejecutes el programa, asegúrate de que funciona cuando estás en el aire y cuando estás bajo el agua, en la lava, en la grava, en la arena o teletransportado al suelo. El mensaje enviado al chat cuando la condición es <span class="literal">Verdadera</span> se muestra en la <a href="ch05.xhtml#ch5fig3">Figura 5-3</a>.</p>
+<div class="image"><span epub:type="pagebreak" id="page_92"></span><img alt="image" src="../images/f05-03.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch5fig3"></a><em>Figura 5-3: Dándome un agradable y relajante baño en el agua, que no es aire.</em></p>
+<h4 class="h4" id="ch05lev2sec06"><strong><span class="blue1">Mayor que y menor que</span></strong></h4>
+<p class="noindent">Cuando necesites averiguar si un valor es mayor que otro, utiliza el comparador mayor que. El comparador mayor que devolverá <span class="literal">Verdadero</span> cuando el valor de la izquierda sea mayor que el de la derecha. Si el valor de la izquierda es menor o igual que el de la derecha, la comparación devolverá <span class="literal">Falso</span>.</p>
+<p class="indent">Supongamos que tenemos una vagoneta minera que no puede levantar más de 99 bloques de obsidiana. Mientras el límite de elevación de nuestro minicarro sea mayor que el número de bloques de obsidiana que está intentando levantar, los bloques se podrán levantar:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> limit = 100<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> obsidian = 99<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> limit &gt; obsidian<br translate="no"/><span class="blue1">True</span></p>
+<p class="indent">¡Brillante! Nuestro minicarro puede transportar cualquier número de bloques de obsidiana que sea menor que 100, y 99 es menor que 100, por lo que <span class="literal">límite &gt; obsidiana</span> se evalúa como <span class="literal">Verdadero</span>. Pero, ¿y si alguien añade otro bloque de obsidiana a la pila?</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> limit = 100<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> obsidian = 100<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> canLift = limit &gt; obsidian<br translate="no"/><span class="blue1">False</span></p>
+<p class="indent">Oh, no, ¡ahora se ha alcanzado el límite! El resultado ahora es <span class="literal">Falso</span>: 100 no es mayor que 100; es lo mismo. Nuestro minicarro no puede levantar la obsidiana.</p>
+<p class="indent">El comparador menor que funciona de la misma manera.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_93"></span>Una furgoneta que pasa por debajo de un puente necesita saber si es lo bastante pequeña para caber debajo de él:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> vanHeight = 8<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> bridgeHeight = 12<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> vanHeight &lt; bridgeHeight<br translate="no"/><span class="blue1">True</span></p>
+<p class="indent">En este caso, la furgoneta cabrá porque es más pequeña que la altura del puente: 8 es menor que 12. Más adelante, la misma furgoneta puede encontrarse con otro puente demasiado bajo para pasar por debajo:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> vanHeight = 8<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> bridgeHeight = 7<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> vanHeight &lt; bridgeHeight<br translate="no"/><span class="blue1">False</span></p>
+<p class="indent">Como 8 no es menor que 7, el resultado es <span class="literal">Falso</span>.</p>
+<h4 class="h4" id="ch05lev2sec07"><strong><span class="blue1">Mayor o igual que y Menor o igual que</span></strong></h4>
+<p class="noindent">Al igual que el comparador mayor que, el comparador mayor o igual que determina si un valor es mayor que otro. A diferencia del comparador mayor que, también se evaluará como <span class="literal">Verdadero</span> si los valores son iguales.</p>
+<p class="indent">Supongamos que voy a dar pegatinas a todas las personas que vinieron a ver la presentación de mi increíble programa. Necesito comprobar si tengo suficientes pegatinas para todos:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> stickers = 30<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> people = 30<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> stickers &gt;= people<br translate="no"/><span class="blue1">True</span></p>
+<p class="indent">Tengo suficientes pegatinas: 30 es lo mismo que 30, por lo que pegatinas <span class="literal">&gt;= personas</span> evalúa a <span class="literal">Verdadero</span>. Pero supongamos que a uno de mis amigos le parecen chulas las pegatinas y quiere una. Ahora, 31 personas quieren pegatinas:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> stickers = 30<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> people = 31<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> stickers &gt;= people<br translate="no"/><span class="blue1">False</span></p>
+<p class="indent">No tengo suficientes pegatinas: 30 no es mayor o igual que 31. Parece que mi amigo no puede tener una pegatina.</p>
+<p class="indent">A estas alturas, ya estás preparado para enfrentarte a casi cualquier comparación. Mientras estás en IDLE, prueba también el comparador menor o igual que<span class="literal">(&lt;=</span>) para ver cómo funciona.</p>
+<div class="note">
+<p class="notet"><span epub:type="pagebreak" id="page_94"></span><strong><span class="notes">NOTA</span></strong></p>
+<p class="notep"><em>Los comparadores mayor que, mayor o igual que, menor que y menor o igual que no funcionan con cadenas, aunque sí con enteros, flotantes y booleanos.</em></p>
+</div>
+<h4 class="h4a" id="ch05lev2sec08"><strong>Misión nº 20: ¿Estoy por encima del suelo?</strong></h4>
+<p class="noindent">La coordenada y de un jugador en Minecraft muestra la altura a la que se encuentra en el juego. Los bloques también se almacenan utilizando coordenadas, lo que te permite obtener los tipos de bloque en coordenadas concretas utilizando <span class="literal">getBlock</span> () y crear bloques en coordenadas concretas utilizando <span class="literal">setBlocks()</span>.</p>
+<p class="indent">Para obtener el bloque más alto de Minecraft, puedes utilizar la función <span class="literal">getHeight()</span>. La función toma una coordenada x y z y devuelve la coordenada y del bloque más alto en esa posición, como se muestra en el Listado <a href="ch05.xhtml#ch5ex4">5-4</a>.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>aboveGround.py</em></span></p>
+<p class="programs" translate="no"><span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>mc = Minecraft.create()<br translate="no"/>pos = mc.player.getTilePos()<br translate="no"/>x = pos.x<br translate="no"/>y = pos.y<br translate="no"/>z = pos.z<br translate="no"/>highestBlockY = mc.getHeight(x, z)<br translate="no"/>mc.postToChat(highestBlockY)</p>
+<p class="examplet"><a id="ch5ex4"></a><em>Listado 5-4: Código para encontrar la coordenada y del bloque más alto en la posición actual del jugador</em></p>
+<p class="indent">Este programa obtiene la posición actual del jugador, obtiene la coordenada y del bloque más alto en la posición del jugador, y luego publica este valor en el chat de Minecraft.</p>
+<p class="indent">Combinando este programa con un comparador mayor que o igual a, puedes comprobar si el jugador está o no por encima del suelo. Hagámoslo ahora.</p>
+<p class="indent">Copia el programa del <a href="ch05.xhtml#ch5ex4">Listado 5-4</a> y guárdalo como <em>aboveGround.py</em>. Cambia el programa para comprobar si la coordenada y del jugador es mayor que la variable <span class="literal">bloqueYmayor</span>. Después, añade código para enviar el resultado al chat con el formato <span class="literal">"El jugador está por encima del suelo: Verdadero/Falso"</span>.</p>
+<div class="note">
+<p class="notet"><strong><span class="hints">CONSEJO</span></strong></p>
+<p class="notep"><em>Recuerda que puedes almacenar el resultado de una comparación en una variable. Por ejemplo, si quisiera comprobar si</em> <span class="literal"><span class="codeitalic">y</span></span> <em>es mayor o igual que 10 y almacenar la respuesta en una variable llamada</em> <span class="literal"><span class="codeitalic">altoSuficiente</span></span><em>, utilizaría la siguiente sentencia</em>: <span class="literal"><span class="codeitalic">altoSuficiente = y &gt;= 10</span></span>.</p>
+</div>
+<p class="indent">Ejecuta el programa cuando hayas hecho estos cambios. La salida de los resultados <span class="literal">Falso</span> del programa se muestran en la <a href="ch05.xhtml#ch5fig4">Figura 5-4</a>.</p>
+<div class="image"><span epub:type="pagebreak" id="page_95"></span><img alt="image" src="../images/f05-04.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch5fig4"></a><em>Figura 5-4: Ahora estoy en una cueva, así que Python tiene mucha razón en que no estoy en la superficie.</em></p>
+<h4 class="h4a" id="ch05lev2sec09"><strong>Misión nº 21: ¿Estoy cerca de casa?</strong></h4>
+<p class="noindent">Mientras vagas por el mundo de Minecraft, podrías perderte y olvidar dónde está tu casa. Podrías vagar durante horas sólo para descubrir que estabas cerca de casa cuando te perdiste por primera vez.</p>
+<p class="indent">Con una sola línea de código, puedes comprobar a qué distancia estás de cualquier coordenada del juego. Por ejemplo, podrías utilizar las coordenadas de tu casa y tu posición actual para calcular a qué distancia estás. Añadiendo un comparador, también puedes comprobar si estás o no a un determinado número de manzanas de tu casa. Diremos que estás cerca de casa si estás a sólo 40 manzanas.</p>
+<p class="indent">¡Escribamos un programa Python que compruebe esto por ti! El código de esta misión debe comprobar a qué distancia estás de tu casa, como se muestra en el Listado <a href="ch05.xhtml#ch5ex5">5-5</a>.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>farFromHome.py</em></span></p>
+<p class="programs" translate="no"> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>   mc = Minecraft.create()<br translate="no"/> <span class="orange">import</span> math<br translate="no"/><span class="ent">➊</span> homeX = 10<br translate="no"/>   homeZ = 10<br translate="no"/>   pos = mc.player.getTilePos()<br translate="no"/>   x = pos.x<br translate="no"/>   z = pos.z<br translate="no"/><span class="ent">➋</span> distance = math.sqrt((homeX - x) ** 2 + (homeZ - z) ** 2)<br translate="no"/><span class="ent">➌</span> mc.postToChat(distance)</p>
+<p class="examplet"><a id="ch5ex5"></a><em>Listado 5-5: Código que calcula la distancia a tu casa</em></p>
+<p class="indent">Este código supone que tu casa está en las coordenadas <span class="literal">x = 10</span> y <span class="literal">z = 10</span>, que se establecen con las variables <span class="literal">homeX</span> y <span class="literal">homeZ</span> <span class="ent">➊.</span> En este caso, no necesitamos conocer la coordenada y. Utilizo la función <span class="literal">getTilePos()</span> para obtener la posición del jugador y establecer los valores <span class="literal">x</span> y <span class="literal">z</span>.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_96"></span>Para calcular la variable <span class="literal">distancia</span>, utilizamos una fórmula llamada <em>teorema de Pitágoras</em>. Calcula la longitud de un lado de un triángulo rectángulo, y puedes utilizarla en Minecraft para calcular la distancia entre dos puntos. Es posible que hayas visto esta fórmula escrita en clase de matemáticas como <sup>a2</sup> + <sup>b2</sup> = <sup>c2</sup>, donde <em>a</em> y <em>b</em> son los dos catetos de un triángulo rectángulo, y <em>c</em> es la hipotenusa del triángulo, como se muestra en <a href="ch05.xhtml#ch5fig5">la Figura 5-5</a>. En <span class="ent">➋,</span> estamos resolviendo para <em>c</em>, que está representada por la variable <span class="literal">distancia</span>.</p>
+<p class="indent">Guarda <a href="ch05.xhtml#ch5ex5">el listado 5-5</a> como <em>distanciaFromHome.py</em> en la carpeta de <em>booleanos</em>.</p>
+<div class="image"><img alt="image" src="../images/f05-05.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch5fig5"></a><em>Figura 5-5: Un triángulo rectángulo</em></p>
+<p class="indent">Para terminar el programa, utiliza un comparador menor o igual que para comprobar si el valor de la variable <span class="literal">distancia</span> es menor o igual que 40 y envía el resultado al chat con el formato <span class="literal">"Tu casa está cerca: Verdadero/Falso"</span> <span class="ent">➌.</span> Utiliza la concatenación para combinar la cadena con el resultado de la comparación. Actualiza el contenido de la función <span class="literal">postToChat()</span> <span class="ent">➌</span> para mostrar la cadena.</p>
+<p class="indent">Prueba el programa. Cuando estés a menos de 40 manzanas de tu casa, deberías recibir un mensaje <span class="literal">Verdadero</span>; cuando no estés a menos de 40 manzanas, deberías ver un mensaje <span class="literal">Falso</span>. <a href="ch05.xhtml#ch5fig6">La Figura 5-6</a> muestra el programa en funcionamiento.</p>
+<div class="image"><img alt="image" src="../images/f05-06.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch5fig6"></a><em>Figura 5-6: Definitivamente, estoy a menos de 40 manzanas de mi casa. De hecho, ¡ahí está la puerta principal!</em></p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch05_3.html">anterior</a><a href="ch05.html">Subtema 4 de 6: (Ver todo)</a><a href="ch05_5.html">siguiente</a><br/></p>
+<br/><a href="ch05_4.docx" target="_blank"></a></footer>
+</body>
+</html>

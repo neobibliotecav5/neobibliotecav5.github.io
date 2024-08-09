@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Falsy Values</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Falsy Values"><div class="titlepage"><div><div><h1 class="title"><a id="falsy_values"/>Falsy Values</h1></div></div></div><p>JavaScript has a surprisingly large set of falsy values, shown in See <a class="xref" href="apas12.html#the_many_falsy_values_of_javascript" title="Table A-1. The many falsy values of JavaScript">Table A-1</a>.<a id="IDX-APP-A-0525" class="indexterm"/><a id="IDX-APP-A-0526" class="indexterm"/><a id="IDX-APP-A-0527" class="indexterm"/><a id="IDX-APP-A-0528" class="indexterm"/><a id="IDX-APP-A-0529" class="indexterm"/></p><div class="table"><a id="the_many_falsy_values_of_javascript"/><p class="title">Table A-1. The many falsy values of JavaScript</p><div class="table-contents"><table summary="The many falsy values of JavaScript" style="border-collapse: collapse;border-top: 0.5pt solid ; border-bottom: 0.5pt solid ; border-left: 0.5pt solid ; border-right: 0.5pt solid ; "><colgroup><col/><col/></colgroup><thead><tr><th style="text-align: left" valign="bottom">
+                                <p>Value</p>
+                            </th><th style="text-align: left" valign="bottom">
+                                <p>Type</p>
+                            </th></tr></thead><tbody><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">0</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p>Number</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p><code class="literal">NaN</code> (not a number)</p>
+                            </td><td style="text-align: left" valign="top">
+                                <p>Number</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p><code class="literal">''</code> (empty string)</p>
+                            </td><td style="text-align: left" valign="top">
+                                <p>String</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">false</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p>Boolean</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">null</code>
+                                    <a id="IDX-APP-A-0530" class="indexterm"/>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p>Object</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">undefined</code>
+                                    <a id="IDX-APP-A-0531" class="indexterm"/>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p>Undefined</p>
+                            </td></tr></tbody></table></div></div><p>These values are all falsy, but they are not interchangeable. For example, this is
+                the wrong way to determine if an object is missing a member:</p><a id="I_programlisting_d1e8662"/><pre class="programlisting">value = myObject[name];
+if (value == null) {
+   alert(name + ' not found.');
+}</pre><p><code class="literal">undefined</code> is the value of missing members, but
+                the snippet is testing for <code class="literal">null</code>. It is using the
+                    <code class="literal">==</code> operator (see <a class="xref" href="apb.html" title="Appendix B. Bad Parts">Appendix B</a>), which does type coercion, instead of the more reliable <code class="literal">===</code> operator. Sometimes those two errors cancel each other out.
+                Sometimes they don't.</p><p><code class="literal">undefined</code> and <code class="literal">NaN</code> are not constants. They are global variables, and you can change
+                their values. That should not be possible, and yet it is. Don't do it.</p></div></body></html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c16-0007"><span epub:type="pagebreak" id="Page_336" title="336"></span>Trazar un marco temporal más largo</h3>
+<p class="BodyFirst">Con nuestro gráfico preparado, vamos a incluir datos adicionales para obtener una imagen más completa del tiempo en Sitka. Copia el archivo <em translate="no">sitka_weather_2021_simple.csv</em>, que contiene un año completo de datos meteorológicos de Sitka, en la carpeta donde guardas los datos para los programas de este capítulo.</p>
+<p>Ahora podemos generar un gráfico del tiempo de todo el año:</p>
+<p class="CodeLabel" translate="no"><b>sitka_highs.py</b></p>
+<pre translate="no"><code translate="no"><em class="LiteralGrayItalic" translate="no">--snip--</em>
+path = Path('weather_data/sitka_weather_2021_simple.csv')
+<span class="LiteralGray">lines = path.read_text().splitlines()</span>
+<em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray"># Format plot.</span>
+ax.set_title("Daily High Temperatures, 2021", fontsize=24)
+<span class="LiteralGray">ax.set_xlabel('', fontsize=16)</span>
+<em class="LiteralGrayItalic" translate="no">--snip--</em></code></pre>
+<p>Modificamos el nombre del archivo para utilizar el nuevo archivo de datos <em translate="no">sitka_weather_2021_simple.csv</em>, y actualizamos el título de nuestro gráfico para reflejar el cambio en su contenido. <a href="#figure16-3" id="figureanchor16-3">La Figura 16-3</a> muestra el gráfico resultante.</p>
+<figure><img alt="" class="" height="348" src="Images/f16003.png" translate="no" width="646"/>
+<figcaption><p><a id="figure16-3">Figura 16-3</a>: Un año</p></figcaption></figure>de datos
+        
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c16_9.html">anterior</a><a href="c16.html">Subtema 10 de 29: (Ver todo)</a><a href="c16_11.html">siguiente</a><br/></p>
+<br/><a href="c16_10.docx" target="_blank"></a></footer>
+</body>
+</html>

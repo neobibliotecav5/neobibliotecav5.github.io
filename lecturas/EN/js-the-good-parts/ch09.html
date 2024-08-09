@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Chapter 9. Style</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="chapter" title="Chapter 9. Style"><div class="titlepage"><div><div><h1 class="title"><a id="style"/>Chapter 9. Style</h1></div></div></div><div class="epigraph"><p>Here is a silly stately style indeed!<a id="IDX-CHP-9-0476" class="indexterm"/></p><div class="attribution"><span>—<span class="attribution">William Shakespeare, <span class="emphasis"><em>The First Part of Henry the
+                Sixth</em></span></span></span></div></div><p>Computer programs are the most complex things that humans make. Programs are made up
+            of a huge number of parts, expressed as functions, statements, and expressions that are
+            arranged in sequences that must be virtually free of error. The runtime behavior has
+            little resemblance to the program that implements it. Software is usually expected to be
+            modified over the course of its productive life. The process of converting one correct
+            program into a different correct program is extremely challenging.</p><p>Good programs have a structure that anticipates—but is not overly burdened by—the
+            possible modifications that will be required in the future. Good programs also have a
+            clear presentation. If a program is expressed well, then we have the best chance of
+            being able to understand it so that it can be successfully modified or repaired.</p><p>These concerns are true for all programming languages, and are especially true for
+            JavaScript. JavaScript's loose typing and excessive error tolerance provide little
+            compile-time assurance of our programs' quality, so to compensate, we should code with
+            strict discipline.</p><p>JavaScript contains a large set of weak or problematic features that can undermine our
+            attempts to write good programs. We should obviously avoid JavaScript's worst features.
+            Surprisingly, perhaps, we should also avoid the features that are often useful but
+            occasionally hazardous. Such features are attractive nuisances, and by avoiding them, a
+            large class of potential errors is avoided.</p><p>The long-term value of software to an organization is in direct proportion to the
+            quality of the codebase. Over its lifetime, a program will be handled by many pairs of
+            hands and eyes. If a program is able to clearly communicate its structure and
+            characteristics, it is less likely to break when it is modified in the never-too-distant
+            future.</p><p>JavaScript code is often sent directly to the public. It should always be of
+            publication quality. Neatness counts. By writing in a clear and consistent style, your
+            programs become easier to read.</p><p>Programmers can debate endlessly on what constitutes good style. Most programmers are
+            firmly rooted in what they're used to, such as the prevailing style where they went to
+            school, or at their first job. Some have had profitable careers with no sense of style
+            at all. Isn't that proof that style doesn't matter? And even if style doesn't matter,
+            isn't one style as good as any other?<a id="IDX-CHP-9-0477" class="indexterm"/><a id="IDX-CHP-9-0478" class="indexterm"/></p><p>It turns out that style matters in programming for the same reason that it matters in
+            writing. It makes for better reading.</p><p>Computer programs are sometimes thought of as a write-only medium, so it matters
+            little how it is written as long as it works. But it turns out that the likelihood a
+            program will work is significantly enhanced by our ability to read it, which also
+            increases the likelihood that it actually works as intended. It is also the nature of
+            software to be extensively modified over its productive life. If we can read and
+            understand it, then we can hope to modify and improve it.</p><p>Throughout this book I have used a consistent style. My intention was to make the code
+            examples as easy to read as possible. I used whitespace consistently to give you more
+            cues about the meaning of my programs.</p><p>I indented the contents of blocks and object literals four spaces. I placed a space
+            between <code class="literal">if</code> and <code class="literal">(</code>
+            so that the <code class="literal">if</code> didn't look like a function
+            invocation. Only in invocations do I make <code class="literal">(</code> adjacent
+            with the preceding symbol. I put spaces around all infix operators except for <code class="literal">.</code> and <code class="literal">[</code>, which do not
+            get spaces because they have higher precedence. I use a space after every comma and
+                colon.<a id="IDX-CHP-9-0479" class="indexterm"/><a id="IDX-CHP-9-0480" class="indexterm"/><a id="IDX-CHP-9-0481" class="indexterm"/></p><p>I put at most one statement on a line. Multiple statements on a line can be misread.
+            If a statement doesn't fit on a line, I will break it after a comma or a binary
+            operator. That gives more protection against copy/paste errors that are masked by
+            semicolon insertion. (The tragedy of semicolon insertion will be revealed in <a class="xref" href="apa.html" title="Appendix A. Awful Parts">Appendix A</a>.) I indent the remainder of the statement an extra four
+            spaces, or eight spaces if four would be ambiguous (such as a line break in the
+            condition part of an <code class="literal">if</code> statement).</p><p>I <span class="emphasis"><em>always</em></span> use blocks with structured statements such as <code class="literal">if</code> and <code class="literal">while</code> because it
+            is less error prone. I have seen:<a id="IDX-CHP-9-0482" class="indexterm"/><a id="IDX-CHP-9-0483" class="indexterm"/></p><a id="I_programlisting9_d1e7939"/><pre class="programlisting">if (a)
+    b(  );</pre><p>become:</p><a id="I_programlisting9_d1e7943"/><pre class="programlisting">if (a)
+    b(  );
+    c(  );</pre><p>which is an error that is very difficult to spot. It looks like:</p><a id="I_programlisting9_d1e7947"/><pre class="programlisting">if (a) {
+    b(  );
+    c(  );
+}</pre><p>but it means:</p><a id="I_programlisting9_d1e7951"/><pre class="programlisting">if (a) {
+    b(  );
+}
+c(  );</pre><p>Code that appears to mean one thing but actually means another is likely to cause
+            bugs. A pair of braces is really cheap protection against bugs that can be expensive to
+                find.<a id="IDX-CHP-9-0484" class="indexterm"/><a id="IDX-CHP-9-0485" class="indexterm"/></p><p>I always use the K&amp;R style, putting the <code class="literal">{</code> at
+            the end of a line instead of the front, because it avoids a horrible design blunder in
+            JavaScript's <code class="literal">return</code> statement.<a id="IDX-CHP-9-0486" class="indexterm"/><a id="IDX-CHP-9-0487" class="indexterm"/></p><p>I included some comments. I like to put comments in my programs to leave information
+            that will be read at a later time by people (possibly myself) who will need to
+            understand what I was thinking. Sometimes I think about comments as a time machine that
+            I use to send important messages to future me.<a id="IDX-CHP-9-0488" class="indexterm"/><a id="IDX-CHP-9-0489" class="indexterm"/></p><p>I struggle to keep comments up-to-date. Erroneous comments can make programs even
+            harder to read and understand. I can't afford that.</p><p>I tried to not waste your time with useless comments like this:</p><a id="I_programlisting9_d1e7994"/><pre class="programlisting">i = 0; // Set i to zero.</pre><p>In JavaScript, I prefer to use line comments. I reserve block comments for formal
+            documentation and for commenting out.<a id="IDX-CHP-9-0490" class="indexterm"/><a id="IDX-CHP-9-0491" class="indexterm"/><a id="IDX-CHP-9-0492" class="indexterm"/><a id="IDX-CHP-9-0493" class="indexterm"/></p><p>I prefer to make the structure of my programs self-illuminating, eliminating the need
+            for comments. I am not always successful, so while my programs are awaiting perfection,
+            I am writing comments.</p><p>JavaScript has C syntax, but its blocks don't have scope. So, the convention that
+            variables should be declared at their first use is really bad advice in JavaScript.
+            JavaScript has function scope, but not block scope, so I declare all of my variables at
+            the beginning of each function. JavaScript allows variables to be declared after they
+            are used. That feels like a mistake to me, and I don't want to write programs that look
+            like mistakes. I want my mistakes to stand out. Similarly, I never use an assignment
+            expression in the condition part of an <code class="literal">if</code>
+            because:</p><a id="I_programlisting9_d1e8021"/><pre class="programlisting">if (a = b) { ... }</pre><p>is probably intended to be:</p><a id="I_programlisting9_d1e8026"/><pre class="programlisting">if (a === b) { ... }</pre><p>I want to avoid idioms that look like mistakes.</p><p>I never allow switch cases to fall through to the next case. I once found a bug in my
+            code caused by an unintended fall through immediately after having made a vigorous
+            speech about why fall through was sometimes useful. I was fortunate in that I was able
+            to learn from the experience. When reviewing the features of a language, I now pay
+            special attention to features that are sometimes useful but occasionally dangerous.
+            Those are the <span class="emphasis"><em>worst parts</em></span> because it is difficult to tell whether
+            they are being used correctly. That is a place where bugs hide.<a id="IDX-CHP-9-0494" class="indexterm"/></p><p>Quality was not a motivating concern in the design, implementation, or standardization
+            of JavaScript. That puts a greater burden on the users of the language to resist the
+            language's weaknesses.</p><p>JavaScript provides support for large programs, but it also provides forms and idioms
+            that work against large programs. For example, JavaScript provides conveniences for the
+            use of global variables, but global variables become increasingly problematic as
+            programs scale in complexity.<a id="IDX-CHP-9-0495" class="indexterm"/><a id="IDX-CHP-9-0496" class="indexterm"/></p><p>I use a single global variable to contain an application or library. Every object has
+            its own namespace, so it is easy to use objects to organize my code. Use of closure
+            provides further information hiding, increasing the strength of my modules.</p></div></body></html>

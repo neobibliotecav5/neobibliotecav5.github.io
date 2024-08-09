@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Prototype</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Prototype"><div class="titlepage"><div><div><h1 class="title"><a id="prototype"/>Prototype</h1></div></div></div><p>Every object is linked to a prototype object from which it can inherit properties.
+                All objects created from object literals are linked to <code class="literal">Object.prototype</code>, an object that comes standard with
+                    JavaScript.<a id="IDX-CHP-3-0163" class="indexterm"/></p><p>When you make a new object, you can select the object that should be its
+                prototype. The mechanism that JavaScript provides to do this is messy and complex,
+                but it can be significantly simplified. We will add a <code class="literal">create</code> method to the <code class="literal">Object</code>
+                function. The <code class="literal">beget</code> method creates a new object
+                that uses an old object as its prototype. There will be much more about functions in
+                the next chapter.</p><a id="I_programlisting3_d1e2150"/><pre class="programlisting">if (typeof Object.create !== 'function') {
+     Object.create = function (o) {
+         var F = function () {};
+         F.prototype = o;
+         return new F();
+     };
+}
+var another_stooge = Object.create(stooge);</pre><p>The prototype link has no effect on updating. When we make changes to an object,
+                the object's prototype is not touched:<a id="IDX-CHP-3-0164" class="indexterm"/></p><a id="I_programlisting3_d1e2161"/><pre class="programlisting">another_stooge['first-name'] = 'Harry';
+another_stooge['middle-name'] = 'Moses';
+another_stooge.nickname = 'Moe';</pre><p>The prototype link is used only in retrieval. If we try to retrieve a property
+                value from an object, and if the object lacks the property name, then JavaScript
+                attempts to retrieve the property value from the prototype object. And if that
+                object is lacking the property, then it goes to <span class="emphasis"><em>its</em></span> prototype,
+                and so on until the process finally bottoms out with <code class="literal">Object.prototype</code>. If the desired property exists nowhere in the
+                prototype chain, then the result is the <code class="literal">undefined</code>
+                value. This is called <span class="emphasis"><em>delegation</em></span>.<a id="IDX-CHP-3-0165" class="indexterm"/><a id="IDX-CHP-3-0166" class="indexterm"/><a id="IDX-CHP-3-0167" class="indexterm"/><a id="IDX-CHP-3-0168" class="indexterm"/></p><p>The prototype relationship is a dynamic relationship. If we add a new property to
+                a prototype, that property will immediately be visible in all of the objects that
+                are based on that prototype:</p><a id="I_programlisting3_d1e2196"/><pre class="programlisting">stooge.profession = 'actor';
+another_stooge.profession    // 'actor'</pre><p>We will see more about the prototype chain in <a class="xref" href="ch06.html" title="Chapter 6. Arrays">Chapter 6</a>.</p></div></body></html>

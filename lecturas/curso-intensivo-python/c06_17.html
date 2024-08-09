@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c06-0009">Recorrer todas las claves de un diccionario</h3>
+<p class="BodyFirst">El método <code translate="no">keys()</code> es útil cuando no necesitas trabajar con todos los valores de un diccionario. Hagamos un bucle en el diccionario <code translate="no">favorite_languages</code> e imprimamos los nombres de todas las personas que han participado en la encuesta:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">favorite_languages = {</span>
+<span class="LiteralGray">    'jen': 'python',</span>
+<span class="LiteralGray">    'sarah': 'c',</span>
+<span class="LiteralGray">    'edward': 'rust',</span>
+<span class="LiteralGray">    'phil': 'python',</span>
+<span class="LiteralGray">    }</span>
+
+for name in favorite_languages.keys():
+    print(name.title())</code></pre>
+<p>Este bucle <code translate="no">for</code> le dice a Python que extraiga todas las claves del diccionario <code translate="no">favorite_languages</code> y las asigne de una en una a la variable <code translate="no">name</code>. La salida muestra los nombres de todos los participantes en la encuesta:</p>
+<pre translate="no"><code translate="no">Jen
+Sarah
+Edward
+Phil</code></pre>
+<p>El bucle a través de las claves es en realidad el comportamiento por defecto cuando se hace un bucle a través de un diccionario, por lo que este código tendría exactamente el mismo resultado si escribieras:</p>
+<pre translate="no"><code translate="no">for name in favorite_languages:</code></pre>
+<p class="BodyContinued">en lugar de:</p>
+<pre translate="no"><code translate="no">for name in favorite_languages.keys():</code></pre>
+<p>Puedes elegir utilizar el método <code translate="no">keys()</code> explícitamente si facilita la lectura de tu código, u omitirlo si lo deseas.</p>
+<p>Puedes acceder al valor asociado a cualquier clave que te interese dentro del bucle, utilizando la clave actual. Imprimamos un mensaje a un par de amigos sobre las lenguas que eligieron. Haremos un bucle a través de los nombres en <span epub:type="pagebreak" id="Page_102" title="102"></span>el diccionario como hicimos anteriormente, pero cuando el nombre coincida con uno de nuestros amigos, mostraremos un mensaje sobre su lengua favorita:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">favorite_languages = {</span>
+    <em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">    }</span>
+
+friends = ['phil', 'sarah']
+<span class="LiteralGray">for name in favorite_languages.keys():</span>
+    print(f"Hi {name.title()}.")
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     if name in friends:
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         language = favorite_languages[name].title()
+        print(f"\t{name.title()}, I see you love {language}!")</code></pre>
+<p>En primer lugar, hacemos una lista de amigos a los que queremos imprimir un mensaje. Dentro del bucle, imprimimos el nombre de cada persona. Luego comprobamos si el <code translate="no">name</code> con el que estamos trabajando está en la lista <code translate="no">friends</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Si lo está, determinamos el idioma favorito de la persona utilizando el nombre del diccionario y el valor actual de <code translate="no">name</code> como clave <span aria-label="annotation2" class="CodeAnnotation">❷.</span> A continuación, imprimimos un saludo especial, incluyendo una referencia a su lengua de elección.</p>
+<p>Se imprime el nombre de todos, pero nuestros amigos reciben un mensaje especial:</p>
+<pre translate="no"><code translate="no">Hi Jen.
+Hi Sarah.
+    Sarah, I see you love C!
+Hi Edward.
+Hi Phil.
+    Phil, I see you love Python!</code></pre>
+<p>También puedes utilizar el método <code translate="no">keys()</code> para averiguar si se ha encuestado a una persona concreta. Esta vez, vamos a averiguar si Erin participó en la encuesta:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">favorite_languages = {</span>
+<em class="LiteralGrayItalic" translate="no">    --snip--</em>
+<span class="LiteralGray">    }</span>
+
+if 'erin' not in favorite_languages.keys():
+    print("Erin, please take our poll!")</code></pre>
+<p>El método <code translate="no">keys()</code> no es sólo para hacer bucles: en realidad devuelve una secuencia de todas las claves, y la sentencia <code translate="no">if</code> simplemente comprueba si <code translate="no">'erin'</code> está en esta secuencia. Como no lo está, se imprime un mensaje invitándola a hacer la encuesta:</p>
+<pre translate="no"><code translate="no">Erin, please take our poll!</code></pre>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c06_16.html">anterior</a><a href="c06.html">Subtema 17 de 28: (Ver todo)</a><a href="c06_18.html">siguiente</a><br/></p>
+<br/><a href="c06_17.docx" target="_blank"></a></footer>
+</body>
+</html>

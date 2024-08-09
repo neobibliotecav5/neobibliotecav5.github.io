@@ -1,0 +1,338 @@
+<html lang="en-us" xml:lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xmlns:ns="http://www.w3.org/2001/10/synthesis">
+<head>
+<title>Learn to Program with Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+</head>
+<body>
+<h2 class="h2" id="ch05"><span epub:type="pagebreak" id="page_85"></span><strong><span class="blue1"><span class="big">5</span></span></strong><br/><strong>FIGURING OUT WHAT’S TRUE AND FALSE WITH BOOLEANS</strong></h2>
+<div class="image1"><img alt="image" src="../images/common01.jpg"/></div>
+<p class="noindent">You ask yes-or-no questions all the time: Is it raining? Is my hair too long? Once you know whether the answer is yes or no, you can decide what to do next: bring an umbrella, or not; trim your hair, or not. In all these situations, what you do depends on whether the answer to the question is yes or no. Deciding what to do based on the answer to a question is also important in programming. In this chapter, you’ll learn how to ask questions in Python.</p>
+<p class="indent">In programming, the questions you ask are usually about comparing values. Is one value equal to another? Is a value bigger or smaller than another? The yes-or-no question is called a <em>condition</em>, and the answer isn’t <em>yes</em> or <em>no</em> but <span class="literal">True</span> or <span class="literal">False</span>. Say you ask the question “Do I have more gold blocks than my friend?” or, in other words, “Is my gold stash greater than my friend’s gold stash?” To make that question into a condition that Python can understand, we have to phrase it as a statement (such as “My gold stash is greater than my friend’s”) that can be true or false.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_86"></span>Testing whether a condition is true or false is so useful in Python that there’s a special data type just for storing the values <span class="literal">True</span> and <span class="literal">False</span>. So far you’ve seen a few other data types: integer, float, and string data types. The data type that stores <span class="literal">True</span> and <span class="literal">False</span> values is the <em>Boolean</em> data type. Booleans can only be <span class="literal">True</span> or <span class="literal">False</span>. When you use Python to ask questions, the result is either <span class="literal">True</span> or <span class="literal">False</span>. When a condition is true or false, programmers say that it <em>evaluates to</em> <span class="literal">True</span> or <em>evaluates to</em> <span class="literal">False</span>.</p>
+<p class="indent">In this chapter you’ll use Booleans, comparison operators, and logical operators to test different conditions involving values. Then you’ll be ready for <a href="ch06.xhtml#ch06">Chapter 6</a>, where you’ll use the answers to questions to make decisions about what to do next in a program.</p>
+<h3 class="h3" id="ch05lev1sec01"><strong><span class="blue1">Boolean Basics</span></strong></h3>
+<p class="noindent">A Boolean is a bit like a light switch: it is either <span class="literal">True</span> (on) or <span class="literal">False</span> (off). In Python, you can declare a Boolean variable like this to represent that the light is on:</p>
+<p class="programs">light = <span class="orange">True</span></p>
+<p class="indent">Here you assign the value <span class="literal">True</span> to the variable <span class="literal">light</span>. To turn the light off, you could assign the value <span class="literal">False</span> to light:</p>
+<p class="programs">light = <span class="orange">False</span></p>
+<p class="indent">Always capitalize the first letter of <span class="literal">True</span> and <span class="literal">False</span>. If you don’t, Python won’t recognize the value as a Boolean and will throw an exception instead of evaluating your calculation!</p>
+<p class="indent">In the next mission, you’ll use Booleans to stop the player from smashing blocks in the game world.</p>
+<h4 class="h4a" id="ch05lev2sec01"><strong>Mission #17: Stop Smashing Blocks!</strong></h4>
+<p class="noindent">In Minecraft, it’s easy to smash blocks, which is great when you want to mine for resources. But it’s annoying to spend ages building a really cool structure and then accidentally smash and destroy it! In this mission, you’ll make your Minecraft world indestructible.</p>
+<p class="indent">By using <span class="literal">setting("world_immutable", True)</span> you can make blocks <em>immutable</em>, which means they can’t be changed. The <span class="literal">setting()</span> line of code is a function like the <span class="literal">setTilePos()</span> and <span class="literal">setPos()</span> functions you’ve seen. <a href="ch05.xhtml#ch5ex1">Listing 5-1</a> shows how to make the world immutable.</p>
+<p class="sidenote"><span class="blue"><em>immutableOn.py</em></span></p>
+<p class="programs"><span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br/>mc = Minecraft.create()<br/><br/>mc.setting(<span class="green">"world_immutable"</span>, <span class="orange">True</span>)</p>
+<p class="examplet"><a id="ch5ex1"></a><em>Listing 5-1: Code that stops blocks from being broken</em></p>
+<p class="indent"><span epub:type="pagebreak" id="page_87"></span>The <span class="literal">setting()</span> function has options that you can set to <span class="literal">True</span> to turn them on. One of the options is <span class="literal">"world_immutable"</span>. To turn a <span class="literal">setting()</span> option on, you write <span class="literal">True</span> after the name of the setting inside the parentheses.</p>
+<p class="indent">Type <a href="ch05.xhtml#ch5ex1">Listing 5-1</a> into IDLE and save it as <em>immutableOn.py</em> in a new folder called <em>booleans</em>. When you run it, you shouldn’t be able to smash most blocks, as shown in <a href="ch05.xhtml#ch5fig1">Figure 5-1</a>. But what happens when you <em>do</em> want to break blocks again? Copy your program into a new file and change it to allow the player to smash blocks. (Hint: Use a Boolean!) Save the new file as <em>immutableOff.py</em> in the <em>booleans</em> folder.</p>
+<div class="image"><img alt="image" src="../images/f05-01.jpg"/></div>
+<p class="figcap"><a id="ch5fig1"></a><em>Figure 5-1: No matter how hard I try, the block won’t break!</em></p>
+<h3 class="h3" id="ch05lev1sec02"><strong><span class="blue1">Concatenating Booleans</span></strong></h3>
+<p class="noindent">Like integers and floats, Booleans must be converted to strings before they can be concatenated. For example, you concatenate Booleans and strings when you want to output Booleans using the <span class="literal">print()</span> function. To do this, use the <span class="literal">str()</span> function:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> agree = <span class="orange">True</span><br/><span class="mer">&gt;&gt;&gt;</span> <span class="rose">print</span>(<span class="green">"I agree: "</span> + <span class="rose">str</span>(agree))<br/><span class="blue1">I agree: True</span></p>
+<p class="indent">The <span class="literal">agree</span> variable stores a Boolean. It is converted to a string on the second line with <span class="literal">str(agree)</span>, concatenated to the <span class="literal">"I agree: "</span> string, and printed.</p>
+<h3 class="h3" id="ch05lev1sec03"><strong><span class="blue1">Comparators</span></strong></h3>
+<p class="noindent">You are very good at comparing values. You know that 5 is greater than 2, 8 and 8 are the same number, and 6 and 12 are not the same number. A computer is also good at comparing values; you just need to tell it exactly <span epub:type="pagebreak" id="page_88"></span>which kind of comparison you want by typing in a symbol called a <em>comparator</em>. For example, do you want it to check if one value is bigger than the other, or do you want it to check if it’s smaller?</p>
+<p class="indentb">Comparators (or <em>comparison operators</em>) in Python let you compare data. Python uses six comparators:</p>
+<p class="bull">• Equal to (<span class="literal">==</span>)</p>
+<p class="bull">• Not equal to (<span class="literal">!=</span>)</p>
+<p class="bull">• Less than (<span class="literal">&lt;</span>)</p>
+<p class="bull">• Less than or equal to (<span class="literal">&lt;=</span>)</p>
+<p class="bull">• Greater than (<span class="literal">&gt;</span>)</p>
+<p class="bull">• Greater than or equal to (<span class="literal">&gt;=</span>)</p>
+<p class="indentt">Each comparator returns a Boolean value (<span class="literal">True</span> or <span class="literal">False</span>) that states whether the condition has been met. Let’s look at these comparators and explore how to use them!</p>
+<h4 class="h4" id="ch05lev2sec02"><strong><span class="blue1">Equal To</span></strong></h4>
+<p class="noindent">When you want to find out whether two values are the same, you can use the equal to comparator (<span class="literal">==</span>). When the values are the same, the comparison returns the Boolean value <span class="literal">True</span>. When the values are different, the comparison returns <span class="literal">False</span>.</p>
+<p class="indent">For example, let’s assign the value of two variables and then use the equal to operator to compare them:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> length = 2<br/><span class="mer">&gt;&gt;&gt;</span> width = 2<br/><span class="mer">&gt;&gt;&gt;</span> length == width<br/><span class="blue1">True</span></p>
+<p class="indent">The result is <span class="literal">True</span> because the values of the <span class="literal">length</span> and <span class="literal">width</span> variables are the same.</p>
+<p class="indent">But if they are different, the result is <span class="literal">False</span>:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> length = 4<br/><span class="mer">&gt;&gt;&gt;</span> width = 1<br/><span class="mer">&gt;&gt;&gt;</span> length == width<br/><span class="blue1">False</span></p>
+<p class="indent">You can use the equal to comparator on all variable types: strings, integers, floats, and Booleans.</p>
+<p class="indent">Notice how I used <span class="literal">==</span> to compare <span class="literal">length</span> and <span class="literal">width</span> instead of <span class="literal">=</span>, which is used to set a variable. Python uses the <span class="literal">==</span> operator to tell the difference between a comparison (asking whether two values are equal) and setting a variable (making a variable equal some value). Try to remember this difference to avoid bugs in your code. Don’t worry; even I make the mistake of using <span class="literal">=</span> instead of <span class="literal">==</span> once in a while!</p>
+<h4 class="h4a" id="ch05lev2sec03"><span epub:type="pagebreak" id="page_89"></span><strong>Mission #18: Am I Swimming?</strong></h4>
+<p class="noindent">Now you’ll use comparators to make a program that states whether or not you’re standing in water. The results will be posted to Minecraft chat.</p>
+<p class="indent">To find out the block type at certain coordinates, you’ll use the <span class="literal">getBlock()</span> function. This function takes coordinates as three arguments and returns the block type as an integer. For example:</p>
+<p class="programs">blockType = mc.getBlock(10, 18, 13)</p>
+<p class="indent">Here, I stored the result of <span class="literal">mc.getBlock(10, 18, 13)</span> in a variable called <span class="literal">blockType</span>. If the block type at coordinates (10, 18, 13) is melon (block value 103), the <span class="literal">blockType</span> variable will hold a value of 103.</p>
+<p class="indent">Let’s put the <span class="literal">getBlock()</span> function to work. <a href="ch05.xhtml#ch5ex2">Listing 5-2</a> checks whether the player is standing on dry land.</p>
+<p class="sidenote"><span class="blue"><em>swimming.py</em></span></p>
+<p class="programs"><span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br/>mc = Minecraft.create()<br/><br/>pos = mc.player.getPos()<br/>x = pos.x<br/>y = pos.y<br/>z = pos.z<br/><br/>blockType = mc.getBlock(x, y, z)<br/>mc.postToChat(blockType == 0)</p>
+<p class="examplet"><a id="ch5ex2"></a><em>Listing 5-2: This code checks the block type where the player’s legs are.</em></p>
+<p class="indent">Here, I get the three coordinates of the player’s position and pass those coordinates as arguments to <span class="literal">getBlock()</span>. I store the result of <span class="literal">mc.getBlock(x, y, z)</span> in <span class="literal">blockType</span>. The expression <span class="literal">blockType == 0</span> checks whether the block is air; if it is air, you know you’re just standing somewhere in your Minecraft world, the expression is <span class="literal">True</span>, and <span class="literal">True</span> is posted to chat. If it’s not air, <span class="literal">False</span> is posted to chat, so you must be underwater or maybe drowning in sand!</p>
+<p class="indent">Copy <a href="ch05.xhtml#ch5ex2">Listing 5-2</a> and save it as <em>swimming.py</em> in the <em><a href="ch05.xhtml#ch05">Chapter 5</a></em> directory. Then change the code so it checks whether the player is standing in water (block type 9) and run it.</p>
+<p class="indent">Try standing in water and running the program. Make sure that when the player is in water, the chat displays <span class="literal">True</span>. When the player isn’t in water, the chat should display <span class="literal">False</span>.</p>
+<p class="indent">The output of the program should look like <a href="ch05.xhtml#ch5fig2">Figure 5-2</a>.</p>
+<div class="note">
+<p class="notet"><strong><span class="notes">NOTE</span></strong></p>
+<p class="notep"><em>At this point, you will not be able to run this program continuously. You must run the program every time you want to check the block below the player. This applies to all the other missions in this chapter as well.</em></p>
+</div>
+<div class="image"><span epub:type="pagebreak" id="page_90"></span><img alt="image" src="../images/f05-02.jpg"/></div>
+<p class="figcap"><a id="ch5fig2"></a><em>Figure 5-2: Although I can see that I am standing in water, Python kindly confirms this.</em></p>
+<div class="sidebar">
+<p class="sidebart" id="ch05sb01"><strong>BONUS OBJECTIVE: I’M FLYING!</strong></p>
+<p class="noindent">With a couple of changes to the code, you can check whether the block <em>below</em> you is air. This would tell you that you’re flying or jumping. How would you do this?</p>
+</div>
+<h4 class="h4" id="ch05lev2sec04"><strong><span class="blue1">Not Equal To</span></strong></h4>
+<p class="noindent">The not equal to comparator is the opposite of the equal to comparator. Instead of checking whether two values are the same, it checks whether they are different. When the two values are different, the comparison evaluates to <span class="literal">True</span>. When they are the same, it evaluates to <span class="literal">False</span>.</p>
+<p class="indent">Say you want to make sure that an object is a rectangle but not a square. Because a non-square rectangle has a different length and width, you could write a comparison to check that the length and width are not equal:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> width = 3<br/><span class="mer">&gt;&gt;&gt;</span> length = 2<br/><span class="mer">&gt;&gt;&gt;</span> width != length<br/><span class="blue1">True</span></p>
+<p class="indent">The <span class="literal">width != length</span> expression asks whether the values of <span class="literal">width</span> and <span class="literal">length</span> are different.</p>
+<p class="indent">The result of this comparison is <span class="literal">True</span> because the <span class="literal">width</span> variable and the <span class="literal">length</span> variable have different values.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_91"></span>But if these values are the same, the comparison returns <span class="literal">False</span>:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> width = 3<br/><span class="mer">&gt;&gt;&gt;</span> length = 3<br/><span class="mer">&gt;&gt;&gt;</span> width != length<br/><span class="blue1">False</span></p>
+<p class="indent">The not equal to comparator also works with strings, integers, floats, and Booleans, just like the equal to comparator.</p>
+<h4 class="h4a" id="ch05lev2sec05"><strong>Mission #19: Am I Standing in Something Other Than Air?</strong></h4>
+<p class="noindent">Let’s say you want to check whether you’re standing in something other than air, such as water, lava, dirt, gravel, or any other type of block. In Mission #18, you checked whether the block at your current position was air, and you worked out how to check whether you were standing in water. You could copy and paste the program many times, changing it slightly each time to check for lava, dirt, gravel, and so on, one by one. But that would be very boring. Instead, use the not equal to comparator to check whether you’re underground, trapped in sand, at the bottom of the ocean, or even drowning in lava!</p>
+<p class="indent">Open the program from Mission #18 (<em>swimming.py</em>) and save it as <em>notAir.py</em> in the <em>booleans</em> folder. Delete the last line of the program and replace it with <a href="ch05.xhtml#ch5ex3">Listing 5-3</a>.</p>
+<p class="sidenote"><span class="blue"><em>notAir.py</em></span></p>
+<p class="programs"><span class="ent">➊</span> notAir = blockType == 0<br/>   mc.postToChat(<span class="green">"The player is not standing in air: "</span> + <span class="rose">str</span>(notAir))</p>
+<p class="examplet"><a id="ch5ex3"></a><em>Listing 5-3: Changes to the swimming program</em></p>
+<p class="indent">The last line of this code will print whether you’re not standing in air. The result of the comparison is stored in the <span class="literal">notAir</span> variable <span class="ent">➊</span>. When the comparison evaluates to <span class="literal">True</span>, the value of the <span class="literal">notAir</span> variable will be <span class="literal">True</span>, and when the comparison evaluates to <span class="literal">False</span>, the value of the <span class="literal">notAir</span> variable will be <span class="literal">False</span>.</p>
+<p class="indent">But the comparison on the first line isn’t quite right <span class="ent">➊</span>. It currently checks whether the <span class="literal">blockType</span> is equal to air using the equal to comparator (<span class="literal">==</span>). Instead it should check whether the <span class="literal">blockType</span> variable is not equal to air using the not equal to comparator (<span class="literal">!=</span>). Change the first line to use the not equal to comparator instead of the equal to comparator. This will check whether the block at the player’s current position is not equal to air.</p>
+<p class="indent">When you run the program, make sure it works when you’re standing in air and when you’re underwater, in lava, in gravel, in sand, or teleported into the ground. The message posted to the chat when the condition is <span class="literal">True</span> is shown in <a href="ch05.xhtml#ch5fig3">Figure 5-3</a>.</p>
+<div class="image"><span epub:type="pagebreak" id="page_92"></span><img alt="image" src="../images/f05-03.jpg"/></div>
+<p class="figcap"><a id="ch5fig3"></a><em>Figure 5-3: Just taking a nice, relaxing swim in some water, which is not air.</em></p>
+<h4 class="h4" id="ch05lev2sec06"><strong><span class="blue1">Greater Than and Less Than</span></strong></h4>
+<p class="noindent">When you need to figure out whether one value is bigger than another, you use the greater than comparator. The greater than comparator will return <span class="literal">True</span> when the value on the left is greater than the value on the right. If the value on the left is less than or the same as the value on the right, the comparison will return <span class="literal">False</span>.</p>
+<p class="indent">Say we have a minecart that can’t lift more than 99 blocks of obsidian. As long our minecart’s lifting limit is greater than the number of obsidian blocks it’s trying to lift, the blocks can be lifted:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> limit = 100<br/><span class="mer">&gt;&gt;&gt;</span> obsidian = 99<br/><span class="mer">&gt;&gt;&gt;</span> limit &gt; obsidian<br/><span class="blue1">True</span></p>
+<p class="indent">Brilliant! Our minecart can carry any number of obsidian blocks that is less than 100, and 99 is less than 100, so <span class="literal">limit &gt; obsidian</span> evaluates to <span class="literal">True</span>. But what if someone adds another block of obsidian to the pile?</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> limit = 100<br/><span class="mer">&gt;&gt;&gt;</span> obsidian = 100<br/><span class="mer">&gt;&gt;&gt;</span> canLift = limit &gt; obsidian<br/><span class="blue1">False</span></p>
+<p class="indent">Oh no, now the limit has been reached! The result is now <span class="literal">False</span>: 100 is not greater than 100; it’s the same. Our minecart can’t lift the obsidian.</p>
+<p class="indent">The less than comparator works the same way.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_93"></span>A van driving under a bridge needs to know whether it’s small enough to fit under it:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> vanHeight = 8<br/><span class="mer">&gt;&gt;&gt;</span> bridgeHeight = 12<br/><span class="mer">&gt;&gt;&gt;</span> vanHeight &lt; bridgeHeight<br/><span class="blue1">True</span></p>
+<p class="indent">In this case, the van will fit because it’s smaller than the bridge height: 8 is less than 12. Later in its journey, the same van might encounter another bridge that is too low to drive under:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> vanHeight = 8<br/><span class="mer">&gt;&gt;&gt;</span> bridgeHeight = 7<br/><span class="mer">&gt;&gt;&gt;</span> vanHeight &lt; bridgeHeight<br/><span class="blue1">False</span></p>
+<p class="indent">Because 8 is not less than 7, the result is <span class="literal">False</span>.</p>
+<h4 class="h4" id="ch05lev2sec07"><strong><span class="blue1">Greater Than or Equal To and Less Than or Equal To</span></strong></h4>
+<p class="noindent">Like the greater than comparator, the greater than or equal to comparator determines whether one value is greater than another. Unlike the greater than comparator, it will also evaluate to <span class="literal">True</span> if the values are the same.</p>
+<p class="indent">Let’s say I’m giving stickers to all the people who came to see my amazing program presentation. I need to check whether I have enough stickers for everyone:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> stickers = 30<br/><span class="mer">&gt;&gt;&gt;</span> people = 30<br/><span class="mer">&gt;&gt;&gt;</span> stickers &gt;= people<br/><span class="blue1">True</span></p>
+<p class="indent">I have enough stickers: 30 is the same as 30, so <span class="literal">stickers &gt;= people</span> evaluates to <span class="literal">True</span>. But say one of my friends thinks the stickers look cool and wants one. Now, 31 people want stickers:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> stickers = 30<br/><span class="mer">&gt;&gt;&gt;</span> people = 31<br/><span class="mer">&gt;&gt;&gt;</span> stickers &gt;= people<br/><span class="blue1">False</span></p>
+<p class="indent">I don’t have enough stickers: 30 is not greater than or equal to 31. It looks like my friend can’t have a sticker.</p>
+<p class="indent">By now, you’re ready to tackle almost any comparison. While you’re at IDLE, try out the less than or equal to comparator (<span class="literal">&lt;=</span>) to see how it works, too.</p>
+<div class="note">
+<p class="notet"><span epub:type="pagebreak" id="page_94"></span><strong><span class="notes">NOTE</span></strong></p>
+<p class="notep"><em>The greater than, greater than or equal to, less than, and less than or equal to comparators don’t work with strings, although they do work with integers, floats, and Booleans.</em></p>
+</div>
+<h4 class="h4a" id="ch05lev2sec08"><strong>Mission #20: Am I Above the Ground?</strong></h4>
+<p class="noindent">The y-coordinate of a player in Minecraft shows how high they are in the game. Blocks are also stored using coordinates, which allows you to get the block types at specific coordinates using <span class="literal">getBlock()</span> and to create blocks at specific coordinates using <span class="literal">setBlocks()</span>.</p>
+<p class="indent">To get the highest block in Minecraft, you can use the <span class="literal">getHeight()</span> function. The function takes an x- and z-coordinate and returns the y-coordinate for the highest block at that position, as shown in <a href="ch05.xhtml#ch5ex4">Listing 5-4</a>.</p>
+<p class="sidenote"><span class="blue"><em>aboveGround.py</em></span></p>
+<p class="programs"><span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br/>mc = Minecraft.create()<br/>pos = mc.player.getTilePos()<br/>x = pos.x<br/>y = pos.y<br/>z = pos.z<br/>highestBlockY = mc.getHeight(x, z)<br/>mc.postToChat(highestBlockY)</p>
+<p class="examplet"><a id="ch5ex4"></a><em>Listing 5-4: Code to find the y-coordinate of the highest block at the player’s current location</em></p>
+<p class="indent">This program gets the current position of the player, gets the y-coordinate for the highest block at the player’s position, and then posts this value to Minecraft chat.</p>
+<p class="indent">By combining this program with a greater than or equal to comparator, you can check whether or not the player is above the ground. Let’s do that now.</p>
+<p class="indent">Copy the program in <a href="ch05.xhtml#ch5ex4">Listing 5-4</a> and save it as <em>aboveGround.py</em>. Change the program to check whether the player’s y-coordinate is greater than the <span class="literal">highestBlockY</span> variable. Then, add code to post the result to chat in the format of <span class="literal">"The player is above the ground: True/False"</span>.</p>
+<div class="note">
+<p class="notet"><strong><span class="hints">HINT</span></strong></p>
+<p class="notep"><em>Remember that you can store the result of a comparison in a variable. For example, if I wanted to check whether</em> <span class="literal"><span class="codeitalic">y</span></span> <em>is greater than or equal to 10 and store the answer in a variable called</em> <span class="literal"><span class="codeitalic">highEnough</span></span><em>, I would use the following statement:</em> <span class="literal"><span class="codeitalic">highEnough = y &gt;= 10</span></span>.</p>
+</div>
+<p class="indent">Run the program when you’ve made these changes. The output for the program’s <span class="literal">False</span> outcomes are shown in <a href="ch05.xhtml#ch5fig4">Figure 5-4</a>.</p>
+<div class="image"><span epub:type="pagebreak" id="page_95"></span><img alt="image" src="../images/f05-04.jpg"/></div>
+<p class="figcap"><a id="ch5fig4"></a><em>Figure 5-4: Now I’m in a cave, so Python is very much correct that I’m not above ground.</em></p>
+<h4 class="h4a" id="ch05lev2sec09"><strong>Mission #21: Am I Close to Home?</strong></h4>
+<p class="noindent">As you wander around the Minecraft world, you might get lost and forget where your home is. You could wander for hours only to discover you were close to home when you first lost your way.</p>
+<p class="indent">With a single line of code, you can check how far you are from any coordinates in the game. For example, you could use the coordinates of your house and your current position to calculate how far away you are. By adding a comparator, you can also check whether or not you are within a certain number of blocks from your house. We’ll say you’re close to home if you’re only 40 blocks away.</p>
+<p class="indent">Let’s write a Python program to check this for you! The code for this mission should check how far you are from your house, as shown in <a href="ch05.xhtml#ch5ex5">Listing 5-5</a>.</p>
+<p class="sidenote"><span class="blue"><em>farFromHome.py</em></span></p>
+<p class="programs">   <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br/>   mc = Minecraft.create()<br/>   <span class="orange">import</span> math<br/><span class="ent">➊</span> homeX = 10<br/>   homeZ = 10<br/>   pos = mc.player.getTilePos()<br/>   x = pos.x<br/>   z = pos.z<br/><span class="ent">➋</span> distance = math.sqrt((homeX - x) ** 2 + (homeZ - z) ** 2)<br/><span class="ent">➌</span> mc.postToChat(distance)</p>
+<p class="examplet"><a id="ch5ex5"></a><em>Listing 5-5: Code that outputs the distance to your house</em></p>
+<p class="indent">This code assumes your house is at the coordinates <span class="literal">x = 10</span> and <span class="literal">z = 10</span>, which are set with the <span class="literal">homeX</span> and <span class="literal">homeZ</span> variables <span class="ent">➊</span>. In this case, we don’t need to know about the y-coordinate. I use the <span class="literal">getTilePos()</span> function to get the player’s position and set the <span class="literal">x</span> and <span class="literal">z</span> values.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_96"></span>To calculate the <span class="literal">distance</span> variable, we use a formula called the <em>Pythagorean theorem</em>. It calculates the length of a side of a right triangle, and you can use it in Minecraft to work out the distance between two points. You may have seen this formula written in math class as <em>a</em><sup>2</sup> + <em>b</em><sup>2</sup> = <em>c</em><sup>2</sup>, where <em>a</em> and <em>b</em> are the two legs of a right triangle, and <em>c</em> is the hypotenuse of the triangle, as shown in <a href="ch05.xhtml#ch5fig5">Figure 5-5</a>. At <span class="ent">➋</span>, we’re solving for <em>c</em>, which is represented by the variable <span class="literal">distance</span>.</p>
+<p class="indent">Save <a href="ch05.xhtml#ch5ex5">Listing 5-5</a> as <em>farFromHome.py</em> in the <em>booleans</em> folder.</p>
+<div class="image"><img alt="image" src="../images/f05-05.jpg"/></div>
+<p class="figcap"><a id="ch5fig5"></a><em>Figure 5-5: A right triangle</em></p>
+<p class="indent">To finish the program, use a less than or equal to comparator to check whether the value of the <span class="literal">distance</span> variable is less than or equal to 40 and post the result to chat in the format of <span class="literal">"Your house is nearby: True/False"</span> <span class="ent">➌</span>. Use concatenation to combine the string with the result of the comparison. Update the contents of the <span class="literal">postToChat()</span> <span class="ent">➌</span> function to output the string.</p>
+<p class="indent">Test the program. When you are within 40 blocks of your house, you should receive a <span class="literal">True</span> message; when you aren’t within 40 blocks, you should see a <span class="literal">False</span> message. <a href="ch05.xhtml#ch5fig6">Figure 5-6</a> shows the program in operation.</p>
+<div class="image"><img alt="image" src="../images/f05-06.jpg"/></div>
+<p class="figcap"><a id="ch5fig6"></a><em>Figure 5-6: I’m definitely within 40 blocks of my house. In fact, there’s the front door!</em></p>
+<h3 class="h3" id="ch05lev1sec04"><strong><span class="blue1">Logical Operators</span></strong></h3>
+<p class="noindent">Combining two or more comparators is often necessary in programs. You might want to determine whether two conditions are <span class="literal">True</span>: for example, you might want a car that is red <em>and</em> costs less than $10,000.</p>
+<p class="indent">To combine two or more comparators, you use <em>logical operators</em>. Like comparators, you can use logical operators anywhere that you would use a Boolean value. Logical operators are also called <em>Boolean operators</em>. You’ll learn about three kinds of logical operators: <span class="literal">and</span>, <span class="literal">or</span>, and <span class="literal">not</span>.</p>
+<h4 class="h4" id="ch05lev2sec10"><span epub:type="pagebreak" id="page_97"></span><strong><span class="blue1">and</span></strong></h4>
+<p class="noindent">Use the <span class="literal">and</span> operator when you want to check whether two comparisons are both <span class="literal">True</span>. For an expression with an <span class="literal">and</span> operator to be <span class="literal">True</span>, both comparisons must be <span class="literal">True</span>. If either comparison is <span class="literal">False</span>, the statement will return <span class="literal">False</span>.</p>
+<p class="indent">Say I want to find out whether a person is older than 18 and owns a car. I might write the following program:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> age = 21<br/><span class="mer">&gt;&gt;&gt;</span> ownsCar = <span class="orange">True</span><br/><span class="mer">&gt;&gt;&gt;</span> age &gt; 18<span class="ent">➊</span> <span class="orange">and</span> ownsCar == <span class="orange">True</span><span class="ent">➋</span><br/><span class="blue1">True</span></p>
+<p class="indent">Here, we’re combining two comparators at <span class="ent">➊</span> and <span class="ent">➋</span> with <span class="literal">and</span>. Because the age of the person is greater than 18 (<span class="literal">age &gt; 18</span> evaluates to <span class="literal">True</span>) and they own a car (<span class="literal">ownsCar == True</span>), the entire expression <span class="literal">age &gt; 18 and ownsCar == True</span> evaluates to <span class="literal">True</span>.</p>
+<p class="indent">If one of these comparisons was <span class="literal">False</span>, the statement would evaluate to <span class="literal">False</span>. Say the person doesn’t own a car but is older than 18:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> age = 25<br/><span class="mer">&gt;&gt;&gt;</span> ownsCar = <span class="orange">False</span><br/><span class="mer">&gt;&gt;&gt;</span> age &gt; 18 <span class="orange">and</span> ownsCar == <span class="orange">True</span><br/><span class="blue1">False</span></p>
+<p class="indent">Here, <span class="literal">age &gt; 18</span> evaluates to <span class="literal">True</span> and <span class="literal">ownsCar == True</span> evaluates to <span class="literal">False</span>, making the entire expression <span class="literal">False</span>.</p>
+<p class="indent"><a href="ch05.xhtml#ch05tab01">Table 5-1</a> summarizes the results of all of the possible Boolean combinations and results when using the <span class="literal">and</span> operator.</p>
+<p class="tablet"><a id="ch05tab01"></a><strong>Table 5-1:</strong> The Different Combinations of <span class="literal">True</span> and <span class="literal">False</span> with the <span class="literal">and</span> Operator</p>
+<table class="topbot">
+<thead>
+<tr>
+<td class="table_th" style="vertical-align: top;"><p class="table"><strong>Comparison A</strong></p></td>
+<td class="table_th" style="vertical-align: top;"><p class="table"><strong>Comparison B</strong></p></td>
+<td class="table_th" style="vertical-align: top;"><p class="table"><strong>A and B</strong></p></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align: top;"><p class="table">TRUE</p></td>
+<td style="vertical-align: top;"><p class="table">TRUE</p></td>
+<td style="vertical-align: top;"><p class="table">TRUE</p></td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><p class="table">TRUE</p></td>
+<td style="vertical-align: top;"><p class="table">FALSE</p></td>
+<td style="vertical-align: top;"><p class="table">FALSE</p></td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><p class="table">FALSE</p></td>
+<td style="vertical-align: top;"><p class="table">TRUE</p></td>
+<td style="vertical-align: top;"><p class="table">FALSE</p></td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><p class="table">FALSE</p></td>
+<td style="vertical-align: top;"><p class="table">FALSE</p></td>
+<td style="vertical-align: top;"><p class="table">FALSE</p></td>
+</tr>
+</tbody>
+</table>
+<h4 class="h4a" id="ch05lev2sec11"><strong>Mission #22: Am I Entirely Underwater?</strong></h4>
+<p class="noindent">In Mission #18 (<a href="ch05.xhtml#page_89">page 89</a>), you checked whether the player was swimming. The program returned <span class="literal">True</span> or <span class="literal">False</span> depending on whether the block at the player’s current position was equal to water. That told you whether the player’s legs were underwater, but it would give the same result whether or not the player’s head was underwater. How would you check whether both the player’s legs and head were underwater?</p>
+<p class="indent"><span epub:type="pagebreak" id="page_98"></span>With a few simple changes to include an <span class="literal">and</span> operator, the <em>swimming.py</em> program can check whether the player’s legs and head are underwater. Open <em>swimming.py</em> and save it as <em>underwater.py</em>.</p>
+<p class="indent">Make the following changes so the program checks whether the player is entirely underwater:</p>
+<ol>
+<li class="noindent"><p class="list">Add a second variable that checks the block type at the player’s <span class="literal">y</span> position <span class="literal">+ 1</span>. This variable stores the block type at the player’s head. Call this variable <span class="literal">blockType2</span>.</p></li>
+<li class="noindent"><p class="list">Check whether <span class="literal">blockType</span> is equal to water and whether <span class="literal">blockType2</span> is equal to water.</p></li>
+<li class="noindent"><p class="list">Post the result of the comparison to chat with this message: <span class="literal">"The player is underwater: True/False"</span>.</p></li>
+</ol>
+<div class="note">
+<p class="notet"><strong><span class="hints">HINT</span></strong></p>
+<p class="notep"><em>To check whether</em> <span class="literal"><span class="codeitalic">blockType</span></span> <em>and</em> <span class="literal"><span class="codeitalic">blockType2</span></span> <em>are equal to water, you can use the</em> <span class="literal"><span class="codeitalic">and</span></span> <em>operator. First, you check whether</em> <span class="literal"><span class="codeitalic">blockType</span></span> <em>is equal to water with the expression</em> <span class="literal"><span class="codeitalic">blockType == 9</span></span><em>. Second, you check whether</em> <span class="literal"><span class="codeitalic">blockType2</span></span> <em>is equal to water with the expression</em> <span class="literal"><span class="codeitalic">blockType2 == 9</span></span><em>. To combine the two, you put an</em> <span class="literal"><span class="codeitalic">and</span></span> <em>operator in the middle, like this:</em> <span class="literal"><span class="codeitalic">blockType == 9 and blockType2 == 9</span></span>.</p>
+</div>
+<p class="indent">When you run the program, make sure you test that it works in all three cases (when the player is above the water, when only the player’s legs are in the water, and when they’re entirely under the water). <a href="ch05.xhtml#ch5fig7">Figure 5-7</a> shows an example of the program working.</p>
+<div class="image"><img alt="image" src="../images/f05-07.jpg"/></div>
+<p class="figcap"><a id="ch5fig7"></a><em>Figure 5-7: The player is under the water, running along the seafloor.</em></p>
+<div class="sidebar">
+<p class="sidebart" id="ch05sb02"><span epub:type="pagebreak" id="page_99"></span><strong>BONUS OBJECTIVE: AM I IN A TUNNEL?</strong></p>
+<p class="noindent">Check whether the player is or isn’t in a dirt tunnel or a cobblestone tunnel. To do this, you’ll need to check the blocks above and below the player.</p>
+</div>
+<h4 class="h4" id="ch05lev2sec12"><strong><span class="blue1">or</span></strong></h4>
+<p class="noindent">The <span class="literal">or</span> operator works differently than <span class="literal">and</span>. When either or both comparisons are <span class="literal">True</span>, the <span class="literal">or</span> expression will return <span class="literal">True</span>. As long as one comparison is <span class="literal">True</span>, the expression will still be <span class="literal">True</span>. But if neither comparison is <span class="literal">True</span>, the expression will evaluate to <span class="literal">False</span>.</p>
+<p class="indent">Let’s say I want to adopt a cat that is either black or orange in color. I could use the following code to get user input, and then see if the value of the string is either <span class="literal">"black"</span> or <span class="literal">"orange"</span>:</p>
+<p class="programs">catColor = <span class="rose">input</span>(<span class="green">"What color is the cat?"</span>)<br/>myCatNow = catColor == <span class="green">"black"</span> <span class="orange">or</span> catColor == <span class="green">"orange"</span><br/><span class="rose">print</span>(<span class="green">"Adopt this cat: "</span> + <span class="rose">str</span>(myCatNow))</p>
+<p class="indent">As long as the <span class="literal">catColor</span> is either <span class="literal">"black"</span> or <span class="literal">"orange"</span>, I’ll adopt it. But if it’s a different color, like <span class="literal">"gray"</span>, <span class="literal">myCatNow</span> would be <span class="literal">False</span> and I wouldn’t adopt the cat.</p>
+<p class="indent"><a href="ch05.xhtml#ch05tab02">Table 5-2</a> contains all of the possible combinations and results of using the <span class="literal">or</span> operator with Booleans.</p>
+<p class="tablet"><a id="ch05tab02"></a><strong>Table 5-2:</strong> The Different Combinations of <span class="literal">True</span> and <span class="literal">False</span> with the <span class="literal">or</span> Operator</p>
+<table class="topbot">
+<thead>
+<tr>
+<td class="table_th" style="vertical-align: top;"><p class="table"><strong>Comparison A</strong></p></td>
+<td class="table_th" style="vertical-align: top;"><p class="table"><strong>Comparison B</strong></p></td>
+<td class="table_th" style="vertical-align: top;"><p class="table"><strong>A or B</strong></p></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align: top;"><p class="table">TRUE</p></td>
+<td style="vertical-align: top;"><p class="table">TRUE</p></td>
+<td style="vertical-align: top;"><p class="table">TRUE</p></td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><p class="table">TRUE</p></td>
+<td style="vertical-align: top;"><p class="table">FALSE</p></td>
+<td style="vertical-align: top;"><p class="table">TRUE</p></td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><p class="table">FALSE</p></td>
+<td style="vertical-align: top;"><p class="table">TRUE</p></td>
+<td style="vertical-align: top;"><p class="table">TRUE</p></td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><p class="table">FALSE</p></td>
+<td style="vertical-align: top;"><p class="table">FALSE</p></td>
+<td style="vertical-align: top;"><p class="table">FALSE</p></td>
+</tr>
+</tbody>
+</table>
+<h4 class="h4a" id="ch05lev2sec13"><strong>Mission #23: Am I in a Tree?</strong></h4>
+<p class="noindent">The programs you’ve created so far in this chapter have displayed <span class="literal">True</span> or <span class="literal">False</span> depending on whether the player is standing on or in a particular block type. But what if you wanted to check whether the player is in a tree? How would you do this? Because trees are made of wood and leaves, you’d have to check whether the player is standing on wood <em>or</em> leaves.</p>
+<p class="indent">Let’s write a program. Open <em>swimming.py</em> again and save it as a new program called <em>inTree.py</em>.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_100"></span>Change the program so it checks the type of block that is one block below the player. You’ll want to use the <span class="literal">or</span> operator to check whether the block below the player is leaves (block type 18) or wood (block type 11), then post the result to chat.</p>
+<p class="indent">Recall that you can check the block below the player using <span class="literal">y = y - 1</span>.</p>
+<div class="note">
+<p class="notet"><strong><span class="notes">NOTE</span></strong></p>
+<p class="notep"><em>Although trees and leaves both come in different colors, all trees share the same block ID, and all leaves share the same block ID. (The only exceptions are Acacia and Dark Oak wood and leaves, which are a different block type. For now, let’s just ignore Acacia and Dark Oak.) The color is set using a second value, which you’ll learn about in a later chapter.</em></p>
+</div>
+<p class="indent">When you run the program, you should see the same output as in <a href="ch05.xhtml#ch5fig8">Figure 5-8</a>.</p>
+<div class="image"><img alt="image" src="../images/f05-08.jpg"/></div>
+<p class="figcap"><a id="ch5fig8"></a><em>Figure 5-8: I’m in a tree.</em></p>
+<h4 class="h4" id="ch05lev2sec14"><strong><span class="blue1">not</span></strong></h4>
+<p class="noindent">The <span class="literal">not</span> operator is quite a bit different from the <span class="literal">and</span> and <span class="literal">or</span> operators. It’s used on a single Boolean value or comparison and simply changes its value to the opposite.</p>
+<p class="indent">In other words, <span class="literal">not</span> changes <span class="literal">True</span> to <span class="literal">False</span> and <span class="literal">False</span> to <span class="literal">True</span>:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> <span class="orange">not True</span><br/><span class="blue1">False</span><br/><span class="mer">&gt;&gt;&gt;</span> <span class="orange">not False</span><br/><span class="blue1">True</span></p>
+<p class="indent"><span epub:type="pagebreak" id="page_101"></span>The <span class="literal">not</span> operator is handy when you start combining it with other logical operators. Let’s assign the value of <span class="literal">timeForBed</span> if you’re <span class="literal">not hungry</span> and you are <span class="literal">sleepy</span>.</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> hungry = <span class="orange">False</span><br/><span class="mer">&gt;&gt;&gt;</span> sleepy = <span class="orange">True</span><br/><span class="mer">&gt;&gt;&gt;</span> timeForBed = <span class="orange">not</span> hungry <span class="orange">and</span> sleepy<br/><span class="mer">&gt;&gt;&gt;</span> <span class="rose">print</span>(timeForBed)<br/><span class="blue1">True</span></p>
+<p class="indent">The <span class="literal">not</span> operator only applies to the Boolean it is in front of. Here it reverses the value of the <span class="literal">hungry</span> variable and leaves the <span class="literal">sleepy</span> variable alone. Because we set <span class="literal">hungry</span> to <span class="literal">False</span> earlier, writing <span class="literal">not hungry</span> now changes the value to <span class="literal">True</span>. The value of <span class="literal">sleepy</span> is <span class="literal">True</span>. Both values are now <span class="literal">True</span>, so <span class="literal">timeForBed</span> is <span class="literal">True</span>.</p>
+<h4 class="h4a" id="ch05lev2sec15"><strong>Mission #24: Is This Block Not a Melon?</strong></h4>
+<p class="noindent">You’re hungry and want to know whether you have food at home. Your favorite food is melon, which you always store in the same space in your house. But you can’t remember if you have any melon left, and you need to decide whether to get food on your way home.</p>
+<p class="indent">Thankfully, you’re learning Python! With a bit of brain power, you can write a Python program to check whether you have a melon at home.</p>
+<p class="indent">In this mission, you’ll create a program that says whether or not you need to find food before you return to your Minecraft house. The program will check whether there is a melon at certain coordinates. The coordinates you’ll check are up to you—they could be in your house, on your farm, or anywhere you might decide to keep some melon. Placing a melon at these coordinates is also up to you.</p>
+<p class="indent">Copy <a href="ch05.xhtml#ch5ex6">Listing 5-6</a> and save it as <em>notAMelon.py</em>.</p>
+<p class="sidenote"><span class="blue"><em>notAMelon.py</em></span></p>
+<p class="programs">   <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br/>   mc = Minecraft.create()<br/><br/>   x = 10<br/>   y = 11<br/>   z = 12<br/><span class="ent">➊</span> melon = 103<br/><span class="ent">➋</span> block = mc.getBlock(x, y, z)<br/><br/><span class="ent">➌</span> noMelon = <span class="red"># Check the block is not a melon</span><br/><br/><span class="ent">➍</span> mc.postToChat(<span class="green">"You need to get some food: "</span> + <span class="rose">str</span>(noMelon))</p>
+<p class="examplet"><a id="ch5ex6"></a><em>Listing 5-6: The start of the code to check whether there is a melon at a specific location</em></p>
+<p class="indent"><span epub:type="pagebreak" id="page_102"></span>The code is meant to check whether the block at a specific position is a melon block. I’ve included a variable called <span class="literal">melon</span> that stores the block ID of a melon (103) <span class="ent">➊</span>, and I’ve called the <span class="literal">getBlock()</span> method and stored the result in a variable called <span class="literal">block</span> <span class="ent">➋</span>. To complete this program, you need to finish the line at <span class="ent">➌</span> that checks whether the <span class="literal">melon</span> variable is not equal to the <span class="literal">block</span> variable. The result should be stored in the <span class="literal">noMelon</span> variable so that it can be output to the Minecraft chat on the last line <span class="ent">➍</span>.</p>
+<p class="indent">You can write the check <span class="ent">➌</span> to see if the <span class="literal">melon</span> and <span class="literal">block</span> variables are not equal in two ways: you can use the not equal to comparator or the <span class="literal">not</span> logical operator. Although the program will work either way, try using the <span class="literal">not</span> logical operator for this program.</p>
+<p class="indent">Run the program when you’ve made the changes. The result should look something like <a href="ch05.xhtml#ch5fig9">Figure 5-9</a>.</p>
+<div class="image"><img alt="image" src="../images/f05-09.jpg"/></div>
+<p class="figcap"><a id="ch5fig9"></a><em>Figure 5-9: There’s a melon on my farm, so I don’t need to find some other food.</em></p>
+<div class="sidebar">
+<p class="sidebart" id="ch05sb03"><strong>BONUS OBJECTIVE: A WELL-STOCKED LARDER</strong></p>
+<p class="noindent">Change the block type that the program checks for. You could check if corn is growing on your farm or if someone’s stolen your front door.</p>
+</div>
+<h4 class="h4" id="ch05lev2sec16"><strong><span class="blue1">Logical Operator Order</span></strong></h4>
+<p class="noindent">You can combine as many logical operators as you want in a single statement. For example, here’s a pretty fancy combination using <span class="literal">and</span>, <span class="literal">or</span>, and <span class="literal">not</span>:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> <span class="orange">True and not False or False</span><br/><span class="blue1">True</span></p>
+<p class="indent"><span epub:type="pagebreak" id="page_103"></span>This code evaluates to <span class="literal">True</span>. Are you surprised? In this example, the <span class="literal">not False</span> part of the statement is evaluated first to <span class="literal">True</span>. This is equivalent to:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> <span class="orange">True and True or False</span><br/><span class="blue1">True</span></p>
+<p class="indent">The <span class="literal">and</span> is then evaluated, and <span class="literal">True and True</span> evaluates to <span class="literal">True</span>, which is equivalent to:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> <span class="orange">True or False</span><br/><span class="blue1">True</span></p>
+<p class="indent">Finally, the <span class="literal">or</span> is evaluated, so <span class="literal">True or False</span> becomes <span class="literal">True</span>.</p>
+<p class="indent">When Python evaluates logical operators, it uses a certain order. If you get the order wrong, you might get a result you weren’t expecting! Here’s what Python evaluates first, second, and third:</p>
+<ol>
+<li class="noindent"><p class="list"><span class="literal">not</span></p></li>
+<li class="noindent"><p class="list"><span class="literal">and</span></p></li>
+<li class="noindent"><p class="list"><span class="literal">or</span></p></li>
+</ol>
+<p class="indent">Practice creating statements with logical operators in IDLE and see if you can guess the result of each.</p>
+<h4 class="h4" id="ch05lev2sec17"><strong><span class="blue1">Is My Number Between Two Others?</span></strong></h4>
+<p class="noindent">Often, you’ll want to check whether a value is less than one value and greater than another. Let’s imagine you wanted to make sure that you had between 10 and 20 wolves, because you love wolves and want more than 10, but 20 or more might cause problems as you’d run out of food. You could test for this condition by using an <span class="literal">and</span> operator:</p>
+<p class="programs">wolves = <span class="rose">input</span>(<span class="green">"Enter the number of wolves: "</span>)<br/>enoughWolves = wolves &gt; 10 <span class="orange">and</span> wolves &lt; 20<br/><span class="rose">print</span>(<span class="green">"Enough wolves: "</span> + <span class="rose">str</span>(enoughWolves))</p>
+<p class="indent">But you could also do it another way. Instead of using the <span class="literal">and</span> operator, write the variable once in the middle of two comparisons:</p>
+<p class="programs">wolves = <span class="rose">input</span>(<span class="green">"Enter the number of wolves: "</span>)<br/>enoughWolves = 10 &lt; wolves &lt; 20<br/><span class="rose">print</span>(<span class="green">"Enough wolves: "</span> + <span class="rose">str</span>(enoughWolves))</p>
+<p class="indent">If you run either of these programs and enter a number between 10 and 20 but not equal to either, then <span class="literal">enoughWolves</span> will be <span class="literal">True</span>. You can do the <span epub:type="pagebreak" id="page_104"></span>same using the greater than or equal to operators (<span class="literal">&gt;=</span>) and the less than or equal to operators (<span class="literal">&lt;=</span>):</p>
+<p class="programs">wolves = <span class="rose">input</span>(<span class="green">"Enter the number of wolves: "</span>)<br/>enoughWolves = 10 &lt;= wolves &lt;= 20<br/><span class="rose">print</span>(<span class="green">"Enough wolves: "</span> + <span class="rose">str</span>(enoughWolves))</p>
+<p class="indent">In this case, entering 10 or 20 would also give <span class="literal">enoughWolves</span> a value of <span class="literal">True</span>.</p>
+<h4 class="h4a" id="ch05lev2sec18"><strong>Mission #25: Am I in the House?</strong></h4>
+<p class="noindent">With Python code, you can make cool actions happen when you walk onto a certain area on the map. You could make a secret door open when the player walks onto a specific block, or you could trap them in a box when they walk over a trap. In this mission, I’ll show you how to detect if someone is in your Minecraft house.</p>
+<p class="indent">In Mission #8 (<a href="ch03.xhtml#page_59">page 59</a>), you created a program that automatically builds the walls, ceiling, and floor of a building. You saved the program as <em>building.py</em> in the <em>math</em> folder. Open this program.</p>
+<p class="indent">Read the code in the <em>building.py</em> program and make a note of the values of the <span class="literal">width</span>, <span class="literal">height</span>, and <span class="literal">length</span> variables (by default the values were <span class="literal">10</span>, <span class="literal">5</span>, and <span class="literal">6</span>, respectively). Also, write down the coordinates that you are currently standing at. Run the building program to build a house.</p>
+<p class="indent">Now that you’ve created a building, we can write a program like <a href="ch05.xhtml#ch5ex7">Listing 5-7</a> that checks whether the player is standing inside it.</p>
+<p class="sidenote"><span class="blue"><em>insideHouse.py</em></span></p>
+<p class="programs">   <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br/>   mc = minecraft.create()<br/><br/><span class="ent">➊</span> buildX =<br/>   buildY =<br/>   buildZ =<br/><span class="ent">➋</span> width = 10<br/>   height = 5<br/>   length = 6<br/><br/>   pos = mc.player.getTilePos()<br/>   x = pos.x<br/>   y = pos.y<br/>   z = pos.z<br/><br/><span class="ent">➌</span> inside = buildX &lt; x &lt; buildX + width <span class="orange">and</span></p>
+<p class="examplet"><a id="ch5ex7"></a><em>Listing 5-7: The start of the program to check whether the player is inside their house</em></p>
+<p class="indent"><a href="ch05.xhtml#ch5ex7">Listing 5-7</a> is supposed to check that the player’s x-coordinate is within the building created by <em>building.py,</em> but the program isn’t finished! Your job is to make sure the program also checks the y- and z-coordinates against the coordinates of the house that you built with the <em>building.py</em> program.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_105"></span>Copy <a href="ch05.xhtml#ch5ex7">Listing 5-7</a> into a new file and save it as <em>insideHouse.py</em>. You’ll complete the program so it checks whether the player is inside the building.</p>
+<p class="indent">To complete the program, do the following:</p>
+<ol>
+<li class="noindent"><p class="list">Add the coordinates of the building (these are the coordinates you were standing at when you ran the <em>building.py</em> program) <span class="ent">➊</span>.</p></li>
+<li class="noindent"><p class="list">Correct the <span class="literal">width</span>, <span class="literal">height</span>, and <span class="literal">length</span> variables if they are different from the ones used in your <em>building.py</em> program <span class="ent">➋</span>.</p></li>
+<li class="noindent"><p class="list">Complete the comparison for the <span class="literal">inside</span> variable so it checks whether the player’s coordinates are inside the building. The first part, to check whether the x position is in the house, has been done for you <span class="ent">➌</span>. You need to add the comparisons for the y and z positions. The expressions are similar to the one that I’ve included for the x position (<span class="literal">buildX &lt; x &lt; buildX + width</span>).</p></li>
+<li class="noindent"><p class="list">Post the value of the <span class="literal">inside</span> variable to the chat.</p></li>
+<li class="noindent"><p class="list">When you’ve made the changes, save and run the program. You should see output similar to <a href="ch05.xhtml#ch5fig10">Figure 5-10</a>.</p>
+<div class="image"><img alt="image" src="../images/f05-10.jpg"/></div>
+<p class="figcap"><a id="ch5fig10"></a><em>Figure 5-10: I’m in my bedroom, which is indeed inside my house.</em></p></li>
+</ol>
+<h3 class="h3" id="ch05lev1sec05"><strong><span class="blue1">What You Learned</span></strong></h3>
+<p class="noindent">In this chapter, you used Booleans, comparators, and logical operators to answer questions in your programs. In <a href="ch06.xhtml#ch06">Chapter 6</a>, you’ll write programs that make decisions based on the answers to these questions. You’ll check whether a condition is true or not, and you’ll tell the program to run some code if the condition is true or run different code if it’s false. In <a href="ch07.xhtml#ch07">Chapter 7</a>, your programs will keep running a piece of code as long as a condition is true and stop if the condition becomes false. This is the real power of Booleans and comparators. They help you control which code gets run in your program and exactly when the code gets run.<span epub:type="pagebreak" id="page_106"></span></p>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/><title>Appendix C. JSLint</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h1 class="title"><a id="undefined_variables_and_functions"></a>Variables y funciones indefinidas</h1><p>El mayor problema de JavaScript es su dependencia de las variables globales, sobre todo de las variables globales implícitas. Si una variable no se declara explícitamente (normalmente con la declaración <code class="literal" translate="no">var</code> ), JavaScript asume que la variable es global. Esto puede ocultar nombres mal escritos y otros problemas.<a class="indexterm" id="IDX-APP-C-0584"></a><a class="indexterm" id="IDX-APP-C-0585"></a><a class="indexterm" id="IDX-APP-C-0586"></a><a class="indexterm" id="IDX-APP-C-0587"></a><a class="indexterm" id="IDX-APP-C-0588"></a><a class="indexterm" id="IDX-APP-C-0589"></a></p><p>JSLint espera que todas las variables y funciones se declaren antes de ser utilizadas o invocadas. Esto le permite detectar variables globales implícitas. También es una buena práctica porque facilita la lectura de los programas.<a class="indexterm" id="IDX-APP-C-0590"></a><a class="indexterm" id="IDX-APP-C-0591"></a></p><p>A veces un archivo depende de variables y funciones globales que están definidas en otra parte. Puedes identificarlos ante JSLint incluyendo un comentario en tu archivo que enumere las funciones y objetos globales de los que depende tu programa, pero que no están definidos en tu programa o archivo de script.</p><p>Un comentario de declaración global puede utilizarse para enumerar todos los nombres que utilizas intencionadamente como variables globales. JSLint puede utilizar esta información para identificar errores ortográficos y declaraciones olvidadas en <code class="literal" translate="no">var</code>. Una declaración global puede tener este aspecto</p><a id="I_programlisting_d1e9444"></a><pre class="programlisting" translate="no">/*global getElementByAttribute, breakCycles, hanoi */</pre><p>Una declaración global comienza con <code class="literal" translate="no">/*global</code>. Observa que no hay espacio antes de <code class="literal" translate="no">g</code>. Puedes tener tantos comentarios <code class="literal" translate="no">/*global</code> como quieras. Deben aparecer antes del uso de las variables que especifican.</p><p>Algunas globales pueden predefinirse para ti (véase la sección posterior<a class="xref" href="apcs03.html" title="Options">"Opciones</a>"). Selecciona la opción "Asumir un navegador" (<code class="literal" translate="no">browser</code>) para predefinir las propiedades globales estándar que proporcionan los navegadores web, como <code class="literal" translate="no">window</code> y <code class="literal" translate="no">document</code> y <code class="literal" translate="no">alert</code>. Selecciona la opción "Asumir Rhino" (<code class="literal" translate="no">rhino</code>) para predefinir las propiedades globales que proporciona el entorno Rhino. Selecciona la opción "Asumir un Widget Yahoo" (<code class="literal" translate="no">widget</code>) para predefinir las propiedades globales proporcionadas por el entorno Yahoo! Widgets.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="apc_1.html">anterior</a><a href="apc.html">Subtema 2 de 2: (Ver todo)</a><br/></p>
+<br/><a href="apc_2.docx" target="_blank"></a></footer>
+</body>
+</html>

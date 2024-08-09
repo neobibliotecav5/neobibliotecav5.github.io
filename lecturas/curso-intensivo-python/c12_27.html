@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c12-0016">Ejecutar el juego en modo pantalla completa</h3>
+<p class="BodyFirst">Pygame tiene un modo de pantalla completa que puede gustarte más que ejecutar el juego en una ventana normal. Algunos juegos se ven mejor en el modo de pantalla completa, y en algunos sistemas, el juego puede funcionar mejor en general en el modo de pantalla completa.</p>
+<p>Para ejecutar el juego en modo de pantalla completa, realiza los siguientes cambios en <code translate="no">__init__()</code>:</p>
+<p class="CodeLabel" translate="no"><b>alien_invasion.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    def __init__(self):</span>
+<span class="LiteralGray">        """Initialize the game, and create game resources."""</span>
+<span class="LiteralGray">        pygame.init()</span>
+<span class="LiteralGray">        self.settings = Settings()</span>
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         self.settings.screen_width = self.screen.get_rect().width
+        self.settings.screen_height = self.screen.get_rect().height
+ <span class="LiteralGray">       pygame.display.set_caption("Alien Invasion")</span></code></pre>
+<p>Al crear la superficie de la pantalla, pasamos un tamaño de <code translate="no">(0, 0)</code> y el parámetro <code translate="no">pygame.FULLSCREEN</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Esto le dice a Pygame que calcule un tamaño de ventana que llene la pantalla. Como no sabemos de antemano la anchura y la altura de la pantalla, actualizamos estos parámetros después de crear la pantalla <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Utilizamos los atributos <code translate="no">width</code> y <code translate="no">height</code> del objeto <code translate="no">rect </code>de la pantalla para actualizar el objeto <code translate="no">settings</code>.</p>
+<p>Si te gusta cómo se ve o se comporta el juego en modo pantalla completa, mantén estos ajustes. Si te gusta más el juego en su propia ventana, puedes volver al planteamiento original en el que fijamos un tamaño de pantalla específico para el juego.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c12_26.html">anterior</a><a href="c12.html">Subtema 27 de 43: (Ver todo)</a><a href="c12_28.html">siguiente</a><br/></p>
+<br/><a href="c12_27.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch09lev1sec05"><strong><span class="blue1">Otras funciones útiles de las listas</span></strong></h3>
+<p class="noindent">Puedes hacer muchas otras tareas con listas. En esta sección se explica cómo averiguar la longitud de una lista, cómo elegir aleatoriamente un elemento de una lista y cómo utilizar una sentencia <span class="literal">if</span> para comprobar si un valor está en una lista.</p>
+<h4 class="h4" id="ch09lev2sec11"><strong><span class="blue1">Longitud de una lista</span></strong></h4>
+<p class="noindent">La función <span class="literal">len(</span> ) es una forma rápida de averiguar la longitud de cualquier lista en Python. La función devuelve el número de elementos de una lista cuando se utiliza una lista como argumento. Veámosla en acción:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> noodleSoup = [<span class="green">"water"</span>, <span class="green">"soy sauce"</span>, <span class="green">"spring onions"</span>, <span class="green">"noodles"</span>, <span class="green">"beef"</span>,<br translate="no"/><span class="green">"vegetables"</span>]<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> <span class="rose">print</span>(<span class="rose">len</span>(noodleSoup))<br translate="no"/><span class="blue1">6</span></p>
+<p class="indent">Aunque Python empieza a contar los índices en cero, cuenta cuántos elementos hay en una lista en números de conteo regulares. El índice más alto de esta lista es 5, ¡pero Python sabe que hay 6 elementos en total!</p>
+<h4 class="h4a" id="ch09lev2sec12"><span epub:type="pagebreak" id="page_184"></span><strong>Misión nº 50: Golpes de bloque</strong></h4>
+<p class="noindent">La API Python de Minecraft tiene una práctica función que devuelve una lista de lugares que has golpeado con tu espada. Puedes utilizar los elementos de la lista para obtener las coordenadas de los bloques que has golpeado. Verás lo útil que es esto en programas más adelante en este capítulo y más adelante en el libro.</p>
+<p class="indent">También puedes hacer un juego corto y divertido que cuente el número de bloques que puedes golpear en un minuto. En esta misión, harás precisamente eso. Es un juego muy divertido: ¡juega contra un amigo e intentad superar las puntuaciones de los demás! También puedes ampliarlo, por ejemplo, manteniendo una puntuación alta.</p>
+<p class="indent"><a href="ch09.xhtml#ch9fig4">La Figura 9-4</a> muestra el programa en acción.</p>
+<div class="image"><img alt="image" src="../images/f09-04.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch9fig4"></a><em>Figura 9-4: En 60 segundos he conseguido 197 bloques.</em></p>
+<p class="indent">No se necesita mucho código para hacer este juego. He aquí un resumen de la estructura del código:</p>
+<ol>
+<li class="noindent"><p class="list">Conéctate al juego Minecraft.</p></li>
+<li class="noindent"><p class="list">Espera 60 segundos.</p></li>
+<li class="noindent"><p class="list">Obtener la lista de bloques golpeados.</p></li>
+<li class="noindent"><p class="list">Mostrar la longitud de la lista de éxitos de bloque al chat.</p></li>
+</ol>
+<p class="indent">El siguiente código muestra la única parte que no has visto hasta ahora, que es el código que obtiene la lista de éxitos de bloque del juego:</p>
+<p class="programs" translate="no">blockHits = mc.events.pollBlockHits()</p>
+<p class="indent">Este código utiliza la función <span class="literal">pollBlockHits()</span> para devolver una lista de golpes de bloque y almacena esa lista en una variable llamada <span class="literal">blockHits</span>. La variable <span class="literal">blockHits</span> actuará como cualquier otro tipo de lista, por lo que puedes acceder a los datos desde las posiciones de índice y obtener la longitud de la lista.</p>
+<p class="indent">Cuando juegues a este juego, tendrás que hacer clic con el botón derecho en los bloques para llevar la cuenta de ellos. La razón es que la función <span class="literal">pollBlockHits(</span> ) registra todos los bloques que <em>pulsas</em> con el botón derecho del ratón. En la versión para PC de Minecraft, <span epub:type="pagebreak" id="page_185"></span>al hacer clic con el botón derecho con la espada parece más que te estés defendiendo que que estés golpeando algo, pero sigue registrando los bloques en los que has hecho clic. <a href="ch09.xhtml#ch9fig5">La Figura 9-5</a> muestra este aspecto. Asegúrate de que sólo haces clic derecho con la espada: los clics izquierdos con la espada no se registrarán, ¡y tampoco los clics derechos con cualquier otra cosa que tengas en la mano! Pero puedes utilizar cualquier tipo de espada, incluidas las de hierro, oro y diamante.</p>
+<div class="image"><img alt="image" src="../images/f09-05.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch9fig5"></a><em>Figura 9-5: Cuando hago clic con el botón derecho, el jugador sujeta la espada así.</em></p>
+<p class="indent">Cuando imprimas la salida de la lista, debe tener un aspecto similar a éste, aunque los valores cambiarán cada vez dependiendo de dónde golpees:</p>
+<p class="programs" translate="no">[BlockEvent(BlockEvent.HIT, 76, -2, 144, 1, 452),<br translate="no"/>BlockEvent(BlockEvent.HIT, 79, -2, 145, 1, 452),<br translate="no"/>BlockEvent(BlockEvent.HIT, 80, -3, 147, 1, 452),<br translate="no"/>BlockEvent(BlockEvent.HIT, 76, -3, 149, 1, 452)]</p>
+<p class="indent">Esta salida de lista almacena los detalles de cuatro golpes en bloque. Cada elemento contiene las coordenadas del golpe. Aprenderás a acceder a estas coordenadas en la Misión nº 55<a href="ch10.xhtml#page_200">(página 200</a>).</p>
+<p class="indent"><span epub:type="pagebreak" id="page_186"></span>Para ayudarte a empezar con el programa, he escrito la estructura básica en el Listado <a href="ch09.xhtml#ch9ex4">9-4</a>.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>swordHits.py</em></span></p>
+<p class="programs" translate="no"> <span class="red"># Connect to the Minecraft game</span><br translate="no"/> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>   mc = Minecraft.create()<br translate="no"/><br translate="no"/> <span class="orange">import</span> time<br translate="no"/><br translate="no"/> <span class="red"># Wait 60 seconds</span><br translate="no"/>   time.sleep(60)<br translate="no"/><br translate="no"/> <span class="red"># Get the list of block hits</span><br translate="no"/><span class="ent">➊</span> blockHits =<br translate="no"/><br translate="no"/> <span class="red"># Display the length of the block hits list to chat</span><br translate="no"/><span class="ent">➋</span> blockHitsLength =<br translate="no"/>   mc.postToChat(<span class="green">"Your score is "</span> + <span class="rose">str</span>(blockHitsLength))</p>
+<p class="examplet"><a id="ch9ex4"></a><em>Listado 9-4: Inicio del juego de golpes de espada</em></p>
+<p class="indent">Para completar este programa, abre IDLE, crea un nuevo archivo y copia <a href="ch09.xhtml#ch9ex4">el Listado 9-4</a> en él. Guarda este archivo como <em>swordHits.py</em> en la carpeta de <em>listas</em>. Establece la variable <span class="literal">blockHits</span> utilizando la función <span class="literal">pollBlockHits()</span> <span class="ent">➊</span> y establece la variable <span class="literal">blockHitsLength</span> obteniendo la longitud de la variable <span class="literal">blockHits</span> <span class="ent">➋.</span></p>
+<h4 class="h4" id="ch09lev2sec13"><strong><span class="blue1">Elegir un elemento al azar</span></strong></h4>
+<p class="noindent">A estas alturas ya te habrás dado cuenta de que me gusta mucho utilizar elementos generados aleatoriamente en mis programas. La aleatoriedad hace que un programa se comporte de forma impredecible cada vez que lo ejecutas.</p>
+<p class="indent">Cuando utilices listas, querrás acceder a elementos aleatorios de la lista de vez en cuando. Por ejemplo, puede que quieras elegir un bloque al azar de una lista de bloques.</p>
+<p class="indent">La función <span class="literal">choice()</span> del módulo <span class="literal">random</span> es la función a la que se puede recurrir para elegir un elemento de la lista al azar. La función toma un argumento, la lista que quieres utilizar, y devuelve un elemento aleatorio de dentro de la lista.</p>
+<p class="indent">En <a href="ch09.xhtml#ch9ex5">el Listado 9-5</a>, la lista <span class="literal">colores</span> contiene los nombres de varios colores. Elige uno al azar utilizando la función <span class="literal">elección()</span> y luego imprímelo:</p>
+<p class="programs" translate="no"><span class="orange">import</span> random<br translate="no"/>colors = [<span class="green">"red"</span>, <span class="green">"green"</span>, <span class="green">"blue"</span>, <span class="green">"yellow"</span>, <span class="green">"orange"</span>, <span class="green">"purple"</span>]<br translate="no"/><span class="rose">print</span>(random.choice(colors))</p>
+<p class="examplet"><a id="ch9ex5"></a><em>Listado 9-5: Impresión de un color aleatorio de una lista de colores</em></p>
+<p class="indent">Cuando ejecutes el código, el programa imprimirá un elemento de la lista al azar.</p>
+<h4 class="h4a" id="ch09lev2sec14"><span epub:type="pagebreak" id="page_187"></span><strong>Misión nº 51: Bloque aleatorio</strong></h4>
+<p class="noindent">En Minecraft, seleccionar un ID de bloque aleatorio a partir de un rango de números puede causar problemas en el programa porque algunos ID de bloque no tienen bloques correspondientes. Una solución es utilizar una lista de bloques válidos para seleccionarlos al azar. Las listas te permiten crear un número limitado de elementos y luego seleccionar uno al azar utilizando la función <span class="literal">choice()</span>.</p>
+<p class="indent">Tu misión es crear una lista de IDs de bloques, seleccionar un bloque al azar de esa lista y, a continuación, colocar el bloque en la posición del jugador. Puedes utilizar <a href="ch09.xhtml#ch9ex5">el Listado 9-5</a> como punto de partida.</p>
+<p class="indent">Primero, crea una lista de IDs de bloques. Segundo, utiliza la función <span class="literal">random.choice</span> () para seleccionar un bloque de la lista. Tercero, utiliza la función <span class="literal">setBlock</span> () para colocar el bloque aleatorio en el juego Minecraft.</p>
+<p class="indent">Guarda el programa como <em>randomBlock.py</em> en la carpeta de <em>listas</em>.</p>
+<p class="indent">Incluye tantos bloques como quieras en tu lista. Para mi lista elegí cinco bloques, incluyendo melón, diamante y oro. Puedes ver el resultado de ejecutar el programa en la <a href="ch09.xhtml#ch9fig6">Figura 9-6</a>.</p>
+<div class="image"><img alt="image" src="../images/f09-06.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch9fig6"></a><em>Figura 9-6: El programa seleccionó al azar un bloque de oro.</em></p>
+<h4 class="h4" id="ch09lev2sec15"><strong><span class="blue1">Copiar una lista</span></strong></h4>
+<p class="noindent">Copiar listas es bastante complicado en la mayoría de los lenguajes de programación. En realidad, las variables de lista no contienen valores, sino una referencia a una dirección de la memoria de tu ordenador que tiene más referencias a los valores contenidos en la lista. Aunque tu ordenador se encarga de esta función entre bastidores, merece la pena que entiendas cómo funciona, ¡porque te convertirá en un programador más inteligente! Puedes ver la dirección de memoria de una lista utilizando la función <span class="literal">id()</span>:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> cake = [<span class="green">"Eggs"</span>,<br translate="no"/> <span class="green">"Butter"</span>,<br translate="no"/> <span class="green">"Sugar"</span>,<br translate="no"/> <span class="green">"Milk"</span>,<br translate="no"/> <span class="green">"Flour"</span>]<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> <span class="rose">print</span>(<span class="rose">id</span>(cake))</p>
+<p class="indent"><span epub:type="pagebreak" id="page_188"></span>Por ejemplo, la salida de este código en mi ordenador fue <span class="literal">3067456428.</span> El valor <span class="literal">3067456428</span> es la posición de memoria donde se almacena <span class="literal">pastel</span>. Cuando ejecutes este código en tu ordenador, probablemente obtendrás un número diferente porque está almacenado en un lugar distinto de la memoria de tu ordenador.</p>
+<p class="indent">No es necesario que entiendas completamente este comportamiento, pero sí que sepas que tiene consecuencias cuando quieres copiar una lista en otra variable. En lugar de copiarse los valores de la lista, como cabría esperar, se copia la posición de la lista en la memoria de la nueva variable. Esto significa que cuando cambies un valor de cualquiera de las dos listas, afectará a la otra.</p>
+<p class="indent">Por ejemplo, el siguiente programa crea una lista llamada <span class="literal">tarta</span> y luego establece el valor de <span class="literal">tartaChocolate</span> para que sea el mismo que <span class="literal">tarta</span>. A continuación, se añade un elemento, <span class="literal">"Chocolate"</span>, a la lista <span class="literal">tartaChocolate</span>:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> cake = [<span class="green">"Eggs"</span>,<br translate="no"/> <span class="green">"Butter"</span>,<br translate="no"/> <span class="green">"Sugar"</span>,<br translate="no"/> <span class="green">"Milk"</span>,<br translate="no"/> <span class="green">"Flour"</span>]<br translate="no"/><br translate="no"/><span class="mer">&gt;&gt;&gt;</span> <span class="red"># Store the list in a second variable</span><br translate="no"/><span class="mer">&gt;&gt;&gt;</span> chocolateCake = cake<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> chocolateCake.append(<span class="green">"Chocolate"</span>)</p>
+<p class="indent">Por desgracia, "Chocolate <span class="literal">"</span> también se añade a la lista <span class="literal">tarta</span>, aunque no querías que lo hiciera. Puedes ver este error cuando se imprimen las listas:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> <span class="rose">print</span>(cake)<br translate="no"/><span class="blue1">['Eggs', 'Butter', 'Sugar', 'Milk', 'Flour', 'Chocolate']</span><br translate="no"/><span class="mer">&gt;&gt;&gt;</span> <span class="rose">print</span>(chocolateCake)<br translate="no"/><span class="blue1">['Eggs', 'Butter', 'Sugar', 'Milk', 'Flour', 'Chocolate']</span></p>
+<p class="indent">Este problema se produce porque las variables almacenan la posición de memoria de la lista, no los elementos de la lista.</p>
+<p class="indent">Una forma sencilla de superar este problema es utilizar una <em>rebanada</em> de lista. Cuando rebanas un alimento con un cuchillo, lo estás cortando en diferentes partes. Un corte de lista en Python es similar. Cuando cortas una lista, tomas un trozo de la lista. Puedes utilizar una rebanada de lista para tomar sólo determinados elementos de una lista, pero en este caso, utilizarás una rebanada de lista para copiar todos los elementos de una lista. Para copiar la lista <span class="literal">Tarta</span> en la variable <span class="literal">TartaDeChocolate</span>, utiliza este código:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> chocolateCake = cake[:]</p>
+<p class="indent">La variable <span class="literal">tartaChocolate</span> contendrá ahora los valores de la lista de <span class="literal">tartas</span>, pero con una dirección de memoria diferente.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_189"></span>El código de los ingredientes de la tarta se puede corregir utilizando la rebanada de lista:</p>
+<p class="programs" translate="no"> <span class="mer">&gt;&gt;&gt;</span> cake = [<span class="green">"Eggs"</span>,<br translate="no"/> <span class="green">"Butter"</span>,<br translate="no"/> <span class="green">"Sugar"</span>,<br translate="no"/> <span class="green">"Milk"</span>,<br translate="no"/> <span class="green">"Flour"</span>]<br translate="no"/><br translate="no"/> <span class="mer">&gt;&gt;&gt;</span> <span class="red"># Store the list in a second variable</span><br translate="no"/><span class="ent">➊</span> <span class="mer">&gt;&gt;&gt;</span> chocolateCake = cake[:]<br translate="no"/> <span class="mer">&gt;&gt;&gt;</span> chocolateCake.append(<span class="green">"Chocolate"</span>)</p>
+<p class="indent">Puedes ver que los elementos de <span class="literal">tarta</span> se han copiado a <span class="literal">tartaChocolate</span> utilizando <span class="literal">[:]</span> en <span class="ent">➊.</span></p>
+<p class="indent">Este es el resultado:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> <span class="rose">print</span>(cake)<br translate="no"/><span class="blue1">['Eggs', 'Butter', 'Sugar', 'Milk', 'Flour']</span><br translate="no"/><span class="mer">&gt;&gt;&gt;</span> <span class="rose">print</span>(chocolateCake)<br translate="no"/><span class="blue1">['Eggs', 'Butter', 'Sugar', 'Milk', 'Flour', 'Chocolate']</span></p>
+<p class="indent">Observa que los valores de ambas listas son ahora diferentes: sólo <span class="literal">tartaChocolate</span> contiene el valor <span class="literal">"Chocolate"</span>.</p>
+<h4 class="h4" id="ch09lev2sec16"><strong><span class="blue1">Elementos y sentencias if</span></strong></h4>
+<p class="noindent">Para saber si un valor está en una lista, puedes utilizar el operador <span class="literal">in</span>. El operador <span class="literal">in</span> va entre un valor y la lista que quieres comprobar. Si el valor está en la lista, la expresión se evaluará como <span class="literal">Verdadero</span>; si el valor no está en la lista, la expresión se evaluará como <span class="literal">Falso</span>.</p>
+<p class="indent">El siguiente ejemplo comprueba si el valor <span class="literal">"Huevos"</span> está en la lista de <span class="literal">pasteles</span>:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> cake = [<span class="green">"Eggs"</span>, <span class="green">"Butter"</span>, <span class="green">"Sugar"</span>, <span class="green">"Milk"</span>, <span class="green">"Flour"</span>]<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> <span class="rose">print</span>(<span class="green">"Eggs"</span> <span class="orange">in</span> cake)</p>
+<p class="indent">Se imprimirá el valor <span class="literal">Verdadero</span>, porque "Huevos <span class="literal">"</span> está en la lista.</p>
+<p class="indent">Por supuesto, puedes utilizar el operador <span class="literal">in</span> como parte de una condición de la sentencia <span class="literal">if</span>. El código siguiente amplía y adapta este ejemplo para utilizar una sentencia <span class="literal">if</span> en lugar de imprimir el valor booleano. Comprueba si <span class="literal">"Jamón"</span> está en la lista de <span class="literal">pasteles</span> e imprime diferentes mensajes dependiendo de si está o no en la lista:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> cake = [<span class="green">"Eggs"</span>, <span class="green">"Butter"</span>, <span class="green">"Sugar"</span>, <span class="green">"Milk"</span>, <span class="green">"Flour"</span>]<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> <span class="orange">if</span> <span class="green">"Ham"</span> <span class="orange">in</span> cake:<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> <span class="rose">print</span>(<span class="green">"That cake sounds disgusting."</span>)<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> <span class="orange">else</span>:<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> <span class="rose">print</span>(<span class="green">"Good. Ham in a cake is a terrible mistake."</span>)</p>
+<p class="indent"><span epub:type="pagebreak" id="page_190"></span>Puedes combinar el operador <span class="literal">not</span> con el operador <span class="literal">in</span> para producir el efecto contrario. En lugar de devolver <span class="literal">Verdadero</span> cuando un elemento está en una lista, el código devolverá <span class="literal">Falso</span> y viceversa. Así es como queda (observa que también se han intercambiado los cuerpos de las sentencias <span class="literal">if</span> y <span class="literal">else</span> ):</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> cake = [<span class="green">"Eggs"</span>, <span class="green">"Butter"</span>, <span class="green">"Sugar"</span>, <span class="green">"Milk"</span>, <span class="green">"Flour"</span>]<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> <span class="orange">if</span> <span class="green">"Ham"</span> <span class="orange">not in</span> cake:<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> <span class="rose">print</span>(<span class="green">"Good. Ham in a cake is a terrible mistake."</span>)<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> <span class="orange">else</span>:<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> <span class="rose">print</span>(<span class="green">"That cake sounds disgusting"</span>)</p>
+<p class="indent">Puedes utilizar cualquiera de las dos técnicas en tus programas. Sólo tienes que elegir la que creas que tiene más sentido.</p>
+<h4 class="h4a" id="ch09lev2sec17"><strong>Misión nº 52: Espada de visión nocturna</strong></h4>
+<p class="noindent">¿Te olvidas de llevar suficientes antorchas cuando exploras cuevas en Minecraft? Yo lo hago siempre. A veces me olvido de llevar antorchas, y estoy demasiado dentro de la cueva para volver atrás. Así que voy tanteando en la oscuridad, sin estar muy seguro de si encuentro algo útil. Pero con tus conocimientos de Python, puedes hacer un programa que te ayude a encontrar diamantes con tu espada.</p>
+<p class="indent">Escribamos un programa básico que utilice la función <span class="literal">pollBlockHits()</span> para comprobar si alguno de los bloques que has golpeado es mineral de diamante. Esto es útil para explorar cuevas sin luz o para jugar a "encontrar el mineral de diamante" en la oscuridad. El código está en <a href="ch09.xhtml#ch9ex6">el Listado 9-6</a>. Cópialo en un archivo nuevo y guárdalo como <em>nightVisionSword.py</em> en la carpeta de <em>listas</em>.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>nightVisionSword.py</em></span></p>
+<p class="programs" translate="no"> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>   mc = Minecraft.create()<br translate="no"/><br translate="no"/> <span class="orange">import</span> time<br translate="no"/><br translate="no"/>   blocks = []<br translate="no"/><br translate="no"/> <span class="orange">while True</span>:<br translate="no"/>       hits = mc.events.pollBlockHits()<br translate="no"/> <span class="orange">if</span> <span class="rose">len</span>(hits) &gt; 0:<br translate="no"/>           hit = hits[0]<br translate="no"/><span class="ent">➊</span>         hitX, hitY, hitZ = hit.pos.x, hit.pos.y, hit.pos.z<br translate="no"/>           block = mc.getBlock(hitX, hitY, hitZ)<br translate="no"/>           blocks.append(block)<br translate="no"/><br translate="no"/><span class="ent">➋</span> <span class="red"># Add the if statement here</span><br translate="no"/><br translate="no"/>       time.sleep(0.2)</p>
+<p class="examplet"><a id="ch9ex6"></a><em>Listado 9-6: Este programa te ayudará a encontrar mineral de diamante en la oscuridad.</em></p>
+<p class="indent"><span epub:type="pagebreak" id="page_191"></span>Observa cómo se utilizan hit <span class="literal">.pos.x</span>, <span class="literal">hit.pos.y</span> y <span class="literal">hit.pos.z</span> <span class="ent">➊.</span> Cada golpe almacena las coordenadas del bloque sobre el que se hizo clic mediante una tupla. Puedes acceder a estas coordenadas utilizando la notación de puntos. En este ejemplo, el nombre de la variable <span class="literal">hit</span> se utiliza para nombrar la lista que contiene cada bloque hit, por lo que accedo a las coordenadas utilizando <span class="literal">hit.pos.x</span>, <span class="literal">hit.pos.y</span> y <span class="literal">hit.pos.</span>z.</p>
+<p class="indent">El código está casi completo. Sólo queda comprobar si has encontrado algún diamante. Añade una sentencia <span class="literal">if</span> <span class="ent">➋</span> para comprobar si el <span class="literal"> mineral de diam</span> ante (bloque ID 56) está en la lista de <span class="literal">bloques</span> y envía un mensaje al chat diciendo <span class="literal">"¡Has encontrado mineral de diamante!"</span> si es así. Añade también una sentencia <span class="literal">break</span> dentro de la sentencia <span class="literal">if</span> para que el bucle deje de repetirse cuando encuentres el mineral.</p>
+<p class="indent"><a href="ch09.xhtml#ch9fig7">La Figura 9-7</a> muestra el programa en acción.</p>
+<div class="image"><img alt="image" src="../images/f09-07.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch9fig7"></a><em>Figura 9-7: Está oscuro, pero he encontrado mineral de diamante. ¡Qué bien!</em></p>
+<p class="indent">Si no eres tan olvidadizo como yo y te acuerdas de llevar antorchas a las cuevas, también puedes utilizar este código como juego. Crea una habitación subterránea sin luz y coloca un único mineral de diamante en algún lugar de la pared. Ejecuta el programa y comprueba cuánto tardas en encontrar el mineral de diamante en la oscuridad. ¡Recuerda hacer clic con el botón derecho del ratón con una espada! Sólo así la función <span class="literal">pollBlockHits(</span> ) podrá registrar los bloques que golpeas.</p>
+<div class="sidebar">
+<p class="sidebart" id="ch09sb04"><strong>OBJETIVO EXTRA: DESAFÍO DEL DIAMANTE</strong></p>
+<p class="noindent">Sería genial convertir el programa <em>nightVisionSword.</em> py en un minijuego completo. ¿Puedes generar automáticamente una habitación con un único bloque de diamante colocado al azar, poner al jugador en esa habitación y luego cronometrar cuánto tarda en encontrar el bloque en la oscuridad?</p>
+</div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch09_5.html">anterior</a><a href="ch09.html">Subtema 6 de 8: (Ver todo)</a><a href="ch09_7.html">siguiente</a><br/></p>
+<br/><a href="ch09_6.docx" target="_blank"></a></footer>
+</body>
+</html>

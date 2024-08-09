@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c15-0022">Tirar dos dados</h3>
+<p class="BodyFirst">Al lanzar dos dados se obtienen números más grandes y una distribución diferente de los resultados. Modifiquemos nuestro código para crear dos dados D6 que simulen la forma en que lanzamos un par de dados. Cada vez que lancemos el par, sumaremos los dos números (uno de cada dado) y almacenaremos la suma en <code translate="no">results</code>. Guarda una copia de <em translate="no">die_visual.py</em> como <em translate="no">dice_visual.py</em> y realiza los siguientes cambios:</p>
+<p class="CodeLabel" translate="no"><b>dice_visual.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">import plotly.express as px</span>
+
+<span class="LiteralGray">from die import Die</span>
+
+# Create two D6 dice.
+die_1 = Die()
+die_2 = Die()
+
+<span class="LiteralGray"># Make some rolls, and store results in a list.</span>
+<span class="LiteralGray">results = []</span>
+<span class="LiteralGray">for roll_num in range(1000):</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     result = die_1.roll() + die_2.roll()
+<span class="LiteralGray">    results.append(result)</span>
+
+<span class="LiteralGray"># Analyze the results.</span>
+<span class="LiteralGray">frequencies = []</span>
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> max_result = die_1.num_sides + die_2.num_sides
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> poss_results = range(2, max_result+1)
+<span class="LiteralGray">for value in poss_results:</span>
+<span class="LiteralGray">    frequency = results.count(value)</span>
+<span class="LiteralGray">    frequencies.append(frequency)</span>
+
+<span epub:type="pagebreak" id="Page_325" title="325"></span><span class="LiteralGray"># Visualize the results.</span>
+title = "Results of Rolling Two D6 Dice 1,000 Times"
+<span class="LiteralGray">labels = {'x': 'Result', 'y': 'Frequency of Result'}</span>
+<span class="LiteralGray">fig = px.bar(x=poss_results, y=frequencies, title=title, labels=labels)</span>
+<span class="LiteralGray">fig.show()</span></code></pre>
+<p>Tras crear dos instancias de <code translate="no">Die</code>, tiramos los dados y calculamos la suma de los dos dados para cada tirada <span aria-label="annotation1" class="CodeAnnotation">❶.</span> El menor resultado posible (2) es la suma del menor número de cada dado. El mayor resultado posible (12) es la suma del mayor número de cada dado, que asignamos a <code translate="no">max_result</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> La variable <code translate="no">max_result</code> facilita mucho la lectura del código para generar <code translate="no">poss_results</code> <span aria-label="annotation3" class="CodeAnnotation">❸.</span> Podríamos haber escrito <code translate="no">range(2, 13)</code>, pero esto sólo funcionaría para dos dados D6. Al modelar situaciones del mundo real, es mejor escribir un código que pueda modelar fácilmente diversas situaciones. Este código nos permite simular el lanzamiento de un par de dados con cualquier número de caras.</p>
+<p>Después de ejecutar este código, deberías ver un gráfico parecido al de <a href="#figure15-14" id="figureanchor15-14">la Figura 15-14</a>.</p>
+<figure><img alt="" class="keyline" height="430" src="Images/f15014.png" translate="no" width="694"/>
+Figura</figure><figure><figcaption><p><a id="figure15-14">15-14</a>: Resultados simulados de lanzar dos dados de seis caras 1.000 veces</p></figcaption></figure><p>Este gráfico muestra la distribución aproximada de resultados que es probable que obtengas al lanzar un par de dados D6. Como puedes ver, lo menos probable es que saques un 2 o un 12 y lo más probable es que saques un 7. Esto ocurre porque hay seis formas de sacar un 7: 1 y 6, 2 y 5, 3 y 4, 4 y 3, 5 y 2, y 6 y 1.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c15_29.html">anterior</a><a href="c15.html">Subtema 30 de 35: (Ver todo)</a><a href="c15_31.html">siguiente</a><br/></p>
+<br/><a href="c15_30.docx" target="_blank"></a></footer>
+</body>
+</html>

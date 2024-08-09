@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c20-0006">Estilizar la página de temas</h3>
+<p class="BodyFirst">Asegurémonos de que las páginas para ver la información también tienen el estilo adecuado, empezando por la página de temas:</p>
+<p class="CodeLabel" translate="no"><b>topics.html</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">{% extends 'learning_logs/base.html' %}</span>
+
+{% block page_header %}
+<span epub:type="pagebreak" id="Page_443" title="443"></span><span aria-label="annotation1" class="CodeAnnotationHang">❶</span>   &lt;h1&gt;Topics&lt;/h1&gt;
+{% endblock page_header %}
+
+<span class="LiteralGray">{% block content %}</span>
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>   &lt;ul class="list-group border-bottom pb-2 mb-4"&gt;
+<span class="LiteralGray">    {% for topic in topics %}</span>
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>       &lt;li class="list-group-item border-0"&gt;
+        &lt;a href="{% url 'learning_logs:topic' topic.id %}"&gt;
+          {{ topic.text }}&lt;/a&gt;
+      &lt;/li&gt;
+<span class="LiteralGray">    {% empty %}</span>
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>       &lt;li class="list-group-item border-0"&gt;No topics have been added yet.&lt;/li&gt;
+<span class="LiteralGray">    {% endfor %}</span>
+<span class="LiteralGray">  &lt;/ul&gt;</span>
+
+<span class="LiteralGray">  &lt;a href="{% url 'learning_logs:new_topic' %}"&gt;Add a new topic&lt;/a&gt;</span>
+
+<span class="LiteralGray">{% endblock content %}</span></code></pre>
+<p>No necesitamos la etiqueta <code translate="no">{% load bootstrap5 %}</code>, porque no estamos utilizando ninguna etiqueta de plantilla personalizada de bootstrap5 en este archivo. Movemos el encabezamiento <code translate="no">Topics</code> al bloque <code translate="no">page_header</code> y lo convertimos en un elemento <code translate="no"></code> en lugar de un simple párrafo <span aria-label="annotation1" class="CodeAnnotation">❶.</span></p>
+<p>El contenido principal de esta página es una lista de temas, así que utilizamos el componente <em translate="no">list group</em> de Bootstrap para representar la página. Esto aplica un conjunto sencillo de directivas de estilo a la lista general y a cada elemento de la lista. Cuando abrimos la etiqueta <code translate="no"></code>, incluimos primero la clase <code translate="no">list-group</code> para aplicar las directivas de estilo por defecto a la lista <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Personalizamos aún más la lista poniendo un borde en la parte inferior de la lista, un poco de relleno debajo de la lista (<code translate="no">pb-2</code>), y un margen debajo del borde inferior (<code translate="no">mb-4</code>).</p>
+<p>Cada elemento de la lista necesita la clase <code translate="no">list-group-item</code>, y personalizamos el estilo por defecto eliminando el borde alrededor de los elementos individuales <span aria-label="annotation3" class="CodeAnnotation">❸.</span> El mensaje que se muestra cuando la lista está vacía necesita estas mismas clases <span aria-label="annotation4" class="CodeAnnotation">❹.</span></p>
+<p>Ahora, cuando visites la página de temas, deberías ver una página con un estilo que coincide con el de la página de inicio.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c20_7.html">anterior</a><a href="c20.html">Subtema 8 de 37: (Ver todo)</a><a href="c20_9.html">siguiente</a><br/></p>
+<br/><a href="c20_8.docx" target="_blank"></a></footer>
+</body>
+</html>

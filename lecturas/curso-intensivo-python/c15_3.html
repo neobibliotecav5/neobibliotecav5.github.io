@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h2 id="h1-502703c15-0002">Trazado de un gráfico lineal simple</h2>
+<p class="BodyFirst">Vamos a trazar un gráfico lineal sencillo utilizando Matplotlib y luego lo personalizaremos para crear una visualización de datos más informativa. Utilizaremos la secuencia de números cuadrados 1, 4, 9, 16 y 25 como datos para el gráfico.</p>
+<p>Para hacer un gráfico lineal simple, especifica los números con los que quieres trabajar y deja que Matplotlib haga el resto:</p>
+<p class="CodeLabel" translate="no"><b>mpl_squares.py</b></p>
+<pre translate="no"><code translate="no">import matplotlib.pyplot as plt
+
+squares = [1, 4, 9, 16, 25]
+
+<span epub:type="pagebreak" id="Page_303" title="303"></span><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> fig, ax = plt.subplots()
+ax.plot(squares)
+
+plt.show()</code></pre>
+<p>Primero importamos el módulo <code translate="no">pyplot</code> utilizando el alias <code translate="no">plt</code> para no tener que escribir <code translate="no">pyplot</code> repetidamente. (Verás esta convención a menudo en los ejemplos en línea, así que la utilizaremos aquí.) El módulo <code translate="no">pyplot</code> contiene una serie de funciones que ayudan a generar gráficos y trazados.</p>
+<p>Creamos una lista llamada <code translate="no">squares</code> para guardar los datos que vamos a trazar. A continuación, seguimos otra convención habitual de Matplotlib llamando a la función <code translate="no">subplots()</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Esta función puede generar uno o más gráficos en la misma figura. La variable <code translate="no">fig</code> representa la totalidad de <em translate="no">figure</em>, que es la colección de tramas que se generan. La variable <code translate="no">ax</code> representa un único gráfico en la figura; ésta es la variable que utilizaremos la mayor parte del tiempo cuando definamos y personalicemos un único gráfico.</p>
+<p>A continuación, utilizamos el método <code translate="no">plot()</code>, que intenta trazar los datos que se le dan de una forma significativa. La función <code translate="no">plt.show()</code> abre el visor de Matplotlib y muestra el gráfico, como se muestra en <a href="#figure15-1" id="figureanchor15-1">la Figura 15-1</a>. El visor te permite hacer zoom y navegar por el gráfico, y puedes guardar las imágenes del gráfico que quieras haciendo clic en el icono del disco.</p>
+<figure><img alt="" class="keyline" height="413" src="Images/f15001.png" translate="no" width="694"/>
+<figcaption><p><a id="figure15-1">Figura 15-1</a>: Uno de los trazados más sencillos que puedes hacer en Matplotlib</p></figcaption></figure>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c15_2.html">anterior</a><a href="c15.html">Subtema 3 de 35: (Ver todo)</a><a href="c15_4.html">siguiente</a><br/></p>
+<br/><a href="c15_3.docx" target="_blank"></a></footer>
+</body>
+</html>

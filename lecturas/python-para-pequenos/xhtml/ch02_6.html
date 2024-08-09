@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch02lev1sec5">
+  Utilización de variables </h3>
+<p class="noindent">
+  ¿Recuerdas nuestra ecuación para calcular cuántas monedas tendrías al final del año si pudieras crear mágicamente nuevas monedas con el misterioso invento de tu abuelo en el sótano? Teníamos esta ecuación: </p>
+<pre class="pre" translate="no"><span id="page_21"></span><span class="brown">&gt;&gt;&gt;</span> 20 + 10 * 365
+<span class="blue1">3670</span>
+<span class="brown">&gt;&gt;&gt;</span> 3 * 52
+<span class="blue1">156</span>
+<span class="brown">&gt;&gt;&gt;</span> 3670 - 156
+<span class="blue1">3514</span></pre>
+<p class="indent">
+  Podemos convertirla en una sola línea de código: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> 20 + 10 * 365 - 3 * 52
+<span class="blue1">3514</span></pre>
+<p class="indent">
+  No es muy fácil de leer, pero ¿y si convertimos los números en variables? Prueba a introducir lo siguiente: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> found_coins = 20
+<span class="brown">&gt;&gt;&gt;</span> magic_coins = 10
+<span class="brown">&gt;&gt;&gt;</span> stolen_coins = 3</pre>
+<p class="indent">
+  Estas entradas crean las variables <span class="literal1" translate="no">
+   found_coins
+  </span>, <span class="literal1" translate="no">
+   magic_coins
+  </span>, y <span class="literal1" translate="no">
+   stolen_coins
+  </span>. </p>
+<p class="indent">
+  Ahora, podemos volver a introducir la ecuación así: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> found_coins + magic_coins * 365 - stolen_coins * 52
+<span class="blue1">3514</span></pre>
+<p class="indent">
+  Puedes ver que esto nos da la misma respuesta. Así que a quién le importa, ¿verdad? Ah, pero aquí está la magia de las variables. ¿Qué pasa si pones un espantapájaros en tu ventana y el cuervo sólo roba dos monedas en lugar de tres? Cuando utilizamos una variable, podemos simplemente cambiar la variable para que contenga ese nuevo número, y cambiará en todas las partes de la ecuación en las que se utilice. Podemos cambiar la variable <span class="literal1" translate="no">
+   stolen_coins
+  </span>por <span class="literal1" translate="no">
+   2
+  </span>introduciendo esto: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> stolen_coins = 2</pre>
+<p class="indent">
+  A continuación, podemos copiar y pegar la ecuación para calcular de nuevo la respuesta, de este modo </p>
+<ol class="calibre9">
+<li class="noindent1">
+   Selecciona el texto a copiar haciendo clic con el ratón y arrastrando desde el principio hasta el final de la línea, como se muestra en la <a class="calibre6" href="ch02.xhtml#ch02fig01">Figura 2-1 . </a></li>
+</ol>
+<div class="image1" id="ch02fig01">
+<img alt="Image" class="calibre29" src="../images/02fig01.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<span id="page_22">
+</span>
+<em class="calibre7">
+   Figura 2-1: Seleccionar en el Shell de Python </em></p>
+<ol class="calibre9">
+<li class="noindent1">
+   Mantén pulsada la tecla CTRL (o, si utilizas un Mac, la tecla COMANDO ⌘) y pulsa C para copiar el texto seleccionado. (A partir de ahora lo verás como CTRL-C).  </li>
+<li class="noindent1">
+   Haz clic en la última línea de consulta (después de <span class="literal1" translate="no">
+    stolen_coins = 2
+   </span>).  </li>
+<li class="noindent1">
+   Mantén pulsada la tecla CTRL (o COMANDO) y pulsa V para pegar el texto seleccionado. (A partir de ahora lo verás como CTRL-V).  </li>
+<li class="noindent1">
+   Pulsa ENTER para ver el nuevo resultado.  </li>
+</ol>
+<div class="image1" id="ch02fig02">
+<img alt="Image" class="calibre30" src="../images/02fig02.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">Figura 2-2: Pegar en la Shell de Python </em></p>
+<p class="indent">
+  Es mucho más fácil que volver a escribir toda la ecuación. </p>
+<p class="indent">
+  Puedes probar a cambiar las demás variables, y luego copiar (CTRL-C) y pegar (CTRL-V) el cálculo para ver el efecto de tus cambios. Por ejemplo, si golpeas los lados del invento de tu abuelo en el momento adecuado, y éste escupe <span id="page_23">
+</span>tres monedas de más cada vez, verás que acabas teniendo 4661 monedas al final del año: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> magic_coins = 13
+<span class="brown">&gt;&gt;&gt;</span> found_coins + magic_coins * 365 stolen_coins * 52
+<span class="blue1">4661</span></pre>
+<p class="indent">
+  Por supuesto, utilizar variables para una ecuación sencilla como ésta sigue siendo sólo <em class="calibre7">ligeramente </em>útil. Aún no hemos llegado a lo <em class="calibre7">realmente </em>útil. Por ahora, sólo recuerda que las variables son una forma de etiquetar las cosas para poder utilizarlas más adelante. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch02_5.html">anterior</a><a href="ch02.html">Subtema 6 de 7: (Ver todo)</a><a href="ch02_7.html">siguiente</a><br/></p>
+<br/><a href="ch02_6.docx" target="_blank"></a></footer>
+</body>
+</html>

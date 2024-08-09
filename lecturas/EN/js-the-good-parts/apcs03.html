@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Options</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Options"><div class="titlepage"><div><div><h1 class="title"><a id="options"/>Options</h1></div></div></div><p>The implementation of JSLint accepts an option object that allows you to determine
+                the subset of JavaScript that is acceptable to you. It is also possible to set those
+                options within the source of a script.<a id="IDX-APP-C-0594" class="indexterm"/><a id="IDX-APP-C-0595" class="indexterm"/><a id="IDX-APP-C-0596" class="indexterm"/><a id="IDX-APP-C-0597" class="indexterm"/><a id="IDX-APP-C-0598" class="indexterm"/><a id="IDX-APP-C-0599" class="indexterm"/><a id="IDX-APP-C-0600" class="indexterm"/><a id="IDX-APP-C-0601" class="indexterm"/><a id="IDX-APP-C-0602" class="indexterm"/><a id="IDX-APP-C-0603" class="indexterm"/><a id="IDX-APP-C-0604" class="indexterm"/><a id="IDX-APP-C-0605" class="indexterm"/><a id="IDX-APP-C-0606" class="indexterm"/><a id="IDX-APP-C-0607" class="indexterm"/><a id="IDX-APP-C-0608" class="indexterm"/><a id="IDX-APP-C-0609" class="indexterm"/><a id="IDX-APP-C-0610" class="indexterm"/><a id="IDX-APP-C-0611" class="indexterm"/><a id="IDX-APP-C-0612" class="indexterm"/><a id="IDX-APP-C-0593" class="indexterm"/></p><p>An option specification can look like this:</p><a id="I_programlisting_d1e9573"/><pre class="programlisting">/*jslint nomen: true, evil: false */</pre><p>An option specification starts with <code class="literal">/*jslint</code>.
+                Notice that there is no space before the <code class="literal">j</code>. The
+                specification contains a sequence of name/value pairs, where the names are JSLint
+                options and the values are <code class="literal">true</code> or <code class="literal">false</code>. An option specification takes precedence over
+                the option object. All of the options default to <code class="literal">false</code>. <a class="xref" href="apcs03.html#jslint_options" title="Table C-1. JSLint options">Table C-1</a> lists the options available
+                in using JSLint.</p><div class="table"><a id="jslint_options"/><p class="title">Table C-1. JSLint options</p><div class="table-contents"><table summary="JSLint options" style="border-collapse: collapse;border-top: 0.5pt solid ; border-bottom: 0.5pt solid ; border-left: 0.5pt solid ; border-right: 0.5pt solid ; "><colgroup><col/><col/></colgroup><thead><tr><th style="text-align: left" valign="bottom">
+                                <p>Option</p>
+                            </th><th style="text-align: left" valign="bottom">
+                                <p>Meaning</p>
+                            </th></tr></thead><tbody><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">adsafe</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p><code class="literal">true</code> if ADsafe.org rules
+                                    should be enforced</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">bitwise</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p><code class="literal">true</code> if bitwise operators
+                                    should not be allowed</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">browser</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p><code class="literal">true</code> if the standard
+                                    browser globals should be predefined</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">cap</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p><code class="literal">true</code> if uppercase HTML
+                                    should be allowed</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">debug</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p><code class="literal">true</code> if <code class="literal">debugger</code> statements should be
+                                    allowed</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">eqeqeq</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p><code class="literal">true</code> if <code class="literal">===</code> should be required</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">evil</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p><code class="literal">true</code> if <code class="literal">eval</code> should be allowed</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">for in</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p><code class="literal">true</code> if unfiltered <code class="literal">for in</code> statements should be
+                                    allowed</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">fragment</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p><code class="literal">true</code> if HTML fragments
+                                    should be allowed</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">laxbreak</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p><code class="literal">true</code> if statement breaks
+                                    should not be checked</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">nomen</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p><code class="literal">true</code> if names should be
+                                    checked</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">on</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p><code class="literal">true</code> if HTML event handlers
+                                    should be allowed</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">passfail</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p><code class="literal">true</code> if the scan should
+                                    stop on first error</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">plusplus</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p><code class="literal">true</code> if <code class="literal">++</code> and <code class="literal">--</code> should not be allowed</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">rhino</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p><code class="literal">true</code> if the Rhino
+                                    environment globals should be predefined</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">undef</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p><code class="literal">true</code> if undefined global
+                                    variables are errors</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">white</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p><code class="literal">true</code> if strict whitespace
+                                    rules apply</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">widget</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p><code class="literal">true</code> if the Yahoo! Widgets
+                                    globals should be predefined</p>
+                            </td></tr></tbody></table></div></div><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject_d1e9823"/><img src="httpatomoreillycomsourceoreillyimages238866.png" alt="image with no caption"/></div></div><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject_d1e9829"/><img src="httpatomoreillycomsourceoreillyimages238734.png" alt="image with no caption"/></div></div></div></body></html>

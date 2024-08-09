@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c10-0004">Trabajar con el contenido de un archivo</h3>
+<p class="BodyFirst">Después de leer el contenido de un archivo en la memoria, puedes hacer lo que quieras con esos datos, así que vamos a explorar brevemente los dígitos de <em translate="no">pi</em>. Primero, intentaremos construir una única cadena que contenga todos los dígitos del archivo sin espacios en blanco:</p>
+<p class="CodeLabel" translate="no"><b>pi_string.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">from pathlib import Path</span>
+
+<span class="LiteralGray">path = Path('pi_digits.txt')</span>
+<span class="LiteralGray">contents = path.read_text()</span>
+
+<span class="LiteralGray">lines = contents.splitlines()</span>
+pi_string = ''
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> for line in lines:
+    pi_string += line
+
+print(pi_string)
+print(len(pi_string))</code></pre>
+<p>Empezamos leyendo el archivo y almacenando cada línea de dígitos en una lista, igual que hicimos en el ejemplo anterior. A continuación, creamos una variable, <code translate="no">pi_string</code>, <span epub:type="pagebreak" id="Page_188" title="188"></span>para guardar los dígitos de <em translate="no">pi</em>. Escribimos un bucle que añade cada línea de dígitos a <code translate="no">pi_string</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Imprimimos esta cadena y también mostramos su longitud:</p>
+<pre translate="no"><code translate="no">3.1415926535  8979323846  2643383279
+36</code></pre>
+<p>La variable <code translate="no">pi_string</code> contiene los espacios en blanco que había a la izquierda de los dígitos de cada línea, pero podemos deshacernos de ellos utilizando <code translate="no">lstrip()</code> en cada línea:</p>
+<pre translate="no"><code translate="no"><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">for line in lines:</span>
+<span class="LiteralGray">    </span>pi_string += line.lstrip()
+
+<span class="LiteralGray">print(pi_string)</span>
+<span class="LiteralGray">print(len(pi_string))</span></code></pre>
+<p>Ahora tenemos una cadena que contiene <em translate="no">pi</em> con 30 decimales. La cadena tiene 32 caracteres porque también incluye el <code translate="no">3</code> inicial y un punto decimal:</p>
+<pre translate="no"><code translate="no">3.141592653589793238462643383279
+32</code></pre>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c10_7.html">anterior</a><a href="c10.html">Subtema 8 de 37: (Ver todo)</a><a href="c10_9.html">siguiente</a><br/></p>
+<br/><a href="c10_8.docx" target="_blank"></a></footer>
+</body>
+</html>

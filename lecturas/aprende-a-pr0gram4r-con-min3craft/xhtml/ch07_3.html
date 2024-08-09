@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch07lev1sec02"><strong><span class="blue1">Controlar bucles con una variable de recuento</span></strong></h3>
+<p class="noindent">Las variables de recuento son una forma habitual de almacenar el número de veces que se ha repetido un programa. Ya has visto estas variables en acción unas cuantas veces. Veamos otro ejemplo:</p>
+<p class="programs" translate="no">count = 0<br translate="no"/><span class="orange">while</span> count &lt; 5:<br translate="no"/> <span class="rose">print</span>(count)<br translate="no"/>    count += 1</p>
+<p class="indent">La condición del bucle <span class="literal">while</span> comprueba que el valor de la variable de <span class="literal">recuento</span> es menor que 5. En el cuerpo del bucle, he cambiado el valor de la variable <span class="literal">cuenta</span> para registrar el número de veces que se ha repetido la cuenta. Añadir al valor de una variable de <span class="literal">recuento</span> se llama <em>incrementar</em>.</p>
+<p class="indent">La última línea de este código incrementa en 1 el valor de la variable de <span class="literal">recuento</span>. Cada vez que se repita el código, comprobará el nuevo valor de la variable de <span class="literal">recuento</span> para ver si es menor que 5. Cuando sea igual o mayor que 5, el bucle se detendrá.</p>
+<p class="indent">Si te olvidas de incrementar la variable <span class="literal">count</span>, acabarás con un <em>bucle infinito</em>, que repetirá el bucle eternamente, como se muestra en el siguiente ejemplo:</p>
+<p class="programs" translate="no">count = 0<br translate="no"/><span class="orange">while</span> count &lt; 5:<br translate="no"/> <span class="rose">print</span>(count)</p>
+<p class="indent">El valor de <span class="literal">count</span> es siempre 0 porque nunca se incrementa. Por lo tanto, la condición del bucle siempre será <span class="literal">Verdadero</span>, y el bucle se repetirá <em>eternamente</em>. Si no me crees, ¡prueba a ejecutar el código!</p>
+<p class="programs" translate="no"><span class="blue1">0</span><br translate="no"/><span class="blue1">0</span><br translate="no"/><span class="blue1">0</span><br translate="no"/><span class="blue1">0</span><br translate="no"/><span class="blue1">0</span><br translate="no"/>--<span class="codeitalic">snip</span>--</p>
+<p class="indent"><span epub:type="pagebreak" id="page_132"></span>Para interrumpir la ejecución de este programa infinito, pulsa <small>CTRL-C</small>. Para corregir el código, sólo tienes que añadir la <span class="literal">cuenta de líneas += 1</span> al cuerpo del bucle. Ahora no quedarás atrapado en un bucle infinito. ¡Uf!</p>
+<p class="indent">Los recuentos no siempre tienen que incrementarse en 1. En algunas situaciones puedes querer incrementar el recuento en un valor diferente. En el siguiente ejemplo, la cuenta se incrementa en 2 cada vez; el resultado es que el código imprime todos los números pares entre 0 y 100:</p>
+<p class="programs" translate="no">count = 0<br translate="no"/><span class="orange">while</span> count &lt; 100:<br translate="no"/> <span class="rose">print</span>(count)<br translate="no"/>    count += 2</p>
+<p class="indent">También puedes contar hacia atrás utilizando un número negativo para <em>disminuir</em> el valor de la cuenta. El siguiente código cuenta <em>hacia</em> atrás desde 100 hasta 1:</p>
+<p class="programs" translate="no">count = 100<br translate="no"/><span class="orange">while</span> count &gt; 0:<br translate="no"/> <span class="rose">print</span>(count)<br translate="no"/>    count -= 1</p>
+<p class="indent">La única diferencia entre este ejemplo y los anteriores es la condición. Aquí he utilizado un comparador mayor que<span class="literal">(&gt;)</span>. Mientras la cuenta sea mayor que 0, el bucle continúa; cuando la cuenta llega a 0, el bucle se detiene.</p>
+<div class="note">
+<p class="notet"><strong><span class="notes">NOTA</span></strong></p>
+<p class="notep"><em>La variable utilizada para controlar un bucle no siempre se llama</em> <span class="literal"><span class="codeitalic">recuento</span></span><em>.</em><em> Podrías llamarla</em> <span class="literal"><span class="codeitalic">repeticiones</span></span> <em>o cualquier otra cosa que desees. Si miras el código de otras personas, verás una gran variedad de nombres diferentes.</em></p>
+</div>
+<h4 class="h4a" id="ch07lev2sec02"><strong>Misión 34: La maldición acuosa</strong></h4>
+<p class="noindent">Intentemos algo un poco desagradable y escribamos una maldición para el jugador que dure poco tiempo. Las maldiciones en los videojuegos pueden <em>debilitar</em> al personaje de alguna manera, como ralentizándolo o debilitándolo, a menudo sólo durante un rato.</p>
+<p class="indent">Crearemos un programa de maldición que coloque un bloque de agua que fluya en la posición del jugador una vez por segundo durante 30 segundos. Esto hará que al jugador le resulte difícil moverse sin ser empujado por el agua que fluye.</p>
+<p class="indent">El siguiente código coloca un bloque de agua que fluye en la posición del jugador:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>waterCurse.py</em></span></p>
+<p class="programs" translate="no"><span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>mc = Minecraft.create()<br translate="no"/><br translate="no"/>pos = mc.player.getPos()<br translate="no"/>mc.setBlock(pos.x, pos.y, pos.z, 8)</p>
+<p class="indent"><span epub:type="pagebreak" id="page_133"></span>Este código colocará un bloque de agua en la posición actual del jugador sólo una vez. Tu tarea es hacer que se repita. El código final debe repetirse 30 veces, y cada iteración del bucle debe durar 1 segundo.</p>
+<p class="indent">Guarda este código como <em>waterCurse.py</em> en la carpeta <em>whileLoops</em> y ejecútalo una vez para asegurarte de que funciona. Deberías ver aparecer un único bloque de agua en la posición del jugador antes de que el programa se detenga.</p>
+<p class="indent">Vamos a ver qué hay que añadir a continuación para que esta maldición dure. Utiliza lo que has aprendido sobre los bucles <span class="literal">while</span> y las variables de <span class="literal">recuento</span> para hacer lo siguiente:</p>
+<ol>
+<li class="noindent"><p class="list">Añade una variable de <span class="literal">recuento</span> al programa.</p></li>
+<li class="noindent"><p class="list">Añade un bucle al programa para repetir las dos últimas líneas de código. El bucle debe repetirse 30 veces.</p></li>
+<li class="noindent"><p class="list">Incrementa la variable <span class="literal">cuenta</span> al final del bucle.</p></li>
+<li class="noindent"><p class="list">Importa el módulo de <span class="literal">tiempo</span> (en la primera línea de tu programa) y añade una suspensión de 1 segundo en la última línea del bucle <span class="literal">while</span>.</p></li>
+</ol>
+<p class="indent">Guarda el programa y pruébalo. Mientras caminas por el mundo del juego, el programa debería crear un bloque de agua cada segundo durante 30 segundos. Si te quedas atascado, vuelve a los pasos de la Misión nº 33<a href="ch07.xhtml#page_129">(página 129</a>) para obtener ayuda.</p>
+<p class="indent">La<a href="ch07.xhtml#ch7fig2">Figura 7-2</a> muestra la maldición en acción.</p>
+<div class="image"><img alt="image" src="../images/f07-02.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch7fig2"></a><em>Figura 7-2: ¡Oh, no! Me persigue una pequeña inundación.</em></p>
+<div class="sidebar">
+<p class="sidebart" id="ch07sb02"><strong>OBJETIVO EXTRA: UNA INUNDACIÓN MÁS RÁPIDA</strong></p>
+<p class="noindent">¿Cómo harías que el bucle se repitiera el doble de rápido (cada medio segundo) sin dejar de durar 30 segundos?</p>
+</div>
+<h4 class="h4" id="ch07lev2sec03"><span epub:type="pagebreak" id="page_134"></span><strong><span class="blue1">Bucles while infinitos</span></strong></h4>
+<p class="noindent">En la mayoría de los casos, es muy importante que la condición booleana de tu bucle <span class="literal">while</span> se convierta finalmente en <span class="literal">Falso</span>; de lo contrario, el bucle iterará eternamente y tu ordenador podría bloquearse.</p>
+<p class="indent">Pero hay ocasiones en las que puedes querer programar un bucle infinito. Por ejemplo, los videojuegos suelen utilizar un bucle infinito para comprobar la entrada del usuario y gestionar el movimiento del jugador. Por supuesto, estos videojuegos incluyen un botón de Salir para que puedas pausar o detener los bucles infinitos cuando necesites tomarte un descanso.</p>
+<p class="indent">Una forma sencilla de crear un bucle infinito es utilizar una condición <span class="literal">Verdadero</span> al definir un bucle <span class="literal">while</span>, como se muestra aquí:</p>
+<p class="programs" translate="no"><span class="orange">while True</span>:<br translate="no"/> <span class="rose">print</span>(<span class="green">"Hello"</span>)</p>
+<p class="indent">Este código se repetirá eternamente, imprimiendo la cadena <span class="literal">"Hola"</span> una y otra vez. Tanto si pretendías crear un bucle infinito como si no, pulsar <small>CTRL-C</small> en el intérprete de comandos de Python es una forma habitual de detenerlo. En IDLE puedes seleccionar <strong>Shell</strong> <img alt="image" src="../images/arrow.jpg" translate="no"/> <strong>Reiniciar Shell</strong> para detener también el bucle.</p>
+<p class="indent">Ten en cuenta que cualquier código que se coloque <em>después de</em> un bucle <span class="literal">while</span> infinito nunca se ejecutará. En el siguiente ejemplo, la última línea de código es inalcanzable debido al bucle <span class="literal">while</span> infinito que le precede:</p>
+<p class="programs" translate="no"><span class="orange">while True</span>:<br translate="no"/> <span class="rose">print</span>(<span class="green">"Hello"</span>)<br translate="no"/><span class="rose">print</span>(<span class="green">"This line is never reached"</span>)</p>
+<p class="indent">Aunque los bucles infinitos a veces pueden ser complicados, también puedes crearlos para hacer un montón de cosas chulas. ¡Intentémoslo a continuación!</p>
+<h4 class="h4a" id="ch07lev2sec04"><strong>Misión 35: Camino de flores</strong></h4>
+<p class="noindent">El programa que escribirás en esta misión es como el de la Misión 34, pero en lugar de colocar bloques de agua, crearás un rastro de flores detrás del jugador. ¡Las flores son mucho más bonitas que las inundaciones!</p>
+<p class="indent">Abre el archivo <em>waterCurse.py</em> en la carpeta <em>whileLoops</em> y guárdalo como <em>flowerTrail.py</em>.</p>
+<p class="indent">Para que aparezca un rastro infinito de flores mientras el jugador camina por el juego, haz los siguientes cambios en el programa:</p>
+<ol>
+<li class="noindent"><p class="list">Cambia la condición del bucle <span class="literal">while</span> a <span class="literal">True</span>.</p></li>
+<li class="noindent"><p class="list">Elimina la variable <span class="literal">cuenta</span> y el incremento.</p></li>
+<li class="noindent"><p class="list">Cambia el argumento del tipo de bloque en la función <span class="literal">setBlock()</span> de <span class="literal">8</span> a <span class="literal">38</span>.</p></li>
+<li class="noindent"><p class="list">Reduce el valor del argumento en la función <span class="literal">sleep</span> () a <span class="literal">0,2</span> para que aparezcan cinco flores cada segundo.</p></li>
+<li class="noindent"><p class="list">Guarda el programa y ejecútalo. <a href="ch07.xhtml#ch7fig3">La Figura 7-3</a> muestra lo que deberías ver.</p></li>
+</ol>
+<div class="image"><span epub:type="pagebreak" id="page_135"></span><img alt="image" src="../images/f07-03.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch7fig3"></a><em>Figura 7-3: ¡Mira qué flores más bonitas!</em></p>
+<div class="sidebar">
+<p class="sidebart" id="ch07sb03"><strong>OBJETIVO EXTRA: UN RASTRO DE DESTRUCCIÓN</strong></p>
+<p class="noindent">El programa <em>flowerTrail.py</em> es muy flexible. Prueba a cambiar el tipo de bloque que coloca el programa. Un tipo de bloque divertido es el TNT explosivo<span class="literal">(setBlock(x, y, z, 46, 1)</span>). Fíjate en el argumento extra <span class="literal">1</span> después de <span class="literal">46</span>, que es el tipo de bloque TNT. El <span class="literal">1</span> establece el estado del TNT para que detone con sólo golpearlo, sin necesidad de pedernal y acero. ¡Sólo tienes que pulsar el botón izquierdo del ratón unas cuantas veces cuando apuntes a la TNT para hacerla explotar!</p>
+</div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch07_2.html">anterior</a><a href="ch07.html">Subtema 3 de 6: (Ver todo)</a><a href="ch07_4.html">siguiente</a><br/></p>
+<br/><a href="ch07_3.docx" target="_blank"></a></footer>
+</body>
+</html>

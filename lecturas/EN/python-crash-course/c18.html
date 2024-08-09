@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://www.w3.org/2002/06/xhtml2/ http://www.w3.org/MarkUp/SCHEMA/xhtml2.xsd">
+<head>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style></head>
+<body><div id="sbo-rt-content"><section>
+<header>
+<h1 class="chapter">
+<span class="ChapterNumber"><span epub:type="pagebreak" id="Page_373" title="373"></span>18</span><br/>
+<span class="ChapterTitle">Getting Started with Django</span></h1>
+</header>
+<figure class="opener">
+<img alt="" height="406" src="Images/chapterart.png" width="406"/>
+</figure>
+<p class="ChapterIntro">As the internet has evolved, the line between websites and mobile apps has blurred. Websites and apps both help users interact with data in a variety of ways. Fortunately, you can use Django to build a single project that serves a dynamic website as well as a set of mobile apps. <em>Django</em> is Python’s most popular <em>web framework</em>, a set of tools designed for building interactive web applications. In this chapter, you’ll learn how to use Django to build a project called Learning Log, an online journal system that lets you keep track of information you’ve learned about different topics.</p>
+<p>We’ll write a specification for this project, and then define models for the data the app will work with. We’ll use Django’s admin system to enter some initial data, and then write views and templates so Django can build the site’s pages.</p>
+<p>Django can respond to page requests and make it easier to read and write to a database, manage users, and much more. In <span class="xref" itemid="xref_target_Chapters 19">Chapters 19</span> and <span class="xref" itemid="xref_target_20">20</span>, <span epub:type="pagebreak" id="Page_374" title="374"></span>you’ll refine the Learning Log project, and then deploy it to a live server so you (and everyone else in the world) can use it.</p>
+<h2 id="h1-502703c18-0001">Setting Up a Project</h2>
+<p class="BodyFirst">When starting work on something as significant as a web app, you first need to describe the project’s goals in a specification, or <em>spec</em>. Once you have a clear set of goals, you can start to identify manageable tasks to achieve those goals.</p>
+<p>In this section, we’ll write a spec for Learning Log and start working on the first phase of the project. This will involve setting up a virtual environment and building out the initial aspects of a Django project.</p>
+<h3 id="h2-502703c18-0001">Writing a Spec</h3>
+<p class="BodyFirst">A full spec details the project goals, describes the project’s functionality, and discusses its appearance and user interface. Like any good project or business plan, a spec should keep you focused and help keep your project on track. We won’t write a full project spec here, but we’ll lay out a few clear goals to keep the development process focused. Here’s the spec we’ll use:</p>
+<blockquote class="blockquote">
+<p class="Blockquote">We’ll write a web app called Learning Log that allows users to log the topics they’re interested in and make journal entries as they learn about each topic. The Learning Log home page will describe the site and invite users to either register or log in. Once logged in, a user can create new topics, add new entries, and read and edit existing entries.</p>
+</blockquote>
+<p>When you’re researching a new topic, maintaining a journal of what you’ve learned can help you keep track of new information and information you’ve already found. This is especially true when studying technical subjects. A good app, like the one we’ll be creating, can help make this process more efficient.</p>
+<h3 id="h2-502703c18-0002">Creating a Virtual Environment</h3>
+<p class="BodyFirst">To work with Django, we’ll first set up a virtual environment. A <em>virtual environment </em>is a place on your system where you can install packages and isolate them from all other Python packages. Separating one project’s libraries from other projects is beneficial and will be necessary when we deploy Learning Log to a server in <span class="xref" itemid="xref_target_Chapter 20">Chapter 20</span>.</p>
+<p>Create a new directory for your project called <em>learning_log</em>, switch to that directory in a terminal, and enter the following code to create a virtual environment:</p>
+<pre><code>learning_log$ <b>python -m venv ll_env</b>
+learning_log$</code></pre>
+<p>Here we’re running the <code>venv</code> virtual environment module and using it to create an environment named <em>ll_env</em> (note that this name starts with <span epub:type="pagebreak" id="Page_375" title="375"></span>two lowercase <em>L</em>s, not two ones). If you use a command such as <code>python3</code> when running programs or installing packages, make sure to use that command here.</p>
+<h3 id="h2-502703c18-0003">Activating the Virtual Environment</h3>
+<p class="BodyFirst">Now we need to activate the virtual environment, using the following command:</p>
+<pre><code>learning_log$ <b>source ll_env/bin/activate</b>
+(ll_env)learning_log$</code></pre>
+<p>This command runs the script <em>activate</em> in <em>ll_env/bin/</em>. When the environment is active, you’ll see the name of the environment in parentheses. This indicates that you can install new packages to the environment and use packages that have already been installed. Packages you install in <em>ll_env</em> will not be available when the environment is inactive.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	If you’re using Windows, use the command <code class="bold">ll_env\Scripts\activate</code> (without the word <code>source</code>) to activate the virtual environment. If you’re using PowerShell, you might need to capitalize <code>Activate</code>.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<p>To stop using a virtual environment, enter <code class="bold">deactivate</code>:</p>
+<pre><code>(ll_env)learning_log$ <b>deactivate</b>
+learning_log$</code></pre>
+<p>The environment will also become inactive when you close the terminal it’s running in.</p>
+<h3 id="h2-502703c18-0004">Installing Django</h3>
+<p class="BodyFirst">With the virtual environment activated, enter the following to update pip and install Django:</p>
+<pre><code>(ll_env)learning_log$ <b>pip install --upgrade pip</b>
+(ll_env)learning_log$ <b>pip install django</b>
+Collecting django
+<var>--snip--</var>
+Installing collected packages: sqlparse, asgiref, django
+Successfully installed asgiref-3.5.2 django-4.1 sqlparse-0.4.2
+(ll_env)learning_log$</code></pre>
+<p>Because it downloads resources from a variety of sources, pip is upgraded fairly often. It’s a good idea to upgrade pip whenever you make a new virtual environment.</p>
+<p>We’re working in a virtual environment now, so the command to install Django is the same on all systems. There’s no need to use longer commands, such as <code>python -m pip install </code><var>package_name</var>, or to include the <code>--user</code> flag. Keep in mind that Django will be available only when the <em>ll_env</em> environment is active.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<span epub:type="pagebreak" id="Page_376" title="376"></span><h2><span class="NoteHead">Note</span></h2>
+<p>	Django releases a new version about every eight months, so you may see a newer version when you install Django. This project will most likely work as it’s written here, even on newer versions of Django. If you want to make sure to use the same version of Django you see here, use the command <code class="bold">pip install django==4.1.*</code>. This will install the latest release of Django 4.1. If you have any issues related to the version you’re using, see the online resources for this book at <a class="LinkURL" href="https://ehmatthes.github.io/pcc_3e">https://ehmatthes.github.io/pcc_3e</a>.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h3 id="h2-502703c18-0005">Creating a Project in Django</h3>
+<p class="BodyFirst">Without leaving the active virtual environment (remember to look for <em>ll_env</em> in parentheses in the terminal prompt), enter the following commands to create a new project:</p>
+<pre><code><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> (ll_env)learning_log$ <b>django-admin startproject ll_project .</b>
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> (ll_env)learning_log$ <b>ls</b>
+ll_env ll_project manage.py
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> (ll_env)learning_log$ <b>ls ll_project</b>
+__init__.py asgi.py settings.py urls.py wsgi.py</code></pre>
+<p>The <code>startproject</code> command <span aria-label="annotation1" class="CodeAnnotation">❶</span> tells Django to set up a new project called <em>ll_project</em>. The dot (<code>.</code>) at the end of the command creates the new project with a directory structure that will make it easy to deploy the app to a server when we’re finished developing it.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	Don’t forget this dot, or you might run into some configuration issues when you deploy the app. If you forget the dot, delete the files and folders that were created (except <em>ll_env</em>) and run the command again.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<p>Running the <code>ls</code> command (<code>dir</code> on Windows) <span aria-label="annotation2" class="CodeAnnotation">❷</span> shows that Django has created a new directory called <em>ll_project</em>. It also created a <em>manage.py</em> file, which is a short program that takes in commands and feeds them to the relevant part of Django. We’ll use these commands to manage tasks, such as working with databases and running servers.</p>
+<p>The <em>ll_project</em> directory contains four files <span aria-label="annotation3" class="CodeAnnotation">❸</span>; the most important are <em>settings.py</em>, <em>urls.py</em>, and <em>wsgi.py</em>. The <em>settings.py</em> file controls how Django interacts with your system and manages your project. We’ll modify a few of these settings and add some settings of our own as the project evolves. The <em>urls.py</em> file tells Django which pages to build in response to browser requests. The <em>wsgi.py</em> file helps Django serve the files it creates. The filename is an acronym for “web server gateway interface.”</p>
+<h3 id="h2-502703c18-0006">Creating the Database</h3>
+<p class="BodyFirst">Django stores most of the information for a project in a database, so next we need to create a database that Django can work with. Enter the following command (still in an active environment):</p>
+<pre><code>(ll_env)learning_log$ <b>python manage.py migrate</b>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> Operations to perform:
+<span epub:type="pagebreak" id="Page_377" title="377"></span>  Apply all migrations: admin, auth, contenttypes, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+<var>  --snip--</var>
+  Applying sessions.0001_initial... OK
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> (ll_env)learning_log$ <b>ls</b>
+db.sqlite3 ll_env ll_project manage.py</code></pre>
+<p>Anytime we modify a database, we say we’re <em>migrating</em> the database. Issuing the <code>migrate</code> command for the first time tells Django to make sure the database matches the current state of the project. The first time we run this command in a new project using SQLite (more about SQLite in a moment), Django will create a new database for us. Here, Django reports that it will prepare the database to store information it needs to handle administrative and authentication tasks <span aria-label="annotation1" class="CodeAnnotation">❶</span>.</p>
+<p>Running the <code>ls</code> command shows that Django created another file called <em>db.sqlite3</em> <span aria-label="annotation2" class="CodeAnnotation">❷</span>. <em>SQLite</em> is a database that runs off a single file; it’s ideal for writing simple apps because you won’t have to pay much attention to managing the database.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	In an active virtual environment, use the command <code>python</code> to run <code>manage.py</code> commands, even if you use something different, like <code>python3</code>, to run other programs. In a virtual environment, the command <code>python</code> refers to the version of Python that was used to create the virtual environment.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h3 id="h2-502703c18-0007">Viewing the Project</h3>
+<p class="BodyFirst">Let’s make sure that Django has set up the project properly. Enter the <code class="bold">runserver</code> command to view the project in its current state:</p>
+<pre><code>(ll_env)learning_log$ <b>python manage.py runserver</b>
+Watching for file changes with StatReloader
+Performing system checks...
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> System check identified no issues (0 silenced).
+May 19, 2022 - 21:52:35
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> Django version 4.1, using settings 'll_project.settings'
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.</code></pre>
+<p>Django should start a server called the <em>development server</em>, so you can view the project on your system to see how well it works. When you request a page by entering a URL in a browser, the Django server responds to that request by building the appropriate page and sending it to the browser.</p>
+<p>Django first checks to make sure the project is set up properly <span aria-label="annotation1" class="CodeAnnotation">❶</span>; it then reports the version of Django in use and the name of the settings file in use <span aria-label="annotation2" class="CodeAnnotation">❷</span>. Finally, it reports the URL where the project is being served <span aria-label="annotation3" class="CodeAnnotation">❸</span>. The URL <em>http://127.0.0.1:8000/</em> indicates that the project is listening for requests on port 8000 on your computer, which is called a localhost. The <span epub:type="pagebreak" id="Page_378" title="378"></span>term <em>localhost</em> refers to a server that only processes requests on your system; it doesn’t allow anyone else to see the pages you’re developing.</p>
+<p>Open a web browser and enter the URL <em>http://localhost:8000/</em>, or <em>http://127.0.0.1:8000/</em> if the first one doesn’t work. You should see something like <a href="#figure18-1" id="figureanchor18-1">Figure 18-1</a>: a page that Django creates to let you know everything is working properly so far. Keep the server running for now, but when you want to stop the server, press CTRL-C in the terminal where the <code>runserver</code> command was issued.</p>
+<figure>
+<img alt="" class="keyline" height="398" src="Images/f18001.png" width="694"/>
+<figcaption><p><a id="figure18-1">Figure 18-1</a>: Everything is working so far.</p></figcaption>
+</figure>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	If you receive the error message “That port is already in use,” tell Django to use a different port by entering <code class="bold">python manage.py runserver 8001</code> and then cycling through higher numbers until you find an open port.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c18-08">18-1.	New Projects:</span> To get a better idea of what Django does, build a couple empty projects and look at what Django creates. Make a new folder with a simple name, like <em>tik_gram</em> or <em>insta_tok</em> (outside of your <em>learning_log</em> directory), navigate to that folder in a terminal, and create a virtual environment. Install Django and run the command <code class="bold">django-admin.py startproject tg_project .</code> (making sure to include the dot at the end of the command).</p>
+<p class="BoxBody">Look at the files and folders this command creates, and compare them to Learning Log. Do this a few times, until you’re familiar with what Django creates when starting a new project. Then delete the project directories if you wish.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c18-0002"><span epub:type="pagebreak" id="Page_379" title="379"></span>Starting an App</h2>
+<p class="BodyFirst">A Django <em>project</em> is organized as a group of individual <em>apps</em> that work together to make the project work as a whole. For now, we’ll create one app to do most of our project’s work. We’ll add another app in <span class="xref" itemid="xref_target_Chapter 19">Chapter 19</span> to manage user accounts.</p>
+<p>You should leave the development server running in the terminal window you opened earlier. Open a new terminal window (or tab) and navigate to the directory that contains <em>manage.py</em>. Activate the virtual environment, and then run the <code class="bold">startapp</code> command:</p>
+<pre><code>learning_log$ <b>source ll_env/bin/activate</b>
+(ll_env)learning_log$ <b>python manage.py startapp learning_logs</b>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> (ll_env)learning_log$ <b>ls</b>
+db.sqlite3 learning_logs ll_env ll_project manage.py
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> (ll_env)learning_log$ <b>ls learning_logs/</b>
+__init__.py admin.py apps.py migrations models.py tests.py views.py</code></pre>
+<p>The command <code>startapp </code><var>appname</var> tells Django to create the infrastructure needed to build an app. When you look in the project directory now, you’ll see a new folder called <em>learning_logs</em> <span aria-label="annotation1" class="CodeAnnotation">❶</span>. Use the <code class="bold">ls</code> command to see what Django has created <span aria-label="annotation2" class="CodeAnnotation">❷</span>. The most important files are <em>models.py</em>, <em>admin.py</em>, and <em>views.py</em>. We’ll use <em>models.py </em>to define the data we want to manage in our app. We’ll look at <em>admin.py</em> and <em>views.py</em> a little later.</p>
+<h3 id="h2-502703c18-0008">Defining Models</h3>
+<p class="BodyFirst">Let’s think about our data for a moment. Each user will need to create a number of topics in their learning log. Each entry they make will be tied to a topic, and these entries will be displayed as text. We’ll also need to store the timestamp of each entry so we can show users when they made each one.</p>
+<p>Open the file <em>models.py</em> and look at its existing content:</p>
+<p class="CodeLabel"><b>models.py</b></p>
+<pre><code>from django.db import models
+
+# Create your models here.</code></pre>
+<p>A module called <code>models</code> is being imported, and we’re being invited to create models of our own. A <em>model</em> tells Django how to work with the data that will be stored in the app. A model is a class; it has attributes and methods, just like every class we’ve discussed. Here’s the model for the topics users will store:</p>
+<pre><code><span class="LiteralGray">from django.db import models</span>
+
+class Topic(models.Model):
+    """A topic the user is learning about."""
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     text = models.CharField(max_length=200)
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     date_added = models.DateTimeField(auto_now_add=True)
+
+<span epub:type="pagebreak" id="Page_380" title="380"></span><span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     def __str__(self):
+        """Return a string representation of the model."""
+        return self.text</code></pre>
+<p>We’ve created a class called <code>Topic</code>, which inherits from <code>Model</code>—a parent class included in Django that defines a model’s basic functionality. We add two attributes to the <code>Topic</code> class: <code>text</code> and <code>date_added</code>.</p>
+<p>The <code>text</code> attribute is a <code>CharField</code>, a piece of data that’s made up of characters or text <span aria-label="annotation1" class="CodeAnnotation">❶</span>. You use <code>CharField</code> when you want to store a small amount of text, such as a name, a title, or a city. When we define a <code>CharField</code> attribute, we have to tell Django how much space it should reserve in the database. Here we give it a <code>max_length</code> of <code>200</code> characters, which should be enough to hold most topic names.</p>
+<p>The <code>date_added</code> attribute is a <code>DateTimeField</code>, a piece of data that will record a date and time <span aria-label="annotation2" class="CodeAnnotation">❷</span>. We pass the argument <code>auto_now_add=True</code>, which tells Django to automatically set this attribute to the current date and time whenever the user creates a new topic.</p>
+<p>It’s a good idea to tell Django how you want it to represent an instance of a model. If a model has a <code>__str__()</code> method, Django calls that method whenever it needs to generate output referring to an instance of that model. Here we’ve written a <code>__str__()</code> method that returns the value assigned to the <code>text</code> attribute <span aria-label="annotation3" class="CodeAnnotation">❸</span>.</p>
+<p>To see the different kinds of fields you can use in a model, see the “Model Field Reference” page at <a class="LinkURL" href="https://docs.djangoproject.com/en/4.1/ref/models/fields">https://docs.djangoproject.com/en/4.1/ref/models/fields</a>. You won’t need all the information right now, but it will be extremely useful when you’re developing your own Django projects.</p>
+<h3 id="h2-502703c18-0009">Activating Models</h3>
+<p class="BodyFirst">To use our models, we have to tell Django to include our app in the overall project. Open <em>settings.py</em> (in the <em>ll_project</em> directory); you’ll see a section that tells Django which apps are installed in the project:</p>
+<p class="CodeLabel"><b>settings.py</b></p>
+<pre><code><var>--snip--</var>
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
+<var>--snip--</var></code></pre>
+<p>Add our app to this list by modifying <code>INSTALLED_APPS</code> so it looks like this:</p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">INSTALLED_APPS = [</span>
+    # My apps.
+    'learning_logs',
+
+<span epub:type="pagebreak" id="Page_381" title="381"></span>    # Default django apps.
+<span class="LiteralGray">    'django.contrib.admin',</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">]</span>
+<em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>Grouping apps together in a project helps keep track of them as the project grows to include more apps. Here we start a section called <code>My apps</code>, which includes only <code>'learning_logs'</code> for now. It’s important to place your own apps before the default apps, in case you need to override any behavior of the default apps with your own custom behavior.</p>
+<p>Next, we need to tell Django to modify the database so it can store information related to the model <code>Topic</code>. From the terminal, run the following command:</p>
+<pre><code>(ll_env)learning_log$ <b>python manage.py makemigrations learning_logs</b>
+Migrations for 'learning_logs':
+  learning_logs/migrations/0001_initial.py
+    - Create model Topic
+(ll_env)learning_log$</code></pre>
+<p>The command <code>makemigrations</code> tells Django to figure out how to modify the database so it can store the data associated with any new models we’ve defined. The output here shows that Django has created a migration file called <em>0001_initial.py</em>. This migration will create a table for the model <code>Topic</code> in the database.</p>
+<p>Now we’ll apply this migration and have Django modify the database for us:</p>
+<pre><code>(ll_env)learning_log$ <b>python manage.py migrate</b>
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, learning_logs, sessions
+Running migrations:
+  Applying learning_logs.0001_initial... OK</code></pre>
+<p>Most of the output from this command is identical to the output from the first time we issued the <code>migrate</code> command. We need to check the last line in this output, where Django confirms that the migration for <code>learning_logs</code> worked <code>OK</code>.</p>
+<p>Whenever we want to modify the data that Learning Log manages, we’ll follow these three steps: modify <em>models.py</em>, call <code>makemigrations</code> on <code>learning_logs</code>, and tell Django to <code>migrate</code> the project.</p>
+<h3 id="h2-502703c18-0010">The Django Admin Site</h3>
+<p class="BodyFirst">Django makes it easy to work with your models through its admin site. Django’s <em>admin site</em> is only meant to be used by the site’s administrators; it’s not meant for regular users. In this section, we’ll set up the admin site and use it to add some topics through the <code>Topic</code> model.</p>
+<h4 id="h3-502703c18-0001"><span epub:type="pagebreak" id="Page_382" title="382"></span>Setting Up a Superuser</h4>
+<p class="BodyFirst">Django allows you to create a <em>superuser</em>, a user who has all privileges available on the site. A user’s <em>privileges</em> control the actions they can take. The most restrictive privilege settings allow a user to only read public information on the site. Registered users typically have the privilege of reading their own private data and some selected information available only to members. To effectively administer a project, the site owner usually needs access to all information stored on the site. A good administrator is careful with their users’ sensitive information, because users put a lot of trust into the apps they access.</p>
+<p>To create a superuser in Django, enter the following command and respond to the prompts:</p>
+<pre><code>(ll_env)learning_log$ <b>python manage.py createsuperuser</b>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> Username (leave blank to use 'eric'): <b>ll_admin</b>
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> Email address:
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> Password:
+Password (again):
+Superuser created successfully.
+(ll_env)learning_log$</code></pre>
+<p>When you issue the command <code>createsuperuser</code>, Django prompts you to enter a username for the superuser <span aria-label="annotation1" class="CodeAnnotation">❶</span>. Here I’m using <code>ll_admin</code>, but you can enter any username you want. You can enter an email address or just leave this field blank <span aria-label="annotation2" class="CodeAnnotation">❷</span>. You’ll need to enter your password twice <span aria-label="annotation3" class="CodeAnnotation">❸</span>.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	Some sensitive information can be hidden from a site’s administrators. For example, Django doesn’t store the password you enter; instead, it stores a string derived from the password, called a <em>hash</em>. Each time you enter your password, Django hashes your entry and compares it to the stored hash. If the two hashes match, you’re authenticated. By requiring hashes to match, Django ensures that if an attacker gains access to a site’s database, they’ll be able to read the stored hashes but not the passwords. When a site is set up properly, it’s almost impossible to get the original passwords from the hashes.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h4 id="h3-502703c18-0002">Registering a Model with the Admin Site</h4>
+<p class="BodyFirst">Django includes some models in the admin site automatically, such as <code>User</code> and <code>Group</code>, but the models we create need to be added manually.</p>
+<p>When we started the <code>learning_logs</code> app, Django created an <em>admin.py</em> file in the same directory as <em>models.py</em>. Open the <em>admin.py</em> file:</p>
+<p class="CodeLabel"><b>admin.py</b></p>
+<pre><code>from django.contrib import admin
+
+# Register your models here.</code></pre>
+<p><span epub:type="pagebreak" id="Page_383" title="383"></span>To register <code>Topic</code> with the admin site, enter the following:</p>
+<pre><code><span class="LiteralGray">from django.contrib import admin</span>
+
+from .models import Topic
+
+admin.site.register(Topic)</code></pre>
+<p>This code first imports the model we want to register, <code>Topic</code>. The dot in front of <code>models</code> tells Django to look for <em>models.py</em> in the same directory as <em>admin.py</em>. The code <code>admin.site.register()</code> tells Django to manage our model through the admin site.</p>
+<p>Now use the superuser account to access the admin site. Go to <em>http://localhost:8000/admin/</em> and enter the username and password for the superuser you just created. You should see a screen similar to the one shown in <a href="#figure18-2" id="figureanchor18-2">Figure 18-2</a>. This page allows you to add new users and groups, and change existing ones. You can also work with data related to the <code>Topic</code> model that we just defined.</p>
+<figure>
+<img alt="" class="keyline" height="289" src="Images/f18002.png" width="694"/>
+<figcaption><p><a id="figure18-2">Figure 18-2</a>: The admin site with <span class="LiteralInCaption"><code>Topic</code></span> included</p></figcaption>
+</figure>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	If you see a message in your browser that the web page is not available, make sure you still have the Django server running in a terminal window. If you don’t, activate a virtual environment and reissue the command <code class="bold">python manage.py runserver</code>. If you’re having trouble viewing your project at any point in the development process, closing any open terminals and reissuing the <code class="bold">runserver</code> command is a good first troubleshooting step.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h4 id="h3-502703c18-0003">Adding Topics</h4>
+<p class="BodyFirst">Now that <code>Topic</code> has been registered with the admin site, let’s add our first topic. Click <b>Topics</b> to go to the Topics page, which is mostly empty, because we have no topics to manage yet. Click <b>Add Topic</b>, and a form for adding a new topic appears. Enter <code class="bold">Chess</code> in the first box and click <b>Save</b>. You’ll be sent back to the Topics admin page, and you’ll see the topic you just created.</p>
+<p>Let’s create a second topic so we’ll have more data to work with. Click <b>Add Topic</b> again, and enter <code class="bold">Rock Climbing</code>. Click <b>Save</b>, and you’ll be sent back to the main Topics page again. Now you’ll see Chess and Rock Climbing listed.</p>
+<h3 id="h2-502703c18-0011"><span epub:type="pagebreak" id="Page_384" title="384"></span>Defining the Entry Model</h3>
+<p class="BodyFirst">For a user to record what they’ve been learning about chess and rock climbing, we need to define a model for the kinds of entries users can make in their learning logs. Each entry needs to be associated with a particular topic. This relationship is called a <em>many-to-one relationship</em>, meaning many entries can be associated with one topic.</p>
+<p>Here’s the code for the <code>Entry</code> model. Place it in your <em>models.py </em>file:</p>
+<p class="CodeLabel"><b>models.py</b></p>
+<pre><code><span class="LiteralGray">from django.db import models</span>
+
+<span class="LiteralGray">class Topic(models.Model):</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic">--snip--</em>
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> class Entry(models.Model):
+    """Something specific learned about a topic."""
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     text = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
+
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>     class Meta:
+        verbose_name_plural = 'entries'
+
+    def __str__(self):
+        """Return a simple string representing the entry."""
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>         return f"{self.text[:50]}..."</code></pre>
+<p>The <code>Entry</code> class inherits from Django’s base <code>Model</code> class, just as <code>Topic</code> did <span aria-label="annotation1" class="CodeAnnotation">❶</span>. The first attribute, <code>topic</code>, is a <code>ForeignKey</code> instance <span aria-label="annotation2" class="CodeAnnotation">❷</span>. A <em>foreign key</em> is a database term; it’s a reference to another record in the database. This is the code that connects each entry to a specific topic. Each topic is assigned a <em>key</em>, or ID, when it’s created. When Django needs to establish a connection between two pieces of data, it uses the keys associated with each piece of information. We’ll use these connections shortly to retrieve all the entries associated with a certain topic. The <code>on_delete=models.CASCADE</code> argument tells Django that when a topic is deleted, all the entries associated with that topic should be deleted as well. This is known as a <em>cascading delete</em>.</p>
+<p>Next is an attribute called <code>text</code>, which is an instance of <code>TextField</code> <span aria-label="annotation3" class="CodeAnnotation">❸</span>. This kind of field doesn’t need a size limit, because we don’t want to limit the size of individual entries. The <code>date_added</code> attribute allows us to present entries in the order they were created, and to place a timestamp next to each entry.</p>
+<p>The <code>Meta</code> class is nested inside the <code>Entry</code> class <span aria-label="annotation4" class="CodeAnnotation">❹</span>. The <code>Meta</code> class holds extra information for managing a model; here, it lets us set a special attribute telling Django to use <code>Entries </code>when it needs to refer to more than one entry. Without this, Django would refer to multiple entries as <code>Entrys</code>.</p>
+<p>The <code>__str__()</code> method tells Django which information to show when it refers to individual entries. Because an entry can be a long body of text, <code>__str__()</code> returns just the first <code>50</code> characters of <code>text</code> <span aria-label="annotation5" class="CodeAnnotation">❺</span>. We also add an ellipsis to clarify that we’re not always displaying the entire entry.</p>
+<h3 id="h2-502703c18-0012"><span epub:type="pagebreak" id="Page_385" title="385"></span>Migrating the Entry Model</h3>
+<p class="BodyFirst">Because we’ve added a new model, we need to migrate the database again. This process will become quite familiar: you modify <em>models.py</em>, run the command <code class="bold">python manage.py makemigrations </code><var class="bold">app_name</var>, and then run the command <code class="bold">python manage.py migrate</code>.</p>
+<p>Migrate the database and check the output by entering the following commands:</p>
+<pre><code>(ll_env)learning_log$ <b>python manage.py makemigrations learning_logs</b>
+Migrations for 'learning_logs':
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>   learning_logs/migrations/0002_entry.py
+    - Create model Entry
+(ll_env)learning_log$ <b>python manage.py migrate</b>
+Operations to perform:
+<var>  --snip--</var>
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>   Applying learning_logs.0002_entry... OK</code></pre>
+<p>A new migration called <em>0002_entry.py</em> is generated, which tells Django how to modify the database to store information related to the model <code>Entry</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>. When we issue the <code>migrate</code> command, we see that Django applied this migration and everything worked properly <span aria-label="annotation2" class="CodeAnnotation">❷</span>.</p>
+<h3 id="h2-502703c18-0013">Registering Entry with the Admin Site</h3>
+<p class="BodyFirst">We also need to register the <code>Entry</code> model. Here’s what <em>admin.py</em> should look like now:</p>
+<p class="CodeLabel"><b>admin.py</b></p>
+<pre><code><span class="LiteralGray">from django.contrib import admin</span>
+
+from .models import Topic, Entry
+
+<span class="LiteralGray">admin.site.register(Topic)</span>
+admin.site.register(Entry)</code></pre>
+<p>Go back to <em>http://localhost/admin/</em>, and you should see Entries listed under <em>Learning_Logs</em>. Click the <b>Add</b> link for Entries, or click <b>Entries</b> and then choose <b>Add entry</b>. You should see a drop-down list to select the topic you’re creating an entry for and a text box for adding an entry. Select <b>Chess</b> from the drop-down list, and add an entry. Here’s the first entry I made:</p>
+<blockquote class="blockquote">
+<p class="Blockquote">The opening is the first part of the game, roughly the first ten moves or so. In the opening, it’s a good idea to do three things—bring out your bishops and knights, try to control the center of the board, and castle your king.</p>
+<p class="Blockquote">Of course, these are just guidelines. It will be important to learn when to follow these guidelines and when to disregard these suggestions.</p></blockquote>
+<p>When you click <b>Save</b>, you’ll be brought back to the main admin page for entries. Here, you’ll see the benefit of using <code>text[:50]</code> as the string representation for each entry; it’s much easier to work with multiple entries in <span epub:type="pagebreak" id="Page_386" title="386"></span>the admin interface if you see only the first part of an entry, rather than the entire text of each entry.</p>
+<p>Make a second entry for Chess and one entry for Rock Climbing so we have some initial data. Here’s a second entry for Chess:</p>
+<blockquote class="blockquote">
+<p class="Blockquote">In the opening phase of the game, it’s important to bring out your bishops and knights. These pieces are powerful and maneuverable enough to play a significant role in the beginning moves of a game.</p>
+</blockquote>
+<p>And here’s a first entry for Rock Climbing:</p>
+<blockquote class="blockquote">
+<p class="Blockquote">One of the most important concepts in climbing is to keep your weight on your feet as much as possible. There’s a myth that climbers can hang all day on their arms. In reality, good climbers have practiced specific ways of keeping their weight over their feet whenever possible.</p>
+</blockquote>
+<p>These three entries will give us something to work with as we continue to develop Learning Log.</p>
+<h3 id="h2-502703c18-0014">The Django Shell</h3>
+<p class="BodyFirst">Now that we’ve entered some data, we can examine it programmatically through an interactive terminal session. This interactive environment is called the Django <em>shell</em>, and it’s a great environment for testing and troubleshooting your project. Here’s an example of an interactive shell session:</p>
+<pre><code>(ll_env)learning_log$ <b>python manage.py shell</b>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> &gt;&gt;&gt; <b>from learning_logs.models import Topic</b>
+&gt;&gt;&gt; <b>Topic.objects.all()</b>
+&lt;QuerySet [&lt;Topic: Chess&gt;, &lt;Topic: Rock Climbing&gt;]&gt;</code></pre>
+<p>The command <code>python manage.py shell</code>, run in an active virtual environment, launches a Python interpreter that you can use to explore the data stored in your project’s database. Here, we import the model <code>Topic</code> from the <code>learning_logs.models</code> module <span aria-label="annotation1" class="CodeAnnotation">❶</span>. We then use the method <code>Topic.objects.all()</code> to get all instances of the model <code>Topic</code>; the list that’s returned is called a <em>queryset</em>.</p>
+<p>We can loop over a queryset just as we’d loop over a list. Here’s how you can see the ID that’s been assigned to each topic object:</p>
+<pre><code>&gt;&gt;&gt; <b>topics = Topic.objects.all()</b>
+&gt;&gt;&gt; <b>for topic in topics:</b>
+...     <b>print(topic.id, topic)</b>
+...
+1 Chess
+2 Rock Climbing</code></pre>
+<p>We assign the queryset to <code>topics</code> and then print each topic’s <code>id</code> attribute and the string representation of each topic. We can see that <code>Chess</code> has an ID of <code>1</code> and <code>Rock Climbing</code> has an ID of <code>2</code>.</p>
+<p><span epub:type="pagebreak" id="Page_387" title="387"></span>If you know the ID of a particular object, you can use the method <code>Topic.objects.get()</code> to retrieve that object and examine any attribute the object has. Let’s look at the <code>text</code> and <code>date_added</code> values for <code>Chess</code>:</p>
+<pre><code>&gt;&gt;&gt; <b>t = Topic.objects.get(id=1)</b>
+&gt;&gt;&gt; <b>t.text</b>
+'Chess'
+&gt;&gt;&gt; <b>t.date_added</b>
+datetime.datetime(2022, 5, 20, 3, 33, 36, 928759,
+    tzinfo=datetime.timezone.utc)</code></pre>
+<p>We can also look at the entries related to a certain topic. Earlier, we defined the <code>topic</code> attribute for the <code>Entry</code> model. This was a <code>ForeignKey</code>, a connection between each entry and a topic. Django can use this connection to get every entry related to a certain topic, like this:</p>
+<pre><code><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> &gt;&gt;&gt; <b>t.entry_set.all()</b>
+&lt;QuerySet [&lt;Entry: The opening is the first part of the game, roughly...&gt;, &lt;Entry:
+In the opening phase of the game, it's important t...&gt;]&gt;</code></pre>
+<p>To get data through a foreign key relationship, you use the lowercase name of the related model followed by an underscore and the word <code>set</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>. For example, say you have the models <code>Pizza</code> and <code>Topping</code>, and <code>Topping</code> is related to <code>Pizza</code> through a foreign key. If your object is called <code>my_pizza</code>, representing a single pizza, you can get all of the pizza’s toppings using the code <code>my_pizza.topping_set.all()</code>.</p>
+<p>We’ll use this syntax when we begin to code the pages users can request. The shell is really useful for making sure your code retrieves the data you want it to. If your code works as you expect it to in the shell, it should also work properly in the files within your project. If your code generates errors or doesn’t retrieve the data you expect it to, it’s much easier to troubleshoot your code in the simple shell environment than within the files that generate web pages. We won’t refer to the shell much, but you should continue using it to practice working with Django’s syntax for accessing the data stored in the project.</p>
+<p>Each time you modify your models, you’ll need to restart the shell to see the effects of those changes. To exit a shell session, press CTRL-D; on Windows, press CTRL-Z and then press ENTER.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c18-16">18-2.	Short Entries:</span> The <code>__str__()</code> method in the <code>Entry</code> model currently appends an ellipsis to every instance of <code>Entry</code> when Django shows it in the admin site or the shell. Add an <code>if</code> statement to the <code>__str__()</code> method that adds an ellipsis <span epub:type="pagebreak" id="Page_388" title="388"></span>only if the entry is longer than 50 characters. Use the admin site to add an entry that’s fewer than 50 characters in length, and check that it doesn’t have an ellipsis when viewed.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c18-17">18-3.	The Django API:</span> When you write code to access the data in your project, you’re writing a <em>query</em>. Skim through the documentation for querying your data at <a class="LinkURL" href="https://docs.djangoproject.com/en/4.1/topics/db/queries">https://docs.djangoproject.com/en/4.1/topics/db/queries</a><em>.</em> Much of what you see will look new to you, but it will be quite useful as you start to work on your own projects.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c18-18">18-4.	Pizzeria:</span> Start a new project called <code>pizzeria_project</code> with an app called <code>pizzas</code>. Define a model <code>Pizza</code> with a field called <code>name</code>, which will hold name values, such as <code>Hawaiian</code> and <code>Meat Lovers</code>. Define a model called <code>Topping</code> with fields called <code>pizza</code> and <code>name</code>. The <code>pizza</code> field should be a foreign key to <code>Pizza</code>, and <code>name</code> should be able to hold values such as <code>pineapple</code>, <code>Canadian bacon</code>, and <code>sausage</code>.</p>
+<p class="BoxBody">Register both models with the admin site, and use the site to enter some pizza names and toppings. Use the shell to explore the data you entered.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c18-0003">Making Pages: The Learning Log Home Page</h2>
+<p class="BodyFirst">Making web pages with Django consists of three stages: defining URLs, writing views, and writing templates. You can do these in any order, but in this project we’ll always start by defining the URL pattern. A <em>URL pattern</em> describes the way the URL is laid out. It also tells Django what to look for when matching a browser request with a site URL, so it knows which page to return.</p>
+<p>Each URL then maps to a particular view. The <em>view</em> function retrieves and processes the data needed for that page. The view function often renders the page using a <em>template</em>, which contains the overall structure of the page. To see how this works, let’s make the home page for Learning Log. We’ll define the URL for the home page, write its view function, and create a simple template.</p>
+<p>Because we just want to ensure that Learning Log works as it’s supposed to, we’ll make a simple page for now. A functioning web app is fun to style when it’s complete; an app that looks good but doesn’t work well is pointless. For now, the home page will display only a title and a brief description.</p>
+<h3 id="h2-502703c18-0015">Mapping a URL</h3>
+<p class="BodyFirst">Users request pages by entering URLs into a browser and clicking links, so we’ll need to decide what URLs are needed. The home page URL is first: it’s the base URL people use to access the project. At the moment, the base URL, <em>http://localhost:8000/</em>, returns the default Django site that lets us know the project was set up correctly. We’ll change this by mapping the base URL to Learning Log’s home page.</p>
+<p><span epub:type="pagebreak" id="Page_389" title="389"></span>In the main <em>ll_project</em> folder, open the file <em>urls.py</em>. You should see the following code:</p>
+<p class="CodeLabel"><b>ll_project/urls.py</b></p>
+<pre><code><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> from django.contrib import admin
+from django.urls import path
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> urlpatterns = [
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     path('admin/', admin.site.urls),
+]</code></pre>
+<p>The first two lines import the <code>admin</code> module and a function to build URL paths <span aria-label="annotation1" class="CodeAnnotation">❶</span>. The body of the file defines the <code>urlpatterns</code> variable <span aria-label="annotation2" class="CodeAnnotation">❷</span>. In this <em>urls.py</em> file, which defines URLs for the project as a whole, the <code>urlpatterns</code> variable includes sets of URLs from the apps in the project. The list includes the module <code>admin.site.urls</code>, which defines all the URLs that can be requested from the admin site <span aria-label="annotation3" class="CodeAnnotation">❸</span>.</p>
+<p>We need to include the URLs for <code>learning_logs</code>, so add the following:</p>
+<pre><code><span class="LiteralGray">from django.contrib import admin</span>
+from django.urls import path, include
+
+<span class="LiteralGray">urlpatterns = [</span>
+<span class="LiteralGray">    path('admin/', admin.site.urls),</span>
+<span class="LiteralGray">    </span>path('', include('learning_logs.urls')),
+<span class="LiteralGray">]</span></code></pre>
+<p>We’ve imported the <code>include()</code> function, and we’ve also added a line to include the module <code>learning_logs.urls</code>.</p>
+<p>The default <em>urls.py</em> is in the <em>ll_project </em>folder; now we need to make a second <em>urls.py</em> file in the <em>learning_logs </em>folder. Create a new Python file, save it as <em>urls.py</em> in <em>learning_logs</em>, and enter this code into it:</p>
+<p class="CodeLabel"><b>learning_logs/urls.py</b></p>
+<pre><code><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> """Defines URL patterns for learning_logs."""
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> from django.urls import path
+
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> from . import views
+
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> app_name = 'learning_logs'
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span> urlpatterns = [
+    # Home page
+<span aria-label="annotation6" class="CodeAnnotationHang">❻</span>     path('', views.index, name='index'),
+]</code></pre>
+<p>To make it clear which <em>urls.py</em> we’re working in, we add a docstring at the beginning of the file <span aria-label="annotation1" class="CodeAnnotation">❶</span>. We then import the <code>path</code> function, which is needed when mapping URLs to views <span aria-label="annotation2" class="CodeAnnotation">❷</span>. We also import the <code>views</code> module <span aria-label="annotation3" class="CodeAnnotation">❸</span>; the dot tells Python to import the <em>views.py</em> module from the same directory as the current <em>urls.py</em> module. The variable <code>app_name</code> helps Django distinguish this <em>urls.py</em> file from files of the same name in other apps within the project <span aria-label="annotation4" class="CodeAnnotation">❹</span>. The variable <code>urlpatterns</code> in this module is a list of individual pages that can be requested from the <code>learning_logs</code> app <span aria-label="annotation5" class="CodeAnnotation">❺</span>.</p>
+<p><span epub:type="pagebreak" id="Page_390" title="390"></span>The actual URL pattern is a call to the <code>path()</code> function, which takes three arguments <span aria-label="annotation6" class="CodeAnnotation">❻</span>. The first argument is a string that helps Django route the current request properly. Django receives the requested URL and tries to route the request to a view. It does this by searching all the URL patterns we’ve defined to find one that matches the current request. Django ignores the base URL for the project (<em>http://localhost:8000/</em>), so the empty string (<code>''</code>) matches the base URL. Any other URL won’t match this pattern, and Django will return an error page if the URL requested doesn’t match any existing URL patterns.</p>
+<p>The second argument in <code>path()</code> <span aria-label="annotation6" class="CodeAnnotation">❻</span> specifies which function to call in <em>views.py</em>. When a requested URL matches the pattern we’re defining, Django calls the <code>index()</code> function from <em>views.py</em>. (We’ll write this view function in the next section.) The third argument provides the name <em>index</em> for this URL pattern so we can refer to it more easily in other files throughout the project. Whenever we want to provide a link to the home page, we’ll use this name instead of writing out a URL.</p>
+<h3 id="h2-502703c18-0016">Writing a View</h3>
+<p class="BodyFirst">A view function takes in information from a request, prepares the data needed to generate a page, and then sends the data back to the browser. It often does this by using a template that defines what the page will look like.</p>
+<p>The file <em>views.py</em> in <em>learning_logs</em> was generated automatically when we ran the command <code>python manage.py startapp</code>. Here’s what’s in <em>views.py</em> right now:</p>
+<p class="CodeLabel"><b>views.py</b></p>
+<pre><code>from django.shortcuts import render
+
+# Create your views here.</code></pre>
+<p>Currently, this file just imports the <code>render()</code> function, which renders the response based on the data provided by views. Open <em>views.py</em> and add the following code for the home page:</p>
+<pre><code><span class="LiteralGray">from django.shortcuts import render</span>
+
+def index(request):
+    """The home page for Learning Log."""
+    return render(request, 'learning_logs/index.html')</code></pre>
+<p>When a URL request matches the pattern we just defined, Django looks for a function called <code>index()</code> in the <em>views.py </em>file. Django then passes the <code>request</code> object to this view function. In this case, we don’t need to process any data for the page, so the only code in the function is a call to <code>render()</code>. The <code>render()</code> function here passes two arguments: the original <code>request</code> object and a template it can use to build the page. Let’s write this template.</p>
+<h3 id="h2-502703c18-0017">Writing a Template</h3>
+<p class="BodyFirst">The template defines what the page should look like, and Django fills in the relevant data each time the page is requested. A template allows you to <span epub:type="pagebreak" id="Page_391" title="391"></span>access any data provided by the view. Because our view for the home page provides no data, this template is fairly simple.</p>
+<p>Inside the <em>learning_logs</em> folder, make a new folder called <em>templates</em>. Inside the <em>templates</em> folder, make another folder called <em>learning_logs</em>. This might seem a little redundant (we have a folder named <em>learning_logs</em> inside a folder named <em>templates</em> inside a folder named <em>learning_logs</em>), but it sets up a structure that Django can interpret unambiguously, even in the context of a large project containing many individual apps. Inside the inner <em>learning_logs</em> folder, make a new file called <em>index.html</em>. The path to the file will be <em>ll_project/learning_logs/templates/learning_logs/index.html</em>. Enter the following code into that file:</p>
+<p class="CodeLabel"><b>index.html</b></p>
+<pre><code>&lt;p&gt;Learning Log&lt;/p&gt;
+
+&lt;p&gt;Learning Log helps you keep track of your learning, for any topic you're
+interested in.&lt;/p&gt;</code></pre>
+<p>This is a very simple file. If you’re not familiar with HTML, the <code>&lt;p&gt;&lt;/p&gt;</code> tags signify paragraphs. The <code>&lt;p&gt;</code> tag opens a paragraph, and the <code>&lt;/p&gt;</code> tag closes a paragraph. We have two paragraphs: the first acts as a title, and the second describes what users can do with Learning Log.</p>
+<p>Now when you request the project’s base URL, <em>http://localhost:8000/</em>, you should see the page we just built instead of the default Django page. Django will take the requested URL, and that URL will match the pattern <code>''</code>; then Django will call the function <code>views.index()</code>, which will render the page using the template contained in <em>index.html</em>. <a href="#figure18-3" id="figureanchor18-3">Figure 18-3</a> shows the resulting page.</p>
+<figure>
+<img alt="" class="keyline" height="299" src="Images/f18003.png" width="694"/>
+<figcaption><p><a id="figure18-3">Figure 18-3</a>: The home page for Learning Log</p></figcaption>
+</figure>
+<p>Although it might seem like a complicated process for creating one page, this separation between URLs, views, and templates works quite well. It allows you to think about each aspect of a project separately. In larger projects, it allows individuals working on the project to focus on the areas in which they’re strongest. For example, a database specialist can focus on the models, a programmer can focus on the view code, and a frontend specialist can focus on the templates.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<span epub:type="pagebreak" id="Page_392" title="392"></span><h2><span class="NoteHead">Note</span></h2>
+<p>	You might see the following error message:</p>
+<pre><code>ModuleNotFoundError: No module named 'learning_logs.urls'</code></pre>
+<p class="Continued">If you do, stop the development server by pressing CTRL-C in the terminal window where you issued the <code>runserver</code> command. Then reissue the command <code class="bold">python manage.py runserver</code>. You should be able to see the home page. Anytime you run into an error like this, try stopping and restarting the server.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c18-22">18-5.	Meal Planner:</span> Consider an app that helps people plan their meals throughout the week. Make a new folder called <em>meal_planner</em>, and start a new Django project inside this folder. Then make a new app called <code>meal_plans</code>. Make a simple home page for this project.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c18-23">18-6.	Pizzeria Home Page:</span> Add a home page to the Pizzeria project you started in <span class="xref" itemid="xref_target_Exercise 18-4 (page 388)">Exercise 18-4 (page 388)</span>.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c18-0004">Building Additional Pages</h2>
+<p class="BodyFirst">Now that we’ve established a routine for building a page, we can start to build out the Learning Log project. We’ll build two pages that display data: a page that lists all topics and a page that shows all the entries for a particular topic. For each page, we’ll specify a URL pattern, write a view function, and write a template. But before we do this, we’ll create a base template that all templates in the project can inherit from.</p>
+<h3 id="h2-502703c18-0018">Template Inheritance</h3>
+<p class="BodyFirst">When building a website, some elements will need to be repeated on each page. Rather than writing these elements directly into each page, you can write a base template containing the repeated elements and then have each page inherit from the base. This approach lets you focus on developing the unique aspects of each page, and makes it much easier to change the overall look and feel of the project.</p>
+<h4 id="h3-502703c18-0004">The Parent Template</h4>
+<p class="BodyFirst">We’ll create a template called <em>base.html</em> in the same directory as <em>index.html</em>. This file will contain elements common to all pages; every other template will inherit from <em>base.html</em>. The only element we want to repeat on each page right now is the title at the top. Because we’ll include this template on every page, let’s make the title a link to the home page:</p>
+<p class="CodeLabel"><b>base.html</b></p>
+<pre><code>&lt;p&gt;
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>   &lt;a href="{% url 'learning_logs:index' %}"&gt;Learning Log&lt;/a&gt;
+<span epub:type="pagebreak" id="Page_393" title="393"></span>&lt;/p&gt;
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> {% block content %}{% endblock content %}</code></pre>
+<p>The first part of this file creates a paragraph containing the name of the project, which also acts as a home page link. To generate a link, we use a <em>template tag</em>, which is indicated by braces and percent signs (<code>{% %}</code>). A template tag generates information to be displayed on a page. The template tag <code>{% url 'learning_logs:index' %}</code> shown here generates a URL matching the URL pattern defined in <em>learning_logs/urls.py</em> with the name <code>'index'</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>. In this example, <code>learning_logs</code> is the <em>namespace</em> and <code>index</code> is a uniquely named URL pattern in that namespace. The namespace comes from the value we assigned to <code>app_name</code> in the <em>learning_logs/urls.py</em> file.</p>
+<p>In a simple HTML page, a link is surrounded by the <em>anchor</em> <em>tag</em> <code>&lt;a&gt;</code>:</p>
+<pre><code>&lt;a href="<var>link_url</var>"&gt;<var>link text</var>&lt;/a&gt;</code></pre>
+<p>Having the template tag generate the URL for us makes it much easier to keep our links up to date. We only need to change the URL pattern in <em>urls.py</em>, and Django will automatically insert the updated URL the next time the page is requested. Every page in our project will inherit from <em>base.html</em>, so from now on, every page will have a link back to the home page.</p>
+<p>On the last line, we insert a pair of <code>block</code> tags <span aria-label="annotation2" class="CodeAnnotation">❷</span>. This block, named <code>content</code>, is a placeholder; the child template will define the kind of information that goes in the <code>content</code> block.</p>
+<p>A child template doesn’t have to define every block from its parent, so you can reserve space in parent templates for as many blocks as you like; the child template uses only as many as it needs.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	In Python code, we almost always use four spaces when we indent. Template files tend to have more levels of nesting than Python files, so it’s common to use only two spaces for each indentation level.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h4 id="h3-502703c18-0005">The Child Template</h4>
+<p class="BodyFirst">Now we need to rewrite <em>index.html</em> to inherit from <em>base.html</em>. Add the following code to <em>index.html</em>:</p>
+<p class="CodeLabel"><b>index.html</b></p>
+<pre><code><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> {% extends 'learning_logs/base.html' %}
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> {% block content %}
+<span class="LiteralGray">  &lt;p&gt;Learning Log helps you keep track of your learning, for any topic you're</span>
+<span class="LiteralGray">  interested in.&lt;/p&gt;</span>
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> {% endblock content %}</code></pre>
+<p>If you compare this to the original <em>index.html</em>, you can see that we’ve replaced the Learning Log title with the code for inheriting from a parent template <span aria-label="annotation1" class="CodeAnnotation">❶</span>. A child template must have an <code>{% extends %}</code> tag on the first line to tell Django which parent template to inherit from. The file <em>base.html</em> <span epub:type="pagebreak" id="Page_394" title="394"></span>is part of <code>learning_logs</code>, so we include <em>learning_logs</em> in the path to the parent template. This line pulls in everything contained in the <em>base.html</em> template and allows <em>index.html</em> to define what goes in the space reserved by the <code>content</code> block.</p>
+<p>We define the content block by inserting a <code>{% block %}</code> tag with the name <code>content</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span>. Everything that we aren’t inheriting from the parent template goes inside the <code>content</code> block. Here, that’s the paragraph describing the Learning Log project. We indicate that we’re finished defining the content by using an <code>{% endblock content %}</code> tag <span aria-label="annotation3" class="CodeAnnotation">❸</span>. The <code>{% endblock %}</code> tag doesn’t require a name, but if a template grows to contain multiple blocks, it can be helpful to know exactly which block is ending.</p>
+<p>You can start to see the benefit of template inheritance: in a child template, we only need to include content that’s unique to that page. This not only simplifies each template, but also makes it much easier to modify the site. To modify an element common to many pages, you only need to modify the parent template. Your changes are then carried over to every page that inherits from that template. In a project that includes tens or hundreds of pages, this structure can make it much easier and faster to improve your site.</p>
+<p>In a large project, it’s common to have one parent template called <em>base.html</em> for the entire site and parent templates for each major section of the site. All the section templates inherit from <em>base.html</em>, and each page in the site inherits from a section template. This way you can easily modify the look and feel of the site as a whole, any section in the site, or any individual page. This configuration provides a very efficient way to work, and encourages you to steadily update your project over time.</p>
+<h3 id="h2-502703c18-0019">The Topics Page</h3>
+<p class="BodyFirst">Now that we have an efficient approach to building pages, we can focus on our next two pages: the general topics page and the page to display entries for a single topic. The topics page will show all topics that users have created, and it’s the first page that will involve working with data.</p>
+<h4 id="h3-502703c18-0006">The Topics URL Pattern</h4>
+<p class="BodyFirst">First, we define the URL for the topics page. It’s common to choose a simple URL fragment that reflects the kind of information presented on the page. We’ll use the word <em>topics</em>, so the URL <em>http://localhost:8000/topics/</em> will return this page. Here’s how we modify <em>learning_logs/urls.py</em>:</p>
+<p class="CodeLabel"><b>learning_logs/urls.py</b></p>
+<pre><code><span class="LiteralGray">"""Defines URL patterns for learning_logs."""</span>
+<em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">urlpatterns = [</span>
+<span class="LiteralGray">    # Home page</span>
+<span class="LiteralGray">    path('', views.index, name='index'),</span>
+    # Page that shows all topics.
+    path('topics/', views.topics, name='topics'),
+<span class="LiteralGray">]</span></code></pre>
+<p><span epub:type="pagebreak" id="Page_395" title="395"></span>The new URL pattern is the word <em>topics</em>, followed by a forward slash. When Django examines a requested URL, this pattern will match any URL that has the base URL followed by <em>topics</em>. You can include or omit a forward slash at the end, but there can’t be anything else after the word <em>topics</em>, or the pattern won’t match. Any request with a URL that matches this pattern will then be passed to the function <code>topics()</code> in <em>views.py</em>.</p>
+<h4 id="h3-502703c18-0007">The Topics View</h4>
+<p class="BodyFirst">The <code>topics()</code> function needs to retrieve some data from the database and send it to the template. Add the following to <em>views.py</em>:</p>
+<p class="CodeLabel"><b>views.py</b></p>
+<pre><code><span class="LiteralGray">from django.shortcuts import render</span>
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> from .models import Topic
+
+<span class="LiteralGray">def index(request):</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic">--snip--</em>
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> def topics(request):
+    """Show all topics."""
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     topics = Topic.objects.order_by('date_added')
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>     context = {'topics': topics}
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>     return render(request, 'learning_logs/topics.html', context)</code></pre>
+<p>We first import the model associated with the data we need <span aria-label="annotation1" class="CodeAnnotation">❶</span>. The <code>topics()</code> function needs one parameter: the <code>request</code> object Django received from the server <span aria-label="annotation2" class="CodeAnnotation">❷</span>. We query the database by asking for the <code>Topic</code> objects, sorted by the <code>date_added</code> attribute <span aria-label="annotation3" class="CodeAnnotation">❸</span>. We assign the resulting queryset to <code>topics</code>.</p>
+<p>We then define a context that we’ll send to the template <span aria-label="annotation4" class="CodeAnnotation">❹</span>. A <em>context</em> is a dictionary in which the keys are names we’ll use in the template to access the data we want, and the values are the data we need to send to the template. In this case, there’s one key-value pair, which contains the set of topics we’ll display on the page. When building a page that uses data, we call <code>render()</code> with the <code>request</code> object, the template we want to use, and the <code>context</code> dictionary <span aria-label="annotation5" class="CodeAnnotation">❺</span>.</p>
+<h4 id="h3-502703c18-0008">The Topics Template</h4>
+<p class="BodyFirst">The template for the topics page receives the <code>context</code> dictionary, so the template can use the data that <code>topics()</code> provides. Make a file called <em>topics.html</em> in the same directory as <em>index.html</em>. Here’s how we can display the topics in the template:</p>
+<p class="CodeLabel"><b>topics.html</b></p>
+<pre><code>{% extends 'learning_logs/base.html' %}
+
+{% block content %}
+
+  &lt;p&gt;Topics&lt;/p&gt;
+
+<span epub:type="pagebreak" id="Page_396" title="396"></span><span aria-label="annotation1" class="CodeAnnotationHang">❶</span>   &lt;ul&gt;
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     {% for topic in topics %}
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>       &lt;li&gt;{{ topic.text }}&lt;/li&gt;
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>     {% empty %}
+      &lt;li&gt;No topics have been added yet.&lt;/li&gt;
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>     {% endfor %}
+<span aria-label="annotation6" class="CodeAnnotationHang">❻</span>   &lt;/ul&gt;
+
+{% endblock content %}</code></pre>
+<p>We use the <code>{% extends %}</code> tag to inherit from <em>base.html</em>, just as we did on the home page, and then we open a <code>content</code> block. The body of this page contains a bulleted list of the topics that have been entered. In standard HTML, a bulleted list is called an <em>unordered list</em> and is indicated by the tags <code>&lt;ul&gt;&lt;/ul&gt;</code>. The opening tag <code>&lt;ul&gt;</code> begins the bulleted list of topics <span aria-label="annotation1" class="CodeAnnotation">❶</span>.</p>
+<p>Next we use a template tag that’s equivalent to a <code>for</code> loop, which loops through the list <code>topics</code> from the <code>context</code> dictionary <span aria-label="annotation2" class="CodeAnnotation">❷</span>. The code used in templates differs from Python in some important ways. Python uses indentation to indicate which lines of a <code>for</code> statement are part of a loop. In a template, every <code>for</code> loop needs an explicit <code>{% endfor %}</code> tag indicating where the end of the loop occurs. So in a template, you’ll see loops written like this:</p>
+<pre><code>{% for <var>item</var> in <var>list</var> %}
+  <var>do something with each item</var>
+{% endfor %}</code></pre>
+<p>Inside the loop, we want to turn each topic into an item in the bulleted list. To print a variable in a template, wrap the variable name in double braces. The braces won’t appear on the page; they just indicate to Django that we’re using a template variable. So the code <code>{{ topic.text }}</code> <span aria-label="annotation3" class="CodeAnnotation">❸</span> will be replaced by the value of the current topic’s <code>text</code> attribute on each pass through the loop. The HTML tag <code>&lt;li&gt;&lt;/li&gt;</code> indicates a <em>list item</em>. Anything between these tags, inside a pair of <code>&lt;ul&gt;&lt;/ul&gt;</code> tags, will appear as a bulleted item in the list.</p>
+<p>We also use the <code>{% empty %}</code> template tag <span aria-label="annotation4" class="CodeAnnotation">❹</span>, which tells Django what to do if there are no items in the list. In this case, we print a message informing the user that no topics have been added yet. The last two lines close out the <code>for</code> loop <span aria-label="annotation5" class="CodeAnnotation">❺</span> and then close out the bulleted list <span aria-label="annotation6" class="CodeAnnotation">❻</span>.</p>
+<p>Now we need to modify the base template to include a link to the topics page. Add the following code to <em>base.html</em>:</p>
+<p class="CodeLabel"><b>base.html</b></p>
+<pre><code><span class="LiteralGray">&lt;p&gt;</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>   &lt;a href="{% url 'learning_logs:index' %}"&gt;Learning Log&lt;/a&gt; -
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>   &lt;a href="{% url 'learning_logs:topics' %}"&gt;Topics&lt;/a&gt;
+<span class="LiteralGray">&lt;/p&gt;</span>
+
+<span class="LiteralGray">{% block content %}{% endblock content %}</span></code></pre>
+<p>We add a dash after the link to the home page <span aria-label="annotation1" class="CodeAnnotation">❶</span>, and then add a link to the topics page using the <code>{% url %}</code> template tag again <span aria-label="annotation2" class="CodeAnnotation">❷</span>. This line tells <span epub:type="pagebreak" id="Page_397" title="397"></span>Django to generate a link matching the URL pattern with the name <code>'topics'</code> in <em>learning_logs/urls.py</em>.</p>
+<p>Now when you refresh the home page in your browser, you’ll see a Topics link. When you click the link, you’ll see a page that looks similar to <a href="#figure18-4" id="figureanchor18-4">Figure 18-4</a>.</p>
+<figure>
+<img alt="" class="keyline" height="299" src="Images/f18004.png" width="694"/>
+<figcaption><p><a id="figure18-4">Figure 18-4</a>: The topics page</p></figcaption>
+</figure>
+<h3 id="h2-502703c18-0020">Individual Topic Pages</h3>
+<p class="BodyFirst">Next, we need to create a page that can focus on a single topic, showing the topic name and all the entries for that topic. We’ll define a new URL pattern, write a view, and create a template. We’ll also modify the topics page so each item in the bulleted list links to its corresponding topic page.</p>
+<h4 id="h3-502703c18-0009">The Topic URL Pattern</h4>
+<p class="BodyFirst">The URL pattern for the topic page is a little different from the prior URL patterns because it will use the topic’s <code>id</code> attribute to indicate which topic was requested. For example, if the user wants to see the detail page for the Chess topic (where the <code>id</code> is 1), the URL will be <em>http://localhost:8000/topics/1/</em>. Here’s a pattern to match this URL, which you should place in <em>learning_logs/urls.py</em>:</p>
+<p class="CodeLabel"><b>learning_logs/urls.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">urlpatterns = [</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic">--snip--</em>
+    # Detail page for a single topic.
+    path('topics/&lt;int:topic_id&gt;/', views.topic, name='topic'),
+<span class="LiteralGray">]</span></code></pre>
+<p>Let’s examine the string <code>'topics/&lt;int:topic_id&gt;/'</code> in this URL pattern. The first part of the string tells Django to look for URLs that have the word <em>topics</em> after the base URL. The second part of the string, <code>/&lt;int:topic_id&gt;/</code>, matches an integer between two forward slashes and assigns the integer value to an argument called <code>topic_id</code>.</p>
+<p><span epub:type="pagebreak" id="Page_398" title="398"></span>When Django finds a URL that matches this pattern, it calls the view function <code>topic()</code> with the value assigned to <code>topic_id</code> as an argument. We’ll use the value of <code>topic_id</code> to get the correct topic inside the function.</p>
+<h4 id="h3-502703c18-0010">The Topic View</h4>
+<p class="BodyFirst">The <code>topic()</code> function needs to get the topic and all associated entries from the database, much like what we did earlier in the Django shell:</p>
+<p class="CodeLabel"><b>views.py</b></p>
+<pre><code><var>--snip--</var>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> def topic(request, topic_id):
+    """Show a single topic and all its entries."""
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     topic = Topic.objects.get(id=topic_id)
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     entries = topic.entry_set.order_by('-date_added')
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>     context = {'topic': topic, 'entries': entries}
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>     return render(request, 'learning_logs/topic.html', context)</code></pre>
+<p>This is the first view function that requires a parameter other than the <code>request</code> object. The function accepts the value captured by the expression <code>/&lt;int:topic_id&gt;/</code> and assigns it to <code>topic_id</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>. Then we use <code>get()</code> to retrieve the topic, just as we did in the Django shell <span aria-label="annotation2" class="CodeAnnotation">❷</span>. Next, we get all of the entries associated with this topic and order them according to <code>date_added</code> <span aria-label="annotation3" class="CodeAnnotation">❸</span>. The minus sign in front of <code>date_added</code> sorts the results in reverse order, which will display the most recent entries first. We store the topic and entries in the <code>context</code> dictionary <span aria-label="annotation4" class="CodeAnnotation">❹</span> and call <code>render()</code> with the <code>request</code> object, the <em>topic.html</em> template, and the <code>context</code> dictionary <span aria-label="annotation5" class="CodeAnnotation">❺</span>.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	The code phrases at <span aria-label="annotation2" class="CodeAnnotation">❷</span> and <span aria-label="annotation3" class="CodeAnnotation">❸</span> are called <em>queries</em>, because they query the database for specific information. When you’re writing queries like these in your own projects, it’s helpful to try them out in the Django shell first. You’ll get much quicker feedback in the shell than you would by writing a view and template and then checking the results in a browser.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h4 id="h3-502703c18-0011">The Topic Template</h4>
+<p class="BodyFirst">The template needs to display the name of the topic and the entries. We also need to inform the user if no entries have been made yet for this topic.</p>
+<p class="CodeLabel"><b>topic.html</b></p>
+<pre><code>{% extends 'learning_logs/base.html' %}
+
+{% block content %}
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>   &lt;p&gt;Topic: {{ topic.text }}&lt;/p&gt;
+
+  &lt;p&gt;Entries:&lt;/p&gt;
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>   &lt;ul&gt;
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     {% for entry in entries %}
+      &lt;li&gt;
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>         &lt;p&gt;{{ entry.date_added|date:'M d, Y H:i' }}&lt;/p&gt;
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>         &lt;p&gt;{{ entry.text|linebreaks }}&lt;/p&gt;
+      &lt;/li&gt;
+<span aria-label="annotation6" class="CodeAnnotationHang">❻</span>     {% empty %}
+<span epub:type="pagebreak" id="Page_399" title="399"></span>      &lt;li&gt;There are no entries for this topic yet.&lt;/li&gt;
+    {% endfor %}
+  &lt;/ul&gt;
+
+{% endblock content %}</code></pre>
+<p>We extend <em>base.html</em>, as we’ll do for all pages in the project. Next, we show the <code>text</code> attribute of the topic that’s been requested <span aria-label="annotation1" class="CodeAnnotation">❶</span>. The variable <code>topic</code> is available because it’s included in the <code>context</code> dictionary. We then start a bulleted list <span aria-label="annotation2" class="CodeAnnotation">❷</span> to show each of the entries and loop through them <span aria-label="annotation3" class="CodeAnnotation">❸</span>, as we did with the topics earlier.</p>
+<p>Each bullet lists two pieces of information: the timestamp and the full text of each entry. For the timestamp <span aria-label="annotation4" class="CodeAnnotation">❹</span>, we display the value of the attribute <code>date_added</code>. In Django templates, a vertical line (<code>|</code>) represents a template <em>filter</em>—a function that modifies the value in a template variable during the rendering process. The filter <code>date:'M d, Y H:i'</code> displays timestamps in the format <em>January 1, 2022 23:00</em>. The next line displays the value of the current entry’s <code>text</code> attribute. The filter <code>linebreaks</code> <span aria-label="annotation5" class="CodeAnnotation">❺</span> ensures that long text entries include line breaks in a format understood by browsers, rather than showing a block of uninterrupted text. We again use the <code>{% empty %}</code> template tag <span aria-label="annotation6" class="CodeAnnotation">❻</span> to print a message informing the user that no entries have been made.</p>
+<h4 id="h3-502703c18-0012">Links from the Topics Page</h4>
+<p class="BodyFirst">Before we look at the topic page in a browser, we need to modify the topics template so each topic links to the appropriate page. Here’s the change you need to make to <em>topics.html</em>:</p>
+<p class="CodeLabel"><b>topics.html</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+    <span class="LiteralGray">{% for topic in topics %}</span>
+      &lt;li&gt;
+        &lt;a href="{% url 'learning_logs:topic' topic.id %}"&gt;
+          {{ topic.text }}&lt;/a&gt;&lt;/li&gt;
+      &lt;/li&gt;
+<span class="LiteralGray">    {% empty %}</span>
+<em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>We use the URL template tag to generate the proper link, based on the URL pattern in <code>learning_logs</code> with the name <code>'topic'</code>. This URL pattern requires a <code>topic_id</code> argument, so we add the attribute <code>topic.id</code> to the URL template tag. Now each topic in the list of topics is a link to a topic page, such as <em>http://localhost:8000/topics/1/</em>.</p>
+<p>When you refresh the topics page and click a topic, you should see a page that looks like <a href="#figure18-5" id="figureanchor18-5">Figure 18-5</a>.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	There’s a subtle but important difference between <code>topic.id</code> and <code>topic_id</code>. The expression <code>topic.id</code> examines a topic and retrieves the value of the corresponding ID. The variable <code>topic_id</code> is a reference to that ID in the code. If you run into errors when working with IDs, make sure you’re using these expressions in the appropriate ways.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<span epub:type="pagebreak" id="Page_400" title="400"></span><figure>
+<img alt="" class="keyline" height="410" src="Images/f18005.png" width="694"/>
+<figcaption><p><a id="figure18-5">Figure 18-5</a>: The detail page for a single topic, showing all entries for a topic</p></figcaption>
+</figure>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c18-27">18-7.	Template Documentation:</span> Skim the Django template documentation at <a class="LinkURL" href="https://docs.djangoproject.com/en/4.1/ref/templates">https://docs.djangoproject.com/en/4.1/ref/templates</a>. You can refer back to it when you’re working on your own projects.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c18-28">18-8.	Pizzeria Pages:</span> Add a page to the Pizzeria project from Exercise 18-6 (<span class="xref" itemid="xref_target_page 392">page 392</span>) that shows the names of available pizzas. Then link each pizza name to a page displaying the pizza’s toppings. Make sure you use template inheritance to build your pages efficiently.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c18-0005">Summary</h2>
+<p class="BodyFirst">In this chapter, you learned how to start building a simple web app using the Django framework. You saw a brief project specification, installed Django to a virtual environment, set up a project, and checked that the project was set up correctly. You set up an app and defined models to represent the data for your app. You learned about databases and how Django helps you migrate your database after you make a change to your models. You created a superuser for the admin site, and you used the admin site to enter some initial data.</p>
+<p>You also explored the Django shell, which allows you to work with your project’s data in a terminal session. You learned how to define URLs, create view functions, and write templates to make pages for your site. You also used template inheritance to simplify the structure of individual templates and make it easier to modify the site as the project evolves.</p>
+<p><span epub:type="pagebreak" id="Page_401" title="401"></span>In <span class="xref" itemid="xref_target_Chapter 19">Chapter 19</span>, you’ll make intuitive, user-friendly pages that allow users to add new topics and entries and edit existing entries without going through the admin site. You’ll also add a user registration system, allowing users to create an account and make their own learning log. This is the heart of a web app—the ability to create something that any number of users can interact with.</p>
+</section>
+</div></body>
+</html>

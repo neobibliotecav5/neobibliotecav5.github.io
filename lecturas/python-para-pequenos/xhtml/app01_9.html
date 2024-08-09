@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="app01lev1sec8">
+<span class="calibre2" id="page_287">
+</span>
+  Continúa </h3>
+<p class="noindent">
+  La palabra clave <span class="literal1" translate="no">
+   continue
+  </span>es una forma de "saltar" al siguiente elemento de un bucle para que no se ejecute el código restante del bloque de bucle. A diferencia de <span class="literal1" translate="no">
+   break
+  </span>, no saltamos fuera del bucle, sino que continuamos con el siguiente elemento. Por ejemplo, si tuviéramos una lista de elementos y quisiéramos saltar los elementos que empiezan por <em class="calibre7">b , </em>podríamos utilizar el siguiente código: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> my_items = [<span class="green">'apple'</span>, <span class="green">'aardvark'</span>, <span class="green">'banana'</span>, <span class="green">'badger'</span>,
+        <span class="green">'clementine'</span>, <span class="green">'camel'</span>]
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> item <span class="orange">in</span> my_items:
+        <span class="orange">if</span> item.startswith(<span class="green">'b'</span>):
+            <span class="orange">continue</span>
+        <span class="violet">print</span>(item)
+
+<span class="blue1">apple
+aardvark
+clementine
+camel</span>
+</pre>
+<p class="indent">
+  Primero creamos nuestra lista de elementos y luego utilizamos un bucle <span class="literal1" translate="no">
+   for
+  </span>para recorrer los elementos y ejecutar un bloque de código para cada uno. Si el elemento empieza por la letra <em class="calibre7">b , </em>pasamos al siguiente elemento. Si no, imprimimos el elemento. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="app01_8.html">anterior</a><a href="app01.html">Subtema 9 de 33: (Ver todo)</a><a href="app01_10.html">siguiente</a><br/></p>
+<br/><a href="app01_9.docx" target="_blank"></a></footer>
+</body>
+</html>

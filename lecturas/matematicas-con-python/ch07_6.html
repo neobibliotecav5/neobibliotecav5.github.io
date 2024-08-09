@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<meta charset="utf-8"/>
+<title>Capítulo 7: Resolución de problemas de cálculo</title>
+<link href="style.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="core.css" media="all" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch07lev1sec05"><a id="page_188"></a><strong>Derivadas de orden superior y búsqueda de máximos y mínimos</strong></h3>
+<p class="noindent">Por defecto, al crear el objeto derivada mediante la clase <span class="literal" translate="no">Derivative</span> se encuentra la derivada de primer orden. Para encontrar derivadas de orden superior, basta con especificar el orden de la derivada a calcular como tercer argumento al crear el objeto <span class="literal" translate="no">Derivative</span>. En esta sección te mostraré cómo utilizar la derivada de primer y segundo orden de la función para encontrar sus máximos y mínimos en un intervalo.</p>
+<p class="indent">Considera la función <sup>x5</sup> - <sup>30x3</sup> + <em>50x</em>, definida en el dominio [-5, 5]. Observa que he utilizado corchetes para indicar un dominio cerrado, lo que indica que la variable <em>x</em> puede asumir cualquier valor real mayor o igual que -5 y menor o igual que 5 (ver <a href="ch07.html#ch7fig3">Figura 7-3</a>).</p>
+<div class="image"><img alt="image" src="images/f07-03.jpg" translate="no"/></div>
+<p class="figuret"><a id="ch7fig3"></a>Figura<em>7-3: Gráfica de la función</em><em><sup>x5</sup></em><em>-</em><em><sup>30x3</sup></em> + <em>50x</em><em>, donde -5</em> ≤ x ≤ <em>5</em></p>
+<p class="indent">En la gráfica podemos ver que la función alcanza su valor mínimo en el intervalo -2 ≤ <em>x</em> ≤ 0 en el punto <em>B</em>. Del mismo modo, alcanza su valor máximo en el intervalo 0 ≤ <em>x</em> ≤ 2 en el punto <em>C</em>. Por otra parte, la función alcanza sus valores máximo y mínimo en todo el dominio de <em>x</em> que hemos considerado aquí en los puntos <em>A</em> y <em>D</em>, respectivamente. Así, cuando consideramos la función en todo el intervalo [-5, 5], los puntos <em>B</em> y <em>C</em> se denominan <em>mínimo local</em> y <em>máximo local</em>, respectivamente, mientras que los puntos <em>A</em> y <em>D</em> son el <em>máximo global</em> y el <em>mínimo global</em>, respectivamente.</p>
+<p class="indent">El término <em>extremo</em> (plural <em>extremos</em>) se refiere a los puntos en los que la función alcanza un máximo o un mínimo local o global. Si <em>x</em> es un extremo de <a id="page_189"></a>la función <em>f</em><em>(x</em>), entonces la derivada de primer orden de <em>f</em> en <em>x</em>, denominada <em>f′</em><em>(x</em>), debe desaparecer. Esta propiedad muestra que una buena forma de encontrar posibles extremos es intentar resolver la ecuación <em>f′</em><em>(x</em>) = 0. Tales soluciones se denominan <em>puntos críticos</em> de la función. Vamos a probarlo:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">from sympy import Symbol, solve, Derivative</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">x = Symbol('x')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">f = x**5 - 30*x**3 + 50*x</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">d1 = Derivative(f, x).doit()</span></p>
+<p class="indent">Ahora que hemos calculado la derivada de primer orden, <em>f′</em>(<em>x</em>), vamos a resolver <em>f′</em>(<em>x</em>) = 0 para encontrar los puntos críticos:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">critical_points = solve(d1)</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">critical_points</span><br translate="no"/>[-sqrt(-sqrt(71) + 9), sqrt(-sqrt(71) + 9), -sqrt(sqrt(71) + 9),<br translate="no"/>sqrt(sqrt(71) + 9)]</p>
+<p class="indent">Los números de la lista <span class="literal" translate="no">critical_points</span> que se muestran aquí corresponden a los puntos <em>B</em>, <em>C</em>, <em>A</em> y <em>D</em>, respectivamente. Crearemos etiquetas para referirnos a estos puntos, y luego podremos utilizar las etiquetas en nuestros comandos:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">A = critical_points[2]</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">B = critical_points[0]</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">C = critical_points[1]</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">D = critical_points[3]</span></p>
+<p class="indent">Como todos los puntos críticos de esta función se encuentran dentro del intervalo considerado, todos ellos son relevantes para nuestra búsqueda del máximo y mínimo globales de <em>f</em><em>(x</em>). Ahora podemos aplicar la llamada <em>prueba de la segunda derivada</em> para acotar qué puntos críticos podrían ser máximos o mínimos globales.</p>
+<p class="indent">En primer lugar, calculamos la derivada de segundo orden de la función <em>f</em>(<em>x</em>). Observa que para ello introducimos <span class="literal" translate="no">2</span> como tercer argumento:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">d2 = Derivative(f, x, 2).doit()</span></p>
+<p class="indent">Ahora, hallamos el valor de la segunda derivada sustituyendo el valor de cada uno de los puntos críticos uno a uno en lugar de <em>x</em>. Si el valor resultante es menor que 0, el punto es un máximo local; si el valor es mayor que 0, es un mínimo local. Si el valor resultante es 0, la prueba no es concluyente y no podemos deducir nada sobre si el punto crítico <em>x</em> es un mínimo local, un máximo o ninguno de los dos.</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">d2.subs({x:B}).evalf()</span><br translate="no"/>127.661060789073<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">d2.subs({x:C}).evalf()</span><br translate="no"/>-127.661060789073<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">d2.subs({x:A}).evalf()</span><br translate="no"/>-703.493179468151<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">d2.subs({x:D}).evalf()</span><br translate="no"/>703.493179468151</p>
+<p class="indent"><a id="page_190"></a>La evaluación de la prueba de la segunda derivada en los puntos críticos nos dice que los puntos <em>A</em> y <em>C</em> son máximos locales y los puntos <em>B</em> y <em>D</em> son mínimos locales.</p>
+<p class="indent">El máximo y el mínimo globales de <em>f</em><em>(x</em>) en el intervalo [-5, 5] se alcanzan en un punto crítico <em>x</em> o en uno de los puntos extremos del dominio<em>(x</em> = -5 y <em>x</em> = 5). Ya hemos encontrado todos los puntos críticos, que son los puntos <em>A</em>, <em>B</em>, <em>C</em> y <em>D</em>. La función no puede alcanzar su mínimo global en ninguno de los puntos críticos <em>A</em> o <em>C</em> porque son máximos locales. Por lógica similar, la función no puede alcanzar su máximo global en <em>B</em> ni en <em>D</em>.</p>
+<p class="indent">Por lo tanto, para encontrar el máximo global, debemos calcular el valor de <em>f</em><em>(x</em>) en los puntos <em>A</em>, <em>C</em>, -5 y 5. Entre estos puntos, el lugar donde f<em>(</em>x <em>)</em> tenga el mayor valor debe ser el máximo global.</p>
+<p class="indent">Crearemos dos etiquetas, <span class="literal" translate="no">x_min</span> y <span class="literal" translate="no">x_max</span>, para referirnos a los límites del dominio y evaluaremos la función en los puntos <span class="literal" translate="no">A</span>, <span class="literal" translate="no">C</span>, <span class="literal" translate="no">x_min</span> y <span class="literal" translate="no">x_max</span>:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">x_min = -5</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">x_max = 5</span><br translate="no"/><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">f.subs({x:A}).evalf()</span><br translate="no"/>705.959460380365<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">f.subs({x:C}).evalf()</span><br translate="no"/>25.0846626340294<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">f.subs({x:x_min}).evalf()</span><br translate="no"/>375.000000000000<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">f.subs({x:x_max}).evalf()</span><br translate="no"/>-375.000000000000</p>
+<p class="indent">Mediante estos cálculos, así como examinando el valor de la función en todos los puntos críticos y en los límites del dominio<a href="ch07.html#ch7fig3">(Figura 7-3</a>), vemos que el punto <em>A</em> resulta ser el máximo global.</p>
+<p class="indent">Del mismo modo, para determinar el mínimo global, debemos calcular los valores de <em>f</em><em>(x</em>) en los puntos <em>B</em>, <em>D</em>, -5 y 5:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">f.subs({x:B}).evalf()</span><br translate="no"/>-25.0846626340294<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">f.subs({x:D}).evalf()</span><br translate="no"/>-705.959460380365<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">f.subs({x:x_min}).evalf()</span><br translate="no"/>375.000000000000<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">f.subs({x:x_max}).evalf()</span><br translate="no"/>-375.000000000000</p>
+<p class="indent">El punto donde <em>f</em>(<em>x</em>) tiene el valor más pequeño debe ser el mínimo global de la función; éste resulta ser el punto <em>D</em>.</p>
+<p class="indent">Este método para hallar los extremos de una función -considerando el valor de la función en todos los puntos críticos (tras descartar potencialmente <a id="page_191"></a>algunos mediante la prueba de la segunda derivada) y los valores límite- funcionará siempre que la función sea doblemente diferenciable. Es decir, tanto la primera como la segunda derivada deben existir en todas las partes del dominio.</p>
+<p class="indent">Para una función como <em><sup>ex</sup></em>, puede que no haya ningún punto crítico en el dominio, pero en este caso el método funciona bien: simplemente nos dice que los extremos se dan en la frontera del dominio.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch07_5.html">anterior</a><a href="ch07.html">Subtema 6 de 11: (Ver todo)</a><a href="ch07_7.html">siguiente</a><br/></p>
+<br/><a href="ch07_6.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch12lev1sec02"><strong><span class="blue1">Crear una clase</span></strong></h3>
+<p class="noindent">Empezarás creando una clase y luego crearás todos tus objetos a partir de esa clase. Para crear una clase, utiliza la palabra clave <span class="literal">class</span>, el nombre con el que quieras llamar a la clase y la clase <span class="literal">objeto</span> entre paréntesis (explicaré la clase <span class="literal">objeto</span> en "<a href="ch12.xhtml#ch12lev2sec07">Heredar una clase</a>" en <a href="ch12.xhtml#page_278">la página 278</a>):</p>
+<p class="programs" translate="no"><span class="orange">class</span> <span class="blue1">ClassName</span>(<span class="rose">object</span>):<br translate="no"/> <span class="orange">def</span> <span class="blue1">__init_</span>_(self):<br translate="no"/> <span class="red"># Body of init</span></p>
+<p class="indent">Es una buena práctica poner en mayúsculas los nombres de tus clases. Así es más fácil distinguir las clases de las funciones, que deben empezar por minúscula.</p>
+<p class="indent">Cuando crees una nueva clase, debes incluir el método <span class="literal">__init__()</span> y pasarle <span class="literal">self</span> como argumento. El argumento <span class="literal">self</span> es necesario para todos los métodos de una clase. Hace referencia a la clase a la que pertenece el método. El método <span class="literal">__init__</span> () indica a Python lo que quieres que haga la clase cuando la utilices por primera vez en un programa. Esto se llama <em>inicializar</em> la clase, que es la abreviatura de <span class="literal">__init__()</span>.</p>
+<p class="indent">Por ejemplo, vamos a crear una clase llamada <span class="literal">Gato</span> y a crear algunos objetos gato. La clase <span class="literal">Gato</span> almacenará dos atributos para cada gato, su <span class="literal">nombre</span> y su <span class="literal">peso</span> en kilogramos. Cada objeto gato tendrá sus propios valores de <span class="literal">nombre</span> y <span class="literal">peso</span>. Abre un nuevo archivo en el editor de texto de IDLE y guárdalo como claseGato <em>.py</em> en una nueva carpeta llamada <em>clases</em>. Introduce el siguiente código para crear una clase llamada <span class="literal">Gato</span>:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>catClass.py</em></span></p>
+<p class="programs" translate="no"> <span class="orange">class</span> <span class="blue1">Cat</span>(<span class="rose">object</span>):<br translate="no"/><span class="ent">➊</span> <span class="orange">def</span> <span class="blue1">__init_</span>_(self, name, weight):<br translate="no"/><span class="ent">➋</span>         self.name = name<br translate="no"/><span class="ent">➌</span>         self.weight = weight</p>
+<p class="indent"><span epub:type="pagebreak" id="page_263"></span>En este ejemplo, el método <span class="literal">__init__(</span> ) toma tres argumentos <span class="ent">➊.</span> El primero es <span class="literal">self</span>, que es un argumento obligatorio en todo método de clase. El segundo argumento, <span class="literal">nombre</span>, y el último argumento, <span class="literal">peso</span>, son argumentos adicionales para crear atributos para todos los gatos.</p>
+<p class="indent">Las dos últimas líneas crean los atributos <span class="literal">nombre</span> <span class="ent">➋</span> y <span class="literal">peso</span> <span class="ent">➌</span> y los establecen en los valores de los argumentos <span class="literal">nombre</span> y <span class="literal">peso</span>. Cuando creas atributos dentro de una clase, utilizas la notación de puntos con <span class="literal">self</span>. Los atributos siempre se identifican con un <span class="literal">self</span>, que indica a Python que un atributo pertenece a la clase.</p>
+<p class="indent">A continuación, aprenderás a utilizar esta clase para crear instancias de objetos.</p>
+<h4 class="h4" id="ch12lev2sec01"><strong><span class="blue1">Crear un objeto</span></strong></h4>
+<p class="noindent">Utilizando la clase recién creada, vamos a crear algunos objetos gato, o instancias de la clase <span class="literal">Gato</span>.</p>
+<p class="indent">Inicializar un objeto es similar a crear una variable. Para inicializar un objeto, introduces el nombre del objeto, un signo igual<span class="literal">(=</span>) y el nombre de la clase. Pasas argumentos a la clase entre paréntesis, igual que haces con una llamada a una función.</p>
+<p class="indent">Por ejemplo, adoptemos un gato y llamémosle Pelusa. Utilizando la clase <span class="literal">Gato</span>, podemos crear un objeto gato llamado <span class="literal">pelusa</span> añadiendo el código siguiente en la última línea de <em>catClass.</em> py (fíjate en que no tiene sangría):</p>
+<p class="sidenote" translate="no"><span class="blue"><em>catClass.py</em></span></p>
+<p class="programs" translate="no"><span class="ash">class Cat(object):</span><br translate="no"/> <span class="ash">def __init__(self, name, weight):</span><br translate="no"/> <span class="ash">self.name = name</span><br translate="no"/> <span class="ash">self.weight = weight</span><br translate="no"/><br translate="no"/>fluff = Cat(<span class="green">"Fluff"</span>, 4.5)</p>
+<p class="indent">Cuando creas un objeto, el número de argumentos que proporcionas depende de los argumentos de su función <span class="literal">__init__()</span>. Aquí incluimos dos argumentos, uno para el <span class="literal">nombre</span> (<span class="literal">"Pelusa"</span>) y otro para el <span class="literal">peso</span><span class="literal">(4,5</span>). No necesitas incluir el argumento <span class="literal">self</span> al crear un objeto porque Python lo añade automáticamente.</p>
+<p class="indent">Crear un objeto también se conoce como <em>llamar a un constructor</em>. El método <span class="literal">__init__</span> () suele denominarse constructor porque construye una clase cuando se le llama. El método <span class="literal">__init__</span> () es un tipo especial de método porque no haces referencia a él por su nombre. En cambio, se ejecuta cuando creas un objeto utilizando el nombre de la clase. Por ejemplo, aquí el código <span class="literal">pelusa = Gato("Pelusa", 4.5)</span> llama al método __init__ <span class="literal">()</span>, que construye un objeto <span class="literal">Gato</span> llamado <span class="literal">pelusa</span>.</p>
+<p class="indent">A continuación, aprenderás a acceder a los atributos del objeto <span class="literal">pelusa</span>.</p>
+<h4 class="h4" id="ch12lev2sec02"><strong><span class="blue1">Acceder a los atributos</span></strong></h4>
+<p class="noindent">Puedes acceder a los atributos de un objeto para obtener más información sobre él. Por ejemplo, añade el siguiente código a <em>catClass.</em> py después del objeto <span class="literal">pelusa</span> para imprimir el atributo <span class="literal">peso</span> del objeto <span class="literal">pelusa</span>:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>catClass.py</em></span></p>
+<p class="programs" translate="no"><span class="rose">print</span>(fluff.weight)</p>
+<p class="indent"><span epub:type="pagebreak" id="page_264"></span>El valor que se imprime al ejecutar el programa debe ser 4,5, porque ése es el valor que le pusiste al atributo <span class="literal">peso</span> cuando creaste el objeto.</p>
+<p class="indent">Observa que estamos utilizando la notación de puntos entre el nombre del objeto, <span class="literal">pelusa</span>, y el atributo <span class="literal">peso</span>. El punto significa que quieres utilizar el atributo que pertenece a un objeto concreto. En este caso, el valor del atributo <span class="literal">peso</span> pertenece al objeto <span class="literal">pelusa</span>. Siempre que obtengas o establezcas el valor del atributo de un objeto, utilizarás la notación de punto.</p>
+<p class="indent">Puedes cambiar el valor de un atributo como lo harías con cualquier otra variable, utilizando un signo igual<span class="literal">(=</span>). Por ejemplo, cambiemos el peso de Pelusa a 5 porque ha engordado durante las vacaciones de invierno. Para ello, cambia el atributo <span class="literal">peso</span> del objeto <span class="literal">pelusa</span> a 5:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>catClass.py</em></span></p>
+<p class="programs" translate="no">fluff.weight = 5</p>
+<p class="indent">Ahora, siempre que accedas al atributo <span class="literal">peso</span> del objeto <span class="literal">pelusa</span>, será 5.</p>
+<p class="indent">Utilizando los conocimientos que ahora tienes sobre cómo crear una clase y crear una instancia de la misma, vamos a hacer cosas chulas en Minecraft.</p>
+<h4 class="h4a" id="ch12lev2sec03"><strong>Misión nº 68: Objetos de Ubicación</strong></h4>
+<p class="noindent">A lo largo del libro, has almacenado ubicaciones, como tu casa, un castillo o un palacio, en tu mundo Minecraft. Has utilizado variables, listas, tuplas y diccionarios para hacerlo de diversas formas.</p>
+<p class="indent">También puedes crear y almacenar información relacionada, como ubicaciones, utilizando la programación orientada a objetos. Por ejemplo, puedes utilizar objetos para almacenar las coordenadas de un montón de ubicaciones diferentes.</p>
+<p class="indent">Cada ubicación tiene una coordenada x, y y z, pero los valores de cada ubicación son diferentes. Creando una clase de ubicación, puedes almacenar y acceder a las coordenadas de distintas ubicaciones. Eso te ayudará a llevar un registro de todas las cosas increíbles que construyas en Minecraft. ¡Podrás acceder fácilmente a las coordenadas de todas tus creaciones Minecraft para poder teletransportar al jugador a ellas en un instante!</p>
+<p class="indent"><a href="ch12.xhtml#ch12ex1">El listado 12-1</a> contiene el inicio de la clase <span class="literal">Ubicación</span>. Cuando el código esté terminado, se podrá utilizar para almacenar las coordenadas de una ubicación en un único objeto. Copia el código en un nuevo archivo llamado <em>locationClass.py</em> en la carpeta de <em>clases</em>.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>locationClass.py</em></span></p>
+<p class="programs" translate="no"> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>   mc = Minecraft.create()<br translate="no"/><br translate="no"/><span class="ent">➊</span> <span class="orange">class</span> <span class="blue1">Location</span>(<span class="rose">object</span>):<br translate="no"/> <span class="orange">def</span> <span class="blue1">__init_</span>_(self, x, y, z):<br translate="no"/><span class="ent">➋</span>         self.x = x<br translate="no"/><span class="ent">➌</span> <span class="red"># Add the y and z attributes here</span><br translate="no"/><br translate="no"/><span class="ent">➍</span> bedroom = Location(64, 52, -8)<br translate="no"/><span class="ent">➎</span> mc.player.setTilePos(bedroom.x, bedroom.y, bedroom.z)</p>
+<p class="examplet"><a id="ch12ex1"></a><em>Listado 12-1: El inicio de la</em> <em>clase</em> <span class="literal"><span class="codeitalic">Ubicación</span></span> </p>
+<p class="indent"><span epub:type="pagebreak" id="page_265"></span>Para iniciar la clase, he incluido la palabra clave <span class="literal">class</span> y he llamado a la clase <span class="literal">Ubicación</span> <span class="ent">➊.</span> En <span class="ent">➍</span> está el código para inicializar un objeto llamado <span class="literal">dormitorio</span>, que almacenará la ubicación del dormitorio en mi casa de Minecraft. El método <span class="literal">setTilePos(</span> ) establece la posición del jugador en la ubicación del <span class="literal">dormitorio</span> -los atributos <span class="literal">x</span>, <span class="literal">y</span> y <span class="literal">z</span> del objeto dormitorio <span class="ent">➎.</span> Sin embargo, el programa está incompleto. Tienes que terminar el método <span class="literal">__init__(</span> ) de la clase y establecer los atributos <span class="literal">y</span> y <span class="literal">z</span> a los valores de los argumentos pasados al método <span class="literal">__init__()</span>. Yo he fijado el valor del atributo <span class="literal">x</span> <span class="ent">➋,</span> pero es tarea tuya hacer lo mismo con los atributos <span class="literal">y</span> y <span class="literal">z</span> <span class="ent">➌.</span> ¡No olvides utilizar la ubicación de tu propio dormitorio en <span class="ent">➍!</span></p>
+<p class="indent"><a href="ch12.xhtml#ch12fig1">La Figura 12-1</a> muestra el programa completado en acción, ya que teletransporta al jugador a mi dormitorio.</p>
+<div class="image"><img alt="image" src="../images/f12-01.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch12fig1"></a><em>Figura 12-1: El programa ha teletransportado al jugador a mi dormitorio.</em></p>
+<div class="sidebar">
+<p class="sidebart" id="ch12sb01"><strong>OBJETIVO EXTRA: HOGAR DULCE HOGAR</strong></p>
+<p class="noindent">¿A qué otras habitaciones de tu casa quieres teletransportarte? Crea más objetos con la clase <span class="literal">Ubicación</span> para recorrer tu casa con estilo.</p>
+</div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch12_2.html">anterior</a><a href="ch12.html">Subtema 3 de 10: (Ver todo)</a><a href="ch12_4.html">siguiente</a><br/></p>
+<br/><a href="ch12_3.docx" target="_blank"></a></footer>
+</body>
+</html>

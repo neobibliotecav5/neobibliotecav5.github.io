@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch07lev1sec7">
+  Rompecabezas de programación </h3>
+<p class="noindent">
+  Prueba los siguientes ejemplos para experimentar con la creación de tus propias funciones. Las soluciones se encuentran en http://python-for-kids.com <em class="calibre7"><a class="calibre6" href="http://python-for-kids.com">. </a></em></p>
+<h4 class="h3" id="ch07lev2sec1">
+  #nº 1: Función básica de peso lunar </h4>
+<p class="noindent">
+  En uno de los puzzles de programación <a class="calibre6" href="ch06.xhtml#ch06">del Capítulo 6 </a>, creamos un bucle <span class="literal1" translate="no">
+   for
+  </span>para determinar tu peso en la luna durante un periodo de 15 años. Ese bucle <span class="literal1" translate="no">
+   for
+  </span>podría convertirse fácilmente en una función. Intenta crear una función que tome un peso inicial y aumente su cantidad cada año. Podrías llamar a la nueva función utilizando un código como éste: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> moon_weight(30, 0.25)</pre>
+<h4 class="h3" id="ch07lev2sec2">
+  #2: Función Peso Lunar y Años </h4>
+<p class="noindent">
+  Toma la función que acabas de crear y cámbiala para calcular el peso en distintos periodos, como 5 años o 20 años. Asegúrate de cambiar la función para que tome tres argumentos: el peso inicial, el peso ganado cada año y el número de años: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> moon_weight(90, 0.25, 5)</pre>
+<h4 class="h3" id="ch07lev2sec3">
+  #3: Programa Peso Lunar </h4>
+<p class="noindent">
+  En lugar de utilizar una función simple y pasar los valores como parámetros, puedes utilizar <span class="literal1" translate="no">
+   sys.stdin.readline()
+  </span>o <span class="literal1" translate="no">
+   input()
+  </span>para hacer un miniprograma que pida los valores. En este caso, llamas a la función sin ningún parámetro: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> moon_weight()</pre>
+<p class="indent">
+  La función mostrará un mensaje preguntando por el peso inicial, un segundo mensaje preguntando por la cantidad que el peso <span id="page_94">
+</span>aumentará cada año, y un mensaje final preguntando por el número de años. Verías algo como lo siguiente: </p>
+<pre class="pre" translate="no"><span class="blue1">Please enter your current Earth weight</span>
+45
+<span class="blue1">Please enter the amount your weight might increase each year</span>
+0.4
+<span class="blue1">Please enter the number of years</span>
+12</pre>
+<p class="noindent">
+  Recuerda importar el módulo <span class="literal1" translate="no">
+   sys
+  </span>antes de crear tu función, si utilizas <span class="literal1" translate="no">
+   sys.stdin.readline()
+  </span>: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">import</span> sys</pre>
+<h4 class="h3" id="ch07lev2sec4">
+  #4: Programa de peso en Marte </h4>
+<p class="noindent">
+  Cambiemos nuestro programa de peso lunar para calcular esta vez el peso en Marte, sólo para toda tu familia. La función debe pedir el peso de cada miembro de la familia, calcular cuánto pesaría en Marte (multiplicando el número por 0,3782), y luego sumar y mostrar el peso total al final. Puedes escribir este código de muchas formas; lo importante es que muestre el peso total al final. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch07_7.html">anterior</a><a href="ch07.html">Subtema 8 de 8: (Ver todo)</a><br/></p>
+<br/><a href="ch07_8.docx" target="_blank"></a></footer>
+</body>
+</html>

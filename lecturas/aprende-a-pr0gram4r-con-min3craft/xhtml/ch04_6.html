@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch04lev1sec05"><span epub:type="pagebreak" id="page_78"></span><strong><span class="blue1">Convertir cadenas en enteros con int()</span></strong></h3>
+<p class="noindent">Al igual que la función <span class="literal">str</span> (), que convierte tipos de datos que no son cadenas en cadenas, la función int( <span class="literal">)</span> convierte tipos de datos que no son enteros en enteros.</p>
+<p class="indent">La función <span class="literal">int</span> () es útil cuando se utiliza con la función input <span class="literal">()</span>. La función <span class="literal">input</span> () devuelve la entrada del usuario como una cadena, pero a menudo querrás utilizar esta entrada en operaciones matemáticas. Para ello, primero tendrás que convertir la entrada a un tipo entero utilizando int( <span class="literal">)</span>.</p>
+<p class="indent">Funciona así. Supongamos que ya hemos asignado un valor entero a una variable llamada <span class="literal">latasDeAtúnPorGato</span>, y queremos un programa que nos diga cuánto atún se come, en función del número de gatos que tenga el usuario. Aquí tienes un ejemplo de programa que podríamos escribir:</p>
+<p class="programs" translate="no">cansOfTunaPerCat = 4<br translate="no"/>cats = <span class="rose">input</span>(<span class="green">"How many cats do you have? "</span>)<br translate="no"/>cats = <span class="rose">int</span>(cats)<br translate="no"/>dailyTunaEaten = cats * cansOfTunaPerCat</p>
+<p class="indent">Puedes hacer lo mismo en una sola línea poniendo una función dentro de la otra:</p>
+<p class="programs" translate="no">cats = <span class="rose">int</span>(<span class="rose">input</span>(<span class="green">"How many cats do you have? "</span>))<br translate="no"/>dailyTunaEaten = cats * cansOfTunaPerCat</p>
+<p class="indent">Ahora que sabes cómo convertir la entrada en un número entero, puedes utilizarlo para introducir tipos de bloque en los programas de Minecraft.</p>
+<h4 class="h4a" id="ch04lev2sec06"><strong>Misión nº 14: Crear un bloque con entrada</strong></h4>
+<p class="noindent">Hay montones de tipos de bloques en Minecraft. Aunque puedes elegir muchos bloques en el modo creativo, muchos otros no se pueden utilizar. Sin embargo, la API de Python para Minecraft te da acceso a todos los tipos de bloque y te permite establecerlos mediante la función <span class="literal">setBlocks()</span>.</p>
+<p class="indent">Ya has utilizado antes la función <span class="literal">setBlocks</span> (), pero tenías que codificar el tipo de bloque en tu programa. Esto significa que no podías cambiarlo mientras se ejecutaba el programa. Ahora puedes utilizar la función <span class="literal">input()</span>. Si escribes un programa que acepte entradas, cada vez que ejecutes el programa podrás elegir el tipo de bloque que quieres crear. Podrías crear un bloque de lana la primera vez que ejecutes el programa, y luego crear mineral de hierro la segunda vez.</p>
+<p class="indent">En esta misión, escribirás un programa que permita al usuario decidir qué tipo de bloque quiere crear. Copia <a href="ch04.xhtml#ch4ex3">el Listado 4-3</a> en un nuevo archivo y guárdalo como <em>blockInput.py</em> en tu carpeta de <em>cadenas</em>.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>blockInput.py</em></span></p>
+<p class="programs" translate="no"> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>   mc = Minecraft.create()<br translate="no"/><span class="ent">➊</span> blockType = <span class="red"># Add input() function here</span><br translate="no"/>   pos = mc.player.getTilePos()<br translate="no"/>   x = pos.x<br translate="no"/>   y = pos.y<br translate="no"/>   z = pos.z<br translate="no"/>   mc.setBlock(x, y, z, blockType)</p>
+<p class="examplet"><span epub:type="pagebreak" id="page_79"></span><a id="ch4ex3"></a><em>Listado 4-3: Código para establecer un bloque en la posición del jugador</em></p>
+<p class="indent">Este programa establece un bloque en la posición actual del jugador. Cámbialo para que la variable <span class="literal">blockType</span> se establezca mediante la función input <span class="literal">()</span> <span class="ent">➊.</span> Te sugiero que incluyas una pregunta u otro aviso de texto para que el usuario sepa que debe escribir un número de bloque, y no otro tipo de entrada. Si no incluyes una pregunta, IDLE se limitará a esperar en una línea en blanco hasta que el usuario introduzca algo, y tú quieres dejar claro que el programa necesita un número del usuario.</p>
+<p class="indent">Recuerda que <span class="literal">input()</span> devuelve la entrada como una cadena, y para que introduzca el valor como un número entero, tienes que utilizar la función <span class="literal">int()</span>. La expresión para recoger la entrada para el tipo de bloque debería tener este aspecto:</p>
+<p class="programs" translate="no">blockType = <span class="rose">int</span>(<span class="rose">input</span>(<span class="green">"Enter a block type: "</span>))</p>
+<p class="indent">Guarda tu programa modificado, ejecútalo e introduce el número de bloque que quieras. <a href="ch04.xhtml#ch4fig4">La Figura 4-4</a> muestra el resultado del programa.</p>
+<div class="image"><img alt="image" src="../images/f04-04.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch4fig4"></a><em>Figura 4-4: ¡Ahora puedo crear el bloque que quiera!</em></p>
+<div class="sidebar">
+<p class="sidebart" id="ch04sb04"><strong>OBJETIVO EXTRA: JUEGOS MÁS INTERACTIVOS</strong></p>
+<p class="noindent">Puedes utilizar tantas entradas en el programa como quieras. De momento, el programa crea el bloque en la posición actual del jugador. Piensa cómo establecerías las variables <span class="literal">x</span>, <span class="literal">y</span> y <span class="literal">z</span> utilizando entradas. Si te sientes realmente aventurero, intenta teletransportar al jugador a unas coordenadas concretas utilizando entradas.</p>
+</div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch04_5.html">anterior</a><a href="ch04.html">Subtema 6 de 8: (Ver todo)</a><a href="ch04_7.html">siguiente</a><br/></p>
+<br/><a href="ch04_6.docx" target="_blank"></a></footer>
+</body>
+</html>

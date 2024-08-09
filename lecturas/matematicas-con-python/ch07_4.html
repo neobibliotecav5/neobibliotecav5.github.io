@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<meta charset="utf-8"/>
+<title>Capítulo 7: Resolución de problemas de cálculo</title>
+<link href="style.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="core.css" media="all" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch07lev1sec03"><strong>Encontrar el límite de funciones</strong></h3>
+<p class="noindent">Una tarea habitual en cálculo es encontrar el <em>valor límite</em> (o simplemente el <em>límite</em>) de la función, cuando se supone que el valor de la variable se aproxima a un determinado valor. Considera una función <em>f</em><em>(x</em>) = <em>1/x</em>, cuya gráfica se muestra en <a href="ch07.html#ch7fig2">la Figura 7-2</a>.</p>
+<p class="indent">A medida que aumenta el valor de <em>x</em>, el valor de <em>f</em>(<em>x</em>) se aproxima a 0. Utilizando la notación límite, escribiríamos esto como</p>
+<div class="image2"><img alt="image" src="images/e0181-01.jpg" translate="no"/></div>
+<div class="image"><img alt="image" src="images/f07-02.jpg" translate="no"/></div>
+<p class="figuret"><a id="ch7fig2"></a><em>Figura 7-2: Gráfica de la función 1/x</em> <em>a</em> medida que <em>aumenta</em> el valor de x</p>
+<p class="indent"><a id="page_182"></a>Podemos encontrar límites de funciones en SymPy creando objetos de la clase <span class="literal" translate="no">Limit</span> como se indica a continuación:</p>
+<p class="programs" translate="no"><span class="ent">➊</span> &gt;&gt;&gt; <span class="codestrong">from sympy import Limit, Symbol, S</span><br translate="no"/><span class="ent">➋</span> &gt;&gt;&gt; <span class="codestrong">x = Symbol('x')</span><br translate="no"/><span class="ent">➌</span> &gt;&gt;&gt; <span class="codestrong">Limit(1/x, x, S.Infinity)</span><br translate="no"/>   Limit(1/x, x, oo, dir='-')</p>
+<p class="indent">En <span class="ent">➊,</span> importamos las clases <span class="literal" translate="no">Limit</span> y <span class="literal" translate="no">Symbol</span>, así como <span class="literal" translate="no">S</span>, que es una clase especial de SymPy que contiene la definición de infinito (positivo y negativo) y otros valores especiales. A continuación, en <span class="ent">➋</span> creamos un objeto símbolo, <span class="literal" translate="no">x</span>, para representar <em>x</em>. Creamos el objeto <span class="literal" translate="no">Limit</span> en <span class="ent">➌,</span> pasándole tres argumentos: <span class="literal" translate="no">1/x</span>, la variable <span class="literal" translate="no">x</span>, y por último el valor en el que queremos calcular el límite de la función (infinito, dado por <span class="literal" translate="no">S.Infinity</span>).</p>
+<p class="indent">El resultado se devuelve como un objeto <em>no evaluado</em> con el símbolo <span class="literal" translate="no">oo</span> que denota el infinito positivo y el símbolo <span class="literal" translate="no">dir='-'</span> que especifica que nos acercamos al límite por el lado negativo.</p>
+<p class="indent">Para encontrar el valor del límite, utilizamos el método <span class="literal" translate="no">doit()</span>:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">l = Limit(1/x, x, S.Infinity)</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">l.doit()</span><br translate="no"/>0</p>
+<p class="indent">Por defecto, el límite se encuentra desde una dirección positiva, a menos que el valor en el que se va a calcular el límite sea infinito positivo o negativo. En el caso del infinito positivo, la dirección es negativa, y viceversa. Puedes cambiar la dirección por defecto como se indica a continuación:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">Limit(1/x, x, 0, dir='-').doit()</span><br translate="no"/>-oo</p>
+<p class="indent">Aquí calculamos</p>
+<div class="image2"><img alt="image" src="images/e0182-01.jpg" translate="no"/></div>
+<p class="noindent">y a medida que nos acercamos a 0 para <em>x</em> desde el lado negativo, el valor del límite se aproxima al infinito negativo. En cambio, si nos acercamos a 0 desde el lado positivo, el valor se aproxima al infinito positivo:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">Limit(1/x, x, 0, dir='+').doit()</span><br translate="no"/>oo</p>
+<p class="indent">La clase <span class="literal" translate="no">Limit</span> también maneja funciones con límites de formas indeterminadas,</p>
+<div class="image2"><img alt="image" src="images/e0182-02.jpg" translate="no"/></div>
+<p class="noindent"><a id="page_183"></a>automáticamente:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">from sympy import Symbol, sin</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">Limit(sin(x)/x, x, 0).doit()</span><br translate="no"/>1</p>
+<p class="indent">Es muy probable que hayas utilizado la regla de l'Hôpital para encontrar dichos límites, pero como vemos aquí, la clase <span class="literal" translate="no">Limit</span> se encarga de ello por nosotros.</p>
+<h4 class="h4" id="ch07lev2sec03"><strong><em>Interés compuesto continuo</em></strong></h4>
+<p class="noindent">Supongamos que has depositado 1 $ en un banco. Este depósito es el <em>capital</em>, que te paga un interés <em>-en</em>este caso, un interés del 100% que se compone <span class="literal" translate="no">n</span> veces al año durante 1 año. La cantidad que obtendrás al cabo de 1 año viene dada por</p>
+<div class="image2"><img alt="image" src="images/e0183-01.jpg" translate="no"/></div>
+<p class="indent">El destacado matemático James Bernoulli descubrió que, a medida que aumenta el valor de <em>n</em>, el término (1 + <em>1/n</em><em><sup>)n</sup></em> se aproxima al valor de <em>e, la</em>constante que podemos verificar hallando el límite de la función:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">from sympy import Limit, Symbol, S</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">n = Symbol('n')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">Limit((1+1/n)**n, n, S.Infinity).doit()</span><br translate="no"/>E</p>
+<p class="indent">Para cualquier importe principal <em>p</em>, cualquier tipo <em>r</em> y cualquier número de años <em>t</em>, el interés compuesto se calcula mediante la fórmula</p>
+<div class="image2"><img alt="image" src="images/e0183-02.jpg" translate="no"/></div>
+<p class="indent">Suponiendo un interés compuesto continuo, podemos hallar la expresión de <em>A</em> de la siguiente manera:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">from sympy import Symbol, Limit, S</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">p = Symbol('p', positive=True)</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">r = Symbol('r', positive=True)</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">t = Symbol('t', positive=True)</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">Limit(p*(1+r/n)**(n*t), n, S.Infinity).doit()</span><br translate="no"/>p*exp(r*t)</p>
+<p class="indent">Creamos tres objetos símbolo, que representan el importe principal, <span class="literal" translate="no">p</span>, el tipo de interés, <span class="literal" translate="no">r</span>, y el número de años, <span class="literal" translate="no">t</span>. También le decimos a SymPy que estos símbolos asumirán valores positivos pasando el argumento de la palabra clave <span class="literal" translate="no">positive=True</span> al crear los objetos <span class="literal" translate="no">Symbol</span>. Si no lo especificamos, SymPy no sabe nada sobre los valores numéricos que puede asumir el símbolo y puede que no sea capaz de evaluar el límite correctamente. A continuación, introducimos la expresión del interés compuesto para crear el objeto <span class="literal" translate="no">Limit</span> y <a id="page_184"></a>lo evaluamos mediante el método <span class="literal" translate="no">doit()</span>. El límite resulta ser <span class="literal" translate="no">p*exp(r*t)</span>, lo que nos indica que el interés compuesto crece exponencialmente con el tiempo para el tipo de interés fijo.</p>
+<h4 class="h4" id="ch07lev2sec04"><strong><em>Tasa de variación instantánea</em></strong></h4>
+<p class="noindentb">Considera un coche que se desplaza por una carretera. Acelera uniformemente de forma que la distancia recorrida, <em>S</em>, viene dada por la función</p>
+<p class="center"><em>S</em><em>(t</em>) = <sup>5t2</sup> + <em>2t</em> + 8.</p>
+<p class="indentt">En esta función, la variable independiente es <em>t</em>, que representa el tiempo transcurrido desde que el coche empezó a moverse.</p>
+<p class="indent">Si medimos la distancia recorrida en el tiempo <sub>t1</sub> y en el tiempo <sub>t2</sub> de forma que <sub>t2</sub> &gt; <sub>t1</sub>, podemos calcular la distancia recorrida por el coche en 1 unidad de tiempo mediante la expresión</p>
+<div class="image2"><img alt="image" src="images/e0184-01.jpg" translate="no"/></div>
+<p class="indent">También se denomina tasa de variación media de la función <em>S</em><em>(t</em>) respecto a la variable <em>t</em>, o dicho de otro modo, velocidad media. Si escribimos <sub>t2</sub> como <sub>t1</sub> + δt <em><sub>-donde</sub></em><em><sub>δt</sub></em> es la diferencia entre <sub>t2</sub> y <sub>t1</sub> en unidades de tiempo- podemos reescribir la expresión de la velocidad media como</p>
+<div class="image2"><img alt="image" src="images/e0184-02.jpg" translate="no"/></div>
+<p class="indent">Esta expresión también es una función con <sub>t1</sub> como variable. Ahora bien, si además suponemos que <em><sub>δt</sub></em> es realmente pequeña, de modo que se aproxima a 0, podemos utilizar la notación de límite para escribirla como</p>
+<div class="image2"><img alt="image" src="images/e0184-03.jpg" translate="no"/></div>
+<p class="indent">Ahora evaluaremos el límite anterior. En primer lugar, vamos a crear los distintos objetos de expresión:</p>
+<p class="programs" translate="no">   &gt;&gt;&gt; <span class="codestrong">from sympy import Symbol, Limit</span><br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">t = Symbol('t')</span><br translate="no"/><span class="ent">➊</span> &gt;&gt;&gt; <span class="codestrong">St = 5*t**2 + 2*t + 8</span><br translate="no"/><br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">t1 = Symbol('t1')</span><br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">delta_t = Symbol('delta_t')</span><br translate="no"/><br translate="no"/><span class="ent">➋</span> &gt;&gt;&gt; <span class="codestrong">St1 = St.subs({t: t1})</span><br translate="no"/><span class="ent">➌</span> &gt;&gt;&gt; <span class="codestrong">St1_delta = St.subs({t: t1 + delta_t})</span></p>
+<p class="indent">Primero definimos la función <em>S</em><em>(t</em>) en <span class="ent">➊.</span> A continuación, definimos dos símbolos, <span class="literal" translate="no">t1</span> y <span class="literal" translate="no">delta_t</span>, que corresponden a <sub>t1</sub> y <em><sub>δt</sub></em>. Utilizando el método <span class="literal" translate="no">subs()</span>, hallamos entonces <em>S</em>(<sub>t1</sub>) y <em>S</em><em>(</em><sub>t1</sub> + <em><sub>δt</sub></em>) sustituyendo el valor de <span class="literal" translate="no">t</span> por <span class="literal" translate="no">t1</span> y <span class="literal" translate="no">t1_delta_t</span> en <span class="ent">➋</span> y <span class="ent">➌,</span> respectivamente.</p>
+<p class="indent"><a id="page_185"></a>Ahora, evaluemos el límite:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">Limit((St1_delta-St1)/delta_t, delta_t, 0).doit()</span><br translate="no"/>10*t1 + 2</p>
+<p class="indent">El límite resulta ser <span class="literal" translate="no">10*t1 + 2</span>, y es la tasa de cambio de <em>S</em><em>(t</em>) en el tiempo <span class="literal" translate="no">t1</span>, o la tasa de cambio instantánea. Este cambio se denomina más comúnmente <em>velocidad instant</em> ánea del coche en el instante de tiempo <span class="literal" translate="no">t1</span>.</p>
+<p class="indent">El límite que hemos calculado aquí se denomina <em>derivada</em> de una función, y podemos calcularlo directamente utilizando la clase <span class="literal" translate="no">Derivative</span> de SymPy.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch07_3.html">anterior</a><a href="ch07.html">Subtema 4 de 11: (Ver todo)</a><a href="ch07_5.html">siguiente</a><br/></p>
+<br/><a href="ch07_4.docx" target="_blank"></a></footer>
+</body>
+</html>

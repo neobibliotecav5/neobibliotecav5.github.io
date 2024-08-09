@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/><title>Invocation</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h2 class="title"><a id="the_constructor_invocation_pattern"></a>El patrón de invocación al constructor</h2><p>JavaScript es un <span class="emphasis"><em translate="no">prototypal</em></span> lenguaje de herencia. Eso significa que los objetos pueden heredar propiedades directamente de otros objetos. El lenguaje no tiene clases.<a class="indexterm" id="IDX-CHP-4-0194"></a><a class="indexterm" id="IDX-CHP-4-0195"></a><a class="indexterm" id="IDX-CHP-4-0196"></a><a class="indexterm" id="IDX-CHP-4-0197"></a><a class="indexterm" id="IDX-CHP-4-0198"></a></p><p>Esto supone un cambio radical respecto a la moda actual. La mayoría de los lenguajes actuales son   <span class="emphasis"><em translate="no">classical</em></span>. La herencia prototípica es muy expresiva, pero no se entiende muy bien. El propio JavaScript no confía en su naturaleza prototípica, por lo que ofrece una sintaxis de creación de objetos que recuerda a la de los lenguajes clásicos. Pocos programadores clásicos consideraron aceptable la herencia prototípica, y la sintaxis de inspiración clásica oscurece la verdadera naturaleza prototípica del lenguaje. Es lo peor de ambos mundos.</p><p>Si se invoca una función con el prefijo <code class="literal" translate="no">new</code>, se creará un nuevo objeto con un enlace oculto al valor del miembro <code class="literal" translate="no">prototype</code> de la función, y <code class="literal" translate="no">this</code> se vinculará a ese nuevo objeto.</p><p>El prefijo <code class="literal" translate="no">new</code> también cambia el comportamiento de la sentencia <code class="literal" translate="no">return</code>. Veremos más sobre esto a continuación.</p><a id="I_programlisting4_d1e2640"></a><pre class="programlisting" translate="no">// Create a constructor function called Quo.
+// It makes an object with a status property.
+
+var Quo = function (string) {
+    this.status = string;
+};
+
+// Give all instances of Quo a public method
+// called get_status.
+
+Quo.prototype.get_status = function (  ) {
+    return this.status;
+};
+
+// Make an instance of Quo.
+
+var myQuo = new Quo("confused");
+
+document.writeln(myQuo.get_status(  ));  // confused</pre><p>Las funciones destinadas a ser utilizadas con el prefijo <code class="literal" translate="no">new</code> se denominan <span class="emphasis"><em translate="no">constructors</em></span>. Por convención, se guardan en variables con nombre en mayúsculas. Si se llama a un constructor sin el prefijo <code class="literal" translate="no">new</code>, pueden ocurrir cosas muy malas sin que se produzca una advertencia en tiempo de compilación o de ejecución, por lo que la convención sobre el uso de mayúsculas es realmente importante.<a class="indexterm" id="IDX-CHP-4-0199"></a></p><p>No se recomienda utilizar este estilo de funciones constructoras. Veremos alternativas mejores en el próximo capítulo.</p><div class="sect2" title="The Apply Invocation Pattern"><div class="titlepage"><div><div></div></div></div></div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch04s03_3.html">anterior</a><a href="ch04s03.html">Subtema 4 de 5: (Ver todo)</a><a href="ch04s03_5.html">siguiente</a><br/></p>
+<br/><a href="ch04s03_4.docx" target="_blank"></a></footer>
+</body>
+</html>

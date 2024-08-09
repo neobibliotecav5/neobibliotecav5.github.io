@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c16-0005">El módulo datetime</h3>
+<p class="BodyFirst">Vamos a añadir fechas a nuestro gráfico para hacerlo más útil. La primera fecha del archivo de datos meteorológicos está en la segunda fila del archivo:</p>
+<pre translate="no"><code translate="no">"USW00025333","SITKA AIRPORT, AK US","2021-07-01",,"61","53"</code></pre>
+<p>Los datos se leerán como una cadena, por lo que necesitamos una forma de convertir la cadena <code translate="no">"2021-07-01"</code> en un objeto que represente esta fecha. Podemos construir <span epub:type="pagebreak" id="Page_334" title="334"></span>un objeto que represente el 1 de julio de 2021, utilizando el método <code translate="no">strptime()</code> del módulo <code translate="no">datetime</code>. Veamos cómo funciona <code translate="no">strptime()</code> en una sesión de terminal:</p>
+<pre translate="no"><code translate="no">&gt;&gt;&gt; <b>from datetime import datetime</b>
+&gt;&gt;&gt; <b>first_date = datetime.strptime('2021-07-01', '%Y-%m-%d')</b>
+&gt;&gt;&gt; <b>print(first_date)</b>
+2021-07-01 00:00:00</code></pre>
+<p>Primero importamos la clase <code translate="no">datetime</code> del módulo <code translate="no">datetime</code>. Luego llamamos al método <code translate="no">strptime()</code> con la cadena que contiene la fecha que queremos procesar como primer argumento. El segundo argumento indica a Python el formato de la fecha. En este ejemplo, <code translate="no">'%Y-'</code> indica a Python que busque un año de cuatro dígitos antes del primer guión; <code translate="no">'%m-'</code> indica un mes de dos dígitos antes del segundo guión; y <code translate="no">'%d'</code> significa que la última parte de la cadena es el día del mes, del 1 al 31.</p>
+<p>El método <code translate="no">strptime()</code> puede tomar diversos argumentos para determinar cómo interpretar la fecha. <a href="#table16-1" id="tableanchor16-1">La Tabla 16-1</a> muestra algunos de estos argumentos.</p>
+<figure>
+<figcaption class="TableTitle"><p><a id="table16-1">Tabla 16-1</a>: Argumentos de formato de fecha y hora del módulo <code translate="no">datetime</code> </p></figcaption>
+<table border="1" id="table-502703c16-0001">
+<thead>
+<tr>
+<td><b>Argumento</b></td>
+<td><b>Significado</b></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code translate="no">%A</code></td>
+<td>Nombre del día de la semana, como Lunes</td>
+</tr>
+<tr>
+<td><code translate="no">%B</code></td>
+<td>Nombre del mes, como Enero</td>
+</tr>
+<tr>
+<td><code translate="no">%m</code></td>
+<td>Mes, como número (01 a 12)</td>
+</tr>
+<tr>
+<td><code translate="no">%d</code></td>
+<td>Día del mes, como número (01 a 31)</td>
+</tr>
+<tr>
+<td><code translate="no">%Y</code></td>
+<td>Año de cuatro dígitos, como 2019</td>
+</tr>
+<tr>
+<td><code translate="no">%y</code></td>
+<td>Año de dos dígitos, como 19</td>
+</tr>
+<tr>
+<td><code translate="no">%H</code></td>
+<td>Hora, en formato de 24 horas (00 a 23)</td>
+</tr>
+<tr>
+<td><code translate="no">%I</code></td>
+<td>Hora, en formato de 12 horas (01 a 12)</td>
+</tr>
+<tr>
+<td><code translate="no">%p</code></td>
+<td>AM o PM</td>
+</tr>
+<tr>
+<td><code translate="no">%M</code></td>
+<td>Minutos (00 a 59)</td>
+</tr>
+<tr>
+<td><code translate="no">%S</code></td>
+<td>Segundos (00 a 61)</td>
+</tr>
+</tbody>
+</table>
+</figure>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c16_7.html">anterior</a><a href="c16.html">Subtema 8 de 29: (Ver todo)</a><a href="c16_9.html">siguiente</a><br/></p>
+<br/><a href="c16_8.docx" target="_blank"></a></footer>
+</body>
+</html>

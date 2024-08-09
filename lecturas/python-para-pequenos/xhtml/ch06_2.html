@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch06lev1sec1">
+  Uso de los bucles for </h3>
+<p class="noindent">
+  Para imprimir <span class="literal1" translate="no">
+   hello
+  </span>cinco veces en Python, <em class="calibre7">podrías </em>hacer lo siguiente: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="green">'hello'</span>)
+<span class="blue1">hello</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="green">'hello'</span>)
+<span class="blue1">hello</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="green">'hello'</span>)
+<span class="blue1">hello</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="green">'hello'</span>)
+<span class="blue1">hello</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="green">'hello'</span>)
+<span class="blue1">hello</span></pre>
+<p class="indent">
+  Pero esto es bastante tedioso. En su lugar, puedes utilizar un bucle <span class="literal1" translate="no">
+   for
+  </span>para reducir la cantidad de escritura y repetición, de la siguiente manera: </p>
+<pre class="pre" translate="no"><span class="ent">➊</span> <span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> x <span class="orange">in</span> <span class="violet">range</span>(0, 5):
+       <span class="ent">➋</span> <span class="violet">print</span>(<span class="green">'hello'</span>)
+
+  <span class="blue1">hello
+  hello
+  hello
+  hello
+  hello</span></pre>
+<p class="indent">
+  La función <span class="literal1" translate="no">
+   range
+  </span><span class="ent">➊ </span>puede crear una lista de números que van desde un número inicial hasta el número situado justo antes del número final. Esto puede parecer un poco confuso, así que combinemos la función <span class="literal1" translate="no">
+   range
+  </span>con la función <span class="literal1" translate="no">
+   list
+  </span>para ver exactamente cómo funciona. La función <span class="literal1" translate="no">
+   range
+  </span>en realidad no crea una lista <span id="page_71">
+</span>de números; devuelve un <em class="calibre7">iterador </em>, que es un objeto de Python diseñado para trabajar con bucles. Sin embargo, si combinamos <span class="literal1" translate="no">
+   range
+  </span>con <span class="literal1" translate="no">
+   list
+  </span>, obtendremos una lista de números: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="violet">list</span>(<span class="violet">range</span>(10, 20)))
+<span class="blue1">[10, 11, 12, 13, 14, 15, 16, 17, 18, 19]</span></pre>
+<p class="indent">
+  En nuestro ejemplo anterior, <span class="literal1" translate="no">
+   for x in range(0,5):
+  </span>en realidad le está diciendo a Python que haga lo siguiente: </p>
+<ol class="calibre9">
+<li class="noindent1">
+   Empezar a contar desde 0 y parar antes de llegar a 5.  </li>
+<li class="noindent1">
+   Por cada número que contemos, almacena el valor en la variable <span class="literal1" translate="no">
+    x
+   </span>. </li>
+</ol>
+<p class="indent">
+  A continuación, Python ejecuta la sentencia <span class="literal1" translate="no">
+   print(’hello’)
+  </span>. Observa los cuatro espacios adicionales al principio de la línea <span class="ent">➋ </span>(en comparación con la primera línea <span class="ent">➊ </span>). IDLE debería haber sangrado esto automáticamente por ti. Cuando pulsamos ENTER después de la segunda línea, Python imprime <span class="literal1" translate="no">
+   hello
+  </span>cinco veces. </p>
+<p class="indent">
+  También podríamos utilizar la variable <span class="literal1" translate="no">
+   x
+  </span>en nuestra sentencia <span class="literal1" translate="no">
+   print
+  </span>para contar el número de saludos: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> x <span class="orange">in</span> <span class="violet">range</span>(0, 5):
+        <span class="violet">print</span>(f<span class="green">'hello {x}'</span>)
+<span class="blue1">hello 0
+hello 1
+hello 2
+hello 3
+hello 4</span></pre>
+<p class="indent">
+  Si nos deshacemos del bucle <span class="literal1" translate="no">
+   for
+  </span>, nuestro código podría tener este aspecto: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> x = 0
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(f<span class="green">'hello {x}'</span>)
+<span class="blue1">hello 0</span>
+<span class="brown">&gt;&gt;&gt;</span> x = 1
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(f<span class="green">'hello {x}'</span>)
+<span class="blue1">hello 1</span>
+<span class="brown">&gt;&gt;&gt;</span> x = 2
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(f<span class="green">'hello {x}'</span>)
+<span class="blue1">hello 2</span>
+<span class="brown">&gt;&gt;&gt;</span> x = 3
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(f<span class="green">'hello {x}'</span>)
+<span id="page_72"></span><span class="blue1">hello 3</span>
+<span class="brown">&gt;&gt;&gt;</span> x = 4
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(f<span class="green">'hello {x}'</span>)
+<span class="blue1">hello 4</span></pre>
+<p class="indent">
+  ¡Usar el bucle <span class="literal1" translate="no">
+   for
+  </span>nos ahorró escribir ocho líneas de código adicionales! Es una buena práctica evitar hacer las cosas más de una vez, por lo que el bucle <span class="literal1" translate="no">
+   for
+  </span>es una sentencia muy popular entre los programadores. </p>
+<p class="indent">
+  No hace falta que te limites a utilizar la función <span class="literal1" translate="no">
+   range
+  </span>cuando hagas bucles <span class="literal1" translate="no">
+   for
+  </span>. También puedes utilizar una lista que ya hayas creado, como la lista de la compra del <a class="calibre6" href="ch03.xhtml#ch03">Capítulo 3 </a>, como se indica a continuación: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> wizard_list = [<span class="green">'spider legs'</span>, <span class="green">'toe of frog'</span>, <span class="green">'snail tongue'</span>, 
+                   <span class="green">'bat wing'</span>, <span class="green">'slug butter'</span>, <span class="green">'bear burp'</span>]
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> ingredient <span class="orange">in</span> wizard_list:
+        <span class="violet">print</span>(ingredient)
+<span class="blue1">spider legs
+toe of frog
+snail tongue
+bat wing
+slug butter
+bear burp</span></pre>
+<p class="indent">
+  Este código le dice a Python: "Por cada elemento de <span class="literal1" translate="no">
+   wizard_list
+  </span>, almacena el valor en la variable <span class="literal1" translate="no">
+   i
+  </span>, y luego imprime el contenido de esa variable". Si nos deshiciéramos del bucle <span class="literal1" translate="no">
+   for
+  </span>, tendríamos que hacer algo como esto: </p>
+<div class="image1">
+<img alt="Image" class="calibre62" src="../images/f0072-01.jpg" translate="no"/>
+</div>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> wizard_list = [<span class="green">'spider legs'</span>, <span class="green">'toe of frog'</span>, <span class="green">'snail tongue'</span>, 
+                   <span class="green">'bat wing'</span>, <span class="green">'slug butter'</span>, <span class="green">'bear burp'</span>]
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(wizard_list[0])
+<span class="blue1">spider legs</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(wizard_list[1])
+<span class="blue1">toe of frog</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(wizard_list[2])
+<span class="blue1">snail tongue</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(wizard_list[3])
+<span class="blue1">bat wing</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(wizard_list[4])
+<span class="blue1">slug butter</span>
+<span id="page_73"></span><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(wizard_list[5])
+<span class="blue1">bear burp</span></pre>
+<p class="indent">
+  Una vez más, <span class="literal1" translate="no">
+   for
+  </span>nos ha ahorrado mucho tecleo. </p>
+<p class="indent">
+  Vamos a crear otro bucle. Escribe el siguiente código en el intérprete de comandos de Python; debería sangrar automáticamente el código por ti: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> hugehairypants = [<span class="green">'huge'</span>, <span class="green">'hairy'</span>, <span class="green">'pants'</span>]
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> i <span class="orange">in</span> hugehairypants:
+        <span class="violet">print</span>(i)
+        <span class="violet">print</span>(i)
+
+<span class="blue1">huge
+huge
+hairy
+hairy
+pants
+pants</span></pre>
+<p class="indent">
+  En la primera línea, creamos una lista que contiene <span class="literal1" translate="no">
+   ‘huge’
+  </span>, <span class="literal1" translate="no">
+   ‘hairy’
+  </span>, y <span class="literal1" translate="no">
+   ‘pants’
+  </span>. En la línea siguiente, recorremos los elementos de la lista y asignamos cada uno de ellos a la variable <span class="literal1" translate="no">
+   i
+  </span>. A continuación, imprimimos el contenido de la variable dos veces en las dos líneas siguientes. Pulsa ENTER en la siguiente línea en blanco para indicar a Python que finalice el bloque. A continuación, ejecuta el código e imprime dos veces cada elemento de la lista. </p>
+<div class="image1">
+<img alt="Image" class="calibre63" src="../images/f0073-01.jpg" translate="no"/>
+</div>
+<p class="indent">
+  Recuerda que si introduces un número incorrecto de espacios, aparecerá un mensaje de error. Si introdujeras el código anterior con un espacio de más en la cuarta línea, Python mostraría un error de sangría: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> hugehairypants = [<span class="green">'huge'</span>, <span class="green">'hairy'</span>, <span class="green">'pants'</span>]
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> i <span class="orange">in</span> hugehairypants:
+        <span class="violet">print</span>(i)
+         <span class="violet">print</span>(i)
+
+<span class="red">IndentationError: unexpected indent</span></pre>
+<p class="indent">
+<span id="page_74">
+</span>
+  Como aprendiste en el <a class="calibre6" href="ch05.xhtml#ch05">Capítulo 5 </a>, Python espera que el número de espacios en un bloque sea coherente. No importa cuántos espacios insertes, siempre que utilices el mismo número para cada nueva línea (esto también hace que el código sea más fácil de leer para los humanos). </p>
+<p class="indent">
+  Aquí tienes un ejemplo más complicado de un bucle <span class="literal1" translate="no">
+   for
+  </span>con dos bloques de código: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> hugehairypants = [<span class="green">'huge'</span>, <span class="green">'hairy'</span>, <span class="green">'pants'</span>]
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> i <span class="orange">in</span> hugehairypants:
+        <span class="violet">print</span>(i)
+        <span class="orange">for</span> j <span class="orange">in</span> hugehairypants:
+            <span class="violet">print</span>(j)</pre>
+<p class="indent">
+  ¿Dónde están los bloques en este código? El primer bloque es el primer bucle <span class="literal1" translate="no">
+   for
+  </span>: </p>
+<pre class="pre" translate="no">hugehairypants = [<span class="green">'huge'</span>, <span class="green">'hairy'</span>, <span class="green">'pants'</span>]
+<span class="orange">for</span> i <span class="orange">in</span> hugehairypants:
+    <span class="violet">print</span>(i)                  <span class="brown">#</span>
+    <span class="orange">for</span> j <span class="orange">in</span> hugehairypants:  <span class="brown"># These lines are the FIRST block.</span>
+        <span class="violet">print</span>(j)              <span class="brown">#</span></pre>
+<p class="indent">
+  El siguiente bloque es la única línea <span class="literal1" translate="no">
+   print
+  </span>del segundo bucle <span class="literal1" translate="no">
+   for
+  </span>: </p>
+<pre class="pre" translate="no">hugehairypants = [<span class="green">'huge'</span>, <span class="green">'hairy'</span>, <span class="green">'pants'</span>]
+<span class="orange">for</span> i <span class="orange">in</span> hugehairypants:
+    <span class="violet">print</span>(i)
+    <span class="orange">for</span> j <span class="orange">in</span> hugehairypants:
+       <span class="violet">print</span>(j)              <span class="brown"># This line is also the SECOND block.</span></pre>
+<p class="indent">
+  ¿Puedes averiguar qué va a hacer este código? </p>
+<p class="indent">
+  Después de crear una lista llamada <span class="literal1" translate="no">
+   hugehairypants
+  </span>, podemos deducir de las dos líneas siguientes que Python va a recorrer los elementos de la lista e imprimir cada uno de ellos. Sin embargo, en <span class="literal1" translate="no">
+   for j in hugehairypants
+  </span>, volverá a recorrer la lista, esta vez asignando el valor a la variable <span class="literal1" translate="no">
+   j
+  </span>, y luego volverá a imprimir cada elemento. Estas dos últimas líneas de código siguen formando parte del primer bucle <span class="literal1" translate="no">
+   for
+  </span>, lo que significa que se ejecutarán para cada elemento a medida que el bucle <span class="literal1" translate="no">
+   for
+  </span>recorra la lista. </p>
+<p class="indent">
+  Cuando se ejecute este código, deberíamos ver <span class="literal1" translate="no">
+   huge
+  </span>seguido de <span class="literal1" translate="no">
+   huge, hairy, pants
+  </span>, y luego <span class="literal1" translate="no">
+   hairy
+  </span>seguido de <span class="literal1" translate="no">
+   huge, hairy, pants
+  </span>, y así sucesivamente. </p>
+<p class="indent">
+<span id="page_75">
+</span>
+  Introduce el código en el intérprete de comandos de Python y compruébalo tú mismo: </p>
+<pre class="pre" translate="no">   <span class="brown">&gt;&gt;&gt;</span> hugehairypants = [<span class="green">'huge'</span>, <span class="green">'hairy'</span>, <span class="green">'pants'</span>]
+   <span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> i <span class="orange">in</span> hugehairypants:
+           <span class="violet">print</span>(i)
+           <span class="orange">for</span> j <span class="orange">in</span> hugehairypants:
+               <span class="violet">print</span>(j)
+
+→ <span class="blue1">huge
+   huge
+   hairy
+   pants</span>
+→ <span class="blue1">hairy
+   huge
+   hairy
+   pants</span>
+→ <span class="blue1">pants
+   huge
+   hairy
+   pants</span>
+</pre>
+<p class="indent">
+  Python entra en el primer bucle e imprime un elemento de la lista. A continuación, entra en el segundo bucle e imprime todos los elementos de la lista. A continuación, imprime el segundo elemento de la lista con <span class="literal1" translate="no">
+   print(i)
+  </span>, y luego vuelve a imprimir la lista completa con el comando <span class="literal1" translate="no">
+   print(j)
+  </span>en el bucle interior. Por último, vuelve a imprimir el tercer elemento de la lista con <span class="literal1" translate="no">
+   print(i)
+  </span>y, a continuación, vuelve a imprimir la lista completa con el bucle interno. En la salida, las líneas marcadas <strong class="calibre5">→ </strong>se imprimen con <span class="literal1" translate="no">
+   print(i)
+  </span>, y las líneas no marcadas se imprimen con la sentencia <span class="literal1" translate="no">
+   print(j)
+  </span>. </p>
+<p class="indent">
+  Intentemos algo más práctico que imprimir palabras tontas. ¿Recuerdas el cálculo que hicimos en el <a class="calibre6" href="ch02.xhtml#ch02">Capítulo </a>2 para averiguar cuántas monedas de oro tendrías al final del año si utilizabas la máquina duplicadora de tu abuelo? Era así: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> found_coins + magic_coins * 365 - stolen_coins * 52</pre>
+<p class="indent">
+  Esto representa 20 monedas encontradas más 10 monedas mágicas multiplicadas por 365 días del año, menos las 3 monedas semanales robadas por el cuervo. </p>
+<p class="indent">
+<span id="page_76">
+</span>
+  Comprobemos cómo aumentará tu montón de monedas de oro cada semana. Podemos hacerlo con un bucle <span class="literal1" translate="no">
+   for
+  </span>, pero antes tenemos que cambiar el valor de nuestra variable <span class="literal1" translate="no">
+   magic_coins
+  </span>para que represente el número total de monedas por semana. Obtenemos 10 monedas mágicas al día, y hay 7 días en una semana, así que <span class="literal1" translate="no">
+   magic_coins
+  </span>debería ser 70: </p>
+<div class="image1">
+<img alt="Image" class="calibre64" src="../images/f0076-01.jpg" translate="no"/>
+</div>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> found_coins = 20
+<span class="brown">&gt;&gt;&gt;</span> magic_coins = 70
+<span class="brown">&gt;&gt;&gt;</span> stolen_coins = 3</pre>
+<p class="indent">
+  Podemos ver cómo aumenta nuestro tesoro cada semana creando otra variable, llamada <span class="literal1" translate="no">
+   coins
+  </span>, y utilizando un bucle <span class="literal1" translate="no">
+   for
+  </span>: </p>
+<pre class="pre" translate="no">   <span class="brown">&gt;&gt;&gt;</span> found_coins = 20
+   <span class="brown">&gt;&gt;&gt;</span> magic_coins = 70
+   <span class="brown">&gt;&gt;&gt;</span> stolen_coins = 3
+<span class="ent">➊</span> <span class="brown">&gt;&gt;&gt;</span> coins = found_coins
+   <span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> week <span class="orange">in</span> <span class="violet">range</span>(1, 53):
+           coins = coins + magic_coins - stolen_coins
+           <span class="violet">print</span>(f<span class="green">'Week {week} = {coins}'</span>)</pre>
+<p class="indent">
+  La variable <span class="literal1" translate="no">
+   coins
+  </span>se carga con el valor de la variable <span class="literal1" translate="no">
+   found_coins
+  </span><span class="ent">➊ </span>; éste es nuestro número inicial. La siguiente línea configura el bucle <span class="literal1" translate="no">
+   for
+  </span>, que ejecutará los comandos del bloque. Cada vez que se ejecuta el bucle, la variable <span class="literal1" translate="no">
+   week
+  </span>se carga con el siguiente número del rango de 1 a 52. </p>
+<p class="indent">
+  La línea que contiene <span class="literal1" translate="no">
+   coins = coins + magic_coins - stolen_coins
+  </span>es un poco más complicada. Cada semana queremos sumar el número de monedas que hemos creado mágicamente y restar el número de monedas que ha robado el cuervo. Piensa en la variable <span class="literal1" translate="no">
+   coins
+  </span>como en un cofre del tesoro. Cada semana, las nuevas monedas se apilan en el cofre. Así que esta línea le está diciendo a Python: "Sustituye el contenido de <span class="literal1" translate="no">
+   coins
+  </span>por el número de mis monedas actuales, más las que he creado esta semana". El signo igual ( <span class="literal1" translate="no">
+   =
+  </span>) es un trozo de código mandón que dice: "Resuelve primero lo de la derecha y guárdalo para más tarde, usando el nombre de la izquierda". </p>
+<p class="indent">
+  La sentencia <span class="literal1" translate="no">
+   print
+  </span>imprime en la pantalla el número de la semana y el número total de monedas (hasta el momento). (Considera la posibilidad de releer <span id="page_77">
+</span>"Incrustar valores en cadenas" en <a class="calibre6" href="ch03.xhtml#ch03lev1sec4">la página 29 . </a>) Si ejecutas este programa, verás algo parecido a <a class="calibre6" href="ch06.xhtml#ch06fig01">la Figura 6-1 . </a></p>
+<div class="image1" id="ch06fig01">
+<img alt="Image" class="calibre65" src="../images/06fig01.jpg" translate="no"/>
+</div>
+<p class="figcap">
+
+   Figura 6-1<em class="calibre7">: Ejecución del bucle </em></p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch06_1.html">anterior</a><a href="ch06.html">Subtema 2 de 5: (Ver todo)</a><a href="ch06_3.html">siguiente</a><br/></p>
+<br/><a href="ch06_2.docx" target="_blank"></a></footer>
+</body>
+</html>

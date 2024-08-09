@@ -1,0 +1,1471 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Unknown</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+<body class="calibre">
+<div class="calibre1" id="sbo-rt-content">
+<h2 class="h2" id="ch08">
+<span class="calibre2" id="page_95">
+</span>
+<span class="big">
+   8
+  </span>
+<br class="calibre10"/>
+  How to Use Classes and Objects
+ </h2>
+<div class="image">
+<img alt="Image" class="calibre8" src="../images/common.jpg"/>
+</div>
+<p class="indent">
+  Why is a giraffe like a sidewalk? Because a giraffe and a sidewalk are both
+  <em class="calibre7">
+   things
+  </em>
+  , which are known in the English language as nouns and in Python as
+  <em class="calibre7">
+   objects
+  </em>
+  . In programming, objects are a way to organize code and break things down to more easily work with complex ideas. (We used an object in
+  <a class="calibre6" href="ch04.xhtml#ch04">
+   Chapter 4
+  </a>
+  when we worked with the
+  <span class="literal1">
+   turtle
+  </span>
+  module’s
+  <span class="literal1">
+   Turtle
+  </span>
+  object.)
+ </p>
+<p class="indent">
+  To fully understand how objects work in Python, we need to think about types of objects. Let’s start with giraffes and sidewalks.
+ </p>
+<p class="indent">
+<span id="page_96">
+</span>
+  A giraffe is a type of mammal, which is a type of animal. A giraffe is also an animate object—it’s alive.
+ </p>
+<p class="indent">
+  There’s not much to say about a sidewalk other than it’s not a living thing. Let’s call it an inanimate object (in other words, it’s not alive). The terms
+  <em class="calibre7">
+   mammal
+  </em>
+  ,
+  <em class="calibre7">
+   animal
+  </em>
+  ,
+  <em class="calibre7">
+   animate
+  </em>
+  , and
+  <em class="calibre7">
+   inanimate
+  </em>
+  are all ways of classifying things.
+ </p>
+<div class="image">
+<img alt="Image" class="calibre72" src="../images/f0096-01.jpg"/>
+</div>
+<h3 class="h1" id="ch08lev1sec1">
+  Breaking Things into Classes
+ </h3>
+<p class="noindent">
+  In Python, objects are defined by
+  <em class="calibre7">
+   classes
+  </em>
+  , which classify objects into groups. For example, the tree diagram in
+  <a class="calibre6" href="ch08.xhtml#ch08fig01">
+   Figure 8-1
+  </a>
+  shows the classes that giraffes and sidewalks fit into based on our preceding definitions.
+ </p>
+<div class="image" id="ch08fig01">
+<img alt="Image" class="calibre73" src="../images/08fig01.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 8-1: Tree diagram of some classes
+  </em>
+</p>
+<p class="indent">
+  The main class is
+  <span class="literal1">
+   Thing
+  </span>
+  . Below the
+  <span class="literal1">
+   Thing
+  </span>
+  class, we have
+  <span class="literal1">
+   Inanimate
+  </span>
+  and
+  <span class="literal1">
+   Animate
+  </span>
+  . These classes are further broken down into
+  <span class="literal1">
+   Sidewalk
+  </span>
+  for
+  <span class="literal1">
+   Inanimate
+  </span>
+  , and
+  <span class="literal1">
+   Animal
+  </span>
+  ,
+  <span class="literal1">
+   Mammal
+  </span>
+  , and
+  <span class="literal1">
+   Giraffe
+  </span>
+  for
+  <span class="literal1">
+   Animate
+  </span>
+  .
+ </p>
+<p class="indent">
+  We can use classes to organize bits of code. For example, consider the
+  <span class="literal1">
+   turtle
+  </span>
+  module. All the things Python’s turtle module can do—such as moving forward, moving backward, turning left, and turning right—are functions in the
+  <span class="literal1">
+   Turtle
+  </span>
+  class.
+  <span id="page_97">
+</span>
+  An object is a member of a class, and we can create any number of objects for a class, which we’ll get to shortly.
+ </p>
+<p class="indent">
+  Now let’s create the same set of classes shown in our tree diagram, starting from the top. We define classes using the
+  <span class="literal1">
+   class
+  </span>
+  keyword followed by a name.
+  <span class="literal1">
+   Thing
+  </span>
+  is the broadest class, so we’ll create it first:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> Thing:
+        <span class="orange">pass</span>
+</pre>
+<p class="indent">
+  We name the class
+  <span class="literal1">
+   Thing
+  </span>
+  and use the
+  <span class="literal1">
+   pass
+  </span>
+  statement to let Python know we’re not going to give any more information. The
+  <span class="literal1">
+   pass
+  </span>
+  keyword is used when we want to provide a class or function but don’t want to fill in the details at the moment.
+ </p>
+<p class="indent">
+  Next, we’ll add the other classes and build some relationships between them.
+ </p>
+<h3 class="h1" id="ch08lev1sec2">
+  Children and Parents
+ </h3>
+<p class="noindent">
+  If a class is a part of another class, it’s considered a
+  <em class="calibre7">
+   child
+  </em>
+  of that class, and the other class is its
+  <em class="calibre7">
+   parent
+  </em>
+  . Classes can be both
+  <em class="calibre7">
+   children of
+  </em>
+  and
+  <em class="calibre7">
+   parents to
+  </em>
+  other classes. In our tree diagram, the class above another class is its parent and the class below it is its child. For example,
+  <span class="literal1">
+   Inanimate
+  </span>
+  and
+  <span class="literal1">
+   Animate
+  </span>
+  are both children of the class
+  <span class="literal1">
+   Thing
+  </span>
+  , meaning that
+  <span class="literal1">
+   Thing
+  </span>
+  is their parent.
+ </p>
+<p class="indent">
+  To tell Python that a class is a child of another class, we add the name of the parent class in parentheses after the name of our new class, like this:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> Inanimate(Thing):
+        <span class="orange">pass</span>
+
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> Animate(Thing):
+        <span class="orange">pass</span>
+</pre>
+<p class="indent">
+  Here, we create a class called
+  <span class="literal1">
+   Inanimate
+  </span>
+  and tell Python that its parent class is
+  <span class="literal1">
+   Thing
+  </span>
+  . Next, we create a class called
+  <span class="literal1">
+   Animate
+  </span>
+  and tell Python that its parent class is also
+  <span class="literal1">
+   Thing
+  </span>
+  .
+ </p>
+<p class="indent">
+  Let’s create the
+  <span class="literal1">
+   Sidewalk
+  </span>
+  class with the parent class
+  <span class="literal1">
+   Inanimate
+  </span>
+  :
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> Sidewalk(Inanimate):
+        <span class="orange">pass</span>
+</pre>
+<p class="indent">
+<span id="page_98">
+</span>
+  We can organize the
+  <span class="literal1">
+   Animal
+  </span>
+  ,
+  <span class="literal1">
+   Mammal
+  </span>
+  , and
+  <span class="literal1">
+   Giraffe
+  </span>
+  classes using their parent classes as well:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> Animal(Animate):
+        <span class="orange">pass</span>
+
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> Mammal(Animal):
+        <span class="orange">pass</span>
+
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> Giraffe(Mammal):
+        <span class="orange">pass</span>
+</pre>
+<h3 class="h1" id="ch08lev1sec3">
+  Adding Objects to Classes
+ </h3>
+<p class="noindent">
+  We now have a bunch of classes, but what about putting some more information into those classes? Say we have a giraffe named Reginald. We know he belongs in the
+  <span class="literal1">
+   Giraffe
+  </span>
+  class, but what do we use—in programming terms—to describe the single giraffe called Reginald?
+ </p>
+<p class="indent">
+  We call Reginald an
+  <em class="calibre7">
+   object
+  </em>
+  (also known as an
+  <em class="calibre7">
+   instance
+  </em>
+  ) of the
+  <span class="literal1">
+   Giraffe
+  </span>
+  class. To “introduce” Reginald to Python, we use this little snippet of code:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> reginald = Giraffe()
+</pre>
+<p class="indent">
+  This code tells Python to create an object of the
+  <span class="literal1">
+   Giraffe
+  </span>
+  class and assign it to the
+  <span class="literal1">
+   reginald
+  </span>
+  variable. Like when we call a function, the class name is followed by parentheses. Later in this chapter, we’ll see how to create objects and use parameters in the parentheses.
+ </p>
+<p class="indent">
+  But what does the
+  <span class="literal1">
+   reginald
+  </span>
+  object do? Well, nothing at the moment. To make our objects useful, when we create our classes, we also need to define functions that can be used with the objects in that class. Rather than just using the
+  <span class="literal1">
+   pass
+  </span>
+  keyword immediately after defining the class, we can add function definitions.
+ </p>
+<h3 class="h1" id="ch08lev1sec4">
+<span class="calibre2" id="page_99">
+</span>
+  Defining Functions of Classes
+ </h3>
+<p class="noindent">
+<a class="calibre6" href="ch07.xhtml#ch07">
+   Chapter 7
+  </a>
+  introduced functions as a way to reuse code. When we define a function that’s associated with a class, we do so in the same way that we define any other function, except we indent it beneath the class definition. For example, here’s a normal function that isn’t associated with a class:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">def</span> this_is_a_normal_function():
+        <span class="violet">print</span>(<span class="green">'I am a normal function'</span>)
+</pre>
+<p class="indent">
+  And here are a couple of functions that are defined for a class:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> ThisIsMySillyClass:
+        <span class="orange">def</span> this_is_a_class_function():
+            <span class="violet">print</span>(<span class="green">'I am a class function'</span>)
+        <span class="orange">def</span> this_is_also_a_class_function():
+            <span class="violet">print</span>(<span class="green">'I am also a class function. See?'</span>)
+</pre>
+<h3 class="h1" id="ch08lev1sec5">
+  Adding Class Characteristics
+ </h3>
+<p class="noindent">
+  Consider the child classes of the
+  <span class="literal1">
+   Animate
+  </span>
+  class we defined in section Children and Parents. We can add characteristics to each class that describe what it is and what it can do. A
+  <em class="calibre7">
+   characteristic
+  </em>
+  is a trait all members of the class (and its children) share.
+ </p>
+<p class="indent">
+  For example, what do all animals have in common? To start with, they breathe, move, and eat. What about mammals? Mammals feed their young with milk, and they also breathe, move, and eat. We know giraffes eat leaves from high up in trees. And like all mammals, they feed their young with milk, breathe, move, and eat. When we add these characteristics to our tree diagram, we get something like
+  <a class="calibre6" href="ch08.xhtml#ch08fig02">
+   Figure 8-2
+  </a>
+  .
+ </p>
+<div class="image" id="ch08fig02">
+<span id="page_100">
+</span>
+<img alt="Image" class="calibre74" src="../images/08fig02.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 8-2: Classes with characteristics
+  </em>
+</p>
+<p class="indent">
+  These characteristics can be thought of as actions, or functions—things that an object of that class can do.
+ </p>
+<p class="indent">
+  To add a function to a class, we use the
+  <span class="literal1">
+   def
+  </span>
+  keyword. So the
+  <span class="literal1">
+   Animal
+  </span>
+  class will look like this:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> Animal(Animate):
+        <span class="orange">def</span> breathe(self):
+            <span class="orange">pass</span>
+        <span class="orange">def</span> move(self):
+            <span class="orange">pass</span>
+        <span class="orange">def</span> eat_food(self):
+            <span class="orange">pass</span>
+</pre>
+<p class="indent">
+  In the first line of this listing, we define the class as we did before, but instead of using
+  <span class="literal1">
+   pass
+  </span>
+  on the next line, we define a function called
+  <span class="literal1">
+   breathe
+  </span>
+  and give it the
+  <span class="literal1">
+   self
+  </span>
+  parameter. The
+  <span class="literal1">
+   self
+  </span>
+  parameter is a way for one function in the class to call another function in the class (and in the parent class). We’ll see this parameter in use later.
+ </p>
+<div class="image">
+<img alt="Image" class="calibre75" src="../images/f0100-01.jpg"/>
+</div>
+<p class="indent">
+  On the next line,
+  <span class="literal1">
+   pass
+  </span>
+  tells Python we’re not going to provide any more information about the
+  <span class="literal1">
+   breathe
+  </span>
+  function because it’s going to do nothing for now. Then we add the
+  <span class="literal1">
+   move
+  </span>
+  and
+  <span class="literal1">
+   eat_food
+  </span>
+  functions and use the
+  <span class="literal1">
+   pass
+  </span>
+  keyword for both. We’ll recreate our classes shortly and put some proper code in the functions. This is a common way to develop programs.
+ </p>
+<div class="note">
+<p class="notet">
+<span class="calibre2" id="page_101">
+</span>
+<strong class="calibre3">
+<span class="notes">
+     NOTE
+    </span>
+</strong>
+</p>
+<p class="notep">
+<em class="calibre7">
+    Often, programmers will create classes with functions that do nothing as a way to figure out what the class should do before getting into the details of the individual functions.
+   </em>
+</p>
+</div>
+<p class="indent">
+  We can also add functions to the
+  <span class="literal1">
+   Mammal
+  </span>
+  and
+  <span class="literal1">
+   Giraffe
+  </span>
+  classes. Each class will be able to use the characteristics (or functions) of its parent, meaning you don’t need to make one really complicated class. Instead, you can put your functions in the highest parent class where the characteristic applies. (This makes your classes simpler and easier to understand.)
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> Mammal(Animal):
+        <span class="orange">def</span> feed_young_with_milk(self):
+            <span class="orange">pass</span>
+
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> Giraffe(Mammal):
+        <span class="orange">def</span> eat_leaves_from_trees(self):
+            <span class="orange">pass</span>
+</pre>
+<p class="indent">
+  In the above code, the
+  <span class="literal1">
+   Mammal
+  </span>
+  class provides a function
+  <span class="literal1">
+   feed
+  </span>
+<span class="literal1">
+   _young_with_milk
+  </span>
+  . The
+  <span class="literal1">
+   Giraffe
+  </span>
+  class is a child class (or
+  <em class="calibre7">
+   subclass
+  </em>
+  ) of
+  <span class="literal1">
+   Mammal
+  </span>
+  and provides another function:
+  <span class="literal1">
+   eat_leaves_from_trees
+  </span>
+  .
+ </p>
+<h3 class="h1" id="ch08lev1sec6">
+  Why Use Classes and Objects?
+ </h3>
+<p class="noindent">
+  We’ve now added functions to our classes, but why use classes and objects at all when you could just write normal functions called
+  <span class="literal1">
+   breathe
+  </span>
+  ,
+  <span class="literal1">
+   move
+  </span>
+  ,
+  <span class="literal1">
+   eat_food
+  </span>
+  , and so on?
+ </p>
+<p class="indent">
+  To answer that question, we’ll use our giraffe called Reginald, which we created earlier as an object of the
+  <span class="literal1">
+   Giraffe
+  </span>
+  class, like this:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> reginald = Giraffe()
+</pre>
+<p class="indent">
+  Because
+  <span class="literal1">
+   reginald
+  </span>
+  is an object, we can call (or run) functions provided by the
+  <span class="literal1">
+   Giraffe
+  </span>
+  class and its parent classes. We call functions on an object by using the dot (
+  <span class="literal1">
+   .
+  </span>
+  ) operator and the name of the function. To tell Reginald to move or eat, we can call the functions like this:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="gray">reginald = Giraffe()</span>
+<span class="brown">&gt;&gt;&gt;</span> reginald.move()
+<span class="brown">&gt;&gt;&gt;</span> reginald.eat_leaves_from_trees()
+</pre>
+<p class="indent">
+<span id="page_102">
+</span>
+  Suppose Reginald has a giraffe friend named Harriet. Let’s create another
+  <span class="literal1">
+   Giraffe
+  </span>
+  object called
+  <span class="literal1">
+   harriet
+  </span>
+  :
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> harriet = Giraffe()
+</pre>
+<p class="indent">
+  Because we’re using objects and classes, we can tell Python which giraffe we’re talking about when we want to run the
+  <span class="literal1">
+   move
+  </span>
+  function. For example, if we want to make Harriet move but leave Reginald in place, we could call the
+  <span class="literal1">
+   move
+  </span>
+  function by using our
+  <span class="literal1">
+   harriet
+  </span>
+  object, like this:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> harriet.move()
+</pre>
+<p class="indent">
+  In this case, only Harriet would be moving.
+ </p>
+<p class="indent">
+  Let’s change our classes a little to make this more obvious. Add a
+  <span class="literal1">
+   print
+  </span>
+  statement to each function instead of using
+  <span class="literal1">
+   pass
+  </span>
+  :
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> Animal(Animate):
+        <span class="orange">def</span> breathe(self):
+            <span class="violet">print</span>(<span class="green">'breathing'</span>)
+        <span class="orange">def</span> move(self):
+            <span class="violet">print</span>(<span class="green">'moving'</span>)
+        <span class="orange">def</span> eat_food(self):
+            <span class="violet">print</span>(<span class="green">'eating food'</span>)
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> Mammal(Animal):
+        <span class="orange">def</span> feed_young_with_milk(self):
+            <span class="violet">print</span>(<span class="green">'feeding young'</span>)
+
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> Giraffe(Mammal):
+        <span class="orange">def</span> eat_leaves_from_trees(self):
+            <span class="violet">print</span>(<span class="green">'eating leaves'</span>)
+</pre>
+<p class="indent">
+  Now when we create our
+  <span class="literal1">
+   reginald
+  </span>
+  and
+  <span class="literal1">
+   harriet
+  </span>
+  objects and call functions on them, we can see something actually happen:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> reginald = Giraffe()
+<span class="brown">&gt;&gt;&gt;</span> harriet = Giraffe()
+<span class="brown">&gt;&gt;&gt;</span> reginald.move()
+<span class="blue1">moving</span>
+<span class="brown">&gt;&gt;&gt;</span> harriet.eat_leaves_from_trees()
+<span class="blue1">eating leaves</span>
+</pre>
+<p class="indent">
+<span id="page_103">
+</span>
+  On the first two lines, we create the variables
+  <span class="literal1">
+   reginald
+  </span>
+  and
+  <span class="literal1">
+   harriet
+  </span>
+  , which are objects of the
+  <span class="literal1">
+   Giraffe
+  </span>
+  class. Next, we call the
+  <span class="literal1">
+   move
+  </span>
+  function on
+  <span class="literal1">
+   reginald
+  </span>
+  , and Python prints
+  <span class="literal1">
+   moving
+  </span>
+  on the following line. In the same way, we call the
+  <span class="literal1">
+   eat_leaves_from_trees
+  </span>
+  function on
+  <span class="literal1">
+   harriet
+  </span>
+  , and Python prints
+  <span class="literal1">
+   eating leaves
+  </span>
+  . If these were real giraffes, rather than objects in a computer, one giraffe would be walking and the other would be eating.
+ </p>
+<div class="image">
+<img alt="Image" class="calibre76" src="../images/f0103-01.jpg"/>
+</div>
+<div class="note">
+<p class="notet">
+<strong class="calibre3">
+<span class="notes">
+     NOTE
+    </span>
+</strong>
+</p>
+<p class="notep">
+<em class="calibre7">
+    Functions defined for classes are actually called
+    <span class="literal1">
+     methods
+    </span>
+    . The terms are almost interchangeable except that methods can only be called on objects of a class. Another way of saying this is that a method is associated with a class, but a function is not. Given they are almost the same, we’ll use the term
+    <span class="literal1">
+     function
+    </span>
+    in this book.
+   </em>
+</p>
+</div>
+<h3 class="h1" id="ch08lev1sec7">
+  Objects and Classes in Pictures
+ </h3>
+<p class="noindent">
+  Let’s try taking a more graphical approach to objects and classes and return to the
+  <span class="literal1">
+   turtle
+  </span>
+  module we toyed with in
+  <a class="calibre6" href="ch04.xhtml#ch04">
+   Chapter 4
+  </a>
+  . When we use
+  <span class="literal1">
+   turtle.Turtle()
+  </span>
+  , Python creates an object of the
+  <span class="literal1">
+   Turtle
+  </span>
+  class that is provided by the
+  <span class="literal1">
+   turtle
+  </span>
+  module (similar to our
+  <span class="literal1">
+   reginald
+  </span>
+  and
+  <span class="literal1">
+   harriet
+  </span>
+  objects). We can create two
+  <span class="literal1">
+   Turtle
+  </span>
+  objects (named Avery and Kate) just as we created two giraffes:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">import</span> turtle
+<span class="brown">&gt;&gt;&gt;</span> avery = turtle.Turtle()
+<span class="brown">&gt;&gt;&gt;</span> kate = turtle.Turtle()
+</pre>
+<p class="indent">
+  Each turtle object (
+  <span class="literal1">
+   avery
+  </span>
+  and
+  <span class="literal1">
+   kate
+  </span>
+  ) is a member of the
+  <span class="literal1">
+   Turtle
+  </span>
+  class.
+ </p>
+<p class="indent">
+  Now here’s where objects start to become powerful. Having created our
+  <span class="literal1">
+   Turtle
+  </span>
+  objects, we can call functions on each, and they will draw independently. Try this code:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> avery.forward(50)
+<span class="brown">&gt;&gt;&gt;</span> avery.right(90)
+<span class="brown">&gt;&gt;&gt;</span> avery.forward(20)
+</pre>
+<p class="indent">
+<span id="page_104">
+</span>
+  With this series of instructions, we tell Avery to move forward 50 pixels, turn right 90 degrees, and move forward 20 pixels so she finishes facing downward. Remember that turtles always start off facing to the right.
+ </p>
+<p class="indent">
+  Now it’s time to move Kate.
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> kate.left(90)
+<span class="brown">&gt;&gt;&gt;</span> kate.forward(100)
+</pre>
+<p class="indent">
+  We tell Kate to turn left 90 degrees and then move forward 100 pixels so she ends facing up. So far, we have a line with arrowheads moving in two different directions, with the head of each arrow representing a different turtle object: Avery is pointing down, and Kate is facing up (see
+  <a class="calibre6" href="ch08.xhtml#ch08fig03">
+   Figure 8-3
+  </a>
+  ).
+ </p>
+<div class="image" id="ch08fig03">
+<img alt="Image" class="calibre65" src="../images/08fig03.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 8-3: Kate and Avery
+  </em>
+</p>
+<p class="indent">
+  Now let’s add another turtle, Jacob, and move him without bugging Kate or Avery:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> jacob = turtle.Turtle()
+<span class="brown">&gt;&gt;&gt;</span> jacob.left(180)
+<span class="brown">&gt;&gt;&gt;</span> jacob.forward(80)
+</pre>
+<div class="image">
+<span id="page_105">
+</span>
+<img alt="Image" class="calibre77" src="../images/f0105-01.jpg"/>
+</div>
+<p class="indent">
+  First, we create a new
+  <span class="literal1">
+   Turtle
+  </span>
+  object called
+  <span class="literal1">
+   jacob
+  </span>
+  ; then we turn him left 180 degrees and move him forward 80 pixels. Our drawing with three turtles should look like
+  <a class="calibre6" href="ch08.xhtml#ch08fig04">
+   Figure 8-4
+  </a>
+  .
+ </p>
+<div class="image" id="ch08fig04">
+<img alt="Image" class="calibre65" src="../images/08fig04.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 8-4: Kate and Avery and Jacob
+  </em>
+</p>
+<p class="indent">
+  Every time we call
+  <span class="literal1">
+   turtle.Turtle()
+  </span>
+  to create a turtle, we add a new, independent object. Each object is still an instance of the
+  <span class="literal1">
+   Turtle
+  </span>
+  class, and we can use the same functions on each object. But because we’re using objects, we can move each turtle independently. Like our independent
+  <span class="literal1">
+   Giraffe
+  </span>
+  objects (Reginald and Harriet), Avery, Kate, and Jacob are independent
+  <span class="literal1">
+   Turtle
+  </span>
+  objects. If we create a new object with the same variable name as an object we’ve already created, the old object won’t necessarily vanish.
+ </p>
+<h3 class="h1" id="ch08lev1sec8">
+<span class="calibre2" id="page_106">
+</span>
+  Other Useful Features of Objects and Classes
+ </h3>
+<p class="noindent">
+  Classes and objects make it easy to group functions. They’re also really useful when we want to think about a program in smaller chunks.
+ </p>
+<p class="indent">
+  For example, consider a huge software application like a word processor or a 3D computer game. It’s nearly impossible for most people to fully understand large programs like these because there’s so much code. But break these monster programs into smaller pieces, and each piece starts to make sense—as long as you know its programming language, of course!
+ </p>
+<p class="indent">
+  When writing a large program, breaking it up also allows you to divide the work among other programmers. The most complicated programs (like your web browser) were written by many people, or teams of people, working on different parts at the same time around the world.
+ </p>
+<p class="indent">
+  Imagine we want to expand some of the classes we’ve created in this chapter (
+  <span class="literal1">
+   Animal
+  </span>
+  ,
+  <span class="literal1">
+   Mammal
+  </span>
+  , and
+  <span class="literal1">
+   Giraffe
+  </span>
+  ), but we have too much work to do, and our friends offer to help. We could divide the work of writing the code so that one person works on the
+  <span class="literal1">
+   Animal
+  </span>
+  class, another on the
+  <span class="literal1">
+   Mammal
+  </span>
+  class, and still another on the
+  <span class="literal1">
+   Giraffe
+  </span>
+  class.
+ </p>
+<div class="image">
+<img alt="Image" class="calibre78" src="../images/f0106-01.jpg"/>
+</div>
+<h3 class="h1" id="ch08lev1sec9">
+  Inherited Functions
+ </h3>
+<p class="noindent">
+  You may realize that whoever ends up working on the
+  <span class="literal1">
+   Giraffe
+  </span>
+  class is lucky, because any functions created by the people working on the
+  <span class="literal1">
+   Animal
+  </span>
+  and
+  <span class="literal1">
+   Mammal
+  </span>
+  classes can also be used by the
+  <span class="literal1">
+   Giraffe
+  </span>
+  class. The
+  <span class="literal1">
+   Giraffe
+  </span>
+  class
+  <em class="calibre7">
+   inherits
+  </em>
+  functions from the
+  <span class="literal1">
+   Mammal
+  </span>
+  class, which, in turn, inherits functions from the
+  <span class="literal1">
+   Animal
+  </span>
+  class. In other words, when we create a
+  <span class="literal1">
+   Giraffe
+  </span>
+  object, we can use functions defined in the
+  <span class="literal1">
+   Giraffe
+  </span>
+  class, as well as functions defined in the
+  <span class="literal1">
+   Mammal
+  </span>
+  and
+  <span class="literal1">
+   Animal
+  </span>
+  classes. And, by the same token, if we create a
+  <span class="literal1">
+   Mammal
+  </span>
+  object, we can use functions defined in the
+  <span class="literal1">
+   Mammal
+  </span>
+  class as well as its parent class,
+  <span class="literal1">
+   Animal
+  </span>
+  .
+ </p>
+<p class="indent">
+<span id="page_107">
+</span>
+  Look at the relationships between the
+  <span class="literal1">
+   Animal
+  </span>
+  ,
+  <span class="literal1">
+   Mammal
+  </span>
+  , and
+  <span class="literal1">
+   Giraffe
+  </span>
+  classes again. The
+  <span class="literal1">
+   Animal
+  </span>
+  class is the parent of the
+  <span class="literal1">
+   Mammal
+  </span>
+  class, and
+  <span class="literal1">
+   Mammal
+  </span>
+  is the parent of the
+  <span class="literal1">
+   Giraffe
+  </span>
+  class (
+  <a class="calibre6" href="ch08.xhtml#ch08fig05">
+   Figure 8-5
+  </a>
+  ).
+ </p>
+<div class="image" id="ch08fig05">
+<img alt="Image" class="calibre79" src="../images/08fig05.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 8-5: Classes and inherited functions
+  </em>
+</p>
+<p class="indent">
+  Even though
+  <span class="literal1">
+   reginald
+  </span>
+  is an object of the
+  <span class="literal1">
+   Giraffe
+  </span>
+  class, we can still call the
+  <span class="literal1">
+   move
+  </span>
+  function we defined in the
+  <span class="literal1">
+   Animal
+  </span>
+  class because functions defined in any parent class are available to its child classes:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> reginald = Giraffe()
+<span class="brown">&gt;&gt;&gt;</span> reginald.move()
+<span class="blue1">moving</span>
+</pre>
+<p class="indent">
+  In fact, all the functions we defined in both the
+  <span class="literal1">
+   Animal
+  </span>
+  and
+  <span class="literal1">
+   Mammal
+  </span>
+  classes can be called from our
+  <span class="literal1">
+   reginald
+  </span>
+  object because the functions are inherited:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> reginald = Giraffe()
+<span class="brown">&gt;&gt;&gt;</span> reginald.breathe()
+<span class="blue1">breathing</span>
+<span class="brown">&gt;&gt;&gt;</span> reginald.eat_food()
+<span class="blue1">eating food</span>
+<span class="brown">&gt;&gt;&gt;</span> reginald.feed_young_with_milk()
+<span class="blue1">feeding young</span>
+</pre>
+<p class="indent">
+  In this code, we create an object of the
+  <span class="literal1">
+   Giraffe
+  </span>
+  class called
+  <span class="literal1">
+   reginald
+  </span>
+  . When we call each function, it prints a message regardless of whether the function is defined in
+  <span class="literal1">
+   Giraffe
+  </span>
+  or in a parent class.
+ </p>
+<h3 class="h1" id="ch08lev1sec10">
+<span class="calibre2" id="page_108">
+</span>
+  Functions Calling Other Functions
+ </h3>
+<p class="noindent">
+  When we call functions on an object, we use the object’s variable name. For example, we can call the
+  <span class="literal1">
+   move
+  </span>
+  function on Reginald the giraffe like so:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> reginald.move()
+</pre>
+<p class="indent">
+  To have a function in the
+  <span class="literal1">
+   Giraffe
+  </span>
+  class call the
+  <span class="literal1">
+   move
+  </span>
+  function, we’d use the
+  <span class="literal1">
+   self
+  </span>
+  parameter. The
+  <span class="literal1">
+   self
+  </span>
+  parameter is a way for one function in the class to call another function. For example, suppose we add a function called
+  <span class="literal1">
+   find_food
+  </span>
+  to the
+  <span class="literal1">
+   Giraffe
+  </span>
+  class:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> Giraffe(Mammal):
+        <span class="orange">def</span> find_food(self):
+            self.move()
+            <span class="violet">print</span>(<span class="green">'I\'ve found food!'</span>)
+            self.eat_food()
+</pre>
+<p class="indent">
+  We’ve created a function that combines two other functions, which is quite common in programming. Often, you’ll write a function that does something useful, which you can then use inside another function. (We’ll do this in
+  <a class="calibre6" href="ch11.xhtml#ch11">
+   Chapter 11
+  </a>
+  , where we’ll write more complex functions to create a game.)
+ </p>
+<p class="indent">
+  Let’s use
+  <span class="literal1">
+   self
+  </span>
+  to add some functions to the
+  <span class="literal1">
+   Giraffe
+  </span>
+  class:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> Giraffe(Mammal):
+        <span class="orange">def</span> find_food(self):
+            self.move()
+            <span class="violet">print</span>(<span class="green">'I\'ve found leaves!'</span>)
+            self.eat_food()
+        <span class="orange">def</span> eat_leaves_from_trees(self):
+            <span class="violet">print</span>(<span class="green">'tear leaves from branches'</span>)
+            self.eat_food()
+        <span class="orange">def</span> dance_a_jig(self):
+            self.move()
+            self.move()
+            self.move()
+            self.move()
+</pre>
+<p class="indent">
+<span id="page_109">
+</span>
+  We use the
+  <span class="literal1">
+   eat_food
+  </span>
+  and
+  <span class="literal1">
+   move
+  </span>
+  functions from the parent
+  <span class="literal1">
+   Animal
+  </span>
+  class to define
+  <span class="literal1">
+   eat
+  </span>
+<span class="literal1">
+   _leaves_from_trees
+  </span>
+  and
+  <span class="literal1">
+   dance_a_jig
+  </span>
+  for the
+  <span class="literal1">
+   Giraffe
+  </span>
+  class, because these are inherited functions. By adding functions that call other functions, when we create objects of these classes, we can call a single function that does more than just one thing. See what happens when we call the
+  <span class="literal1">
+   dance_a_jig
+  </span>
+  function:
+ </p>
+<div class="image">
+<img alt="Image" class="calibre80" src="../images/f0109-01.jpg"/>
+</div>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> reginald = Giraffe()
+<span class="brown">&gt;&gt;&gt;</span> reginald.dance_a_jig()
+<span class="blue1">moving
+moving
+moving
+moving</span>
+</pre>
+<p class="indent">
+  In this code, our giraffe moves four times (that is, the text
+  <span class="literal1">
+   moving
+  </span>
+  is printed four times).
+ </p>
+<p class="indent">
+  If we call the
+  <span class="literal1">
+   find_food
+  </span>
+  function, we get three lines printed:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> reginald.find_food()
+<span class="blue1">moving
+I've found leaves!
+eating food</span>
+</pre>
+<h3 class="h1" id="ch08lev1sec11">
+  Initializing an Object
+ </h3>
+<p class="noindent">
+  Sometimes when creating an object, we want to set some values (also called
+  <em class="calibre7">
+   properties
+  </em>
+  ) for later use. When we
+  <em class="calibre7">
+   initialize
+  </em>
+  an object, we’re getting it ready to be used.
+ </p>
+<p class="indent">
+  For example, suppose we want to set the number of spots on our giraffe objects when they’re created (or initialized). To do this, we create an
+  <span class="literal1">
+   __init__
+  </span>
+  function (note the two underscore characters on each side, for a total of four). The
+  <span class="literal1">
+   init
+  </span>
+  function sets the properties for an object when the object is first created. Python will automatically call this function when we create a new object. Here’s how to use it.
+ </p>
+<span id="page_110">
+</span>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> Giraffe(Mammal):
+        <span class="orange">def</span> __init__(self, spots):
+            self.giraffe_spots = spots
+</pre>
+<p class="indent">
+  First, we define the
+  <span class="literal1">
+   __init__
+  </span>
+  function with the
+  <span class="literal1">
+   self
+  </span>
+  and
+  <span class="literal1">
+   spots
+  </span>
+  parameters. Just like the other functions we’ve defined in the class, the
+  <span class="literal1">
+   __init__
+  </span>
+  function also needs to have
+  <span class="literal1">
+   self
+  </span>
+  as the first parameter. Next, we set the
+  <span class="literal1">
+   spots
+  </span>
+  parameter to an object variable (its property) called
+  <span class="literal1">
+   giraffe_spots
+  </span>
+  by using the
+  <span class="literal1">
+   self
+  </span>
+  parameter. You might think of this line of code as saying, “Take the value of the
+  <span class="literal1">
+   spots
+  </span>
+  parameter and save it for later (using the
+  <span class="literal1">
+   giraffe_spots
+  </span>
+  object variable).” Just as one function in a class can call another function using the
+  <span class="literal1">
+   self
+  </span>
+  parameter, variables in the class are also accessed using
+  <span class="literal1">
+   self
+  </span>
+  .
+ </p>
+<p class="indent">
+  Next, if we create a couple of new giraffe objects (called
+  <span class="literal1">
+   ozwald
+  </span>
+  and
+  <span class="literal1">
+   gertrude
+  </span>
+  ) and display their number of spots, you can see the initialization function in action:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> ozwald = Giraffe(100)
+<span class="brown">&gt;&gt;&gt;</span> gertrude = Giraffe(150)
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(ozwald.giraffe_spots)
+<span class="blue1">100</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(gertrude.giraffe_spots)
+<span class="blue1">150</span>
+</pre>
+<p class="indent">
+  First, we create an instance of the
+  <span class="literal1">
+   Giraffe
+  </span>
+  class using the parameter value 100. This has the effect of calling the
+  <span class="literal1">
+   __init__
+  </span>
+  function and using 100 for the value of the
+  <span class="literal1">
+   spots
+  </span>
+  parameter. Next, we create another instance of the
+  <span class="literal1">
+   Giraffe
+  </span>
+  class with a value of 150. Lastly, we print the object variable
+  <span class="literal1">
+   giraffe_spots
+  </span>
+  for each of our giraffe objects, and we see that the results are 100 and 150. It worked!
+ </p>
+<p class="indent">
+  Remember, when we create an object of a class, such as
+  <span class="literal1">
+   ozwald
+  </span>
+  in this example, we can refer to its variables or functions using the dot operator and the name of the variable or function we want to use (for example,
+  <span class="literal1">
+   ozwald.giraffe_spots
+  </span>
+  ). But when we’re creating functions inside a class, we refer to those same variables (and other functions) by using the
+  <span class="literal1">
+   self
+  </span>
+  parameter (
+  <span class="literal1">
+   self.giraffe_spots
+  </span>
+  ).
+ </p>
+<h3 class="h1" id="ch08lev1sec12">
+<span class="calibre2" id="page_111">
+</span>
+  What You Learned
+ </h3>
+<p class="noindent">
+  In this chapter, we used classes to create categories of things and made objects (or instances) of those classes. You learned how the child of a class inherits the functions of its parent, and that even though two objects are of the same class, they’re not necessarily clones. For example, two giraffe objects can have their own distinct number of spots.
+ </p>
+<p class="indent">
+  You learned how to call (or run) functions on an object and how object variables are a way of saving values in those objects. Lastly, we used the
+  <span class="literal1">
+   self
+  </span>
+  parameter in functions to refer to other functions and variables. These concepts are fundamental to Python, and you’ll see them multiple times throughout the rest of this book.
+ </p>
+<h3 class="h1" id="ch08lev1sec13">
+  Programming Puzzles
+ </h3>
+<p class="noindent">
+  Give the following examples a try to experiment with creating your own functions. The solutions can be found at
+  <em class="calibre7">
+<a class="calibre6" href="http://python-for-kids.com">
+    http://python-for-kids.com
+   </a>
+</em>
+  .
+ </p>
+<h4 class="h3" id="ch08lev2sec1">
+  #1: The Giraffe Shuffle
+ </h4>
+<p class="noindent">
+  Add functions to the
+  <span class="literal1">
+   Giraffe
+  </span>
+  class to move the giraffe’s left and right feet forward and backward. A function for moving the left foot forward might look like this:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">def</span> left_foot_forward(self):
+        <span class="violet">print</span>(<span class="green">'left foot forward'</span>)
+</pre>
+<p class="indent">
+  Then create a function called
+  <span class="literal1">
+   dance
+  </span>
+  to teach our giraffes to dance (the function will call the four foot functions you’ve just created). The result of calling this new function will be a simple dance:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> harriet = Giraffe()
+<span class="brown">&gt;&gt;&gt;</span> harriet.dance()
+<span class="blue1">left foot forward
+left foot back
+right foot forward
+right foot back
+left foot back
+right foot back
+<span id="page_112"></span>right foot forward
+left foot forward</span>
+</pre>
+<h4 class="h3" id="ch08lev2sec2">
+  #2: Turtle Pitchfork
+ </h4>
+<p class="noindent">
+  Create the following picture of a sideways pitchfork using four
+  <span class="literal1">
+   Turtle
+  </span>
+  objects (the exact length of the lines isn’t important). Remember to import the
+  <span class="literal1">
+   turtle
+  </span>
+  module first!
+ </p>
+<div class="image">
+<img alt="Image" class="calibre81" src="../images/f0112-01.jpg"/>
+</div>
+<h4 class="h3" id="ch08lev2sec3">
+  #3: Two Small Spirals
+ </h4>
+<p class="noindent">
+  Create the following picture of two small spirals using two
+  <span class="literal1">
+   Turtle
+  </span>
+  objects (again, the exact size of the spirals isn’t important).
+ </p>
+<div class="image">
+<img alt="Image" class="calibre82" src="../images/f0112-02.jpg"/>
+</div>
+<h4 class="h3" id="ch08lev2sec4">
+<span class="calibre2" id="page_113">
+</span>
+  #4: Four Small Spirals
+ </h4>
+<p class="noindent">
+  Let’s take the two spirals we created in the previous code and make a mirror image to create four spirals, which should look like the following image.
+ </p>
+<div class="image">
+<img alt="Image" class="calibre83" src="../images/f0113-01.jpg"/>
+<span id="page_114">
+</span>
+</div>
+</div></body>
+</html>

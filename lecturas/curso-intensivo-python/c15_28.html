@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c15-0020">Hacer un histograma</h3>
+<p class="BodyFirst">Ahora que tenemos los datos que queremos, podemos generar una visualización en sólo un par de líneas de código utilizando Plotly Express:</p>
+<p class="CodeLabel" translate="no"><b>die_visual.py</b></p>
+<pre translate="no"><code translate="no">import plotly.express as px
+
+<span class="LiteralGray">from die import Die</span>
+<em class="LiteralGrayItalic" translate="no">--snip--</em>
+
+<span class="LiteralGray">for value in poss_results:</span>
+<span class="LiteralGray">    frequency = results.count(value)</span>
+<span class="LiteralGray">    frequencies.append(frequency)</span>
+
+# Visualize the results.
+fig = px.bar(x=poss_results, y=frequencies)
+fig.show()</code></pre>
+<p>Primero importamos el módulo <code translate="no">plotly.express</code>, utilizando el alias convencional <code translate="no">px</code>. A continuación, utilizamos la función <code translate="no">px.bar()</code> para crear un gráfico de barras. En el uso más sencillo de esta función, sólo necesitamos pasar un conjunto de valores <em translate="no">x-</em>y un conjunto de valores <em translate="no">y-</em>. Aquí, los valores <em translate="no">x</em> son los posibles resultados de lanzar un solo dado, y los valores <em translate="no">y</em> son las frecuencias de cada resultado posible.</p>
+<p>La última línea llama a <code translate="no">fig.show()</code>, que indica a Plotly que muestre el gráfico resultante como un archivo HTML y lo abra en una nueva pestaña del navegador. El resultado se muestra en la <a href="#figure15-12" id="figureanchor15-12">Figura 15-12</a>.</p>
+<p>Este es un gráfico muy simple, y desde luego no está completo. Pero así es exactamente como debe utilizarse Plotly Express: escribes un par de líneas de código, miras el gráfico y te aseguras de que representa los datos como tú quieres. Si te gusta lo que ves, puedes pasar a personalizar elementos del gráfico como etiquetas y estilos. Pero si quieres explorar otros tipos de gráficos posibles, puedes hacerlo ahora, sin haber dedicado tiempo extra a las tareas de personalización. Puedes probarlo ahora cambiando <code translate="no">px.bar()</code> por algo como <code translate="no">px.scatter()</code> o <code translate="no">px.line()</code>. Encontrarás una lista completa de los tipos de gráficos disponibles en <a class="LinkURL" href="https://plotly.com/python/plotly-express">https://plotly.com/python/plotly-express.</a></p>
+<p>Este gráfico es dinámico e interactivo. Si cambias el tamaño de la ventana de tu navegador, el gráfico cambiará de tamaño para adaptarse al espacio disponible. Si pasas el ratón por encima de cualquiera de las barras, verás una ventana emergente que resalta los datos específicos relacionados con esa barra.</p>
+<span epub:type="pagebreak" id="Page_323" title="323"></span>
+<figure><img alt="" class="keyline" height="430" src="Images/f15012.png" translate="no" width="694"/>
+<figcaption><p><a id="figure15-12">Figura 15-12</a>: Gráfico inicial producido por Plotly Express</p></figcaption></figure>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c15_27.html">anterior</a><a href="c15.html">Subtema 28 de 35: (Ver todo)</a><a href="c15_29.html">siguiente</a><br/></p>
+<br/><a href="c15_28.docx" target="_blank"></a></footer>
+</body>
+</html>

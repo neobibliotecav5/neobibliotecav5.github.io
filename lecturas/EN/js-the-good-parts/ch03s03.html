@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Update</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Update"><div class="titlepage"><div><div><h1 class="title"><a id="update"/>Update</h1></div></div></div><p>A value in an object can be updated by assignment. If the property name already
+                exists in the object, the property value is replaced:<a id="IDX-CHP-3-0160" class="indexterm"/><a id="IDX-CHP-3-0161" class="indexterm"/></p><a id="I_programlisting3_d1e2108"/><pre class="programlisting">stooge['first-name'] = 'Jerome';</pre><p>If the object does not already have that property name, the object is
+                augmented:</p><a id="I_programlisting3_d1e2112"/><pre class="programlisting">stooge['middle-name'] = 'Lester';
+stooge.nickname = 'Curly';
+flight.equipment = {
+    model: 'Boeing 777'
+};
+flight.status = 'overdue';</pre></div></body></html>

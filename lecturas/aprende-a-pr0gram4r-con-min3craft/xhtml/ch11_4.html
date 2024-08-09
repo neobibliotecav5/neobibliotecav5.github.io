@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch11lev1sec03"><span epub:type="pagebreak" id="page_251"></span><strong><span class="blue1">Almacenar muchos datos con el módulo shelve</span></strong></h3>
+<p class="noindent">El módulo <span class="literal">pepinillo</span> sólo puede almacenar un dato cada vez. En algunos programas, puede que quieras almacenar varias variables; si utilizas el módulo <span class="literal">pickle</span>, tendrás que crear varios archivos, lo que puede ser difícil de gestionar.</p>
+<p class="indent">El módulo <span class="literal">shelve</span> de Python resuelve este problema. Puede almacenar varios datos en un único archivo. Funciona como un diccionario en el que cada valor de datos tiene una clave que puedes utilizar para almacenar y recuperar los datos. Piensa en <span class="literal">shelve</span> como en una estantería: cada compartimento de la estantería almacena distintos valores de datos.</p>
+<h4 class="h4" id="ch11lev2sec16"><strong><span class="blue1">Abrir un archivo con shelve</span></strong></h4>
+<p class="noindent">Tras importar el módulo <span class="literal">shelve</span>, utilizarás su función <span class="literal">open()</span> para abrir un archivo. Si el archivo no existe, se creará uno nuevo.</p>
+<p class="indent">El siguiente código abre el archivo <em>locationsFile.db</em> y lo almacena en la variable <span class="literal">shelveFile</span>:</p>
+<p class="programs" translate="no"><span class="orange">import</span> shelve<br translate="no"/>shelveFile = shelve.open(<span class="green">"locationsFile.db"</span>)</p>
+<p class="indent">La función <span class="literal">open(</span> ) sólo toma un argumento, el nombre del archivo. No necesitas especificar los permisos del archivo cuando utilices el módulo <span class="literal">shelve</span>, ya que éste concede automáticamente privilegios de lectura y escritura.</p>
+<p class="indent">Al nombrar un archivo con el módulo <span class="literal">shelve</span>, debes incluir la extensión <em>.</em> db al final del nombre del archivo. Puedes ver el <em>.d</em> b al final de mi archivo <em>locationsFile.db</em>.</p>
+<h4 class="h4" id="ch11lev2sec17"><strong><span class="blue1">Añadir, modificar y acceder a elementos con shelve</span></strong></h4>
+<p class="noindent">El módulo <span class="literal">shelve</span> funciona como un diccionario. Para añadir datos al archivo, utilizas corchetes con un nombre de clave para almacenar un valor. Por ejemplo, supongamos que una agente secreta llamada Beatriz está en un submarino, y queremos almacenar la ubicación de Beatriz en el diccionario <span class="literal">shelveFichero</span>:</p>
+<p class="programs" translate="no"><span class="orange">import</span> shelve<br translate="no"/>shelveFile = shelve.open(<span class="green">"locationsFile.db"</span>)<br translate="no"/>shelveFile[<span class="green">'Beatrice'</span>] = <span class="green">'Submarine'</span><br translate="no"/>shelveFile.close()</p>
+<p class="indent">Primero abrimos el archivo. A continuación, damos al diccionario <span class="literal">shelveFile</span> una clave <span class="literal">"Beatriz"</span> y el valor <span class="literal">"Submarino"</span>. Esta línea crea un nuevo elemento en el diccionario <span class="literal">shelveFile</span> con la clave " <span class="literal">Beatriz</span> " y el valor "Submarino <span class="literal">"</span>.</p>
+<p class="indent">A continuación, utilizamos la función <span class="literal">close()</span> de <span class="literal">shelve</span>para añadir los nuevos datos al archivo y cerrarlo de forma segura.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_252"></span>Si una clave ya existe en un archivo shelve, este código actualizaría el valor antiguo por el nuevo. Supongamos que Beatrice termina su misión y vuelve al cuartel general. Podrías actualizar la ubicación de Beatrice de esta forma:</p>
+<p class="programs" translate="no"><span class="orange">import</span> shelve<br translate="no"/>shelveFile = shelve.open(<span class="green">'locationsFile.db'</span>)<br translate="no"/>shelveFile[<span class="green">'Beatrice'</span>] = <span class="green">'Headquarters'</span><br translate="no"/>shelveFile.close()</p>
+<p class="indent">Ahora el valor correspondiente de la clave Beatrice es <span class="literal">"Cuartel General"</span>. Acceder a un valor desde la <span class="literal">estantería</span> también funciona como en un diccionario. Utilizas claves para acceder a valores concretos. Por ejemplo, para imprimir la ubicación de Beatriz, utilizaríamos el siguiente código:</p>
+<p class="programs" translate="no"><span class="orange">import</span> shelve<br translate="no"/>shelveFile = shelve.open(<span class="green">'locationsFile.db'</span>)<br translate="no"/><span class="rose">print</span>(shelveFile[<span class="green">'Beatrice'</span>])</p>
+<p class="indent">Esto mostrará la ubicación de Beatriz, <span class="literal">Sede Central</span>.</p>
+<p class="indent">Al igual que un diccionario estándar, el módulo <span class="literal">estantería</span> puede almacenar cualquier tipo de datos, incluidos flotantes, cadenas, booleanos, listas multidimensionales, otros diccionarios, etc. De hecho, en la siguiente misión, ¡almacenarás y accederás a listas multidimensionales para guardar y cargar múltiples estructuras!</p>
+<h4 class="h4a" id="ch11lev2sec18"><strong>Misión nº 66: Guardar una colección de estructuras</strong></h4>
+<p class="noindent">Los programas de esta misión almacenarán y cargarán todas tus estructuras guardadas utilizando un único archivo. Esta misión se divide de nuevo en dos programas: uno para guardar y otro para cargar.</p>
+<p class="indent">Tendrás que convertir los programas de la Misión nº 65 para que utilicen el módulo <span class="literal">shelve</span> en lugar del módulo <span class="literal">pickle</span>. También añadirás código para tomar la información del usuario, de modo que éste pueda poner nombre a sus edificios. Abre los archivos <em>saveStructure.py</em> y <em>loadStructure.py</em> y guárdalos como <em>saveCollection.py</em> y <em>loadCollection.py</em>.</p>
+<p class="indent">Como hicimos en la misión anterior, vamos a realizar los cambios en estos programas en dos partes.</p>
+<h4 class="h4" id="ch11lev2sec19"><strong><span class="blue1">Parte 1: Guardar una estructura en una colección</span></strong></h4>
+<p class="noindent">Aquí se incluye y anota parte del archivo original <em>saveStructure.</em> py para ayudarte a identificar dónde realizarás los cambios. Aquí tienes la primera línea y las últimas líneas de <em>saveCollection</em>.py:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>saveCollection.py</em></span></p>
+<p class="programs" translate="no"><span class="ent">➊</span> <span class="orange">import</span> pickle<br translate="no"/><br translate="no"/>--<span class="codeitalic">snip</span>--<br translate="no"/><br translate="no"/> <span class="red"># Name the structure</span><br translate="no"/><span class="ent">➋</span> structureName = <span class="rose">input</span>(<span class="green">"What do you want to call the structure?"</span>)<br translate="no"/> <span class="red"># Store the structure in a file</span><br translate="no"/><span class="ent">➌</span> pickleFile = <span class="rose">open</span>(<span class="green">"pickleFile"</span>, <span class="green">"wb"</span>)<br translate="no"/><span class="ent">➍</span> pickleFile.dump(structure)</p>
+<p class="indent"><span epub:type="pagebreak" id="page_253"></span>Se añade una línea extra al archivo para preguntar cómo quieres llamar a la estructura cuando la guardes con <span class="literal">pickle</span> <span class="ent">➋.</span> Por ejemplo, mi versión del programa pregunta "¿Cómo quieres llamar a la estructura?" y puedo responder con algo como "Casa" o "Bosque de pasteles". Asegúrate de llamar a cada nueva estructura por un nombre distinto; si una nueva estructura tiene el mismo nombre que otra, la estructura antigua será sobrescrita por la nueva.</p>
+<p class="indent">Para cambiar este programa para que utilice el módulo <span class="literal">shelve</span> en lugar de <span class="literal">pickle</span>, tienes que hacer dos cambios. Primero, cambia la importación del módulo <span class="literal">pickle</span> por <span class="literal">shelve</span> <span class="ent">➊.</span> En segundo lugar, cambia las últimas líneas del código para utilizar <span class="literal">shelve</span> en lugar de <span class="literal">pickle</span>. Abre un archivo llamado <em>structuresFile.db</em> y guárdalo en una variable llamada <span class="literal">shelveFile</span> utilizando la función <span class="literal">shelve.open(</span> ) <span class="ent">➌.</span> A continuación, almacena la variable de <span class="literal">estructura</span> en un diccionario <span class="literal">shelve</span> utilizando la variable <span class="literal">structureName</span> para el nombre de la clave del diccionario <span class="ent">➍.</span> Debería quedar algo así: shelveFile <span class="literal">[nombredelaestructura] = estructura</span>. Por último, cierra <span class="literal">shelveFile</span> en la última línea utilizando <span class="literal">close()</span>.</p>
+<h4 class="h4" id="ch11lev2sec20"><strong><span class="blue1">Parte 2: Cargar una estructura desde una colección</span></strong></h4>
+<p class="noindent">Ahora tienes que modificar el archivo <em>loadCollection.py</em>. He eliminado la parte central del archivo para ahorrar espacio y para que las partes que tienes que cambiar sean más fáciles de ver:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>loadCollection.py</em></span></p>
+<p class="programs" translate="no"><span class="ent">➊</span> <span class="orange">import</span> pickle<br translate="no"/><br translate="no"/>--<span class="codeitalic">snip</span>--<br translate="no"/><span class="ent">➋</span> structure = pickle.load(<span class="green">"pickleFile"</span>)<br translate="no"/><span class="ent">➌</span> structureName = <span class="rose">input</span>(<span class="green">"Enter the structure's name"</span>)<br translate="no"/><br translate="no"/>   pos = mc.player.getTilePos()<br translate="no"/>   x = pos.x<br translate="no"/>   y = pos.y<br translate="no"/>   z = pos.z<br translate="no"/><br translate="no"/><span class="ent">➍</span> buildStructure(x, y, z, structureDictionary[structureName])</p>
+<p class="indent">He añadido una línea extra al código que pide el nombre de la estructura que quieres construir <span class="ent">➌.</span> Además, he añadido un poco de código a la última línea que obtiene la estructura del diccionario de <span class="literal">estanterías</span> y la pasa a la función <span class="literal">buildStructure()</span>.</p>
+<p class="indent">Tienes que hacer un par de cambios en este programa. Primero, al igual que en <em>saveCollection.py</em>, cambia <span class="literal">import</span> por <span class="literal">shelve</span> en lugar de <span class="literal">pickle</span> <span class="ent">➊.</span> En segundo lugar, carga el <span class="literal">archivo shelveFile</span> que creaste en saveCollection <em>.</em> py utilizando <span class="literal">shelve.open()</span> <span class="ent">➋.</span> Almacena los datos devueltos por la función shelve.open( <span class="literal">)</span> en la variable <span epub:type="pagebreak" id="page_254"></span><span class="literal">structureDictionary</span> <span class="ent">➍.</span> El código debería ser algo parecido a lo siguiente: estructuraDiccionario <span class="literal">= shelve.load("archivo shelve")</span>.</p>
+<p class="indent">Todos los datos de las estructuras, incluidos sus nombres y bloques, se almacenan en el archivo <em>structuresFile.db</em>, lo que significa que no necesitas hacer ningún cambio en <em>loadCollection.</em> py antes de ejecutarlo. Todo lo que tienes que hacer es introducir el nombre de la estructura que quieres utilizar cuando ejecutes el programa.</p>
+<p class="indent">Veamos el programa en acción, utilizando una estructura de mi mundo Minecraft. Primero, copio la estructura utilizando <em>saveCollection.</em> py volando hasta una esquina de la estructura y pulsando <small>ENTER</small><a href="ch11.xhtml#ch11fig7">(Figura 11-7</a>).</p>
+<div class="image"><img alt="image" src="../images/f11-07.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch11fig7"></a><em>Figura 11-7: Me desplazo a una esquina de la estructura que quiero guardar.</em></p>
+<p class="indent">Después, vuelo hasta la esquina opuesta de la estructura y pulso <small>ENTER</small> de nuevo<a href="ch11.xhtml#ch11fig8">(</a>Figura 11-8).</p>
+<div class="image"><img alt="image" src="../images/f11-08.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch11fig8"></a><em>Figura 11-8: Me desplazo a la esquina opuesta.</em></p>
+<p class="indent"><span epub:type="pagebreak" id="page_255"></span>A continuación, el programa me pide que introduzca un nombre para mi estructura. La Figura <a href="ch11.xhtml#ch11fig9">11-9</a> muestra que he llamado a mi estructura <span class="literal">"Árbol de tartas"</span>.</p>
+<div class="image"><img alt="image" src="../images/f11-09.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch11fig9"></a><em>Figura 11-9: Introduzco el nombre con el que quiero guardar la estructura.</em></p>
+<p class="indent">Por último, ejecuto <em>loadCollection.py</em>, vuelo a la ubicación donde quiero construir una copia de la estructura e introduzco el nombre de la estructura que quiero construir<a href="ch11.xhtml#ch11fig10">(Figura 11</a>-10). El programa empieza a construir delante de mí, ¡como por arte de magia!</p>
+<div class="image"><img alt="image" src="../images/f11-10.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch11fig10"></a><em>Figura 11-10: Ahora, cuando quiero crear una copia, sólo tengo que introducir el nombre de la estructura y se construye.</em></p>
+<p class="indent">Puedes repetir este proceso con tantos edificios o estructuras como quieras; por ejemplo, yo he hecho una copia de una cabaña en la <a href="ch11.xhtml#ch11fig11">Figura 11-11</a>. Cuando hayas copiado una estructura una vez, podrás cargarla cuando quieras con sólo ejecutar <em>loadCollection.py</em> e introducir el nombre de la estructura.</p>
+<div class="image"><span epub:type="pagebreak" id="page_256"></span><img alt="image" src="../images/f11-11.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch11fig11"></a><em>Figura 11-11: Puedes utilizar el programa para guardar varias estructuras. Aquí he copiado una cabaña.</em></p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch11_3.html">anterior</a><a href="ch11.html">Subtema 4 de 7: (Ver todo)</a><a href="ch11_5.html">siguiente</a><br/></p>
+<br/><a href="ch11_4.docx" target="_blank"></a></footer>
+</body>
+</html>

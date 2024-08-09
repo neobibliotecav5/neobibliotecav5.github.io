@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch15lev1sec4">
+<span class="calibre2" id="page_237">
+</span>
+  Vinculación a las teclas </h3>
+<p class="noindent">
+  En la parte final de la función <span class="literal1" translate="no">
+   __init__
+  </span>, las funciones <span class="literal1" translate="no">
+   bind
+  </span>vinculan una tecla a algo de nuestro código que debe ejecutarse cuando se pulse la tecla: </p>
+<pre class="pre" translate="no">        <span class="gray">self.jump_count = 0 
+        self.last_time = time.time()
+        self.coordinates = Coords()</span>
+        game.canvas.bind_all(<span class="green">'&lt;KeyPress-Left&gt;'</span>, self.turn_left)
+        game.canvas.bind_all(<span class="green">'&lt;KeyPress-Right&gt;'</span>, self.turn_right)
+        game.canvas.bind_all(<span class="green">'&lt;space&gt;'</span>, self.jump)</pre>
+<p class="indent">
+  Vinculamos <span class="literal1" translate="no">
+   &lt;KeyPress-Left&gt;
+  </span>a la función <span class="literal1" translate="no">
+   turn_left
+  </span>, <span class="literal1" translate="no">
+   &lt;KeyPress-Right&gt;
+  </span>a la función <span class="literal1" translate="no">
+   turn_right
+  </span>y <span class="literal1" translate="no">
+   &lt;space&gt;
+  </span>a la función <span class="literal1" translate="no">
+   jump
+  </span>. Ahora tenemos que crear esas funciones para que la figura de palo se mueva. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch15_4.html">anterior</a><a href="ch15.html">Subtema 5 de 9: (Ver todo)</a><a href="ch15_6.html">siguiente</a><br/></p>
+<br/><a href="ch15_5.docx" target="_blank"></a></footer>
+</body>
+</html>

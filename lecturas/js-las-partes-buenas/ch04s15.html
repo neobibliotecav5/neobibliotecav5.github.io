@@ -1,0 +1,96 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Memoization</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="Memoization"><div class="titlepage"><div><div><h1 class="title"><a id="memoization"></a>Memoización</h1></div></div></div><p>Las funciones pueden utilizar objetos para recordar los resultados de operaciones anteriores, lo que permite evitar trabajo innecesario. Esta optimización se denomina        <span class="emphasis"><em translate="no">memoization</em></span>. Los objetos y matrices de JavaScript son muy prácticos para esto.<a class="indexterm" id="IDX-CHP-4-0244"></a><a class="indexterm" id="IDX-CHP-4-0245"></a></p><p>Supongamos que queremos una función recursiva para calcular números de Fibonacci. Un número de Fibonacci es la suma de los dos números de Fibonacci anteriores. Los dos primeros son 0 y 1:<a class="indexterm" id="IDX-CHP-4-0246"></a><a class="indexterm" id="IDX-CHP-4-0247"></a><a class="indexterm" id="IDX-CHP-4-0248"></a></p><a id="I_programlisting4_d1e3564"></a><pre class="programlisting" translate="no">var fibonacci = function (n) {
+    return n &lt; 2 ? n : fibonacci(n − 1) + fibonacci(n − 2);
+};
+
+for (var i = 0; i &lt;= 10; i += 1) {
+    document.writeln('// ' + i + ': ' + fibonacci(i));
+}
+
+// 0: 0
+// 1: 1
+// 2: 1
+// 3: 2
+// 4: 3
+// 5: 5
+// 6: 8
+// 7: 13
+// 8: 21
+// 9: 34
+// 10: 55</pre><p>Esto funciona, pero hace mucho trabajo innecesario. La función <code class="literal" translate="no">fibonacci</code> se llama 453 veces. Nosotros la llamamos 11 veces, y ella se llama a sí misma 442 veces para calcular valores que probablemente ya se han calculado recientemente. Si <span class="emphasis"><em translate="no">memoize</em></span> la función, podemos reducir significativamente su carga de trabajo.</p><p>Guardaremos nuestros resultados memoizados en una matriz <code class="literal" translate="no">memo</code>que podemos ocultar en un cierre. Cuando se llama a nuestra función, primero mira si ya conoce el resultado. Si lo conoce, puede devolverlo inmediatamente:</p><a id="I_programlisting4_d1e3579"></a><pre class="programlisting" translate="no">var fibonacci = (function (  ) {
+    var memo = [0, 1];
+    var fib = function (n) {
+        var result = memo[n];
+        if (typeof result !== 'number') {
+            result = fib(n − 1) + fib(n − 2);
+            memo[n] = result;
+        }
+        return result;
+    };
+    return fib;
+}( ));</pre><p>Esta función devuelve los mismos resultados, pero sólo se llama 29 veces. La llamamos 11 veces. Se llamó a sí misma 18 veces para obtener los resultados previamente memorizados.</p><p>Podemos generalizar esto creando una función que nos ayude a hacer funciones memoizadas. La función <code class="literal" translate="no">memoizer</code> tomará una matriz inicial <code class="literal" translate="no">memo</code> y la función <code class="literal" translate="no">formula</code>. Devuelve una función recur que gestiona el almacén de memo y que llama a la función <code class="literal" translate="no">formula</code> cuando es necesario. Pasamos la función <code class="literal" translate="no">recur</code> y los parámetros de la función a la función <code class="literal" translate="no">formula</code>:</p><a id="I_programlisting4_d1e3604"></a><pre class="programlisting" translate="no">var memoizer = function (memo, formula) {
+    var recur = function (n) {
+        var result = memo[n];
+        if (typeof result !== 'number') {
+            result = formula(recur, n);
+            memo[n] = result;
+        }
+        return result;
+    };
+    return recur;
+};</pre><p>Ahora podemos definir <code class="literal" translate="no">fibonacci</code> con el memoizer, proporcionando la matriz inicial <code class="literal" translate="no">memo</code> y la función <code class="literal" translate="no">formula</code>:</p><a id="I_programlisting4_d1e3618"></a><pre class="programlisting" translate="no">var fibonacci = memoizer([0, 1], function (recur, n) {
+    return recur(n − 1) + recur(n − 2);
+});</pre><p>Ideando funciones que produzcan otras funciones, podemos reducir significativamente la cantidad de trabajo que tenemos que hacer. Por ejemplo, para producir una función factorial memoizante, sólo tenemos que proporcionar la fórmula factorial básica:<a class="indexterm" id="IDX-CHP-4-0249"></a></p><a id="I_programlisting4_d1e3625"></a><pre class="programlisting" translate="no">var factorial = memoizer([1, 1], function (recur, n) {
+    return n * recur(n − 1);
+});</pre></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="ch04s14.html">← Anterior</a><a href="ch05.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="ch04s15.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\ch04s15.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

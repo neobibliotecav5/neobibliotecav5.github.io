@@ -1,0 +1,116 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Parts</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="Parts"><div class="titlepage"><div><div><h1 class="title"><a id="parts"></a>Piezas</h1></div></div></div><p>Podemos componer objetos a partir de conjuntos de partes. Por ejemplo, podemos crear una función que añada funciones sencillas de procesamiento de eventos a cualquier objeto. Añade un método <code class="literal" translate="no">on</code>, un método <code class="literal" translate="no">fire</code>y un registro privado de eventos:<a class="indexterm" id="IDX-CHP-5-0292"></a></p><a id="I_programlisting5_d1e4277"></a><pre class="programlisting" translate="no">var eventuality = function (that) {
+    var registry = {};
+
+    that.fire = function (event) {
+
+// Fire an event on an object. The event can be either
+// a string containing the name of the event or an
+// object containing a type property containing the
+// name of the event. Handlers registered by the 'on'
+// method that match the event name will be invoked.
+
+        var array,
+            func,
+            handler,
+            i,
+            type = typeof event === 'string' ? event : event.type;
+
+// If an array of handlers exist for this event, then
+// loop through it and execute the handlers in order.
+
+        if (registry.hasOwnProperty(type)) {
+            array = registry[type];
+            for (i = 0; i &lt; array.length; i += 1) {
+                handler = array[i];
+
+// A handler record contains a method and an optional
+// array of parameters. If the method is a name, look
+// up the function.
+
+                func = handler.method;
+                if (typeof func === 'string') {
+                    func = this[func];
+                }
+
+// Invoke a handler. If the record contained
+// parameters, then pass them. Otherwise, pass the
+// event object.
+
+                func.apply(this,
+                    handler.parameters || [event]);
+            }
+        }
+        return this;
+    };
+
+    that.on = function (type, method, parameters) {
+
+// Register an event. Make a handler record. Put it
+// in a handler array, making one if it doesn't yet
+// exist for this type.
+
+        var handler = {
+            method: method,
+            parameters: parameters
+        };
+        if (registry.hasOwnProperty(type)) {
+            registry[type].push(handler);
+        } else {
+            registry[type] = [handler];
+        }
+        return this;
+    };
+    return that;
+};</pre><p>Podríamos llamar a <code class="literal" translate="no">eventuality</code> en cualquier objeto individual, dotándolo de métodos de tratamiento de eventos. También podríamos llamarlo en una función constructora antes de que se devuelva <code class="literal" translate="no">that</code>:</p><a id="I_programlisting5_d1e4287"></a><pre class="programlisting" translate="no">eventuality(that);</pre><p>De este modo, un constructor podría ensamblar objetos a partir de un conjunto de partes. La tipificación laxa de JavaScript es una gran ventaja en este caso, porque no estamos agobiados por un sistema de tipos preocupado por el linaje de las clases. En su lugar, podemos centrarnos en el carácter de su contenido.</p><p>Si quisiéramos que <code class="literal" translate="no">eventuality</code> tuviera acceso al estado privado del objeto, podríamos pasarle el paquete <code class="literal" translate="no">my</code>.</p></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="ch05s04.html">← Anterior</a><a href="ch06.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="ch05s05.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\ch05s05.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

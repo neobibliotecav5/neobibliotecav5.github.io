@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch12lev1sec4">
+  Añadir un elemento de azar </h3>
+<p class="noindent">
+  Ahora es el momento de convertir nuestro programa en un juego y no sólo en una pelota que rebota y una paleta. Los juegos necesitan un elemento <em class="calibre7">de </em>azar, o una forma de que el jugador pierda. En nuestro juego actual, la pelota rebotará eternamente, así que no hay nada que perder. </p>
+<div class="image1">
+<img alt="Image" class="calibre132" src="../images/f0192-01.jpg" translate="no"/>
+</div>
+<p class="indent">
+  Terminaremos nuestro juego añadiendo código que diga que el juego termina si la pelota toca el fondo del lienzo (en otras palabras, cuando toque el suelo). </p>
+<p class="indent">
+  En primer lugar, añadimos la variable de objeto <span class="literal1" translate="no">
+   hit_bottom
+  </span>al final de la función <span class="literal1" translate="no">
+   __init__
+  </span>de la clase <span class="literal1" translate="no">
+   Ball
+  </span>: </p>
+<pre class="pre" translate="no">        <span class="gray">self.canvas_height = self.canvas.winfo_height()
+        self.canvas_width = self.canvas.winfo_width()</span>
+        self.hit_bottom = <span class="violet">False</span>
+</pre>
+<p class="indent">
+<span id="page_193">
+</span>
+  A continuación, cambiamos el bucle principal en la parte inferior del programa, de la siguiente manera: </p>
+<pre class="pre" translate="no"><span class="orange">while</span> <span class="violet">True</span>:
+  <span class="ent">➊</span> <span class="orange">if</span> ball.hit_bottom == <span class="violet">False</span>:
+        ball.draw()
+        paddle.draw()
+    tk.update_idletasks()
+    tk.update()
+    time.sleep(0.01)
+</pre>
+<p class="indent">
+  Ahora el bucle sigue comprobando <span class="literal1" translate="no">
+   hit_bottom
+  </span><span class="ent">➊ </span>para ver si efectivamente la pelota ha tocado el fondo de la pantalla. El código debe seguir moviendo la pelota y la pala sólo si la pelota no ha tocado el fondo, como puedes ver en la declaración <span class="literal1" translate="no">
+   if
+  </span>anterior. El juego termina cuando la pelota y la paleta dejan de moverse. (Ya no los animamos.) </p>
+<p class="indent">
+  El último cambio es en la función <span class="literal1" translate="no">
+   draw
+  </span>de la clase <span class="literal1" translate="no">
+   Ball
+  </span>: </p>
+<pre class="pre" translate="no">    <span class="orange">def</span> draw(self):
+        self.canvas.move(self.id, self.x, self.y)
+        pos = self.canvas.coords(self.id)
+        <span class="orange">if</span> pos[1] &lt;= 0:
+            self.y = self.y * -1
+     <span class="ent">➊</span> <span class="orange">if</span> pos[3] &gt;= self.canvas_height:
+            self.hit_bottom = <span class="violet">True</span>
+        <span class="orange">if</span> self.hit_paddle(pos) == <span class="violet">True</span>:
+            self.y = self.y * -1
+        <span class="orange">if</span> pos[0] &lt;= 0 <span class="orange">or</span> pos[2] &gt;= self.canvas_width:
+            self.y = self.y * -1
+</pre>
+<p class="noindent">
+  Modificamos la sentencia <span class="literal1" translate="no">
+   if
+  </span>para ver si la pelota ha tocado el fondo de la pantalla (es decir, si la posición de la pelota es mayor o igual que <span class="literal1" translate="no">
+   canvas_height
+  </span>) <span class="ent">➊ </span>. Si es así, en la línea siguiente, establecemos <span class="literal1" translate="no">
+   hit_bottom
+  </span>en <span class="literal1" translate="no">
+   True
+  </span>, en lugar de cambiar el valor de la variable <span class="literal1" translate="no">
+   y
+  </span>, porque no hay necesidad de hacer rebotar la pelota una vez que toca el fondo de la pantalla. </p>
+<p class="indent">
+  Cuando ejecutes el juego ahora y falles al golpear la pelota con la pala, todo el movimiento de la pantalla debería detenerse. El juego debería terminar una vez que la pelota toque el fondo del lienzo, como se muestra en la <a class="calibre6" href="ch12.xhtml#ch12fig04">Figura 12-4 . </a></p>
+<div class="image1">
+<img alt="Image" class="calibre133" id="ch12fig04" src="../images/12fig04.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figura 12-4: </em>La pelota toca<em class="calibre7">el </em>fondo de la pantalla</p>
+<p class="indent">
+<span id="page_194">
+</span>
+  Tu programa debería parecerse ahora al siguiente código. Si tienes problemas para que tu juego funcione, comprueba lo que has introducido con este código: </p>
+<pre class="pre" translate="no"><span class="orange">from</span> tkinter <span class="orange">import</span> *
+<span class="orange">import</span> random
+<span class="orange">import</span> time
+
+<span class="orange">class</span> Ball:
+    <span class="orange">def</span> __init__(self, canvas, paddle, color):
+        self.canvas = canvas
+        self.paddle = paddle
+        self.id = canvas.create_oval(10, 10, 25, 25, fill=color)
+        self.canvas.move(self.id, 245, 100)
+        starts = [-3, -2, -1, 1, 2, 3]
+        self.x = random.choice(starts)
+        self.y = -3
+        self.canvas_height = self.canvas.winfo_height()
+        self.canvas_width = self.canvas.winfo_width()
+        self.hit_bottom = <span class="violet">False</span>
+        
+    <span class="orange">def</span> hit_paddle(self, pos):
+<span id="page_195"></span>        paddle_pos = self.canvas.coords(self.paddle.id)
+        <span class="orange">if</span> pos[2] &gt;= paddle_pos[0] <span class="orange">and</span> pos[0] &lt;= paddle_pos[2]:
+            <span class="orange">if</span> pos[3] &gt;= paddle_pos[1] <span class="orange">and</span> pos[3] &lt;= paddle_pos[3]:
+                <span class="orange">return</span> <span class="violet">True</span>
+        <span class="orange">return</span> <span class="violet">False</span>
+        
+    <span class="orange">def</span> draw(self):
+        self.canvas.move(self.id, self.x, self.y)
+        pos = self.canvas.coords(self.id)
+        <span class="orange">if</span> pos[1] &lt;= 0:
+            self.y = self.y * -1
+        <span class="orange">if</span> pos[3] &gt;= self.canvas_height:
+            self.hit_bottom = <span class="violet">True</span>
+        <span class="orange">if</span> self.hit_paddle(pos) == <span class="violet">True</span>:
+            self.y = self.y * -1
+        <span class="orange">if</span> pos[0] &lt;= 0 or pos[2] &gt;= self.canvas_width:
+            self.y = self.y * -1
+
+<span class="orange">class</span> Paddle:
+    <span class="orange">def</span> __init__(self, canvas, color):
+        self.canvas = canvas
+        self.id = canvas.create_rectangle(0, 0, 100, 10, fill=color)
+        self.canvas.move(self.id, 200, 300)
+        self.x = 0
+        self.canvas_width = self.canvas.winfo_width()
+        self.canvas.bind_all(<span class="green">'&lt;KeyPress-Left&gt;'</span>, self.turn_left)
+        self.canvas.bind_all(<span class="green">'&lt;KeyPress-Right&gt;'</span>, self.turn_right)
+
+    <span class="orange">def</span> draw(self):
+        self.canvas.move(self.id, self.x, 0)
+        pos = self.canvas.coords(self.id)
+        <span class="orange">if</span> pos[0] &lt;= 0 <span class="orange">or</span> pos[2] &gt;= self.canvas_width:
+            self.x = 0
+        
+    <span class="orange">def</span> turn_left(self, evt):
+        self.x = -2
+
+    <span class="orange">def</span> turn_right(self, evt):
+        self.x = 2
+
+tk = Tk()
+<span id="page_196"></span>tk.title(<span class="green">'Bounce Game'</span>)
+tk.resizable(0, 0)
+tk.wm_attributes(<span class="green">'-topmost'</span>, 1)
+canvas = Canvas(tk, width=500, height=400, bd=0, highlightthickness=0)
+canvas.pack()
+tk.update()
+
+paddle = Paddle(canvas, <span class="green">'blue'</span>)
+ball = Ball(canvas, paddle, <span class="green">'red'</span>)
+
+<span class="orange">while</span> <span class="violet">True</span>:
+    <span class="orange">if</span> ball.hit_bottom == <span class="violet">False</span>:
+        ball.draw()
+        paddle.draw()
+    tk.update_idletasks()
+    tk.update()
+    time.sleep(0.01)
+</pre>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch12_4.html">anterior</a><a href="ch12.html">Subtema 5 de 7: (Ver todo)</a><a href="ch12_6.html">siguiente</a><br/></p>
+<br/><a href="ch12_5.docx" target="_blank"></a></footer>
+</body>
+</html>

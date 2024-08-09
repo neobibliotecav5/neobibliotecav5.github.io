@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c20-0003">Modificación de base.html</h3>
+<p class="BodyFirst">Tenemos que reescribir <em translate="no">base.html</em> utilizando la plantilla de Bootstrap. Desarrollaremos el nuevo<em translate="no"> base.html </em>por secciones. Se trata de un archivo grande; tal vez quieras copiarlo de los recursos en línea, disponibles en <a class="LinkURL" href="https://ehmatthes.github.io/pcc_3e">https://ehmatthes.github.io/pcc_3e.</a> Si copias el archivo, deberías leer la siguiente sección para comprender los cambios realizados.</p>
+<h4 id="h3-502703c20-0001">Definición de las cabeceras HTML</h4>
+<p class="BodyFirst">El primer cambio que haremos en <em translate="no">base.html</em> define las cabeceras HTML del archivo. También añadiremos algunos requisitos para utilizar Bootstrap en nuestras plantillas, y daremos un título a la página. Elimina todo lo que hay en <em translate="no">base.html</em> y sustitúyelo por el siguiente código:</p>
+<p class="CodeLabel" translate="no"><b>base.html</b></p>
+<pre translate="no"><code translate="no"><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> &lt;!doctype html&gt;
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> &lt;html lang="en"&gt;
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> &lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>   &lt;title&gt;Learning Log&lt;/title&gt;
+
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>   {% load django_bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+
+&lt;/head&gt;</code></pre>
+<p><span epub:type="pagebreak" id="Page_436" title="436"></span>Primero declaramos este archivo como un documento HTML <span aria-label="annotation1" class="CodeAnnotation">❶</span> escrito en inglés <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Un archivo HTML se divide en dos partes principales: la <em translate="no">head</em> y la <em translate="no">body</em>. La cabecera del archivo comienza con una etiqueta de apertura <code translate="no"></code> <span aria-label="annotation3" class="CodeAnnotation">❸.</span> La cabecera de un archivo HTML no contiene nada del contenido de la página; sólo indica al navegador lo que necesita saber para mostrar la página correctamente. Incluimos un elemento <code translate="no"></code> para la página, que se mostrará en la barra de título del navegador siempre que Learning Log esté abierto <span aria-label="annotation4" class="CodeAnnotation">❹.</span></p>
+<p>Antes de cerrar la sección head, cargamos la colección de etiquetas de plantilla disponibles en django-bootstrap5 <span aria-label="annotation5" class="CodeAnnotation">❺.</span> La etiqueta de plantilla <code translate="no">{% bootstrap_css %}</code> es una etiqueta personalizada de django-bootstrap5; carga todos los archivos CSS necesarios para implementar los estilos de Bootstrap. La etiqueta que sigue habilita todo el comportamiento interactivo que podrías utilizar en una página, como las barras de navegación plegables. La etiqueta de cierre <code translate="no">&lt;/head&gt;</code> aparece en la última línea.</p>
+<p>Todas las opciones de estilo de Bootstrap están ahora disponibles en cualquier plantilla que herede de <em translate="no">base.html</em>. Si quieres utilizar etiquetas de plantilla personalizadas de django-bootstrap5, cada plantilla deberá incluir la etiqueta <code translate="no">{% load django_bootstrap5 %}</code>.</p>
+<h4 id="h3-502703c20-0002">Definir la barra de navegación</h4>
+<p class="BodyFirst">El código que define la barra de navegación en la parte superior de la página es bastante largo, porque tiene que funcionar igual de bien en las pantallas estrechas de los teléfonos y en las anchas de los monitores de escritorio. Trabajaremos la barra de navegación por secciones.</p>
+<p>Aquí está la primera parte de la barra de navegación:</p>
+<p class="CodeLabel" translate="no"><b>base.html</b></p>
+<pre translate="no"><code translate="no"><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">&lt;/head&gt;</span>
+&lt;body&gt;
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>   &lt;nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border"&gt;
+    &lt;div class="container-fluid"&gt;
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>       &lt;a class="navbar-brand" href="{% url 'learning_logs:index' %}"&gt;
+          Learning Log&lt;/a&gt;
+
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>       &lt;button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarCollapse" aria-controls="navbarCollapse"
+        aria-expanded="false" aria-label="Toggle navigation"&gt;
+        &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+      &lt;/button&gt;
+
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>       &lt;div class="collapse navbar-collapse" id="navbarCollapse"&gt;
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>         &lt;ul class="navbar-nav me-auto mb-2 mb-md-0"&gt;
+<span aria-label="annotation6" class="CodeAnnotationHang">❻</span>           &lt;li class="nav-item"&gt;
+<span aria-label="annotation7" class="CodeAnnotationHang">❼</span>             &lt;a class="nav-link" href="{% url 'learning_logs:topics' %}"&gt;
+              Topics&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt; &lt;!-- End of links on left side of navbar --&gt;
+      &lt;/div&gt; &lt;!-- Closes collapsible parts of navbar --&gt;
+
+    &lt;/div&gt; &lt;!-- Closes navbar's container --&gt;
+  &lt;/nav&gt; &lt;!-- End of navbar --&gt;
+
+<span epub:type="pagebreak" id="Page_437" title="437"></span><span aria-label="annotation8" class="CodeAnnotationHang">❽</span> {% block content %}{% endblock content %}
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>El primer elemento nuevo es la etiqueta de apertura <code translate="no"></code>. La etiqueta <em translate="no">body</em> de un archivo HTML contiene el contenido que los usuarios verán en una página. A continuación tenemos un elemento <code translate="no"></code>, que abre el código de la barra de navegación en la parte superior de la página <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Todo lo que contiene este elemento está estilizado según las reglas de estilo de Bootstrap definidas por los selectores <code translate="no">navbar</code>, <code translate="no">navbar-expand-md</code>, y el resto que ves aquí. Un <em translate="no">selector</em> determina a qué elementos de una página se aplica una determinada regla de estilo. Los selectores <code translate="no">navbar-light</code> y <code translate="no">bg-light</code> dan estilo a la barra de navegación con un fondo de tema claro. El <code translate="no">mb</code> en <code translate="no">mb-4</code> es la abreviatura de <em translate="no">margin-bottom</em>; este selector garantiza que aparezca un pequeño espacio entre la barra de navegación y el resto de la página. El selector <code translate="no">border</code> proporciona un fino borde alrededor del fondo claro para diferenciarlo un poco del resto de la página.</p>
+<p>La etiqueta <code translate="no"></code> de la línea siguiente abre un contenedor redimensionable que contendrá la barra de navegación general. El término <em translate="no">div</em> es la abreviatura de <em translate="no">division</em>; construyes una página web dividiéndola en secciones y definiendo reglas de estilo y comportamiento que se aplican a cada sección. Cualquier regla de estilo o comportamiento que se defina en una etiqueta de apertura <code translate="no"></code> afectará a todo lo que veas hasta su correspondiente etiqueta de cierre, escrita como <code translate="no">&lt;/div&gt;</code>.</p>
+<p>A continuación establecemos el nombre del proyecto, <code translate="no">Learning Log</code>, para que aparezca como primer elemento de la barra de navegación <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Esto también servirá como enlace a la página de inicio, tal y como ha estado haciendo en la versión mínimamente estilizada del proyecto que construimos en los dos capítulos anteriores. El selector <code translate="no">navbar-brand</code> da estilo a este enlace para que destaque del resto de enlaces y ayude a añadir algo de marca al sitio.</p>
+<p>A continuación, la plantilla Bootstrap define un botón que aparece si la ventana del navegador es demasiado estrecha para mostrar toda la barra de navegación en horizontal <span aria-label="annotation3" class="CodeAnnotation">❸.</span> Cuando el usuario pulsa el botón, los elementos de navegación aparecen en una lista desplegable. La referencia <code translate="no">collapse</code> hace que la barra de navegación se contraiga cuando el usuario encoge la ventana del navegador o cuando el sitio se muestra en dispositivos con pantallas pequeñas.</p>
+<p>A continuación, abrimos una nueva sección (<code translate="no"></code>) de la barra de navegación <span aria-label="annotation4" class="CodeAnnotation">❹.</span> Esta es la parte de la barra de navegación que puede colapsarse en función del tamaño de la ventana del navegador.</p>
+<p>Bootstrap define los elementos de navegación como elementos de una lista desordenada <span aria-label="annotation5" class="CodeAnnotation">❺,</span> con reglas de estilo que hacen que no se parezca en nada a una lista. Cada enlace o elemento que necesites en la barra puede incluirse como elemento en una lista desordenada <span aria-label="annotation6" class="CodeAnnotation">❻.</span> Aquí, el único elemento de la lista es nuestro enlace a la página de temas <span aria-label="annotation7" class="CodeAnnotation">❼.</span> Fíjate en la etiqueta de cierre <code translate="no">&lt;/li&gt;</code> al final del enlace; toda etiqueta de apertura necesita su correspondiente etiqueta de cierre.</p>
+<p>El resto de las líneas que se muestran aquí cierran todas las etiquetas que se han abierto. En HTML, un comentario se escribe así:</p>
+<pre translate="no"><code translate="no">&lt;!-- This is an HTML comment. --&gt;</code></pre>
+<p><span epub:type="pagebreak" id="Page_438" title="438"></span>Las etiquetas de cierre no suelen tener comentarios, pero si eres nuevo en HTML, puede ser realmente útil etiquetar algunas de tus etiquetas de cierre. Una sola etiqueta que falte o una etiqueta de más puede desvirtuar el diseño de toda una página. Incluimos el bloque <code translate="no">content</code> <span aria-label="annotation8" class="CodeAnnotation">❽</span> y también las etiquetas de cierre <code translate="no">&lt;/body&gt;</code> y <code translate="no">&lt;/html&gt;</code>.</p>
+<p>No hemos terminado con la barra de navegación, pero ahora tenemos un documento HTML completo. Si <code translate="no">runserver</code> está actualmente activo, detén el servidor actual y reinícialo. Ve a la página de inicio del proyecto, y deberías ver una barra de navegación que tiene algunos de los elementos mostrados en la <a href="#figure20-1">Figura 20-1</a>. Ahora vamos a añadir el resto de elementos a la barra de navegación.</p>
+<h4 id="h3-502703c20-0003">Añadir enlaces a cuentas de usuario</h4>
+<p class="BodyFirst">Todavía tenemos que añadir los enlaces asociados a las cuentas de usuario. Empezaremos por añadir todos los enlaces relacionados con las cuentas, excepto el formulario de cierre de sesión.</p>
+<p>Haz los siguientes cambios en <em translate="no">base.html</em>:</p>
+<p class="CodeLabel" translate="no"><b>base.html</b></p>
+<pre translate="no"><code translate="no">        <em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">        &lt;/ul&gt; &lt;!-- End of links on left side of navbar --&gt;</span>
+
+        &lt;!-- Account-related links --&gt;
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         &lt;ul class="navbar-nav ms-auto mb-2 mb-md-0"&gt;
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>           {% if user.is_authenticated %}
+            &lt;li class="nav-item"&gt;
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>               &lt;span class="navbar-text me-2"&gt;Hello, {{ user.username }}.
+                &lt;/span&gt;&lt;/li&gt;
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>           {% else %}
+            &lt;li class="nav-item"&gt;
+              &lt;a class="nav-link" href="{% url 'accounts:register' %}"&gt;
+                  Register&lt;/a&gt;&lt;/li&gt;
+            &lt;li class="nav-item"&gt;
+              &lt;a class="nav-link" href="{% url 'accounts:login' %}"&gt;
+                  Log in&lt;/a&gt;&lt;/li&gt;
+          {% endif %}
+
+        &lt;/ul&gt; &lt;!-- End of account-related links --&gt;
+
+<span class="LiteralGray">      &lt;/div&gt; &lt;!-- Closes collapsible parts of navbar --&gt;</span>
+<span class="LiteralGray">      </span><em class="LiteralGrayItalic" translate="no">--snip--</em></code></pre>
+<p>Comenzamos un nuevo grupo de enlaces utilizando otra etiqueta de apertura <code translate="no"></code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Puedes tener tantos grupos de enlaces como necesites en una página. El selector <code translate="no">ms-auto</code> es la abreviatura de <em translate="no">margin-start-automatic</em>: este selector examina los demás elementos de la barra de navegación y elabora un margen izquierdo (de inicio) que empuja este grupo de enlaces hacia el lado derecho de la ventana del navegador.</p>
+<p>El bloque <code translate="no">if</code> es el mismo bloque condicional que utilizamos antes para mostrar mensajes adecuados a los usuarios, dependiendo de si están conectados <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Ahora el bloque es un poco más largo porque hay algunas reglas de estilo dentro de las etiquetas condicionales. El saludo para los usuarios autentificados se envuelve en un elemento <code translate="no"></code> <span aria-label="annotation3" class="CodeAnnotation">❸.</span> Un <em translate="no">span element</em> estiliza trozos de texto o elementos de una página que forman parte de una línea más larga. Mientras que los elementos div crean sus propias divisiones en una página, los elementos span son continuos dentro de una sección mayor. Esto puede <span epub:type="pagebreak" id="Page_439" title="439"></span>resultar confuso al principio, porque muchas páginas tienen elementos div profundamente anidados. Aquí, estamos utilizando el elemento span para dar estilo al texto informativo de la barra de navegación: en este caso, el nombre del usuario conectado.</p>
+<p>En el bloque <code translate="no">else</code>, que se ejecuta para los usuarios no autentificados, incluimos los enlaces para registrar una nueva cuenta e iniciar sesión <span aria-label="annotation4" class="CodeAnnotation">❹.</span> Deben tener el mismo aspecto que el enlace a la página de temas.</p>
+<p>Si quisieras añadir más enlaces a la barra de navegación, añadirías otro elemento <code translate="no"></code> a uno de los grupos <code translate="no"></code> que hemos definido, utilizando directivas de estilo como las que has visto aquí.</p>
+<p>Ahora vamos a añadir el formulario de cierre de sesión a la barra de navegación.</p>
+<h4 id="h3-502703c20-0004">Añadir el formulario de cierre de sesión a la barra de navegación</h4>
+<p class="BodyFirst">Cuando escribimos por primera vez el formulario de cierre de sesión, lo añadimos a la parte inferior de <em translate="no">base.html</em>. Ahora vamos a ponerlo en un lugar mejor, en la barra de navegación:</p>
+<p class="CodeLabel" translate="no"><b>base.html</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">        </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">        &lt;/ul&gt; &lt;!-- End of account-related links --&gt;</span>
+
+        {% if user.is_authenticated %}
+          &lt;form action="{% url 'accounts:logout' %}" method='post'&gt;
+            {% csrf_token %}
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>             &lt;button name='submit' class='btn btn-outline-secondary btn-sm'&gt;
+                Log out&lt;/button&gt;
+          &lt;/form&gt;
+        {% endif %}
+
+<span class="LiteralGray">      &lt;/div&gt; &lt;!-- Closes collapsible parts of navbar --&gt;</span>
+<span class="LiteralGray">      </span><em class="LiteralGrayItalic" translate="no">--snip--</em></code></pre>
+<p>El formulario de cierre de sesión debe colocarse después del conjunto de enlaces relacionados con la cuenta, pero dentro de la sección plegable de la barra de navegación. El único cambio en el formulario es la adición de varias clases de estilo Bootstrap en el elemento <code translate="no"></code>, que aplican elementos de estilo Bootstrap al botón de cierre de sesión <span aria-label="annotation1" class="CodeAnnotation">❶.</span></p>
+<p>Recarga la página de inicio, y deberías poder iniciar y cerrar sesión utilizando cualquiera de las cuentas que hayas creado.</p>
+<p>Aún tenemos que añadir algo más a <em translate="no">base.html</em>. Tenemos que definir dos bloques que las páginas individuales pueden utilizar para colocar el contenido específico de esas páginas.</p>
+<h4 id="h3-502703c20-0005">Definir la parte principal de la página</h4>
+<p class="BodyFirst">El resto de <em translate="no">base.html</em> contiene la parte principal de la página:</p>
+<p class="CodeLabel" translate="no"><b>base.html</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">  </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">  &lt;/nav&gt; &lt;!-- End of navbar --&gt;</span>
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>   &lt;main class="container"&gt;
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     &lt;div class="pb-2 mb-2 border-bottom"&gt;
+      {% block page_header %}{% endblock page_header %}
+    &lt;/div&gt;
+<span epub:type="pagebreak" id="Page_440" title="440"></span><span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     &lt;div&gt;
+      <span class="LiteralGray">{% block content %}{% endblock content %}</span>
+    &lt;/div&gt;
+  &lt;/main&gt;
+
+<span class="LiteralGray">&lt;/body&gt;</span>
+<span class="LiteralGray">&lt;/html&gt;</span></code></pre>
+<p>Primero abrimos una etiqueta <code translate="no"></code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> El elemento <em translate="no">main</em> se utiliza para la parte más significativa del cuerpo de una página. Aquí asignamos el selector bootstrap <code translate="no">container</code>, que es una forma sencilla de agrupar elementos en una página. Colocaremos dos elementos div en este contenedor.</p>
+<p>El primer elemento div contiene un bloque <code translate="no">page_header</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Utilizaremos este bloque para titular la mayoría de las páginas. Para que esta sección destaque del resto de la página, colocaremos algo de relleno debajo del encabezamiento. <em translate="no">Padding</em> se refiere al espacio entre el contenido de un elemento y su borde. El selector <code translate="no">pb-2</code> es una directiva de bootstrap que proporciona una cantidad moderada de relleno en la parte inferior del elemento estilizado. Un <em translate="no">margin</em> es el espacio entre el borde de un elemento y otros elementos de la página. El selector <code translate="no">mb-2</code> proporciona una cantidad moderada de margen en la parte inferior de este div. Queremos un borde en la parte inferior de este bloque, así que utilizamos el selector <code translate="no">border-bottom</code>, que proporciona un borde fino en la parte inferior del bloque <code translate="no">page_header</code>.</p>
+<p>A continuación, definimos un elemento div más que contiene el bloque <code translate="no">content</code> <span aria-label="annotation3" class="CodeAnnotation">❸.</span> No aplicamos ningún estilo específico a este bloque, por lo que podemos dar estilo al contenido de cualquier página como creamos conveniente para esa página. Al final del archivo <em translate="no">base.html</em> hay etiquetas de cierre para los elementos <code translate="no">main</code>, <code translate="no">body</code> y <code translate="no">html</code>.</p>
+<p>Cuando cargues la página de inicio de Learning Log en un navegador, deberías ver una barra de navegación de aspecto profesional que coincida con la que se muestra en la <a href="#figure20-1">Figura 20-1</a>. Prueba a cambiar el tamaño de la ventana para que sea muy estrecha; un botón debería sustituir a la barra de navegación. Haz clic en el botón, y todos los enlaces deberían aparecer en una lista desplegable.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c20_4.html">anterior</a><a href="c20.html">Subtema 5 de 37: (Ver todo)</a><a href="c20_6.html">siguiente</a><br/></p>
+<br/><a href="c20_5.docx" target="_blank"></a></footer>
+</body>
+</html>

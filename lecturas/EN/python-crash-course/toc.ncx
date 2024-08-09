@@ -1,0 +1,754 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<!DOCTYPE ncx PUBLIC "-//NISO//DTD ncx 2005-1//EN" "http://www.daisy.org/z3986/2005/ncx-2005-1.dtd">
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
+<head>
+<meta content="ID:ISBN:9781718502703" name="dtb:uid"/>
+<meta content="4" name="dtb:depth"/>
+<meta content="0" name="dtb:totalPageCount"/>
+<meta content="0" name="dtb:maxPageNumber"/>
+</head>
+<docTitle><text>Python Crash Course, 3rd Edition</text></docTitle>
+<docAuthor><text>Eric Matthes</text></docAuthor>
+<navMap><navPoint id="urn:orm:book:9781098156664:chapter:f01.xhtml" playOrder="1"><navLabel><text>Praise for Python Crash Course</text></navLabel><content src="f01.xhtml"/></navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:f02.xhtml" playOrder="2"><navLabel><text>Title Page</text></navLabel><content src="f02.xhtml"/></navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:f03.xhtml" playOrder="3"><navLabel><text>Copyright</text></navLabel><content src="f03.xhtml"/></navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:f04.xhtml" playOrder="4"><navLabel><text>Dedication</text></navLabel><content src="f04.xhtml"/></navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:f05.xhtml" playOrder="5"><navLabel><text>About the Author</text></navLabel><content src="f05.xhtml"/></navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:f06.xhtml" playOrder="6"><navLabel><text>Preface to the Third Edition</text></navLabel><content src="f06.xhtml"/></navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:f07.xhtml" playOrder="7"><navLabel><text>Acknowledgments</text></navLabel><content src="f07.xhtml"/></navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:f08.xhtml" playOrder="8"><navLabel><text>Introduction</text></navLabel><content src="f08.xhtml"/><navPoint id="h1-502703f08-0001" playOrder="9"><navLabel><text>Who Is This Book For?</text></navLabel><content src="f08.xhtml#h1-502703f08-0001"/></navPoint>
+<navPoint id="h1-502703f08-0002" playOrder="10"><navLabel><text>What Can You Expect to Learn?</text></navLabel><content src="f08.xhtml#h1-502703f08-0002"/></navPoint>
+<navPoint id="h1-502703f08-0003" playOrder="11"><navLabel><text>Online Resources</text></navLabel><content src="f08.xhtml#h1-502703f08-0003"/></navPoint>
+<navPoint id="h1-502703f08-0004" playOrder="12"><navLabel><text>Why Python?</text></navLabel><content src="f08.xhtml#h1-502703f08-0004"/></navPoint>
+</navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:p01.xhtml" playOrder="13"><navLabel><text>Part I: Basics</text></navLabel><content src="p01.xhtml"/><navPoint id="urn:orm:book:9781098156664:chapter:c01.xhtml" playOrder="14"><navLabel><text>Chapter 1: Getting Started</text></navLabel><content src="c01.xhtml"/><navPoint id="h1-502703c01-0001" playOrder="15"><navLabel><text>Setting Up Your Programming Environment</text></navLabel><content src="c01.xhtml#h1-502703c01-0001"/><navPoint id="h2-502703c01-0001" playOrder="16"><navLabel><text>Python Versions</text></navLabel><content src="c01.xhtml#h2-502703c01-0001"/></navPoint>
+<navPoint id="h2-502703c01-0002" playOrder="17"><navLabel><text>Running Snippets of Python Code</text></navLabel><content src="c01.xhtml#h2-502703c01-0002"/></navPoint>
+<navPoint id="h2-502703c01-0003" playOrder="18"><navLabel><text>About the VS Code Editor</text></navLabel><content src="c01.xhtml#h2-502703c01-0003"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c01-0002" playOrder="19"><navLabel><text>Python on Different Operating Systems</text></navLabel><content src="c01.xhtml#h1-502703c01-0002"/><navPoint id="h2-502703c01-0004" playOrder="20"><navLabel><text>Python on Windows</text></navLabel><content src="c01.xhtml#h2-502703c01-0004"/></navPoint>
+<navPoint id="h2-502703c01-0005" playOrder="21"><navLabel><text>Python on macOS</text></navLabel><content src="c01.xhtml#h2-502703c01-0005"/></navPoint>
+<navPoint id="h2-502703c01-0006" playOrder="22"><navLabel><text>Python on Linux</text></navLabel><content src="c01.xhtml#h2-502703c01-0006"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c01-0003" playOrder="23"><navLabel><text>Running a Hello World Program</text></navLabel><content src="c01.xhtml#h1-502703c01-0003"/><navPoint id="h2-502703c01-0007" playOrder="24"><navLabel><text>Installing the Python Extension for VS Code</text></navLabel><content src="c01.xhtml#h2-502703c01-0007"/></navPoint>
+<navPoint id="h2-502703c01-0008" playOrder="25"><navLabel><text>Running hello_world.py</text></navLabel><content src="c01.xhtml#h2-502703c01-0008"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c01-0004" playOrder="26"><navLabel><text>Troubleshooting</text></navLabel><content src="c01.xhtml#h1-502703c01-0004"/></navPoint>
+<navPoint id="h1-502703c01-0005" playOrder="27"><navLabel><text>Running Python Programs from a Terminal</text></navLabel><content src="c01.xhtml#h1-502703c01-0005"/><navPoint id="h2-502703c01-0009" playOrder="28"><navLabel><text>On Windows</text></navLabel><content src="c01.xhtml#h2-502703c01-0009"/></navPoint>
+<navPoint id="h2-502703c01-0010" playOrder="29"><navLabel><text>On macOS and Linux</text></navLabel><content src="c01.xhtml#h2-502703c01-0010"/></navPoint>
+<navPoint id="h2-502703c01-11" playOrder="30"><navLabel><text>Exercise 1-1: python.org</text></navLabel><content src="c01.xhtml#h2-502703c01-11"/></navPoint>
+<navPoint id="h2-502703c01-12" playOrder="31"><navLabel><text>Exercise 1-2: Hello World Typos</text></navLabel><content src="c01.xhtml#h2-502703c01-12"/></navPoint>
+<navPoint id="h2-502703c01-13" playOrder="32"><navLabel><text>Exercise 1-3: Infinite Skills</text></navLabel><content src="c01.xhtml#h2-502703c01-13"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c01-0006" playOrder="33"><navLabel><text>Summary</text></navLabel><content src="c01.xhtml#h1-502703c01-0006"/></navPoint>
+</navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:c02.xhtml" playOrder="34"><navLabel><text>Chapter 2: Variables and Simple Data Types</text></navLabel><content src="c02.xhtml"/><navPoint id="h1-502703c02-0001" playOrder="35"><navLabel><text>What Really Happens When You Run hello_world.py</text></navLabel><content src="c02.xhtml#h1-502703c02-0001"/></navPoint>
+<navPoint id="h1-502703c02-0002" playOrder="36"><navLabel><text>Variables</text></navLabel><content src="c02.xhtml#h1-502703c02-0002"/><navPoint id="h2-502703c02-0001" playOrder="37"><navLabel><text>Naming and Using Variables</text></navLabel><content src="c02.xhtml#h2-502703c02-0001"/></navPoint>
+<navPoint id="h2-502703c02-0002" playOrder="38"><navLabel><text>Avoiding Name Errors When Using Variables</text></navLabel><content src="c02.xhtml#h2-502703c02-0002"/></navPoint>
+<navPoint id="h2-502703c02-0003" playOrder="39"><navLabel><text>Variables Are Labels</text></navLabel><content src="c02.xhtml#h2-502703c02-0003"/></navPoint>
+<navPoint id="h2-502703c02-04" playOrder="40"><navLabel><text>Exercise 2-1: Simple Message</text></navLabel><content src="c02.xhtml#h2-502703c02-04"/></navPoint>
+<navPoint id="h2-502703c02-05" playOrder="41"><navLabel><text>Exercise 2-2: Simple Messages</text></navLabel><content src="c02.xhtml#h2-502703c02-05"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c02-0003" playOrder="42"><navLabel><text>Strings</text></navLabel><content src="c02.xhtml#h1-502703c02-0003"/><navPoint id="h2-502703c02-0004" playOrder="43"><navLabel><text>Changing Case in a String with Methods</text></navLabel><content src="c02.xhtml#h2-502703c02-0004"/></navPoint>
+<navPoint id="h2-502703c02-0005" playOrder="44"><navLabel><text>Using Variables in Strings</text></navLabel><content src="c02.xhtml#h2-502703c02-0005"/></navPoint>
+<navPoint id="h2-502703c02-0006" playOrder="45"><navLabel><text>Adding Whitespace to Strings with Tabs or Newlines</text></navLabel><content src="c02.xhtml#h2-502703c02-0006"/></navPoint>
+<navPoint id="h2-502703c02-0007" playOrder="46"><navLabel><text>Stripping Whitespace</text></navLabel><content src="c02.xhtml#h2-502703c02-0007"/></navPoint>
+<navPoint id="h2-502703c02-0008" playOrder="47"><navLabel><text>Removing Prefixes</text></navLabel><content src="c02.xhtml#h2-502703c02-0008"/></navPoint>
+<navPoint id="h2-502703c02-0009" playOrder="48"><navLabel><text>Avoiding Syntax Errors with Strings</text></navLabel><content src="c02.xhtml#h2-502703c02-0009"/></navPoint>
+<navPoint id="h2-502703c02-12" playOrder="49"><navLabel><text>Exercise 2-3: Personal Message</text></navLabel><content src="c02.xhtml#h2-502703c02-12"/></navPoint>
+<navPoint id="h2-502703c02-13" playOrder="50"><navLabel><text>Exercise 2-4: Name Cases</text></navLabel><content src="c02.xhtml#h2-502703c02-13"/></navPoint>
+<navPoint id="h2-502703c02-14" playOrder="51"><navLabel><text>Exercise 2-5: Famous Quote</text></navLabel><content src="c02.xhtml#h2-502703c02-14"/></navPoint>
+<navPoint id="h2-502703c02-15" playOrder="52"><navLabel><text>Exercise 2-6: Famous Quote 2</text></navLabel><content src="c02.xhtml#h2-502703c02-15"/></navPoint>
+<navPoint id="h2-502703c02-16" playOrder="53"><navLabel><text>Exercise 2-7: Stripping Names</text></navLabel><content src="c02.xhtml#h2-502703c02-16"/></navPoint>
+<navPoint id="h2-502703c02-17" playOrder="54"><navLabel><text>Exercise 2-8: File Extensions</text></navLabel><content src="c02.xhtml#h2-502703c02-17"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c02-0004" playOrder="55"><navLabel><text>Numbers</text></navLabel><content src="c02.xhtml#h1-502703c02-0004"/><navPoint id="h2-502703c02-0010" playOrder="56"><navLabel><text>Integers</text></navLabel><content src="c02.xhtml#h2-502703c02-0010"/></navPoint>
+<navPoint id="h2-502703c02-0011" playOrder="57"><navLabel><text>Floats</text></navLabel><content src="c02.xhtml#h2-502703c02-0011"/></navPoint>
+<navPoint id="h2-502703c02-0012" playOrder="58"><navLabel><text>Integers and Floats</text></navLabel><content src="c02.xhtml#h2-502703c02-0012"/></navPoint>
+<navPoint id="h2-502703c02-0013" playOrder="59"><navLabel><text>Underscores in Numbers</text></navLabel><content src="c02.xhtml#h2-502703c02-0013"/></navPoint>
+<navPoint id="h2-502703c02-0014" playOrder="60"><navLabel><text>Multiple Assignment</text></navLabel><content src="c02.xhtml#h2-502703c02-0014"/></navPoint>
+<navPoint id="h2-502703c02-0015" playOrder="61"><navLabel><text>Constants</text></navLabel><content src="c02.xhtml#h2-502703c02-0015"/></navPoint>
+<navPoint id="h2-502703c02-24" playOrder="62"><navLabel><text>Exercise 2-9: Number Eight</text></navLabel><content src="c02.xhtml#h2-502703c02-24"/></navPoint>
+<navPoint id="h2-502703c02-25" playOrder="63"><navLabel><text>Exercise 2-10: Favorite Number</text></navLabel><content src="c02.xhtml#h2-502703c02-25"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c02-0005" playOrder="64"><navLabel><text>Comments</text></navLabel><content src="c02.xhtml#h1-502703c02-0005"/><navPoint id="h2-502703c02-0016" playOrder="65"><navLabel><text>How Do You Write Comments?</text></navLabel><content src="c02.xhtml#h2-502703c02-0016"/></navPoint>
+<navPoint id="h2-502703c02-0017" playOrder="66"><navLabel><text>What Kinds of Comments Should You Write?</text></navLabel><content src="c02.xhtml#h2-502703c02-0017"/></navPoint>
+<navPoint id="h2-502703c02-28" playOrder="67"><navLabel><text>Exercise 2-11: Adding Comments</text></navLabel><content src="c02.xhtml#h2-502703c02-28"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c02-0006" playOrder="68"><navLabel><text>The Zen of Python</text></navLabel><content src="c02.xhtml#h1-502703c02-0006"/><navPoint id="h2-502703c02-29" playOrder="69"><navLabel><text>Exercise 2-12: Zen of Python</text></navLabel><content src="c02.xhtml#h2-502703c02-29"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c02-0007" playOrder="70"><navLabel><text>Summary</text></navLabel><content src="c02.xhtml#h1-502703c02-0007"/></navPoint>
+</navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:c03.xhtml" playOrder="71"><navLabel><text>Chapter 3: Introducing Lists</text></navLabel><content src="c03.xhtml"/><navPoint id="h1-502703c03-0001" playOrder="72"><navLabel><text>What Is a List?</text></navLabel><content src="c03.xhtml#h1-502703c03-0001"/><navPoint id="h2-502703c03-0001" playOrder="73"><navLabel><text>Accessing Elements in a List</text></navLabel><content src="c03.xhtml#h2-502703c03-0001"/></navPoint>
+<navPoint id="h2-502703c03-0002" playOrder="74"><navLabel><text>Index Positions Start at 0, Not 1</text></navLabel><content src="c03.xhtml#h2-502703c03-0002"/></navPoint>
+<navPoint id="h2-502703c03-0003" playOrder="75"><navLabel><text>Using Individual Values from a List</text></navLabel><content src="c03.xhtml#h2-502703c03-0003"/></navPoint>
+<navPoint id="h2-502703c03-04" playOrder="76"><navLabel><text>Exercise 3-1: Names</text></navLabel><content src="c03.xhtml#h2-502703c03-04"/></navPoint>
+<navPoint id="h2-502703c03-05" playOrder="77"><navLabel><text>Exercise 3-2: Greetings</text></navLabel><content src="c03.xhtml#h2-502703c03-05"/></navPoint>
+<navPoint id="h2-502703c03-06" playOrder="78"><navLabel><text>Exercise 3-3: Your Own List</text></navLabel><content src="c03.xhtml#h2-502703c03-06"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c03-0002" playOrder="79"><navLabel><text>Modifying, Adding, and Removing Elements</text></navLabel><content src="c03.xhtml#h1-502703c03-0002"/><navPoint id="h2-502703c03-0004" playOrder="80"><navLabel><text>Modifying Elements in a List</text></navLabel><content src="c03.xhtml#h2-502703c03-0004"/></navPoint>
+<navPoint id="h2-502703c03-0005" playOrder="81"><navLabel><text>Adding Elements to a List</text></navLabel><content src="c03.xhtml#h2-502703c03-0005"/></navPoint>
+<navPoint id="h2-502703c03-0006" playOrder="82"><navLabel><text>Removing Elements from a List</text></navLabel><content src="c03.xhtml#h2-502703c03-0006"/></navPoint>
+<navPoint id="h2-502703c03-10" playOrder="83"><navLabel><text>Exercise 3-4: Guest List</text></navLabel><content src="c03.xhtml#h2-502703c03-10"/></navPoint>
+<navPoint id="h2-502703c03-11" playOrder="84"><navLabel><text>Exercise 3-5: Changing Guest List</text></navLabel><content src="c03.xhtml#h2-502703c03-11"/></navPoint>
+<navPoint id="h2-502703c03-12" playOrder="85"><navLabel><text>Exercise 3-6: More Guests</text></navLabel><content src="c03.xhtml#h2-502703c03-12"/></navPoint>
+<navPoint id="h2-502703c03-13" playOrder="86"><navLabel><text>Exercise 3-7: Shrinking Guest List</text></navLabel><content src="c03.xhtml#h2-502703c03-13"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c03-0003" playOrder="87"><navLabel><text>Organizing a List</text></navLabel><content src="c03.xhtml#h1-502703c03-0003"/><navPoint id="h2-502703c03-0007" playOrder="88"><navLabel><text>Sorting a List Permanently with the sort() Method</text></navLabel><content src="c03.xhtml#h2-502703c03-0007"/></navPoint>
+<navPoint id="h2-502703c03-0008" playOrder="89"><navLabel><text>Sorting a List Temporarily with the sorted() Function</text></navLabel><content src="c03.xhtml#h2-502703c03-0008"/></navPoint>
+<navPoint id="h2-502703c03-0009" playOrder="90"><navLabel><text>Printing a List in Reverse Order</text></navLabel><content src="c03.xhtml#h2-502703c03-0009"/></navPoint>
+<navPoint id="h2-502703c03-0010" playOrder="91"><navLabel><text>Finding the Length of a List</text></navLabel><content src="c03.xhtml#h2-502703c03-0010"/></navPoint>
+<navPoint id="h2-502703c03-18" playOrder="92"><navLabel><text>Exercise 3-8: Seeing the World</text></navLabel><content src="c03.xhtml#h2-502703c03-18"/></navPoint>
+<navPoint id="h2-502703c03-19" playOrder="93"><navLabel><text>Exercise 3-9: Dinner Guests</text></navLabel><content src="c03.xhtml#h2-502703c03-19"/></navPoint>
+<navPoint id="h2-502703c03-20" playOrder="94"><navLabel><text>Exercise 3-10: Every Function</text></navLabel><content src="c03.xhtml#h2-502703c03-20"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c03-0004" playOrder="95"><navLabel><text>Avoiding Index Errors When Working with Lists</text></navLabel><content src="c03.xhtml#h1-502703c03-0004"/><navPoint id="h2-502703c03-21" playOrder="96"><navLabel><text>Exercise 3-11: Intentional Error</text></navLabel><content src="c03.xhtml#h2-502703c03-21"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c03-0005" playOrder="97"><navLabel><text>Summary</text></navLabel><content src="c03.xhtml#h1-502703c03-0005"/></navPoint>
+</navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:c04.xhtml" playOrder="98"><navLabel><text>Chapter 4: Working with Lists</text></navLabel><content src="c04.xhtml"/><navPoint id="h1-502703c04-0001" playOrder="99"><navLabel><text>Looping Through an Entire List</text></navLabel><content src="c04.xhtml#h1-502703c04-0001"/><navPoint id="h2-502703c04-0001" playOrder="100"><navLabel><text>A Closer Look at Looping</text></navLabel><content src="c04.xhtml#h2-502703c04-0001"/></navPoint>
+<navPoint id="h2-502703c04-0002" playOrder="101"><navLabel><text>Doing More Work Within a for Loop</text></navLabel><content src="c04.xhtml#h2-502703c04-0002"/></navPoint>
+<navPoint id="h2-502703c04-0003" playOrder="102"><navLabel><text>Doing Something After a for Loop</text></navLabel><content src="c04.xhtml#h2-502703c04-0003"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c04-0002" playOrder="103"><navLabel><text>Avoiding Indentation Errors</text></navLabel><content src="c04.xhtml#h1-502703c04-0002"/><navPoint id="h2-502703c04-0004" playOrder="104"><navLabel><text>Forgetting to Indent</text></navLabel><content src="c04.xhtml#h2-502703c04-0004"/></navPoint>
+<navPoint id="h2-502703c04-0005" playOrder="105"><navLabel><text>Forgetting to Indent Additional Lines</text></navLabel><content src="c04.xhtml#h2-502703c04-0005"/></navPoint>
+<navPoint id="h2-502703c04-0006" playOrder="106"><navLabel><text>Indenting Unnecessarily</text></navLabel><content src="c04.xhtml#h2-502703c04-0006"/></navPoint>
+<navPoint id="h2-502703c04-0007" playOrder="107"><navLabel><text>Indenting Unnecessarily After the Loop</text></navLabel><content src="c04.xhtml#h2-502703c04-0007"/></navPoint>
+<navPoint id="h2-502703c04-0008" playOrder="108"><navLabel><text>Forgetting the Colon</text></navLabel><content src="c04.xhtml#h2-502703c04-0008"/></navPoint>
+<navPoint id="h2-502703c04-09" playOrder="109"><navLabel><text>Exercise 4-1: Pizzas</text></navLabel><content src="c04.xhtml#h2-502703c04-09"/></navPoint>
+<navPoint id="h2-502703c04-10" playOrder="110"><navLabel><text>Exercise 4-2: Animals</text></navLabel><content src="c04.xhtml#h2-502703c04-10"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c04-0003" playOrder="111"><navLabel><text>Making Numerical Lists</text></navLabel><content src="c04.xhtml#h1-502703c04-0003"/><navPoint id="h2-502703c04-0009" playOrder="112"><navLabel><text>Using the range() Function</text></navLabel><content src="c04.xhtml#h2-502703c04-0009"/></navPoint>
+<navPoint id="h2-502703c04-0010" playOrder="113"><navLabel><text>Using range() to Make a List of Numbers</text></navLabel><content src="c04.xhtml#h2-502703c04-0010"/></navPoint>
+<navPoint id="h2-502703c04-0011" playOrder="114"><navLabel><text>Simple Statistics with a List of Numbers</text></navLabel><content src="c04.xhtml#h2-502703c04-0011"/></navPoint>
+<navPoint id="h2-502703c04-0012" playOrder="115"><navLabel><text>List Comprehensions</text></navLabel><content src="c04.xhtml#h2-502703c04-0012"/></navPoint>
+<navPoint id="h2-502703c04-15" playOrder="116"><navLabel><text>Exercise 4-3: Counting to Twenty</text></navLabel><content src="c04.xhtml#h2-502703c04-15"/></navPoint>
+<navPoint id="h2-502703c04-16" playOrder="117"><navLabel><text>Exercise 4-4: One Million</text></navLabel><content src="c04.xhtml#h2-502703c04-16"/></navPoint>
+<navPoint id="h2-502703c04-17" playOrder="118"><navLabel><text>Exercise 4-5: Summing a Million</text></navLabel><content src="c04.xhtml#h2-502703c04-17"/></navPoint>
+<navPoint id="h2-502703c04-18" playOrder="119"><navLabel><text>Exercise 4-6: Odd Numbers</text></navLabel><content src="c04.xhtml#h2-502703c04-18"/></navPoint>
+<navPoint id="h2-502703c04-19" playOrder="120"><navLabel><text>Exercise 4-7: Threes</text></navLabel><content src="c04.xhtml#h2-502703c04-19"/></navPoint>
+<navPoint id="h2-502703c04-20" playOrder="121"><navLabel><text>Exercise 4-8: Cubes</text></navLabel><content src="c04.xhtml#h2-502703c04-20"/></navPoint>
+<navPoint id="h2-502703c04-21" playOrder="122"><navLabel><text>Exercise 4-9: Cube Comprehension</text></navLabel><content src="c04.xhtml#h2-502703c04-21"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c04-0004" playOrder="123"><navLabel><text>Working with Part of a List</text></navLabel><content src="c04.xhtml#h1-502703c04-0004"/><navPoint id="h2-502703c04-0013" playOrder="124"><navLabel><text>Slicing a List</text></navLabel><content src="c04.xhtml#h2-502703c04-0013"/></navPoint>
+<navPoint id="h2-502703c04-0014" playOrder="125"><navLabel><text>Looping Through a Slice</text></navLabel><content src="c04.xhtml#h2-502703c04-0014"/></navPoint>
+<navPoint id="h2-502703c04-0015" playOrder="126"><navLabel><text>Copying a List</text></navLabel><content src="c04.xhtml#h2-502703c04-0015"/></navPoint>
+<navPoint id="h2-502703c04-25" playOrder="127"><navLabel><text>Exercise 4-10: Slices</text></navLabel><content src="c04.xhtml#h2-502703c04-25"/></navPoint>
+<navPoint id="h2-502703c04-26" playOrder="128"><navLabel><text>Exercise 4-11: My Pizzas, Your Pizzas</text></navLabel><content src="c04.xhtml#h2-502703c04-26"/></navPoint>
+<navPoint id="h2-502703c04-27" playOrder="129"><navLabel><text>Exercise 4-12: More Loops</text></navLabel><content src="c04.xhtml#h2-502703c04-27"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c04-0005" playOrder="130"><navLabel><text>Tuples</text></navLabel><content src="c04.xhtml#h1-502703c04-0005"/><navPoint id="h2-502703c04-0016" playOrder="131"><navLabel><text>Defining a Tuple</text></navLabel><content src="c04.xhtml#h2-502703c04-0016"/></navPoint>
+<navPoint id="h2-502703c04-0017" playOrder="132"><navLabel><text>Looping Through All Values in a Tuple</text></navLabel><content src="c04.xhtml#h2-502703c04-0017"/></navPoint>
+<navPoint id="h2-502703c04-0018" playOrder="133"><navLabel><text>Writing Over a Tuple</text></navLabel><content src="c04.xhtml#h2-502703c04-0018"/></navPoint>
+<navPoint id="h2-502703c04-31" playOrder="134"><navLabel><text>Exercise 4-13: Buffet</text></navLabel><content src="c04.xhtml#h2-502703c04-31"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c04-0006" playOrder="135"><navLabel><text>Styling Your Code</text></navLabel><content src="c04.xhtml#h1-502703c04-0006"/><navPoint id="h2-502703c04-0019" playOrder="136"><navLabel><text>The Style Guide</text></navLabel><content src="c04.xhtml#h2-502703c04-0019"/></navPoint>
+<navPoint id="h2-502703c04-0020" playOrder="137"><navLabel><text>Indentation</text></navLabel><content src="c04.xhtml#h2-502703c04-0020"/></navPoint>
+<navPoint id="h2-502703c04-0021" playOrder="138"><navLabel><text>Line Length</text></navLabel><content src="c04.xhtml#h2-502703c04-0021"/></navPoint>
+<navPoint id="h2-502703c04-0022" playOrder="139"><navLabel><text>Blank Lines</text></navLabel><content src="c04.xhtml#h2-502703c04-0022"/></navPoint>
+<navPoint id="h2-502703c04-0023" playOrder="140"><navLabel><text>Other Style Guidelines</text></navLabel><content src="c04.xhtml#h2-502703c04-0023"/></navPoint>
+<navPoint id="h2-502703c04-37" playOrder="141"><navLabel><text>Exercise 4-14: PEP 8</text></navLabel><content src="c04.xhtml#h2-502703c04-37"/></navPoint>
+<navPoint id="h2-502703c04-38" playOrder="142"><navLabel><text>Exercise 4-15: Code Review</text></navLabel><content src="c04.xhtml#h2-502703c04-38"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c04-0007" playOrder="143"><navLabel><text>Summary</text></navLabel><content src="c04.xhtml#h1-502703c04-0007"/></navPoint>
+</navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:c05.xhtml" playOrder="144"><navLabel><text>Chapter 5: if Statements</text></navLabel><content src="c05.xhtml"/><navPoint id="h1-502703c05-0001" playOrder="145"><navLabel><text>A Simple Example</text></navLabel><content src="c05.xhtml#h1-502703c05-0001"/></navPoint>
+<navPoint id="h1-502703c05-0002" playOrder="146"><navLabel><text>Conditional Tests</text></navLabel><content src="c05.xhtml#h1-502703c05-0002"/><navPoint id="h2-502703c05-0001" playOrder="147"><navLabel><text>Checking for Equality</text></navLabel><content src="c05.xhtml#h2-502703c05-0001"/></navPoint>
+<navPoint id="h2-502703c05-0002" playOrder="148"><navLabel><text>Ignoring Case When Checking for Equality</text></navLabel><content src="c05.xhtml#h2-502703c05-0002"/></navPoint>
+<navPoint id="h2-502703c05-0003" playOrder="149"><navLabel><text>Checking for Inequality</text></navLabel><content src="c05.xhtml#h2-502703c05-0003"/></navPoint>
+<navPoint id="h2-502703c05-0004" playOrder="150"><navLabel><text>Numerical Comparisons</text></navLabel><content src="c05.xhtml#h2-502703c05-0004"/></navPoint>
+<navPoint id="h2-502703c05-0005" playOrder="151"><navLabel><text>Checking Multiple Conditions</text></navLabel><content src="c05.xhtml#h2-502703c05-0005"/></navPoint>
+<navPoint id="h2-502703c05-0006" playOrder="152"><navLabel><text>Checking Whether a Value Is in a List</text></navLabel><content src="c05.xhtml#h2-502703c05-0006"/></navPoint>
+<navPoint id="h2-502703c05-0007" playOrder="153"><navLabel><text>Checking Whether a Value Is Not in a List</text></navLabel><content src="c05.xhtml#h2-502703c05-0007"/></navPoint>
+<navPoint id="h2-502703c05-0008" playOrder="154"><navLabel><text>Boolean Expressions</text></navLabel><content src="c05.xhtml#h2-502703c05-0008"/></navPoint>
+<navPoint id="h2-502703c05-09" playOrder="155"><navLabel><text>Exercise 5-1: Conditional Tests</text></navLabel><content src="c05.xhtml#h2-502703c05-09"/></navPoint>
+<navPoint id="h2-502703c05-10" playOrder="156"><navLabel><text>Exercise 5-2: More Conditional Tests</text></navLabel><content src="c05.xhtml#h2-502703c05-10"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c05-0003" playOrder="157"><navLabel><text>if Statements</text></navLabel><content src="c05.xhtml#h1-502703c05-0003"/><navPoint id="h2-502703c05-0009" playOrder="158"><navLabel><text>Simple if Statements</text></navLabel><content src="c05.xhtml#h2-502703c05-0009"/></navPoint>
+<navPoint id="h2-502703c05-0010" playOrder="159"><navLabel><text>if-else Statements</text></navLabel><content src="c05.xhtml#h2-502703c05-0010"/></navPoint>
+<navPoint id="h2-502703c05-0011" playOrder="160"><navLabel><text>The if-elif-else Chain</text></navLabel><content src="c05.xhtml#h2-502703c05-0011"/></navPoint>
+<navPoint id="h2-502703c05-0012" playOrder="161"><navLabel><text>Using Multiple elif Blocks</text></navLabel><content src="c05.xhtml#h2-502703c05-0012"/></navPoint>
+<navPoint id="h2-502703c05-0013" playOrder="162"><navLabel><text>Omitting the else Block</text></navLabel><content src="c05.xhtml#h2-502703c05-0013"/></navPoint>
+<navPoint id="h2-502703c05-0014" playOrder="163"><navLabel><text>Testing Multiple Conditions</text></navLabel><content src="c05.xhtml#h2-502703c05-0014"/></navPoint>
+<navPoint id="h2-502703c05-17" playOrder="164"><navLabel><text>Exercise 5-3: Alien Colors #1</text></navLabel><content src="c05.xhtml#h2-502703c05-17"/></navPoint>
+<navPoint id="h2-502703c05-18" playOrder="165"><navLabel><text>Exercise 5-4: Alien Colors #2</text></navLabel><content src="c05.xhtml#h2-502703c05-18"/></navPoint>
+<navPoint id="h2-502703c05-19" playOrder="166"><navLabel><text>Exercise 5-5: Alien Colors #3</text></navLabel><content src="c05.xhtml#h2-502703c05-19"/></navPoint>
+<navPoint id="h2-502703c05-20" playOrder="167"><navLabel><text>Exercise 5-6: Stages of Life</text></navLabel><content src="c05.xhtml#h2-502703c05-20"/></navPoint>
+<navPoint id="h2-502703c05-21" playOrder="168"><navLabel><text>Exercise 5-7: Favorite Fruit</text></navLabel><content src="c05.xhtml#h2-502703c05-21"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c05-0004" playOrder="169"><navLabel><text>Using if Statements with Lists</text></navLabel><content src="c05.xhtml#h1-502703c05-0004"/><navPoint id="h2-502703c05-0015" playOrder="170"><navLabel><text>Checking for Special Items</text></navLabel><content src="c05.xhtml#h2-502703c05-0015"/></navPoint>
+<navPoint id="h2-502703c05-0016" playOrder="171"><navLabel><text>Checking That a List Is Not Empty</text></navLabel><content src="c05.xhtml#h2-502703c05-0016"/></navPoint>
+<navPoint id="h2-502703c05-0017" playOrder="172"><navLabel><text>Using Multiple Lists</text></navLabel><content src="c05.xhtml#h2-502703c05-0017"/></navPoint>
+<navPoint id="h2-502703c05-25" playOrder="173"><navLabel><text>Exercise 5-8: Hello Admin</text></navLabel><content src="c05.xhtml#h2-502703c05-25"/></navPoint>
+<navPoint id="h2-502703c05-26" playOrder="174"><navLabel><text>Exercise 5-9: No Users</text></navLabel><content src="c05.xhtml#h2-502703c05-26"/></navPoint>
+<navPoint id="h2-502703c05-27" playOrder="175"><navLabel><text>Exercise 5-10: Checking Usernames</text></navLabel><content src="c05.xhtml#h2-502703c05-27"/></navPoint>
+<navPoint id="h2-502703c05-28" playOrder="176"><navLabel><text>Exercise 5-11: Ordinal Numbers</text></navLabel><content src="c05.xhtml#h2-502703c05-28"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c05-0005" playOrder="177"><navLabel><text>Styling Your if Statements</text></navLabel><content src="c05.xhtml#h1-502703c05-0005"/><navPoint id="h2-502703c05-29" playOrder="178"><navLabel><text>Exercise 5-12: Styling if Statements</text></navLabel><content src="c05.xhtml#h2-502703c05-29"/></navPoint>
+<navPoint id="h2-502703c05-30" playOrder="179"><navLabel><text>Exercise 5-13: Your Ideas</text></navLabel><content src="c05.xhtml#h2-502703c05-30"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c05-0006" playOrder="180"><navLabel><text>Summary</text></navLabel><content src="c05.xhtml#h1-502703c05-0006"/></navPoint>
+</navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:c06.xhtml" playOrder="181"><navLabel><text>Chapter 6: Dictionaries</text></navLabel><content src="c06.xhtml"/><navPoint id="h1-502703c06-0001" playOrder="182"><navLabel><text>A Simple Dictionary</text></navLabel><content src="c06.xhtml#h1-502703c06-0001"/></navPoint>
+<navPoint id="h1-502703c06-0002" playOrder="183"><navLabel><text>Working with Dictionaries</text></navLabel><content src="c06.xhtml#h1-502703c06-0002"/><navPoint id="h2-502703c06-0001" playOrder="184"><navLabel><text>Accessing Values in a Dictionary</text></navLabel><content src="c06.xhtml#h2-502703c06-0001"/></navPoint>
+<navPoint id="h2-502703c06-0002" playOrder="185"><navLabel><text>Adding New Key-Value Pairs</text></navLabel><content src="c06.xhtml#h2-502703c06-0002"/></navPoint>
+<navPoint id="h2-502703c06-0003" playOrder="186"><navLabel><text>Starting with an Empty Dictionary</text></navLabel><content src="c06.xhtml#h2-502703c06-0003"/></navPoint>
+<navPoint id="h2-502703c06-0004" playOrder="187"><navLabel><text>Modifying Values in a Dictionary</text></navLabel><content src="c06.xhtml#h2-502703c06-0004"/></navPoint>
+<navPoint id="h2-502703c06-0005" playOrder="188"><navLabel><text>Removing Key-Value Pairs</text></navLabel><content src="c06.xhtml#h2-502703c06-0005"/></navPoint>
+<navPoint id="h2-502703c06-0006" playOrder="189"><navLabel><text>A Dictionary of Similar Objects</text></navLabel><content src="c06.xhtml#h2-502703c06-0006"/></navPoint>
+<navPoint id="h2-502703c06-0007" playOrder="190"><navLabel><text>Using get() to Access Values</text></navLabel><content src="c06.xhtml#h2-502703c06-0007"/></navPoint>
+<navPoint id="h2-502703c06-08" playOrder="191"><navLabel><text>Exercise 6-1: Person</text></navLabel><content src="c06.xhtml#h2-502703c06-08"/></navPoint>
+<navPoint id="h2-502703c06-09" playOrder="192"><navLabel><text>Exercise 6-2: Favorite Numbers</text></navLabel><content src="c06.xhtml#h2-502703c06-09"/></navPoint>
+<navPoint id="h2-502703c06-10" playOrder="193"><navLabel><text>Exercise 6-3: Glossary</text></navLabel><content src="c06.xhtml#h2-502703c06-10"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c06-0003" playOrder="194"><navLabel><text>Looping Through a Dictionary</text></navLabel><content src="c06.xhtml#h1-502703c06-0003"/><navPoint id="h2-502703c06-0008" playOrder="195"><navLabel><text>Looping Through All Key-Value Pairs</text></navLabel><content src="c06.xhtml#h2-502703c06-0008"/></navPoint>
+<navPoint id="h2-502703c06-0009" playOrder="196"><navLabel><text>Looping Through All the Keys in a Dictionary</text></navLabel><content src="c06.xhtml#h2-502703c06-0009"/></navPoint>
+<navPoint id="h2-502703c06-0010" playOrder="197"><navLabel><text>Looping Through a Dictionary’s Keys in a Particular Order</text></navLabel><content src="c06.xhtml#h2-502703c06-0010"/></navPoint>
+<navPoint id="h2-502703c06-0011" playOrder="198"><navLabel><text>Looping Through All Values in a Dictionary</text></navLabel><content src="c06.xhtml#h2-502703c06-0011"/></navPoint>
+<navPoint id="h2-502703c06-15" playOrder="199"><navLabel><text>Exercise 6-4: Glossary 2</text></navLabel><content src="c06.xhtml#h2-502703c06-15"/></navPoint>
+<navPoint id="h2-502703c06-16" playOrder="200"><navLabel><text>Exercise 6-5: Rivers</text></navLabel><content src="c06.xhtml#h2-502703c06-16"/></navPoint>
+<navPoint id="h2-502703c06-17" playOrder="201"><navLabel><text>Exercise 6-6: Polling</text></navLabel><content src="c06.xhtml#h2-502703c06-17"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c06-0004" playOrder="202"><navLabel><text>Nesting</text></navLabel><content src="c06.xhtml#h1-502703c06-0004"/><navPoint id="h2-502703c06-0012" playOrder="203"><navLabel><text>A List of Dictionaries</text></navLabel><content src="c06.xhtml#h2-502703c06-0012"/></navPoint>
+<navPoint id="h2-502703c06-0013" playOrder="204"><navLabel><text>A List in a Dictionary</text></navLabel><content src="c06.xhtml#h2-502703c06-0013"/></navPoint>
+<navPoint id="h2-502703c06-0014" playOrder="205"><navLabel><text>A Dictionary in a Dictionary</text></navLabel><content src="c06.xhtml#h2-502703c06-0014"/></navPoint>
+<navPoint id="h2-502703c06-21" playOrder="206"><navLabel><text>Exercise 6-7: People</text></navLabel><content src="c06.xhtml#h2-502703c06-21"/></navPoint>
+<navPoint id="h2-502703c06-22" playOrder="207"><navLabel><text>Exercise 6-8: Pets</text></navLabel><content src="c06.xhtml#h2-502703c06-22"/></navPoint>
+<navPoint id="h2-502703c06-23" playOrder="208"><navLabel><text>Exercise 6-9: Favorite Places</text></navLabel><content src="c06.xhtml#h2-502703c06-23"/></navPoint>
+<navPoint id="h2-502703c06-24" playOrder="209"><navLabel><text>Exercise 6-10: Favorite Numbers</text></navLabel><content src="c06.xhtml#h2-502703c06-24"/></navPoint>
+<navPoint id="h2-502703c06-25" playOrder="210"><navLabel><text>Exercise 6-11: Cities</text></navLabel><content src="c06.xhtml#h2-502703c06-25"/></navPoint>
+<navPoint id="h2-502703c06-26" playOrder="211"><navLabel><text>Exercise 6-12: Extensions</text></navLabel><content src="c06.xhtml#h2-502703c06-26"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c06-0005" playOrder="212"><navLabel><text>Summary</text></navLabel><content src="c06.xhtml#h1-502703c06-0005"/></navPoint>
+</navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:c07.xhtml" playOrder="213"><navLabel><text>Chapter 7: User Input and while Loops</text></navLabel><content src="c07.xhtml"/><navPoint id="h1-502703c07-0001" playOrder="214"><navLabel><text>How the input() Function Works</text></navLabel><content src="c07.xhtml#h1-502703c07-0001"/><navPoint id="h2-502703c07-0001" playOrder="215"><navLabel><text>Writing Clear Prompts</text></navLabel><content src="c07.xhtml#h2-502703c07-0001"/></navPoint>
+<navPoint id="h2-502703c07-0002" playOrder="216"><navLabel><text>Using int() to Accept Numerical Input</text></navLabel><content src="c07.xhtml#h2-502703c07-0002"/></navPoint>
+<navPoint id="h2-502703c07-0003" playOrder="217"><navLabel><text>The Modulo Operator</text></navLabel><content src="c07.xhtml#h2-502703c07-0003"/></navPoint>
+<navPoint id="h2-502703c07-04" playOrder="218"><navLabel><text>Exercise 7-1: Rental Car</text></navLabel><content src="c07.xhtml#h2-502703c07-04"/></navPoint>
+<navPoint id="h2-502703c07-05" playOrder="219"><navLabel><text>Exercise 7-2: Restaurant Seating</text></navLabel><content src="c07.xhtml#h2-502703c07-05"/></navPoint>
+<navPoint id="h2-502703c07-06" playOrder="220"><navLabel><text>Exercise 7-3: Multiples of Ten</text></navLabel><content src="c07.xhtml#h2-502703c07-06"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c07-0002" playOrder="221"><navLabel><text>Introducing while Loops</text></navLabel><content src="c07.xhtml#h1-502703c07-0002"/><navPoint id="h2-502703c07-0004" playOrder="222"><navLabel><text>The while Loop in Action</text></navLabel><content src="c07.xhtml#h2-502703c07-0004"/></navPoint>
+<navPoint id="h2-502703c07-0005" playOrder="223"><navLabel><text>Letting the User Choose When to Quit</text></navLabel><content src="c07.xhtml#h2-502703c07-0005"/></navPoint>
+<navPoint id="h2-502703c07-0006" playOrder="224"><navLabel><text>Using a Flag</text></navLabel><content src="c07.xhtml#h2-502703c07-0006"/></navPoint>
+<navPoint id="h2-502703c07-0007" playOrder="225"><navLabel><text>Using break to Exit a Loop</text></navLabel><content src="c07.xhtml#h2-502703c07-0007"/></navPoint>
+<navPoint id="h2-502703c07-0008" playOrder="226"><navLabel><text>Using continue in a Loop</text></navLabel><content src="c07.xhtml#h2-502703c07-0008"/></navPoint>
+<navPoint id="h2-502703c07-0009" playOrder="227"><navLabel><text>Avoiding Infinite Loops</text></navLabel><content src="c07.xhtml#h2-502703c07-0009"/></navPoint>
+<navPoint id="h2-502703c07-13" playOrder="228"><navLabel><text>Exercise 7-4: Pizza Toppings</text></navLabel><content src="c07.xhtml#h2-502703c07-13"/></navPoint>
+<navPoint id="h2-502703c07-14" playOrder="229"><navLabel><text>Exercise 7-5: Movie Tickets</text></navLabel><content src="c07.xhtml#h2-502703c07-14"/></navPoint>
+<navPoint id="h2-502703c07-15" playOrder="230"><navLabel><text>Exercise 7-6: Three Exits</text></navLabel><content src="c07.xhtml#h2-502703c07-15"/></navPoint>
+<navPoint id="h2-502703c07-16" playOrder="231"><navLabel><text>Exercise 7-7: Infinity</text></navLabel><content src="c07.xhtml#h2-502703c07-16"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c07-0003" playOrder="232"><navLabel><text>Using a while Loop with Lists and Dictionaries</text></navLabel><content src="c07.xhtml#h1-502703c07-0003"/><navPoint id="h2-502703c07-0010" playOrder="233"><navLabel><text>Moving Items from One List to Another</text></navLabel><content src="c07.xhtml#h2-502703c07-0010"/></navPoint>
+<navPoint id="h2-502703c07-0011" playOrder="234"><navLabel><text>Removing All Instances of Specific Values from a List</text></navLabel><content src="c07.xhtml#h2-502703c07-0011"/></navPoint>
+<navPoint id="h2-502703c07-0012" playOrder="235"><navLabel><text>Filling a Dictionary with User Input</text></navLabel><content src="c07.xhtml#h2-502703c07-0012"/></navPoint>
+<navPoint id="h2-502703c07-20" playOrder="236"><navLabel><text>Exercise 7-8: Deli</text></navLabel><content src="c07.xhtml#h2-502703c07-20"/></navPoint>
+<navPoint id="h2-502703c07-21" playOrder="237"><navLabel><text>Exercise 7-9: No Pastrami</text></navLabel><content src="c07.xhtml#h2-502703c07-21"/></navPoint>
+<navPoint id="h2-502703c07-22" playOrder="238"><navLabel><text>Exercise 7-10: Dream Vacation</text></navLabel><content src="c07.xhtml#h2-502703c07-22"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c07-0004" playOrder="239"><navLabel><text>Summary</text></navLabel><content src="c07.xhtml#h1-502703c07-0004"/></navPoint>
+</navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:c08.xhtml" playOrder="240"><navLabel><text>Chapter 8: Functions</text></navLabel><content src="c08.xhtml"/><navPoint id="h1-502703c08-0001" playOrder="241"><navLabel><text>Defining a Function</text></navLabel><content src="c08.xhtml#h1-502703c08-0001"/><navPoint id="h2-502703c08-0001" playOrder="242"><navLabel><text>Passing Information to a Function</text></navLabel><content src="c08.xhtml#h2-502703c08-0001"/></navPoint>
+<navPoint id="h2-502703c08-0002" playOrder="243"><navLabel><text>Arguments and Parameters</text></navLabel><content src="c08.xhtml#h2-502703c08-0002"/></navPoint>
+<navPoint id="h2-502703c08-03" playOrder="244"><navLabel><text>Exercise 8-1: Message</text></navLabel><content src="c08.xhtml#h2-502703c08-03"/></navPoint>
+<navPoint id="h2-502703c08-04" playOrder="245"><navLabel><text>Exercise 8-2: Favorite Book</text></navLabel><content src="c08.xhtml#h2-502703c08-04"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c08-0002" playOrder="246"><navLabel><text>Passing Arguments</text></navLabel><content src="c08.xhtml#h1-502703c08-0002"/><navPoint id="h2-502703c08-0003" playOrder="247"><navLabel><text>Positional Arguments</text></navLabel><content src="c08.xhtml#h2-502703c08-0003"/></navPoint>
+<navPoint id="h2-502703c08-0004" playOrder="248"><navLabel><text>Keyword Arguments</text></navLabel><content src="c08.xhtml#h2-502703c08-0004"/></navPoint>
+<navPoint id="h2-502703c08-0005" playOrder="249"><navLabel><text>Default Values</text></navLabel><content src="c08.xhtml#h2-502703c08-0005"/></navPoint>
+<navPoint id="h2-502703c08-0006" playOrder="250"><navLabel><text>Equivalent Function Calls</text></navLabel><content src="c08.xhtml#h2-502703c08-0006"/></navPoint>
+<navPoint id="h2-502703c08-0007" playOrder="251"><navLabel><text>Avoiding Argument Errors</text></navLabel><content src="c08.xhtml#h2-502703c08-0007"/></navPoint>
+<navPoint id="h2-502703c08-10" playOrder="252"><navLabel><text>Exercise 8-3: T-Shirt</text></navLabel><content src="c08.xhtml#h2-502703c08-10"/></navPoint>
+<navPoint id="h2-502703c08-11" playOrder="253"><navLabel><text>Exercise 8-4: Large Shirts</text></navLabel><content src="c08.xhtml#h2-502703c08-11"/></navPoint>
+<navPoint id="h2-502703c08-12" playOrder="254"><navLabel><text>Exercise 8-5: Cities</text></navLabel><content src="c08.xhtml#h2-502703c08-12"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c08-0003" playOrder="255"><navLabel><text>Return Values</text></navLabel><content src="c08.xhtml#h1-502703c08-0003"/><navPoint id="h2-502703c08-0008" playOrder="256"><navLabel><text>Returning a Simple Value</text></navLabel><content src="c08.xhtml#h2-502703c08-0008"/></navPoint>
+<navPoint id="h2-502703c08-0009" playOrder="257"><navLabel><text>Making an Argument Optional</text></navLabel><content src="c08.xhtml#h2-502703c08-0009"/></navPoint>
+<navPoint id="h2-502703c08-0010" playOrder="258"><navLabel><text>Returning a Dictionary</text></navLabel><content src="c08.xhtml#h2-502703c08-0010"/></navPoint>
+<navPoint id="h2-502703c08-0011" playOrder="259"><navLabel><text>Using a Function with a while Loop</text></navLabel><content src="c08.xhtml#h2-502703c08-0011"/></navPoint>
+<navPoint id="h2-502703c08-17" playOrder="260"><navLabel><text>Exercise 8-6: City Names</text></navLabel><content src="c08.xhtml#h2-502703c08-17"/></navPoint>
+<navPoint id="h2-502703c08-18" playOrder="261"><navLabel><text>Exercise 8-7: Album</text></navLabel><content src="c08.xhtml#h2-502703c08-18"/></navPoint>
+<navPoint id="h2-502703c08-19" playOrder="262"><navLabel><text>Exercise 8-8: User Albums</text></navLabel><content src="c08.xhtml#h2-502703c08-19"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c08-0004" playOrder="263"><navLabel><text>Passing a List</text></navLabel><content src="c08.xhtml#h1-502703c08-0004"/><navPoint id="h2-502703c08-0012" playOrder="264"><navLabel><text>Modifying a List in a Function</text></navLabel><content src="c08.xhtml#h2-502703c08-0012"/></navPoint>
+<navPoint id="h2-502703c08-0013" playOrder="265"><navLabel><text>Preventing a Function from Modifying a List</text></navLabel><content src="c08.xhtml#h2-502703c08-0013"/></navPoint>
+<navPoint id="h2-502703c08-22" playOrder="266"><navLabel><text>Exercise 8-9: Messages</text></navLabel><content src="c08.xhtml#h2-502703c08-22"/></navPoint>
+<navPoint id="h2-502703c08-23" playOrder="267"><navLabel><text>Exercise 8-10: Sending Messages</text></navLabel><content src="c08.xhtml#h2-502703c08-23"/></navPoint>
+<navPoint id="h2-502703c08-24" playOrder="268"><navLabel><text>Exercise 8-11: Archived Messages</text></navLabel><content src="c08.xhtml#h2-502703c08-24"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c08-0005" playOrder="269"><navLabel><text>Passing an Arbitrary Number of Arguments</text></navLabel><content src="c08.xhtml#h1-502703c08-0005"/><navPoint id="h2-502703c08-0014" playOrder="270"><navLabel><text>Mixing Positional and Arbitrary Arguments</text></navLabel><content src="c08.xhtml#h2-502703c08-0014"/></navPoint>
+<navPoint id="h2-502703c08-0015" playOrder="271"><navLabel><text>Using Arbitrary Keyword Arguments</text></navLabel><content src="c08.xhtml#h2-502703c08-0015"/></navPoint>
+<navPoint id="h2-502703c08-27" playOrder="272"><navLabel><text>Exercise 8-12: Sandwiches</text></navLabel><content src="c08.xhtml#h2-502703c08-27"/></navPoint>
+<navPoint id="h2-502703c08-28" playOrder="273"><navLabel><text>Exercise 8-13: User Profile</text></navLabel><content src="c08.xhtml#h2-502703c08-28"/></navPoint>
+<navPoint id="h2-502703c08-29" playOrder="274"><navLabel><text>Exercise 8-14: Cars</text></navLabel><content src="c08.xhtml#h2-502703c08-29"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c08-0006" playOrder="275"><navLabel><text>Storing Your Functions in Modules</text></navLabel><content src="c08.xhtml#h1-502703c08-0006"/><navPoint id="h2-502703c08-0016" playOrder="276"><navLabel><text>Importing an Entire Module</text></navLabel><content src="c08.xhtml#h2-502703c08-0016"/></navPoint>
+<navPoint id="h2-502703c08-0017" playOrder="277"><navLabel><text>Importing Specific Functions</text></navLabel><content src="c08.xhtml#h2-502703c08-0017"/></navPoint>
+<navPoint id="h2-502703c08-0018" playOrder="278"><navLabel><text>Using as to Give a Function an Alias</text></navLabel><content src="c08.xhtml#h2-502703c08-0018"/></navPoint>
+<navPoint id="h2-502703c08-0019" playOrder="279"><navLabel><text>Using as to Give a Module an Alias</text></navLabel><content src="c08.xhtml#h2-502703c08-0019"/></navPoint>
+<navPoint id="h2-502703c08-0020" playOrder="280"><navLabel><text>Importing All Functions in a Module</text></navLabel><content src="c08.xhtml#h2-502703c08-0020"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c08-0007" playOrder="281"><navLabel><text>Styling Functions</text></navLabel><content src="c08.xhtml#h1-502703c08-0007"/><navPoint id="h2-502703c08-35" playOrder="282"><navLabel><text>Exercise 8-15: Printing Models</text></navLabel><content src="c08.xhtml#h2-502703c08-35"/></navPoint>
+<navPoint id="h2-502703c08-36" playOrder="283"><navLabel><text>Exercise 8-16: Imports</text></navLabel><content src="c08.xhtml#h2-502703c08-36"/></navPoint>
+<navPoint id="h2-502703c08-37" playOrder="284"><navLabel><text>Exercise 8-17: Styling Functions</text></navLabel><content src="c08.xhtml#h2-502703c08-37"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c08-0008" playOrder="285"><navLabel><text>Summary</text></navLabel><content src="c08.xhtml#h1-502703c08-0008"/></navPoint>
+</navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:c09.xhtml" playOrder="286"><navLabel><text>Chapter 9: Classes</text></navLabel><content src="c09.xhtml"/><navPoint id="h1-502703c09-0001" playOrder="287"><navLabel><text>Creating and Using a Class</text></navLabel><content src="c09.xhtml#h1-502703c09-0001"/><navPoint id="h2-502703c09-0001" playOrder="288"><navLabel><text>Creating the Dog Class</text></navLabel><content src="c09.xhtml#h2-502703c09-0001"/></navPoint>
+<navPoint id="h2-502703c09-0002" playOrder="289"><navLabel><text>The __init__() Method</text></navLabel><content src="c09.xhtml#h2-502703c09-0002"/></navPoint>
+<navPoint id="h2-502703c09-0003" playOrder="290"><navLabel><text>Making an Instance from a Class</text></navLabel><content src="c09.xhtml#h2-502703c09-0003"/></navPoint>
+<navPoint id="h2-502703c09-04" playOrder="291"><navLabel><text>Exercise 9-1: Restaurant</text></navLabel><content src="c09.xhtml#h2-502703c09-04"/></navPoint>
+<navPoint id="h2-502703c09-05" playOrder="292"><navLabel><text>Exercise 9-2: Three Restaurants</text></navLabel><content src="c09.xhtml#h2-502703c09-05"/></navPoint>
+<navPoint id="h2-502703c09-06" playOrder="293"><navLabel><text>Exercise 9-3: Users</text></navLabel><content src="c09.xhtml#h2-502703c09-06"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c09-0002" playOrder="294"><navLabel><text>Working with Classes and Instances</text></navLabel><content src="c09.xhtml#h1-502703c09-0002"/><navPoint id="h2-502703c09-0004" playOrder="295"><navLabel><text>The Car Class</text></navLabel><content src="c09.xhtml#h2-502703c09-0004"/></navPoint>
+<navPoint id="h2-502703c09-0005" playOrder="296"><navLabel><text>Setting a Default Value for an Attribute</text></navLabel><content src="c09.xhtml#h2-502703c09-0005"/></navPoint>
+<navPoint id="h2-502703c09-0006" playOrder="297"><navLabel><text>Modifying Attribute Values</text></navLabel><content src="c09.xhtml#h2-502703c09-0006"/></navPoint>
+<navPoint id="h2-502703c09-10" playOrder="298"><navLabel><text>Exercise 9-4: Number Served</text></navLabel><content src="c09.xhtml#h2-502703c09-10"/></navPoint>
+<navPoint id="h2-502703c09-11" playOrder="299"><navLabel><text>Exercise 9-5: Login Attempts</text></navLabel><content src="c09.xhtml#h2-502703c09-11"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c09-0003" playOrder="300"><navLabel><text>Inheritance</text></navLabel><content src="c09.xhtml#h1-502703c09-0003"/><navPoint id="h2-502703c09-0007" playOrder="301"><navLabel><text>The __init__() Method for a Child Class</text></navLabel><content src="c09.xhtml#h2-502703c09-0007"/></navPoint>
+<navPoint id="h2-502703c09-0008" playOrder="302"><navLabel><text>Defining Attributes and Methods for the Child Class</text></navLabel><content src="c09.xhtml#h2-502703c09-0008"/></navPoint>
+<navPoint id="h2-502703c09-0009" playOrder="303"><navLabel><text>Overriding Methods from the Parent Class</text></navLabel><content src="c09.xhtml#h2-502703c09-0009"/></navPoint>
+<navPoint id="h2-502703c09-0010" playOrder="304"><navLabel><text>Instances as Attributes</text></navLabel><content src="c09.xhtml#h2-502703c09-0010"/></navPoint>
+<navPoint id="h2-502703c09-0011" playOrder="305"><navLabel><text>Modeling Real-World Objects</text></navLabel><content src="c09.xhtml#h2-502703c09-0011"/></navPoint>
+<navPoint id="h2-502703c09-17" playOrder="306"><navLabel><text>Exercise 9-6: Ice Cream Stand</text></navLabel><content src="c09.xhtml#h2-502703c09-17"/></navPoint>
+<navPoint id="h2-502703c09-18" playOrder="307"><navLabel><text>Exercise 9-7: Admin</text></navLabel><content src="c09.xhtml#h2-502703c09-18"/></navPoint>
+<navPoint id="h2-502703c09-19" playOrder="308"><navLabel><text>Exercise 9-8: Privileges</text></navLabel><content src="c09.xhtml#h2-502703c09-19"/></navPoint>
+<navPoint id="h2-502703c09-20" playOrder="309"><navLabel><text>Exercise 9-9: Battery Upgrade</text></navLabel><content src="c09.xhtml#h2-502703c09-20"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c09-0004" playOrder="310"><navLabel><text>Importing Classes</text></navLabel><content src="c09.xhtml#h1-502703c09-0004"/><navPoint id="h2-502703c09-0012" playOrder="311"><navLabel><text>Importing a Single Class</text></navLabel><content src="c09.xhtml#h2-502703c09-0012"/></navPoint>
+<navPoint id="h2-502703c09-0013" playOrder="312"><navLabel><text>Storing Multiple Classes in a Module</text></navLabel><content src="c09.xhtml#h2-502703c09-0013"/></navPoint>
+<navPoint id="h2-502703c09-0014" playOrder="313"><navLabel><text>Importing Multiple Classes from a Module</text></navLabel><content src="c09.xhtml#h2-502703c09-0014"/></navPoint>
+<navPoint id="h2-502703c09-0015" playOrder="314"><navLabel><text>Importing an Entire Module</text></navLabel><content src="c09.xhtml#h2-502703c09-0015"/></navPoint>
+<navPoint id="h2-502703c09-0016" playOrder="315"><navLabel><text>Importing All Classes from a Module</text></navLabel><content src="c09.xhtml#h2-502703c09-0016"/></navPoint>
+<navPoint id="h2-502703c09-0017" playOrder="316"><navLabel><text>Importing a Module into a Module</text></navLabel><content src="c09.xhtml#h2-502703c09-0017"/></navPoint>
+<navPoint id="h2-502703c09-0018" playOrder="317"><navLabel><text>Using Aliases</text></navLabel><content src="c09.xhtml#h2-502703c09-0018"/></navPoint>
+<navPoint id="h2-502703c09-0019" playOrder="318"><navLabel><text>Finding Your Own Workflow</text></navLabel><content src="c09.xhtml#h2-502703c09-0019"/></navPoint>
+<navPoint id="h2-502703c09-29" playOrder="319"><navLabel><text>Exercise 9-10: Imported Restaurant</text></navLabel><content src="c09.xhtml#h2-502703c09-29"/></navPoint>
+<navPoint id="h2-502703c09-30" playOrder="320"><navLabel><text>Exercise 9-11: Imported Admin</text></navLabel><content src="c09.xhtml#h2-502703c09-30"/></navPoint>
+<navPoint id="h2-502703c09-31" playOrder="321"><navLabel><text>Exercise 9-12: Multiple Modules</text></navLabel><content src="c09.xhtml#h2-502703c09-31"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c09-0005" playOrder="322"><navLabel><text>The Python Standard Library</text></navLabel><content src="c09.xhtml#h1-502703c09-0005"/><navPoint id="h2-502703c09-32" playOrder="323"><navLabel><text>Exercise 9-13: Dice</text></navLabel><content src="c09.xhtml#h2-502703c09-32"/></navPoint>
+<navPoint id="h2-502703c09-33" playOrder="324"><navLabel><text>Exercise 9-14: Lottery</text></navLabel><content src="c09.xhtml#h2-502703c09-33"/></navPoint>
+<navPoint id="h2-502703c09-34" playOrder="325"><navLabel><text>Exercise 9-15: Lottery Analysis</text></navLabel><content src="c09.xhtml#h2-502703c09-34"/></navPoint>
+<navPoint id="h2-502703c09-35" playOrder="326"><navLabel><text>Exercise 9-16: Python Module of the Week</text></navLabel><content src="c09.xhtml#h2-502703c09-35"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c09-0006" playOrder="327"><navLabel><text>Styling Classes</text></navLabel><content src="c09.xhtml#h1-502703c09-0006"/></navPoint>
+<navPoint id="h1-502703c09-0007" playOrder="328"><navLabel><text>Summary</text></navLabel><content src="c09.xhtml#h1-502703c09-0007"/></navPoint>
+</navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:c10.xhtml" playOrder="329"><navLabel><text>Chapter 10: Files and Exceptions</text></navLabel><content src="c10.xhtml"/><navPoint id="h1-502703c10-0001" playOrder="330"><navLabel><text>Reading from a File</text></navLabel><content src="c10.xhtml#h1-502703c10-0001"/><navPoint id="h2-502703c10-0001" playOrder="331"><navLabel><text>Reading the Contents of a File</text></navLabel><content src="c10.xhtml#h2-502703c10-0001"/></navPoint>
+<navPoint id="h2-502703c10-0002" playOrder="332"><navLabel><text>Relative and Absolute File Paths</text></navLabel><content src="c10.xhtml#h2-502703c10-0002"/></navPoint>
+<navPoint id="h2-502703c10-0003" playOrder="333"><navLabel><text>Accessing a File’s Lines</text></navLabel><content src="c10.xhtml#h2-502703c10-0003"/></navPoint>
+<navPoint id="h2-502703c10-0004" playOrder="334"><navLabel><text>Working with a File’s Contents</text></navLabel><content src="c10.xhtml#h2-502703c10-0004"/></navPoint>
+<navPoint id="h2-502703c10-0005" playOrder="335"><navLabel><text>Large Files: One Million Digits</text></navLabel><content src="c10.xhtml#h2-502703c10-0005"/></navPoint>
+<navPoint id="h2-502703c10-0006" playOrder="336"><navLabel><text>Is Your Birthday Contained in Pi?</text></navLabel><content src="c10.xhtml#h2-502703c10-0006"/></navPoint>
+<navPoint id="h2-502703c10-07" playOrder="337"><navLabel><text>Exercise 10-1: Learning Python</text></navLabel><content src="c10.xhtml#h2-502703c10-07"/></navPoint>
+<navPoint id="h2-502703c10-08" playOrder="338"><navLabel><text>Exercise 10-2:	Learning C</text></navLabel><content src="c10.xhtml#h2-502703c10-08"/></navPoint>
+<navPoint id="h2-502703c10-09" playOrder="339"><navLabel><text>Exercise 10-3:	Simpler Code</text></navLabel><content src="c10.xhtml#h2-502703c10-09"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c10-0002" playOrder="340"><navLabel><text>Writing to a File</text></navLabel><content src="c10.xhtml#h1-502703c10-0002"/><navPoint id="h2-502703c10-0007" playOrder="341"><navLabel><text>Writing a Single Line</text></navLabel><content src="c10.xhtml#h2-502703c10-0007"/></navPoint>
+<navPoint id="h2-502703c10-0008" playOrder="342"><navLabel><text>Writing Multiple Lines</text></navLabel><content src="c10.xhtml#h2-502703c10-0008"/></navPoint>
+<navPoint id="h2-502703c10-12" playOrder="343"><navLabel><text>Exercise 10-4:	Guest</text></navLabel><content src="c10.xhtml#h2-502703c10-12"/></navPoint>
+<navPoint id="h2-502703c10-13" playOrder="344"><navLabel><text>Exercise 10-5:	Guest Book</text></navLabel><content src="c10.xhtml#h2-502703c10-13"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c10-0003" playOrder="345"><navLabel><text>Exceptions</text></navLabel><content src="c10.xhtml#h1-502703c10-0003"/><navPoint id="h2-502703c10-0009" playOrder="346"><navLabel><text>Handling the ZeroDivisionError Exception</text></navLabel><content src="c10.xhtml#h2-502703c10-0009"/></navPoint>
+<navPoint id="h2-502703c10-0010" playOrder="347"><navLabel><text>Using try-except Blocks</text></navLabel><content src="c10.xhtml#h2-502703c10-0010"/></navPoint>
+<navPoint id="h2-502703c10-0011" playOrder="348"><navLabel><text>Using Exceptions to Prevent Crashes</text></navLabel><content src="c10.xhtml#h2-502703c10-0011"/></navPoint>
+<navPoint id="h2-502703c10-0012" playOrder="349"><navLabel><text>The else Block</text></navLabel><content src="c10.xhtml#h2-502703c10-0012"/></navPoint>
+<navPoint id="h2-502703c10-0013" playOrder="350"><navLabel><text>Handling the FileNotFoundError Exception</text></navLabel><content src="c10.xhtml#h2-502703c10-0013"/></navPoint>
+<navPoint id="h2-502703c10-0014" playOrder="351"><navLabel><text>Analyzing Text</text></navLabel><content src="c10.xhtml#h2-502703c10-0014"/></navPoint>
+<navPoint id="h2-502703c10-0015" playOrder="352"><navLabel><text>Working with Multiple Files</text></navLabel><content src="c10.xhtml#h2-502703c10-0015"/></navPoint>
+<navPoint id="h2-502703c10-0016" playOrder="353"><navLabel><text>Failing Silently</text></navLabel><content src="c10.xhtml#h2-502703c10-0016"/></navPoint>
+<navPoint id="h2-502703c10-0017" playOrder="354"><navLabel><text>Deciding Which Errors to Report</text></navLabel><content src="c10.xhtml#h2-502703c10-0017"/></navPoint>
+<navPoint id="h2-502703c10-23" playOrder="355"><navLabel><text>Exercise 10-6:	Addition</text></navLabel><content src="c10.xhtml#h2-502703c10-23"/></navPoint>
+<navPoint id="h2-502703c10-24" playOrder="356"><navLabel><text>Exercise 10-7:	Addition Calculator</text></navLabel><content src="c10.xhtml#h2-502703c10-24"/></navPoint>
+<navPoint id="h2-502703c10-25" playOrder="357"><navLabel><text>Exercise 10-8:	Cats and Dogs</text></navLabel><content src="c10.xhtml#h2-502703c10-25"/></navPoint>
+<navPoint id="h2-502703c10-26" playOrder="358"><navLabel><text>Exercise 10-9:	Silent Cats and Dogs</text></navLabel><content src="c10.xhtml#h2-502703c10-26"/></navPoint>
+<navPoint id="h2-502703c10-27" playOrder="359"><navLabel><text>Exercise 10-10: Common Words</text></navLabel><content src="c10.xhtml#h2-502703c10-27"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c10-0004" playOrder="360"><navLabel><text>Storing Data</text></navLabel><content src="c10.xhtml#h1-502703c10-0004"/><navPoint id="h2-502703c10-0018" playOrder="361"><navLabel><text>Using json.dumps() and json.loads()</text></navLabel><content src="c10.xhtml#h2-502703c10-0018"/></navPoint>
+<navPoint id="h2-502703c10-0019" playOrder="362"><navLabel><text>Saving and Reading User-Generated Data</text></navLabel><content src="c10.xhtml#h2-502703c10-0019"/></navPoint>
+<navPoint id="h2-502703c10-0020" playOrder="363"><navLabel><text>Refactoring</text></navLabel><content src="c10.xhtml#h2-502703c10-0020"/></navPoint>
+<navPoint id="h2-502703c10-31" playOrder="364"><navLabel><text>Exercise 10-11: Favorite Number</text></navLabel><content src="c10.xhtml#h2-502703c10-31"/></navPoint>
+<navPoint id="h2-502703c10-32" playOrder="365"><navLabel><text>Exercise 10-12: Favorite Number Remembered</text></navLabel><content src="c10.xhtml#h2-502703c10-32"/></navPoint>
+<navPoint id="h2-502703c10-33" playOrder="366"><navLabel><text>Exercise 10-13: User Dictionary</text></navLabel><content src="c10.xhtml#h2-502703c10-33"/></navPoint>
+<navPoint id="h2-502703c10-34" playOrder="367"><navLabel><text>Exercise 10-14: Verify User</text></navLabel><content src="c10.xhtml#h2-502703c10-34"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c10-0005" playOrder="368"><navLabel><text>Summary</text></navLabel><content src="c10.xhtml#h1-502703c10-0005"/></navPoint>
+</navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:c11.xhtml" playOrder="369"><navLabel><text>Chapter 11: Testing Your Code</text></navLabel><content src="c11.xhtml"/><navPoint id="h1-502703c11-0001" playOrder="370"><navLabel><text>Installing pytest with pip</text></navLabel><content src="c11.xhtml#h1-502703c11-0001"/><navPoint id="h2-502703c11-0001" playOrder="371"><navLabel><text>Updating pip</text></navLabel><content src="c11.xhtml#h2-502703c11-0001"/></navPoint>
+<navPoint id="h2-502703c11-0002" playOrder="372"><navLabel><text>Installing pytest</text></navLabel><content src="c11.xhtml#h2-502703c11-0002"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c11-0002" playOrder="373"><navLabel><text>Testing a Function</text></navLabel><content src="c11.xhtml#h1-502703c11-0002"/><navPoint id="h2-502703c11-0003" playOrder="374"><navLabel><text>Unit Tests and Test Cases</text></navLabel><content src="c11.xhtml#h2-502703c11-0003"/></navPoint>
+<navPoint id="h2-502703c11-0004" playOrder="375"><navLabel><text>A Passing Test</text></navLabel><content src="c11.xhtml#h2-502703c11-0004"/></navPoint>
+<navPoint id="h2-502703c11-0005" playOrder="376"><navLabel><text>Running a Test</text></navLabel><content src="c11.xhtml#h2-502703c11-0005"/></navPoint>
+<navPoint id="h2-502703c11-0006" playOrder="377"><navLabel><text>A Failing Test</text></navLabel><content src="c11.xhtml#h2-502703c11-0006"/></navPoint>
+<navPoint id="h2-502703c11-0007" playOrder="378"><navLabel><text>Responding to a Failed Test</text></navLabel><content src="c11.xhtml#h2-502703c11-0007"/></navPoint>
+<navPoint id="h2-502703c11-0008" playOrder="379"><navLabel><text>Adding New Tests</text></navLabel><content src="c11.xhtml#h2-502703c11-0008"/></navPoint>
+<navPoint id="h2-502703c11-09" playOrder="380"><navLabel><text>Exercise 11-1: City, Country</text></navLabel><content src="c11.xhtml#h2-502703c11-09"/></navPoint>
+<navPoint id="h2-502703c11-10" playOrder="381"><navLabel><text>Exercise 11-2: Population</text></navLabel><content src="c11.xhtml#h2-502703c11-10"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c11-0003" playOrder="382"><navLabel><text>Testing a Class</text></navLabel><content src="c11.xhtml#h1-502703c11-0003"/><navPoint id="h2-502703c11-0009" playOrder="383"><navLabel><text>A Variety of Assertions</text></navLabel><content src="c11.xhtml#h2-502703c11-0009"/></navPoint>
+<navPoint id="h2-502703c11-0010" playOrder="384"><navLabel><text>A Class to Test</text></navLabel><content src="c11.xhtml#h2-502703c11-0010"/></navPoint>
+<navPoint id="h2-502703c11-0011" playOrder="385"><navLabel><text>Testing the AnonymousSurvey Class</text></navLabel><content src="c11.xhtml#h2-502703c11-0011"/></navPoint>
+<navPoint id="h2-502703c11-0012" playOrder="386"><navLabel><text>Using Fixtures</text></navLabel><content src="c11.xhtml#h2-502703c11-0012"/></navPoint>
+<navPoint id="h2-502703c11-15" playOrder="387"><navLabel><text>Exercise 11-3: Employee</text></navLabel><content src="c11.xhtml#h2-502703c11-15"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c11-0004" playOrder="388"><navLabel><text>Summary</text></navLabel><content src="c11.xhtml#h1-502703c11-0004"/></navPoint>
+</navPoint>
+</navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:p02.xhtml" playOrder="389"><navLabel><text>Part II: Projects</text></navLabel><content src="p02.xhtml"/><navPoint id="urn:orm:book:9781098156664:chapter:c12.xhtml" playOrder="390"><navLabel><text>Chapter 12: A Ship That Fires Bullets</text></navLabel><content src="c12.xhtml"/><navPoint id="h1-502703c12-0001" playOrder="391"><navLabel><text>Planning Your Project</text></navLabel><content src="c12.xhtml#h1-502703c12-0001"/></navPoint>
+<navPoint id="h1-502703c12-0002" playOrder="392"><navLabel><text>Installing Pygame</text></navLabel><content src="c12.xhtml#h1-502703c12-0002"/></navPoint>
+<navPoint id="h1-502703c12-0003" playOrder="393"><navLabel><text>Starting the Game Project</text></navLabel><content src="c12.xhtml#h1-502703c12-0003"/><navPoint id="h2-502703c12-0001" playOrder="394"><navLabel><text>Creating a Pygame Window and Responding to User Input</text></navLabel><content src="c12.xhtml#h2-502703c12-0001"/></navPoint>
+<navPoint id="h2-502703c12-0002" playOrder="395"><navLabel><text>Controlling the Frame Rate</text></navLabel><content src="c12.xhtml#h2-502703c12-0002"/></navPoint>
+<navPoint id="h2-502703c12-0003" playOrder="396"><navLabel><text>Setting the Background Color</text></navLabel><content src="c12.xhtml#h2-502703c12-0003"/></navPoint>
+<navPoint id="h2-502703c12-0004" playOrder="397"><navLabel><text>Creating a Settings Class</text></navLabel><content src="c12.xhtml#h2-502703c12-0004"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c12-0004" playOrder="398"><navLabel><text>Adding the Ship Image</text></navLabel><content src="c12.xhtml#h1-502703c12-0004"/><navPoint id="h2-502703c12-0005" playOrder="399"><navLabel><text>Creating the Ship Class</text></navLabel><content src="c12.xhtml#h2-502703c12-0005"/></navPoint>
+<navPoint id="h2-502703c12-0006" playOrder="400"><navLabel><text>Drawing the Ship to the Screen</text></navLabel><content src="c12.xhtml#h2-502703c12-0006"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c12-0005" playOrder="401"><navLabel><text>Refactoring: The _check_events() and _update_screen() Methods</text></navLabel><content src="c12.xhtml#h1-502703c12-0005"/><navPoint id="h2-502703c12-0007" playOrder="402"><navLabel><text>The _check_events() Method</text></navLabel><content src="c12.xhtml#h2-502703c12-0007"/></navPoint>
+<navPoint id="h2-502703c12-0008" playOrder="403"><navLabel><text>The _update_screen() Method</text></navLabel><content src="c12.xhtml#h2-502703c12-0008"/></navPoint>
+<navPoint id="h2-502703c12-09" playOrder="404"><navLabel><text>Exercise 12-1:	Blue Sky</text></navLabel><content src="c12.xhtml#h2-502703c12-09"/></navPoint>
+<navPoint id="h2-502703c12-10" playOrder="405"><navLabel><text>Exercise 12-2:	Game Character</text></navLabel><content src="c12.xhtml#h2-502703c12-10"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c12-0006" playOrder="406"><navLabel><text>Piloting the Ship</text></navLabel><content src="c12.xhtml#h1-502703c12-0006"/><navPoint id="h2-502703c12-0009" playOrder="407"><navLabel><text>Responding to a Keypress</text></navLabel><content src="c12.xhtml#h2-502703c12-0009"/></navPoint>
+<navPoint id="h2-502703c12-0010" playOrder="408"><navLabel><text>Allowing Continuous Movement</text></navLabel><content src="c12.xhtml#h2-502703c12-0010"/></navPoint>
+<navPoint id="h2-502703c12-0011" playOrder="409"><navLabel><text>Moving Both Left and Right</text></navLabel><content src="c12.xhtml#h2-502703c12-0011"/></navPoint>
+<navPoint id="h2-502703c12-0012" playOrder="410"><navLabel><text>Adjusting the Ship’s Speed</text></navLabel><content src="c12.xhtml#h2-502703c12-0012"/></navPoint>
+<navPoint id="h2-502703c12-0013" playOrder="411"><navLabel><text>Limiting the Ship’s Range</text></navLabel><content src="c12.xhtml#h2-502703c12-0013"/></navPoint>
+<navPoint id="h2-502703c12-0014" playOrder="412"><navLabel><text>Refactoring _check_events()</text></navLabel><content src="c12.xhtml#h2-502703c12-0014"/></navPoint>
+<navPoint id="h2-502703c12-0015" playOrder="413"><navLabel><text>Pressing Q to Quit</text></navLabel><content src="c12.xhtml#h2-502703c12-0015"/></navPoint>
+<navPoint id="h2-502703c12-0016" playOrder="414"><navLabel><text>Running the Game in Fullscreen Mode</text></navLabel><content src="c12.xhtml#h2-502703c12-0016"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c12-0007" playOrder="415"><navLabel><text>A Quick Recap</text></navLabel><content src="c12.xhtml#h1-502703c12-0007"/><navPoint id="h2-502703c12-0017" playOrder="416"><navLabel><text>alien_invasion.py</text></navLabel><content src="c12.xhtml#h2-502703c12-0017"/></navPoint>
+<navPoint id="h2-502703c12-0018" playOrder="417"><navLabel><text>settings.py</text></navLabel><content src="c12.xhtml#h2-502703c12-0018"/></navPoint>
+<navPoint id="h2-502703c12-0019" playOrder="418"><navLabel><text>ship.py</text></navLabel><content src="c12.xhtml#h2-502703c12-0019"/></navPoint>
+<navPoint id="h2-502703c12-22" playOrder="419"><navLabel><text>Exercise 12-3:	Pygame Documentation</text></navLabel><content src="c12.xhtml#h2-502703c12-22"/></navPoint>
+<navPoint id="h2-502703c12-23" playOrder="420"><navLabel><text>Exercise 12-4:	Rocket</text></navLabel><content src="c12.xhtml#h2-502703c12-23"/></navPoint>
+<navPoint id="h2-502703c12-24" playOrder="421"><navLabel><text>Exercise 12-5:	Keys</text></navLabel><content src="c12.xhtml#h2-502703c12-24"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c12-0008" playOrder="422"><navLabel><text>Shooting Bullets</text></navLabel><content src="c12.xhtml#h1-502703c12-0008"/><navPoint id="h2-502703c12-0020" playOrder="423"><navLabel><text>Adding the Bullet Settings</text></navLabel><content src="c12.xhtml#h2-502703c12-0020"/></navPoint>
+<navPoint id="h2-502703c12-0021" playOrder="424"><navLabel><text>Creating the Bullet Class</text></navLabel><content src="c12.xhtml#h2-502703c12-0021"/></navPoint>
+<navPoint id="h2-502703c12-0022" playOrder="425"><navLabel><text>Storing Bullets in a Group</text></navLabel><content src="c12.xhtml#h2-502703c12-0022"/></navPoint>
+<navPoint id="h2-502703c12-0023" playOrder="426"><navLabel><text>Firing Bullets</text></navLabel><content src="c12.xhtml#h2-502703c12-0023"/></navPoint>
+<navPoint id="h2-502703c12-0024" playOrder="427"><navLabel><text>Deleting Old Bullets</text></navLabel><content src="c12.xhtml#h2-502703c12-0024"/></navPoint>
+<navPoint id="h2-502703c12-0025" playOrder="428"><navLabel><text>Limiting the Number of Bullets</text></navLabel><content src="c12.xhtml#h2-502703c12-0025"/></navPoint>
+<navPoint id="h2-502703c12-0026" playOrder="429"><navLabel><text>Creating the _update_bullets() Method</text></navLabel><content src="c12.xhtml#h2-502703c12-0026"/></navPoint>
+<navPoint id="h2-502703c12-32" playOrder="430"><navLabel><text>Exercise 12-6:	Sideways Shooter</text></navLabel><content src="c12.xhtml#h2-502703c12-32"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c12-0009" playOrder="431"><navLabel><text>Summary</text></navLabel><content src="c12.xhtml#h1-502703c12-0009"/></navPoint>
+</navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:c13.xhtml" playOrder="432"><navLabel><text>Chapter 13: Aliens!</text></navLabel><content src="c13.xhtml"/><navPoint id="h1-502703c13-0001" playOrder="433"><navLabel><text>Reviewing the Project</text></navLabel><content src="c13.xhtml#h1-502703c13-0001"/></navPoint>
+<navPoint id="h1-502703c13-0002" playOrder="434"><navLabel><text>Creating the First Alien</text></navLabel><content src="c13.xhtml#h1-502703c13-0002"/><navPoint id="h2-502703c13-0001" playOrder="435"><navLabel><text>Creating the Alien Class</text></navLabel><content src="c13.xhtml#h2-502703c13-0001"/></navPoint>
+<navPoint id="h2-502703c13-0002" playOrder="436"><navLabel><text>Creating an Instance of the Alien</text></navLabel><content src="c13.xhtml#h2-502703c13-0002"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c13-0003" playOrder="437"><navLabel><text>Building the Alien Fleet</text></navLabel><content src="c13.xhtml#h1-502703c13-0003"/><navPoint id="h2-502703c13-0003" playOrder="438"><navLabel><text>Creating a Row of Aliens</text></navLabel><content src="c13.xhtml#h2-502703c13-0003"/></navPoint>
+<navPoint id="h2-502703c13-0004" playOrder="439"><navLabel><text>Refactoring _create_fleet()</text></navLabel><content src="c13.xhtml#h2-502703c13-0004"/></navPoint>
+<navPoint id="h2-502703c13-0005" playOrder="440"><navLabel><text>Adding Rows</text></navLabel><content src="c13.xhtml#h2-502703c13-0005"/></navPoint>
+<navPoint id="h2-502703c13-06" playOrder="441"><navLabel><text>Exercise 13-1:	Stars</text></navLabel><content src="c13.xhtml#h2-502703c13-06"/></navPoint>
+<navPoint id="h2-502703c13-07" playOrder="442"><navLabel><text>Exercise 13-2:	Better Stars</text></navLabel><content src="c13.xhtml#h2-502703c13-07"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c13-0004" playOrder="443"><navLabel><text>Making the Fleet Move</text></navLabel><content src="c13.xhtml#h1-502703c13-0004"/><navPoint id="h2-502703c13-0006" playOrder="444"><navLabel><text>Moving the Aliens Right</text></navLabel><content src="c13.xhtml#h2-502703c13-0006"/></navPoint>
+<navPoint id="h2-502703c13-0007" playOrder="445"><navLabel><text>Creating Settings for Fleet Direction</text></navLabel><content src="c13.xhtml#h2-502703c13-0007"/></navPoint>
+<navPoint id="h2-502703c13-0008" playOrder="446"><navLabel><text>Checking Whether an Alien Has Hit the Edge</text></navLabel><content src="c13.xhtml#h2-502703c13-0008"/></navPoint>
+<navPoint id="h2-502703c13-0009" playOrder="447"><navLabel><text>Dropping the Fleet and Changing Direction</text></navLabel><content src="c13.xhtml#h2-502703c13-0009"/></navPoint>
+<navPoint id="h2-502703c13-12" playOrder="448"><navLabel><text>Exercise 13-3:	Raindrops</text></navLabel><content src="c13.xhtml#h2-502703c13-12"/></navPoint>
+<navPoint id="h2-502703c13-13" playOrder="449"><navLabel><text>Exercise 13-4:	Steady Rain</text></navLabel><content src="c13.xhtml#h2-502703c13-13"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c13-0005" playOrder="450"><navLabel><text>Shooting Aliens</text></navLabel><content src="c13.xhtml#h1-502703c13-0005"/><navPoint id="h2-502703c13-0010" playOrder="451"><navLabel><text>Detecting Bullet Collisions</text></navLabel><content src="c13.xhtml#h2-502703c13-0010"/></navPoint>
+<navPoint id="h2-502703c13-0011" playOrder="452"><navLabel><text>Making Larger Bullets for Testing</text></navLabel><content src="c13.xhtml#h2-502703c13-0011"/></navPoint>
+<navPoint id="h2-502703c13-0012" playOrder="453"><navLabel><text>Repopulating the Fleet</text></navLabel><content src="c13.xhtml#h2-502703c13-0012"/></navPoint>
+<navPoint id="h2-502703c13-0013" playOrder="454"><navLabel><text>Speeding Up the Bullets</text></navLabel><content src="c13.xhtml#h2-502703c13-0013"/></navPoint>
+<navPoint id="h2-502703c13-0014" playOrder="455"><navLabel><text>Refactoring _update_bullets()</text></navLabel><content src="c13.xhtml#h2-502703c13-0014"/></navPoint>
+<navPoint id="h2-502703c13-19" playOrder="456"><navLabel><text>Exercise 13-5:	Sideways Shooter Part 2</text></navLabel><content src="c13.xhtml#h2-502703c13-19"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c13-0006" playOrder="457"><navLabel><text>Ending the Game</text></navLabel><content src="c13.xhtml#h1-502703c13-0006"/><navPoint id="h2-502703c13-0015" playOrder="458"><navLabel><text>Detecting Alien-Ship Collisions</text></navLabel><content src="c13.xhtml#h2-502703c13-0015"/></navPoint>
+<navPoint id="h2-502703c13-0016" playOrder="459"><navLabel><text>Responding to Alien-Ship Collisions</text></navLabel><content src="c13.xhtml#h2-502703c13-0016"/></navPoint>
+<navPoint id="h2-502703c13-0017" playOrder="460"><navLabel><text>Aliens That Reach the Bottom of the Screen</text></navLabel><content src="c13.xhtml#h2-502703c13-0017"/></navPoint>
+<navPoint id="h2-502703c13-0018" playOrder="461"><navLabel><text>Game Over!</text></navLabel><content src="c13.xhtml#h2-502703c13-0018"/></navPoint>
+<navPoint id="h2-502703c13-0019" playOrder="462"><navLabel><text>Identifying When Parts of the Game Should Run</text></navLabel><content src="c13.xhtml#h2-502703c13-0019"/></navPoint>
+<navPoint id="h2-502703c13-25" playOrder="463"><navLabel><text>Exercise 13-6:	Game Over</text></navLabel><content src="c13.xhtml#h2-502703c13-25"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c13-0007" playOrder="464"><navLabel><text>Summary</text></navLabel><content src="c13.xhtml#h1-502703c13-0007"/></navPoint>
+</navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:c14.xhtml" playOrder="465"><navLabel><text>Chapter 14: Scoring</text></navLabel><content src="c14.xhtml"/><navPoint id="h1-502703c14-0001" playOrder="466"><navLabel><text>Adding the Play Button</text></navLabel><content src="c14.xhtml#h1-502703c14-0001"/><navPoint id="h2-502703c14-0001" playOrder="467"><navLabel><text>Creating a Button Class</text></navLabel><content src="c14.xhtml#h2-502703c14-0001"/></navPoint>
+<navPoint id="h2-502703c14-0002" playOrder="468"><navLabel><text>Drawing the Button to the Screen</text></navLabel><content src="c14.xhtml#h2-502703c14-0002"/></navPoint>
+<navPoint id="h2-502703c14-0003" playOrder="469"><navLabel><text>Starting the Game</text></navLabel><content src="c14.xhtml#h2-502703c14-0003"/></navPoint>
+<navPoint id="h2-502703c14-0004" playOrder="470"><navLabel><text>Resetting the Game</text></navLabel><content src="c14.xhtml#h2-502703c14-0004"/></navPoint>
+<navPoint id="h2-502703c14-0005" playOrder="471"><navLabel><text>Deactivating the Play Button</text></navLabel><content src="c14.xhtml#h2-502703c14-0005"/></navPoint>
+<navPoint id="h2-502703c14-0006" playOrder="472"><navLabel><text>Hiding the Mouse Cursor</text></navLabel><content src="c14.xhtml#h2-502703c14-0006"/></navPoint>
+<navPoint id="h2-502703c14-07" playOrder="473"><navLabel><text>Exercise 14-1:	Press P to Play</text></navLabel><content src="c14.xhtml#h2-502703c14-07"/></navPoint>
+<navPoint id="h2-502703c14-08" playOrder="474"><navLabel><text>Exercise 14-2:	Target Practice</text></navLabel><content src="c14.xhtml#h2-502703c14-08"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c14-0002" playOrder="475"><navLabel><text>Leveling Up</text></navLabel><content src="c14.xhtml#h1-502703c14-0002"/><navPoint id="h2-502703c14-0007" playOrder="476"><navLabel><text>Modifying the Speed Settings</text></navLabel><content src="c14.xhtml#h2-502703c14-0007"/></navPoint>
+<navPoint id="h2-502703c14-0008" playOrder="477"><navLabel><text>Resetting the Speed</text></navLabel><content src="c14.xhtml#h2-502703c14-0008"/></navPoint>
+<navPoint id="h2-502703c14-11" playOrder="478"><navLabel><text>Exercise 14-3:	Challenging Target Practice</text></navLabel><content src="c14.xhtml#h2-502703c14-11"/></navPoint>
+<navPoint id="h2-502703c14-12" playOrder="479"><navLabel><text>Exercise 14-4:	Difficulty Levels</text></navLabel><content src="c14.xhtml#h2-502703c14-12"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c14-0003" playOrder="480"><navLabel><text>Scoring</text></navLabel><content src="c14.xhtml#h1-502703c14-0003"/><navPoint id="h2-502703c14-0009" playOrder="481"><navLabel><text>Displaying the Score</text></navLabel><content src="c14.xhtml#h2-502703c14-0009"/></navPoint>
+<navPoint id="h2-502703c14-0010" playOrder="482"><navLabel><text>Making a Scoreboard</text></navLabel><content src="c14.xhtml#h2-502703c14-0010"/></navPoint>
+<navPoint id="h2-502703c14-0011" playOrder="483"><navLabel><text>Updating the Score as Aliens Are Shot Down</text></navLabel><content src="c14.xhtml#h2-502703c14-0011"/></navPoint>
+<navPoint id="h2-502703c14-0012" playOrder="484"><navLabel><text>Resetting the Score</text></navLabel><content src="c14.xhtml#h2-502703c14-0012"/></navPoint>
+<navPoint id="h2-502703c14-0013" playOrder="485"><navLabel><text>Making Sure to Score All Hits</text></navLabel><content src="c14.xhtml#h2-502703c14-0013"/></navPoint>
+<navPoint id="h2-502703c14-0014" playOrder="486"><navLabel><text>Increasing Point Values</text></navLabel><content src="c14.xhtml#h2-502703c14-0014"/></navPoint>
+<navPoint id="h2-502703c14-0015" playOrder="487"><navLabel><text>Rounding the Score</text></navLabel><content src="c14.xhtml#h2-502703c14-0015"/></navPoint>
+<navPoint id="h2-502703c14-0016" playOrder="488"><navLabel><text>High Scores</text></navLabel><content src="c14.xhtml#h2-502703c14-0016"/></navPoint>
+<navPoint id="h2-502703c14-0017" playOrder="489"><navLabel><text>Displaying the Level</text></navLabel><content src="c14.xhtml#h2-502703c14-0017"/></navPoint>
+<navPoint id="h2-502703c14-0018" playOrder="490"><navLabel><text>Displaying the Number of Ships</text></navLabel><content src="c14.xhtml#h2-502703c14-0018"/></navPoint>
+<navPoint id="h2-502703c14-23" playOrder="491"><navLabel><text>Exercise 14-5:	All-Time High Score</text></navLabel><content src="c14.xhtml#h2-502703c14-23"/></navPoint>
+<navPoint id="h2-502703c14-24" playOrder="492"><navLabel><text>Exercise 14-6:	Refactoring</text></navLabel><content src="c14.xhtml#h2-502703c14-24"/></navPoint>
+<navPoint id="h2-502703c14-25" playOrder="493"><navLabel><text>Exercise 14-7: Expanding the Game</text></navLabel><content src="c14.xhtml#h2-502703c14-25"/></navPoint>
+<navPoint id="h2-502703c14-26" playOrder="494"><navLabel><text>Exercise 14-8: Sideways Shooter, Final Version</text></navLabel><content src="c14.xhtml#h2-502703c14-26"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c14-0004" playOrder="495"><navLabel><text>Summary</text></navLabel><content src="c14.xhtml#h1-502703c14-0004"/></navPoint>
+</navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:c15.xhtml" playOrder="496"><navLabel><text>Chapter 15: Generating Data</text></navLabel><content src="c15.xhtml"/><navPoint id="h1-502703c15-0001" playOrder="497"><navLabel><text>Installing Matplotlib</text></navLabel><content src="c15.xhtml#h1-502703c15-0001"/></navPoint>
+<navPoint id="h1-502703c15-0002" playOrder="498"><navLabel><text>Plotting a Simple Line Graph</text></navLabel><content src="c15.xhtml#h1-502703c15-0002"/><navPoint id="h2-502703c15-0001" playOrder="499"><navLabel><text>Changing the Label Type and Line Thickness</text></navLabel><content src="c15.xhtml#h2-502703c15-0001"/></navPoint>
+<navPoint id="h2-502703c15-0002" playOrder="500"><navLabel><text>Correcting the Plot</text></navLabel><content src="c15.xhtml#h2-502703c15-0002"/></navPoint>
+<navPoint id="h2-502703c15-0003" playOrder="501"><navLabel><text>Using Built-in Styles</text></navLabel><content src="c15.xhtml#h2-502703c15-0003"/></navPoint>
+<navPoint id="h2-502703c15-0004" playOrder="502"><navLabel><text>Plotting and Styling Individual Points with scatter()</text></navLabel><content src="c15.xhtml#h2-502703c15-0004"/></navPoint>
+<navPoint id="h2-502703c15-0005" playOrder="503"><navLabel><text>Plotting a Series of Points with scatter()</text></navLabel><content src="c15.xhtml#h2-502703c15-0005"/></navPoint>
+<navPoint id="h2-502703c15-0006" playOrder="504"><navLabel><text>Calculating Data Automatically</text></navLabel><content src="c15.xhtml#h2-502703c15-0006"/></navPoint>
+<navPoint id="h2-502703c15-0007" playOrder="505"><navLabel><text>Customizing Tick Labels</text></navLabel><content src="c15.xhtml#h2-502703c15-0007"/></navPoint>
+<navPoint id="h2-502703c15-0008" playOrder="506"><navLabel><text>Defining Custom Colors</text></navLabel><content src="c15.xhtml#h2-502703c15-0008"/></navPoint>
+<navPoint id="h2-502703c15-0009" playOrder="507"><navLabel><text>Using a Colormap</text></navLabel><content src="c15.xhtml#h2-502703c15-0009"/></navPoint>
+<navPoint id="h2-502703c15-0010" playOrder="508"><navLabel><text>Saving Your Plots Automatically</text></navLabel><content src="c15.xhtml#h2-502703c15-0010"/></navPoint>
+<navPoint id="h2-502703c15-11" playOrder="509"><navLabel><text>Exercise 15-1:	Cubes</text></navLabel><content src="c15.xhtml#h2-502703c15-11"/></navPoint>
+<navPoint id="h2-502703c15-12" playOrder="510"><navLabel><text>Exercise 15-2:	Colored Cubes</text></navLabel><content src="c15.xhtml#h2-502703c15-12"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c15-0003" playOrder="511"><navLabel><text>Random Walks</text></navLabel><content src="c15.xhtml#h1-502703c15-0003"/><navPoint id="h2-502703c15-0011" playOrder="512"><navLabel><text>Creating the RandomWalk Class</text></navLabel><content src="c15.xhtml#h2-502703c15-0011"/></navPoint>
+<navPoint id="h2-502703c15-0012" playOrder="513"><navLabel><text>Choosing Directions</text></navLabel><content src="c15.xhtml#h2-502703c15-0012"/></navPoint>
+<navPoint id="h2-502703c15-0013" playOrder="514"><navLabel><text>Plotting the Random Walk</text></navLabel><content src="c15.xhtml#h2-502703c15-0013"/></navPoint>
+<navPoint id="h2-502703c15-0014" playOrder="515"><navLabel><text>Generating Multiple Random Walks</text></navLabel><content src="c15.xhtml#h2-502703c15-0014"/></navPoint>
+<navPoint id="h2-502703c15-0015" playOrder="516"><navLabel><text>Styling the Walk</text></navLabel><content src="c15.xhtml#h2-502703c15-0015"/></navPoint>
+<navPoint id="h2-502703c15-18" playOrder="517"><navLabel><text>Exercise 15-3:	Molecular Motion</text></navLabel><content src="c15.xhtml#h2-502703c15-18"/></navPoint>
+<navPoint id="h2-502703c15-19" playOrder="518"><navLabel><text>Exercise 15-4:	Modified Random Walks</text></navLabel><content src="c15.xhtml#h2-502703c15-19"/></navPoint>
+<navPoint id="h2-502703c15-20" playOrder="519"><navLabel><text>Exercise 15-5:	Refactoring</text></navLabel><content src="c15.xhtml#h2-502703c15-20"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c15-0004" playOrder="520"><navLabel><text>Rolling Dice with Plotly</text></navLabel><content src="c15.xhtml#h1-502703c15-0004"/><navPoint id="h2-502703c15-0016" playOrder="521"><navLabel><text>Installing Plotly</text></navLabel><content src="c15.xhtml#h2-502703c15-0016"/></navPoint>
+<navPoint id="h2-502703c15-0017" playOrder="522"><navLabel><text>Creating the Die Class</text></navLabel><content src="c15.xhtml#h2-502703c15-0017"/></navPoint>
+<navPoint id="h2-502703c15-0018" playOrder="523"><navLabel><text>Rolling the Die</text></navLabel><content src="c15.xhtml#h2-502703c15-0018"/></navPoint>
+<navPoint id="h2-502703c15-0019" playOrder="524"><navLabel><text>Analyzing the Results</text></navLabel><content src="c15.xhtml#h2-502703c15-0019"/></navPoint>
+<navPoint id="h2-502703c15-0020" playOrder="525"><navLabel><text>Making a Histogram</text></navLabel><content src="c15.xhtml#h2-502703c15-0020"/></navPoint>
+<navPoint id="h2-502703c15-0021" playOrder="526"><navLabel><text>Customizing the Plot</text></navLabel><content src="c15.xhtml#h2-502703c15-0021"/></navPoint>
+<navPoint id="h2-502703c15-0022" playOrder="527"><navLabel><text>Rolling Two Dice</text></navLabel><content src="c15.xhtml#h2-502703c15-0022"/></navPoint>
+<navPoint id="h2-502703c15-0023" playOrder="528"><navLabel><text>Further Customizations</text></navLabel><content src="c15.xhtml#h2-502703c15-0023"/></navPoint>
+<navPoint id="h2-502703c15-0024" playOrder="529"><navLabel><text>Rolling Dice of Different Sizes</text></navLabel><content src="c15.xhtml#h2-502703c15-0024"/></navPoint>
+<navPoint id="h2-502703c15-0025" playOrder="530"><navLabel><text>Saving Figures</text></navLabel><content src="c15.xhtml#h2-502703c15-0025"/></navPoint>
+<navPoint id="h2-502703c15-31" playOrder="531"><navLabel><text>Exercise 15-6:	Two D8s</text></navLabel><content src="c15.xhtml#h2-502703c15-31"/></navPoint>
+<navPoint id="h2-502703c15-32" playOrder="532"><navLabel><text>Exercise 15-7:	Three Dice</text></navLabel><content src="c15.xhtml#h2-502703c15-32"/></navPoint>
+<navPoint id="h2-502703c15-33" playOrder="533"><navLabel><text>Exercise 15-8:	Multiplication</text></navLabel><content src="c15.xhtml#h2-502703c15-33"/></navPoint>
+<navPoint id="h2-502703c15-34" playOrder="534"><navLabel><text>Exercise 15-9:	Die Comprehensions</text></navLabel><content src="c15.xhtml#h2-502703c15-34"/></navPoint>
+<navPoint id="h2-502703c15-35" playOrder="535"><navLabel><text>Exercise 15-10: Practicing with Both Libraries</text></navLabel><content src="c15.xhtml#h2-502703c15-35"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c15-0005" playOrder="536"><navLabel><text>Summary</text></navLabel><content src="c15.xhtml#h1-502703c15-0005"/></navPoint>
+</navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:c16.xhtml" playOrder="537"><navLabel><text>Chapter 16: Downloading Data</text></navLabel><content src="c16.xhtml"/><navPoint id="h1-502703c16-0001" playOrder="538"><navLabel><text>The CSV File Format</text></navLabel><content src="c16.xhtml#h1-502703c16-0001"/><navPoint id="h2-502703c16-0001" playOrder="539"><navLabel><text>Parsing the CSV File Headers</text></navLabel><content src="c16.xhtml#h2-502703c16-0001"/></navPoint>
+<navPoint id="h2-502703c16-0002" playOrder="540"><navLabel><text>Printing the Headers and Their Positions</text></navLabel><content src="c16.xhtml#h2-502703c16-0002"/></navPoint>
+<navPoint id="h2-502703c16-0003" playOrder="541"><navLabel><text>Extracting and Reading Data</text></navLabel><content src="c16.xhtml#h2-502703c16-0003"/></navPoint>
+<navPoint id="h2-502703c16-0004" playOrder="542"><navLabel><text>Plotting Data in a Temperature Chart</text></navLabel><content src="c16.xhtml#h2-502703c16-0004"/></navPoint>
+<navPoint id="h2-502703c16-0005" playOrder="543"><navLabel><text>The datetime Module</text></navLabel><content src="c16.xhtml#h2-502703c16-0005"/></navPoint>
+<navPoint id="h2-502703c16-0006" playOrder="544"><navLabel><text>Plotting Dates</text></navLabel><content src="c16.xhtml#h2-502703c16-0006"/></navPoint>
+<navPoint id="h2-502703c16-0007" playOrder="545"><navLabel><text>Plotting a Longer Timeframe</text></navLabel><content src="c16.xhtml#h2-502703c16-0007"/></navPoint>
+<navPoint id="h2-502703c16-0008" playOrder="546"><navLabel><text>Plotting a Second Data Series</text></navLabel><content src="c16.xhtml#h2-502703c16-0008"/></navPoint>
+<navPoint id="h2-502703c16-0009" playOrder="547"><navLabel><text>Shading an Area in the Chart</text></navLabel><content src="c16.xhtml#h2-502703c16-0009"/></navPoint>
+<navPoint id="h2-502703c16-0010" playOrder="548"><navLabel><text>Error Checking</text></navLabel><content src="c16.xhtml#h2-502703c16-0010"/></navPoint>
+<navPoint id="h2-502703c16-0011" playOrder="549"><navLabel><text>Downloading Your Own Data</text></navLabel><content src="c16.xhtml#h2-502703c16-0011"/></navPoint>
+<navPoint id="h2-502703c16-12" playOrder="550"><navLabel><text>Exercise 16-1:	Sitka Rainfall</text></navLabel><content src="c16.xhtml#h2-502703c16-12"/></navPoint>
+<navPoint id="h2-502703c16-13" playOrder="551"><navLabel><text>Exercise 16-2:	Sitka–Death Valley Comparison</text></navLabel><content src="c16.xhtml#h2-502703c16-13"/></navPoint>
+<navPoint id="h2-502703c16-14" playOrder="552"><navLabel><text>Exercise 16-3:	San Francisco</text></navLabel><content src="c16.xhtml#h2-502703c16-14"/></navPoint>
+<navPoint id="h2-502703c16-15" playOrder="553"><navLabel><text>Exercise 16-4:	Automatic Indexes</text></navLabel><content src="c16.xhtml#h2-502703c16-15"/></navPoint>
+<navPoint id="h2-502703c16-16" playOrder="554"><navLabel><text>Exercise 16-5:	Explore</text></navLabel><content src="c16.xhtml#h2-502703c16-16"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c16-0002" playOrder="555"><navLabel><text>Mapping Global Datasets: GeoJSON Format</text></navLabel><content src="c16.xhtml#h1-502703c16-0002"/><navPoint id="h2-502703c16-0012" playOrder="556"><navLabel><text>Downloading Earthquake Data</text></navLabel><content src="c16.xhtml#h2-502703c16-0012"/></navPoint>
+<navPoint id="h2-502703c16-0013" playOrder="557"><navLabel><text>Examining GeoJSON Data</text></navLabel><content src="c16.xhtml#h2-502703c16-0013"/></navPoint>
+<navPoint id="h2-502703c16-0014" playOrder="558"><navLabel><text>Making a List of All Earthquakes</text></navLabel><content src="c16.xhtml#h2-502703c16-0014"/></navPoint>
+<navPoint id="h2-502703c16-0015" playOrder="559"><navLabel><text>Extracting Magnitudes</text></navLabel><content src="c16.xhtml#h2-502703c16-0015"/></navPoint>
+<navPoint id="h2-502703c16-0016" playOrder="560"><navLabel><text>Extracting Location Data</text></navLabel><content src="c16.xhtml#h2-502703c16-0016"/></navPoint>
+<navPoint id="h2-502703c16-0017" playOrder="561"><navLabel><text>Building a World Map</text></navLabel><content src="c16.xhtml#h2-502703c16-0017"/></navPoint>
+<navPoint id="h2-502703c16-0018" playOrder="562"><navLabel><text>Representing Magnitudes</text></navLabel><content src="c16.xhtml#h2-502703c16-0018"/></navPoint>
+<navPoint id="h2-502703c16-0019" playOrder="563"><navLabel><text>Customizing Marker Colors</text></navLabel><content src="c16.xhtml#h2-502703c16-0019"/></navPoint>
+<navPoint id="h2-502703c16-0020" playOrder="564"><navLabel><text>Other Color Scales</text></navLabel><content src="c16.xhtml#h2-502703c16-0020"/></navPoint>
+<navPoint id="h2-502703c16-0021" playOrder="565"><navLabel><text>Adding Hover Text</text></navLabel><content src="c16.xhtml#h2-502703c16-0021"/></navPoint>
+<navPoint id="h2-502703c16-27" playOrder="566"><navLabel><text>Exercise 16-6:	Refactoring</text></navLabel><content src="c16.xhtml#h2-502703c16-27"/></navPoint>
+<navPoint id="h2-502703c16-28" playOrder="567"><navLabel><text>Exercise 16-7:	Automated Title</text></navLabel><content src="c16.xhtml#h2-502703c16-28"/></navPoint>
+<navPoint id="h2-502703c16-29" playOrder="568"><navLabel><text>Exercise 16-8:	Recent Earthquakes</text></navLabel><content src="c16.xhtml#h2-502703c16-29"/></navPoint>
+<navPoint id="h2-502703c16-30" playOrder="569"><navLabel><text>Exercise 16-9:	World Fires</text></navLabel><content src="c16.xhtml#h2-502703c16-30"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c16-0003" playOrder="570"><navLabel><text>Summary</text></navLabel><content src="c16.xhtml#h1-502703c16-0003"/></navPoint>
+</navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:c17.xhtml" playOrder="571"><navLabel><text>Chapter 17: Working with APIs</text></navLabel><content src="c17.xhtml"/><navPoint id="h1-502703c17-0001" playOrder="572"><navLabel><text>Using an API</text></navLabel><content src="c17.xhtml#h1-502703c17-0001"/><navPoint id="h2-502703c17-0001" playOrder="573"><navLabel><text>Git and GitHub</text></navLabel><content src="c17.xhtml#h2-502703c17-0001"/></navPoint>
+<navPoint id="h2-502703c17-0002" playOrder="574"><navLabel><text>Requesting Data Using an API Call</text></navLabel><content src="c17.xhtml#h2-502703c17-0002"/></navPoint>
+<navPoint id="h2-502703c17-0003" playOrder="575"><navLabel><text>Installing Requests</text></navLabel><content src="c17.xhtml#h2-502703c17-0003"/></navPoint>
+<navPoint id="h2-502703c17-0004" playOrder="576"><navLabel><text>Processing an API Response</text></navLabel><content src="c17.xhtml#h2-502703c17-0004"/></navPoint>
+<navPoint id="h2-502703c17-0005" playOrder="577"><navLabel><text>Working with the Response Dictionary</text></navLabel><content src="c17.xhtml#h2-502703c17-0005"/></navPoint>
+<navPoint id="h2-502703c17-0006" playOrder="578"><navLabel><text>Summarizing the Top Repositories</text></navLabel><content src="c17.xhtml#h2-502703c17-0006"/></navPoint>
+<navPoint id="h2-502703c17-0007" playOrder="579"><navLabel><text>Monitoring API Rate Limits</text></navLabel><content src="c17.xhtml#h2-502703c17-0007"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c17-0002" playOrder="580"><navLabel><text>Visualizing Repositories Using Plotly</text></navLabel><content src="c17.xhtml#h1-502703c17-0002"/><navPoint id="h2-502703c17-0008" playOrder="581"><navLabel><text>Styling the Chart</text></navLabel><content src="c17.xhtml#h2-502703c17-0008"/></navPoint>
+<navPoint id="h2-502703c17-0009" playOrder="582"><navLabel><text>Adding Custom Tooltips</text></navLabel><content src="c17.xhtml#h2-502703c17-0009"/></navPoint>
+<navPoint id="h2-502703c17-0010" playOrder="583"><navLabel><text>Adding Clickable Links</text></navLabel><content src="c17.xhtml#h2-502703c17-0010"/></navPoint>
+<navPoint id="h2-502703c17-0011" playOrder="584"><navLabel><text>Customizing Marker Colors</text></navLabel><content src="c17.xhtml#h2-502703c17-0011"/></navPoint>
+<navPoint id="h2-502703c17-0012" playOrder="585"><navLabel><text>More About Plotly and the GitHub API</text></navLabel><content src="c17.xhtml#h2-502703c17-0012"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c17-0003" playOrder="586"><navLabel><text>The Hacker News API</text></navLabel><content src="c17.xhtml#h1-502703c17-0003"/><navPoint id="h2-502703c17-13" playOrder="587"><navLabel><text>Exercise 17-1:	Other Languages</text></navLabel><content src="c17.xhtml#h2-502703c17-13"/></navPoint>
+<navPoint id="h2-502703c17-14" playOrder="588"><navLabel><text>Exercise 17-2:	Active Discussions</text></navLabel><content src="c17.xhtml#h2-502703c17-14"/></navPoint>
+<navPoint id="h2-502703c17-15" playOrder="589"><navLabel><text>Exercise 17-3:	Testing python_repos.py</text></navLabel><content src="c17.xhtml#h2-502703c17-15"/></navPoint>
+<navPoint id="h2-502703c17-16" playOrder="590"><navLabel><text>Exercise 17-4:	Further Exploration</text></navLabel><content src="c17.xhtml#h2-502703c17-16"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c17-0004" playOrder="591"><navLabel><text>Summary</text></navLabel><content src="c17.xhtml#h1-502703c17-0004"/></navPoint>
+</navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:c18.xhtml" playOrder="592"><navLabel><text>Chapter 18: Getting Started with Django</text></navLabel><content src="c18.xhtml"/><navPoint id="h1-502703c18-0001" playOrder="593"><navLabel><text>Setting Up a Project</text></navLabel><content src="c18.xhtml#h1-502703c18-0001"/><navPoint id="h2-502703c18-0001" playOrder="594"><navLabel><text>Writing a Spec</text></navLabel><content src="c18.xhtml#h2-502703c18-0001"/></navPoint>
+<navPoint id="h2-502703c18-0002" playOrder="595"><navLabel><text>Creating a Virtual Environment</text></navLabel><content src="c18.xhtml#h2-502703c18-0002"/></navPoint>
+<navPoint id="h2-502703c18-0003" playOrder="596"><navLabel><text>Activating the Virtual Environment</text></navLabel><content src="c18.xhtml#h2-502703c18-0003"/></navPoint>
+<navPoint id="h2-502703c18-0004" playOrder="597"><navLabel><text>Installing Django</text></navLabel><content src="c18.xhtml#h2-502703c18-0004"/></navPoint>
+<navPoint id="h2-502703c18-0005" playOrder="598"><navLabel><text>Creating a Project in Django</text></navLabel><content src="c18.xhtml#h2-502703c18-0005"/></navPoint>
+<navPoint id="h2-502703c18-0006" playOrder="599"><navLabel><text>Creating the Database</text></navLabel><content src="c18.xhtml#h2-502703c18-0006"/></navPoint>
+<navPoint id="h2-502703c18-0007" playOrder="600"><navLabel><text>Viewing the Project</text></navLabel><content src="c18.xhtml#h2-502703c18-0007"/></navPoint>
+<navPoint id="h2-502703c18-08" playOrder="601"><navLabel><text>Exercise 18-1:	New Projects</text></navLabel><content src="c18.xhtml#h2-502703c18-08"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c18-0002" playOrder="602"><navLabel><text>Starting an App</text></navLabel><content src="c18.xhtml#h1-502703c18-0002"/><navPoint id="h2-502703c18-0008" playOrder="603"><navLabel><text>Defining Models</text></navLabel><content src="c18.xhtml#h2-502703c18-0008"/></navPoint>
+<navPoint id="h2-502703c18-0009" playOrder="604"><navLabel><text>Activating Models</text></navLabel><content src="c18.xhtml#h2-502703c18-0009"/></navPoint>
+<navPoint id="h2-502703c18-0010" playOrder="605"><navLabel><text>The Django Admin Site</text></navLabel><content src="c18.xhtml#h2-502703c18-0010"/></navPoint>
+<navPoint id="h2-502703c18-0011" playOrder="606"><navLabel><text>Defining the Entry Model</text></navLabel><content src="c18.xhtml#h2-502703c18-0011"/></navPoint>
+<navPoint id="h2-502703c18-0012" playOrder="607"><navLabel><text>Migrating the Entry Model</text></navLabel><content src="c18.xhtml#h2-502703c18-0012"/></navPoint>
+<navPoint id="h2-502703c18-0013" playOrder="608"><navLabel><text>Registering Entry with the Admin Site</text></navLabel><content src="c18.xhtml#h2-502703c18-0013"/></navPoint>
+<navPoint id="h2-502703c18-0014" playOrder="609"><navLabel><text>The Django Shell</text></navLabel><content src="c18.xhtml#h2-502703c18-0014"/></navPoint>
+<navPoint id="h2-502703c18-16" playOrder="610"><navLabel><text>Exercise 18-2:	Short Entries</text></navLabel><content src="c18.xhtml#h2-502703c18-16"/></navPoint>
+<navPoint id="h2-502703c18-17" playOrder="611"><navLabel><text>Exercise 18-3:	The Django API</text></navLabel><content src="c18.xhtml#h2-502703c18-17"/></navPoint>
+<navPoint id="h2-502703c18-18" playOrder="612"><navLabel><text>Exercise 18-4:	Pizzeria</text></navLabel><content src="c18.xhtml#h2-502703c18-18"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c18-0003" playOrder="613"><navLabel><text>Making Pages: The Learning Log Home Page</text></navLabel><content src="c18.xhtml#h1-502703c18-0003"/><navPoint id="h2-502703c18-0015" playOrder="614"><navLabel><text>Mapping a URL</text></navLabel><content src="c18.xhtml#h2-502703c18-0015"/></navPoint>
+<navPoint id="h2-502703c18-0016" playOrder="615"><navLabel><text>Writing a View</text></navLabel><content src="c18.xhtml#h2-502703c18-0016"/></navPoint>
+<navPoint id="h2-502703c18-0017" playOrder="616"><navLabel><text>Writing a Template</text></navLabel><content src="c18.xhtml#h2-502703c18-0017"/></navPoint>
+<navPoint id="h2-502703c18-22" playOrder="617"><navLabel><text>Exercise 18-5:	Meal Planner</text></navLabel><content src="c18.xhtml#h2-502703c18-22"/></navPoint>
+<navPoint id="h2-502703c18-23" playOrder="618"><navLabel><text>Exercise 18-6:	Pizzeria Home Page</text></navLabel><content src="c18.xhtml#h2-502703c18-23"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c18-0004" playOrder="619"><navLabel><text>Building Additional Pages</text></navLabel><content src="c18.xhtml#h1-502703c18-0004"/><navPoint id="h2-502703c18-0018" playOrder="620"><navLabel><text>Template Inheritance</text></navLabel><content src="c18.xhtml#h2-502703c18-0018"/></navPoint>
+<navPoint id="h2-502703c18-0019" playOrder="621"><navLabel><text>The Topics Page</text></navLabel><content src="c18.xhtml#h2-502703c18-0019"/></navPoint>
+<navPoint id="h2-502703c18-0020" playOrder="622"><navLabel><text>Individual Topic Pages</text></navLabel><content src="c18.xhtml#h2-502703c18-0020"/></navPoint>
+<navPoint id="h2-502703c18-27" playOrder="623"><navLabel><text>Exercise 18-7:	Template Documentation</text></navLabel><content src="c18.xhtml#h2-502703c18-27"/></navPoint>
+<navPoint id="h2-502703c18-28" playOrder="624"><navLabel><text>Exercise 18-8:	Pizzeria Pages</text></navLabel><content src="c18.xhtml#h2-502703c18-28"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c18-0005" playOrder="625"><navLabel><text>Summary</text></navLabel><content src="c18.xhtml#h1-502703c18-0005"/></navPoint>
+</navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:c19.xhtml" playOrder="626"><navLabel><text>Chapter 19: User Accounts</text></navLabel><content src="c19.xhtml"/><navPoint id="h1-502703c19-0001" playOrder="627"><navLabel><text>Allowing Users to Enter Data</text></navLabel><content src="c19.xhtml#h1-502703c19-0001"/><navPoint id="h2-502703c19-0001" playOrder="628"><navLabel><text>Adding New Topics</text></navLabel><content src="c19.xhtml#h2-502703c19-0001"/></navPoint>
+<navPoint id="h2-502703c19-0002" playOrder="629"><navLabel><text>Adding New Entries</text></navLabel><content src="c19.xhtml#h2-502703c19-0002"/></navPoint>
+<navPoint id="h2-502703c19-0003" playOrder="630"><navLabel><text>Editing Entries</text></navLabel><content src="c19.xhtml#h2-502703c19-0003"/></navPoint>
+<navPoint id="h2-502703c19-04" playOrder="631"><navLabel><text>Exercise 19-1:	Blog</text></navLabel><content src="c19.xhtml#h2-502703c19-04"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c19-0002" playOrder="632"><navLabel><text>Setting Up User Accounts</text></navLabel><content src="c19.xhtml#h1-502703c19-0002"/><navPoint id="h2-502703c19-0004" playOrder="633"><navLabel><text>The accounts App</text></navLabel><content src="c19.xhtml#h2-502703c19-0004"/></navPoint>
+<navPoint id="h2-502703c19-0005" playOrder="634"><navLabel><text>The Login Page</text></navLabel><content src="c19.xhtml#h2-502703c19-0005"/></navPoint>
+<navPoint id="h2-502703c19-0006" playOrder="635"><navLabel><text>Logging Out</text></navLabel><content src="c19.xhtml#h2-502703c19-0006"/></navPoint>
+<navPoint id="h2-502703c19-0007" playOrder="636"><navLabel><text>The Registration Page</text></navLabel><content src="c19.xhtml#h2-502703c19-0007"/></navPoint>
+<navPoint id="h2-502703c19-09" playOrder="637"><navLabel><text>Exercise 19-2:	Blog Accounts</text></navLabel><content src="c19.xhtml#h2-502703c19-09"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c19-0003" playOrder="638"><navLabel><text>Allowing Users to Own Their Data</text></navLabel><content src="c19.xhtml#h1-502703c19-0003"/><navPoint id="h2-502703c19-0008" playOrder="639"><navLabel><text>Restricting Access with @login_required</text></navLabel><content src="c19.xhtml#h2-502703c19-0008"/></navPoint>
+<navPoint id="h2-502703c19-0009" playOrder="640"><navLabel><text>Connecting Data to Certain Users</text></navLabel><content src="c19.xhtml#h2-502703c19-0009"/></navPoint>
+<navPoint id="h2-502703c19-0010" playOrder="641"><navLabel><text>Restricting Topics Access to Appropriate Users</text></navLabel><content src="c19.xhtml#h2-502703c19-0010"/></navPoint>
+<navPoint id="h2-502703c19-0011" playOrder="642"><navLabel><text>Protecting a User’s Topics</text></navLabel><content src="c19.xhtml#h2-502703c19-0011"/></navPoint>
+<navPoint id="h2-502703c19-0012" playOrder="643"><navLabel><text>Protecting the edit_entry Page</text></navLabel><content src="c19.xhtml#h2-502703c19-0012"/></navPoint>
+<navPoint id="h2-502703c19-0013" playOrder="644"><navLabel><text>Associating New Topics with the Current User</text></navLabel><content src="c19.xhtml#h2-502703c19-0013"/></navPoint>
+<navPoint id="h2-502703c19-16" playOrder="645"><navLabel><text>Exercise 19-3:	Refactoring</text></navLabel><content src="c19.xhtml#h2-502703c19-16"/></navPoint>
+<navPoint id="h2-502703c19-17" playOrder="646"><navLabel><text>Exercise 19-4:	Protecting new_entry</text></navLabel><content src="c19.xhtml#h2-502703c19-17"/></navPoint>
+<navPoint id="h2-502703c19-18" playOrder="647"><navLabel><text>Exercise 19-5:	Protected Blog</text></navLabel><content src="c19.xhtml#h2-502703c19-18"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c19-0004" playOrder="648"><navLabel><text>Summary</text></navLabel><content src="c19.xhtml#h1-502703c19-0004"/></navPoint>
+</navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:c20.xhtml" playOrder="649"><navLabel><text>Chapter 20: Styling and Deploying an App</text></navLabel><content src="c20.xhtml"/><navPoint id="h1-502703c20-0001" playOrder="650"><navLabel><text>Styling Learning Log</text></navLabel><content src="c20.xhtml#h1-502703c20-0001"/><navPoint id="h2-502703c20-0001" playOrder="651"><navLabel><text>The django-bootstrap5 App</text></navLabel><content src="c20.xhtml#h2-502703c20-0001"/></navPoint>
+<navPoint id="h2-502703c20-0002" playOrder="652"><navLabel><text>Using Bootstrap to Style Learning Log</text></navLabel><content src="c20.xhtml#h2-502703c20-0002"/></navPoint>
+<navPoint id="h2-502703c20-0003" playOrder="653"><navLabel><text>Modifying base.html</text></navLabel><content src="c20.xhtml#h2-502703c20-0003"/></navPoint>
+<navPoint id="h2-502703c20-0004" playOrder="654"><navLabel><text>Styling the Home Page Using a Jumbotron</text></navLabel><content src="c20.xhtml#h2-502703c20-0004"/></navPoint>
+<navPoint id="h2-502703c20-0005" playOrder="655"><navLabel><text>Styling the Login Page</text></navLabel><content src="c20.xhtml#h2-502703c20-0005"/></navPoint>
+<navPoint id="h2-502703c20-0006" playOrder="656"><navLabel><text>Styling the Topics Page</text></navLabel><content src="c20.xhtml#h2-502703c20-0006"/></navPoint>
+<navPoint id="h2-502703c20-0007" playOrder="657"><navLabel><text>Styling the Entries on the Topic Page</text></navLabel><content src="c20.xhtml#h2-502703c20-0007"/></navPoint>
+<navPoint id="h2-502703c20-08" playOrder="658"><navLabel><text>Exercise 20-1:	Other Forms</text></navLabel><content src="c20.xhtml#h2-502703c20-08"/></navPoint>
+<navPoint id="h2-502703c20-09" playOrder="659"><navLabel><text>Exercise 20-2:	Stylish Blog</text></navLabel><content src="c20.xhtml#h2-502703c20-09"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c20-0002" playOrder="660"><navLabel><text>Deploying Learning Log</text></navLabel><content src="c20.xhtml#h1-502703c20-0002"/><navPoint id="h2-502703c20-0008" playOrder="661"><navLabel><text>Making a Platform.sh Account</text></navLabel><content src="c20.xhtml#h2-502703c20-0008"/></navPoint>
+<navPoint id="h2-502703c20-0009" playOrder="662"><navLabel><text>Installing the Platform.sh CLI</text></navLabel><content src="c20.xhtml#h2-502703c20-0009"/></navPoint>
+<navPoint id="h2-502703c20-0010" playOrder="663"><navLabel><text>Installing platformshconfig</text></navLabel><content src="c20.xhtml#h2-502703c20-0010"/></navPoint>
+<navPoint id="h2-502703c20-0011" playOrder="664"><navLabel><text>Creating a requirements.txt File</text></navLabel><content src="c20.xhtml#h2-502703c20-0011"/></navPoint>
+<navPoint id="h2-502703c20-0012" playOrder="665"><navLabel><text>Additional Deployment Requirements</text></navLabel><content src="c20.xhtml#h2-502703c20-0012"/></navPoint>
+<navPoint id="h2-502703c20-0013" playOrder="666"><navLabel><text>Adding Configuration Files</text></navLabel><content src="c20.xhtml#h2-502703c20-0013"/></navPoint>
+<navPoint id="h2-502703c20-0014" playOrder="667"><navLabel><text>Modifying settings.py for Platform.sh</text></navLabel><content src="c20.xhtml#h2-502703c20-0014"/></navPoint>
+<navPoint id="h2-502703c20-0015" playOrder="668"><navLabel><text>Using Git to Track the Project’s Files</text></navLabel><content src="c20.xhtml#h2-502703c20-0015"/></navPoint>
+<navPoint id="h2-502703c20-0016" playOrder="669"><navLabel><text>Creating a Project on Platform.sh</text></navLabel><content src="c20.xhtml#h2-502703c20-0016"/></navPoint>
+<navPoint id="h2-502703c20-0017" playOrder="670"><navLabel><text>Pushing to Platform.sh</text></navLabel><content src="c20.xhtml#h2-502703c20-0017"/></navPoint>
+<navPoint id="h2-502703c20-0018" playOrder="671"><navLabel><text>Viewing the Live Project</text></navLabel><content src="c20.xhtml#h2-502703c20-0018"/></navPoint>
+<navPoint id="h2-502703c20-0019" playOrder="672"><navLabel><text>Refining the Platform.sh Deployment</text></navLabel><content src="c20.xhtml#h2-502703c20-0019"/></navPoint>
+<navPoint id="h2-502703c20-0020" playOrder="673"><navLabel><text>Creating Custom Error Pages</text></navLabel><content src="c20.xhtml#h2-502703c20-0020"/></navPoint>
+<navPoint id="h2-502703c20-0021" playOrder="674"><navLabel><text>Ongoing Development</text></navLabel><content src="c20.xhtml#h2-502703c20-0021"/></navPoint>
+<navPoint id="h2-502703c20-0022" playOrder="675"><navLabel><text>Deleting a Project on Platform.sh</text></navLabel><content src="c20.xhtml#h2-502703c20-0022"/></navPoint>
+<navPoint id="h2-502703c20-25" playOrder="676"><navLabel><text>Exercise 20-3:	Live Blog</text></navLabel><content src="c20.xhtml#h2-502703c20-25"/></navPoint>
+<navPoint id="h2-502703c20-26" playOrder="677"><navLabel><text>Exercise 20-4:	Extended Learning Log</text></navLabel><content src="c20.xhtml#h2-502703c20-26"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703c20-0003" playOrder="678"><navLabel><text>Summary</text></navLabel><content src="c20.xhtml#h1-502703c20-0003"/></navPoint>
+</navPoint>
+</navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:b01.xhtml" playOrder="679"><navLabel><text>Appendix A: Installation and Troubleshooting</text></navLabel><content src="b01.xhtml"/><navPoint id="h1-502703b01-0001" playOrder="680"><navLabel><text>Python on Windows</text></navLabel><content src="b01.xhtml#h1-502703b01-0001"/><navPoint id="h2-502703b01-0001" playOrder="681"><navLabel><text>Using py Instead of python</text></navLabel><content src="b01.xhtml#h2-502703b01-0001"/></navPoint>
+<navPoint id="h2-502703b01-0002" playOrder="682"><navLabel><text>Rerunning the Installer</text></navLabel><content src="b01.xhtml#h2-502703b01-0002"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703b01-0002" playOrder="683"><navLabel><text>Python on macOS</text></navLabel><content src="b01.xhtml#h1-502703b01-0002"/><navPoint id="h2-502703b01-0003" playOrder="684"><navLabel><text>Accidentally Installing Apple’s Version of Python</text></navLabel><content src="b01.xhtml#h2-502703b01-0003"/></navPoint>
+<navPoint id="h2-502703b01-0004" playOrder="685"><navLabel><text>Python 2 on Older Versions of macOS</text></navLabel><content src="b01.xhtml#h2-502703b01-0004"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703b01-0003" playOrder="686"><navLabel><text>Python on Linux</text></navLabel><content src="b01.xhtml#h1-502703b01-0003"/><navPoint id="h2-502703b01-0005" playOrder="687"><navLabel><text>Using the Default Python Installation</text></navLabel><content src="b01.xhtml#h2-502703b01-0005"/></navPoint>
+<navPoint id="h2-502703b01-0006" playOrder="688"><navLabel><text>Installing the Latest Version of Python</text></navLabel><content src="b01.xhtml#h2-502703b01-0006"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703b01-0004" playOrder="689"><navLabel><text>Checking Which Version of Python You’re Using</text></navLabel><content src="b01.xhtml#h1-502703b01-0004"/></navPoint>
+<navPoint id="h1-502703b01-0005" playOrder="690"><navLabel><text>Python Keywords and Built-in Functions</text></navLabel><content src="b01.xhtml#h1-502703b01-0005"/><navPoint id="h2-502703b01-0007" playOrder="691"><navLabel><text>Python Keywords</text></navLabel><content src="b01.xhtml#h2-502703b01-0007"/></navPoint>
+<navPoint id="h2-502703b01-0008" playOrder="692"><navLabel><text>Python Built-in Functions</text></navLabel><content src="b01.xhtml#h2-502703b01-0008"/></navPoint>
+</navPoint>
+</navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:b02.xhtml" playOrder="693"><navLabel><text>Appendix B: Text Editors and IDEs</text></navLabel><content src="b02.xhtml"/><navPoint id="h1-502703b02-0001" playOrder="694"><navLabel><text>Working Efficiently with VS Code</text></navLabel><content src="b02.xhtml#h1-502703b02-0001"/><navPoint id="h2-502703b02-0001" playOrder="695"><navLabel><text>Configuring VS Code</text></navLabel><content src="b02.xhtml#h2-502703b02-0001"/></navPoint>
+<navPoint id="h2-502703b02-0002" playOrder="696"><navLabel><text>VS Code Shortcuts</text></navLabel><content src="b02.xhtml#h2-502703b02-0002"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703b02-0002" playOrder="697"><navLabel><text>Other Text Editors and IDEs</text></navLabel><content src="b02.xhtml#h1-502703b02-0002"/><navPoint id="h2-502703b02-0003" playOrder="698"><navLabel><text>IDLE</text></navLabel><content src="b02.xhtml#h2-502703b02-0003"/></navPoint>
+<navPoint id="h2-502703b02-0004" playOrder="699"><navLabel><text>Geany</text></navLabel><content src="b02.xhtml#h2-502703b02-0004"/></navPoint>
+<navPoint id="h2-502703b02-0005" playOrder="700"><navLabel><text>Sublime Text</text></navLabel><content src="b02.xhtml#h2-502703b02-0005"/></navPoint>
+<navPoint id="h2-502703b02-0006" playOrder="701"><navLabel><text>Emacs and Vim</text></navLabel><content src="b02.xhtml#h2-502703b02-0006"/></navPoint>
+<navPoint id="h2-502703b02-0007" playOrder="702"><navLabel><text>PyCharm</text></navLabel><content src="b02.xhtml#h2-502703b02-0007"/></navPoint>
+<navPoint id="h2-502703b02-0008" playOrder="703"><navLabel><text>Jupyter Notebooks</text></navLabel><content src="b02.xhtml#h2-502703b02-0008"/></navPoint>
+</navPoint>
+</navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:b03.xhtml" playOrder="704"><navLabel><text>Appendix C: Getting Help</text></navLabel><content src="b03.xhtml"/><navPoint id="h1-502703b03-0001" playOrder="705"><navLabel><text>First Steps</text></navLabel><content src="b03.xhtml#h1-502703b03-0001"/><navPoint id="h2-502703b03-0001" playOrder="706"><navLabel><text>Try It Again</text></navLabel><content src="b03.xhtml#h2-502703b03-0001"/></navPoint>
+<navPoint id="h2-502703b03-0002" playOrder="707"><navLabel><text>Take a Break</text></navLabel><content src="b03.xhtml#h2-502703b03-0002"/></navPoint>
+<navPoint id="h2-502703b03-0003" playOrder="708"><navLabel><text>Refer to This Book’s Resources</text></navLabel><content src="b03.xhtml#h2-502703b03-0003"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703b03-0002" playOrder="709"><navLabel><text>Searching Online</text></navLabel><content src="b03.xhtml#h1-502703b03-0002"/><navPoint id="h2-502703b03-0004" playOrder="710"><navLabel><text>Stack Overflow</text></navLabel><content src="b03.xhtml#h2-502703b03-0004"/></navPoint>
+<navPoint id="h2-502703b03-0005" playOrder="711"><navLabel><text>The Official Python Documentation</text></navLabel><content src="b03.xhtml#h2-502703b03-0005"/></navPoint>
+<navPoint id="h2-502703b03-0006" playOrder="712"><navLabel><text>Official Library Documentation</text></navLabel><content src="b03.xhtml#h2-502703b03-0006"/></navPoint>
+<navPoint id="h2-502703b03-0007" playOrder="713"><navLabel><text>r/learnpython</text></navLabel><content src="b03.xhtml#h2-502703b03-0007"/></navPoint>
+<navPoint id="h2-502703b03-0008" playOrder="714"><navLabel><text>Blog Posts</text></navLabel><content src="b03.xhtml#h2-502703b03-0008"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703b03-0003" playOrder="715"><navLabel><text>Discord</text></navLabel><content src="b03.xhtml#h1-502703b03-0003"/></navPoint>
+<navPoint id="h1-502703b03-0004" playOrder="716"><navLabel><text>Slack</text></navLabel><content src="b03.xhtml#h1-502703b03-0004"/></navPoint>
+</navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:b04.xhtml" playOrder="717"><navLabel><text>Appendix D: Using Git for Version Control</text></navLabel><content src="b04.xhtml"/><navPoint id="h1-502703b04-0001" playOrder="718"><navLabel><text>Installing Git</text></navLabel><content src="b04.xhtml#h1-502703b04-0001"/><navPoint id="h2-502703b04-0001" playOrder="719"><navLabel><text>Configuring Git</text></navLabel><content src="b04.xhtml#h2-502703b04-0001"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703b04-0002" playOrder="720"><navLabel><text>Making a Project</text></navLabel><content src="b04.xhtml#h1-502703b04-0002"/></navPoint>
+<navPoint id="h1-502703b04-0003" playOrder="721"><navLabel><text>Ignoring Files</text></navLabel><content src="b04.xhtml#h1-502703b04-0003"/></navPoint>
+<navPoint id="h1-502703b04-0004" playOrder="722"><navLabel><text>Initializing a Repository</text></navLabel><content src="b04.xhtml#h1-502703b04-0004"/></navPoint>
+<navPoint id="h1-502703b04-0005" playOrder="723"><navLabel><text>Checking the Status</text></navLabel><content src="b04.xhtml#h1-502703b04-0005"/></navPoint>
+<navPoint id="h1-502703b04-0006" playOrder="724"><navLabel><text>Adding Files to the Repository</text></navLabel><content src="b04.xhtml#h1-502703b04-0006"/></navPoint>
+<navPoint id="h1-502703b04-0007" playOrder="725"><navLabel><text>Making a Commit</text></navLabel><content src="b04.xhtml#h1-502703b04-0007"/></navPoint>
+<navPoint id="h1-502703b04-0008" playOrder="726"><navLabel><text>Checking the Log</text></navLabel><content src="b04.xhtml#h1-502703b04-0008"/></navPoint>
+<navPoint id="h1-502703b04-0009" playOrder="727"><navLabel><text>The Second Commit</text></navLabel><content src="b04.xhtml#h1-502703b04-0009"/></navPoint>
+<navPoint id="h1-502703b04-0010" playOrder="728"><navLabel><text>Abandoning Changes</text></navLabel><content src="b04.xhtml#h1-502703b04-0010"/></navPoint>
+<navPoint id="h1-502703b04-0011" playOrder="729"><navLabel><text>Checking Out Previous Commits</text></navLabel><content src="b04.xhtml#h1-502703b04-0011"/></navPoint>
+<navPoint id="h1-502703b04-0012" playOrder="730"><navLabel><text>Deleting the Repository</text></navLabel><content src="b04.xhtml#h1-502703b04-0012"/></navPoint>
+</navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:b05.xhtml" playOrder="731"><navLabel><text>Appendix E: Troubleshooting Deployments</text></navLabel><content src="b05.xhtml"/><navPoint id="h1-502703b05-0001" playOrder="732"><navLabel><text>Understanding Deployments</text></navLabel><content src="b05.xhtml#h1-502703b05-0001"/></navPoint>
+<navPoint id="h1-502703b05-0002" playOrder="733"><navLabel><text>Basic Troubleshooting</text></navLabel><content src="b05.xhtml#h1-502703b05-0002"/><navPoint id="h2-502703b05-0001" playOrder="734"><navLabel><text>Follow Onscreen Suggestions</text></navLabel><content src="b05.xhtml#h2-502703b05-0001"/></navPoint>
+<navPoint id="h2-502703b05-0002" playOrder="735"><navLabel><text>Read the Log Output</text></navLabel><content src="b05.xhtml#h2-502703b05-0002"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703b05-0003" playOrder="736"><navLabel><text>OS-Specific Troubleshooting</text></navLabel><content src="b05.xhtml#h1-502703b05-0003"/><navPoint id="h2-502703b05-0003" playOrder="737"><navLabel><text>Deploying from Windows</text></navLabel><content src="b05.xhtml#h2-502703b05-0003"/></navPoint>
+<navPoint id="h2-502703b05-0004" playOrder="738"><navLabel><text>Deploying from macOS</text></navLabel><content src="b05.xhtml#h2-502703b05-0004"/></navPoint>
+<navPoint id="h2-502703b05-0005" playOrder="739"><navLabel><text>Deploying from Linux</text></navLabel><content src="b05.xhtml#h2-502703b05-0005"/></navPoint>
+</navPoint>
+<navPoint id="h1-502703b05-0004" playOrder="740"><navLabel><text>Other Deployment Approaches</text></navLabel><content src="b05.xhtml#h1-502703b05-0004"/></navPoint>
+</navPoint>
+<navPoint id="urn:orm:book:9781098156664:chapter:b06.xhtml" playOrder="741"><navLabel><text>Index</text></navLabel><content src="b06.xhtml"/></navPoint>
+</navMap>
+</ncx>

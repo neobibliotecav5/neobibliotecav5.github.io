@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Appendix A. Awful Parts</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="appendix" title="Appendix A. Awful Parts"><div class="titlepage"><div><div><h1 class="title"><a id="awful_parts"/>Appendix A. Awful Parts</h1></div></div></div><div class="epigraph"><p>That will prove awful both in deed and word.</p><div class="attribution"><span>—<span class="attribution">William Shakespeare, <span class="emphasis"><em>Pericles, Prince of
+                Tyre</em></span></span></span></div></div><p>In this appendix, I present the problematic features of JavaScript that are not easily
+            avoided. You must be aware of these things and be prepared to cope.<a id="IDX-APP-A-0500" class="indexterm"/></p><div class="sect1" title="Global Variables"><div class="titlepage"><div><div><h1 class="title"><a id="global_variables"/>Global Variables</h1></div></div></div><p>The worst of all of JavaScript's bad features is its dependence on global
+                variables. A <em class="firstterm">global variable</em> is a variable that is visible in
+                every scope. Global variables can be a convenience in very small programs, but they
+                quickly become unwieldy as programs get larger. Because a global variable can be
+                changed by any part of the program at any time, they can significantly complicate
+                the behavior of the program. Use of global variables degrades the reliability of the
+                programs that use them.<a id="IDX-APP-A-0501" class="indexterm"/><a id="IDX-APP-A-0502" class="indexterm"/></p><p>Global variables make it harder to run independent subprograms in the same
+                program. If the subprograms happen to have global variables that share the same
+                names, then they will interfere with each other and likely fail, usually in
+                difficult to diagnose ways.</p><p>Lots of languages have global variables. For example, Java's <code class="literal">public static</code> members are global variables. The
+                problem with JavaScript isn't just that it allows them, it requires them. JavaScript
+                does not have a linker. All compilation units are loaded into a common global
+                object.</p><p>There are three ways to define global variables. The first is to place a <code class="literal">var</code> statement outside of any function:</p><a id="I_programlisting_d1e8179"/><pre class="programlisting">var foo = value;</pre><p>The second is to add a property directly to the global object. The global object
+                is the container of all global variables. In web browsers, the global object goes by
+                the name <code class="literal">window</code>:</p><a id="I_programlisting_d1e8186"/><pre class="programlisting">window.foo = value;</pre><p>The third is to use a variable without declaring it. This is called
+                    <span class="emphasis"><em>implied global</em></span>:<a id="IDX-APP-A-0503" class="indexterm"/></p><a id="I_programlisting_d1e8196"/><pre class="programlisting">foo = value;</pre><p>This was intended as a convenience to beginners by making it unnecessary to
+                declare variables before using them. Unfortunately, forgetting to declare a variable
+                is a very common mistake. JavaScript's policy of making forgotten variables global
+                creates bugs that can be very difficult to find.</p></div></div></body></html>

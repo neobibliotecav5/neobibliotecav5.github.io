@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c18-0019">La Página de Temas</h3>
+<p class="BodyFirst">Ahora que tenemos un enfoque eficiente para construir páginas, podemos centrarnos en nuestras dos siguientes páginas: la página de temas generales y la página para mostrar las entradas de un único tema. La página de temas mostrará todos los temas que han creado los usuarios, y es la primera página que implicará trabajar con datos.</p>
+<h4 id="h3-502703c18-0006">El patrón URL de los temas</h4>
+<p class="BodyFirst">En primer lugar, definimos la URL de la página de temas. Es habitual elegir un fragmento de URL simple que refleje el tipo de información que se presenta en la página. Utilizaremos la palabra <em translate="no">topics</em>, por lo que la URL <em translate="no">http://localhost:8000/topics/</em> devolverá esta página. Así es como modificamos <em translate="no">learning_logs/urls.py</em>:</p>
+<p class="CodeLabel" translate="no"><b>learning_logs/urls.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">"""Defines URL patterns for learning_logs."""</span>
+<em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">urlpatterns = [</span>
+<span class="LiteralGray">    # Home page</span>
+<span class="LiteralGray">    path('', views.index, name='index'),</span>
+    # Page that shows all topics.
+    path('topics/', views.topics, name='topics'),
+<span class="LiteralGray">]</span></code></pre>
+<p><span epub:type="pagebreak" id="Page_395" title="395"></span>El nuevo patrón de URL es la palabra <em translate="no">topics</em>, seguida de una barra oblicua. Cuando Django examine una URL solicitada, este patrón coincidirá con cualquier URL que tenga la URL base seguida de <em translate="no">topics</em>. Puedes incluir u omitir una barra diagonal al final, pero no puede haber nada más después de la palabra <em translate="no">topics</em>, o el patrón no coincidirá. Cualquier solicitud con una URL que coincida con este patrón se pasará a la función <code translate="no">topics()</code> en <em translate="no">views.py</em>.</p>
+<h4 id="h3-502703c18-0007">La vista Temas</h4>
+<p class="BodyFirst">La función <code translate="no">topics()</code> necesita recuperar algunos datos de la base de datos y enviarlos a la plantilla. Añade lo siguiente a <em translate="no">views.py</em>:</p>
+<p class="CodeLabel" translate="no"><b>views.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">from django.shortcuts import render</span>
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> from .models import Topic
+
+<span class="LiteralGray">def index(request):</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> def topics(request):
+    """Show all topics."""
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     topics = Topic.objects.order_by('date_added')
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>     context = {'topics': topics}
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>     return render(request, 'learning_logs/topics.html', context)</code></pre>
+<p>Primero importamos el modelo asociado a los datos que necesitamos <span aria-label="annotation1" class="CodeAnnotation">❶.</span> La función <code translate="no">topics()</code> necesita un parámetro: el objeto <code translate="no">request</code> que Django ha recibido del servidor <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Consultamos la base de datos pidiendo los objetos <code translate="no">Topic</code>, ordenados por el atributo <code translate="no">date_added</code> <span aria-label="annotation3" class="CodeAnnotation">❸.</span> Asignamos el conjunto de consultas resultante a <code translate="no">topics</code>.</p>
+<p>A continuación, definimos un contexto que enviaremos a la plantilla <span aria-label="annotation4" class="CodeAnnotation">❹.</span> Un <em translate="no">context</em> es un diccionario en el que las claves son nombres que utilizaremos en la plantilla para acceder a los datos que queremos, y los valores son los datos que necesitamos enviar a la plantilla. En este caso, hay un par clave-valor, que contiene el conjunto de temas que mostraremos en la página. Cuando construimos una página que utiliza datos, llamamos a <code translate="no">render()</code> con el objeto <code translate="no">request</code>, la plantilla que queremos utilizar y el diccionario <code translate="no">context</code> <span aria-label="annotation5" class="CodeAnnotation">❺.</span></p>
+<h4 id="h3-502703c18-0008">La plantilla Temas</h4>
+<p class="BodyFirst">La plantilla para la página de temas recibe el diccionario <code translate="no">context</code>, para que la plantilla pueda utilizar los datos que proporciona <code translate="no">topics()</code>. Crea un archivo llamado <em translate="no">topics.html</em> en el mismo directorio que <em translate="no">index.html</em>. Así es como podemos mostrar los temas en la plantilla:</p>
+<p class="CodeLabel" translate="no"><b>topics.html</b></p>
+<pre translate="no"><code translate="no">{% extends 'learning_logs/base.html' %}
+
+{% block content %}
+
+  &lt;p&gt;Topics&lt;/p&gt;
+
+<span epub:type="pagebreak" id="Page_396" title="396"></span><span aria-label="annotation1" class="CodeAnnotationHang">❶</span>   &lt;ul&gt;
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     {% for topic in topics %}
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>       &lt;li&gt;{{ topic.text }}&lt;/li&gt;
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>     {% empty %}
+      &lt;li&gt;No topics have been added yet.&lt;/li&gt;
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>     {% endfor %}
+<span aria-label="annotation6" class="CodeAnnotationHang">❻</span>   &lt;/ul&gt;
+
+{% endblock content %}</code></pre>
+<p>Utilizamos la etiqueta <code translate="no">{% extends %}</code> para heredar de <em translate="no">base.html</em>, igual que hicimos en la página de inicio, y luego abrimos un bloque <code translate="no">content</code>. El cuerpo de esta página contiene una lista con viñetas de los temas que se han introducido. En HTML estándar, una lista con viñetas se denomina <em translate="no">unordered list</em> y se indica mediante las etiquetas <code translate="no">&lt;/ul&gt;</code>. La etiqueta de apertura <code translate="no"></code> inicia la lista con viñetas de temas <span aria-label="annotation1" class="CodeAnnotation">❶.</span></p>
+<p>A continuación utilizamos una etiqueta de plantilla que equivale a un bucle <code translate="no">for</code>, que recorre la lista <code translate="no">topics</code> desde el diccionario <code translate="no">context</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> El código utilizado en las plantillas difiere del de Python en algunos aspectos importantes. Python utiliza la sangría para indicar qué líneas de una sentencia <code translate="no">for</code> forman parte de un bucle. En una plantilla, cada bucle <code translate="no">for</code> necesita una etiqueta <code translate="no">{% endfor %}</code> explícita que indique dónde se produce el final del bucle. Por tanto, en una plantilla, verás bucles escritos así:</p>
+<pre translate="no"><code translate="no">{% for <var>item</var> in <var>list</var> %}
+  <var>do something with each item</var>
+{% endfor %}</code></pre>
+<p>Dentro del bucle, queremos convertir cada tema en un elemento de la lista con viñetas. Para imprimir una variable en una plantilla, encierra el nombre de la variable entre llaves dobles. Las llaves no aparecerán en la página; sólo indican a Django que estamos utilizando una variable de plantilla. Así, el código <code translate="no">{{ topic.text }}</code> <span aria-label="annotation3" class="CodeAnnotation">❸</span> será sustituido por el valor del atributo <code translate="no">text</code> del tema actual en cada pasada por el bucle. La etiqueta HTML <code translate="no">&lt;/li&gt;</code> indica un <em translate="no">list item</em>. Cualquier cosa entre estas etiquetas, dentro de un par de etiquetas <code translate="no">&lt;/ul&gt;</code>, aparecerá como un elemento con viñetas en la lista.</p>
+<p>También utilizamos la etiqueta de plantilla <code translate="no">{% empty %}</code> <span aria-label="annotation4" class="CodeAnnotation">❹,</span> que indica a Django qué hacer si no hay elementos en la lista. En este caso, imprimimos un mensaje informando al usuario de que aún no se ha añadido ningún tema. Las dos últimas líneas cierran el bucle <code translate="no">for</code> <span aria-label="annotation5" class="CodeAnnotation">❺</span> y luego cierran la lista con viñetas <span aria-label="annotation6" class="CodeAnnotation">❻.</span></p>
+<p>Ahora tenemos que modificar la plantilla base para incluir un enlace a la página de temas. Añade el siguiente código a <em translate="no">base.html</em>:</p>
+<p class="CodeLabel" translate="no"><b>base.html</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">&lt;p&gt;</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>   &lt;a href="{% url 'learning_logs:index' %}"&gt;Learning Log&lt;/a&gt; -
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>   &lt;a href="{% url 'learning_logs:topics' %}"&gt;Topics&lt;/a&gt;
+<span class="LiteralGray">&lt;/p&gt;</span>
+
+<span class="LiteralGray">{% block content %}{% endblock content %}</span></code></pre>
+<p>Añadimos un guión después del enlace a la página de inicio <span aria-label="annotation1" class="CodeAnnotation">❶,</span> y luego añadimos de nuevo un enlace a la página de temas utilizando la etiqueta de plantilla <code translate="no">{% url %}</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Esta línea indica a <span epub:type="pagebreak" id="Page_397" title="397"></span>Django que genere un enlace que coincida con el patrón de URL con el nombre <code translate="no">'topics'</code> en <em translate="no">learning_logs/urls.py</em>.</p>
+<p>Ahora, cuando actualices la página de inicio en tu navegador, verás un enlace Temas. Cuando hagas clic en el enlace, verás una página similar a la de <a href="#figure18-4" id="figureanchor18-4">la Figura 18-4</a>.</p>
+<figure><img alt="" class="keyline" height="299" src="Images/f18004.png" translate="no" width="694"/>
+Figura</figure><figure><figcaption><p><a id="figure18-4">18-4</a>: Página</p></figcaption></figure>de temas
+        
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c18_35.html">anterior</a><a href="c18.html">Subtema 36 de 41: (Ver todo)</a><a href="c18_37.html">siguiente</a><br/></p>
+<br/><a href="c18_36.docx" target="_blank"></a></footer>
+</body>
+</html>

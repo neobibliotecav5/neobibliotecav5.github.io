@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c17-0008">Estilizar el gráfico</h3>
+<p class="BodyFirst">Plotly admite varias formas de dar estilo y personalizar los gráficos, una vez que sabes que la información del gráfico es correcta. Haremos algunos cambios en la llamada inicial a <code translate="no">px.bar()</code> y luego haremos otros ajustes en el objeto <code translate="no">fig</code> una vez creado.</p>
+<p>Empezaremos a dar estilo al gráfico añadiendo un título y etiquetas para cada eje:</p>
+<p class="CodeLabel" translate="no"><b>python_repos_visual.py</b></p>
+<pre translate="no"><code translate="no"><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray"># Make visualization.</span>
+title = "Most-Starred Python Projects on GitHub"
+labels = {'x': 'Repository', 'y': 'Stars'}
+fig = px.bar(x=repo_names, y=stars, title=title, labels=labels)
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> fig.update_layout(title_font_size=28, xaxis_title_font_size=20,
+        yaxis_title_font_size=20)
+
+<span class="LiteralGray">fig.show()</span></code></pre>
+<p>Primero añadimos un título y etiquetas para cada eje, como hicimos en <span class="xref" itemid="xref_target_Chapters 15">los Capítulos 15</span> y <span class="xref" itemid="xref_target_16">16</span>. A continuación, utilizamos el método <code translate="no">fig.update_layout()</code> para modificar elementos específicos del gráfico <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Plotly utiliza una convención en la que los aspectos de un elemento del gráfico están conectados por guiones bajos. A medida que te familiarices con la documentación de Plotly, empezarás a ver patrones consistentes en cómo se nombran y modifican los distintos elementos de un gráfico. Aquí fijamos el tamaño de la fuente del título en <code translate="no">28</code> y el tamaño de la fuente del título de cada eje en <code translate="no">20</code>. El resultado se muestra en la <a href="#figure17-2" id="figureanchor17-2">Figura 17-2</a>.</p>
+<span epub:type="pagebreak" id="Page_365" title="365"></span>
+<figure><img alt="" class="keyline" height="429" src="Images/f17002.png" translate="no" width="694"/>
+<figcaption><p><a id="figure17-2">Figura 17-2</a>: Se ha añadido un título al gráfico principal, y también a cada eje.</p></figcaption></figure>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c17_11.html">anterior</a><a href="c17.html">Subtema 12 de 20: (Ver todo)</a><a href="c17_13.html">siguiente</a><br/></p>
+<br/><a href="c17_12.docx" target="_blank"></a></footer>
+</body>
+</html>

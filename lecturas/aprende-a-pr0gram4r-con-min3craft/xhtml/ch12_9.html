@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch12lev1sec08"><span epub:type="pagebreak" id="page_282"></span><strong><span class="blue1">Sobrescribir métodos y atributos</span></strong></h3>
+<p class="noindent">Una subclase puede redefinir métodos y atributos de su superclase. Esto es útil cuando quieres utilizar el mismo nombre para un método pero quieres que se comporte de forma diferente en la subclase.</p>
+<p class="indent">En "<a href="ch12.xhtml#ch12lev1sec07">Comprender la herencia</a>", en <a href="ch12.xhtml#page_277">la página 277</a>, creamos una clase <span class="literal">Pájaro</span> y una clase <span class="literal">Pingüino</span>. La clase <span class="literal">Pingüino</span> heredó de <span class="literal">Ave</span>, por lo que compartió todos sus métodos. Pero los pingüinos no pueden volar, y su canto de pájaro es más un graznido que un gorjeo. Así que debemos cambiar los métodos <span class="literal">fly()</span> y <span class="literal">birdcall()</span> para reflejar esto. Abre <em>birdClass.py</em> y añade este código:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>birdClass.py</em></span></p>
+<p class="programs" translate="no"> <span class="ash">class Penguin(Bird):</span><br translate="no"/> <span class="ash">def swim(self):</span><br translate="no"/> <span class="ash">print("swimming")</span><br translate="no"/><br translate="no"/><span class="ent">➊</span> <span class="orange">def</span> <span class="blue1">birdcall</span>(self):<br translate="no"/> <span class="rose">print</span>(<span class="green">"sort of a quack"</span>)<br translate="no"/><br translate="no"/><span class="ent">➋</span> <span class="orange">def</span> <span class="blue1">fly</span>(self):<br translate="no"/> <span class="rose">print</span>(<span class="green">"Penguins cannot fly :("</span>)</p>
+<p class="indent">He hecho dos cambios en la clase <span class="literal">Pingüino</span>. He añadido un método birdcall( <span class="literal">)</span> <span class="ent">➊</span> y un método fly <span class="literal">()</span> <span class="ent">➋</span>. Como ambos métodos se escriben igual que en la superclase <span class="literal">Pájaro</span>, anularán los métodos de la superclase.</p>
+<p class="indent">Llama a los métodos añadiendo este código a <em>clasepájaro.py</em>:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>birdClass.py</em></span></p>
+<p class="programs" translate="no">sarahThePenguin.fly()<br translate="no"/>sarahThePenguin.birdcall()</p>
+<p class="indent">Ahora, cuando ejecutes el programa, obtendrás este resultado:</p>
+<p class="programs" translate="no"><span class="blue1">Penguins cannot fly :(</span><br translate="no"/><span class="blue1">sort of a quack</span></p>
+<p class="indent">Anular un método de una superclase cambiará lo que hace el método para la subclase, pero no para la superclase. Así, los pingüinos no podrán volar, pero otros pájaros que hereden de <span class="literal">Pájaro</span> podrán volar.</p>
+<p class="indent">También puedes sobrescribir el método <span class="literal">__init__()</span> en una subclase. Esto significa que cuando se crea el objeto de la subclase, puede tener atributos o comportamientos diferentes a los de la superclase.</p>
+<p class="indent">Por ejemplo, creemos una subclase <span class="literal">Loro</span> de <span class="literal">Pájaro</span> en el mismo archivo. Los loros pueden ser de distintos colores, así que incluyamos un argumento extra en el método <span class="literal">__init__()</span> para un atributo de <span class="literal">color</span>:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>birdClass.py</em></span></p>
+<p class="programs" translate="no"> <span class="orange">class</span> <span class="blue1">Parrot</span>(Bird):<br translate="no"/><span class="ent">➊</span> <span class="orange">def</span> <span class="blue1">__init_</span>_(self, name, wingspan, color):<br translate="no"/>           self.name = name<br translate="no"/>           self.wingspan = wingspan<br translate="no"/>           self.color = color</p>
+<p class="indent"><span epub:type="pagebreak" id="page_283"></span>He incluido un nuevo método <span class="literal">__init__</span> () para la clase <span class="literal">Loro</span> que tiene un argumento extra, <span class="literal">color</span> <span class="ent">➊,</span> en comparación con la clase original <span class="literal">Pájaro</span>.</p>
+<p class="indent">Ahora, cuando creamos un nuevo objeto <span class="literal">Loro</span>, podemos acceder al atributo <span class="literal">color</span>. También podemos acceder a los métodos <span class="literal">birdcall()</span> y <span class="literal">fly(</span> ) porque se heredaron de la superclase <span class="literal">Bird</span>:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>birdClass.py</em></span></p>
+<p class="programs" translate="no">freddieTheParrot = Parrot(<span class="green">"Freddie"</span>, 12, <span class="green">"blue"</span>)<br translate="no"/><span class="rose">print</span>(freddieTheParrot.color)<br translate="no"/>freddieTheParrot.fly()<br translate="no"/>freddieTheParrot.birdcall()</p>
+<p class="indent">Este código producirá lo siguiente:</p>
+<p class="programs" translate="no"><span class="blue1">blue</span><br translate="no"/><span class="blue1">flap</span><br translate="no"/><span class="blue1">chirp</span></p>
+<p class="indent">Recuerda que puedes sobrescribir cualquier método que una subclase herede de una superclase; incluso puedes sobrescribir el método <span class="literal">__init__()</span>. Esto te da mucho control sobre los objetos y sus numerosos atributos y métodos.</p>
+<p class="indent">Después de todos los cambios que hemos hecho en <em>clasepájaro.py</em>, el programa final tiene el siguiente aspecto. También está disponible en los recursos del libro en <em><a href="https://www.nostarch.com/programwithminecraft/">https://www.nostarch.com/programwithminecraft/.</a></em></p>
+<p class="sidenote" translate="no"><span class="blue"><em>birdClass.py</em></span></p>
+<p class="programs" translate="no"><span class="orange">class</span> <span class="blue1">Bird</span>(<span class="rose">object</span>):<br translate="no"/> <span class="orange">def</span> <span class="blue1">__init_</span>_(self, name, wingspan):<br translate="no"/>        self.name = name<br translate="no"/>        self.wingspan = wingspan<br translate="no"/><br translate="no"/> <span class="orange">def</span> <span class="blue1">birdcall</span>(self):<br translate="no"/> <span class="rose">print</span>(<span class="green">"chirp"</span>)<br translate="no"/><br translate="no"/> <span class="orange">def</span> <span class="blue1">fly</span>(self):<br translate="no"/> <span class="rose">print</span>(<span class="green">"flap"</span>)<br translate="no"/><br translate="no"/><br translate="no"/><span class="orange">class</span> <span class="blue1">Penguin</span>(Bird):<br translate="no"/> <span class="orange">def</span> <span class="blue1">swim</span>(self):<br translate="no"/> <span class="rose">print</span>(<span class="green">"swimming"</span>)<br translate="no"/><br translate="no"/> <span class="orange">def</span> <span class="blue1">birdcall</span>(self):<br translate="no"/> <span class="rose">print</span>(<span class="green">"sort of a quack"</span>)<br translate="no"/><br translate="no"/> <span class="orange">def</span> <span class="blue1">fly</span>(self):<br translate="no"/> <span class="rose">print</span>(<span class="green">"Penguins cannot fly :("</span>)<br translate="no"/><br translate="no"/><br translate="no"/><span class="orange">class</span> <span class="blue1">Parrot</span>(Bird):<br translate="no"/> <span class="orange">def</span> <span class="blue1">__init_</span>_(self, name, wingspan, color):<br translate="no"/>        self.name = name<br translate="no"/>        self.wingspan = wingspan<br translate="no"/>        self.color = color<br translate="no"/><br translate="no"/>gardenBird = Bird(<span class="green">"Geoffrey"</span>, 12)<br translate="no"/>gardenBird.birdcall()<br translate="no"/>gardenBird.fly()<br translate="no"/><br translate="no"/>sarahThePenguin = Penguin(<span class="green">"Sarah"</span>, 10)<br translate="no"/>sarahThePenguin.swim()<br translate="no"/>sarahThePenguin.fly()<br translate="no"/>sarahThePenguin.birdcall()<br translate="no"/><br translate="no"/>freddieTheParrot = Parrot(<span class="green">"Freddie"</span>, 12, <span class="green">"blue"</span>)<br translate="no"/><span class="rose">print</span>(freddieTheParrot.color)<br translate="no"/>freddieTheParrot.fly()<br translate="no"/>freddieTheParrot.birdcall()</p>
+<p class="indent"><span epub:type="pagebreak" id="page_284"></span>Probarás a anular métodos y atributos en la próxima misión.</p>
+<h4 class="h4a" id="ch12lev2sec10"><strong>Misión nº 73: Árbol fantasma</strong></h4>
+<p class="noindent">Has creado varias formas de edificios fantasma. Llevémoslo al siguiente nivel y creemos un árbol fantasma. Es una idea increíble, pero ¿cómo podemos hacerlo? La clase <span class="literal">Edificio</span> es para edificios, que tienen paredes y techos; los árboles no tienen paredes ni techos. ¡No te preocupes! Puedes evitarlo modificando tu clase <span class="literal">Edificio</span> fantasma.</p>
+<p class="indent">Al igual que los edificios fantasma, el árbol fantasma aparecerá y desaparecerá utilizando los métodos <span class="literal">build()</span> y <span class="literal">clear()</span>. Pero los métodos tienen que funcionar de forma diferente porque los árboles tienen un aspecto distinto al de las casas. Así que tienes que crear una clase que herede de la clase <span class="literal">Edificio</span> y anular los métodos build( <span class="literal">)</span> y clear( <span class="literal">)</span>.</p>
+<p class="indent">Para empezar, he cogido la función que crea un árbol del archivo <em>forest.py</em><a href="ch08.xhtml#page_153">(página 153</a>) y la he puesto en <a href="ch12.xhtml#ch12ex6">el Listado 12-6</a>. Cópiala en un nuevo archivo llamado <em>ghostTree.py</em> en la carpeta de <em>clases</em>.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>ghostTree.py</em></span></p>
+<p class="programs" translate="no"> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>   mc = Minecraft.create()<br translate="no"/><br translate="no"/> <span class="red"># Paste the ghostHouse.py program here</span><br translate="no"/> <span class="red"># Create a Tree class here</span><br translate="no"/><br translate="no"/><span class="ent">➊</span> <span class="orange">def</span> <span class="blue1">growTree</span>(x, y, z):<br translate="no"/> <span class="green">""" Creates a tree at the coordinates given """</span><br translate="no"/>       wood = 17<br translate="no"/>       leaves = 18<br translate="no"/><br translate="no"/> <span class="red"># Trunk</span><br translate="no"/>       mc.setBlocks(x, y, z, x, y + 5, z, wood)<br translate="no"/><br translate="no"/> <span class="red"># Leaves</span><br translate="no"/>       mc.setBlocks(x - 2, y + 6, z - 2, x + 2, y + 6, z + 2, leaves)<br translate="no"/>       mc.setBlocks(x - 1, y + 7, z - 1, x + 1, y + 7, z + 1, leaves)<br translate="no"/><br translate="no"/><span class="red"># Create build() and clear() methods for the Tree class here</span></p>
+<p class="examplet"><a id="ch12ex6"></a><em>Listado 12-6: Una función para crear un árbol</em></p>
+<p class="indent"><span epub:type="pagebreak" id="page_285"></span>Para terminar el programa, copia y pega el código de la clase <span class="literal">Edificio</span> de <em>ghostHouse.</em> py en el nuevo archivo. A continuación, crea una nueva clase llamada <span class="literal">Árbol</span> que herede de la clase <span class="literal">Edificio</span>. Dentro de la clase <span class="literal">Árbol</span>, añade un método <span class="literal">build()</span> y un método <span class="literal">clear()</span> para anular los métodos de la clase <span class="literal">Edificio</span> y construir un árbol en lugar de una casa. Asegúrate de incluir el argumento <span class="literal">self</span> delante de los atributos en el método final <span class="literal">growTree()</span> <span class="ent">➊.</span></p>
+<p class="indent">Cuando hayas creado el programa, crea un objeto <span class="literal">Árbol</span> llamado árbol <span class="literal">fantasma</span>. Llama al método <span class="literal">build(</span> ) para que aparezca el árbol, espera un poco y luego haz que desaparezca utilizando <span class="literal">clear()</span>.</p>
+<p class="indent"><a href="ch12.xhtml#ch12fig7">La Figura 12-7</a> muestra el resultado de mi programa.</p>
+<div class="image"><img alt="image" src="../images/f12-07.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch12fig7"></a><em>Figura 12-7: ¡Es un árbol espeluznante!</em></p>
+<div class="sidebar">
+<p class="sidebart" id="ch12sb05"><span epub:type="pagebreak" id="page_286"></span><strong>OBJETIVO EXTRA: BOSQUE FANTASMA</strong></p>
+<p class="noindent">Modifica el código de <em>ghostTree.py</em> para construir un bosque fantasma. ¿Qué tipo de tesoros crees que podrías encontrar en un bosque fantasma?</p>
+</div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch12_8.html">anterior</a><a href="ch12.html">Subtema 9 de 10: (Ver todo)</a><a href="ch12_10.html">siguiente</a><br/></p>
+<br/><a href="ch12_9.docx" target="_blank"></a></footer>
+</body>
+</html>

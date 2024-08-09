@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c10-0013">Manejo de la Excepción FileNotFoundError</h3>
+<p class="BodyFirst">Un problema común cuando se trabaja con archivos es la gestión de archivos perdidos. El archivo que buscas puede estar en una ubicación diferente, el nombre del archivo puede estar mal escrito o puede no existir en absoluto. Puedes manejar todas estas situaciones con un bloque <code translate="no">try</code>-<code translate="no">except</code>.</p>
+<p>Intentemos leer un archivo que no existe. El siguiente programa intenta leer el contenido de <em translate="no">Alice in Wonderland</em>, pero no he guardado el archivo <em translate="no">alice.txt</em> en el mismo directorio que <em translate="no">alice.py</em>:</p>
+<p class="CodeLabel" translate="no"><b>alice.py</b></p>
+<pre translate="no"><code translate="no">from pathlib import Path
+
+path = Path('alice.txt')
+contents = path.read_text(encoding='utf-8')</code></pre>
+<p>Ten en cuenta que aquí estamos utilizando <code translate="no">read_text()</code> de una forma ligeramente distinta a la que has visto antes. El argumento <code translate="no">encoding</code> es necesario cuando la codificación por defecto de tu sistema no coincide con la codificación del archivo que se está leyendo. Lo más probable es que esto ocurra al leer de un archivo que no se creó en tu sistema.</p>
+<p>Python no puede leer de un archivo que falta, por lo que lanza una excepción:</p>
+<pre translate="no"><code translate="no">Traceback (most recent call last):
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>   File "alice.py", line 4, in &lt;module&gt;
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     contents = path.read_text(encoding='utf-8')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<span epub:type="pagebreak" id="Page_196" title="196"></span>  File "/.../pathlib.py", line 1056, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.../pathlib.py", line 1042, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> FileNotFoundError: [Errno 2] No such file or directory: 'alice.txt'</code></pre>
+<p>Éste es un rastreo más largo que los que hemos visto anteriormente, así que veamos cómo dar sentido a rastreos más complejos. A menudo es mejor empezar por el final del rastreo. En la última línea, podemos ver que se lanzó una excepción <code translate="no">FileNotFoundError</code> <span aria-label="annotation3" class="CodeAnnotation">❸.</span> Esto es importante porque nos dice qué tipo de excepción utilizar en el bloque <code translate="no">except</code> que vamos a escribir.</p>
+<p>Mirando hacia atrás, cerca del principio del rastreo <span aria-label="annotation1" class="CodeAnnotation">❶,</span> podemos ver que el error se produjo en la línea 4 del archivo <em translate="no">alice.py</em>. La siguiente línea muestra la línea de código que causó el error <span aria-label="annotation2" class="CodeAnnotation">❷.</span> El resto del rastreo muestra código de las bibliotecas que intervienen en la apertura y lectura de archivos. Normalmente no es necesario que leas o comprendas todas estas líneas en un rastreo.</p>
+<p>Para tratar el error que se está produciendo, el bloque <code translate="no">try</code> comenzará con la línea que se identificó como problemática en el rastreo. En nuestro ejemplo, es la línea que contiene <code translate="no">read_text()</code>:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">from pathlib import Path</span>
+
+<span class="LiteralGray">path = Path('alice.txt')</span>
+try:
+    <span class="LiteralGray">contents = path.read_text(encoding='utf-8')</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> except FileNotFoundError:
+    print(f"Sorry, the file {path} does not exist.")</code></pre>
+<p>En este ejemplo, el código del bloque <code translate="no">try</code> produce un <code translate="no">FileNotFoundError</code>, así que escribimos un bloque <code translate="no">except</code> que coincide con ese error <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Python ejecuta entonces el código de ese bloque cuando no encuentra el archivo, y el resultado es un mensaje de error amigable en lugar de un rastreo:</p>
+<pre translate="no"><code translate="no">Sorry, the file alice.txt does not exist.</code></pre>
+<p>El programa no tiene nada más que hacer si el archivo no existe, así que ésta es toda la salida que vemos. Continuemos con este ejemplo y veamos cómo puede ayudar el manejo de excepciones cuando trabajas con más de un archivo.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c10_24.html">anterior</a><a href="c10.html">Subtema 25 de 37: (Ver todo)</a><a href="c10_26.html">siguiente</a><br/></p>
+<br/><a href="c10_25.docx" target="_blank"></a></footer>
+</body>
+</html>

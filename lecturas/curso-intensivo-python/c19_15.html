@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c19-0008">Restringir el acceso con @login_required</h3>
+<p class="BodyFirst">Django facilita la restricción de acceso a determinadas páginas mediante el decorador <code translate="no">@login_required</code>. Recuerda del <span class="xref" itemid="xref_target_Chapter 11">Capítulo 11</span> que un <em translate="no">decorator</em> es una directiva que se coloca justo antes de la definición de una función y que modifica el comportamiento de ésta. Veamos un ejemplo.</p>
+<h4 id="h3-502703c19-0028">Restringir el acceso a la página Temas</h4>
+<p class="BodyFirst">Cada tema será propiedad de un usuario, por lo que sólo los usuarios registrados podrán solicitar la página de temas. Añade el siguiente código a <em translate="no">learning_logs/views.py</em>:</p>
+<p class="CodeLabel" translate="no"><b>learning_logs/views.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">from django.shortcuts import render, redirect</span>
+from django.contrib.auth.decorators import login_required
+
+<span class="LiteralGray">from .models import Topic, Entry</span>
+<em class="LiteralGrayItalic" translate="no">--snip--</em>
+
+@login_required
+<span class="LiteralGray">def topics(request):</span>
+<span class="LiteralGray">    """Show all topics."""</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic" translate="no">--snip--</em></code></pre>
+<p><span epub:type="pagebreak" id="Page_424" title="424"></span>Primero importamos la función <code translate="no">login_required()</code>. Aplicamos <code translate="no">login_required()</code> como decorador a la función de vista <code translate="no">topics()</code> anteponiendo a <code translate="no">login_required</code> el símbolo <code translate="no">@</code>. Como resultado, Python sabe que debe ejecutar el código de <code translate="no">login_required()</code> antes que el de <code translate="no">topics()</code>.</p>
+<p>El código en <code translate="no">login_required()</code> comprueba si un usuario está conectado, y Django ejecuta el código en <code translate="no">topics()</code> sólo si lo está. Si el usuario no ha iniciado sesión, se le redirige a la página de inicio de sesión.</p>
+<p>Para que esta redirección funcione, tenemos que modificar <em translate="no">settings.py</em> para que Django sepa dónde encontrar la página de inicio de sesión. Añade lo siguiente al final de <em translate="no">settings.py</em>:</p>
+<p class="CodeLabel" translate="no"><b>settings.py</b></p>
+<pre translate="no"><code translate="no"><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray"># My settings.</span>
+<span class="LiteralGray">LOGIN_REDIRECT_URL = 'learning_logs:index'</span>
+<span class="LiteralGray">LOGOUT_REDIRECT_URL = 'learning_logs:index'</span>
+LOGIN_URL = 'accounts:login'</code></pre>
+<p>Ahora, cuando un usuario no autenticado solicite una página protegida por el decorador <code translate="no">@login_required</code>, Django enviará al usuario a la URL definida por <code translate="no">LOGIN_URL</code> en <em translate="no">settings.py</em>.</p>
+<p>Puedes probar esta configuración cerrando la sesión de cualquier cuenta de usuario y accediendo a la página de inicio. Haz clic en el enlace <b>Temas</b>, que debería redirigirte a la página de inicio de sesión. A continuación, inicia sesión en cualquiera de tus cuentas y, desde la página de inicio, vuelve a hacer clic en el enlace <b>Temas</b>. Deberías poder acceder a la página de temas.</p>
+<h4 id="h3-502703c19-0029">Restringir el acceso a través del Registro de Aprendizaje</h4>
+<p class="BodyFirst">Django facilita la restricción de acceso a las páginas, pero tienes que decidir qué páginas proteger. Lo mejor es pensar primero qué páginas deben estar libres de restricciones, y luego restringir todas las demás páginas del proyecto. Puedes corregir fácilmente el acceso excesivamente restringido, y es menos peligroso que dejar páginas sensibles sin restringir.</p>
+<p>En Learning Log, mantendremos sin restricciones la página de inicio y la página de registro. Restringiremos el acceso a todas las demás páginas.</p>
+<p>Aquí tienes <em translate="no">learning_logs/views.py</em> con los decoradores <code translate="no">@login_required</code> aplicados a todas las vistas excepto a <code translate="no">index()</code>:</p>
+<p class="CodeLabel" translate="no"><b>learning_logs/views.py</b></p>
+<pre translate="no"><code translate="no"><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">@login_required</span>
+<span class="LiteralGray">def topics(request):</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+
+@login_required
+<span class="LiteralGray">def topic(request, topic_id):</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+
+@login_required
+<span class="LiteralGray">def new_topic(request):</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+
+<span epub:type="pagebreak" id="Page_425" title="425"></span>@login_required
+<span class="LiteralGray">def new_entry(request, topic_id):</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+
+@login_required
+<span class="LiteralGray">def edit_entry(request, entry_id):</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic" translate="no">--snip--</em></code></pre>
+<p>Intenta acceder a cada una de estas páginas mientras estás desconectado; deberías ser redirigido a la página de inicio de sesión. Tampoco podrás hacer clic en enlaces a páginas como <code translate="no">new_topic</code>. Pero si introduces la URL <em translate="no">http://localhost:8000/new_topic/</em>, serás redirigido a la página de inicio de sesión. Deberías restringir el acceso a cualquier URL que sea de acceso público y esté relacionada con datos privados del usuario.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c19_14.html">anterior</a><a href="c19.html">Subtema 15 de 23: (Ver todo)</a><a href="c19_16.html">siguiente</a><br/></p>
+<br/><a href="c19_15.docx" target="_blank"></a></footer>
+</body>
+</html>

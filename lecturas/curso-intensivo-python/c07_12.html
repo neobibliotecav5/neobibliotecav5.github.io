@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c07-0007">Usar break para salir de un bucle</h3>
+<p class="BodyFirst">Para salir inmediatamente de un bucle <code translate="no">while</code> sin ejecutar ningún código restante en el bucle, independientemente de los resultados de cualquier prueba condicional, utiliza la sentencia <code translate="no">break</code>. La sentencia <code translate="no">break</code> dirige el flujo de tu programa; puedes utilizarla para controlar qué líneas de código se ejecutan y cuáles no, de modo que el programa sólo ejecute el código que tú quieras, cuando tú quieras.</p>
+<p>Por ejemplo, considera un programa que pregunta al usuario sobre los lugares que ha visitado. Podemos detener el bucle <code translate="no">while</code> en este programa llamando a <code translate="no">break</code> en cuanto el usuario introduzca el valor <code translate="no">'quit'</code>:</p>
+<p class="CodeLabel" translate="no"><b>cities.py</b></p>
+<pre translate="no"><code translate="no">prompt = "\nPlease enter the name of a city you have visited:"
+prompt += "\n(Enter 'quit' when you are finished.) "
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> while True:
+    city = input(prompt)
+
+    if city == 'quit':
+        break
+    else:
+        print(f"I'd love to go to {city.title()}!")</code></pre>
+<p>Un bucle que comienza con <code translate="no">while True</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span> se ejecutará eternamente a menos que llegue a una sentencia <code translate="no">break</code>. El bucle de este programa sigue pidiendo al usuario que introduzca los nombres de las ciudades en las que ha estado hasta que introduce <code translate="no">'quit'</code>. Cuando introduzcan <code translate="no">'quit'</code>, se ejecutará la sentencia <code translate="no">break</code>, haciendo que Python salga del bucle:</p>
+<pre translate="no"><code translate="no">Please enter the name of a city you have visited:
+(Enter 'quit' when you are finished.) <b>New York</b>
+I'd love to go to New York!
+
+Please enter the name of a city you have visited:
+(Enter 'quit' when you are finished.) <b>San Francisco</b>
+I'd love to go to San Francisco!
+
+Please enter the name of a city you have visited:
+(Enter 'quit' when you are finished.) <b>quit</b></code></pre>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c07_11.html">anterior</a><a href="c07.html">Subtema 12 de 23: (Ver todo)</a><a href="c07_13.html">siguiente</a><br/></p>
+<br/><a href="c07_12.docx" target="_blank"></a></footer>
+</body>
+</html>

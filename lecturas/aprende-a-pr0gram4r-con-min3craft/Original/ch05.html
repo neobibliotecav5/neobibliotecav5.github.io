@@ -1,0 +1,338 @@
+<html lang="en-us" xml:lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xmlns:ns="http://www.w3.org/2001/10/synthesis">
+<head>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+</head>
+<body>
+<h2 class="h2" id="ch05"><span epub:type="pagebreak" id="page_85"></span><strong><span class="blue1"><span class="big">5</span></span></strong><br translate="no"/><strong>AVERIGUAR LO QUE ES VERDADERO Y FALSO CON BOOLEANOS</strong></h2>
+<div class="image1"><img alt="image" src="../images/common01.jpg" translate="no"/></div>
+<p class="noindent">Siempre haces preguntas de sí o no: ¿Está lloviendo? ¿Tengo el pelo demasiado largo? Una vez que sabes si la respuesta es sí o no, puedes decidir qué hacer a continuación: traer un paraguas, o no; recortarte el pelo, o no. En todas estas situaciones, lo que hagas dependerá de si la respuesta a la pregunta es sí o no. Decidir qué hacer en función de la respuesta a una pregunta también es importante en programación. En este capítulo aprenderás a hacer preguntas en Python.</p>
+<p class="indent">En programación, las preguntas que haces suelen consistir en comparar valores. ¿Es un valor igual a otro? ¿Es un valor mayor o menor que otro? La pregunta de sí o no se llama <em>condición</em>, y la respuesta no es <em>sí</em> o <em>no</em>, sino <span class="literal">Verdadero</span> o <span class="literal">Falso</span>. Digamos que haces la pregunta "¿Tengo más bloques de oro que mi amigo?" o, en otras palabras, "¿Es mi alijo de oro mayor que el alijo de oro de mi amigo?". Para convertir esa pregunta en una condición comprensible para Python, tenemos que formularla como una afirmación (como "Mi alijo de oro es mayor que el de mi amigo") que puede ser verdadera o falsa.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_86"></span>Comprobar si una condición es verdadera o falsa es tan útil en Python que existe un tipo de datos especial para almacenar los valores <span class="literal">Verdadero</span> y <span class="literal">Falso</span>. Hasta ahora has visto otros tipos de datos: enteros, flotantes y cadenas. El tipo de datos que almacena los valores <span class="literal">Verdadero</span> y <span class="literal">Falso</span> es el tipo de datos <em>Booleano</em>. Los booleanos sólo pueden ser <span class="literal">Verdadero</span> o <span class="literal">Falso</span>. Cuando utilizas Python para hacer preguntas, el resultado es <span class="literal">Verdadero</span> o <span class="literal">Falso</span>. Cuando una condición es verdadera o falsa, los programadores dicen que <em>se evalúa a</em> <span class="literal">Verdadero</span> o se <em>evalúa a</em> <span class="literal">Falso</span>.</p>
+<p class="indent">En este capítulo utilizarás booleanos, operadores de comparación y operadores lógicos para probar distintas condiciones que implican valores. Entonces estarás preparado para el <a href="ch06.xhtml#ch06">Capítulo 6</a>, donde utilizarás las respuestas a las preguntas para tomar decisiones sobre qué hacer a continuación en un programa.</p>
+<h3 class="h3" id="ch05lev1sec01"><strong><span class="blue1">Conceptos básicos de los booleanos</span></strong></h3>
+<p class="noindent">Un booleano es un poco como un interruptor de la luz: es <span class="literal">Verdadero</span> (encendido) o <span class="literal">Falso</span> (apagado). En Python, puedes declarar una variable booleana como ésta para representar que la luz está encendida:</p>
+<p class="programs" translate="no">light = <span class="orange">True</span></p>
+<p class="indent">Aquí asignas el valor <span class="literal">Verdadero</span> a la variable <span class="literal">luz</span>. Para apagar la luz, podrías asignar el valor <span class="literal">Falso</span> a luz:</p>
+<p class="programs" translate="no">light = <span class="orange">False</span></p>
+<p class="indent">Escribe siempre en mayúsculas la primera letra de <span class="literal">Verdadero</span> y <span class="literal">Falso</span>. Si no lo haces, Python no reconocerá el valor como booleano y lanzará una excepción en lugar de evaluar tu cálculo.</p>
+<p class="indent">En la siguiente misión, utilizarás booleanos para impedir que el jugador rompa bloques en el mundo del juego.</p>
+<h4 class="h4a" id="ch05lev2sec01"><strong>Misión nº 17: ¡Deja de romper bloques!</strong></h4>
+<p class="noindent">En Minecraft, es fácil aplastar bloques, lo que está muy bien cuando quieres minar en busca de recursos. Pero es muy molesto pasarse años construyendo una estructura genial y luego romperla y destruirla accidentalmente. En esta misión, harás que tu mundo Minecraft sea indestructible.</p>
+<p class="indent">Usando setting <span class="literal">("mundo_inmutable", True)</span> puedes hacer que los bloques sean <em>inmutables</em>, lo que significa que no se pueden cambiar. La línea de código setting( <span class="literal">)</span> es una función como las funciones <span class="literal">setTilePos()</span> y <span class="literal">setPos()</span> que has visto. <a href="ch05.xhtml#ch5ex1">El listado 5-1</a> muestra cómo hacer que el mundo sea inmutable.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>immutableOn.py</em></span></p>
+<p class="programs" translate="no"><span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>mc = Minecraft.create()<br translate="no"/><br translate="no"/>mc.setting(<span class="green">"world_immutable"</span>, <span class="orange">True</span>)</p>
+<p class="examplet"><a id="ch5ex1"></a><em>Listado 5-1: Código que impide que se rompan los bloques</em></p>
+<p class="indent"><span epub:type="pagebreak" id="page_87"></span>La función <span class="literal">setting</span> () tiene opciones que puedes poner a <span class="literal">True</span> para activarlas. Una de las opciones es " <span class="literal">mundo_inmutable"</span>. Para activar una opción de <span class="literal">setting</span> (), escribe <span class="literal">True</span> después del nombre de la opción dentro de los paréntesis.</p>
+<p class="indent">Escribe <a href="ch05.xhtml#ch5ex1">el Listado 5-1</a> en IDLE y guárdalo como <em>inmutableOn.py</em> en una nueva carpeta llamada <em>booleans</em>. Cuando lo ejecutes, no deberías poder romper la mayoría de los bloques, como se muestra en la <a href="ch05.xhtml#ch5fig1">Figura 5-1</a>. Pero, ¿qué ocurre cuando <em>quieres</em> volver a romper bloques? Copia tu programa en un archivo nuevo y cámbialo para que el jugador pueda romper bloques. (Sugerencia: ¡utiliza un booleano!) Guarda el nuevo archivo como <em>inmutableOff.py</em> en la carpeta <em>booleanos</em>.</p>
+<div class="image"><img alt="image" src="../images/f05-01.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch5fig1"></a><em>Figura 5-1: ¡Por mucho que lo intento, el bloque no se rompe!</em></p>
+<h3 class="h3" id="ch05lev1sec02"><strong><span class="blue1">Concatenar booleanos</span></strong></h3>
+<p class="noindent">Al igual que los enteros y los flotantes, los booleanos deben convertirse en cadenas antes de poder concatenarlos. Por ejemplo, concatenas booleanos y cadenas cuando quieres imprimir booleanos con la función <span class="literal">print()</span>. Para ello, utiliza la función <span class="literal">str()</span>:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> agree = <span class="orange">True</span><br translate="no"/><span class="mer">&gt;&gt;&gt;</span> <span class="rose">print</span>(<span class="green">"I agree: "</span> + <span class="rose">str</span>(agree))<br translate="no"/><span class="blue1">I agree: True</span></p>
+<p class="indent">La variable <span class="literal">agree</span> almacena un booleano. Se convierte en una cadena en la segunda línea con <span class="literal">str(agree)</span>, se concatena con la cadena <span class="literal">"Estoy de acuerdo: "</span> y se imprime.</p>
+<h3 class="h3" id="ch05lev1sec03"><strong><span class="blue1">Comparadores</span></strong></h3>
+<p class="noindent">Se te da muy bien comparar valores. Sabes que 5 es mayor que 2, que 8 y 8 son el mismo número y que 6 y 12 no son el mismo número. Un ordenador también es bueno comparando valores; sólo tienes que decirle exactamente <span epub:type="pagebreak" id="page_88"></span>qué tipo de comparación quieres escribiendo un símbolo llamado <em>comparador</em>. Por ejemplo, ¿quieres que compruebe si un valor es mayor que el otro, o quieres que compruebe si es menor?</p>
+<p class="indentb">Los comparadores (u <em>operadores de comparación</em>) de Python te permiten comparar datos. Python utiliza seis comparadores:</p>
+<p class="bull">- Igual a<span class="literal">(==</span>)</p>
+<p class="bull">- No igual a (<span class="literal">!=</span>)</p>
+<p class="bull">- Menor que (<span class="literal">&lt;</span>)</p>
+<p class="bull">- Menor o igual que (<span class="literal">&lt;=</span>)</p>
+<p class="bull">- Mayor que<span class="literal">(&gt;)</span></p>
+<p class="bull">- Mayor o igual que<span class="literal">(&gt;=</span>)</p>
+<p class="indentt">Cada comparador devuelve un valor booleano<span class="literal">(Verdadero</span> o <span class="literal">Falso</span>) que indica si se ha cumplido la condición. Veamos estos comparadores y exploremos cómo utilizarlos.</p>
+<h4 class="h4" id="ch05lev2sec02"><strong><span class="blue1">Igual a</span></strong></h4>
+<p class="noindent">Cuando quieras averiguar si dos valores son iguales, puedes utilizar el comparador igual a<span class="literal">(==</span>). Cuando los valores son iguales, la comparación devuelve el valor booleano <span class="literal">Verdadero</span>. Cuando los valores son diferentes, la comparación devuelve <span class="literal">Falso</span>.</p>
+<p class="indent">Por ejemplo, asignemos el valor de dos variables y utilicemos el operador igual a para compararlas:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> length = 2<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> width = 2<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> length == width<br translate="no"/><span class="blue1">True</span></p>
+<p class="indent">El resultado es <span class="literal">Verdadero</span> porque los valores de las variables <span class="literal">longitud</span> y <span class="literal">anchura</span> son iguales.</p>
+<p class="indent">Pero si son diferentes, el resultado es <span class="literal">Falso</span>:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> length = 4<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> width = 1<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> length == width<br translate="no"/><span class="blue1">False</span></p>
+<p class="indent">Puedes utilizar el comparador igual a en todos los tipos de variables: cadenas, enteros, flotantes y booleanos.</p>
+<p class="indent">Fíjate en que he utilizado <span class="literal">==</span> para comparar la <span class="literal">longitud</span> y la <span class="literal">anchura</span> en lugar de <span class="literal">=</span>, que se utiliza para establecer una variable. Python utiliza el operador <span class="literal">==</span> para diferenciar entre una comparación (preguntar si dos valores son iguales) y establecer una variable (hacer que una variable sea igual a algún valor). Intenta recordar esta diferencia para evitar errores en tu código. No te preocupes; ¡incluso yo cometo el error de utilizar <span class="literal">=</span> en lugar de <span class="literal">==</span> de vez en cuando!</p>
+<h4 class="h4a" id="ch05lev2sec03"><span epub:type="pagebreak" id="page_89"></span><strong>Misión nº 18: ¿Estoy nadando?</strong></h4>
+<p class="noindent">Ahora utilizarás comparadores para crear un programa que indique si estás o no en el agua. Los resultados se publicarán en el chat de Minecraft.</p>
+<p class="indent">Para averiguar el tipo de bloque en determinadas coordenadas, utilizarás la función <span class="literal">getBlock()</span>. Esta función toma las coordenadas como tres argumentos y devuelve el tipo de bloque como un número entero. Por ejemplo:</p>
+<p class="programs" translate="no">blockType = mc.getBlock(10, 18, 13)</p>
+<p class="indent">Aquí he almacenado el resultado de <span class="literal">mc.getBlock(10, 18, 13)</span> en una variable llamada <span class="literal">tipoBloque</span>. Si el tipo de bloque en las coordenadas (10, 18, 13) es melón (valor de bloque 103), la variable <span class="literal">blockType</span> tendrá el valor 103.</p>
+<p class="indent">Pongamos a trabajar la función <span class="literal">getBlock()</span>. El listado <a href="ch05.xhtml#ch5ex2">5-2</a> comprueba si el jugador está en tierra firme.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>swimming.py</em></span></p>
+<p class="programs" translate="no"><span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>mc = Minecraft.create()<br translate="no"/><br translate="no"/>pos = mc.player.getPos()<br translate="no"/>x = pos.x<br translate="no"/>y = pos.y<br translate="no"/>z = pos.z<br translate="no"/><br translate="no"/>blockType = mc.getBlock(x, y, z)<br translate="no"/>mc.postToChat(blockType == 0)</p>
+<p class="examplet"><a id="ch5ex2"></a><em>Listado 5-2: Este código comprueba el tipo de bloque donde están las piernas del jugador.</em></p>
+<p class="indent">Aquí, obtengo las tres coordenadas de la posición del jugador y paso esas coordenadas como argumentos a getBlock <span class="literal">()</span>. Almaceno el resultado de <span class="literal">mc.getBlock(x, y, z)</span> en <span class="literal">blockType</span>. La expresión blockType <span class="literal">== 0</span> comprueba si el bloque es aire; si es aire, sabes que estás parado en algún lugar de tu mundo Minecraft, la expresión es <span class="literal">True</span>, y <span class="literal">True</span> se publica en el chat. Si no es aire, se envía <span class="literal">False</span> al chat, ¡así que debes estar bajo el agua o quizás ahogándote en la arena!</p>
+<p class="indent">Copia <a href="ch05.xhtml#ch5ex2">el Listado 5-2</a> y guárdalo como <em>nadando.py</em> en el directorio <em><a href="ch05.xhtml#ch05">del Capítulo 5</a></em>. Luego cambia el código para que compruebe si el jugador está de pie en el agua (bloque tipo 9) y ejecútalo.</p>
+<p class="indent">Prueba a ponerte de pie en el agua y a ejecutar el programa. Asegúrate de que cuando el jugador está en el agua, el chat muestra <span class="literal">Verdadero</span>. Cuando el jugador no esté en el agua, el chat debe mostrar <span class="literal">Falso</span>.</p>
+<p class="indent">La salida del programa debe parecerse a <a href="ch05.xhtml#ch5fig2">la Figura 5-2</a>.</p>
+<div class="note">
+<p class="notet"><strong><span class="notes">NOTA</span></strong></p>
+<p class="notep"><em>En este punto, no podrás ejecutar este programa de forma continua. Deberás ejecutar el programa cada vez que quieras comprobar el bloque situado debajo del jugador. Esto se aplica también a todas las demás misiones de este capítulo.</em></p>
+</div>
+<div class="image"><span epub:type="pagebreak" id="page_90"></span><img alt="image" src="../images/f05-02.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch5fig2"></a><em>Figura 5-2: Aunque veo que estoy en el agua, Python me lo confirma amablemente.</em></p>
+<div class="sidebar">
+<p class="sidebart" id="ch05sb01"><strong>OBJETIVO EXTRA: ¡ESTOY VOLANDO!</strong></p>
+<p class="noindent">Con un par de cambios en el código, puedes comprobar si el bloque que <em>hay debajo de</em> ti es aire. Esto te indicaría que estás volando o saltando. ¿Cómo lo harías?</p>
+</div>
+<h4 class="h4" id="ch05lev2sec04"><strong><span class="blue1">No igual a</span></strong></h4>
+<p class="noindent">El comparador no igual a es lo contrario del comparador igual a. En lugar de comprobar si dos valores son iguales, comprueba si son diferentes. Cuando los dos valores son diferentes, la comparación se evalúa como <span class="literal">Verdadero</span>. Si son iguales, se evalúa como <span class="literal">Falso</span>.</p>
+<p class="indent">Supongamos que quieres asegurarte de que un objeto es un rectángulo pero no un cuadrado. Como un rectángulo no cuadrado tiene una longitud y una anchura diferentes, podrías escribir una comparación para comprobar que la longitud y la anchura no son iguales:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> width = 3<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> length = 2<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> width != length<br translate="no"/><span class="blue1">True</span></p>
+<p class="indent">La expresión <span class="literal">anchura != longitud</span> pregunta si los valores de <span class="literal">anchura</span> y <span class="literal">longitud</span> son diferentes.</p>
+<p class="indent">El resultado de esta comparación es <span class="literal">Verdadero</span> porque la variable <span class="literal">anchura</span> y la variable <span class="literal">longitud</span> tienen valores diferentes.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_91"></span>Pero si estos valores son iguales, la comparación devuelve <span class="literal">Falso</span>:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> width = 3<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> length = 3<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> width != length<br translate="no"/><span class="blue1">False</span></p>
+<p class="indent">El comparador no igual a también funciona con cadenas, enteros, flotantes y booleanos, igual que el comparador igual a.</p>
+<h4 class="h4a" id="ch05lev2sec05"><strong>Misión 19: ¿Estoy parado en algo más que aire?</strong></h4>
+<p class="noindent">Supongamos que quieres comprobar si estás sobre algo distinto del aire, como agua, lava, tierra, grava o cualquier otro tipo de bloque. En la Misión nº 18, comprobaste si el bloque en tu posición actual era aire, y resolviste cómo comprobar si estabas en el agua. Podrías copiar y pegar el programa muchas veces, cambiándolo ligeramente cada vez para comprobar si hay lava, tierra, grava, etc., uno por uno. Pero eso sería muy aburrido. En lugar de eso, utiliza el comparador no igual a para comprobar si estás bajo tierra, atrapado en arena, en el fondo del océano, ¡o incluso ahogándote en lava!</p>
+<p class="indent">Abre el programa de la Misión 18<em>(nadando.py</em>) y guárdalo como <em>notAir.py</em> en la carpeta de <em>booleanos</em>. Elimina la última línea del programa y sustitúyela por el Listado <a href="ch05.xhtml#ch5ex3">5-3</a>.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>notAir.py</em></span></p>
+<p class="programs" translate="no"><span class="ent">➊</span> notAir = blockType == 0<br translate="no"/>   mc.postToChat(<span class="green">"The player is not standing in air: "</span> + <span class="rose">str</span>(notAir))</p>
+<p class="examplet"><a id="ch5ex3"></a><em>Listado 5-3: Cambios en el programa de natación</em></p>
+<p class="indent">La última línea de este código imprimirá si no estás en el aire. El resultado de la comparación se almacena en la variable <span class="literal">noAire</span> <span class="ent">➊.</span> Cuando la comparación se evalúe como <span class="literal">Verdadero</span>, el valor de la variable <span class="literal">noAire</span> será <span class="literal">Verdadero</span>, y cuando la comparación se evalúe como <span class="literal">Falso</span>, el valor de la variable <span class="literal">noAire</span> será <span class="literal">Falso</span>.</p>
+<p class="indent">Pero la comparación de la primera línea no es del todo correcta <span class="ent">➊.</span> Actualmente comprueba si el <span class="literal">bloque Tipo</span> es igual a aire utilizando el comparador igual a<span class="literal">(==</span>). En lugar de eso, debería comprobar si la variable <span class="literal">bloqueTipo</span> no es igual a aire utilizando el comparador no igual a (<span class="literal">!=</span>). Cambia la primera línea para utilizar el comparador no igual a en lugar del comparador igual a. Esto comprobará si el bloque en la posición actual del jugador no es igual a aire.</p>
+<p class="indent">Cuando ejecutes el programa, asegúrate de que funciona cuando estás en el aire y cuando estás bajo el agua, en la lava, en la grava, en la arena o teletransportado al suelo. El mensaje enviado al chat cuando la condición es <span class="literal">Verdadera</span> se muestra en la <a href="ch05.xhtml#ch5fig3">Figura 5-3</a>.</p>
+<div class="image"><span epub:type="pagebreak" id="page_92"></span><img alt="image" src="../images/f05-03.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch5fig3"></a><em>Figura 5-3: Dándome un agradable y relajante baño en el agua, que no es aire.</em></p>
+<h4 class="h4" id="ch05lev2sec06"><strong><span class="blue1">Mayor que y menor que</span></strong></h4>
+<p class="noindent">Cuando necesites averiguar si un valor es mayor que otro, utiliza el comparador mayor que. El comparador mayor que devolverá <span class="literal">Verdadero</span> cuando el valor de la izquierda sea mayor que el de la derecha. Si el valor de la izquierda es menor o igual que el de la derecha, la comparación devolverá <span class="literal">Falso</span>.</p>
+<p class="indent">Supongamos que tenemos una vagoneta minera que no puede levantar más de 99 bloques de obsidiana. Mientras el límite de elevación de nuestro minicarro sea mayor que el número de bloques de obsidiana que está intentando levantar, los bloques se podrán levantar:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> limit = 100<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> obsidian = 99<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> limit &gt; obsidian<br translate="no"/><span class="blue1">True</span></p>
+<p class="indent">¡Brillante! Nuestro minicarro puede transportar cualquier número de bloques de obsidiana que sea menor que 100, y 99 es menor que 100, por lo que <span class="literal">límite &gt; obsidiana</span> se evalúa como <span class="literal">Verdadero</span>. Pero, ¿y si alguien añade otro bloque de obsidiana a la pila?</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> limit = 100<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> obsidian = 100<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> canLift = limit &gt; obsidian<br translate="no"/><span class="blue1">False</span></p>
+<p class="indent">Oh, no, ¡ahora se ha alcanzado el límite! El resultado ahora es <span class="literal">Falso</span>: 100 no es mayor que 100; es lo mismo. Nuestro minicarro no puede levantar la obsidiana.</p>
+<p class="indent">El comparador menor que funciona de la misma manera.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_93"></span>Una furgoneta que pasa por debajo de un puente necesita saber si es lo bastante pequeña para caber debajo de él:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> vanHeight = 8<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> bridgeHeight = 12<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> vanHeight &lt; bridgeHeight<br translate="no"/><span class="blue1">True</span></p>
+<p class="indent">En este caso, la furgoneta cabrá porque es más pequeña que la altura del puente: 8 es menor que 12. Más adelante, la misma furgoneta puede encontrarse con otro puente demasiado bajo para pasar por debajo:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> vanHeight = 8<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> bridgeHeight = 7<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> vanHeight &lt; bridgeHeight<br translate="no"/><span class="blue1">False</span></p>
+<p class="indent">Como 8 no es menor que 7, el resultado es <span class="literal">Falso</span>.</p>
+<h4 class="h4" id="ch05lev2sec07"><strong><span class="blue1">Mayor o igual que y Menor o igual que</span></strong></h4>
+<p class="noindent">Al igual que el comparador mayor que, el comparador mayor o igual que determina si un valor es mayor que otro. A diferencia del comparador mayor que, también se evaluará como <span class="literal">Verdadero</span> si los valores son iguales.</p>
+<p class="indent">Supongamos que voy a dar pegatinas a todas las personas que vinieron a ver la presentación de mi increíble programa. Necesito comprobar si tengo suficientes pegatinas para todos:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> stickers = 30<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> people = 30<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> stickers &gt;= people<br translate="no"/><span class="blue1">True</span></p>
+<p class="indent">Tengo suficientes pegatinas: 30 es lo mismo que 30, por lo que pegatinas <span class="literal">&gt;= personas</span> evalúa a <span class="literal">Verdadero</span>. Pero supongamos que a uno de mis amigos le parecen chulas las pegatinas y quiere una. Ahora, 31 personas quieren pegatinas:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> stickers = 30<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> people = 31<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> stickers &gt;= people<br translate="no"/><span class="blue1">False</span></p>
+<p class="indent">No tengo suficientes pegatinas: 30 no es mayor o igual que 31. Parece que mi amigo no puede tener una pegatina.</p>
+<p class="indent">A estas alturas, ya estás preparado para enfrentarte a casi cualquier comparación. Mientras estás en IDLE, prueba también el comparador menor o igual que<span class="literal">(&lt;=</span>) para ver cómo funciona.</p>
+<div class="note">
+<p class="notet"><span epub:type="pagebreak" id="page_94"></span><strong><span class="notes">NOTA</span></strong></p>
+<p class="notep"><em>Los comparadores mayor que, mayor o igual que, menor que y menor o igual que no funcionan con cadenas, aunque sí con enteros, flotantes y booleanos.</em></p>
+</div>
+<h4 class="h4a" id="ch05lev2sec08"><strong>Misión nº 20: ¿Estoy por encima del suelo?</strong></h4>
+<p class="noindent">La coordenada y de un jugador en Minecraft muestra la altura a la que se encuentra en el juego. Los bloques también se almacenan utilizando coordenadas, lo que te permite obtener los tipos de bloque en coordenadas concretas utilizando <span class="literal">getBlock</span> () y crear bloques en coordenadas concretas utilizando <span class="literal">setBlocks()</span>.</p>
+<p class="indent">Para obtener el bloque más alto de Minecraft, puedes utilizar la función <span class="literal">getHeight()</span>. La función toma una coordenada x y z y devuelve la coordenada y del bloque más alto en esa posición, como se muestra en el Listado <a href="ch05.xhtml#ch5ex4">5-4</a>.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>aboveGround.py</em></span></p>
+<p class="programs" translate="no"><span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>mc = Minecraft.create()<br translate="no"/>pos = mc.player.getTilePos()<br translate="no"/>x = pos.x<br translate="no"/>y = pos.y<br translate="no"/>z = pos.z<br translate="no"/>highestBlockY = mc.getHeight(x, z)<br translate="no"/>mc.postToChat(highestBlockY)</p>
+<p class="examplet"><a id="ch5ex4"></a><em>Listado 5-4: Código para encontrar la coordenada y del bloque más alto en la posición actual del jugador</em></p>
+<p class="indent">Este programa obtiene la posición actual del jugador, obtiene la coordenada y del bloque más alto en la posición del jugador, y luego publica este valor en el chat de Minecraft.</p>
+<p class="indent">Combinando este programa con un comparador mayor que o igual a, puedes comprobar si el jugador está o no por encima del suelo. Hagámoslo ahora.</p>
+<p class="indent">Copia el programa del <a href="ch05.xhtml#ch5ex4">Listado 5-4</a> y guárdalo como <em>aboveGround.py</em>. Cambia el programa para comprobar si la coordenada y del jugador es mayor que la variable <span class="literal">bloqueYmayor</span>. Después, añade código para enviar el resultado al chat con el formato <span class="literal">"El jugador está por encima del suelo: Verdadero/Falso"</span>.</p>
+<div class="note">
+<p class="notet"><strong><span class="hints">CONSEJO</span></strong></p>
+<p class="notep"><em>Recuerda que puedes almacenar el resultado de una comparación en una variable. Por ejemplo, si quisiera comprobar si</em> <span class="literal"><span class="codeitalic">y</span></span> <em>es mayor o igual que 10 y almacenar la respuesta en una variable llamada</em> <span class="literal"><span class="codeitalic">altoSuficiente</span></span><em>, utilizaría la siguiente sentencia</em>: <span class="literal"><span class="codeitalic">altoSuficiente = y &gt;= 10</span></span>.</p>
+</div>
+<p class="indent">Ejecuta el programa cuando hayas hecho estos cambios. La salida de los resultados <span class="literal">Falso</span> del programa se muestran en la <a href="ch05.xhtml#ch5fig4">Figura 5-4</a>.</p>
+<div class="image"><span epub:type="pagebreak" id="page_95"></span><img alt="image" src="../images/f05-04.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch5fig4"></a><em>Figura 5-4: Ahora estoy en una cueva, así que Python tiene mucha razón en que no estoy en la superficie.</em></p>
+<h4 class="h4a" id="ch05lev2sec09"><strong>Misión nº 21: ¿Estoy cerca de casa?</strong></h4>
+<p class="noindent">Mientras vagas por el mundo de Minecraft, podrías perderte y olvidar dónde está tu casa. Podrías vagar durante horas sólo para descubrir que estabas cerca de casa cuando te perdiste por primera vez.</p>
+<p class="indent">Con una sola línea de código, puedes comprobar a qué distancia estás de cualquier coordenada del juego. Por ejemplo, podrías utilizar las coordenadas de tu casa y tu posición actual para calcular a qué distancia estás. Añadiendo un comparador, también puedes comprobar si estás o no a un determinado número de manzanas de tu casa. Diremos que estás cerca de casa si estás a sólo 40 manzanas.</p>
+<p class="indent">¡Escribamos un programa Python que compruebe esto por ti! El código de esta misión debe comprobar a qué distancia estás de tu casa, como se muestra en el Listado <a href="ch05.xhtml#ch5ex5">5-5</a>.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>farFromHome.py</em></span></p>
+<p class="programs" translate="no"> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>   mc = Minecraft.create()<br translate="no"/> <span class="orange">import</span> math<br translate="no"/><span class="ent">➊</span> homeX = 10<br translate="no"/>   homeZ = 10<br translate="no"/>   pos = mc.player.getTilePos()<br translate="no"/>   x = pos.x<br translate="no"/>   z = pos.z<br translate="no"/><span class="ent">➋</span> distance = math.sqrt((homeX - x) ** 2 + (homeZ - z) ** 2)<br translate="no"/><span class="ent">➌</span> mc.postToChat(distance)</p>
+<p class="examplet"><a id="ch5ex5"></a><em>Listado 5-5: Código que calcula la distancia a tu casa</em></p>
+<p class="indent">Este código supone que tu casa está en las coordenadas <span class="literal">x = 10</span> y <span class="literal">z = 10</span>, que se establecen con las variables <span class="literal">homeX</span> y <span class="literal">homeZ</span> <span class="ent">➊.</span> En este caso, no necesitamos conocer la coordenada y. Utilizo la función <span class="literal">getTilePos()</span> para obtener la posición del jugador y establecer los valores <span class="literal">x</span> y <span class="literal">z</span>.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_96"></span>Para calcular la variable <span class="literal">distancia</span>, utilizamos una fórmula llamada <em>teorema de Pitágoras</em>. Calcula la longitud de un lado de un triángulo rectángulo, y puedes utilizarla en Minecraft para calcular la distancia entre dos puntos. Es posible que hayas visto esta fórmula escrita en clase de matemáticas como <sup>a2</sup> + <sup>b2</sup> = <sup>c2</sup>, donde <em>a</em> y <em>b</em> son los dos catetos de un triángulo rectángulo, y <em>c</em> es la hipotenusa del triángulo, como se muestra en <a href="ch05.xhtml#ch5fig5">la Figura 5-5</a>. En <span class="ent">➋,</span> estamos resolviendo para <em>c</em>, que está representada por la variable <span class="literal">distancia</span>.</p>
+<p class="indent">Guarda <a href="ch05.xhtml#ch5ex5">el listado 5-5</a> como <em>distanciaFromHome.py</em> en la carpeta de <em>booleanos</em>.</p>
+<div class="image"><img alt="image" src="../images/f05-05.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch5fig5"></a><em>Figura 5-5: Un triángulo rectángulo</em></p>
+<p class="indent">Para terminar el programa, utiliza un comparador menor o igual que para comprobar si el valor de la variable <span class="literal">distancia</span> es menor o igual que 40 y envía el resultado al chat con el formato <span class="literal">"Tu casa está cerca: Verdadero/Falso"</span> <span class="ent">➌.</span> Utiliza la concatenación para combinar la cadena con el resultado de la comparación. Actualiza el contenido de la función <span class="literal">postToChat()</span> <span class="ent">➌</span> para mostrar la cadena.</p>
+<p class="indent">Prueba el programa. Cuando estés a menos de 40 manzanas de tu casa, deberías recibir un mensaje <span class="literal">Verdadero</span>; cuando no estés a menos de 40 manzanas, deberías ver un mensaje <span class="literal">Falso</span>. <a href="ch05.xhtml#ch5fig6">La Figura 5-6</a> muestra el programa en funcionamiento.</p>
+<div class="image"><img alt="image" src="../images/f05-06.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch5fig6"></a><em>Figura 5-6: Definitivamente, estoy a menos de 40 manzanas de mi casa. De hecho, ¡ahí está la puerta principal!</em></p>
+<h3 class="h3" id="ch05lev1sec04"><strong><span class="blue1">Operadores lógicos</span></strong></h3>
+<p class="noindent">A menudo es necesario combinar dos o más comparadores en los programas. Puede que quieras determinar si dos condiciones son <span class="literal">Verdaderas</span>: por ejemplo, puede que quieras un coche que sea rojo <em>y</em> cueste menos de 10.000 $.</p>
+<p class="indent">Para combinar dos o más comparadores, utilizas <em>operadores lóg</em>icos. Al igual que los comparadores, puedes utilizar operadores lógicos en cualquier lugar en el que utilizarías un valor booleano. Los operadores lógicos también se llaman <em>operadores booleanos</em>. Conocerás tres tipos de operadores lógicos: <span class="literal">y</span>, <span class="literal">o</span>, y <span class="literal">no</span>.</p>
+<h4 class="h4" id="ch05lev2sec10"><span epub:type="pagebreak" id="page_97"></span><strong><span class="blue1">y</span></strong></h4>
+<p class="noindent">Utiliza el operador <span class="literal">y</span> cuando quieras comprobar si dos comparaciones son ambas <span class="literal">Verdaderas</span>. Para que una expresión con un operador <span class="literal">y</span> sea <span class="literal">Verdadera</span>, ambas comparaciones deben ser <span class="literal">Verdaderas</span>. Si alguna de las comparaciones es <span class="literal">Falsa</span>, la expresión devolverá <span class="literal">Falso</span>.</p>
+<p class="indent">Supongamos que quiero averiguar si una persona tiene más de 18 años y es propietaria de un coche. Podría escribir el siguiente programa:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> age = 21<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> ownsCar = <span class="orange">True</span><br translate="no"/><span class="mer">&gt;&gt;&gt;</span> age &gt; 18<span class="ent">➊</span> <span class="orange">and</span> ownsCar == <span class="orange">True</span><span class="ent">➋</span><br translate="no"/><span class="blue1">True</span></p>
+<p class="indent">Aquí estamos combinando dos comparadores en <span class="ent">➊</span> y <span class="ent">➋</span> con <span class="literal">y</span>. Como la edad de la persona es superior a 18<span class="literal">(edad &gt; 18</span> se evalúa como <span class="literal">Verdadero</span>) y posee un coche (poseeCoche<span class="literal">== Verdadero</span>), toda la expresión <span class="literal">edad &gt; 18 y poseeCoche == Verdadero</span> se evalúa como <span class="literal">Verdadero</span>.</p>
+<p class="indent">Si una de estas comparaciones fuera <span class="literal">Falsa</span>, la expresión se evaluaría como <span class="literal">Falsa</span>. Supongamos que la persona no tiene coche pero es mayor de 18 años:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> age = 25<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> ownsCar = <span class="orange">False</span><br translate="no"/><span class="mer">&gt;&gt;&gt;</span> age &gt; 18 <span class="orange">and</span> ownsCar == <span class="orange">True</span><br translate="no"/><span class="blue1">False</span></p>
+<p class="indent">Aquí, <span class="literal">edad &gt; 18</span> se evalúa como <span class="literal">Verdadero</span> y cochepropio <span class="literal">==</span> Verdadero se evalúa como <span class="literal">Falso</span>, con lo que toda la expresión sería <span class="literal">Falsa</span>.</p>
+<p class="indent"><a href="ch05.xhtml#ch05tab01">La Tabla 5-1</a> resume los resultados de todas las combinaciones booleanas posibles y los resultados al utilizar el operador <span class="literal">y</span>.</p>
+<p class="tablet"><a id="ch05tab01"></a><strong>Tabla 5-1:</strong> Las distintas combinaciones de <span class="literal">Verdadero</span> y <span class="literal">Falso</span> con el operador <span class="literal">y</span> </p>
+<table class="topbot">
+<thead>
+<tr>
+<td class="table_th" style="vertical-align: top;"><p class="table"><strong>Comparación A</strong></p></td>
+<td class="table_th" style="vertical-align: top;"><p class="table"><strong>Comparación B</strong></p></td>
+<td class="table_th" style="vertical-align: top;"><p class="table"><strong>A y B</strong></p></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align: top;"><p class="table">TRUE</p></td>
+<td style="vertical-align: top;"><p class="table">TRUE</p></td>
+<td style="vertical-align: top;"><p class="table">VERDADERO</p></td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><p class="table">VERDADERO</p></td>
+<td style="vertical-align: top;"><p class="table">FALSO</p></td>
+<td style="vertical-align: top;"><p class="table">FALSO</p></td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><p class="table">FALSO</p></td>
+<td style="vertical-align: top;"><p class="table">TRUE</p></td>
+<td style="vertical-align: top;"><p class="table">FALSE</p></td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><p class="table">FALSE</p></td>
+<td style="vertical-align: top;"><p class="table">FALSE</p></td>
+<td style="vertical-align: top;"><p class="table">FALSO</p></td>
+</tr>
+</tbody>
+</table>
+<h4 class="h4a" id="ch05lev2sec11"><strong>Misión nº 22: ¿Estoy totalmente sumergido?</strong></h4>
+<p class="noindent">En la Misión nº 18<a href="ch05.xhtml#page_89">(página 89</a>), comprobaste si el jugador estaba nadando. El programa devolvía <span class="literal">Verdadero</span> o <span class="literal">Falso</span> dependiendo de si el bloque en la posición actual del jugador era igual al agua. Eso te decía si las piernas del jugador estaban bajo el agua, pero daría el mismo resultado si la cabeza del jugador estaba o no bajo el agua. ¿Cómo comprobar si tanto las piernas como la cabeza del jugador estaban bajo el agua?</p>
+<p class="indent"><span epub:type="pagebreak" id="page_98"></span>Con unos sencillos cambios para incluir un operador <span class="literal">y</span>, el programa nadando <em>.</em> py puede comprobar si las piernas y la cabeza del jugador están bajo el agua. Abre <em>nadando</em>.py y guárdalo como <em>bajoelagua.py</em>.</p>
+<p class="indent">Haz los siguientes cambios para que el programa compruebe si el jugador está completamente bajo el agua:</p>
+<ol>
+<li class="noindent"><p class="list">Añade una segunda variable que compruebe el tipo de bloque en la posición <span class="literal">y</span> <span class="literal">+ 1</span> del jugador. Esta variable almacena el tipo de bloque en la cabeza del jugador. Llama a esta variable <span class="literal">bloqueTipo2</span>.</p></li>
+<li class="noindent"><p class="list">Comprueba si <span class="literal">blockType</span> es igual a agua y si <span class="literal">blockType2</span> es igual a agua.</p></li>
+<li class="noindent"><p class="list">Publica el resultado de la comparación en el chat con este mensaje <span class="literal">"El jugador está bajo el agua: Verdadero/Falso"</span>.</p></li>
+</ol>
+<div class="note">
+<p class="notet"><strong><span class="hints">CONSEJO</span></strong></p>
+<p class="notep"><em>Para comprobar</em> si <span class="literal"><span class="codeitalic">bloqueTipo</span></span> <em>y</em> <span class="literal"><span class="codeitalic">bloqueTipo2</span></span> son iguales a agua <em>, puedes utilizar el</em> <em>operador y. Primero, comprueba</em> si <span class="literal"><span class="codeitalic">bloqueTipo</span></span> es igual a agua <em>con la expresión</em> <span class="literal"><span class="codeitalic">bloqueTipo == 9</span></span><em>.</em><em> En segundo</em> lugar, comprueba si <span class="literal"><span class="codeitalic">bloqueTipo2</span></span> es igual a agua con <em>la</em> expresión <span class="literal"><span class="codeitalic">bloqueTipo2 ==</span></span> 9<em>.</em><em> Para combinar las dos, pon un</em> <em>operador</em> <span class="literal"><span class="codeitalic">y</span></span> <em>en medio, así:</em> bloqueTipo <span class="literal"><span class="codeitalic">== 9 y bloqueTipo2 == 9</span></span>.</p>
+</div>
+<p class="indent">Cuando ejecutes el programa, asegúrate de que funciona en los tres casos (cuando el jugador está por encima del agua, cuando sólo las piernas del jugador están en el agua y cuando están completamente debajo del agua). <a href="ch05.xhtml#ch5fig7">La Figura 5-7</a> muestra un ejemplo de funcionamiento del programa.</p>
+<div class="image"><img alt="image" src="../images/f05-07.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch5fig7"></a><em>Figura 5-7: El jugador está bajo el agua, corriendo por el fondo marino.</em></p>
+<div class="sidebar">
+<p class="sidebart" id="ch05sb02"><span epub:type="pagebreak" id="page_99"></span><strong>OBJETIVO EXTRA: ¿ESTOY EN UN TÚNEL?</strong></p>
+<p class="noindent">Comprueba si el jugador está o no en un túnel de tierra o de adoquines. Para ello, tendrás que comprobar los bloques situados por encima y por debajo del jugador.</p>
+</div>
+<h4 class="h4" id="ch05lev2sec12"><strong><span class="blue1">o</span></strong></h4>
+<p class="noindent">El operador <span class="literal">o</span> funciona de forma diferente a <span class="literal">y</span>. Cuando una o ambas comparaciones son <span class="literal">Verdaderas</span>, la expresión <span class="literal">o</span> devolverá <span class="literal">Verdadero</span>. Mientras una de las comparaciones sea <span class="literal">Verdadera</span>, la expresión seguirá siendo <span class="literal">Verdadera</span>. Pero si ninguna de las comparaciones es <span class="literal">Verdadera</span>, la expresión se evaluará como <span class="literal">Falsa</span>.</p>
+<p class="indent">Supongamos que quiero adoptar un gato de color negro o naranja. Podría utilizar el código siguiente para obtener la entrada del usuario, y luego ver si el valor de la cadena es <span class="literal">"negro"</span> o <span class="literal">"naranja"</span>:</p>
+<p class="programs" translate="no">catColor = <span class="rose">input</span>(<span class="green">"What color is the cat?"</span>)<br translate="no"/>myCatNow = catColor == <span class="green">"black"</span> <span class="orange">or</span> catColor == <span class="green">"orange"</span><br translate="no"/><span class="rose">print</span>(<span class="green">"Adopt this cat: "</span> + <span class="rose">str</span>(myCatNow))</p>
+<p class="indent">Mientras el <span class="literal">color del gato</span> sea <span class="literal">"</span> negro" o <span class="literal">"naranja"</span>, lo adoptaré. Pero si es de otro color, como "gris <span class="literal">"</span>, <span class="literal">miColorGato</span> sería <span class="literal">Falso</span> y no adoptaría al gato.</p>
+<p class="indent"><a href="ch05.xhtml#ch05tab02">La Tabla 5-2</a> contiene todas las combinaciones posibles y los resultados de utilizar el operador <span class="literal">o</span> con booleanos.</p>
+<p class="tablet"><a id="ch05tab02"></a><strong>Tabla 5-2:</strong> Las distintas combinaciones de <span class="literal">Verdadero</span> y <span class="literal">Falso</span> con el operador <span class="literal">o</span> </p>
+<table class="topbot">
+<thead>
+<tr>
+<td class="table_th" style="vertical-align: top;"><p class="table"><strong>Comparación A</strong></p></td>
+<td class="table_th" style="vertical-align: top;"><p class="table"><strong>Comparación B</strong></p></td>
+<td class="table_th" style="vertical-align: top;"><p class="table"><strong>A o B</strong></p></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align: top;"><p class="table">TRUE</p></td>
+<td style="vertical-align: top;"><p class="table">TRUE</p></td>
+<td style="vertical-align: top;"><p class="table">VERDADERO</p></td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><p class="table">VERDADERO</p></td>
+<td style="vertical-align: top;"><p class="table">FALSO</p></td>
+<td style="vertical-align: top;"><p class="table">VERDADERO</p></td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><p class="table">FALSO</p></td>
+<td style="vertical-align: top;"><p class="table">VERDADERO</p></td>
+<td style="vertical-align: top;"><p class="table">TRUE</p></td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><p class="table">FALSO</p></td>
+<td style="vertical-align: top;"><p class="table">FALSO</p></td>
+<td style="vertical-align: top;"><p class="table">FALSO</p></td>
+</tr>
+</tbody>
+</table>
+<h4 class="h4a" id="ch05lev2sec13"><strong>Misión nº 23: ¿Estoy en un árbol?</strong></h4>
+<p class="noindent">Los programas que has creado hasta ahora en este capítulo han mostrado <span class="literal">Verdadero</span> o <span class="literal">Falso</span> en función de si el jugador está sobre o en un tipo de bloque concreto. Pero, ¿y si quisieras comprobar si el jugador está en un árbol? ¿Cómo lo harías? Como los árboles están hechos de madera y hojas, tendrías que comprobar si el jugador está sobre madera <em>u</em> hojas.</p>
+<p class="indent">Escribamos un programa. Abre de nuevo <em>nadando.py</em> y guárdalo como un nuevo programa llamado <em>enÁrbol.py</em>.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_100"></span>Cambia el programa para que compruebe el tipo de bloque que está un bloque por debajo del jugador. Querrás utilizar el operador <span class="literal">o</span> para comprobar si el bloque que está debajo del jugador es de hojas (tipo de bloque 18) o de madera (tipo de bloque 11), y luego enviar el resultado al chat.</p>
+<p class="indent">Recuerda que puedes comprobar el bloque que hay debajo del jugador utilizando <span class="literal">y = y - 1</span>.</p>
+<div class="note">
+<p class="notet"><strong><span class="notes">NOTA</span></strong></p>
+<p class="notep"><em>Aunque los árboles y las hojas tienen colores diferentes, todos los árboles comparten el mismo ID de bloque, y todas las hojas comparten el mismo ID de bloque. (Las únicas excepciones son la madera y las hojas de acacia y roble oscuro, que son un tipo de bloque diferente. Por ahora, ignoremos la Acacia y el Roble Oscuro). El color se establece utilizando un segundo valor, que conocerás en un capítulo posterior.</em></p>
+</div>
+<p class="indent">Cuando ejecutes el programa, deberías ver la misma salida que en la <a href="ch05.xhtml#ch5fig8">Figura 5</a>-8.</p>
+<div class="image"><img alt="image" src="../images/f05-08.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch5fig8"></a><em>Figura 5-8: Estoy en un árbol.</em></p>
+<h4 class="h4" id="ch05lev2sec14"><strong><span class="blue1">not</span></strong></h4>
+<p class="noindent">El operador <span class="literal">not</span> es bastante diferente de los operadores <span class="literal">and</span> y <span class="literal">or</span>. Se utiliza sobre un único valor booleano o comparación y simplemente cambia su valor por el opuesto.</p>
+<p class="indent">En otras palabras, <span class="literal">not</span> cambia <span class="literal">Verdadero</span> a <span class="literal">Falso</span> y <span class="literal">Falso</span> a <span class="literal">Verdadero</span>:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> <span class="orange">not True</span><br translate="no"/><span class="blue1">False</span><br translate="no"/><span class="mer">&gt;&gt;&gt;</span> <span class="orange">not False</span><br translate="no"/><span class="blue1">True</span></p>
+<p class="indent"><span epub:type="pagebreak" id="page_101"></span>El operador <span class="literal">no</span> es útil cuando empiezas a combinarlo con otros operadores lógicos. Asignemos el valor de <span class="literal">tiempoParaCama</span> si <span class="literal">no tienes hambre</span> y tienes <span class="literal">sueño</span>.</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> hungry = <span class="orange">False</span><br translate="no"/><span class="mer">&gt;&gt;&gt;</span> sleepy = <span class="orange">True</span><br translate="no"/><span class="mer">&gt;&gt;&gt;</span> timeForBed = <span class="orange">not</span> hungry <span class="orange">and</span> sleepy<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> <span class="rose">print</span>(timeForBed)<br translate="no"/><span class="blue1">True</span></p>
+<p class="indent">El operador <span class="literal">no</span> sólo se aplica al booleano al que precede. Aquí invierte el valor de la variable <span class="literal">hambriento</span> y deja solo el de la variable <span class="literal">somnoliento</span>. Como antes pusimos <span class="literal">hambriento</span> en <span class="literal">Falso</span>, escribir no <span class="literal">hambriento</span> cambia ahora el valor a <span class="literal">Verdadero</span>. El valor de <span class="literal">somnoliento</span> es <span class="literal">Verdadero</span>. Ambos valores son ahora <span class="literal">Verdadero</span>, por lo que <span class="literal">tiempoParaCama</span> es <span class="literal">Verdadero</span>.</p>
+<h4 class="h4a" id="ch05lev2sec15"><strong>Misión 24: ¿Este bloque no es un melón?</strong></h4>
+<p class="noindent">Tienes hambre y quieres saber si tienes comida en casa. Tu comida favorita es el melón, que siempre guardas en el mismo espacio de tu casa. Pero no recuerdas si te queda melón, y tienes que decidir si vas a por comida de camino a casa.</p>
+<p class="indent">Por suerte, ¡estás aprendiendo Python! Con un poco de cerebro, puedes escribir un programa Python para comprobar si tienes un melón en casa.</p>
+<p class="indent">En esta misión, crearás un programa que diga si necesitas o no encontrar comida antes de volver a tu casa de Minecraft. El programa comprobará si hay un melón en determinadas coordenadas. Las coordenadas que comprobarás dependen de ti: pueden estar en tu casa, en tu granja o en cualquier lugar donde decidas guardar algún melón. Colocar un melón en esas coordenadas también depende de ti.</p>
+<p class="indent">Copia <a href="ch05.xhtml#ch5ex6">el Listado 5-6</a> y guárdalo como <em>noAMelón.py</em>.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>notAMelon.py</em></span></p>
+<p class="programs" translate="no"> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>   mc = Minecraft.create()<br translate="no"/><br translate="no"/>   x = 10<br translate="no"/>   y = 11<br translate="no"/>   z = 12<br translate="no"/><span class="ent">➊</span> melon = 103<br translate="no"/><span class="ent">➋</span> block = mc.getBlock(x, y, z)<br translate="no"/><br translate="no"/><span class="ent">➌</span> noMelon = <span class="red"># Check the block is not a melon</span><br translate="no"/><br translate="no"/><span class="ent">➍</span> mc.postToChat(<span class="green">"You need to get some food: "</span> + <span class="rose">str</span>(noMelon))</p>
+<p class="examplet"><a id="ch5ex6"></a><em>Listado 5-6: El inicio del código para comprobar si hay un melón en un lugar concreto</em></p>
+<p class="indent"><span epub:type="pagebreak" id="page_102"></span>El código sirve para comprobar si el bloque que hay en una posición concreta es un bloque melón. He incluido una variable llamada <span class="literal">melón</span> que almacena el ID de bloque de un melón (103) <span class="ent">➊,</span> y he llamado al método <span class="literal">getBlock()</span> y almacenado el resultado en una variable llamada <span class="literal">bloque</span> <span class="ent">➋.</span> Para completar este programa, tienes que terminar la línea en <span class="ent">➌</span> que comprueba si la variable <span class="literal">melón</span> no es igual a la variable <span class="literal">bloque</span>. El resultado debe almacenarse en la variable <span class="literal">noMelon</span> para que pueda enviarse al chat de Minecraft en la última línea <span class="ent">➍.</span></p>
+<p class="indent">Puedes escribir la comprobación <span class="ent">➌</span> para ver si las variables <span class="literal">melón</span> y <span class="literal">bloque</span> no son iguales de dos formas: puedes utilizar el comparador no igual a o el operador lógico <span class="literal">no</span>. Aunque el programa funcionará de cualquier forma, prueba a utilizar el operador <span class="literal">no</span> lógico para este programa.</p>
+<p class="indent">Ejecuta el programa cuando hayas hecho los cambios. El resultado debería parecerse a <a href="ch05.xhtml#ch5fig9">la Figura 5-9</a>.</p>
+<div class="image"><img alt="image" src="../images/f05-09.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch5fig9"></a><em>Figura 5-9: Hay un melón en mi granja, así que no necesito encontrar otro alimento.</em></p>
+<div class="sidebar">
+<p class="sidebart" id="ch05sb03"><strong>OBJETIVO EXTRA: UNA DESPENSA BIEN SURTIDA</strong></p>
+<p class="noindent">Cambia el tipo de bloque que comprueba el programa. Podrías comprobar si crece maíz en tu granja o si alguien ha robado la puerta de tu casa.</p>
+</div>
+<h4 class="h4" id="ch05lev2sec16"><strong><span class="blue1">Orden de los operadores lógicos</span></strong></h4>
+<p class="noindent">Puedes combinar tantos operadores lógicos como quieras en una sola sentencia. Por ejemplo, aquí tienes una combinación bastante elegante utilizando <span class="literal">y</span>, <span class="literal">o</span>, y <span class="literal">no</span>:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> <span class="orange">True and not False or False</span><br translate="no"/><span class="blue1">True</span></p>
+<p class="indent"><span epub:type="pagebreak" id="page_103"></span>Este código se evalúa como <span class="literal">Verdadero</span>. ¿Te sorprende? En este ejemplo, la parte no <span class="literal">Falsa</span> de la sentencia se evalúa primero a <span class="literal">Verdadero</span>. Esto equivale a</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> <span class="orange">True and True or False</span><br translate="no"/><span class="blue1">True</span></p>
+<p class="indent">A continuación se evalúa la <span class="literal">y</span>, y Verdadero <span class="literal">y Verdad</span> ero se evalúa a <span class="literal">Verdadero</span>, lo que equivale a:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> <span class="orange">True or False</span><br translate="no"/><span class="blue1">True</span></p>
+<p class="indent">Por último, se evalúa la <span class="literal">o</span>, por lo que Verdadero <span class="literal">o</span> Falso se convierte en <span class="literal">Verdadero</span>.</p>
+<p class="indent">Cuando Python evalúa operadores lógicos, utiliza un orden determinado. Si te equivocas en el orden, ¡puedes obtener un resultado que no esperabas! Esto es lo que Python evalúa primero, segundo y tercero:</p>
+<ol>
+<li class="noindent"><p class="list"><span class="literal">no</span></p></li>
+<li class="noindent"><p class="list"><span class="literal">y</span></p></li>
+<li class="noindent"><p class="list"><span class="literal">o</span></p></li>
+</ol>
+<p class="indent">Practica creando sentencias con operadores lógicos en IDLE y comprueba si puedes adivinar el resultado de cada una.</p>
+<h4 class="h4" id="ch05lev2sec17"><strong><span class="blue1">¿Está mi número entre otros dos?</span></strong></h4>
+<p class="noindent">A menudo, querrás comprobar si un valor es menor que otro y mayor que otro. Imaginemos que quieres asegurarte de que tienes entre 10 y 20 lobos, porque te encantan los lobos y quieres más de 10, pero 20 o más podrían causar problemas, ya que te quedarías sin comida. Podrías comprobar esta condición utilizando un operador <span class="literal">y</span>:</p>
+<p class="programs" translate="no">wolves = <span class="rose">input</span>(<span class="green">"Enter the number of wolves: "</span>)<br translate="no"/>enoughWolves = wolves &gt; 10 <span class="orange">and</span> wolves &lt; 20<br translate="no"/><span class="rose">print</span>(<span class="green">"Enough wolves: "</span> + <span class="rose">str</span>(enoughWolves))</p>
+<p class="indent">Pero también podrías hacerlo de otra forma. En lugar de utilizar el operador <span class="literal">y</span>, escribe la variable una vez en medio de dos comparaciones:</p>
+<p class="programs" translate="no">wolves = <span class="rose">input</span>(<span class="green">"Enter the number of wolves: "</span>)<br translate="no"/>enoughWolves = 10 &lt; wolves &lt; 20<br translate="no"/><span class="rose">print</span>(<span class="green">"Enough wolves: "</span> + <span class="rose">str</span>(enoughWolves))</p>
+<p class="indent">Si ejecutas cualquiera de estos programas e introduces un número entre 10 y 20, pero que no sea igual a ninguno de los dos, entonces <span class="literal">SuficienteLobos</span> será <span class="literal">Verdadero</span>. Puedes hacer lo mismo <span epub:type="pagebreak" id="page_104"></span>utilizando los operadores mayor que o igual a<span class="literal">(&gt;=</span>) y menor que o igual a<span class="literal">(&lt;=</span>):</p>
+<p class="programs" translate="no">wolves = <span class="rose">input</span>(<span class="green">"Enter the number of wolves: "</span>)<br translate="no"/>enoughWolves = 10 &lt;= wolves &lt;= 20<br translate="no"/><span class="rose">print</span>(<span class="green">"Enough wolves: "</span> + <span class="rose">str</span>(enoughWolves))</p>
+<p class="indent">En este caso, introducir 10 ó 20 también daría a <span class="literal">suficientesLobos</span> un valor de <span class="literal">Verdadero</span>.</p>
+<h4 class="h4a" id="ch05lev2sec18"><strong>Misión nº 25: ¿Estoy en casa?</strong></h4>
+<p class="noindent">Con código Python, puedes hacer que ocurran acciones interesantes cuando entres en una determinada zona del mapa. Puedes hacer que se abra una puerta secreta cuando el jugador entre en un bloque concreto, o puedes atraparlo en una caja cuando pase por encima de una trampa. En esta misión, te mostraré cómo detectar si hay alguien en tu casa de Minecraft.</p>
+<p class="indent">En la Misión 8<a href="ch03.xhtml#page_59">(página 59</a>), creaste un programa que construye automáticamente las paredes, el techo y el suelo de un edificio. Guardaste el programa como <em>edificio.py</em> en la carpeta <em>matemáticas</em>. Abre este programa.</p>
+<p class="indent">Lee el código del programa edificio <em>.</em> py y anota los valores de las variables <span class="literal">anchura</span>, <span class="literal">altura</span> y <span class="literal">longitud</span> (por defecto los valores eran <span class="literal">10</span>, <span class="literal">5</span> y <span class="literal">6</span>, respectivamente). Anota también las coordenadas en las que te encuentras actualmente. Ejecuta el programa de construcción para construir una casa.</p>
+<p class="indent">Ahora que has creado un edificio, podemos escribir un programa como el Listado <a href="ch05.xhtml#ch5ex7">5-7</a> que compruebe si el jugador está dentro de él.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>insideHouse.py</em></span></p>
+<p class="programs" translate="no"> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>   mc = minecraft.create()<br translate="no"/><br translate="no"/><span class="ent">➊</span> buildX =<br translate="no"/>   buildY =<br translate="no"/>   buildZ =<br translate="no"/><span class="ent">➋</span> width = 10<br translate="no"/>   height = 5<br translate="no"/>   length = 6<br translate="no"/><br translate="no"/>   pos = mc.player.getTilePos()<br translate="no"/>   x = pos.x<br translate="no"/>   y = pos.y<br translate="no"/>   z = pos.z<br translate="no"/><br translate="no"/><span class="ent">➌</span> inside = buildX &lt; x &lt; buildX + width <span class="orange">and</span></p>
+<p class="examplet"><a id="ch5ex7"></a><em>Listado 5-7: El inicio del programa para comprobar si el jugador está dentro de su casa</em></p>
+<p class="indent">Se supone que el Listado<a href="ch05.xhtml#ch5ex7">5-7</a> comprueba que la coordenada x del jugador está dentro del edificio creado por <em>edificio.py, ¡pero</em> el programa no está terminado! Tu trabajo consiste en asegurarte de que el programa comprueba también las coordenadas y y z con las coordenadas de la casa que has construido con el programa edificio <em>.</em> py.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_105"></span>Copia <a href="ch05.xhtml#ch5ex7">el Listado 5-7</a> en un nuevo archivo y guárdalo como <em>casainterior.py</em>. Completarás el programa para que compruebe si el jugador está dentro del edificio.</p>
+<p class="indent">Para completar el programa, haz lo siguiente</p>
+<ol>
+<li class="noindent"><p class="list">Añade las coordenadas del edificio (son las coordenadas en las que estabas cuando ejecutaste el programa <em>edificio.</em> py) <span class="ent">➊.</span></p></li>
+<li class="noindent"><p class="list">Corrige las variables <span class="literal">anchura</span>, <span class="literal">altura</span> y <span class="literal">longitud</span> si son diferentes de las utilizadas en tu programa edificio <em>.</em> py <span class="ent">➋.</span></p></li>
+<li class="noindent"><p class="list">Completa la comparación de la variable <span class="literal">inside</span> para que compruebe si las coordenadas del jugador están dentro del edificio. La primera parte, comprobar si la posición x está en la casa, ya la has hecho <span class="ent">➌.</span> Tienes que añadir las comparaciones para las posiciones y y z. Las expresiones son similares a la que he incluido para la posición x<span class="literal">(construirX &lt; x &lt; construirX + anchura</span>).</p></li>
+<li class="noindent"><p class="list">Publica en el chat el valor de la variable <span class="literal">interior</span>.</p></li>
+<li class="noindent"><p class="list">Cuando hayas hecho los cambios, guarda y ejecuta el programa. Deberías ver una salida similar a la de <a href="ch05.xhtml#ch5fig10">la Figura 5-10</a>.</p>
+<div class="image"><img alt="image" src="../images/f05-10.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch5fig10"></a><em>Figura 5-10: Estoy en mi dormitorio, que efectivamente está dentro de mi casa.</em></p></li>
+</ol>
+<h3 class="h3" id="ch05lev1sec05"><strong><span class="blue1">Lo que has aprendido</span></strong></h3>
+<p class="noindent">En este capítulo has utilizado booleanos, comparadores y operadores lógicos para responder a preguntas en tus programas. En <a href="ch06.xhtml#ch06">el Capítulo 6</a>, escribirás programas que tomen decisiones basadas en las respuestas a estas preguntas. Comprobarás si una condición es verdadera o no, y le dirás al programa que ejecute cierto código si la condición es verdadera o que ejecute un código diferente si es falsa. En el <a href="ch07.xhtml#ch07">Capítulo 7</a>, tus programas seguirán ejecutando un trozo de código mientras una condición sea verdadera y se detendrán si la condición pasa a ser falsa. Éste es el verdadero poder de los booleanos y los comparadores. Te ayudan a controlar qué código se ejecuta en tu programa y exactamente cuándo se ejecuta el código.<span epub:type="pagebreak" id="page_106"></span></p>
+</body>
+</html>

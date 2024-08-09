@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch08lev1sec11">
+  Inicializar un objeto </h3>
+<p class="noindent">
+  A veces, al crear un objeto, queremos establecer algunos valores (también llamados <em class="calibre7">propiedades </em>) para su uso posterior. Cuando <em class="calibre7">inicializamos </em>un objeto, lo estamos preparando para ser utilizado. </p>
+<p class="indent">
+  Por ejemplo, supongamos que queremos establecer el número de manchas de nuestros objetos jirafa cuando se crean (o inicializan). Para ello, creamos una función <span class="literal1" translate="no">
+   __init__
+  </span>(fíjate en los dos caracteres de subrayado a cada lado, para un total de cuatro). La función <span class="literal1" translate="no">
+   init
+  </span>establece las propiedades de un objeto cuando éste se crea por primera vez. Python llamará automáticamente a esta función cuando creemos un nuevo objeto. A continuación te explicamos cómo utilizarla. </p>
+<span id="page_110">
+</span>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> Giraffe(Mammal):
+        <span class="orange">def</span> __init__(self, spots):
+            self.giraffe_spots = spots
+</pre>
+<p class="indent">
+  En primer lugar, definimos la función <span class="literal1" translate="no">
+   __init__
+  </span>con los parámetros <span class="literal1" translate="no">
+   self
+  </span>y <span class="literal1" translate="no">
+   spots
+  </span>. Al igual que las otras funciones que hemos definido en la clase, la función <span class="literal1" translate="no">
+   __init__
+  </span>también necesita tener <span class="literal1" translate="no">
+   self
+  </span>como primer parámetro. A continuación, establecemos el parámetro <span class="literal1" translate="no">
+   spots
+  </span>en una variable de objeto (su propiedad) llamada <span class="literal1" translate="no">
+   giraffe_spots
+  </span>utilizando el parámetro <span class="literal1" translate="no">
+   self
+  </span>. Puedes pensar que esta línea de código dice: "Toma el valor del parámetro <span class="literal1" translate="no">
+   spots
+  </span>y guárdalo para más tarde (utilizando la variable de objeto <span class="literal1" translate="no">
+   giraffe_spots
+  </span>)". Del mismo modo que una función de una clase puede llamar a otra función utilizando el parámetro <span class="literal1" translate="no">
+   self
+  </span>, también se accede a las variables de la clase utilizando <span class="literal1" translate="no">
+   self
+  </span>. </p>
+<p class="indent">
+  A continuación, si creamos un par de nuevos objetos jirafa (llamados <span class="literal1" translate="no">
+   ozwald
+  </span>y <span class="literal1" translate="no">
+   gertrude
+  </span>) y mostramos su número de manchas, podrás ver la función de inicialización en acción: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> ozwald = Giraffe(100)
+<span class="brown">&gt;&gt;&gt;</span> gertrude = Giraffe(150)
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(ozwald.giraffe_spots)
+<span class="blue1">100</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(gertrude.giraffe_spots)
+<span class="blue1">150</span>
+</pre>
+<p class="indent">
+  En primer lugar, creamos una instancia de la clase <span class="literal1" translate="no">
+   Giraffe
+  </span>utilizando el valor 100 como parámetro. Esto tiene el efecto de llamar a la función <span class="literal1" translate="no">
+   __init__
+  </span>y utilizar 100 para el valor del parámetro <span class="literal1" translate="no">
+   spots
+  </span>. A continuación, creamos otra instancia de la clase <span class="literal1" translate="no">
+   Giraffe
+  </span>con un valor de 150. Por último, imprimimos la variable de objeto <span class="literal1" translate="no">
+   giraffe_spots
+  </span>para cada uno de nuestros objetos jirafa, y vemos que los resultados son 100 y 150. ¡Ha funcionado! </p>
+<p class="indent">
+  Recuerda que cuando creamos un objeto de una clase, como <span class="literal1" translate="no">
+   ozwald
+  </span>en este ejemplo, podemos referirnos a sus variables o funciones utilizando el operador punto y el nombre de la variable o función que queremos utilizar (por ejemplo, <span class="literal1" translate="no">
+   ozwald.giraffe_spots
+  </span>). Pero cuando creamos funciones dentro de una clase, nos referimos a esas mismas variables (y a otras funciones) utilizando el parámetro <span class="literal1" translate="no">
+   self
+  </span>( <span class="literal1" translate="no">
+   self.giraffe_spots
+  </span>). </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch08_11.html">anterior</a><a href="ch08.html">Subtema 12 de 14: (Ver todo)</a><a href="ch08_13.html">siguiente</a><br/></p>
+<br/><a href="ch08_12.docx" target="_blank"></a></footer>
+</body>
+</html>

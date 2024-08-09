@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c15-0012">Elegir direcciones</h3>
+<p class="BodyFirst">Utilizaremos el método <code translate="no">fill_walk()</code> para determinar la secuencia completa de puntos del recorrido. Añade este método a <em translate="no">random_walk.py</em>:</p>
+<p class="CodeLabel" translate="no"><b>random_walk.py</b></p>
+<pre translate="no"><code translate="no"><code translate="no">    </code>def fill_walk(self):
+<code translate="no">        </code>"""Calculate all the points in the walk."""
+
+<span epub:type="pagebreak" id="Page_313" title="313"></span>   <code translate="no">    </code> # Keep taking steps until the walk reaches the desired length.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> <code translate="no">    </code>    while len(self.x_values) &lt; self.num_points:
+
+    <code translate="no">    </code>    # Decide which direction to go, and how far to go.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>   <code translate="no">    </code>      x_direction = choice([1, -1])
+    <code translate="no">    </code>    x_distance = choice([0, 1, 2, 3, 4])
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     <code translate="no">    </code>    x_step = x_direction * x_distance
+
+     <code translate="no">    </code>   y_direction = choice([1, -1])
+    <code translate="no">    </code>    y_distance = choice([0, 1, 2, 3, 4])
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>      <code translate="no">    </code>   y_step = y_direction * y_distance
+
+     <code translate="no">    </code>   # Reject moves that go nowhere.
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>      <code translate="no">    </code>   if x_step == 0 and y_step == 0:
+     <code translate="no">    </code>       continue
+
+     <code translate="no">    </code>   # Calculate the new position.
+<span aria-label="annotation6" class="CodeAnnotationHang">❻</span>      <code translate="no">    </code>   x = self.x_values[-1] + x_step
+    <code translate="no">    </code>    y = self.y_values[-1] + y_step
+
+     <code translate="no">    </code>   self.x_values.append(x)
+    <code translate="no">    </code>    self.y_values.append(y)</code></pre>
+<p>Primero establecemos un bucle que se ejecuta hasta que el paseo se llena con el número correcto de puntos <span aria-label="annotation1" class="CodeAnnotation">❶.</span> La parte principal de <code translate="no">fill_walk()</code> le dice a Python cómo simular cuatro decisiones aleatorias: ¿Irá el paseo hacia la derecha o hacia la izquierda? ¿Qué distancia recorrerá en esa dirección? ¿Irá hacia arriba o hacia abajo? ¿Qué distancia recorrerá en esa dirección?</p>
+<p>Utilizamos <code translate="no">choice([1, -1])</code> para elegir un valor para <code translate="no">x_direction</code>, que devuelve 1 para el movimiento hacia la derecha o -1 para el movimiento hacia la izquierda <span aria-label="annotation2" class="CodeAnnotation">❷.</span> A continuación, <code translate="no">choice([0, 1, 2, 3, 4])</code> selecciona aleatoriamente una distancia para moverse en esa dirección. Asignamos este valor a <code translate="no">x_distance</code>. La inclusión de un 0 permite la posibilidad de pasos con movimiento a lo largo de un solo eje.</p>
+<p>Determinamos la longitud de cada paso en las direcciones <em translate="no">x-</em> y <em translate="no">y-</em>multiplicando la dirección del movimiento por la distancia elegida <span aria-label="annotation3" class="CodeAnnotation"></span> <span aria-label="annotation4" class="CodeAnnotation">❸❹.</span> Un resultado positivo para <code translate="no">x_step</code> significa moverse hacia la derecha, un resultado negativo significa moverse hacia la izquierda, y 0 significa moverse verticalmente. Un resultado positivo para <code translate="no">y_step</code> significa moverse hacia arriba, negativo significa moverse hacia abajo y 0 significa moverse horizontalmente. Si los valores tanto de <code translate="no">x_step</code> como de <code translate="no">y_step</code> son 0, el recorrido no va a ninguna parte; cuando esto ocurre, continuamos el bucle <span aria-label="annotation5" class="CodeAnnotation">❺.</span></p>
+<p>Para obtener el siguiente valor de <em translate="no">x</em> para el recorrido, sumamos el valor de <code translate="no">x_step</code> al último valor almacenado en <code translate="no">x_values</code> <span aria-label="annotation6" class="CodeAnnotation">❻</span> y hacemos lo mismo con los valores de <em translate="no">y</em>. Cuando tengamos las coordenadas del nuevo punto, las añadimos a <code translate="no">x_values</code> y <code translate="no">y_values</code>.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c15_17.html">anterior</a><a href="c15.html">Subtema 18 de 35: (Ver todo)</a><a href="c15_19.html">siguiente</a><br/></p>
+<br/><a href="c15_18.docx" target="_blank"></a></footer>
+</body>
+</html>

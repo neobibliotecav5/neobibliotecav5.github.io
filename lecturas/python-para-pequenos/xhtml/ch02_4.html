@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch02lev1sec3">
+<span class="calibre2" id="page_18">
+</span>
+  El orden de las operaciones </h3>
+<p class="noindent">
+  En los lenguajes de programación utilizamos paréntesis para controlar el orden de las operaciones. Una <em class="calibre7">operación </em>es cualquier cosa que utilice un operador. La multiplicación y la división tienen un orden superior a la suma y la resta, por lo que se realizan primero. En otras palabras, si introduces una ecuación en Python, la multiplicación o la división se realizan antes que la suma o la resta. </p>
+<p class="indent">
+  Por ejemplo, en la siguiente ecuación, los números 30 y 20 se multiplican primero, y el número 5 se añade a su producto: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> 5 + 30 * 20
+<span class="blue1">605</span></pre>
+<p class="indent">
+  Esta ecuación es otra forma de decir: "Multiplica 30 por 20, y luego añade 5 al resultado". El resultado es 605. Podemos cambiar el orden de las operaciones añadiendo paréntesis alrededor de los dos primeros números, así </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> (5 + 30) * 20
+<span class="blue1">700</span></pre>
+<p class="indent">
+  El resultado de esta ecuación es 700 (no 605) porque los paréntesis le dicen a Python que haga primero la operación dentro de los paréntesis, y luego haga la operación fuera de los paréntesis. Este ejemplo está diciendo: "Suma 5 a 30, y luego multiplica el resultado por 20". </p>
+<p class="indent">
+  Los paréntesis se pueden <em class="calibre7">anidar </em>, lo que significa que puede haber paréntesis dentro de paréntesis, como éste: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> ((5 + 30) * 20) / 10
+<span class="blue1">70.0</span></pre>
+<p class="indent">
+  En este caso, Python evalúa primero los paréntesis interiores, luego los exteriores y, por último, el operador de división. En otras palabras, esta ecuación está diciendo: "Suma 5 a 30, luego multiplica el resultado por 20 y divide ese resultado por 10". Esto es lo que ocurre </p>
+<ol class="calibre9">
+<li class="noindent1">
+   Sumando 5 a 30 se obtiene 35.  </li>
+<li class="noindent1">
+   Multiplicando 35 por 20 se obtiene 700.  </li>
+<li class="noindent1">
+   Dividiendo 700 por 10 se obtiene la respuesta final de 70.  </li>
+</ol>
+<p class="indent">
+<span id="page_19">
+</span>
+  Si no hubiéramos utilizado paréntesis, el resultado sería ligeramente distinto: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> 5 + 30 * 20 / 10
+<span class="blue1">65.0</span></pre>
+<p class="indent">
+  En este caso, 30 se multiplica primero por 20 (dando 600), y luego 600 se divide por 10 (dando 60). Por último, se añade 5 para obtener el resultado de 65. </p>
+<div class="note">
+<p class="notet">
+<strong class="calibre3"><span class="notes">NOTA </span></strong></p>
+<p class="notep">
+<em class="calibre7">Recuerda que la multiplicación y la división siempre van antes que la suma y la resta, a menos que se utilicen paréntesis para controlar el orden de las operaciones. </em></p>
+</div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch02_3.html">anterior</a><a href="ch02.html">Subtema 4 de 7: (Ver todo)</a><a href="ch02_5.html">siguiente</a><br/></p>
+<br/><a href="ch02_4.docx" target="_blank"></a></footer>
+</body>
+</html>

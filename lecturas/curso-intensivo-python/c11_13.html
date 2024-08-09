@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c11-0007">Responder a una prueba fallida</h3>
+<p class="BodyFirst">¿Qué haces cuando falla una prueba? Suponiendo que estés comprobando las condiciones correctas, una prueba superada significa que la función se comporta correctamente y una prueba fallida significa que hay un error en el nuevo código que has escrito. Así que cuando falle una prueba, no cambies la prueba. Si lo haces, puede que tus pruebas pasen, pero cualquier código que llame a tu función como lo hace la prueba dejará de funcionar de repente. En lugar de eso, arregla el código que está haciendo que falle la prueba. Examina los cambios que acabas de hacer en la función, y averigua cómo esos cambios rompieron el comportamiento deseado.</p>
+<p>En este caso, <code translate="no">get_formatted_name()</code> solía requerir sólo dos parámetros: un nombre y un apellido. Ahora requiere un nombre, un segundo nombre y un apellido. La adición de ese parámetro obligatorio del segundo nombre rompió el comportamiento original de <code translate="no">get_formatted_name()</code>. La mejor opción en este caso es hacer que el segundo nombre sea opcional. Una vez que lo hagamos, nuestra prueba para nombres como <code translate="no">Janis Joplin</code> debería volver a pasar, y también deberíamos poder aceptar segundos nombres. Modifiquemos <code translate="no">get_formatted_name()</code> para que los segundos nombres sean opcionales y volvamos a ejecutar el caso de prueba. Si se supera, pasaremos a asegurarnos de que la función gestiona correctamente los segundos nombres.</p>
+<p>Para que los segundos nombres sean opcionales, movemos el parámetro <code translate="no">middle</code> al final de la lista de parámetros en la definición de la función y le damos un valor por defecto vacío. También añadimos una prueba <code translate="no">if</code> que construye el nombre completo correctamente, dependiendo de si se proporciona un segundo nombre:</p>
+<p class="CodeLabel" translate="no"><b>name_function.py</b></p>
+<pre translate="no"><code translate="no">def get_formatted_name(first, last, middle=''):
+    <span class="LiteralGray">"""Generate a neatly formatted full name."""</span>
+    if middle:
+        full_name = f"{first} {middle} {last}"
+    else:
+        full_name = f"{first} {last}"
+    <span class="LiteralGray">return full_name.title()</span></code></pre>
+<p><span epub:type="pagebreak" id="Page_216" title="216"></span>En esta nueva versión de <code translate="no">get_formatted_name()</code>, el segundo nombre es opcional. Si se pasa un segundo nombre a la función, el nombre completo contendrá un nombre, un segundo nombre y un apellido. En caso contrario, el nombre completo constará sólo de nombre y apellidos. Ahora la función debería funcionar para ambos tipos de nombres. Para averiguar si la función sigue funcionando para nombres como <code translate="no">Janis Joplin</code>, vamos a ejecutar de nuevo la prueba:</p>
+<pre translate="no"><code translate="no">$ <b>pytest</b>
+========================= test session starts =========================
+<var>--snip--</var>
+test_name_function.py .                                       [100%]
+========================== 1 passed in 0.00s ==========================</code></pre>
+<p>Ahora la prueba pasa. Esto es ideal; significa que la función vuelve a funcionar para nombres como <code translate="no">Janis Joplin</code>, sin que tengamos que probar la función manualmente. Arreglar nuestra función fue más fácil porque la prueba fallida nos ayudó a identificar cómo el nuevo código rompía el comportamiento existente.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c11_12.html">anterior</a><a href="c11.html">Subtema 13 de 22: (Ver todo)</a><a href="c11_14.html">siguiente</a><br/></p>
+<br/><a href="c11_13.docx" target="_blank"></a></footer>
+</body>
+</html>

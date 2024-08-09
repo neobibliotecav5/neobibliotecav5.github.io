@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Required Blocks</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Required Blocks"><div class="titlepage"><div><div><h1 class="title"><a id="required_blocks"/>Required Blocks</h1></div></div></div><p>JSLint expects that <code class="literal">if</code> and <code class="literal">for</code> statements will be made with blocks—that is, with
+                statements enclosed in braces (<code class="literal">{}</code>).<a id="IDX-APP-C-0626" class="indexterm"/><a id="IDX-APP-C-0627" class="indexterm"/></p><p>JavaScript allows an <code class="literal">if</code> to be written like
+                this:</p><a id="I_programlisting_d1e9980"/><pre class="programlisting">if (condition)
+    statement;</pre><p>That form is known to contribute to mistakes in projects where many programmers
+                are working on the same code. That is why JSLint expects the use of a block:</p><a id="I_programlisting_d1e9984"/><pre class="programlisting">if (condition) {
+    statements;
+}</pre><p>Experience shows that this form is more resilient.</p></div></body></html>

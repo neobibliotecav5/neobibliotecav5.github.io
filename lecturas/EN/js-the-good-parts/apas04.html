@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Reserved Words</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Reserved Words"><div class="titlepage"><div><div><h1 class="title"><a id="reserved_words"/>Reserved Words</h1></div></div></div><p>The following words are reserved in JavaScript:<a id="IDX-APP-A-0508" class="indexterm"/><a id="IDX-APP-A-0509" class="indexterm"/></p><a id="I_programlisting_d1e8267"/><pre class="programlisting">abstract boolean break byte case catch char class const continue
+ debugger default delete do double else enum export extends false final
+ finally float for
+ function goto if implements import in instanceof int interface long native new null
+ package private protected public return short static super switch synchronized this
+ throw throws transient true try typeof var volatile void while with</pre><p>Most of these words are not used in the language.</p><p>They cannot be used to name variables or parameters. When reserved words are used
+                as keys in object literals, they must be quoted. They cannot be used with the dot
+                notation, so it is sometimes necessary to use the bracket notation
+                    instead:<a id="IDX-APP-A-0510" class="indexterm"/><a id="IDX-APP-A-0511" class="indexterm"/></p><a id="I_programlisting_d1e8281"/><pre class="programlisting">var method;                // ok
+var class;                 // illegal
+object = {box: value};     // ok
+object = {case: value};    // illegal
+object = {'case': value};  // ok
+object.box = value;        // ok
+object.case = value;       // illegal
+object['case'] = value;    // ok</pre></div></body></html>

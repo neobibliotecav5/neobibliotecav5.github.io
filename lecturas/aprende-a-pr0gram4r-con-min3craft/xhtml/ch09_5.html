@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch09lev1sec04"><strong><span class="blue1">Tuplas</span></strong></h3>
+<p class="noindent"><em>Las tuplas</em> son un tipo de lista inmutable. Pero, al igual que otras listas, son una secuencia de elementos de cualquier tipo variable. Las tuplas utilizan paréntesis en lugar de corchetes, y usan comas para separar los elementos.</p>
+<p class="indent">Por ejemplo, supongamos que el único atleta olímpico de una nación, procedente de un programa de entrenamiento con escasa financiación, registra una serie de distancias para sus saltos de longitud en metros:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> distance = (5.17, 5.20, 4.56, 53.64, 9.58, 6.41, 2.20)</p>
+<p class="indent"><span epub:type="pagebreak" id="page_180"></span>Si el atleta saltara sólo una vez, también podrías crear una tupla con un único valor. Para escribir una tupla con un único valor, debes incluir una coma:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> distance = (5.17,)</p>
+<p class="indent">Cuando defines una tupla, los paréntesis son opcionales, así que puedes definir una tupla simplemente colocando comas entre los valores, de esta forma:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> distance = 5.17, 5.20, 4.56, 53.64, 9.58, 6.41, 2.20</p>
+<p class="indent">Para acceder a los valores de las tuplas, utiliza la notación de corchetes que utilizas con las listas normales. Asignemos el valor del índice 1 de la tupla <span class="literal">distancia</span> a la variable <span class="literal">salto</span>:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> jump = distance[1]<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> <span class="rose">print</span>(jump)<br translate="no"/><span class="blue1">5.20</span></p>
+<p class="indent">La principal diferencia entre las listas y las tuplas es que las tuplas son inmutables: no puedes cambiar su contenido. No puedes añadir elementos al final de la tupla, insertar elementos, borrar elementos ni actualizar ningún valor. Utiliza tuplas en lugar de listas cuando tu programa no necesite cambiar los valores de los elementos de la tupla.</p>
+<h4 class="h4" id="ch09lev2sec08"><strong><span class="blue1">Establecer variables con tuplas</span></strong></h4>
+<p class="noindent">Una característica útil de las tuplas es que puedes utilizarlas para establecer más de una variable al mismo tiempo. Esto ahorra espacio y puede mantener agrupadas las variables relacionadas.</p>
+<p class="indent">Normalmente, te referirías a una tupla como lo harías a una lista, utilizando un único nombre de variable:</p>
+<p class="programs" translate="no">measurements = 6, 30</p>
+<p class="indent">Sin embargo, supongamos que queremos almacenar los valores en dos variables en lugar de en una. La sintaxis para hacerlo no es compleja. Separas los nombres de las variables con comas, utilizas un signo igual y escribes las tuplas al otro lado del signo igual. Cada valor de tupla se asignará a la variable en la posición correspondiente. Echemos un vistazo.</p>
+<p class="indent">En este ejemplo, dos variables, <span class="literal">anchura</span> y <span class="literal">altura</span>, se establecen en los valores <span class="literal">6</span> y <span class="literal">30</span>, respectivamente:</p>
+<p class="programs" translate="no">width, height = 6, 30</p>
+<p class="indent">Ahora tenemos dos variables. Una se llama <span class="literal">anchura</span> y tiene el valor <span class="literal">6</span>, y la otra se llama <span class="literal">altura</span> y tiene el valor <span class="literal">30</span>. ¡Y lo hemos hecho utilizando una sola línea de código!</p>
+<h4 class="h4a" id="ch09lev2sec09"><span epub:type="pagebreak" id="page_181"></span><strong>Misión nº 49: Deslizamiento</strong></h4>
+<p class="noindent">Establecer variables con tuplas es una forma rápida y sencilla de ahorrar espacio en tus programas. También es útil para establecer variables relacionadas entre sí en un mismo lugar de tu programa. Por ejemplo, a lo largo del libro has utilizado código como éste para establecer los valores de las variables <span class="literal">x</span>, <span class="literal">y</span> y <span class="literal">z</span>:</p>
+<p class="programs" translate="no">x = 10<br translate="no"/>y = 11<br translate="no"/>z = 12</p>
+<p class="indent">En cambio, puedes utilizar una tupla para establecer todos estos valores en una sola línea:</p>
+<p class="programs" translate="no">x, y, z = 10, 11, 12</p>
+<p class="indent">A continuación, pondrás en práctica tus nuevas habilidades para escribir código. Tu misión es crear un programa que mueva al jugador aleatoriamente por el mundo del juego en pequeños pasos, haciendo que parezca que patinas sobre hielo. He empezado el programa por ti en el Listado <a href="ch09.xhtml#ch9ex3">9-3</a>; faltan algunas partes y tienes que completarlas.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>sliding.py</em></span></p>
+<p class="programs" translate="no"> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>   mc = Minecraft.create()<br translate="no"/><br translate="no"/> <span class="orange">import</span> random<br translate="no"/> <span class="orange">import</span> time<br translate="no"/><br translate="no"/><span class="ent">➊</span> <span class="red"># Get the player's position</span><br translate="no"/><br translate="no"/><span class="ent">➋</span> <span class="red"># Set the x, y, and z variables on the same line using a tuple</span><br translate="no"/><br translate="no"/> <span class="orange">while True</span>:<br translate="no"/><span class="ent">➌</span>     x += random.uniform(-0.2, 0.2)<br translate="no"/> <span class="red"># Change the z variable by a random float</span><br translate="no"/><span class="ent">➍</span>     z +=<br translate="no"/>       y = mc.getHeight(x, z)<br translate="no"/><br translate="no"/>       mc.player.setPos(x, y, z)<br translate="no"/>       time.sleep(0.1)</p>
+<p class="examplet"><a id="ch9ex3"></a><em>Listado 9-3: Inicio del código para hacer que el jugador se deslice por el mapa</em></p>
+<p class="indent">Copia <a href="ch09.xhtml#ch9ex3">el Listado 9-3</a> en un nuevo archivo y guárdalo como <em>deslizamiento.py</em> en tu carpeta <em>de listas</em>. Para terminar el programa, necesitas obtener la posición inicial del jugador <span class="ent">➊</span> y establecer los valores de las variables <span class="literal">x</span>, <span class="literal">y</span>, <span class="literal">z</span> <span class="ent">➋.</span> Utiliza una tupla para fijar estos valores. Este programa también utiliza la función <span class="literal">uniforme</span> () <span class="ent">➌,</span> que es como la función <span class="literal">randint()</span> (ver "<a href="ch03.xhtml#ch03lev2sec12">Jugar con números aleatorios</a>" en <a href="ch03.xhtml#page_66">la página 66</a>) pero devuelve un valor flotante aleatorio en lugar de un valor entero. Utiliza la función <span class="literal">uniform()</span> para cambiar el valor de la variable <span class="literal">z</span> en el bucle <span class="ent">➍.</span> Esto ya se ha hecho para la variable <span class="literal">x</span> <span class="ent">➌.</span></p>
+<p class="indent"><span epub:type="pagebreak" id="page_182"></span><a href="ch09.xhtml#ch9fig3">La Figura 9-3</a> muestra a mi jugador deslizándose lentamente por mi juego.</p>
+<div class="image"><img alt="image" src="../images/f09-03.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch9fig3"></a><em>Figura 9-3: Deslizándose lentamente hacia atrás por mi jardín</em></p>
+<div class="sidebar">
+<p class="sidebart" id="ch09sb03"><strong>OBJETIVO EXTRA: DESLIZAR BLOQUES</strong></p>
+<p class="noindent">El programa <em>deslizar.</em> py hace que el jugador se deslice aleatoriamente por el juego. ¿Puedes averiguar cómo cambiar el programa para que haga deslizar un bloque?</p>
+</div>
+<h4 class="h4" id="ch09lev2sec10"><span epub:type="pagebreak" id="page_183"></span><strong><span class="blue1">Devolver una tupla</span></strong></h4>
+<p class="noindent">Algunas de las funciones incorporadas en Python devuelven una tupla. Cuando defines tus propias funciones, también pueden devolver el resultado como una tupla. Para ello, coloca una tupla después de la palabra clave <span class="literal">return</span>. Por ejemplo, creemos una función para convertir una fecha en una tupla. Damos la fecha como argumento de cadena, y la función devolverá el año, el mes y el día en una tupla. Éste es el código:</p>
+<p class="programs" translate="no"><span class="orange">def</span> <span class="blue1">getDateTuple</span>(dateString):<br translate="no"/>    year = <span class="rose">int</span>(dateString[0:4])<br translate="no"/>    month = <span class="rose">int</span>(dateString[5:7])<br translate="no"/>    day = <span class="rose">int</span>(dateString[8:10])<br translate="no"/> <span class="orange">return</span> year, month, day</p>
+<p class="indent">Cuando llamamos a la función y le damos una fecha como cadena, nos devuelve una tupla que contiene el año, el mes y el día en ese orden:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> getDateTuple(<span class="green">"1997-09-27"</span>)<br translate="no"/><span class="blue1">(1997, 9, 27)</span></p>
+<p class="indent">Cuando llamamos a la función, podemos almacenar la tupla devuelta como queramos. Este código almacena cada valor en una variable independiente:</p>
+<p class="programs" translate="no">year, month, day = getDateTuple(<span class="green">"1997-09-27"</span>)</p>
+<p class="indent">Ahora podemos convertir rápidamente cadenas de fechas en variables individuales. En mi trabajo como desarrollador de software, utilizo código muy similar a éste todo el tiempo.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch09_4.html">anterior</a><a href="ch09.html">Subtema 5 de 8: (Ver todo)</a><a href="ch09_6.html">siguiente</a><br/></p>
+<br/><a href="ch09_5.docx" target="_blank"></a></footer>
+</body>
+</html>

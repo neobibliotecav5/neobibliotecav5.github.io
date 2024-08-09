@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Forbidden Blocks</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Forbidden Blocks"><div class="titlepage"><div><div><h1 class="title"><a id="forbidden_blocks"/>Forbidden Blocks</h1></div></div></div><p>In many languages, a block introduces a scope. Variables introduced in a block are
+                not visible outside of the block.</p><p>In JavaScript, blocks do not introduce a scope. There is only function-scope. A
+                variable introduced anywhere in a function is visible everywhere in the function.
+                JavaScript's blocks confuse experienced programmers and lead to errors because the
+                familiar syntax makes a false promise.</p><p>JSLint expects blocks with <code class="literal">function</code>, <code class="literal">if</code>, <code class="literal">switch</code>,
+                    <code class="literal">while</code>, <code class="literal">for</code>, <code class="literal">do</code>, and <code class="literal">try</code> statements and nowhere else. An exception is made for an
+                unblocked <code class="literal">if</code> statement on an <code class="literal">else</code> or <code class="literal">for
+                in</code>.</p></div></body></html>

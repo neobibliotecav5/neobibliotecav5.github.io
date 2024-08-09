@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch01lev1sec4">
+<span class="calibre2" id="page_12">
+</span>
+  Guardar tus programas Python </h3>
+<p class="noindent">
+  Los programas Python no serían muy útiles si tuvieras que reescribirlos cada vez que quisieras utilizarlos, por no hablar de imprimirlos para poder consultarlos. Claro, podría estar bien reescribir programas cortos, pero un programa grande, como un procesador de textos, podría contener millones de líneas de código. Imprímelo todo y podrías tener más de 100.000 páginas. Imagínate intentar llevar esa enorme pila de papel a casa. Más vale que no te encuentres con una gran ráfaga de viento. </p>
+<p class="indent">
+  Por suerte, podemos guardar nuestros programas para utilizarlos en el futuro. Para crear y guardar un nuevo programa, abre IDLE y elige <strong class="calibre5">Archivo </strong> <strong class="calibre5">▸ Nueva </strong><strong class="calibre5">Ventana . </strong>Aparecerá una ventana vacía, con *Sin título* en la barra de menú. Introduce el siguiente código en la nueva ventana vacía: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>("Hello World")</pre>
+<p class="indent">
+  Ahora, elige Archivo <strong class="calibre5">▸ Guardar </strong>. Cuando te pida un nombre de archivo, introduce <em class="calibre7">hola.py </em>, y guarda el archivo en tu escritorio. A continuación, elige <strong class="calibre5">Ejecutar </strong> <strong class="calibre5">▸ Ejecutar módulo . </strong></p>
+<p class="indent">
+  Con un poco de suerte, tu programa guardado debería ejecutarse, así: </p>
+<div class="image1" id="ch01fig09">
+<img alt="Image" class="calibre20" src="../images/01fig09.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">Figura 1-9: Hola Mundo en IDLE </em></p>
+<p class="indent">
+  Ahora, si cierras la ventana del intérprete de comandos pero dejas abierta la ventana <em class="calibre7">hola. </em>py, y luego eliges <strong class="calibre5">Ejecutar </strong>▸ <strong class="calibre5">Ejecutar </strong>Módulo , el intérprete de comandos Python debería reaparecer, y tu programa debería ejecutarse de nuevo (para volver a abrir el intérprete de comandos Python sin ejecutar el programa, elige <strong class="calibre5">Ejecutar </strong> <strong class="calibre5">▸ Python Shell </strong>). </p>
+<p class="indent">
+  Después de ejecutar el código, encontrarás un nuevo icono en tu escritorio llamado <em class="calibre7">hola.py . </em>Si haces doble clic en el icono, aparecerá brevemente una ventana negra y luego desaparecerá. ¿Qué ha ocurrido? </p>
+<p class="indent">
+  Estás viendo que la consola de línea de comandos de Python (similar al intérprete de comandos) se inicia, imprime <span class="literal1" translate="no">
+   Hello World
+  </span>, y luego sale. Esto es lo que aparecería en <span id="page_13">
+</span>si tuvieras una visión veloz como la de un superhéroe y pudieras ver la ventana antes de que se cerrara: </p>
+<div class="image1" id="ch01fig10">
+<img alt="Image" class="calibre21" src="../images/01fig10.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figura 1-10: Hola Mundo en la consola </em></p>
+<div class="note">
+<p class="notet">
+<strong class="calibre3"><span class="notes">NOTA </span></strong></p>
+<p class="notep">
+<em class="calibre7">Dependiendo de tu sistema operativo, puede que esto no funcione, o que se ejecute con una versión de Python distinta de la que hemos instalado. </em></p>
+</div>
+<p class="indent">
+  Además de los menús, puedes utilizar atajos de teclado para crear una nueva ventana del intérprete de comandos, guardar un archivo y ejecutar un programa: </p>
+<ul class="calibre22">
+<li class="noindent2">
+   En Windows, Ubuntu y Raspberry Pi, pulsa CTRL-N para crear una nueva ventana shell, CTRL-S para guardar tu archivo después de terminar de editarlo y F5 para ejecutar tu programa.  </li>
+<li class="noindent2">
+   En macOS, pulsa COMANDO-N para crear una nueva ventana shell, COMANDO-S para guardar tu archivo, y mantén pulsada la tecla de función (Fn) y pulsa F5 para ejecutar tu programa.  </li>
+</ul>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch01_4.html">anterior</a><a href="ch01.html">Subtema 5 de 6: (Ver todo)</a><a href="ch01_6.html">siguiente</a><br/></p>
+<br/><a href="ch01_5.docx" target="_blank"></a></footer>
+</body>
+</html>

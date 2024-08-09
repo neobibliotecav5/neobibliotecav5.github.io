@@ -1,0 +1,108 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Expressions</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="Expressions"><div class="titlepage"><div><div><h1 class="title"><a id="expressions"></a>Expresiones</h1></div></div></div><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject2_d1e1500"></a><img alt="image with no caption" src="httpatomoreillycomsourceoreillyimages238846.png" translate="no"/></div></div><p>Las expresiones más sencillas son un valor literal (como una cadena o un número), una variable, un valor incorporado (<code class="literal" translate="no">true</code>, <code class="literal" translate="no">false</code>, <code class="literal" translate="no">null</code>, <code class="literal" translate="no">undefined</code>, <code class="literal" translate="no">NaN</code> o <code class="literal" translate="no">Infinity</code>), una expresión de invocación precedida de <code class="literal" translate="no">new</code>, una expresión de refinamiento precedida de <code class="literal" translate="no">delete</code>, una expresión entre paréntesis, una expresión precedida de un operador prefijo o una expresión seguida de:<a class="indexterm" id="IDX-CHP-2-0111"></a><a class="indexterm" id="IDX-CHP-2-0112"></a><a class="indexterm" id="IDX-CHP-2-0113"></a><a class="indexterm" id="IDX-CHP-2-0114"></a><a class="indexterm" id="IDX-CHP-2-0115"></a><a class="indexterm" id="IDX-CHP-2-0116"></a><a class="indexterm" id="IDX-CHP-2-0117"></a><a class="indexterm" id="IDX-CHP-2-0118"></a><a class="indexterm" id="IDX-CHP-2-0119"></a><a class="indexterm" id="IDX-CHP-2-0120"></a><a class="indexterm" id="IDX-CHP-2-0121"></a><a class="indexterm" id="IDX-CHP-2-0122"></a><a class="indexterm" id="IDX-CHP-2-0123"></a><a class="indexterm" id="IDX-CHP-2-0110"></a><a class="indexterm" id="IDX-CHP-2-0124"></a><a class="indexterm" id="IDX-CHP-2-0125"></a><a class="indexterm" id="IDX-CHP-2-0126"></a><a class="indexterm" id="IDX-CHP-2-0127"></a><a class="indexterm" id="IDX-CHP-2-0128"></a><a class="indexterm" id="IDX-CHP-2-0129"></a><a class="indexterm" id="IDX-CHP-2-0130"></a><a class="indexterm" id="IDX-CHP-2-0131"></a><a class="indexterm" id="IDX-CHP-2-0132"></a></p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>Un operador infijo y otra expresión<a class="indexterm" id="IDX-CHP-2-0133"></a></p></li><li class="listitem"><p>El operador ternario <code class="literal" translate="no">?</code> seguido de otra expresión, luego por <code class="literal" translate="no">:</code>, y luego por otra expresión más</p></li><li class="listitem"><p>Una invocación</p></li><li class="listitem"><p>Un refinamiento</p></li></ul></div><p>El operador ternario <code class="literal" translate="no">?</code> toma tres operandos. Si el primer operando es verdadero, produce el valor del segundo operando. Pero si el primer operando es falso, produce el valor del tercer operando.</p><p>Los operadores situados en la parte superior de la lista de precedencia de operadores de <a class="xref" href="ch02s06.html#operator_precedence" title="Table 2-1. Operator precedence">la Tabla 2-1</a> tienen mayor precedencia y se vinculan más estrechamente. Los operadores de la parte inferior tienen la precedencia más baja. Se pueden utilizar paréntesis para alterar la precedencia normal, así:<a class="indexterm" id="IDX-CHP-2-0134"></a><a class="indexterm" id="IDX-CHP-2-0135"></a></p><a id="I_programlisting2_d1e1660"></a><pre class="programlisting" translate="no">2 + 3 * 5 === 17
+(2 + 3) * 5 === 25</pre><div class="table"><a id="operator_precedence"></a><p class="title">Tabla 2-1. Precedencia de los operadores</p><div class="table-contents"><table style="border-collapse: collapse;border-top: 0.5pt solid ; border-bottom: 0.5pt solid ; border-left: 0.5pt solid ; border-right: 0.5pt solid ; " summary="Operator precedence"><colgroup><col/><col/></colgroup><tbody><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">. [] ( )</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p>Refinamiento e invocación</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">delete new typeof + - !</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p>Operadores unarios</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">* / %</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p>Multiplicación, división, resto</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">+ -</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p>Suma/concatenación, resta</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">&gt;= &lt;= &gt; &lt;</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p>Desigualdad</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">=== !==</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p>Igualdad</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">&amp;&amp;</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p>Lógica y</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">||</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p>Lógica o</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">?:</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p>Ternario</p>
+</td></tr></tbody></table></div></div><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject2_d1e1742"></a><img alt="image with no caption" src="httpatomoreillycomsourceoreillyimages238864.png" translate="no"/></div></div><p>Los valores producidos por <code class="literal" translate="no">typeof</code> son <code class="literal" translate="no">'number'</code>, <code class="literal" translate="no">'string'</code>, <code class="literal" translate="no">'boolean'</code>, <code class="literal" translate="no">'undefined'</code>, <code class="literal" translate="no">'function'</code>, y <code class="literal" translate="no">'object'</code>. Si el operando es una matriz o <code class="literal" translate="no">null</code>, el resultado es <code class="literal" translate="no">'object'</code>, que es incorrecto. Encontrarás más información sobre <code class="literal" translate="no">typeof</code> en <a class="xref" href="ch06.html" title="Chapter 6. Arrays">el Capítulo 6</a> y en el <a class="xref" href="apa.html" title="Appendix A. Awful Parts">Apéndice A</a>.</p><p>Si el operando de <code class="literal" translate="no">!</code> es verdadero, produce <code class="literal" translate="no">false</code>. En caso contrario, produce <code class="literal" translate="no">true</code>.</p><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject2_d1e1798"></a><img alt="image with no caption" src="httpatomoreillycomsourceoreillyimages238798.png" translate="no"/></div></div><p>El operador <code class="literal" translate="no">+</code> suma o concatena. Si quieres que sume, asegúrate de que ambos operandos son números.</p><p>El operador <code class="literal" translate="no">/</code> puede producir un resultado no entero aunque ambos operandos sean enteros.</p><p>El operador <code class="literal" translate="no">&amp;&amp;</code> produce el valor de su primer operando si éste es falso. En caso contrario, produce el valor del segundo operando.</p><p>El operador <code class="literal" translate="no">||</code> produce el valor de su primer operando si el primer operando es verdadero. En caso contrario, produce el valor del segundo operando.</p><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject2_d1e1824"></a><img alt="image with no caption" src="httpatomoreillycomsourceoreillyimages238720.png" translate="no"/></div></div><p>La invocación provoca la ejecución del valor de una función. El operador de invocación es un par de paréntesis que siguen al valor de la función. Los paréntesis pueden contener argumentos que se entregarán a la función. En el <a class="xref" href="ch04.html" title="Chapter 4. Functions">Capítulo 4</a> se tratará mucho más sobre las funciones.<a class="indexterm" id="IDX-CHP-2-0136"></a></p><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject2_d1e1837"></a><img alt="image with no caption" src="httpatomoreillycomsourceoreillyimages238832.png" translate="no"/></div></div><p>Un refinamiento se utiliza para especificar una propiedad o elemento de un objeto o matriz. Esto se describirá con detalle en el capítulo siguiente.</p></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="ch02s05.html">← Anterior</a><a href="ch02s07.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="ch02s06.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\ch02s06.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

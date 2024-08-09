@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Retrieval</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="Retrieval"><div class="titlepage"><div><div><h1 class="title"><a id="retrieval"></a>Recuperación</h1></div></div></div><p>Se pueden recuperar valores de un objeto envolviendo una expresión de cadena en un sufijo <code class="literal" translate="no">[ ]</code>. Si la expresión de cadena es un literal de cadena, y si es un nombre JavaScript legal y no una palabra reservada, entonces se puede utilizar la notación <code class="literal" translate="no">.</code> en su lugar. Se prefiere la notación <code class="literal" translate="no">.</code> porque es más compacta y se lee mejor:<a class="indexterm" id="IDX-CHP-3-0153"></a><a class="indexterm" id="IDX-CHP-3-0154"></a><a class="indexterm" id="IDX-CHP-3-0155"></a><a class="indexterm" id="IDX-CHP-3-0156"></a><a class="indexterm" id="IDX-CHP-3-0157"></a></p><a id="I_programlisting3_d1e2056"></a><pre class="programlisting" translate="no">stooge["first-name"]     // "Jerome"
+flight.departure.IATA    // "SYD"</pre><p>El valor <code class="literal" translate="no">undefined</code> se produce si se intenta recuperar un miembro inexistente:<a class="indexterm" id="IDX-CHP-3-0158"></a><a class="indexterm" id="IDX-CHP-3-0159"></a></p><a id="I_programlisting3_d1e2071"></a><pre class="programlisting" translate="no">stooge["middle-name"]    // undefined
+flight.status            // undefined
+stooge["FIRST-NAME"]     // undefined</pre><p>El operador <code class="literal" translate="no">||</code> puede utilizarse para rellenar valores por defecto:</p><a id="I_programlisting3_d1e2078"></a><pre class="programlisting" translate="no">var middle = stooge["middle-name"] || "(none)";
+var status = flight.status || "unknown";</pre><p>Si se intentan recuperar valores de <code class="literal" translate="no">undefined</code>, se producirá una excepción <code class="literal" translate="no">TypeError</code>. Esto se puede evitar con el operador <code class="literal" translate="no">&amp;&amp;</code>:</p><a id="I_programlisting3_d1e2091"></a><pre class="programlisting" translate="no">flight.equipment                              // undefined
+flight.equipment.model                        // throw "TypeError"
+flight.equipment &amp;&amp; flight.equipment.model    // undefined</pre></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="ch03.html">← Anterior</a><a href="ch03s03.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="ch03s02.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\ch03s02.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

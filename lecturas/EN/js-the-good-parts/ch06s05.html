@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Confusion</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Confusion"><div class="titlepage"><div><div><h1 class="title"><a id="confusion"/>Confusion</h1></div></div></div><p>A common error in JavaScript programs is to use an object when an array is
+                required or an array when an object is required. The rule is simple: when the
+                property names are small sequential integers, you should use an array. Otherwise,
+                use an object.<a id="IDX-CHP-6-0308" class="indexterm"/><a id="IDX-CHP-6-0309" class="indexterm"/><a id="IDX-CHP-6-0307" class="indexterm"/></p><p>JavaScript itself is confused about the difference between arrays and objects. The
+                    <code class="literal">typeof</code> operator reports that the type of an
+                array is <code class="literal">'object'</code>, which isn't very
+                helpful.</p><p>JavaScript does not have a good mechanism for distinguishing between arrays and
+                objects. We can work around that deficiency by defining our own <code class="literal">is_array</code> function:</p><a id="I_programlisting6_d1e4579"/><pre class="programlisting">var is_array = function (value) {
+    return value &amp;&amp; typeof value === 'object' &amp;&amp; value.constructor === Array;
+};</pre><p>Unfortunately, it fails to identify arrays that were constructed in a different
+                window or frame. If we want to accurately detect those foreign arrays, we have to
+                work a little harder:</p><a id="I_programlisting6_d1e4583"/><pre class="programlisting">var is_array = function (value) {
+    return Object.prototype.toString.apply(value) === '[object 
+Array]';
+};</pre></div></body></html>

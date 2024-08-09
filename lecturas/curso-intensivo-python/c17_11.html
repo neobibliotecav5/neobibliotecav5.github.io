@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h2 id="h1-502703c17-0002">Visualizar repositorios con Plotly</h2>
+<p class="BodyFirst">Vamos a hacer una visualización utilizando los datos que hemos recopilado para mostrar la popularidad relativa de los proyectos Python en GitHub. Haremos un gráfico de barras interactivo: la altura de cada barra representará el número de estrellas que ha adquirido el proyecto, y podrás hacer clic en la etiqueta de la barra para ir a la página principal de ese proyecto en GitHub.</p>
+<p><span epub:type="pagebreak" id="Page_363" title="363"></span>Guarda una copia del programa en el que hemos estado trabajando como <em translate="no">python_repos_visual.py</em>, y luego modifícalo para que quede como sigue:</p>
+<p class="CodeLabel" translate="no"><b>python_repos_visual.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">import requests</span>
+import plotly.express as px
+
+<span class="LiteralGray"># Make an API call and check the response.</span>
+<span class="LiteralGray">url = "https://api.github.com/search/repositories"</span>
+<span class="LiteralGray">url += "?q=language:python+sort:stars+stars:&gt;10000"</span>
+
+<span class="LiteralGray">headers = {"Accept": "application/vnd.github.v3+json"}</span>
+<span class="LiteralGray">r = requests.get(url, headers=headers)</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span><span class="LiteralGray"> print(f"Status code: {r.status_code}")</span>
+
+# Process overall results.
+<span class="LiteralGray">response_dict = r.json()</span>
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span><span class="LiteralGray"> print(f"Complete results: {not response_dict['incomplete_results']}")</span>
+
+# Process repository information.
+<span class="LiteralGray">repo_dicts = response_dict['items']</span>
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> repo_names, stars = [], []
+<span class="LiteralGray">for repo_dict in repo_dicts:</span>
+    repo_names.append(repo_dict['name'])
+    stars.append(repo_dict['stargazers_count'])
+
+# Make visualization.
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> fig = px.bar(x=repo_names, y=stars)
+fig.show()</code></pre>
+<p>Importamos Plotly Express y realizamos la llamada a la API como hemos venido haciendo. Seguimos imprimiendo el estado de la respuesta de la llamada a la API para saber si hay algún problema <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Cuando procesemos los resultados globales, seguimos imprimiendo el mensaje que confirma que hemos obtenido un conjunto completo de resultados <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Eliminamos el resto de las llamadas a <code translate="no">print()</code> porque ya no estamos en la fase exploratoria; sabemos que tenemos los datos que queremos.</p>
+<p>A continuación, creamos dos listas vacías <span aria-label="annotation3" class="CodeAnnotation">❸</span> para almacenar los datos que incluiremos en el gráfico inicial. Necesitaremos el nombre de cada proyecto para etiquetar las barras (<code translate="no">repo_names</code>) y el número de estrellas para determinar la altura de las barras (<code translate="no">stars</code>). En el bucle, añadimos a estas listas el nombre de cada proyecto y el número de estrellas que tiene.</p>
+<p>Hacemos la visualización inicial con sólo dos líneas de código <span aria-label="annotation4" class="CodeAnnotation">❹.</span> Esto es coherente con la filosofía de Plotly Express de que debes poder ver tu visualización lo más rápidamente posible antes de refinar su aspecto. Aquí utilizamos la función <code translate="no">px.bar()</code> para crear un gráfico de barras. Pasamos la lista <code translate="no">repo_names</code> como argumento <code translate="no">x</code> y <code translate="no">stars</code> como argumento <code translate="no">y</code>.</p>
+<p><a href="#figure17-1" id="figureanchor17-1">La Figura 17-1</a> muestra el gráfico resultante. Podemos ver que los primeros proyectos son significativamente más populares que el resto, pero todos ellos son proyectos importantes en el ecosistema Python.</p>
+<span epub:type="pagebreak" id="Page_364" title="364"></span>
+<figure><img alt="" class="keyline" height="429" src="Images/f17001.png" translate="no" width="694"/>
+<figcaption><p><a id="figure17-1">Figura 17-1</a>: Los proyectos Python con más estrellas en GitHub</p></figcaption></figure>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c17_10.html">anterior</a><a href="c17.html">Subtema 11 de 20: (Ver todo)</a><a href="c17_12.html">siguiente</a><br/></p>
+<br/><a href="c17_11.docx" target="_blank"></a></footer>
+</body>
+</html>

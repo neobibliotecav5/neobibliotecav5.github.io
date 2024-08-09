@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://www.w3.org/2002/06/xhtml2/ http://www.w3.org/MarkUp/SCHEMA/xhtml2.xsd">
+<head>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style></head>
+<body><div id="sbo-rt-content"><section>
+<header>
+<h1 class="chapter">
+<span class="ChapterNumber"><span epub:type="pagebreak" id="Page_301" title="301"></span>15</span><br/>
+<span class="ChapterTitle">Generating Data</span></h1>
+</header>
+<figure class="opener">
+<img alt="" height="406" src="Images/chapterart.png" width="406"/>
+</figure>
+<p class="ChapterIntro"><em>Data visualization</em> is the use of visual representations to explore and present patterns in datasets. It’s closely associated with <em>data analysis</em>, which uses code to explore the patterns and connections in a dataset. A dataset can be a small list of numbers that fits in a single line of code, or it can be terabytes of data that include many different kinds of information.</p>
+<p>Creating effective data visualizations is about more than just making information look nice. When a representation of a dataset is simple and visually appealing, its meaning becomes clear to viewers. People will see patterns and significance in your datasets that they never knew existed.</p>
+<p>Fortunately, you don’t need a supercomputer to visualize complex data. Python is so efficient that with just a laptop, you can quickly explore datasets containing millions of individual data points. These data points don’t <span epub:type="pagebreak" id="Page_302" title="302"></span>have to be numbers; with the basics you learned in the first part of this book, you can analyze non-numerical data as well.</p>
+<p>People use Python for data-intensive work in genetics, climate research, political and economic analysis, and much more. Data scientists have written an impressive array of visualization and analysis tools in Python, many of which are available to you as well. One of the most popular tools is Matplotlib, a mathematical plotting library. In this chapter, we’ll use Matplotlib to make simple plots, such as line graphs and scatter plots. Then we’ll create a more interesting dataset based on the concept of a random walk—a visualization generated from a series of random decisions.</p>
+<p>We’ll also use a package called Plotly, which creates visualizations that work well on digital devices, to analyze the results of rolling dice. Plotly generates visualizations that automatically resize to fit a variety of display devices. These visualizations can also include a number of interactive features, such as emphasizing particular aspects of the dataset when users hover over different parts of the visualization. Learning to use Matplotlib and Plotly will help you get started visualizing the kinds of data you’re most interested in.</p>
+<h2 id="h1-502703c15-0001">Installing Matplotlib</h2>
+<p class="BodyFirst">To use Matplotlib for your initial set of visualizations, you’ll need to install it using pip, just like we did with pytest in <span class="xref" itemid="xref_target_Chapter 11 ">Chapter 11 </span>(see “<span class="xref" itemid="xref_target_Installing pytest with pip">Installing pytest with pip</span>” on page <span class="xref" itemid="xref_target_210">210</span>).</p>
+<p>To install Matplotlib, enter the following command at a terminal prompt:</p>
+<pre><code>$ <b>python -m pip install --user matplotlib</b></code></pre>
+<p>If you use a command other than <code class="bold">python</code> to run programs or start a terminal session, such as <code class="bold">python3</code>, your command will look like this:</p>
+<pre><code>$ <b>python3 -m pip install --user matplotlib</b></code></pre>
+<p>To see the kinds of visualizations you can make with Matplotlib, visit the Matplotlib home page at <a class="LinkURL" href="https://matplotlib.org">https://matplotlib.org</a> and click <b>Plot types</b>. When you click a visualization in the gallery, you’ll see the code used to generate the plot.</p>
+<h2 id="h1-502703c15-0002">Plotting a Simple Line Graph</h2>
+<p class="BodyFirst">Let’s plot a simple line graph using Matplotlib and then customize it to create a more informative data visualization. We’ll use the square number sequence 1, 4, 9, 16, and 25 as the data for the graph.</p>
+<p>To make a simple line graph, specify the numbers you want to work with and let Matplotlib do the rest:</p>
+<p class="CodeLabel"><b>mpl_squares.py</b></p>
+<pre><code>import matplotlib.pyplot as plt
+
+squares = [1, 4, 9, 16, 25]
+
+<span epub:type="pagebreak" id="Page_303" title="303"></span><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> fig, ax = plt.subplots()
+ax.plot(squares)
+
+plt.show()</code></pre>
+<p>We first import the <code>pyplot</code> module using the alias <code>plt</code> so we don’t have to type <code>pyplot</code> repeatedly. (You’ll see this convention often in online examples, so we’ll use it here.) The <code>pyplot</code> module contains a number of functions that help generate charts and plots.</p>
+<p>We create a list called <code>squares</code> to hold the data that we’ll plot. Then we follow another common Matplotlib convention by calling the <code>subplots()</code> function <span aria-label="annotation1" class="CodeAnnotation">❶</span>. This function can generate one or more plots in the same figure. The variable <code>fig</code> represents the entire <em>figure</em>, which is the collection of plots that are generated. The variable <code>ax</code> represents a single plot in the figure; this is the variable we’ll use most of the time when defining and customizing a single plot.</p>
+<p>We then use the <code>plot()</code> method, which tries to plot the data it’s given in a meaningful way. The function <code>plt.show()</code> opens Matplotlib’s viewer and displays the plot, as shown in <a href="#figure15-1" id="figureanchor15-1">Figure 15-1</a>. The viewer allows you to zoom and navigate the plot, and you can save any plot images you like by clicking the disk icon.</p>
+<figure>
+<img alt="" class="keyline" height="413" src="Images/f15001.png" width="694"/>
+<figcaption><p><a id="figure15-1">Figure 15-1</a>: One of the simplest plots you can make in Matplotlib</p></figcaption>
+</figure>
+<h3 id="h2-502703c15-0001">Changing the Label Type and Line Thickness</h3>
+<p class="BodyFirst">Although the plot in <a href="#figure15-1">Figure 15-1</a> shows that the numbers are increasing, the label type is too small and the line is a little thin to read easily. Fortunately, Matplotlib allows you to adjust every feature of a visualization.</p>
+<p><span epub:type="pagebreak" id="Page_304" title="304"></span>We’ll use a few of the available customizations to improve this plot’s readability. Let’s start by adding a title and labeling the axes:</p>
+<p class="CodeLabel"><b>mpl_squares.py</b></p>
+<pre><code><span class="LiteralGray">import matplotlib.pyplot as plt</span>
+
+<span class="LiteralGray">squares = [1, 4, 9, 16, 25]</span>
+
+<span class="LiteralGray">fig, ax = plt.subplots()</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> ax.plot(squares, linewidth=3)
+
+# Set chart title and label axes.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> ax.set_title("Square Numbers", fontsize=24)
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> ax.set_xlabel("Value", fontsize=14)
+ax.set_ylabel("Square of Value", fontsize=14)
+
+# Set size of tick labels.
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> ax.tick_params(labelsize=14)
+
+<span class="LiteralGray">plt.show()</span></code></pre>
+<p>The <code>linewidth</code> parameter controls the thickness of the line that <code>plot()</code> generates <span aria-label="annotation1" class="CodeAnnotation">❶</span>. Once a plot has been generated, there are many methods available to modify the plot before it’s presented. The <code>set_title()</code> method sets an overall title for the chart <span aria-label="annotation2" class="CodeAnnotation">❷</span>. The <code>fontsize</code> parameters, which appear repeatedly throughout the code, control the size of the text in various elements on the chart.</p>
+<p>The <code>set_xlabel()</code> and <code>set_ylabel()</code> methods allow you to set a title for each of the axes <span aria-label="annotation3" class="CodeAnnotation">❸</span>, and the method <code>tick_params()</code> styles the tick marks <span aria-label="annotation4" class="CodeAnnotation">❹</span>. Here <code>tick_params()</code> sets the font size of the tick mark labels to 14 on both axes.</p>
+<p>As you can see in <a href="#figure15-2" id="figureanchor15-2">Figure 15-2</a>, the resulting chart is much easier to read. The label type is bigger, and the line graph is thicker. It’s often worth experimenting with these values to see what works best in the resulting graph.</p>
+<figure>
+<img alt="" class="keyline" height="402" src="Images/f15002.png" width="675"/>
+<figcaption><p><a id="figure15-2">Figure 15-2</a>: The chart is much easier to read now.</p></figcaption>
+</figure>
+<h3 id="h2-502703c15-0002"><span epub:type="pagebreak" id="Page_305" title="305"></span>Correcting the Plot</h3>
+<p class="BodyFirst">Now that we can read the chart better, we can see that the data is not plotted correctly. Notice at the end of the graph that the square of 4.0 is shown as 25! Let’s fix that.</p>
+<p>When you give <code>plot()</code> a single sequence of numbers, it assumes the first data point corresponds to an <em>x</em>-value of 0, but our first point corresponds to an <em>x</em>-value of 1. We can override the default behavior by giving <code>plot()</code> both the input and output values used to calculate the squares:</p>
+<p class="CodeLabel"><b>mpl_squares.py</b></p>
+<pre><code><span class="LiteralGray">import matplotlib.pyplot as plt</span>
+
+input_values = [1, 2, 3, 4, 5]
+<span class="LiteralGray">squares = [1, 4, 9, 16, 25]</span>
+
+<span class="LiteralGray">fig, ax = plt.subplots()</span>
+ax.plot(input_values, squares, linewidth=3)
+
+<span class="LiteralGray"># Set chart title and label axes.</span>
+<em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>Now <code>plot()</code> doesn’t have to make any assumptions about how the output numbers were generated. The resulting plot, shown in <a href="#figure15-3" id="figureanchor15-3">Figure 15-3</a>, is correct.</p>
+<figure>
+<img alt="" class="keyline" height="413" src="Images/f15003.png" width="694"/>
+<figcaption><p><a id="figure15-3">Figure 15-3</a>: The data is now plotted correctly.</p></figcaption>
+</figure>
+<p>You can specify a number of arguments when calling <code>plot()</code> and use a number of methods to customize your plots after generating them. We’ll continue to explore these approaches to customization as we work with more interesting datasets throughout this chapter.</p>
+<h3 id="h2-502703c15-0003"><span epub:type="pagebreak" id="Page_306" title="306"></span>Using Built-in Styles</h3>
+<p class="BodyFirst">Matplotlib has a number of predefined styles available. These styles contain a variety of default settings for background colors, gridlines, line widths, fonts, font sizes, and more. They can make your visualizations appealing without requiring much customization. To see the full list of available styles, run the following lines in a terminal session:</p>
+<pre><code>&gt;&gt;&gt; <b>import matplotlib.pyplot as plt</b>
+&gt;&gt;&gt; <b>plt.style.available</b>
+['Solarize_Light2', '_classic_test_patch', '_mpl-gallery',
+<var>--snip--</var></code></pre>
+<p>To use any of these styles, add one line of code before calling <code>subplots()</code>:</p>
+<p class="CodeLabel"><b>mpl_squares.py</b></p>
+<pre><code><span class="LiteralGray">import matplotlib.pyplot as plt</span>
+
+<span class="LiteralGray">input_values = [1, 2, 3, 4, 5]</span>
+<span class="LiteralGray">squares = [1, 4, 9, 16, 25]</span>
+
+plt.style.use('seaborn')
+<span class="LiteralGray">fig, ax = plt.subplots()</span>
+<em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>This code generates the plot shown in <a href="#figure15-4" id="figureanchor15-4">Figure 15-4</a>. A wide variety of styles is available; play around with these styles to find some that you like.</p>
+<figure>
+<img alt="" class="keyline" height="372" src="Images/f15004.png" width="625"/>
+<figcaption><p><a id="figure15-4">Figure 15-4</a>: The built-in seaborn style</p></figcaption>
+</figure>
+<h3 id="h2-502703c15-0004">Plotting and Styling Individual Points with scatter()</h3>
+<p class="BodyFirst">Sometimes, it’s useful to plot and style individual points based on certain characteristics. For example, you might plot small values in one color and larger values in a different color. You could also plot a large dataset with one set of styling options and then emphasize individual points by replotting them with different options.</p>
+<p><span epub:type="pagebreak" id="Page_307" title="307"></span>To plot a single point, pass the single <em>x</em>- and <em>y</em>-values of the point to <code>scatter()</code>:</p>
+<p class="CodeLabel"><b>scatter_squares.py</b></p>
+<pre><code>import matplotlib.pyplot as plt
+
+plt.style.use('seaborn')
+fig, ax = plt.subplots()
+ax.scatter(2, 4)
+
+plt.show()</code></pre>
+<p>Let’s style the output to make it more interesting. We’ll add a title, label the axes, and make sure all the text is large enough to read:</p>
+<pre><code><span class="LiteralGray">import matplotlib.pyplot as plt</span>
+
+<span class="LiteralGray">plt.style.use('seaborn')</span>
+<span class="LiteralGray">fig, ax = plt.subplots()</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> ax.scatter(2, 4, s=200)
+
+# Set chart title and label axes.
+ax.set_title("Square Numbers", fontsize=24)
+ax.set_xlabel("Value", fontsize=14)
+ax.set_ylabel("Square of Value", fontsize=14)
+
+# Set size of tick labels.
+ax.tick_params(labelsize=14)
+
+<span class="LiteralGray">plt.show()</span></code></pre>
+<p>We call <code>scatter()</code> and use the <code>s</code> argument to set the size of the dots used to draw the graph <span aria-label="annotation1" class="CodeAnnotation">❶</span>. When you run <em>scatter_squares.py </em>now, you should see a single point in the middle of the chart, as shown in <a href="#figure15-5" id="figureanchor15-5">Figure 15-5</a>.</p>
+<figure>
+<img alt="" class="keyline" height="383" src="Images/f15005.png" width="644"/>
+<figcaption><p><a id="figure15-5">Figure 15-5</a>: Plotting a single point</p></figcaption>
+</figure>
+<h3 id="h2-502703c15-0005"><span epub:type="pagebreak" id="Page_308" title="308"></span>Plotting a Series of Points with scatter()</h3>
+<p class="BodyFirst">To plot a series of points, we can pass <code>scatter()</code> separate lists of <em>x</em>- and <em>y</em>-values, like this:</p>
+<p class="CodeLabel"><b>scatter_squares.py</b></p>
+<pre><code><span class="LiteralGray">import matplotlib.pyplot as plt</span>
+
+x_values = [1, 2, 3, 4, 5]
+y_values = [1, 4, 9, 16, 25]
+
+<span class="LiteralGray">plt.style.use('seaborn')</span>
+<span class="LiteralGray">fig, ax = plt.subplots()</span>
+ax.scatter(x_values, y_values, s=100)
+
+<span class="LiteralGray"># Set chart title and label axes.</span>
+<em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>The <code>x_values</code> list contains the numbers to be squared, and <code>y_values</code> contains the square of each number. When these lists are passed to <code>scatter()</code>, Matplotlib reads one value from each list as it plots each point. The points to be plotted are (1, 1), (2, 4), (3, 9), (4, 16), and (5, 25); <a href="#figure15-6" id="figureanchor15-6">Figure 15-6</a> shows the result.</p>
+<figure>
+<img alt="" class="keyline" height="402" src="Images/f15006.png" width="675"/>
+<figcaption><p><a id="figure15-6">Figure 15-6</a>: A scatter plot with multiple points</p></figcaption>
+</figure>
+<h3 id="h2-502703c15-0006">Calculating Data Automatically</h3>
+<p class="BodyFirst">Writing lists by hand can be inefficient, especially when we have many points. Rather than writing out each value, let’s use a loop to do the calculations for us.</p>
+<p>Here’s how this would look with 1,000 points:</p>
+<p class="CodeLabel"><b>scatter_squares.py</b></p>
+<pre><code><span class="LiteralGray">import matplotlib.pyplot as plt</span>
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> x_values = range(1, 1001)
+y_values = [x**2 for x in x_values]
+
+<span epub:type="pagebreak" id="Page_309" title="309"></span><span class="LiteralGray">plt.style.use('seaborn')</span>
+<span class="LiteralGray">fig, ax = plt.subplots()</span>
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> ax.scatter(x_values, y_values, s=10)
+
+<span class="LiteralGray"># Set chart title and label axes.</span>
+<em class="LiteralGrayItalic">--snip--</em>
+
+# Set the range for each axis.
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> ax.axis([0, 1100, 0, 1_100_000])
+
+<span class="LiteralGray">plt.show()</span></code></pre>
+<p>We start with a range of <em>x</em>-values containing the numbers 1 through 1,000 <span aria-label="annotation1" class="CodeAnnotation">❶</span>. Next, a list comprehension generates the <em>y</em>-values by looping through the <em>x</em>-values (<code>for x in x_values</code>), squaring each number (<code>x**2</code>), and assigning the results to <code>y_values</code>. We then pass the input and output lists to <code>scatter()</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span>. Because this is a large dataset, we use a smaller point size.</p>
+<p>Before showing the plot, we use the <code>axis()</code> method to specify the range of each axis <span aria-label="annotation3" class="CodeAnnotation">❸</span>. The <code>axis()</code> method requires four values: the minimum and maximum values for the <em>x</em>-axis and the <em>y</em>-axis. Here, we run the <em>x</em>-axis from 0 to 1,100 and the <em>y</em>-axis from 0 to 1,100,000. <a href="#figure15-7" id="figureanchor15-7">Figure 15-7</a> shows the result.</p>
+<figure>
+<img alt="" class="keyline" height="413" src="Images/f15007.png" width="694"/>
+<figcaption><p><a id="figure15-7">Figure 15-7</a>: Python can plot 1,000 points as easily as it plots 5 points.</p></figcaption>
+</figure>
+<h3 id="h2-502703c15-0007">Customizing Tick Labels</h3>
+<p class="BodyFirst">When the numbers on an axis get large enough, Matplotlib defaults to scientific notation for tick labels. This is usually a good thing, because larger numbers in plain notation take up a lot of unnecessary space on a visualization.</p>
+<p><span epub:type="pagebreak" id="Page_310" title="310"></span>Almost every element of a chart is customizable, so you can tell Matplotlib to keep using plain notation if you prefer:</p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray"># Set the range for each axis.</span>
+<span class="LiteralGray">ax.axis([0, 1100, 0, 1_100_000])</span>
+ax.ticklabel_format(style='plain')
+
+<span class="LiteralGray">plt.show()</span></code></pre>
+<p>The <code>ticklabel_format()</code> method allows you to override the default tick label style for any plot.</p>
+<h3 id="h2-502703c15-0008">Defining Custom Colors</h3>
+<p class="BodyFirst">To change the color of the points, pass the argument <code>color</code> to <code>scatter()</code> with the name of a color to use in quotation marks, as shown here:</p>
+<pre><code>ax.scatter(x_values, y_values, color='red', s=10)</code></pre>
+<p>You can also define custom colors using the RGB color model. To define a color, pass the <code>color</code> argument a tuple with three float values (one each for red, green, and blue, in that order), using values between 0 and 1. For example, the following line creates a plot with light-green dots:</p>
+<pre><code>ax.scatter(x_values, y_values, color=(0, 0.8, 0), s=10)</code></pre>
+<p>Values closer to 0 produce darker colors, and values closer to 1 produce lighter colors.</p>
+<h3 id="h2-502703c15-0009">Using a Colormap</h3>
+<p class="BodyFirst">A <em>colormap</em> is a sequence of colors in a gradient that moves from a starting to an ending color. In visualizations, colormaps are used to emphasize patterns in data. For example, you might make low values a light color and high values a darker color. Using a colormap ensures that all points in the visualization vary smoothly and accurately along a well-designed color scale.</p>
+<p>The <code>pyplot</code> module includes a set of built-in colormaps. To use one of these colormaps, you need to specify how <code>pyplot</code> should assign a color to each point in the dataset. Here’s how to assign a color to each point, based on its <em>y</em>-value:</p>
+<p class="CodeLabel"><b>scatter_squares.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">plt.style.use('seaborn')</span>
+<span class="LiteralGray">fig, ax = plt.subplots()</span>
+ax.scatter(x_values, y_values, c=y_values, cmap=plt.cm.Blues, s=10)
+
+<span class="LiteralGray"># Set chart title and label axes.</span>
+<em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>The <code>c</code> argument is similar to <code>color</code>, but it’s used to associate a sequence of values with a color mapping. We pass the list of <em>y</em>-values to <code>c</code>, and then <span epub:type="pagebreak" id="Page_311" title="311"></span>tell <code>pyplot</code> which colormap to use with the <code>cmap</code> argument. This code colors the points with lower <em>y</em>-values light blue and the points with higher <em>y</em>-values dark blue. <a href="#figure15-8" id="figureanchor15-8">Figure 15-8</a> shows the resulting plot.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	You can see all the colormaps available in <code>pyplot</code> at <a class="LinkURL" href="https://matplotlib.org">https://matplotlib.org</a>. Go to Tutorials, scroll down to Colors, and click <b>Choosing Colormaps in Matplotlib</b>.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<figure>
+<img alt="" class="keyline" height="413" src="Images/f15008.png" width="694"/>
+<figcaption><p><a id="figure15-8">Figure 15-8</a>: A plot using the <span class="LiteralInCaption"><code>Blues</code></span> colormap</p></figcaption>
+</figure>
+<h3 id="h2-502703c15-0010">Saving Your Plots Automatically</h3>
+<p class="BodyFirst">If you want to save the plot to a file instead of showing it in the Matplotlib viewer, you can use <code>plt.savefig()</code> instead of <code>plt.show()</code>:</p>
+<pre><code>plt.savefig('squares_plot.png', bbox_inches='tight')</code></pre>
+<p>The first argument is a filename for the plot image, which will be saved in the same directory as <em>scatter_squares.py</em>. The second argument trims extra whitespace from the plot. If you want the extra whitespace around the plot, you can omit this argument. You can also call <code>savefig()</code> with a <code>Path</code> object, and write the output file anywhere you want on your system.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c15-11">15-1.	Cubes:</span> A number raised to the third power is a <em>cube</em>. Plot the first five cubic numbers, and then plot the first 5,000 cubic numbers.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c15-12">15-2.	Colored Cubes:</span> Apply a colormap to your cubes plot.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c15-0003"><span epub:type="pagebreak" id="Page_312" title="312"></span>Random Walks</h2>
+<p class="BodyFirst">In this section, we’ll use Python to generate data for a random walk and then use Matplotlib to create a visually appealing representation of that data. A <em>random walk</em> is a path that’s determined by a series of simple decisions, each of which is left entirely to chance. You might imagine a random walk as the path a confused ant would take if it took every step in a random direction.</p>
+<p>Random walks have practical applications in nature, physics, biology, chemistry, and economics. For example, a pollen grain floating on a drop of water moves across the surface of the water because it’s constantly pushed around by water molecules. Molecular motion in a water drop is random, so the path a pollen grain traces on the surface is a random walk. The code we’ll write next models many real-world situations.</p>
+<h3 id="h2-502703c15-0011">Creating the RandomWalk Class</h3>
+<p class="BodyFirst">To create a random walk, we’ll create a <code>RandomWalk</code> class, which will make random decisions about which direction the walk should take. The class needs three attributes: one variable to track the number of points in the walk, and two lists to store the <em>x</em>- and <em>y</em>-coordinates of each point in the walk.</p>
+<p>We’ll only need two methods for the <code>RandomWalk</code> class: the <code>__init__()</code> method and <code>fill_walk()</code>, which will calculate the points in the walk. Let’s start with the <code>__init__()</code> method:</p>
+<p class="CodeLabel"><b>random_walk.py</b></p>
+<pre><code><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> from random import choice
+
+class RandomWalk:
+    """A class to generate random walks."""
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     def __init__(self, num_points=5000):
+        """Initialize attributes of a walk."""
+        self.num_points = num_points
+
+        # All walks start at (0, 0).
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>         self.x_values = [0]
+        self.y_values = [0]</code></pre>
+<p>To make random decisions, we’ll store possible moves in a list and use the <code>choice()</code> function (from the <code>random</code> module) to decide which move to make each time a step is taken <span aria-label="annotation1" class="CodeAnnotation">❶</span>. We set the default number of points in a walk to <code>5000</code>, which is large enough to generate some interesting patterns but small enough to generate walks quickly <span aria-label="annotation2" class="CodeAnnotation">❷</span>. Then we make two lists to hold the <em>x</em>- and <em>y</em>-values, and we start each walk at the point (0, 0) <span aria-label="annotation3" class="CodeAnnotation">❸</span>.</p>
+<h3 id="h2-502703c15-0012">Choosing Directions</h3>
+<p class="BodyFirst">We’ll use the <code>fill_walk()</code> method to determine the full sequence of points in the walk. Add this method to <em>random_walk.py</em>:</p>
+<p class="CodeLabel"><b>random_walk.py</b></p>
+<pre><code><code>    </code>def fill_walk(self):
+<code>        </code>"""Calculate all the points in the walk."""
+
+<span epub:type="pagebreak" id="Page_313" title="313"></span>   <code>    </code> # Keep taking steps until the walk reaches the desired length.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> <code>    </code>    while len(self.x_values) &lt; self.num_points:
+
+    <code>    </code>    # Decide which direction to go, and how far to go.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>   <code>    </code>      x_direction = choice([1, -1])
+    <code>    </code>    x_distance = choice([0, 1, 2, 3, 4])
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     <code>    </code>    x_step = x_direction * x_distance
+
+     <code>    </code>   y_direction = choice([1, -1])
+    <code>    </code>    y_distance = choice([0, 1, 2, 3, 4])
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>      <code>    </code>   y_step = y_direction * y_distance
+
+     <code>    </code>   # Reject moves that go nowhere.
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>      <code>    </code>   if x_step == 0 and y_step == 0:
+     <code>    </code>       continue
+
+     <code>    </code>   # Calculate the new position.
+<span aria-label="annotation6" class="CodeAnnotationHang">❻</span>      <code>    </code>   x = self.x_values[-1] + x_step
+    <code>    </code>    y = self.y_values[-1] + y_step
+
+     <code>    </code>   self.x_values.append(x)
+    <code>    </code>    self.y_values.append(y)</code></pre>
+<p>We first set up a loop that runs until the walk is filled with the correct number of points <span aria-label="annotation1" class="CodeAnnotation">❶</span>. The main part of <code>fill_walk()</code> tells Python how to simulate four random decisions: Will the walk go right or left? How far will it go in that direction? Will it go up or down? How far will it go in that direction?</p>
+<p>We use <code>choice([1, -1])</code> to choose a value for <code>x_direction</code>, which returns either 1 for movement to the right or −1 for movement to the left <span aria-label="annotation2" class="CodeAnnotation">❷</span>. Next, <code>choice([0, 1, 2, 3, 4])</code> randomly selects a distance to move in that direction. We assign this value to <code>x_distance</code>. The inclusion of a 0 allows for the possibility of steps that have movement along only one axis.</p>
+<p>We determine the length of each step in the <em>x-</em> and <em>y-</em>directions by multiplying the direction of movement by the distance chosen <span aria-label="annotation3" class="CodeAnnotation">❸</span> <span aria-label="annotation4" class="CodeAnnotation">❹</span>. A positive result for <code>x_step</code> means move to the right, a negative result means move to the left, and 0 means move vertically. A positive result for <code>y_step</code> means move up, negative means move down, and 0 means move horizontally. If the values of both <code>x_step</code> and <code>y_step</code> are 0, the walk doesn’t go anywhere; when this happens, we continue the loop <span aria-label="annotation5" class="CodeAnnotation">❺</span>.</p>
+<p>To get the next <em>x</em>-value for the walk, we add the value in <code>x_step</code> to the last value stored in <code>x_values</code> <span aria-label="annotation6" class="CodeAnnotation">❻</span> and do the same for the <em>y</em>-values. When we have the new point’s coordinates, we append them to <code>x_values</code> and <code>y_values</code>.</p>
+<h3 id="h2-502703c15-0013">Plotting the Random Walk</h3>
+<p class="BodyFirst">Here’s the code to plot all the points in the walk:</p>
+<p class="CodeLabel"><b>rw_visual.py</b></p>
+<pre><code>import matplotlib.pyplot as plt
+
+from random_walk import RandomWalk
+
+# Make a random walk.
+<span epub:type="pagebreak" id="Page_314" title="314"></span><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> rw = RandomWalk()
+rw.fill_walk()
+
+# Plot the points in the walk.
+plt.style.use('classic')
+fig, ax = plt.subplots()
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> ax.scatter(rw.x_values, rw.y_values, s=15)
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> ax.set_aspect('equal')
+plt.show()</code></pre>
+<p>We begin by importing <code>pyplot</code> and <code>RandomWalk</code>. We then create a random walk and assign it to <code>rw</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>, making sure to call <code>fill_walk()</code>. To visualize the walk, we feed the walk’s <em>x</em>- and <em>y</em>-values to <code>scatter()</code> and choose an appropriate dot size <span aria-label="annotation2" class="CodeAnnotation">❷</span>. By default, Matplotlib scales each axis independently. But that approach would stretch most walks out horizontally or vertically. Here we use the <code>set_aspect()</code> method to specify that both axes should have equal spacing between tick marks <span aria-label="annotation3" class="CodeAnnotation">❸</span>.</p>
+<p><a href="#figure15-9" id="figureanchor15-9">Figure 15-9</a> shows the resulting plot with 5,000 points. The images in this section omit Matplotlib’s viewer, but you’ll continue to see it when you run <em>rw_visual.py</em>.</p>
+<figure>
+<img alt="" class="" height="340" src="Images/f15009.png" width="639"/>
+<figcaption><p><a id="figure15-9">Figure 15-9</a>: A random walk with 5,000 points</p></figcaption>
+</figure>
+<h3 id="h2-502703c15-0014">Generating Multiple Random Walks</h3>
+<p class="BodyFirst">Every random walk is different, and it’s fun to explore the various patterns that can be generated. One way to use the preceding code to make multiple walks without having to run the program several times is to wrap it in a <code>while</code> loop, like this:</p>
+<p class="CodeLabel"><b>rw_visual.py</b></p>
+<pre><code><span class="LiteralGray">import matplotlib.pyplot as plt</span>
+
+<span class="LiteralGray">from random_walk import RandomWalk</span>
+
+# Keep making new walks, as long as the program is active.
+<span epub:type="pagebreak" id="Page_315" title="315"></span>while True:
+<span class="LiteralGray">    # Make a random walk.</span>
+    <em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">    plt.show()</span>
+
+    keep_running = input("Make another walk? (y/n): ")
+    if keep_running == 'n':
+        break</code></pre>
+<p>This code generates a random walk, displays it in Matplotlib’s viewer, and pauses with the viewer open. When you close the viewer, you’ll be asked whether you want to generate another walk. If you generate a few walks, you should see some that stay near the starting point, some that wander off mostly in one direction, some that have thin sections connecting larger groups of points, and many other kinds of walks. When you want to end the program, press N.</p>
+<h3 id="h2-502703c15-0015">Styling the Walk</h3>
+<p class="BodyFirst">In this section, we’ll customize our plots to emphasize the important characteristics of each walk and deemphasize distracting elements. To do so, we identify the characteristics we want to emphasize, such as where the walk began, where it ended, and the path taken. Next, we identify the characteristics to deemphasize, such as tick marks and labels. The result should be a simple visual representation that clearly communicates the path taken in each random walk.</p>
+<h4 id="h3-502703c15-0001">Coloring the Points</h4>
+<p class="BodyFirst">We’ll use a colormap to show the order of the points in the walk, and remove the black outline from each dot so the color of the dots will be clearer. To color the points according to their position in the walk, we pass the <code>c</code> argument a list containing the position of each point. Because the points are plotted in order, this list just contains the numbers from 0 to 4,999:</p>
+<p class="CodeLabel"><b>rw_visual.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">while True:</span>
+<span class="LiteralGray">    # Make a random walk.</span>
+<span class="LiteralGray">    rw = RandomWalk()</span>
+<span class="LiteralGray">    rw.fill_walk()</span>
+
+    <span class="LiteralGray"># Plot the points in the walk.</span>
+<span class="LiteralGray">    plt.style.use('classic')</span>
+<span class="LiteralGray">    fig, ax = plt.subplots()</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     point_numbers = range(rw.num_points)
+    ax.scatter(rw.x_values, rw.y_values, c=point_numbers, cmap=plt.cm.Blues,
+        edgecolors='none', s=15)
+    <span class="LiteralGray">ax.set_aspect('equal')</span>
+<span class="LiteralGray">    plt.show()</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p><span epub:type="pagebreak" id="Page_316" title="316"></span>We use <code>range()</code> to generate a list of numbers equal to the number of points in the walk <span aria-label="annotation1" class="CodeAnnotation">❶</span>. We assign this list to <code>point_numbers</code>, which we’ll use to set the color of each point in the walk. We pass <code>point_numbers</code> to the <code>c</code> argument, use the <code>Blues</code> colormap, and then pass <code>edgecolors='none'</code> to get rid of the black outline around each point. The result is a plot that varies from light to dark blue, showing exactly how the walk moves from its starting point to its ending point. This is shown in <a href="#figure15-10" id="figureanchor15-10">Figure 15-10</a>.</p>
+<figure>
+<img alt="" class="" height="338" src="Images/f15010.png" width="629"/>
+<figcaption><p><a id="figure15-10">Figure 15-10</a>: A random walk colored with the <span class="LiteralInCaption"><code>Blues</code></span> colormap</p></figcaption>
+</figure>
+<h4 id="h3-502703c15-0002">Plotting the Starting and Ending Points</h4>
+<p class="BodyFirst">In addition to coloring points to show their position along the walk, it would be useful to see exactly where each walk begins and ends. To do so, we can plot the first and last points individually after the main series has been plotted. We’ll make the end points larger and color them differently to make them stand out:</p>
+<p class="CodeLabel"><b>rw_visual.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">while True:</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">    ax.scatter(rw.x_values, rw.y_values, c=point_numbers, cmap=plt.cm.Blues,</span>
+<span class="LiteralGray">        edgecolors='none', s=15)</span>
+<span class="LiteralGray">    ax.set_aspect('equal')</span>
+
+    # Emphasize the first and last points.
+    ax.scatter(0, 0, c='green', edgecolors='none', s=100)
+    ax.scatter(rw.x_values[-1], rw.y_values[-1], c='red', edgecolors='none',
+        s=100)
+
+<span class="LiteralGray">    plt.show()</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>To show the starting point, we plot the point (0, 0) in green and in a larger size (<code>s=100</code>) than the rest of the points. To mark the end point, we <span epub:type="pagebreak" id="Page_317" title="317"></span>plot the last <em>x</em>- and <em>y</em>-values in red with a size of 100 as well. Make sure you insert this code just before the call to <code>plt.show()</code> so the starting and ending points are drawn on top of all the other points.</p>
+<p>When you run this code, you should be able to spot exactly where each walk begins and ends. If these end points don’t stand out clearly enough, adjust their color and size until they do.</p>
+<h4 id="h3-502703c15-0003">Cleaning Up the Axes</h4>
+<p class="BodyFirst">Let’s remove the axes in this plot so they don’t distract from the path of each walk. Here’s how to hide the axes:</p>
+<p class="CodeLabel"><b>rw_visual.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">while True:</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">    ax.scatter(rw.x_values[-1], rw.y_values[-1], c='red', edgecolors='none',</span>
+<span class="LiteralGray">        s=100)</span>
+
+    # Remove the axes.
+    ax.get_xaxis().set_visible(False)
+    ax.get_yaxis().set_visible(False)
+
+<span class="LiteralGray">    plt.show()</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>To modify the axes, we use the <code>ax.get_xaxis()</code> and <code>ax.get_yaxis()</code> methods to get each axis, and then chain the <code>set_visible()</code> method to make each axis invisible. As you continue to work with visualizations, you’ll frequently see this chaining of methods to customize different aspects of a visualization.</p>
+<p>Run <em>rw_visual.py</em> now; you should see a series of plots with no axes.</p>
+<h4 id="h3-502703c15-0004">Adding Plot Points</h4>
+<p class="BodyFirst">Let’s increase the number of points, to give us more data to work with. To do so, we increase the value of <code>num_points</code> when we make a <code>RandomWalk</code> instance and adjust the size of each dot when drawing the plot:</p>
+<p class="CodeLabel"><b>rw_visual.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">while True:</span>
+<span class="LiteralGray">    # Make a random walk.</span>
+    rw = RandomWalk(50_000)
+<span class="LiteralGray">    rw.fill_walk()</span>
+
+<span class="LiteralGray">    # Plot the points in the walk.</span>
+<span class="LiteralGray">    plt.style.use('classic')</span>
+<span class="LiteralGray">    fig, ax = plt.subplots()</span>
+<span class="LiteralGray">    point_numbers = range(rw.num_points)</span>
+<span class="LiteralGray">    </span>ax.scatter(rw.x_values, rw.y_values, c=point_numbers, cmap=plt.cm.Blues,
+        edgecolors='none', s=1)
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p><span epub:type="pagebreak" id="Page_318" title="318"></span>This example creates a random walk with 50,000 points and plots each point at size <code>s=1</code>. The resulting walk is wispy and cloudlike, as shown in <a href="#figure15-11" id="figureanchor15-11">Figure 15-11</a>. We’ve created a piece of art from a simple scatter plot!</p>
+<p>Experiment with this code to see how much you can increase the number of points in a walk before your system starts to slow down significantly or the plot loses its visual appeal.</p>
+<figure>
+<img alt="" class="" height="447" src="Images/f15011.png" width="694"/>
+<figcaption><p><a id="figure15-11">Figure 15-11</a>: A walk with 50,000 points</p></figcaption>
+</figure>
+<h4 id="h3-502703c15-0005">Altering the Size to Fill the Screen</h4>
+<p class="BodyFirst">A visualization is much more effective at communicating patterns in data if it fits nicely on the screen. To make the plotting window better fit your screen, you can adjust the size of Matplotlib’s output. This is done in the <code>subplots()</code> call:</p>
+<pre><code>fig, ax = plt.subplots(figsize=(15, 9))</code></pre>
+<p>When creating a plot, you can pass <code>subplots()</code> a <code>figsize</code> argument, which sets the size of the figure. The <code>figsize</code> parameter takes a tuple that tells Matplotlib the dimensions of the plotting window in inches.</p>
+<p>Matplotlib assumes your screen resolution is 100 pixels per inch; if this code doesn’t give you an accurate plot size, adjust the numbers as necessary. Or, if you know your system’s resolution, you can pass <code>subplots()</code> the resolution using the <code>dpi</code> parameter:</p>
+<pre><code>fig, ax = plt.subplots(figsize=(10, 6), dpi=128)</code></pre>
+<p>This should help make the most efficient use of the space available on your screen.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2><span epub:type="pagebreak" id="Page_319" title="319"></span>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c15-18">15-3.	Molecular Motion:</span> Modify <em>rw_visual.py</em> by replacing <code>ax.scatter()</code> with <code>ax.plot()</code>. To simulate the path of a pollen grain on the surface of a drop of water, pass in the <code>rw.x_values</code> and <code>rw.y_values</code>, and include a <code>linewidth</code> argument. Use 5,000 instead of 50,000 points to keep the plot from being too busy.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c15-19">15-4.	Modified Random Walks:</span> In the <code>RandomWalk</code> class, <code>x_step</code> and <code>y_step</code> are generated from the same set of conditions. The direction is chosen randomly from the list <code>[1, -1]</code> and the distance from the list <code>[0, 1, 2, 3, 4]</code>. Modify the values in these lists to see what happens to the overall shape of your walks. Try a longer list of choices for the distance, such as 0 through 8, or remove the −1 from the <em>x-</em> or <em>y</em>-direction list.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c15-20">15-5.	Refactoring:</span> The <code>fill_walk()</code> method is lengthy. Create a new method called <code>get_step()</code> to determine the direction and distance for each step, and then calculate the step. You should end up with two calls to <code>get_step()</code> in <code>fill_walk()</code>:</p>
+<pre><code>x_step = self.get_step()
+y_step = self.get_step()</code></pre>
+<p class="BoxBody">This refactoring should reduce the size of <code>fill_walk()</code> and make the method easier to read and understand.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c15-0004">Rolling Dice with Plotly</h2>
+<p class="BodyFirst">In this section, we’ll use Plotly to produce interactive visualizations. Plotly is particularly useful when you’re creating visualizations that will be displayed in a browser, because the visualizations will scale automatically to fit the viewer’s screen. These visualizations are also interactive; when the user hovers over certain elements on the screen, information about those elements is highlighted. We’ll build our initial visualization in just a couple lines of code using <em>Plotly Express</em>, a subset of Plotly that focuses on generating plots with as little code as possible. Once we know our plot is correct, we’ll customize the output just as we did with Matplotlib.</p>
+<p>In this project, we’ll analyze the results of rolling dice. When you roll one regular, six-sided die, you have an equal chance of rolling any of the numbers from 1 through 6. However, when you use two dice, you’re more likely to roll certain numbers than others. We’ll try to determine which numbers are most likely to occur by generating a dataset that represents rolling dice. Then we’ll plot the results of a large number of rolls to determine which results are more likely than others.</p>
+<p>This work helps model games involving dice, but the core ideas also apply to games that involve chance of any kind, such as card games. It also relates to many real-world situations where randomness plays a significant factor.</p>
+<h3 id="h2-502703c15-0016"><span epub:type="pagebreak" id="Page_320" title="320"></span>Installing Plotly</h3>
+<p class="BodyFirst">Install Plotly using pip, just as you did for Matplotlib:</p>
+<pre><code>$ <b>python -m pip install --user plotly</b>
+$ <b>python -m pip install --user pandas</b></code></pre>
+<p>Plotly Express depends on <em>pandas</em>, which is a library for working efficiently with data, so we need to install that as well. If you used <code class="bold">python3</code> or something else when installing Matplotlib, make sure you use the same command here.</p>
+<p>To see what kind of visualizations are possible with Plotly, visit the gallery of chart types at <a class="LinkURL" href="https://plotly.com/python">https://plotly.com/python</a>. Each example includes source code, so you can see how Plotly generates the visualizations.</p>
+<h3 id="h2-502703c15-0017">Creating the Die Class</h3>
+<p class="BodyFirst">We’ll create the following <code>Die</code> class to simulate the roll of one die:</p>
+<p class="CodeLabel"><b>die.py</b></p>
+<pre><code>from random import randint
+
+class Die:
+    """A class representing a single die."""
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     def __init__(self, num_sides=6):
+        """Assume a six-sided die."""
+        self.num_sides = num_sides
+
+    def roll(self):
+        """"Return a random value between 1 and number of sides."""
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         return randint(1, self.num_sides)</code></pre>
+<p>The <code>__init__()</code> method takes one optional argument <span aria-label="annotation1" class="CodeAnnotation">❶</span>. With the <code>Die</code> class, when an instance of our die is created, the number of sides will be six if no argument is included. If an argument <em>is</em> included, that value will set the number of sides on the die. (Dice are named for their number of sides: a six-sided die is a D6, an eight-sided die is a D8, and so on.)</p>
+<p>The <code>roll()</code> method uses the <code>randint()</code> function to return a random number between 1 and the number of sides <span aria-label="annotation2" class="CodeAnnotation">❷</span>. This function can return the starting value (1), the ending value (<code>num_sides</code>), or any integer between the two.</p>
+<h3 id="h2-502703c15-0018">Rolling the Die</h3>
+<p class="BodyFirst">Before creating a visualization based on the <code>Die</code> class, let’s roll a D6, print the results, and check that the results look reasonable:</p>
+<p class="CodeLabel"><b>die_visual.py</b></p>
+<pre><code>from die import Die
+
+# Create a D6.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> die = Die()
+
+<span epub:type="pagebreak" id="Page_321" title="321"></span># Make some rolls, and store results in a list.
+results = []
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> for roll_num in range(100):
+    result = die.roll()
+    results.append(result)
+
+print(results)</code></pre>
+<p>We create an instance of <code>Die</code> with the default six sides <span aria-label="annotation1" class="CodeAnnotation">❶</span>. Then we roll the die <code>100</code> times <span aria-label="annotation2" class="CodeAnnotation">❷</span> and store the result of each roll in the list <code>results</code>. Here’s a sample set of results:</p>
+<pre><code>[4, 6, 5, 6, 1, 5, 6, 3, 5, 3, 5, 3, 2, 2, 1, 3, 1, 5, 3, 6, 3, 6, 5, 4,  1, 1, 4, 2, 3, 6, 4, 2, 6, 4, 1, 3, 2, 5, 6, 3, 6, 2, 1, 1, 3, 4, 1, 4, 3, 5, 1, 4, 5, 5, 2, 3, 3, 1, 2, 3, 5, 6, 2, 5, 6, 1, 3, 2, 1, 1, 1, 6, 5, 5, 2, 2, 6, 4, 1, 4, 5, 1, 1, 1, 4, 5, 3, 3, 1, 3, 5, 4, 5, 6, 5, 4, 1, 5, 1, 2]</code></pre>
+<p>A quick scan of these results shows that the <code>Die</code> class seems to be working. We see the values 1 and 6, so we know the smallest and largest possible values are being returned, and because we don’t see 0 or 7, we know all the results are in the appropriate range. We also see each number from 1 through 6, which indicates that all possible outcomes are represented. Let’s determine exactly how many times each number appears.</p>
+<h3 id="h2-502703c15-0019">Analyzing the Results</h3>
+<p class="BodyFirst">We’ll analyze the results of rolling one D6 by counting how many times we roll each number:</p>
+<p class="CodeLabel"><b>die_visual.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray"># Make some rolls, and store results in a list.</span>
+<span class="LiteralGray">results = []</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> for roll_num in range(1000):
+<span class="LiteralGray">    result = die.roll()</span>
+<span class="LiteralGray">    results.append(result)</span>
+
+# Analyze the results.
+frequencies = []
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> poss_results = range(1, die.num_sides+1)
+for value in poss_results:
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     frequency = results.count(value)
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>     frequencies.append(frequency)
+
+print(frequencies)</code></pre>
+<p>Because we’re no longer printing the results, we can increase the number of simulated rolls to <code>1000</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>. To analyze the rolls, we create the empty list <code>frequencies</code> to store the number of times each value is rolled. We then generate all the possible results we could get; in this example, that’s all the numbers from <code>1</code> to however many sides <code>die</code> has <span aria-label="annotation2" class="CodeAnnotation">❷</span>. We loop through the possible values, count how many times each number appears in <code>results</code> <span aria-label="annotation3" class="CodeAnnotation">❸</span>, and <span epub:type="pagebreak" id="Page_322" title="322"></span>then append this value to <code>frequencies</code> <span aria-label="annotation4" class="CodeAnnotation">❹</span>. We print this list before making a visualization:</p>
+<pre><code>[155, 167, 168, 170, 159, 181]</code></pre>
+<p>These results look reasonable: we see six frequencies, one for each possible number when you roll a D6. We also see that no frequency is significantly higher than any other. Now let’s visualize these results.</p>
+<h3 id="h2-502703c15-0020">Making a Histogram</h3>
+<p class="BodyFirst">Now that we have the data we want, we can generate a visualization in just a couple lines of code using Plotly Express:</p>
+<p class="CodeLabel"><b>die_visual.py</b></p>
+<pre><code>import plotly.express as px
+
+<span class="LiteralGray">from die import Die</span>
+<em class="LiteralGrayItalic">--snip--</em>
+
+<span class="LiteralGray">for value in poss_results:</span>
+<span class="LiteralGray">    frequency = results.count(value)</span>
+<span class="LiteralGray">    frequencies.append(frequency)</span>
+
+# Visualize the results.
+fig = px.bar(x=poss_results, y=frequencies)
+fig.show()</code></pre>
+<p>We first import the <code>plotly.express</code> module, using the conventional alias <code>px</code>. We then use the <code>px.bar()</code> function to create a bar graph. In the simplest use of this function, we only need to pass a set of <em>x-</em>values and a set of <em>y-</em>values. Here the <em>x</em>-values are the possible results from rolling a single die, and the <em>y</em>-values are the frequencies for each possible result.</p>
+<p>The final line calls <code>fig.show()</code>, which tells Plotly to render the resulting chart as an HTML file and open that file in a new browser tab. The result is shown in <a href="#figure15-12" id="figureanchor15-12">Figure 15-12</a>.</p>
+<p>This is a really simple chart, and it’s certainly not complete. But this is exactly how Plotly Express is meant to be used; you write a couple lines of code, look at the plot, and make sure it represents the data the way you want it to. If you like what you see, you can move on to customizing elements of the chart such as labels and styles. But if you want to explore other possible chart types, you can do so now, without having spent extra time on customization work. Feel free to try this now by changing <code>px.bar()</code> to something like <code>px.scatter()</code> or <code>px.line()</code>. You can find a full list of available chart types at <a class="LinkURL" href="https://plotly.com/python/plotly-express">https://plotly.com/python/plotly-express</a>.</p>
+<p>This chart is dynamic and interactive. If you change the size of your browser window, the chart will resize to match the available space. If you hover over any of the bars, you’ll see a pop-up highlighting the specific data related to that bar.</p>
+<span epub:type="pagebreak" id="Page_323" title="323"></span><figure>
+<img alt="" class="keyline" height="430" src="Images/f15012.png" width="694"/>
+<figcaption><p><a id="figure15-12">Figure 15-12</a>: The initial plot produced by Plotly Express</p></figcaption>
+</figure>
+<h3 id="h2-502703c15-0021">Customizing the Plot</h3>
+<p class="BodyFirst">Now that we know we have the correct kind of plot and our data is being represented accurately, we can focus on adding the appropriate labels and styles for the chart.</p>
+<p>The first way to customize a plot with Plotly is to use some optional parameters in the initial call that generates the plot, in this case, <code>px.bar()</code>. Here’s how to add an overall title and a label for each axis:</p>
+<p class="CodeLabel"><b>die_visual.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray"># Visualize the results.</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> title = "Results of Rolling One D6 1,000 Times"
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> labels = {'x': 'Result', 'y': 'Frequency of Result'}
+fig = px.bar(x=poss_results, y=frequencies, title=title, labels=labels)
+<span class="LiteralGray">fig.show()</span></code></pre>
+<p>We first define the title that we want, here assigned to <code>title</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>. To define axis labels, we write a dictionary <span aria-label="annotation2" class="CodeAnnotation">❷</span>. The keys in the dictionary refer to the labels we want to customize, and the values are the custom labels we want to use. Here we give the <em>x</em>-axis the label <code>Result</code> and the <em>y</em>-axis the label <code>Frequency of Result</code>. The call to <code>px.bar()</code> now includes the optional arguments <code>title</code> and <code>labels</code>.</p>
+<p>Now when the plot is generated it includes an appropriate title and a label for each axis, as shown in <a href="#figure15-13" id="figureanchor15-13">Figure 15-13</a>.</p>
+<span epub:type="pagebreak" id="Page_324" title="324"></span><figure>
+<img alt="" class="keyline" height="430" src="Images/f15013.png" width="694"/>
+<figcaption><p><a id="figure15-13">Figure 15-13</a>: A simple bar chart created with Plotly</p></figcaption>
+</figure>
+<h3 id="h2-502703c15-0022">Rolling Two Dice</h3>
+<p class="BodyFirst">Rolling two dice results in larger numbers and a different distribution of results. Let’s modify our code to create two D6 dice to simulate the way we roll a pair of dice. Each time we roll the pair, we’ll add the two numbers (one from each die) and store the sum in <code>results</code>. Save a copy of <em>die_visual.py</em> as <em>dice_visual.py</em> and make the following changes:</p>
+<p class="CodeLabel"><b>dice_visual.py</b></p>
+<pre><code><span class="LiteralGray">import plotly.express as px</span>
+
+<span class="LiteralGray">from die import Die</span>
+
+# Create two D6 dice.
+die_1 = Die()
+die_2 = Die()
+
+<span class="LiteralGray"># Make some rolls, and store results in a list.</span>
+<span class="LiteralGray">results = []</span>
+<span class="LiteralGray">for roll_num in range(1000):</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     result = die_1.roll() + die_2.roll()
+<span class="LiteralGray">    results.append(result)</span>
+
+<span class="LiteralGray"># Analyze the results.</span>
+<span class="LiteralGray">frequencies = []</span>
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> max_result = die_1.num_sides + die_2.num_sides
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> poss_results = range(2, max_result+1)
+<span class="LiteralGray">for value in poss_results:</span>
+<span class="LiteralGray">    frequency = results.count(value)</span>
+<span class="LiteralGray">    frequencies.append(frequency)</span>
+
+<span epub:type="pagebreak" id="Page_325" title="325"></span><span class="LiteralGray"># Visualize the results.</span>
+title = "Results of Rolling Two D6 Dice 1,000 Times"
+<span class="LiteralGray">labels = {'x': 'Result', 'y': 'Frequency of Result'}</span>
+<span class="LiteralGray">fig = px.bar(x=poss_results, y=frequencies, title=title, labels=labels)</span>
+<span class="LiteralGray">fig.show()</span></code></pre>
+<p>After creating two instances of <code>Die</code>, we roll the dice and calculate the sum of the two dice for each roll <span aria-label="annotation1" class="CodeAnnotation">❶</span>. The smallest possible result (2) is the sum of the smallest number on each die. The largest possible result (12) is the sum of the largest number on each die, which we assign to <code>max_result</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span>. The variable <code>max_result</code> makes the code for generating <code>poss_results</code> much easier to read <span aria-label="annotation3" class="CodeAnnotation">❸</span>. We could have written <code>range(2, 13)</code>, but this would work only for two D6 dice. When modeling real-world situations, it’s best to write code that can easily model a variety of situations. This code allows us to simulate rolling a pair of dice with any number of sides.</p>
+<p>After running this code, you should see a chart that looks like <a href="#figure15-14" id="figureanchor15-14">Figure 15-14</a>.</p>
+<figure>
+<img alt="" class="keyline" height="430" src="Images/f15014.png" width="694"/>
+<figcaption><p><a id="figure15-14">Figure 15-14</a>: Simulated results of rolling two six-sided dice 1,000 times</p></figcaption>
+</figure>
+<p>This graph shows the approximate distribution of results you’re likely to get when you roll a pair of D6 dice. As you can see, you’re least likely to roll a 2 or a 12 and most likely to roll a 7. This happens because there are six ways to roll a 7: 1 and 6, 2 and 5, 3 and 4, 4 and 3, 5 and 2, and 6 and 1.</p>
+<h3 id="h2-502703c15-0023">Further Customizations</h3>
+<p class="BodyFirst">There’s one issue that we should address with the plot we just generated. Now that there are 11 bars, the default layout settings for the <em>x</em>-axis leave some of the bars unlabeled. While the default settings work well for most visualizations, this chart would look better with all of the bars labeled.</p>
+<p><span epub:type="pagebreak" id="Page_326" title="326"></span>Plotly has an <code>update_layout()</code> method that can be used to make a wide variety of updates to a figure after it’s been created. Here’s how to tell Plotly to give each bar its own label:</p>
+<p class="CodeLabel"><b>dice_visual.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">fig = px.bar(x=poss_results, y=frequencies, title=title, labels=labels)</span>
+
+# Further customize chart.
+fig.update_layout(xaxis_dtick=1)
+
+<span class="LiteralGray">fig.show()</span></code></pre>
+<p>The <code>update_layout()</code> method acts on the <code>fig</code> object, which represents the overall chart. Here we use the <code>xaxis_dtick</code> argument, which specifies the distance between tick marks on the <em>x</em>-axis. We set that spacing to <code>1</code>, so that every bar is labeled. When you run <em>dice_visual.py</em> again, you should see a label on each bar.</p>
+<h3 id="h2-502703c15-0024">Rolling Dice of Different Sizes</h3>
+<p class="BodyFirst">Let’s create a six-sided die and a ten-sided die, and see what happens when we roll them 50,000 times:</p>
+<p class="CodeLabel"><b>dice_visual_d6d10.py</b></p>
+<pre><code><span class="LiteralGray">import plotly.express as px</span>
+
+<span class="LiteralGray">from die import Die</span>
+
+# Create a D6 and a D10.
+<span class="LiteralGray">die_1 = Die()</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> die_2 = Die(10)
+
+<span class="LiteralGray"># Make some rolls, and store results in a list.</span>
+<span class="LiteralGray">results = []</span>
+for roll_num in range(50_000):
+<span class="LiteralGray">    result = die_1.roll() + die_2.roll()</span>
+<span class="LiteralGray">    results.append(result)</span>
+
+<span class="LiteralGray"># Analyze the results.</span>
+<em class="LiteralGrayItalic">--snip--</em>
+
+<span class="LiteralGray"># Visualize the results.</span>
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> title = "Results of Rolling a D6 and a D10 50,000 Times"
+<span class="LiteralGray">labels = {'x': 'Result', 'y': 'Frequency of Result'}</span>
+<em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>To make a D10, we pass the argument <code>10</code> when creating the second <code>Die</code> instance <span aria-label="annotation1" class="CodeAnnotation">❶</span> and change the first loop to simulate 50,000 rolls instead of 1,000. We change the title of the graph as well <span aria-label="annotation2" class="CodeAnnotation">❷</span>.</p>
+<p><span epub:type="pagebreak" id="Page_327" title="327"></span><a href="#figure15-15" id="figureanchor15-15">Figure 15-15</a> shows the resulting chart. Instead of one most likely result, there are five such results. This happens because there’s still only one way to roll the smallest value (1 and 1) and the largest value (6 and 10), but the smaller die limits the number of ways you can generate the middle numbers. There are six ways to roll a 7, 8, 9, 10, or 11, these are the most common results, and you’re equally likely to roll any one of them.</p>
+<figure>
+<img alt="" class="keyline" height="430" src="Images/f15015.png" width="694"/>
+<figcaption><p><a id="figure15-15">Figure 15-15</a>: The results of rolling a six-sided die and a ten-sided die 50,000 times</p></figcaption>
+</figure>
+<p>Our ability to use Plotly to model the rolling of dice gives us considerable freedom in exploring this phenomenon. In just minutes, you can simulate a tremendous number of rolls using a large variety of dice.</p>
+<h3 id="h2-502703c15-0025">Saving Figures</h3>
+<p class="BodyFirst">When you have a figure you like, you can always save the chart as an HTML file through your browser. But you can also do so programmatically. To save your chart as an HTML file, replace the call to <code>fig.show()</code> with a call to <code>fig.write_html()</code>:</p>
+<pre><code>fig.write_html('dice_visual_d6d10.html')</code></pre>
+<p>The <code>write_html()</code> method requires one argument: the name of the file to write to. If you only provide a filename, the file will be saved in the same directory as the <em>.py</em> file. You can also call <code>write_html()</code> with a <code>Path</code> object, and write the output file anywhere you want on your system.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2><span epub:type="pagebreak" id="Page_328" title="328"></span>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c15-31">15-6.	Two D8s:</span> Create a simulation showing what happens when you roll two eight-sided dice 1,000 times. Try to picture what you think the visualization will look like before you run the simulation, then see if your intuition was correct. Gradually increase the number of rolls until you start to see the limits of your system’s capabilities.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c15-32">15-7.	Three Dice:</span> When you roll three D6 dice, the smallest number you can roll is 3 and the largest number is 18. Create a visualization that shows what happens when you roll three D6 dice.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c15-33">15-8.	Multiplication:</span> When you roll two dice, you usually add the two numbers together to get the result. Create a visualization that shows what happens if you multiply these numbers by each other instead.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c15-34">15-9.	Die Comprehensions:</span> For clarity, the listings in this section use the long form of <code>for</code> loops. If you’re comfortable using list comprehensions, try writing a comprehension for one or both of the loops in each of these programs.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c15-35">15-10. Practicing with Both Libraries:</span> Try using Matplotlib to make a die-rolling visualization, and use Plotly to make the visualization for a random walk. (You’ll need to consult the documentation for each library to complete this exercise.)</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c15-0005">Summary</h2>
+<p class="BodyFirst">In this chapter, you learned to generate datasets and create visualizations of that data. You created simple plots with Matplotlib and used a scatter plot to explore random walks. You also created a histogram with Plotly, and used it to explore the results of rolling dice of different sizes.</p>
+<p>Generating your own datasets with code is an interesting and powerful way to model and explore a wide variety of real-world situations. As you continue to work through the data visualization projects that follow, keep an eye out for situations you might be able to model with code. Look at the visualizations you see in news media, and see if you can identify those that were generated using methods similar to the ones you’re learning in these projects.</p>
+<p>In <span class="xref" itemid="xref_target_Chapter 16">Chapter 16</span>, you’ll download data from online sources and continue to use Matplotlib and Plotly to explore that data.</p>
+</section>
+</div></body>
+</html>

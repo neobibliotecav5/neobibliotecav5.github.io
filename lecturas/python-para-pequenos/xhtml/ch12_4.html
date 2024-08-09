@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch12lev1sec3">
+  Averiguar cuándo la pelota golpea la pala </h3>
+<p class="sb-para">
+  En este punto de nuestro código, la pelota no golpeará la pala. De hecho, la pelota volará directamente a través de la paleta. La pelota necesita saber cuándo ha golpeado la paleta, igual que necesita saber cuándo ha golpeado una pared. </p>
+<div class="image1">
+<img alt="Image" class="calibre129" src="../images/f0189-01.jpg" translate="no"/>
+</div>
+<p class="indent">
+  Podríamos resolver este problema añadiendo código a la función <span class="literal1" translate="no">
+   draw
+  </span>(donde tenemos el código que comprueba si hay paredes), pero es mejor idea mover este código a nuevas funciones para dividir las cosas en trozos más pequeños. Si ponemos demasiado código en un solo lugar (dentro de una función, por ejemplo), podemos hacer que el código sea mucho más difícil de entender. Hagamos los cambios necesarios. </p>
+<p class="indent">
+  En primer lugar, cambiamos la función <span class="literal1" translate="no">
+   __init__
+  </span>de la bola para que podamos pasar el objeto <span class="literal1" translate="no">
+   paddle
+  </span>como parámetro: </p>
+<pre class="pre" translate="no"><span class="orange">class</span> Ball:
+  <span class="ent">➊</span> <span class="orange">def</span> __init__(self, canvas, paddle, color):
+        self.canvas = canvas
+     <span class="ent">➋</span> self.paddle = paddle
+        self.id = canvas.create_oval(10, 10, 25, 25, fill=color)
+        self.canvas.move(self.id, 245, 100)
+        starts = [-3, -2, -1, 1, 2, 3]
+        self.x = random.choice(starts)
+        self.y = -3
+        self.canvas_height = self.canvas.winfo_height() 
+        self.canvas_width = self.canvas.winfo_width()
+</pre>
+<p class="indent">
+<span id="page_190">
+</span>
+  Observa que cambiamos los parámetros de <span class="literal1" translate="no">
+   __init__
+  </span>para incluir la paleta <span class="ent">➊ </span>. A continuación, asignamos el parámetro de la paleta a la variable de objeto <span class="literal1" translate="no">
+   paddle
+  </span><span class="ent">➋ </span>. </p>
+<p class="indent">
+  Una vez guardado el objeto <span class="literal1" translate="no">
+   paddle
+  </span>, tenemos que cambiar el código donde creamos el objeto <span class="literal1" translate="no">
+   ball
+  </span>. Este cambio se encuentra al final de nuestro programa, justo antes del bucle principal <span class="literal1" translate="no">
+   while
+  </span>: </p>
+<pre class="pre" translate="no">paddle = Paddle(canvas, <span class="green">'blue'</span>)
+ball = Ball(canvas, paddle, <span class="green">'red'</span>)
+
+<span class="gray">while True:
+    ball.draw()
+    paddle.draw()
+    tk.update_idletasks()
+    tk.update()
+    time.sleep(0.01)</span>
+</pre>
+<p class="indent">
+  Para ver si la pelota ha golpeado la paleta, necesitamos un código un poco más complicado que el código añadido anteriormente para comprobar si hay paredes. Llamaremos a esta función <span class="literal1" translate="no">
+   hit_paddle
+  </span>y la invocaremos en la función <span class="literal1" translate="no">
+   draw
+  </span>de la clase <span class="literal1" translate="no">
+   Ball
+  </span>, donde comprobamos si la pelota ha tocado el fondo de la pantalla: </p>
+<pre class="pre" translate="no">    <span class="orange">def</span> draw(self):
+        self.canvas.move(self.id, self.x, self.y)
+        pos = self.canvas.coords(self.id)
+        <span class="orange">if</span> pos[1] &lt;= 0 <span class="orange">or</span> pos[3] &gt;= self.canvas_height:
+            self.y = self.y * -1
+      <span class="ent">➊</span> <span class="orange">if</span> self.hit_paddle(pos) == <span class="violet">True</span>:
+          <span class="ent">➋</span> self.y = self.y * -1
+        <span class="orange">if</span> pos[0] &lt;= 0 <span class="orange">or</span> pos[2] &gt;= self.canvas_width:
+            self.x = self.x * -1
+</pre>
+<p class="indent">
+  En el código recién añadido, si <span class="literal1" translate="no">
+   hit_paddle
+  </span>devuelve <span class="literal1" translate="no">
+   True
+  </span><span class="ent">➊ </span>, cambiamos la dirección de la bola ajustando la variable de objeto <span class="literal1" translate="no">
+   y
+  </span>a su valor multiplicado por -1 <span class="ent">➋ </span>(lo mismo que cuando toca la parte superior o inferior de la tela). Con este código, básicamente estamos diciendo: "Si la pelota ( <span class="literal1" translate="no">
+   self
+  </span>) ha golpeado la pala, invertimos su dirección vertical". </p>
+<p class="indent">
+  Podríamos combinar las comprobaciones de la parte superior, inferior y de la paleta en una sola declaración <span class="literal1" translate="no">
+   if
+  </span>-pero es más fácil para los nuevos programadores leer este código si las mantenemos separadas. </p>
+<p class="indent">
+<span id="page_191">
+</span>
+  No intentes ejecutar el juego todavía; aún tenemos que crear la función <span class="literal1" translate="no">
+   hit_paddle
+  </span>. Hagámoslo ahora. Añade la función <span class="literal1" translate="no">
+   hit_paddle
+  </span>justo antes de la función <span class="literal1" translate="no">
+   draw
+  </span>en la clase <span class="literal1" translate="no">
+   Ball
+  </span>: </p>
+<pre class="pre" translate="no">    <span class="orange">def</span> hit_paddle(self, pos):
+        paddle_pos = self.canvas.coords(self.paddle.id)
+        <span class="orange">if</span> pos[2] &gt;= paddle_pos[0] <span class="orange">and</span> pos[0] &lt;= paddle_pos[2]:
+            <span class="orange">if</span> pos[3] &gt;= paddle_pos[1] <span class="orange">and</span> pos[3] &lt;= paddle_pos[3]:
+                <span class="orange">return</span> <span class="violet">True</span>
+        <span class="orange">return</span> <span class="violet">False</span>
+</pre>
+<p class="indent">
+  En primer lugar, definimos la función con el parámetro <span class="literal1" translate="no">
+   pos
+  </span>. Este parámetro contiene las coordenadas actuales de la pelota. Después, obtenemos las coordenadas de la paleta y las almacenamos en la variable <span class="literal1" translate="no">
+   paddle_pos
+  </span>. </p>
+<p class="indent">
+  A continuación, tenemos la primera parte de nuestra sentencia <span class="literal1" translate="no">
+   if-then
+  </span>, que dice: "Si el lado derecho de la pelota es mayor que el lado izquierdo de la paleta, y el lado izquierdo de la pelota es menor que el lado derecho de la paleta. . ." Aquí, <span class="literal1" translate="no">
+   pos[2]
+  </span>contiene la <em class="calibre7">coordenada </em>x del lado derecho de la pelota, y <span class="literal1" translate="no">
+   pos[0]
+  </span>contiene la <em class="calibre7">coordenada </em>x de su lado izquierdo. La variable <span class="literal1" translate="no">
+   paddle_pos[0]
+  </span>contiene la <em class="calibre7">coordenada </em>x del lado izquierdo de la paleta, y <span class="literal1" translate="no">
+   paddle_pos[2]
+  </span>contiene la <em class="calibre7">coordenada </em>x del lado derecho. <a class="calibre6" href="ch12.xhtml#ch12fig02">La Figura 12-2 </a>muestra el aspecto de estas coordenadas cuando la pelota está a punto de golpear la paleta. </p>
+<div class="image1">
+<img alt="Image" class="calibre130" id="ch12fig02" src="../images/12fig02.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">Figura 12-2: Pelota a punto de golpear la pala - mostrando coordenadas horizontales </em></p>
+<p class="indent">
+  La pelota está cayendo hacia la paleta, pero en este caso, ves que el lado derecho de la pelota ( <span class="literal1" translate="no">
+   pos[2]
+  </span>) aún no ha cruzado el lado izquierdo de la paleta (eso es <span class="literal1" translate="no">
+   paddle_pos[0]
+  </span>). </p>
+<p class="indent">
+  A continuación, vemos si la parte inferior de la bola ( <span class="literal1" translate="no">
+   pos[3]
+  </span>) está entre la parte superior ( <span class="literal1" translate="no">
+   paddle_pos[1]
+  </span>) y la parte inferior ( <span class="literal1" translate="no">
+   paddle_pos[3]
+  </span>) de la pala. En la <a class="calibre6" href="ch12.xhtml#ch12fig03">Figura 12-3 </a>, puedes ver que la parte inferior de la pelota ( <span class="literal1" translate="no">
+   pos[3]
+  </span>) aún no ha golpeado la parte superior de la pala ( <span class="literal1" translate="no">
+   paddle_pos[1]
+  </span>). </p>
+<div class="image1">
+<img alt="Image" class="calibre131" id="ch12fig03" src="../images/12fig03.jpg" translate="no"/>
+</div>
+<p class="figcap">
+
+   Figura<em class="calibre7">12-3: Pelota a punto de golpear la pala - mostrando coordenadas verticales </em></p>
+<p class="indent">
+<span id="page_192">
+</span>
+  Así, basándose en la posición actual de la pelota, la función <span class="literal1" translate="no">
+   hit_paddle
+  </span>devolvería <span class="literal1" translate="no">
+   False
+  </span>. </p>
+<div class="note">
+<p class="notet">
+<span class="notes">Nota </span></p>
+<p class="notep">
+<em class="calibre7">
+    ¿Por qué necesitamos ver si la parte inferior de la pelota está entre la parte superior e inferior de la pala? ¿Por qué no ver simplemente si la parte inferior de la bola ha tocado la parte superior de la paleta? Porque cada vez que movemos la pelota por el lienzo, nos movemos a saltos de 3 píxeles. Si nos limitáramos a comprobar si la pelota ha llegado a la parte superior de la paleta ( <span class="literal1" translate="no">
+     pos[1]
+    </span>), podríamos haber saltado más allá de esa posición. En ese caso, la bola seguiría viajando y atravesaría la paleta sin detenerse. </em></p>
+</div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch12_3.html">anterior</a><a href="ch12.html">Subtema 4 de 7: (Ver todo)</a><a href="ch12_5.html">siguiente</a><br/></p>
+<br/><a href="ch12_4.docx" target="_blank"></a></footer>
+</body>
+</html>

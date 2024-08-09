@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch07lev1sec3">
+  Variables y ámbito </h3>
+<p class="noindent">
+  Una variable que está dentro del cuerpo de una función no puede volver a utilizarse una vez que la función ha terminado de ejecutarse, porque sólo existe dentro de la función. En el mundo de la programación, el lugar donde se puede utilizar una variable se denomina ámbito <em class="calibre7">. </em>Veamos una función sencilla que utiliza un par de variables pero no tiene ningún parámetro: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">def</span> variable_test():
+        first_variable = 10
+        second_variable = 20
+        <span class="orange">return</span> first_variable * second_variable</pre>
+<p class="indent">
+  En este ejemplo, creamos la función <span class="literal1" translate="no">
+   variable_test
+  </span>, que multiplica <span class="literal1" translate="no">
+   first_variable
+  </span>y <span class="literal1" translate="no">
+   second_variable
+  </span>y devuelve el resultado: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(variable_test())
+<span class="blue1">200</span></pre>
+<p class="indent">
+  Si llamamos a esta función utilizando <span class="literal1" translate="no">
+   print
+  </span>, obtenemos 200. Sin embargo, si intentamos imprimir el contenido de <span class="literal1" translate="no">
+   first_variable
+  </span>(o <span class="literal1" translate="no">
+   second_variable
+  </span>, <span id="page_87">
+</span>para el caso) fuera del bloque de código de la función, obtendremos un mensaje de error: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(first_variable)
+<span class="red">Traceback (most recent call last):
+  File "&lt;pyshell#50&gt;", line 1, in &lt;module&gt;
+    print(first_variable)
+NameError: name 'first_variable' is not defined</span></pre>
+<p class="indent">
+  Si una variable se define fuera de la función, tiene un ámbito diferente. Por ejemplo, definamos una variable antes de crear nuestra función, y luego intentemos utilizarla dentro de la función: </p>
+<pre class="pre" translate="no"><span class="ent">➊</span> <span class="brown">&gt;&gt;&gt;</span> another_variable = 100
+  <span class="brown">&gt;&gt;&gt;</span> <span class="orange">def</span> variable_test2():
+          first_variable = 10
+          second_variable = 20
+       <span class="ent">➋</span> <span class="orange">return</span> first_variable * second_variable * another_variable</pre>
+<p class="indent">
+  En este código, aunque las variables <span class="literal1" translate="no">
+   first_variable
+  </span>y <span class="literal1" translate="no">
+   second_variable
+  </span>no se pueden utilizar fuera de la función, la variable <span class="literal1" translate="no">
+   another_variable
+  </span>(que se creó fuera de la función <span class="ent">➊ </span>) se puede utilizar dentro de ella <span class="ent">➋ </span>. </p>
+<p class="indent">
+  Éste es el resultado de llamar a esta función: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(variable_test2())
+<span class="blue1">20000</span></pre>
+<p class="indent">
+  Ahora, supón que construyes una nave espacial con algo económico como latas de conserva recicladas. Puedes aplanar dos latas a la semana para crear las paredes curvas de tu nave espacial, pero necesitarás unas 500 latas para terminar el fuselaje. Intentemos escribir una función que imprima el total de latas aplastadas cada semana a lo largo de un año. </p>
+<div class="image1">
+<img alt="Image" class="calibre68" src="../images/f0087-01.jpg" translate="no"/>
+</div>
+<p class="indent">
+  Nuestra función calculará cuántas latas hemos aplastado cada semana, con el número de latas como parámetro (así será más fácil cambiar el número de latas más adelante): </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">def</span> spaceship_building(cans):
+        total_cans = 0
+        <span class="orange">for</span> week <span class="orange">in</span> <span class="violet">range</span>(1, 53):
+<span id="page_88"></span>            total_cans = total_cans + cans
+            <span class="violet">print</span>(f<span class="green">'Week {week} = {total_cans} cans'</span>)</pre>
+<p class="indent">
+  En la primera línea de la función, creamos la variable <span class="literal1" translate="no">
+   total_cans
+  </span>y establecemos su valor en 0. A continuación, creamos un bucle para las semanas del año y añadimos el número de latas aplastadas cada semana. Este bloque de código constituye el contenido de nuestra función, y las dos últimas líneas constituyen otro bloque del bucle <span class="literal1" translate="no">
+   for
+  </span>. </p>
+<p class="indent">
+  Probemos a introducir esa función en la Shell de Python y a llamarla con distintos valores para el número de latas, empezando por 2: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> spaceship_building(2)
+<span class="blue1">Week 1 = 2 cans
+Week 2 = 4 cans
+Week 3 = 6 cans
+Week 4 = 8 cans
+Week 5 = 10 cans
+Week 6 = 12 cans
+Week 7 = 14 cans
+Week 8 = 16 cans
+...
+Week 50 = 100 cans
+Week 51 = 102 cans
+Week 52 = 104 cans</span>
+
+<span class="brown">&gt;&gt;&gt;</span> spaceship_building(10)
+<span class="blue1">Week 1 = 10 cans
+Week 2 = 20 cans
+Week 3 = 30 cans
+Week 4 = 40 cans
+Week 5 = 50 cans
+...
+Week 48 = 480 cans
+Week 49 = 490 cans
+Week 50 = 500 cans
+Week 51 = 510 cans
+Week 52 = 520 cans</span></pre>
+<p class="indent">
+  Esta función puede reutilizarse con distintos valores para el número de latas por semana, lo que es un poco más eficaz que volver a escribir el bucle <span class="literal1" translate="no">
+   for
+  </span>cada vez que quieras probarlo con distintos números <span id="page_89">
+</span>. Cuando ejecutamos <span class="literal1" translate="no">
+   spaceship_building(10)
+  </span>, podemos ver que tendremos suficientes latas para construir las paredes de la nave espacial en la semana 50. </p>
+<p class="indent">
+  Las funciones también pueden agruparse en módulos, lo que hace que Python sea <em class="calibre7">realmente </em>útil, en lugar de sólo medianamente útil. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch07_3.html">anterior</a><a href="ch07.html">Subtema 4 de 8: (Ver todo)</a><a href="ch07_5.html">siguiente</a><br/></p>
+<br/><a href="ch07_4.docx" target="_blank"></a></footer>
+</body>
+</html>

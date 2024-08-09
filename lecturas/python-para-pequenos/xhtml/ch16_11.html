@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch16lev1sec10">
+  El juego final </h3>
+<p class="noindent">
+  El listado completo de nuestro juego tiene ahora algo más de 200 líneas de código. A continuación se muestra el código completo del juego. Si tienes problemas para que tu juego funcione, compara cada función (y cada clase) con este listado: </p>
+<pre class="pre" translate="no"><span class="orange">from</span> tkinter <span class="orange">import</span> *
+<span class="orange">import</span> random
+<span class="orange">import</span> time
+
+<span class="orange">class</span> Coords:
+    <span class="orange">def</span> __init__(self, x1=0, y1=0, x2=0, y2=0):
+        self.x1 = x1
+        self.y1 = y1
+        self.x2 = x2
+        self.y2 = y2
+
+<span id="page_261"></span><span class="orange">def</span> within_x(co1, co2):
+    <span class="orange">if</span> (co1.x1 &gt; co2.x1 <span class="orange">and</span> co1.x1 &lt; co2.x2) \
+            <span class="orange">or</span> (co1.x2 &gt; co2.x1 <span class="orange">and</span> co1.x2 &lt; co2.x2) \
+            <span class="orange">or</span> (co2.x1 &gt; co1.x1 <span class="orange">and</span> co2.x1 &lt; co1.x2) \
+            <span class="orange">or</span> (co2.x2 &gt; co1.x1 <span class="orange">and</span> co2.x2 &lt; co1.x2):
+        <span class="orange">return</span> <span class="violet">True</span>
+    <span class="orange">else</span>:
+        <span class="orange">return</span> <span class="violet">False</span>
+
+<span class="orange">def</span> within_y(co1, co2):
+    <span class="orange">if</span> (co1.y1 &gt; co2.y1 <span class="orange">and</span> co1.y1 &lt; co2.y2) \
+            <span class="orange">or</span> (co1.y2 &gt; co2.y1 <span class="orange">and</span> co1.y2 &lt; co2.y2) \
+            <span class="orange">or</span> (co2.y1 &gt; co1.y1 <span class="orange">and</span> co2.y1 &lt; co1.y2) \
+            <span class="orange">or</span> (co2.y2 &gt; co1.y1 <span class="orange">and</span> co2.y2 &lt; co1.y2):
+        <span class="orange">return</span> <span class="violet">True</span>
+    <span class="orange">else</span>:
+        <span class="orange">return</span> <span class="violet">False</span>
+
+<span class="orange">def</span> collided_left(co1, co2):
+    <span class="orange">if</span> within_y(co1, co2):
+        <span class="orange">if</span> co1.x1 &gt;= co2.x1 <span class="orange">and</span> co1.x1 &lt;= co2.x2:
+            <span class="orange">return</span> <span class="violet">True</span>
+    <span class="orange">return</span> <span class="violet">False</span>
+
+<span class="orange">def</span> collided_right(co1, co2):
+    <span class="orange">if</span> within_y(co1, co2):
+        <span class="orange">if</span> co1.x2 &gt;= co2.x1 <span class="orange">and</span> co1.x2 &lt;= co2.x2:
+            <span class="orange">return</span> <span class="violet">True</span>
+    <span class="orange">return</span> <span class="violet">False</span>
+
+<span class="orange">def</span> collided_top(co1, co2):
+    <span class="orange">if</span> within_x(co1, co2):
+        <span class="orange">if</span> co1.y1 &gt;= co2.y1 <span class="orange">and</span> co1.y1 &lt;= co2.y2:
+            <span class="orange">return</span> <span class="violet">True</span>
+    <span class="orange">return</span> <span class="violet">False</span>
+
+<span class="orange">def</span> collided_bottom(y, co1, co2):
+    <span class="orange">if</span> within_x(co1, co2):
+        y_calc = co1.y2 + y
+        <span class="orange">if</span> y_calc &gt;= co2.y1 <span class="orange">and</span> y_calc &lt;= co2.y2:
+            <span class="orange">return</span> <span class="violet">True</span>
+    <span class="orange">return</span> <span class="violet">False</span>
+
+<span class="orange">class</span> Sprite:
+    <span class="orange">def</span> __init__(self, game):
+        self.game = game
+        self.endgame = <span class="violet">False</span>
+        self.coordinates = <span class="violet">None</span>
+    <span class="orange">def</span> move(self):
+        <span class="orange">pass</span>
+    <span id="page_262"></span><span class="orange">def</span> coords(self):
+        <span class="orange">return</span> self.coordinates
+
+<span class="orange">class</span> PlatformSprite(Sprite):
+    <span class="orange">def</span> __init__(self, game, photo_image, x, y, width, height):
+        Sprite.__init__(self, game)
+        self.photo_image = photo_image
+        self.image = game.canvas.create_image(x, y, 
+                image=self.photo_image, anchor=<span class="green">'nw'</span>)
+        self.coordinates = Coords(x, y, x + width, y + height)
+
+<span class="orange">class</span> StickFigureSprite(Sprite):
+    <span class="orange">def</span> __init__(self, game):
+        Sprite.__init__(self, game)
+        self.images_left = [
+            PhotoImage(<span class="orange">file</span>=<span class="green">'figure-L1.gif'</span>),
+            PhotoImage(<span class="orange">file</span>=<span class="green">'figure-L2.gif'</span>),
+            PhotoImage(<span class="orange">file</span>=<span class="green">'figure-L3.gif'</span>)
+        ]
+        self.images_right = [
+            PhotoImage(<span class="orange">file</span>=<span class="green">'figure-R1.gif'</span>),
+            PhotoImage(<span class="orange">file</span>=<span class="green">'figure-R2.gif'</span>),
+            PhotoImage(<span class="orange">file</span>=<span class="green">'figure-R3.gif'</span>)
+        ]
+        self.image = game.canvas.create_image(200, 470, 
+                image=self.images_left[0], anchor=<span class="green">'nw'</span>)
+        self.x = -2
+        self.y = 0
+        self.current_image = 0
+        self.current_image_add = 1
+        self.jump_count = 0
+        self.last_time = time.time()
+        self.coordinates = Coords()
+        game.canvas.bind_all(<span class="green">'&lt;KeyPress-Left&gt;'</span>, self.turn_left)
+        game.canvas.bind_all(<span class="green">'&lt;KeyPress-Right&gt;'</span>, self.turn_right)
+        game.canvas.bind_all(<span class="green">'&lt;space&gt;'</span>, self.jump)
+
+    <span class="orange">def</span> turn_left(self, evt):
+        <span class="orange">if</span> self.y == 0:
+            self.x = -2
+
+    <span id="page_263"></span><span class="orange">def</span> turn_right(self, evt):
+        <span class="orange">if</span> self.y == 0:
+            self.x = 2
+
+    <span class="orange">def</span> jump(self, evt):
+        <span class="orange">if</span> self.y == 0:
+            self.y = -4
+            self.jump_count = 0
+
+    <span class="orange">def</span> animate(self):
+        <span class="orange">if</span> self.x != 0 <span class="orange">and</span> self.y == 0:
+            <span class="orange">if</span> time.time() - self.last_time &gt; 0.1:
+                self.last_time = time.time()
+                self.current_image += self.current_image_add
+                <span class="orange">if</span> self.current_image &gt;= 2:
+                    self.current_image_add = -1
+                <span class="orange">if</span> self.current_image &lt;= 0:
+                    self.current_image_add = 1
+        <span class="orange">if</span> self.x &lt; 0:
+            <span class="orange">if</span> self.y != 0:
+                self.game.canvas.itemconfig(self.image, 
+                        image=self.images_left[2])
+            <span class="orange">else</span>:
+                self.game.canvas.itemconfig(self.image, 
+                        image=self.images_left[self.current_image])
+        <span class="orange">elif</span> self.x &gt; 0:
+            <span class="orange">if</span> self.y != 0:
+                self.game.canvas.itemconfig(self.image, 
+                        image=self.images_right[2])
+            <span class="orange">else</span>:
+                self.game.canvas.itemconfig(self.image, 
+                        image=self.images_right[self.current_image])
+
+    <span class="orange">def</span> coords(self):
+        xy = self.game.canvas.coords(self.image)
+        self.coordinates.x1 = xy[0]
+        self.coordinates.y1 = xy[1]
+        self.coordinates.x2 = xy[0] + 27
+        self.coordinates.y2 = xy[1] + 30
+        <span class="orange">return</span> self.coordinates
+
+    <span id="page_264"></span><span class="orange">def</span> move(self):
+        self.animate()
+        <span class="orange">if</span> self.y &lt; 0:
+            self.jump_count += 1
+            <span class="orange">if</span> self.jump_count &gt; 20:
+                self.y = 4
+        <span class="orange">if</span> self.y &gt; 0:
+            self.jump_count -= 1
+        co = self.coords()
+        left = <span class="violet">True</span>
+        right = <span class="violet">True</span>
+        top = <span class="violet">True</span>
+        bottom = <span class="violet">True</span>
+        falling = <span class="violet">True</span>
+        <span class="orange">if</span> self.y &gt; 0 <span class="orange">and</span> co.y2 &gt;= self.game.canvas_height:
+            self.y = 0
+            bottom = <span class="violet">False</span>
+        <span class="orange">elif</span> self.y &lt; 0 <span class="orange">and</span> co.y1 &lt;= 0:
+            self.y = 0
+            top = <span class="violet">False</span>
+        <span class="orange">if</span> self.x &gt; 0 <span class="orange">and</span> co.x2 &gt;= self.game.canvas_width:
+            self.x = 0
+            right = <span class="violet">False</span>
+        <span class="orange">elif</span> self.x &lt; 0 <span class="orange">and</span> co.x1 &lt;= 0:
+            self.x = 0
+            left = <span class="violet">False</span>
+
+        <span class="orange">for</span> sprite <span class="orange">in</span> self.game.sprites:
+            <span class="orange">if</span> sprite == self:
+                <span class="orange">continue</span>
+            sprite_co = sprite.coords()
+            <span class="orange">if</span> top <span class="orange">and</span> self.y &lt; 0 <span class="orange">and</span> collided_top(co, sprite_co):
+                self.y = -self.y
+                top = <span class="violet">False</span>
+            <span class="orange">if</span> bottom <span class="orange">and</span> self.y &gt; 0 <span class="orange">and</span> collided_bottom(self.y, 
+                    co, sprite_co):
+                self.y = sprite_co.y1 - co.y2
+                <span class="orange">if</span> self.y &lt; 0:
+                    self.y = 0
+                bottom = <span class="violet">False</span>
+                top = <span class="violet">False</span>
+            <span id="page_265"></span><span class="orange">if</span> bottom <span class="orange">and</span> falling <span class="orange">and</span> self.y == 0 \
+                    <span class="orange">and</span> co.y2 &lt; self.game.canvas_height \
+                    <span class="orange">and</span> collided_bottom(1, co, sprite_co):
+                falling = <span class="violet">False</span>
+            <span class="orange">if</span> left <span class="orange">and</span> self.x &lt; 0 <span class="orange">and</span> collided_left(co, sprite_co):
+                self.x = 0
+                left = <span class="violet">False</span>
+                <span class="orange">if</span> sprite.endgame:
+                    self.game.running = <span class="violet">False</span>
+            <span class="orange">if</span> right <span class="orange">and</span> self.x &gt; 0 <span class="orange">and</span> collided_right(co, sprite_co):
+                self.x = 0
+                right = <span class="violet">False</span>
+                <span class="orange">if</span> sprite.endgame:
+                    self.game.running = <span class="violet">False</span>
+
+        <span class="orange">if</span> falling <span class="orange">and</span> bottom <span class="orange">and</span> self.y == 0 \
+                <span class="orange">and</span> co.y2 &lt; self.game.canvas_height:
+            self.y = 4
+        self.game.canvas.move(self.image, self.x, self.y)
+
+<span class="orange">class</span> DoorSprite(Sprite):
+    <span class="orange">def</span> __init__(self, game, photo_image, x, y, width, height):
+        Sprite.__init__(self, game)
+        self.photo_image = photo_image
+        self.image = game.canvas.create_image(x, y, 
+                image=self.photo_image, anchor=<span class="green">'nw'</span>)
+        self.coordinates = Coords(x, y, x + (width / 2), y + height)
+        self.endgame = <span class="violet">True</span>
+
+<span class="orange">class</span> Game:
+    <span class="orange">def</span> __init__(self):
+        self.tk = Tk()
+        self.tk.title(<span class="green">'Mr. Stick Man Races for the Exit'</span>)
+        self.tk.resizable(0, 0)
+        self.tk.wm_attributes(<span class="green">'-topmost'</span>, 1)
+        self.canvas = Canvas(self.tk, width=500, height=500, 
+                             highlightthickness=0)
+        self.canvas.pack()
+        self.tk.update()
+        self.canvas_height = self.canvas.winfo_height()
+        self.canvas_width = self.canvas.winfo_width()
+        <span id="page_266"></span>self.bg = PhotoImage(<span class="orange">file</span>=<span class="green">'background.gif'</span>)
+        w = self.bg.width()
+        h = self.bg.height()
+        <span class="orange">for</span> x <span class="orange">in</span> <span class="violet">range</span>(0, 5):
+            <span class="orange">for</span> y <span class="orange">in</span> <span class="violet">range</span>(0, 5):
+                self.canvas.create_image(x * w, y * h, 
+                        image=self.bg, anchor=<span class="green">'nw'</span>)
+        self.sprites = []
+        self.running = <span class="violet">True</span>
+
+    <span class="orange">def</span> mainloop(self):
+        <span class="orange">while</span> <span class="violet">True</span>:
+            <span class="orange">if</span> self.running == <span class="violet">True</span>:
+                <span class="orange">for</span> sprite <span class="orange">in</span> self.sprites:
+                    sprite.move()
+            self.tk.update_idletasks()
+            self.tk.update()
+            time.sleep(0.01)
+
+g = Game()
+platform1 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform1.gif'</span>), 
+                           0, 480, 100, 10)
+platform2 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform1.gif'</span>), 
+                           150, 440, 100, 10)
+platform3 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform1.gif'</span>), 
+                           300, 400, 100, 10)
+platform4 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform1.gif'</span>), 
+                           300, 160, 100, 10)
+platform5 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform2.gif'</span>), 
+                           175, 350, 66, 10)
+platform6 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform2.gif'</span>), 
+                           50, 300, 66, 10)
+platform7 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform2.gif'</span>), 
+                           170, 120, 66, 10)
+platform8 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform2.gif'</span>), 
+                           45, 60, 66, 10)
+platform9 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform3.gif'</span>), 
+                           170, 250, 32, 10)
+platform10 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform3.gif'</span>), 
+                            230, 200, 32, 10)
+g.sprites.append(platform1)
+<span id="page_267"></span>g.sprites.append(platform2)
+g.sprites.append(platform3)
+g.sprites.append(platform4)
+g.sprites.append(platform5)
+g.sprites.append(platform6)
+g.sprites.append(platform7)
+g.sprites.append(platform8)
+g.sprites.append(platform9)
+g.sprites.append(platform10)
+door = DoorSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'door1.gif'</span>), 45, 30, 40, 35)
+g.sprites.append(door)
+sf = StickFigureSprite(g)
+g.sprites.append(sf)
+g.mainloop()</pre>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch16_10.html">anterior</a><a href="ch16.html">Subtema 11 de 13: (Ver todo)</a><a href="ch16_12.html">siguiente</a><br/></p>
+<br/><a href="ch16_11.docx" target="_blank"></a></footer>
+</body>
+</html>

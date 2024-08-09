@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Enumeration</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Enumeration"><div class="titlepage"><div><div><h1 class="title"><a id="enumeration-id1"/>Enumeration</h1></div></div></div><p>Since JavaScript's arrays are really objects, the <code class="literal">for
+                    in</code> statement can be used to iterate over all of the properties of an
+                array. Unfortunately, <code class="literal">for in</code> makes no guarantee
+                about the order of the properties, and most array applications expect the elements
+                to be produced in numerical order. Also, there is still the problem with unexpected
+                properties being dredged up from the prototype chain.<a id="IDX-CHP-6-0306" class="indexterm"/></p><p>Fortunately, the conventional <code class="literal">for</code> statement
+                avoids these problems. JavaScript's <code class="literal">for</code> statement
+                is similar to that in most C-like languages. It is controlled by three clauses—the
+                first initializes the loop, the second is the while condition, and the third does
+                the increment:</p><a id="I_programlisting6_d1e4546"/><pre class="programlisting">var i;
+for (i = 0; i &lt; myArray.length; i += 1) {
+    document.writeln(myArray[i]);
+}</pre></div></body></html>

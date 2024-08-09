@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c10-0020">Refactorización de</h3>
+<p class="BodyFirst">A menudo, llegarás a un punto en el que tu código funcionará, pero reconocerás que podrías mejorarlo dividiéndolo en una serie de funciones que tengan tareas específicas. Este proceso se llama <em translate="no">refactoring</em>. La refactorización hace que tu código sea más limpio, más fácil de entender y más fácil de ampliar.</p>
+<p>Podemos refactorizar <em translate="no">remember_me.py</em> trasladando la mayor parte de su lógica a una o más funciones. El objetivo de <em translate="no">remember_me.py</em> es saludar al usuario, así que vamos a trasladar todo nuestro código existente a una función llamada <code translate="no">greet_user()</code>:</p>
+<p class="CodeLabel" translate="no"><b>remember_me.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">from pathlib import Path</span>
+<span class="LiteralGray">import json</span>
+
+def greet_user():
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     """Greet the user by name."""
+    <span class="LiteralGray">path = Path('username.json')</span>
+<span class="LiteralGray">    if path.exists():</span>
+<span class="LiteralGray">        contents = path.read_text()</span>
+<span class="LiteralGray">        username = json.loads(contents)</span>
+<span class="LiteralGray">        print(f"Welcome back, {username}!")</span>
+<span class="LiteralGray">    else:</span>
+<span class="LiteralGray">        username = input("What is your name? ")</span>
+<span class="LiteralGray">        contents = json.dumps(username)</span>
+<span class="LiteralGray">        path.write_text(contents)</span>
+<span class="LiteralGray">        print(f"We'll remember you when you come back, {username}!")</span>
+
+greet_user()</code></pre>
+<p>Como ahora utilizamos una función, reescribimos los comentarios como un docstring que refleje cómo funciona actualmente el programa <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Este archivo es un poco más limpio, pero la función <code translate="no">greet_user()</code> hace algo más que saludar al usuario: también recupera un nombre de usuario almacenado si existe y solicita un nuevo nombre de usuario si no existe.</p>
+<p>Vamos a refactorizar <code translate="no">greet_user()</code> para que no realice tantas tareas diferentes. Empezaremos moviendo el código para recuperar un nombre de usuario almacenado a una función separada:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">from pathlib import Path</span>
+<span class="LiteralGray">import json</span>
+
+def get_stored_username(path):
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     """Get stored username if available."""
+<span epub:type="pagebreak" id="Page_205" title="205"></span>    <span class="LiteralGray">if path.exists():</span>
+<span class="LiteralGray">        contents = path.read_text()</span>
+<span class="LiteralGray">        username = json.loads(contents)</span>
+        return username
+    else:
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         return None
+
+<span class="LiteralGray">def greet_user():</span>
+<span class="LiteralGray">    """Greet the user by name."""</span>
+    <span class="LiteralGray">path = Path('username.json')</span>
+    username = get_stored_username(path)
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     if username:
+        <span class="LiteralGray">print(f"Welcome back, {username}!")</span>
+    <span class="LiteralGray">else:</span>
+<span class="LiteralGray">        username = input("What is your name? ")</span>
+<span class="LiteralGray">        contents = json.dumps(username)</span>
+<span class="LiteralGray">        path.write_text(contents)</span>
+<span class="LiteralGray">        print(f"We'll remember you when you come back, {username}!")</span>
+
+<span class="LiteralGray">greet_user()</span></code></pre>
+<p>La nueva función <code translate="no">get_stored_username()</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span> tiene un propósito claro, como se indica en el docstring. Esta función recupera un nombre de usuario almacenado y lo devuelve si lo encuentra. Si la ruta que se pasa a <code translate="no">get_stored_username()</code> no existe, la función devuelve <code translate="no">None</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Esto es una buena práctica: una función debe devolver el valor que esperas o debe devolver <code translate="no">None</code>. Esto nos permite realizar una sencilla prueba con el valor de retorno de la función. Imprimimos un mensaje de bienvenida al usuario si el intento de recuperar un nombre de usuario tiene éxito <span aria-label="annotation3" class="CodeAnnotation">❸,</span> y si no lo tiene, le pedimos un nuevo nombre de usuario.</p>
+<p>Deberíamos eliminar un bloque más de código de <code translate="no">greet_user()</code>. Si el nombre de usuario no existe, deberíamos mover el código que solicita un nuevo nombre de usuario a una función dedicada a ese fin:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">from pathlib import Path</span>
+<span class="LiteralGray">import json</span>
+
+<span class="LiteralGray">def get_stored_username(path):</span>
+<span class="LiteralGray">    """Get stored username if available."""</span>
+    <em class="LiteralGrayItalic" translate="no">--snip--</em>
+
+def get_new_username(path):
+    """Prompt for a new username."""
+    <span class="LiteralGray">username = input("What is your name? ")</span>
+<span class="LiteralGray">    contents = json.dumps(username)</span>
+<span class="LiteralGray">    path.write_text(contents)</span>
+    return username
+
+<span class="LiteralGray">def greet_user():</span>
+<span class="LiteralGray">    """Greet the user by name."""</span>
+<span class="LiteralGray">    path = Path('username.json')</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span><span class="LiteralGray">     username = get_stored_username(path)</span>
+<span class="LiteralGray">    if username:</span>
+<span class="LiteralGray">        print(f"Welcome back, {username}!")</span>
+<span epub:type="pagebreak" id="Page_206" title="206"></span>    else:
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         username = get_new_username(path)
+        <span class="LiteralGray">print(f"We'll remember you when you come back, {username}!")</span>
+
+<span class="LiteralGray">greet_user()</span></code></pre>
+<p>Cada función de esta versión final de <em translate="no">remember_me.py</em> tiene un único y claro propósito. Llamamos a <code translate="no">greet_user()</code>, y esa función imprime un mensaje apropiado: o bien da la bienvenida a un usuario existente o bien saluda a un nuevo usuario. Para ello, llama a <code translate="no">get_stored_username()</code> <span aria-label="annotation1" class="CodeAnnotation">❶,</span> que sólo se encarga de recuperar un nombre de usuario almacenado, si existe. Por último, si es necesario, <code translate="no">greet_user()</code> llama a <code translate="no">get_new_username()</code><span aria-label="annotation2" class="CodeAnnotation">❷</span>, que sólo se encarga de obtener un nuevo nombre de usuario y almacenarlo. Esta compartimentación del trabajo es una parte esencial para escribir un código claro que sea fácil de mantener y ampliar.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c10_34.html">anterior</a><a href="c10.html">Subtema 35 de 37: (Ver todo)</a><a href="c10_36.html">siguiente</a><br/></p>
+<br/><a href="c10_35.docx" target="_blank"></a></footer>
+</body>
+</html>

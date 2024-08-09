@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch14lev1sec9">
+<span class="calibre2" id="page_223">
+</span>
+  Ponerlo todo junto: Nuestro código final de detección de colisiones </h3>
+<p class="noindent">
+  Una vez que hemos determinado si un conjunto de <em class="calibre7">coordenadas x </em>se ha cruzado con otro, y hemos hecho lo mismo con <em class="calibre7">las coordenadas y </em>, podemos escribir funciones para ver si un sprite ha chocado con otro sprite y por qué lado. Haremos esto con las funciones <span class="literal1" translate="no">
+   collided_left
+  </span>, <span class="literal1" translate="no">
+   collided_right
+  </span>, <span class="literal1" translate="no">
+   collided_top
+  </span>, y <span class="literal1" translate="no">
+   collided_bottom
+  </span>. </p>
+<h4 class="h3" id="ch14lev2sec1">
+  La función colisionado_izquierdo </h4>
+<p class="noindent">
+  Añade el siguiente código para la función <span class="literal1" translate="no">
+   collided_left
+  </span>debajo de las dos funciones <span class="literal1" translate="no">
+   within
+  </span>que acabamos de crear: </p>
+<pre class="pre" translate="no"><span class="orange">def</span> collided_left(co1, co2):
+    <span class="orange">if</span> within_y(co1, co2):
+        <span class="orange">if</span> co1.x1 &gt;= co2.x1 <span class="orange">and</span> co1.x1 &lt;= co2.x2:
+            <span class="orange">return</span> <span class="violet">True</span>
+    <span class="orange">return</span> <span class="violet">False</span>
+</pre>
+<p class="indent">
+  Esta función nos dice si el lado izquierdo (el valor <span class="literal1" translate="no">
+   x1
+  </span>) de un primer objeto de coordenadas ha chocado con otro objeto de coordenadas. </p>
+<p class="indent">
+  La función toma dos parámetros: <span class="literal1" translate="no">
+   co1
+  </span>(el primer objeto de coordenadas) y <span class="literal1" translate="no">
+   co2
+  </span>(el segundo objeto de coordenadas). Comprobamos si los dos objetos de coordenadas se han cruzado verticalmente, utilizando la función <span class="literal1" translate="no">
+   within_y
+  </span>. Al fin y al cabo, no tiene sentido comprobar si el Sr. Hombre de Palo ha chocado contra una plataforma si está flotando muy por encima de ella (como en <a class="calibre6" href="ch14.xhtml#ch14fig05">la Figura 14-5 </a>). </p>
+<div class="image1">
+<img alt="Image" class="calibre154" id="ch14fig05" src="../images/14fig05.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figura 14-5: </em>El Sr. Hombre de Palo<em class="calibre7">por encima </em>de la plataforma</p>
+<p class="indent">
+<span id="page_224">
+</span>
+  A continuación, comprobamos si el valor de la posición más a la izquierda del primer objeto de coordenadas ( <span class="literal1" translate="no">
+   co1.x1
+  </span>) ha chocado con la posición <span class="literal1" translate="no">
+   x2
+  </span>del segundo objeto de coordenadas ( <span class="literal1" translate="no">
+   co2.x2
+  </span>). Si es así, debe ser menor o igual que la posición <span class="literal1" translate="no">
+   x2
+  </span>. También comprobamos que no ha sobrepasado la posición <span class="literal1" translate="no">
+   x1
+  </span>. Si la ha sobrepasado, devolvemos <span class="literal1" translate="no">
+   True
+  </span>. Si ninguna de las afirmaciones de <span class="literal1" translate="no">
+   if
+  </span>es cierta, devolvemos <span class="literal1" translate="no">
+   False
+  </span>. </p>
+<div class="image">
+<img alt="Image" class="calibre155" src="../images/f0224-01.jpg" translate="no"/>
+</div>
+<h4 class="h3" id="ch14lev2sec2">
+  La función derecha_colisionada </h4>
+<p class="noindent">
+  La función <span class="literal1" translate="no">
+   collided_right
+  </span>se parece mucho a <span class="literal1" translate="no">
+   collided_left
+  </span>: </p>
+<pre class="pre" translate="no"><span class="orange">def</span> collided_right(co1, co2):
+    <span class="orange">if</span> within_y(co1, co2):
+        <span class="orange">if</span> co1.x2 &gt;= co2.x1 <span class="orange">and</span> co1.x2 &lt;= co2.x2:
+            <span class="orange">return</span> <span class="violet">True</span>
+    <span class="orange">return</span> <span class="violet">False</span>
+</pre>
+<p class="indent">
+  Al igual que con <span class="literal1" translate="no">
+   collided_left
+  </span>, comprobamos si las <em class="calibre7">coordenadas y </em>se han cruzado entre sí, utilizando la función <span class="literal1" translate="no">
+   within_y
+  </span>. A continuación, comprobamos si el valor <span class="literal1" translate="no">
+   x2
+  </span>del primer objeto de coordenadas se encuentra entre las posiciones <span class="literal1" translate="no">
+   x1
+  </span>y <span class="literal1" translate="no">
+   x2
+  </span>del segundo objeto de coordenadas, y devolvemos <span class="literal1" translate="no">
+   True
+  </span>si es así. En caso contrario, devolvemos <span class="literal1" translate="no">
+   False
+  </span>. </p>
+<h4 class="h3" id="ch14lev2sec3">
+  La función collided_top </h4>
+<p class="noindent">
+  La función <span class="literal1" translate="no">
+   collided_top
+  </span>es muy similar a las dos funciones que acabamos de añadir: </p>
+<pre class="pre" translate="no"><span class="orange">def</span> collided_top(co1, co2):
+    <span class="orange">if</span> within_x(co1, co2):
+        <span class="orange">if</span> co1.y1 &gt;= co2.y1 <span class="orange">and</span> co1.y1 &lt;= co2.y2:
+            <span class="orange">return</span> <span class="violet">True</span>
+    <span class="orange">return</span> <span class="violet">False</span>
+</pre>
+<p class="indent">
+  Esta vez, comprobamos si las coordenadas se han cruzado horizontalmente, utilizando la función <span class="literal1" translate="no">
+   within_x
+  </span>. A continuación, comprobamos si la posición más alta de la primera coordenada ( <span class="literal1" translate="no">
+   co1.y1
+  </span>) se ha cruzado con la posición <span class="literal1" translate="no">
+   y2
+  </span>de la segunda coordenada, pero no con su posición <span class="literal1" translate="no">
+   y1
+  </span><span id="page_225">
+</span> . Si es así, devolvemos <span class="literal1" translate="no">
+   True
+  </span>(la parte superior de la primera coordenada ha chocado con la segunda coordenada). </p>
+<h4 class="h3" id="ch14lev2sec4">
+  La función colided_bottom </h4>
+<p class="noindent">
+  Nuestra última función, <span class="literal1" translate="no">
+   collided_bottom
+  </span>, es un poco diferente: </p>
+<pre class="pre" translate="no"><span class="orange">def</span> collided_bottom(y, co1, co2):
+    <span class="orange">if</span> within_x(co1, co2):
+        y_calc = co1.y2 + y
+     <span class="ent">➊</span> <span class="orange">if</span> y_calc &gt;= co2.y1 <span class="orange">and</span> y_calc &lt;= co2.y2:
+            <span class="orange">return</span> <span class="violet">True</span>
+     <span class="orange">return</span> <span class="violet">False</span>
+</pre>
+<p class="indent">
+  Esta función toma un parámetro adicional, <span class="literal1" translate="no">
+   y
+  </span>, un valor que añadimos a la posición <span class="literal1" translate="no">
+   y
+  </span>de la primera coordenada. Nuestra sentencia <span class="literal1" translate="no">
+   if
+  </span>comprueba si las coordenadas se han cruzado horizontalmente (como hicimos con <span class="literal1" translate="no">
+   collided_top
+  </span>). A continuación, añadimos el valor del parámetro <span class="literal1" translate="no">
+   y
+  </span>a la posición <span class="literal1" translate="no">
+   y2
+  </span>de la primera coordenada, y almacenamos el resultado en la variable <span class="literal1" translate="no">
+   y_calc
+  </span>. Si el nuevo valor calculado se encuentra entre los valores <span class="literal1" translate="no">
+   y1
+  </span>y <span class="literal1" translate="no">
+   y2
+  </span>de la segunda coordenada <span class="ent">➊ </span>, devolvemos <span class="literal1" translate="no">
+   True
+  </span>porque la parte inferior de la coordenada <span class="literal1" translate="no">
+   co1
+  </span>ha tocado la parte superior de la coordenada <span class="literal1" translate="no">
+   co2
+  </span>. Sin embargo, si ninguna de las afirmaciones <span class="literal1" translate="no">
+   if
+  </span>es cierta, devolvemos <span class="literal1" translate="no">
+   False
+  </span>. </p>
+<p class="indent">
+  Necesitamos el parámetro adicional <span class="literal1" translate="no">
+   y
+  </span>porque el Sr. Hombre de Palo podría caerse de una plataforma. A diferencia de las otras funciones <span class="literal1" translate="no">
+   collided
+  </span>, necesitamos poder comprobar <em class="calibre7">si </em>colisionaría en la parte inferior, en lugar de si ya lo ha hecho. Si se cae de una plataforma y sigue flotando en el aire, nuestro juego no será muy realista; por eso, mientras camina, comprobamos si ha colisionado con algo a la izquierda o a la derecha. Cuando comprobamos debajo de él, vemos si colisionaría con la plataforma; si no, ¡tiene que caer estrepitosamente! </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch14_9.html">anterior</a><a href="ch14.html">Subtema 10 de 16: (Ver todo)</a><a href="ch14_11.html">siguiente</a><br/></p>
+<br/><a href="ch14_10.docx" target="_blank"></a></footer>
+</body>
+</html>

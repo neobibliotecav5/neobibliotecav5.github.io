@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c11-0011">Prueba de la clase EncuestaAnónima</h3>
+<p class="BodyFirst">Vamos a escribir una prueba que verifique un aspecto del comportamiento de <code translate="no">AnonymousSurvey</code>. Escribiremos una prueba para verificar que una única respuesta a la pregunta de la encuesta se almacena correctamente:</p>
+<p class="CodeLabel" translate="no"><b>test_survey.py</b></p>
+<pre translate="no"><code translate="no">from survey import AnonymousSurvey
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> def test_store_single_response():
+    """Test that a single response is stored properly."""
+    question = "What language did you first learn to speak?"
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     language_survey = AnonymousSurvey(question)
+    language_survey.store_response('English')
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     assert 'English' in language_survey.responses</code></pre>
+<p>Empezaremos importando la clase que queremos probar, <code translate="no">AnonymousSurvey</code>. La primera función de prueba verificará que cuando almacenemos una respuesta a la pregunta de la encuesta, la respuesta acabará en la lista de respuestas de la encuesta. Un buen nombre descriptivo para esta función es <code translate="no">test_store_single_response()</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Si esta prueba falla, sabremos por el nombre de la función en el resumen de la prueba que hubo un problema al almacenar una única respuesta a la encuesta.</p>
+<p>Para probar el comportamiento de una clase, necesitamos crear una instancia de la clase. Creamos una instancia llamada <code translate="no">language_survey</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span> con la pregunta <code translate="no">"What language did you first learn to speak?"</code> Almacenamos una única respuesta, <code translate="no">English</code>, utilizando el método <code translate="no">store_response()</code>. A continuación, verificamos que la respuesta se ha almacenado correctamente afirmando que <code translate="no">English</code> está en la lista <code translate="no">language_survey.responses</code> <span aria-label="annotation3" class="CodeAnnotation">❸.</span></p>
+<p>Por defecto, la ejecución del comando <code class="bold" translate="no">pytest</code> sin argumentos ejecutará todas las pruebas que <code translate="no">pytest</code> descubra en el directorio actual. Para centrarte en las pruebas de un archivo, pasa el nombre del archivo de pruebas que quieras ejecutar. Aquí ejecutaremos sólo la prueba que escribimos para <code translate="no">AnonymousSurvey</code>:</p>
+<pre translate="no"><code translate="no">$ <b>pytest test_survey.py</b>
+========================= test session starts =========================
+<var>--snip--</var>
+test_survey.py .                                                 [100%]
+========================== 1 passed in 0.01s ==========================</code></pre>
+<p>Es un buen comienzo, pero una encuesta sólo es útil si genera más de una respuesta. Verifiquemos que se pueden almacenar tres respuestas correctamente. Para ello, añadimos otro método a <code translate="no">TestAnonymousSurvey</code>:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">from survey import AnonymousSurvey</span>
+
+<span class="LiteralGray">def test_store_single_response():</span>
+<span epub:type="pagebreak" id="Page_221" title="221"></span>    <em class="LiteralGrayItalic" translate="no">--snip--</em>
+
+def test_store_three_responses():
+    """Test that three individual responses are stored properly."""
+    question = "What language did you first learn to speak?"
+    language_survey = AnonymousSurvey(question)
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     responses = ['English', 'Spanish', 'Mandarin']
+    for response in responses:
+        language_survey.store_response(response)
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     for response in responses:
+        assert response in language_survey.responses</code></pre>
+<p>Llamamos a la nueva función <code translate="no">test_store_three_responses()</code>. Creamos un objeto encuesta igual que hicimos en <code translate="no">test_store_single_response()</code>. Definimos una lista que contenga tres respuestas ❶ diferentes <span aria-label="annotation1" class="CodeAnnotation">,</span> y luego llamamos a <code translate="no">store_response()</code> para cada una de estas respuestas. Una vez almacenadas las respuestas, escribimos otro bucle y afirmamos que cada respuesta está ahora en <code translate="no">language_survey.responses</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span></p>
+<p>Cuando volvemos a ejecutar el archivo de prueba, ambas pruebas (para una sola respuesta y para tres respuestas) pasan:</p>
+<pre translate="no"><code translate="no">$ <b>pytest test_survey.py</b>
+========================= test session starts =========================
+<var>--snip--</var>
+test_survey.py ..                                                [100%]
+========================== 2 passed in 0.01s ==========================</code></pre>
+<p>Esto funciona perfectamente. Sin embargo, estas pruebas son un poco repetitivas, así que utilizaremos otra función de <code translate="no">pytest</code> para hacerlas más eficientes.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c11_18.html">anterior</a><a href="c11.html">Subtema 19 de 22: (Ver todo)</a><a href="c11_20.html">siguiente</a><br/></p>
+<br/><a href="c11_19.docx" target="_blank"></a></footer>
+</body>
+</html>

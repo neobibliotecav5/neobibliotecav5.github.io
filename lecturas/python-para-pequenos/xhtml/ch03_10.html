@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch03lev1sec9">
+  Aritmética de listas </h3>
+<p class="noindent">
+  Podemos unir listas sumándolas, igual que sumamos números, utilizando el signo más ( <span class="literal1" translate="no">
+   +
+  </span>). Por ejemplo, supongamos que tenemos dos listas: <span class="literal1" translate="no">
+   list1
+  </span>, que contiene los números del 1 al 4, y <span class="literal1" translate="no">
+   list2
+  </span>, que contiene algunas palabras. Podemos sumarlas utilizando el signo <span class="literal1" translate="no">
+   +
+  </span>, así: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> list1 = [1, 2, 3, 4]
+<span class="brown">&gt;&gt;&gt;</span> list2 = [<span class="green">'I'</span>, <span class="green">'tripped'</span>, <span class="green">'over'</span>, <span class="green">'and'</span>, <span class="green">'hit'</span>, <span class="green">'the'</span>, <span class="green">'floor'</span>]
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(list1 + list2)
+<span class="blue1">[1, 2, 3, 4, 'I', 'tripped', 'over', 'and', 'hit', 'the', 'floor']</span></pre>
+<p class="indent">
+<span id="page_36">
+</span>
+  También podemos sumar las dos listas y asignar el resultado a otra variable: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> list1 = [1, 2, 3, 4]
+<span class="brown">&gt;&gt;&gt;</span> list2 = [<span class="green">'I'</span>, <span class="green">'ate'</span>, <span class="green">'chocolate'</span>, <span class="green">'and'</span>, <span class="green">'I'</span>, <span class="green">'want'</span>, <span class="green">'more'</span>]
+<span class="brown">&gt;&gt;&gt;</span> list3 = list1 + list2
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(list3)
+<span class="blue1">[1, 2, 3, 4, 'I', 'ate', 'chocolate', 'and', 'I', 'want', 'more']</span></pre>
+<p class="indent">
+  Y podemos multiplicar una lista por un número. Por ejemplo, para multiplicar <span class="literal1" translate="no">
+   list1
+  </span>por 5, escribimos <span class="literal1" translate="no">
+   list1 * 5
+  </span>: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> list1 = [1, 2]
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(list1 * 5)
+<span class="blue1">[1, 2, 1, 2, 1, 2, 1, 2, 1, 2]</span></pre>
+<p class="indent">
+  Esto le dice a Python que repita <span class="literal1" translate="no">
+   list1
+  </span>cinco veces, dando como resultado <span class="literal1" translate="no">
+   1, 2, 1, 2, 1, 2,
+  </span><span class="literal1" translate="no">
+   1, 2, 1, 2
+  </span> . En cambio, la división ( <span class="literal1" translate="no">
+   /
+  </span>) y la resta ( <span class="literal1" translate="no">
+   -
+  </span>) sólo dan errores, como en estos ejemplos: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> list1 / 20
+<span class="red">Traceback (most recent call last):
+File "&lt;pyshell&gt;", line 1, in &lt;module&gt;
+    list1 / 20
+TypeError: unsupported operand type(s) for /: 'list' and 'int'</span>
+
+<span class="brown">&gt;&gt;&gt;</span> list1 - 20
+<span class="red">Traceback (most recent call last):
+File "&lt;pyshell&gt;", line 1, in &lt;module&gt;
+    list1 - 20
+TypeError: unsupported operand type(s) for -: 'list' and 'int'</span></pre>
+<p class="indent">
+  Pero, ¿por qué? Bueno, unir listas con <span class="literal1" translate="no">
+   +
+  </span>y repetir listas con <span class="literal1" translate="no">
+   *
+  </span>son operaciones bastante sencillas. Estos conceptos también tienen sentido en el mundo real. Por ejemplo, si te diera dos listas de la compra en papel y te dijera: "Suma estas dos listas", podrías escribir todos los elementos en otra hoja de papel en orden, de punta a punta. Lo mismo ocurriría si te dijera: "Multiplica esta lista por 3". Podrías imaginarte escribiendo una lista con todos los elementos de la lista tres veces en otra hoja de papel. </p>
+<p class="indent">
+  Pero, ¿cómo dividirías una lista? Por ejemplo, piensa cómo dividirías en dos una lista de seis números (del 1 al 6). Aquí tienes tres formas diferentes: </p>
+<pre class="pre" translate="no"><span id="page_37"></span>[1, 2, 3]     [4, 5, 6]
+[1]           [2, 3, 4, 5, 6]
+[1, 2, 3, 4]  [5, 6]</pre>
+<p class="indent">
+  ¿Dividiríamos la lista por la mitad, la dividiríamos después del primer elemento, o simplemente elegiríamos un lugar al azar y la dividiríamos ahí? No hay una respuesta sencilla, y cuando le pides a Python que divida una lista, tampoco sabe qué hacer. Por eso responde con un error. </p>
+<div class="image1">
+<img alt="Image" class="calibre37" src="../images/f0037-01.jpg" translate="no"/>
+</div>
+<p class="indent">
+  Por la misma razón, no puedes añadir nada que no sea una lista a una lista. Por ejemplo, esto es lo que ocurre cuando intentamos añadir el número 50 a <span class="literal1" translate="no">
+   list1
+  </span>: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> list1 + 50
+<span class="red">Traceback (most recent call last):</span>
+  <span class="red">File "&lt;pyshell&gt;", line 1, in &lt;module&gt;
+    list1 + 50
+TypeError: can only concatenate list (not "int") to list</span></pre>
+<p class="indent">
+  ¿Por qué se produce un error? Bien, ¿qué significa añadir 50 a una lista? ¿Significa añadir 50 a cada elemento? ¿Y si los elementos no son números? ¿Significa añadir el número 50 al final o al principio de la lista? </p>
+<p class="indent">
+  En programación informática, los comandos deben funcionar exactamente igual cada vez que los introduces. Tu ordenador sólo ve las cosas en blanco y negro. Pídele que tome una decisión complicada, y se echará las manos a la cabeza con errores. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch03_9.html">anterior</a><a href="ch03.html">Subtema 10 de 14: (Ver todo)</a><a href="ch03_11.html">siguiente</a><br/></p>
+<br/><a href="ch03_10.docx" target="_blank"></a></footer>
+</body>
+</html>

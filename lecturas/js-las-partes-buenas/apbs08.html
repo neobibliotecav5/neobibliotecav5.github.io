@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Bitwise Operators</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="Bitwise Operators"><div class="titlepage"><div><div><h1 class="title"><a id="bitwise_operators"></a>Operadores bit a bit</h1></div></div></div><p>JavaScript tiene el mismo conjunto de operadores bit a bit que Java:<a class="indexterm" id="IDX-APP-B-0570"></a><a class="indexterm" id="IDX-APP-B-0571"></a></p><a id="I_programlisting_d1e9143"></a><pre class="programlisting" translate="no">&amp;    and
+|    or
+^    xor
+˜    not
+&gt;&gt;   signed right shift
+&gt;&gt;&gt;  unsigned right shift
+&lt;&lt;   left shift</pre><p>En Java, los operadores bit a bit funcionan con números enteros. JavaScript no tiene números enteros. Sólo tiene números de coma flotante de doble precisión. Por tanto, los operadores bit a bit convierten sus operandos numéricos en enteros, hacen su trabajo y luego los vuelven a convertir. En la mayoría de los lenguajes, estos operadores están muy cerca del hardware y son muy rápidos. En JavaScript, están muy lejos del hardware y son muy lentos. JavaScript se utiliza raramente para hacer manipulación de bits.</p><p>Como resultado, en los programas de JavaScript, es más probable que <code class="literal" translate="no">&amp;</code> sea un operador <code class="literal" translate="no">&amp;&amp;</code> mal escrito. La presencia de los operadores bit a bit reduce parte de la redundancia del lenguaje, lo que facilita la ocultación de errores.</p></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="apbs07.html">← Anterior</a><a href="apbs09.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="apbs08.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\apbs08.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

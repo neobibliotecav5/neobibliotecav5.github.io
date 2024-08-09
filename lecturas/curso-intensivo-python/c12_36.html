@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c12-0021">Creación de la clase Bala</h3>
+<p class="BodyFirst">Ahora crea un archivo <em translate="no">bullet.py </em>para almacenar nuestra clase <code translate="no">Bullet</code>. Aquí tienes la primera parte de <em translate="no">bullet.py</em>:</p>
+<p class="CodeLabel" translate="no"><b>bullet.py</b></p>
+<pre translate="no"><code translate="no">import pygame
+from pygame.sprite import Sprite
+
+class Bullet(Sprite):
+    """A class to manage bullets fired from the ship."""
+
+    def __init__(self, ai_game):
+        """Create a bullet object at the ship's current position."""
+        super().__init__()
+        self.screen = ai_game.screen
+        self.settings = ai_game.settings
+        self.color = self.settings.bullet_color
+
+        # Create a bullet rect at (0, 0) and then set correct position.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         self.rect = pygame.Rect(0, 0, self.settings.bullet_width,
+            self.settings.bullet_height)
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         self.rect.midtop = ai_game.ship.rect.midtop
+
+        # Store the bullet's position as a float.
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>         self.y = float(self.rect.y)</code></pre>
+<p>La clase <code translate="no">Bullet</code> hereda de <code translate="no">Sprite</code>, que importamos del módulo <code translate="no">pygame.sprite</code>. Cuando utilizas sprites, puedes agrupar elementos relacionados en tu juego y actuar sobre todos los elementos agrupados a la vez. Para crear una instancia de bala, <code translate="no">__init__()</code> necesita la instancia actual de <code translate="no">AlienInvasion</code>, y llamamos a <code translate="no"></code><span epub:type="pagebreak" id="Page_248" title="248"></span>super() para heredar correctamente de <code translate="no">Sprite</code>. También establecemos atributos para los objetos pantalla y ajustes, y para el color de la bala.</p>
+<p>A continuación creamos el atributo <code translate="no">rect</code> ❶ de la bala <span aria-label="annotation1" class="CodeAnnotation">.</span> La bala no se basa en una imagen, así que tenemos que construir una <code translate="no">rect</code> desde cero utilizando la clase <code translate="no">pygame.Rect()</code>. Esta clase necesita las coordenadas <em translate="no">x</em>- y <em translate="no">y</em>- de la esquina superior izquierda del <code translate="no">rect</code>, y la anchura y altura del <code translate="no">rect</code>. Inicializamos el <code translate="no">rect</code> en (0, 0), pero lo moveremos a la ubicación correcta en la línea siguiente, porque la posición de la bala depende de la posición del barco. Obtenemos la anchura y la altura de la bala a partir de los valores almacenados en <code translate="no">self.settings</code>.</p>
+<p>Ajustamos el atributo <code translate="no">midtop</code> de la bala para que coincida con el atributo <code translate="no">midtop</code> ❷ del barco <span aria-label="annotation2" class="CodeAnnotation">.</span> Esto hará que la bala emerja de la parte superior de la nave, haciendo que parezca que la bala se dispara desde la nave. Utilizamos un flotador para la coordenada <em translate="no">y</em> de la bala, de modo que podamos realizar ajustes finos en la velocidad de la bala <span aria-label="annotation3" class="CodeAnnotation">❸.</span></p>
+<p>Aquí tienes la segunda parte de <em translate="no">bullet.py</em>, <code translate="no">update()</code> y <code translate="no">draw_bullet()</code>:</p>
+<p class="CodeLabel" translate="no"><b>bullet.py</b></p>
+<pre translate="no"><code translate="no"><code translate="no">    </code>def update(self):
+    <code translate="no">    </code>"""Move the bullet up the screen."""
+    <code translate="no">    </code># Update the exact position of the bullet.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     <code translate="no">    </code>self.y -= self.settings.bullet_speed
+    <code translate="no">    </code># Update the rect position.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     <code translate="no">    </code>self.rect.y = self.y
+
+<code translate="no">    </code>def draw_bullet(self):
+    <code translate="no">    </code>"""Draw the bullet to the screen."""
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     <code translate="no">    </code>pygame.draw.rect(self.screen, self.color, self.rect)</code></pre>
+<p>El método <code translate="no">update()</code> gestiona la posición de la bala. Cuando se dispara una bala, se desplaza hacia arriba en la pantalla, lo que corresponde a un valor de coordenada <em translate="no">y</em> decreciente. Para actualizar la posición, restamos la cantidad almacenada en <code translate="no">settings.bullet_speed</code> de <code translate="no">self.y</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> A continuación, utilizamos el valor de <code translate="no">self.y</code> para fijar el valor de <code translate="no">self.rect.y</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span></p>
+<p>El ajuste de <code translate="no">bullet_speed</code> nos permite aumentar la velocidad de las balas a medida que avanza el juego o según sea necesario para perfeccionar su comportamiento. Una vez disparada una bala, nunca cambiamos el valor de su coordenada <em translate="no">x</em>, por lo que viajará verticalmente en línea recta aunque la nave se mueva.</p>
+<p>Cuando queremos dibujar una bala, llamamos a <code translate="no">draw_bullet()</code>. La función <code translate="no">draw.rect()</code> rellena la parte de la pantalla definida por la <code translate="no">rect</code> de la bala con el color almacenado en <code translate="no">self.color</code> <span aria-label="annotation3" class="CodeAnnotation">❸.</span></p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c12_35.html">anterior</a><a href="c12.html">Subtema 36 de 43: (Ver todo)</a><a href="c12_37.html">siguiente</a><br/></p>
+<br/><a href="c12_36.docx" target="_blank"></a></footer>
+</body>
+</html>

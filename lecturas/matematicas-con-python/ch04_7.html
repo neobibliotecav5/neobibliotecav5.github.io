@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<meta charset="utf-8"/>
+<title>Capítulo 4: Álgebra y matemáticas simbólicas con SymPy</title>
+<link href="style.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="core.css" media="all" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch04lev1sec06"><strong><span class="bordera">Retos de programación</span></strong></h3>
+<p class="noindent">Aquí tienes algunos retos de programación que te ayudarán a aplicar mejor lo que has aprendido. Puedes encontrar ejemplos de soluciones en <em><a href="http://www.nostarch.com/doingmathwithpython/">http://www.nostarch.com/doingmathwithpython/</a></em>.</p>
+<h4 class="h4" id="ch04lev2sec10"><strong><em>#nº 1: Buscador de factores</em></strong></h4>
+<p class="noindent">Has aprendido sobre la función <span class="literal" translate="no">factor()</span>, que imprime los factores de una expresión. Ahora que sabes cómo puede manejar tu programa las expresiones introducidas por un usuario, escribe un programa que pida al usuario que introduzca una expresión, calcule sus factores y los imprima. Tu programa debe ser capaz de manejar entradas no válidas haciendo uso del manejo de excepciones.</p>
+<h4 class="h4" id="ch04lev2sec11"><strong><em>#2: Solucionador gráfico de ecuaciones</em></strong></h4>
+<p class="noindent">Antes has aprendido a escribir un programa que pida al usuario que introduzca una expresión como <em>3x</em> + <em>2y</em> - 6 y cree la gráfica correspondiente. Escribe un programa que pida al usuario dos expresiones y luego grafique ambas, como se indica a continuación:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">expr1 = input('Enter your first expression in terms of x and y: ')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">expr2 = input('Enter your second expression in terms of x and y: ')</span></p>
+<p class="indent">Ahora, <span class="literal" translate="no">expr1</span> y <span class="literal" translate="no">expr2</span> almacenarán las dos expresiones introducidas por el usuario. Deberás convertir ambas en objetos SymPy utilizando el paso <span class="literal" translate="no">sympify()</span> en un bloque <span class="literal" translate="no">try...except</span>.</p>
+<p class="indent">Todo lo que tienes que hacer a partir de aquí es trazar estas dos expresiones en lugar de una.</p>
+<p class="indent">Una vez hecho esto, mejora tu programa para que imprima la solución, es decir, el par de valores <em>x</em> e <em>y</em> que satisface ambas ecuaciones. Éste será también el punto de intersección de las dos rectas de la gráfica. (Sugerencia: consulta cómo hemos utilizado antes la función <span class="literal" translate="no">solve()</span> para hallar la solución de un sistema de dos ecuaciones lineales).</p>
+<h4 class="h4" id="ch04lev2sec12"><a id="page_116"></a><strong><em>#3: Suma de una serie</em></strong></h4>
+<p class="noindent">Ya vimos cómo hallar la suma de una serie en "<a href="ch04.html#ch04lev3sec01">Imprimir una serie</a>", en <a href="ch04.html#page_99">la página 99</a>. Allí sumamos manualmente los términos de la serie haciendo un bucle sobre todos los términos. Aquí tienes un fragmento de ese programa:</p>
+<p class="programs" translate="no">for i in range(2, n+1):<br translate="no"/>    series = series + (x**i)/i</p>
+<p class="indent">La función <span class="literal" translate="no">summation()</span> de SymPy puede utilizarse directamente para hallar dichas sumas. El siguiente ejemplo imprime la suma de los cinco primeros términos de la serie que hemos considerado antes:</p>
+<p class="programs" translate="no">   &gt;&gt;&gt; <span class="codestrong">from sympy import Symbol, summation, pprint</span><br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">x = Symbol('x')</span><br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">n = Symbol('n')</span><br translate="no"/><span class="ent">➊</span> &gt;&gt;&gt; <span class="codestrong">s = summation(x**n/n, (n, 1, 5))</span><br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">pprint(s)</span><br translate="no"/>   x<sup>5</sup>   x<sup>4</sup>   x<sup>3</sup>   x<sup>2</sup><br translate="no"/>   -- + -- + -- + -- + x<br translate="no"/>   5     4   3     2</p>
+<p class="indent">Llamamos a la función <span class="literal" translate="no">summation()</span> en <span class="ent">➊,</span> siendo el primer argumento el término <em>n</em>de la serie y el segundo una tupla que indica el rango de <em>n</em>. Aquí queremos la suma de los cinco primeros términos, así que el segundo argumento es <span class="literal" translate="no">(n, 1, 5)</span>.</p>
+<p class="indent">Una vez que tengas la suma, puedes utilizar el método <span class="literal" translate="no">subs()</span> para sustituir <em>x</em> por un valor y hallar el valor numérico de la suma:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">s.subs({x:1.2})</span><br translate="no"/>3.51206400000000</p>
+<p class="indent">Tu reto es escribir un programa que sea capaz de hallar la suma de una serie arbitraria cuando le proporcionas el término <em>enésimo</em>de la serie y el número de términos que la componen. Aquí tienes un ejemplo de cómo funcionaría el programa:</p>
+<p class="programs" translate="no">Enter the nth term: <span class="codestrong">a+(n-1)*d</span><br translate="no"/>Enter the number of terms: <span class="codestrong">3</span><br translate="no"/>3·a + 3·d</p>
+<p class="indent">En este ejemplo, el <em>enésimo</em>término suministrado es el de una <em>progresión aritmética</em>. Partiendo de <span class="literal" translate="no">a</span> y <span class="literal" translate="no">d</span> como <em>diferencia común</em>, el número de términos hasta el que se debe calcular la suma es 3. La suma resulta ser <span class="literal" translate="no">3a + 3d</span>, lo que concuerda con la fórmula conocida para la misma.</p>
+<h4 class="h4" id="ch04lev2sec13"><a id="page_117"></a><strong><em>#nº 4: Resolución de inecuaciones de una sola variable</em></strong></h4>
+<p class="noindent">Ya has visto cómo resolver una ecuación utilizando la función <span class="literal" translate="no">solve()</span> de SymPy. Pero SymPy también es capaz de resolver desigualdades de una sola variable, como <em>x</em> + 5 &gt; 3 y <em>sinx</em> - 0,6 &gt; 0. Es decir, SymPy puede resolver relaciones además de la igualdad, como &gt;, &lt;, etc. Para este reto, crea una función, <span class="literal" translate="no">isolve()</span>, que tome cualquier desigualdad, la resuelva y devuelva la solución.</p>
+<p class="indent">En primer lugar, vamos a conocer las funciones SymPy que te ayudarán a ponerlo en práctica. Las funciones de resolución de desigualdades están disponibles como tres funciones distintas para desigualdades polinómicas, racionales y todas las demás. Tendremos que elegir la función adecuada para resolver las distintas desigualdades, o obtendremos un error.</p>
+<p class="indent">Un <em>polinomio</em> es una expresión algebraica formada por una variable y coeficientes y en la que sólo intervienen las operaciones de suma, resta y multiplicación y sólo potencias positivas de la variable. Un ejemplo de desigualdad polinómica es <sup>x2</sup> + 4 &lt; 0.</p>
+<p class="indent">Para resolver una desigualdad polinómica, utiliza la función <span class="literal" translate="no">solve_poly_inequality()</span>:</p>
+<p class="programs" translate="no">   &gt;&gt;&gt; <span class="codestrong">from sympy import Poly, Symbol, solve_poly_inequality</span><br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">x = Symbol('x')</span><br translate="no"/><span class="ent">➊</span> &gt;&gt;&gt; <span class="codestrong">ineq_obj = -x**2 + 4 &lt; 0</span><br translate="no"/><span class="ent">➋</span> &gt;&gt;&gt; <span class="codestrong">lhs = ineq_obj.lhs</span><br translate="no"/><span class="ent">➌</span> &gt;&gt;&gt; <span class="codestrong">p = Poly(lhs, x)</span><br translate="no"/><span class="ent">➍</span> &gt;&gt;&gt; <span class="codestrong">rel = ineq_obj.rel_op</span><br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">solve_poly_inequality(p, rel)</span><br translate="no"/>   [(-oo, -2), (2, oo)]</p>
+<p class="indent">Primero, crea la expresión que representa una desigualdad, <sup>-x2</sup> + 4 &lt; 0, en <span class="ent">➊</span> y refiérete a esta expresión con la etiqueta <span class="literal" translate="no">ineq_obj</span>. A continuación, extrae el lado izquierdo de la desigualdad -es decir, la expresión algebraica <sup>-x2</sup> + 4- utilizando el atributo <span class="literal" translate="no">lhs</span> en <span class="ent">➋.</span> A continuación, crea un objeto <span class="literal" translate="no">Poly</span> en <span class="ent">➌</span> para representar el polinomio que hemos extraído en <span class="ent">➋.</span> El segundo argumento que se pasa al crear el objeto es el objeto símbolo que representa la variable, <span class="literal" translate="no">x</span>. En <span class="ent">➍,</span> extrae el operador relacional del objeto desigualdad utilizando el atributo <span class="literal" translate="no">rel</span>. Por último, llama a la función <span class="literal" translate="no">solve_poly_inequality()</span> con el objeto polinomio, <span class="literal" translate="no">p</span>, y <span class="literal" translate="no">rel</span> como los dos argumentos. El programa devuelve la solución como una lista de tuplas, en la que cada tupla representa una solución para la desigualdad como el límite inferior y el límite superior del rango de números. Para esta desigualdad, la solución son todos los números menores que -2 y todos los números mayores que 2.</p>
+<p class="indent">Una <em>expresión</em> racional es una expresión algebraica en la que el numerador y el denominador son polinomios. Aquí tienes un ejemplo de desigualdad racional:</p>
+<div class="image2"><img alt="image" src="images/e0117-01.jpg" translate="no"/></div>
+<p class="indent"><a id="page_118"></a>Para las inecuaciones racionales, utiliza la función <span class="literal" translate="no">solve_rational_inequalities()</span>:</p>
+<p class="programs" translate="no">   &gt;&gt;&gt; <span class="codestrong">from sympy import Symbol, Poly, solve_rational_inequalities</span><br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">x = Symbol('x')</span><br translate="no"/><span class="ent">➊</span> &gt;&gt;&gt; <span class="codestrong">ineq_obj = ((x-1)/(x+2)) &gt; 0</span><br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">lhs = ineq_obj.lhs</span><br translate="no"/><span class="ent">➋</span> &gt;&gt;&gt; <span class="codestrong">numer, denom = lhs.as_numer_denom()</span><br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">p1 = Poly(numer)</span><br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">p2 = Poly(denom)</span><br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">rel = ineq_obj.rel_op</span><br translate="no"/><span class="ent">➌</span> &gt;&gt;&gt; <span class="codestrong">solve_rational_inequalities([[((p1, p2), rel)]])</span><br translate="no"/>   (-oo, -2) U (1, oo)</p>
+<p class="indent">Crea un objeto desigualdad que represente nuestra desigualdad racional de ejemplo en <span class="ent">➊</span> y, a continuación, extrae la expresión racional utilizando el atributo <span class="literal" translate="no">lhs</span>. Separa el numerador y el denominador en las etiquetas <span class="literal" translate="no">numer</span> y <span class="literal" translate="no">denom</span> utilizando el método <span class="literal" translate="no">as_numer_denom()</span> en <span class="ent">➋,</span> que devuelve una tupla con el numerador y el denominador como los dos miembros. A continuación, crea dos objetos polinomio, <span class="literal" translate="no">p1</span> y <span class="literal" translate="no">p2</span>, que representen el numerador y el denominador, respectivamente. Recupera el operador relacional y llama a la función <span class="literal" translate="no">solve_rational_inequalities()</span>, pasándole los dos objetos polinomio -<span class="literal" translate="no">p1</span> y <span class="literal" translate="no">p2</span>- y el operador relacional.</p>
+<p class="indent">El programa devuelve la solución <span class="literal" translate="no">(-oo, -2) U (1, oo)</span>, donde <span class="literal" translate="no">U</span> denota que la solución es la <em>unión</em> de los dos <em>conjuntos</em> de soluciones formados por todos los números menores que -2 y todos los números mayores que 1. (Aprenderemos sobre conjuntos en el <a href="ch05.html#ch05">Capítulo 5</a>.)</p>
+<p class="indent">Por último, <em>sinx</em> - 0,6 &gt; 0 es un ejemplo de desigualdad que no pertenece ni a la categoría de los polinomios ni a la de las expresiones racionales. Si tienes que resolver una desigualdad de este tipo, utiliza la función <span class="literal" translate="no">solve_univariate_inequality()</span>:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">from sympy import Symbol, solve, solve_univariate_inequality, sin</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">x = Symbol('x')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">ineq_obj = sin(x) - 0.6 &gt; 0</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">solve_univariate_inequality(ineq_obj, x, relational=False)</span><br translate="no"/>(0.643501108793284, 2.49809154479651)</p>
+<p class="indent">Crea un objeto desigualdad que represente la desigualdad <span class="literal" translate="no">sin(x) – 0.6 &gt; 0</span> y luego llama a la función <span class="literal" translate="no">solve_univariate_inequality()</span> con los dos primeros argumentos como el objeto desigualdad, <span class="literal" translate="no">ineq_obj</span>, y el objeto símbolo, <span class="literal" translate="no">x</span>. El argumento de palabra clave <span class="literal" translate="no">relational=False</span> especifica a la función que queremos que la solución se devuelva como un <em>conjunto</em>. La solución de esta desigualdad son todos los números que se encuentran entre el primer y el segundo miembro de la tupla que devuelve el programa.</p>
+<h5 class="h5" id="ch04lev3sec04"><a id="page_119"></a><strong>Consejos: Funciones útiles</strong></h5>
+<p class="noindent">Ahora recuerda: tu reto es (1) crear una función, <span class="literal" translate="no">isolve()</span>, que tome cualquier desigualdad y (2) elegir una de las funciones adecuadas que se han comentado en esta sección para resolverla y devolver la solución. Las siguientes pistas pueden ser útiles para implementar esta función.</p>
+<p class="indent">El método <span class="literal" translate="no">is_polynomial()</span> puede utilizarse para comprobar si una expresión es un polinomio o no:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">x = Symbol('x')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">expr = x**2 - 4</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">expr.is_polynomial()</span><br translate="no"/>True<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">expr = 2*sin(x) + 3</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">expr.is_polynomial()</span><br translate="no"/>False</p>
+<p class="indent">El método <span class="literal" translate="no">is_rational_function()</span> puede utilizarse para comprobar si una expresión es una expresión racional:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">expr = (2+x)/(3+x)</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">expr.is_rational_function()</span><br translate="no"/>True<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">expr = 2+x</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">expr.is_rational_function()</span><br translate="no"/>True<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">expr = 2+sin(x)</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">expr.is_rational_function()</span><br translate="no"/>False</p>
+<p class="indent">La función <span class="literal" translate="no">sympify()</span> puede convertir una desigualdad expresada como cadena en un objeto desigualdad:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">from sympy import sympify</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">sympify('x+3&gt;0')</span><br translate="no"/>x + 3 &gt; 0</p>
+<p class="indent">Cuando ejecutes tu programa, debe pedir al usuario que introduzca una expresión de desigualdad e imprimir la solución.<a id="page_120"></a></p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch04_6.html">anterior</a><a href="ch04.html">Subtema 7 de 7: (Ver todo)</a><br/></p>
+<br/><a href="ch04_7.docx" target="_blank"></a></footer>
+</body>
+</html>

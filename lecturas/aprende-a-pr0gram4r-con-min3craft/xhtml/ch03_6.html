@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch03lev1sec05"><span epub:type="pagebreak" id="page_66"></span><strong><span class="blue1">Prácticos trucos matemáticos</span></strong></h3>
+<p class="noindent">En las siguientes secciones, te enseñaré dos habilidades matemáticas más para que mejores tu programación en Python, y luego combinaremos lo que has aprendido hasta ahora en una misión más.</p>
+<h4 class="h4" id="ch03lev2sec11"><strong><span class="blue1">Operadores abreviados</span></strong></h4>
+<p class="noindent">Muy a menudo, querrás utilizar un operador en una variable y luego almacenar el resultado en la misma variable. Por ejemplo, puede que quieras añadir cinco ovejas a tu rebaño actual:</p>
+<p class="programs" translate="no">sheep = 6<br translate="no"/>sheep = sheep + 5</p>
+<p class="indentb">Pero escribir <span class="literal">oveja = oveja + 5</span> probablemente te cansará después de un rato. No te preocupes, ¡hay una forma más corta! Python tiene operadores <em>abreviados</em> que te permiten utilizar un operador matemático en una variable y reasignar el resultado a la misma variable. Aquí tienes los cuatro operadores abreviados:</p>
+<p class="bull">- Suma<span class="literal">(+=</span>)</p>
+<p class="bull">- Resta<span class="literal">(-=</span>)</p>
+<p class="bull">- Multiplicación<span class="literal">(*=</span>)</p>
+<p class="bull">- División<span class="literal">(/=</span>)</p>
+<p class="indentt">Por ejemplo, puedes reescribir el ejemplo de la oveja utilizando el operador abreviado de suma:</p>
+<p class="programs" translate="no">sheep = 6<br translate="no"/>sheep += 5</p>
+<p class="indent">El valor de <span class="literal">oveja</span> es igual a <span class="literal">11</span>, igual que antes.</p>
+<h4 class="h4" id="ch03lev2sec12"><strong><span class="blue1">Jugar con números aleatorios</span></strong></h4>
+<p class="noindent">Utilizar números aleatorios es una forma de añadir algo de misterio y diversión a tus programas. ¡Nunca sabes con qué acabarás! Muchos juegos de mesa del mundo real se basan en números aleatorios: piensa en cuántos juegos has jugado en los que tenías que tirar los dados para ver cuántos espacios podías mover. Una tirada de dados es un ejemplo clásico de números aleatorios en acción.</p>
+<p class="indent">Python puede generar números aleatorios por ti fácilmente, así que vamos a simular la tirada de un dado. El número generado debe estar entre 1 y 6:</p>
+<p class="programs" translate="no"><span class="ent">➊</span> <span class="orange">import</span> random<br translate="no"/><span class="ent">➋</span> diceValue = random.randint(1, 6)</p>
+<p class="indent">Cuando quieras crear números aleatorios, asegúrate de incluir <span class="literal">import random</span> <span class="ent">➊</span> al principio de tu programa. La función <span class="literal">randint()</span> <span class="ent">➋</span> <span epub:type="pagebreak" id="page_67"></span>genera un valor entero que el programa puede utilizar como cualquier otro número. Los números que colocas dentro de los paréntesis como argumentos indican a <span class="literal">randint</span> () que genere valores entre el primer número y el segundo. En este ejemplo, el número generado puede tener un valor de 1, 2, 3, 4, 5 ó 6.</p>
+<p class="indent">Puedes utilizar <span class="literal">randint</span> () para añadir un número aleatorio al valor de una variable, e incluso puedes generar números negativos. ¡Veamos cómo!</p>
+<p class="programs" translate="no"><span class="orange">import</span> random<br translate="no"/>score = 0<br translate="no"/>score += random.randint(0, 99)<br translate="no"/>points = random.randint(-99, 99)</p>
+<p class="indent">El número más bajo que Python puede generar para añadir a la <span class="literal">puntuación</span> es 0, y el más alto es 99. Por otra parte, debido al argumento negativo, <span class="literal">¡los puntos</span> podrían establecerse en un número tan bajo como -99!</p>
+<h4 class="h4a" id="ch03lev2sec13"><strong>Misión nº 10: ¡Super Salta a algún sitio nuevo!</strong></h4>
+<p class="noindent">En la última misión de este capítulo, harás que el jugador salte una distancia aleatoria en los ejes x, y y z almacenando la posición actual del jugador y añadiendo después un número aleatorio a cada una de las tres coordenadas. Utiliza los números aleatorios entre -10 y 10 para cambiar los valores <span class="literal">x</span> y <span class="literal">z</span>, y asegúrate de que los valores aleatorios para <span class="literal">y</span> están entre 0 y 10.</p>
+<p class="indent">Para empezar, copia <a href="ch03.xhtml#ch3ex10">el Listado 3-10</a> en un nuevo archivo en IDLE y guárdalo como <em>randomJump.py</em>.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>randomJump.py</em></span></p>
+<p class="programs" translate="no"> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>   mc = Minecraft.create()<br translate="no"/> <span class="orange">import</span> random<br translate="no"/><br translate="no"/>   pos = mc.player.getPos()<br translate="no"/>   x = pos.x<br translate="no"/>   y = pos.y<br translate="no"/>   z = pos.z<br translate="no"/><br translate="no"/><span class="ent">➊</span> x = x + random.randint(-10, 10)<br translate="no"/>   mc.player.setPos(x, y, z)</p>
+<p class="examplet"><a id="ch3ex10"></a><em>Listado 3-10: El programa de salto aleatorio incompleto</em></p>
+<p class="indent">Falta el código de generación de números aleatorios para las variables <span class="literal">y</span> y <span class="literal">z</span>, y depende de ti añadirlo. Una vez que lo hagas, el jugador tendrá la posibilidad de saltar a cualquier parte, como hice yo en la <a href="ch03.xhtml#ch3fig10">Figura 3</a>-10. ¡Deja que el azar te lleve a lugares nuevos y emocionantes!</p>
+<p class="indent">De momento, el código no utiliza operadores abreviados para cambiar los valores de las variables. Prueba a cambiar la expresión de suma en <span class="ent">➊</span> para que utilice taquigrafía en su lugar.</p>
+<div class="image"><span epub:type="pagebreak" id="page_68"></span><img alt="image" src="../images/f03-10.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch3fig10"></a><em>Figura 3-10: He saltado en una dirección aleatoria y he acabado en lo alto de este árbol. ¿Dónde has acabado tú?</em></p>
+<div class="sidebar">
+<p class="sidebart" id="ch03sb04"><strong>OBJETIVO EXTRA: TELETRANSPORTE DE BLOQUES ALEATORIOS</strong></p>
+<p class="noindent">¡Hagamos que el programa <em>randomJump.</em> py sea aún más aleatorio! Después de que el jugador salte a una posición aleatoria, coloca un bloque aleatorio debajo de él. También podrías adaptar el programa de recorrido de teletransporte de la Misión 1 (ver <em>teletransporte</em>.py en <a href="ch02.xhtml#page_38">la página 38</a>) para que el jugador se teletransporte a una posición aleatoria cada vez. Si accidentalmente te teletransportas a algún lugar y te quedas atascado, siempre puedes volver a ejecutar teleport <em>.</em>py, que debería teletransportarte a un lugar seguro.</p>
+</div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch03_5.html">anterior</a><a href="ch03.html">Subtema 6 de 7: (Ver todo)</a><a href="ch03_7.html">siguiente</a><br/></p>
+<br/><a href="ch03_6.docx" target="_blank"></a></footer>
+</body>
+</html>

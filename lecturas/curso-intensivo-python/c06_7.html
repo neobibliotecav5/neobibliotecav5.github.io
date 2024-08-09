@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c06-0004">Modificar valores de un diccionario</h3>
+<p class="BodyFirst">Para modificar un valor de un diccionario, indica el nombre del diccionario con la clave entre corchetes y, a continuación, el nuevo valor que quieres asociar a esa clave. Por ejemplo, considera un alienígena que cambia de verde a amarillo a medida que avanza el juego:</p>
+<p class="CodeLabel" translate="no"><b>alien.py</b></p>
+<pre translate="no"><code translate="no">alien_0 = {'color': 'green'}
+print(f"The alien is {alien_0['color']}.")
+
+<span epub:type="pagebreak" id="Page_95" title="95"></span>alien_0['color'] = 'yellow'
+print(f"The alien is now {alien_0['color']}.")</code></pre>
+<p>Primero definimos un diccionario para <code translate="no">alien_0</code> que contenga sólo el color del alienígena; luego cambiamos el valor asociado a la clave <code translate="no">'color'</code> por <code translate="no">'yellow'</code>. La salida muestra que, efectivamente, el alienígena ha cambiado de verde a amarillo:</p>
+<pre translate="no"><code translate="no">The alien is green.
+The alien is now yellow.</code></pre>
+<p>Para un ejemplo más interesante, rastreemos la posición de un alienígena que puede moverse a distintas velocidades. Almacenaremos un valor que represente la velocidad actual del robot y lo utilizaremos para determinar la distancia a la derecha a la que debe desplazarse:</p>
+<pre translate="no"><code translate="no">alien_0 = {'x_position': 0, 'y_position': 25, 'speed': 'medium'}
+print(f"Original position: {alien_0['x_position']}")
+
+# Move the alien to the right.
+# Determine how far to move the alien based on its current speed.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> if alien_0['speed'] == 'slow':
+    x_increment = 1
+elif alien_0['speed'] == 'medium':
+    x_increment = 2
+else:
+    # This must be a fast alien.
+    x_increment = 3
+
+# The new position is the old position plus the increment.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> alien_0['x_position'] = alien_0['x_position'] + x_increment
+
+print(f"New position: {alien_0['x_position']}")</code></pre>
+<p>Comenzamos definiendo un alienígena con una posición inicial de <em translate="no">x</em> y una posición de <em translate="no">y</em>, y una velocidad de <code translate="no">'medium'</code>. Hemos omitido los valores de color y punto para simplificar, pero este ejemplo funcionaría igual si incluyeras también esos pares clave-valor. También imprimimos el valor original de <code translate="no">x_position</code> para ver cuánto se desplaza el extraterrestre hacia la derecha.</p>
+<p>Una cadena <code translate="no">if</code>-<code translate="no">elif</code>-<code translate="no">else</code> determina a qué distancia debe moverse el alienígena hacia la derecha, y asigna este valor a la variable <code translate="no">x_increment</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Si la velocidad del alienígena es <code translate="no">'slow'</code>, se desplaza una unidad a la derecha; si la velocidad es <code translate="no">'medium'</code>, se desplaza dos unidades a la derecha; y si es <code translate="no">'fast'</code>, se desplaza tres unidades a la derecha. Una vez calculado el incremento, se suma al valor de <code translate="no">x_position</code> <span aria-label="annotation2" class="CodeAnnotation">❷,</span> y el resultado se almacena en el diccionario <code translate="no">x_position</code>.</p>
+<p>Como se trata de un alienígena de velocidad media, su posición se desplaza dos unidades a la derecha:</p>
+<pre translate="no"><code translate="no">Original x-position: 0
+New x-position: 2</code></pre>
+<p><span epub:type="pagebreak" id="Page_96" title="96"></span>Esta técnica es bastante chula: cambiando un valor del diccionario del alienígena, puedes cambiar el comportamiento general del alienígena. Por ejemplo, para convertir a este alienígena de velocidad media en un alienígena rápido, añadirías esta línea:</p>
+<pre translate="no"><code translate="no">alien_0['speed'] = 'fast'</code></pre>
+<p>El bloque <code translate="no">if</code>-<code translate="no">elif</code>-<code translate="no">else</code> asignaría entonces un valor mayor a <code translate="no">x_increment</code> la próxima vez que se ejecute el código.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c06_6.html">anterior</a><a href="c06.html">Subtema 7 de 28: (Ver todo)</a><a href="c06_8.html">siguiente</a><br/></p>
+<br/><a href="c06_7.docx" target="_blank"></a></footer>
+</body>
+</html>

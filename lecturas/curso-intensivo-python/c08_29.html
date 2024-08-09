@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c08-0015">Uso de argumentos arbitrarios de palabras clave</h3>
+<p class="BodyFirst">A veces querrás aceptar un número arbitrario de argumentos, pero no sabrás de antemano qué tipo de información se pasará a la función. En este caso, puedes escribir funciones que acepten tantos pares clave-valor como proporcione la sentencia de llamada. Un ejemplo tiene que ver con la creación de perfiles de usuario: sabes que obtendrás información sobre un usuario, pero no estás seguro de qué tipo de información recibirás. La función <code translate="no">build_profile()</code> del siguiente ejemplo siempre recibe un nombre y un apellido, pero también acepta un número arbitrario de argumentos de palabra clave:</p>
+<p class="CodeLabel" translate="no"><b>user_profile.py</b></p>
+<pre translate="no"><code translate="no">def build_profile(first, last, **user_info):
+    """Build a dictionary containing everything we know about a user."""
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     user_info['first_name'] = first
+    user_info['last_name'] = last
+    return user_info
+
+user_profile = build_profile('albert', 'einstein',
+                             location='princeton',
+                             field='physics')
+print(user_profile)</code></pre>
+<p>La definición de <code translate="no">build_profile()</code> espera un nombre y un apellido, y luego permite al usuario pasar tantos pares nombre-valor como desee. Los asteriscos dobles delante del parámetro <code translate="no">**user_info</code> hacen que Python cree un diccionario llamado <code translate="no">user_info</code> que contiene todos los pares nombre-valor adicionales que recibe la función. Dentro de la función, puedes acceder a los pares clave-valor de <code translate="no">user_info</code> como lo harías con cualquier diccionario.</p>
+<p>En el cuerpo de <code translate="no">build_profile()</code>, añadimos el nombre y los apellidos al diccionario <code translate="no">user_info</code> porque siempre recibiremos estos dos datos del usuario <span aria-label="annotation1" class="CodeAnnotation">❶,</span> y aún no se han colocado en el diccionario. Después devolvemos el diccionario <code translate="no">user_info</code> a la línea de llamada a la función.</p>
+<p>Llamamos a <code translate="no">build_profile()</code>, pasándole el nombre <code translate="no">'albert'</code>, el apellido <code translate="no">'einstein'</code>, y los dos pares clave-valor <code translate="no">location='princeton'</code> y <code translate="no">field='physics'</code>. Asignamos el <code translate="no">profile</code> devuelto a <code translate="no">user_profile</code> e imprimimos <code translate="no">user_profile</code>:</p>
+<pre translate="no"><code translate="no">{'location': 'princeton', 'field': 'physics',
+'first_name': 'albert', 'last_name': 'einstein'}</code></pre>
+<p>El diccionario devuelto contiene el nombre y apellidos del usuario y, en este caso, también la localidad y la especialidad. La función funcionará independientemente de cuántos pares clave-valor adicionales se proporcionen en la llamada a la función.</p>
+<p><span epub:type="pagebreak" id="Page_149" title="149"></span>Puedes mezclar valores posicionales, de palabra clave y arbitrarios de muchas formas distintas al escribir tus propias funciones. Es útil saber que existen todos estos tipos de argumentos porque los verás a menudo cuando empieces a leer el código de otras personas. Utilizar correctamente los distintos tipos y saber cuándo utilizar cada uno de ellos requiere práctica. Por ahora, recuerda utilizar el método más sencillo que haga el trabajo. A medida que avances, aprenderás a utilizar cada vez el enfoque más eficaz.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c08_28.html">anterior</a><a href="c08.html">Subtema 29 de 40: (Ver todo)</a><a href="c08_30.html">siguiente</a><br/></p>
+<br/><a href="c08_29.docx" target="_blank"></a></footer>
+</body>
+</html>

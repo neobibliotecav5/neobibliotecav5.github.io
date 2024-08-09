@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c16-0016">Extraer los datos de localización</h3>
+<p class="BodyFirst">Los datos de localización de cada terremoto se almacenan bajo la clave <code translate="no">"geometry"</code>. Dentro del diccionario de geometría hay una clave <code translate="no">"coordinates"</code>, y los dos primeros valores de esta lista son la longitud y la latitud. He aquí cómo extraeremos estos datos:</p>
+<p class="CodeLabel" translate="no"><b>eq_explore_data.py</b></p>
+<pre translate="no"><code translate="no"><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">all_eq_dicts = all_eq_data['features']</span>
+
+mags, lons, lats = [], [], []
+<span class="LiteralGray">for eq_dict in all_eq_dicts:</span>
+<span class="LiteralGray">    mag = eq_dict['properties']['mag']</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     lon = eq_dict['geometry']['coordinates'][0]
+    lat = eq_dict['geometry']['coordinates'][1]
+<span class="LiteralGray">    mags.append(mag)</span>
+    lons.append(lon)
+<span epub:type="pagebreak" id="Page_347" title="347"></span>    lats.append(lat)
+
+<span class="LiteralGray">print(mags[:10])</span>
+print(lons[:5])
+print(lats[:5])</code></pre>
+<p>Hacemos listas vacías para las longitudes y latitudes. La clave <code translate="no">eq_dict['geometry']</code> accede al diccionario que representa el elemento de geometría del terremoto <span aria-label="annotation1" class="CodeAnnotation">❶.</span> La segunda clave, <code translate="no">'coordinates'</code>, extrae la lista de valores asociada a <code translate="no">'coordinates'</code>. Por último, el índice <code translate="no">0</code> pide el primer valor de la lista de coordenadas, que corresponde a la longitud de un terremoto.</p>
+<p>Cuando imprimimos las primeras longitudes y latitudes de <code translate="no">5</code>, la salida muestra que estamos extrayendo los datos correctos:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">[1.6, 1.6, 2.2, 3.7, 2.92000008, 1.4, 4.6, 4.5, 1.9, 1.8]</span>
+[-150.7585, -153.4716, -148.7531, -159.6267, -155.248336791992]
+[61.7591, 59.3152, 63.1633, 54.5612, 18.7551670074463]</code></pre>
+<p>Con estos datos, podemos pasar a cartografiar cada terremoto.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c16_21.html">anterior</a><a href="c16.html">Subtema 22 de 29: (Ver todo)</a><a href="c16_23.html">siguiente</a><br/></p>
+<br/><a href="c16_22.docx" target="_blank"></a></footer>
+</body>
+</html>

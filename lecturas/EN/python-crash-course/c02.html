@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://www.w3.org/2002/06/xhtml2/ http://www.w3.org/MarkUp/SCHEMA/xhtml2.xsd">
+<head>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style></head>
+<body><div id="sbo-rt-content"><section>
+<header>
+<h1 class="chapter">
+<span class="ChapterNumber"><span epub:type="pagebreak" id="Page_15" title="15"></span>2</span><br/>
+<span class="ChapterTitle">Variables and Simple Data Types</span></h1>
+</header>
+<figure class="opener">
+<img alt="" height="406" src="Images/chapterart.png" width="406"/>
+</figure>
+<p class="ChapterIntro">In this chapter you’ll learn about the different kinds of data you can work with in your Python programs. You’ll also learn how to use variables to represent data in your programs.</p>
+<h2 id="h1-502703c02-0001">What Really Happens When You Run hello_world.py</h2>
+<p class="BodyFirst">Let’s take a closer look at what Python does when you run <em>hello_world.py</em>. As it turns out, Python does a fair amount of work, even when it runs a simple program:</p>
+<p class="CodeLabel"><b>hello_world.py</b></p>
+<pre><code>print("Hello Python world!")</code></pre>
+<p>When you run this code, you should see the following output:</p>
+<pre><code>Hello Python world!</code></pre>
+<p><span epub:type="pagebreak" id="Page_16" title="16"></span>When you run the file <em>hello_world.py</em>, the ending <em>.py</em> indicates that the file is a Python program. Your editor then runs the file through the <em>Python interpreter</em>, which reads through the program and determines what each word in the program means. For example, when the interpreter sees the word <code>print</code> followed by parentheses, it prints to the screen whatever is inside the parentheses.</p>
+<p>As you write your programs, your editor highlights different parts of your program in different ways. For example, it recognizes that <code>print()</code> is the name of a function and displays that word in one color. It recognizes that <code>"Hello Python world!"</code> is not Python code, and displays that phrase in a different color. This feature is called <em>syntax highlighting</em> and is quite useful as you start to write your own programs.</p>
+<h2 id="h1-502703c02-0002">Variables</h2>
+<p class="BodyFirst">Let’s try using a variable in <em>hello_world.py</em>. Add a new line at the beginning of the file, and modify the second line:</p>
+<p class="CodeLabel"><b>hello_world.py</b></p>
+<pre><code>message = "Hello Python world!"
+print(message)</code></pre>
+<p>Run this program to see what happens. You should see the same output you saw previously:</p>
+<pre><code>Hello Python world!</code></pre>
+<p>We’ve added a <em>variable</em> named <code>message</code>. Every variable is connected to a <em>value</em>, which is the information associated with that variable. In this case the value is the <code>"Hello Python world!"</code> text.</p>
+<p>Adding a variable makes a little more work for the Python interpreter. When it processes the first line, it associates the variable <code>message</code> with the <code>"Hello Python world!"</code> text. When it reaches the second line, it prints the value associated with <code>message</code> to the screen.</p>
+<p>Let’s expand on this program by modifying <em>hello_world.py</em> to print a second message. Add a blank line to <em>hello_world.py</em>, and then add two new lines of code:</p>
+<pre><code><span class="LiteralGray">message = "Hello Python world!"</span>
+<span class="LiteralGray">print(message)</span>
+
+message = "Hello Python Crash Course world!"
+print(message)</code></pre>
+<p>Now when you run <em>hello_world.py</em>, you should see two lines of output:</p>
+<pre><code>Hello Python world!
+Hello Python Crash Course world!</code></pre>
+<p>You can change the value of a variable in your program at any time, and Python will always keep track of its current value.</p>
+<h3 id="h2-502703c02-0001"><span epub:type="pagebreak" id="Page_17" title="17"></span>Naming and Using Variables</h3>
+<p class="BodyFirst">When you’re using variables in Python, you need to adhere to a few rules and guidelines. Breaking some of these rules will cause errors; other guidelines just help you write code that’s easier to read and understand. Be sure to keep the following rules in mind when working with variables:</p>
+<ul>
+<li>Variable names can contain only letters, numbers, and underscores. They can start with a letter or an underscore, but not with a number. For instance, you can call a variable <code>message_1</code> but not <code>1_message</code>.</li>
+<li>Spaces are not allowed in variable names, but underscores can be used to separate words in variable names. For example, <code>greeting_message</code> works but <code>greeting message</code> will cause errors.</li>
+<li>Avoid using Python keywords and function names as variable names. For example, do not use the word <code>print</code> as a variable name; Python has reserved it for a particular programmatic purpose. (See “Python Keywords and Built-in Functions” on <span class="xref" itemid="xref_target_page 466">page 466</span>.)</li>
+<li>Variable names should be short but descriptive. For example, <code>name</code> is better than <code>n</code>, <code>student_name</code> is better than <code>s_n</code>, and <code>name_length</code> is better than <code>length_of_persons_name</code>.</li>
+<li>Be careful when using the lowercase letter <em>l</em> and the uppercase letter <em>O</em> because they could be confused with the numbers <em>1</em> and <em>0</em>.</li>
+</ul>
+<p>It can take some practice to learn how to create good variable names, especially as your programs become more interesting and complicated. As you write more programs and start to read through other people’s code, you’ll get better at coming up with meaningful names.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	The Python variables you’re using at this point should be lowercase. You won’t get errors if you use uppercase letters, but uppercase letters in variable names have special meanings that we’ll discuss in later chapters.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h3 id="h2-502703c02-0002">Avoiding Name Errors When Using Variables</h3>
+<p class="BodyFirst">Every programmer makes mistakes, and most make mistakes every day. Although good programmers might create errors, they also know how to respond to those errors efficiently. Let’s look at an error you’re likely to make early on and learn how to fix it.</p>
+<p>We’ll write some code that generates an error on purpose. Enter the following code, including the misspelled word <code>mesage</code><em>,</em> which is shown in bold:</p>
+<pre><code>message = "Hello Python Crash Course reader!"
+print(<b>mesage</b>)</code></pre>
+<p>When an error occurs in your program, the Python interpreter does its best to help you figure out where the problem is. The interpreter provides a traceback when a program cannot run successfully. A <em>traceback</em> is a record of where the interpreter ran into trouble when trying to execute your code. <span epub:type="pagebreak" id="Page_18" title="18"></span>Here’s an example of the traceback that Python provides after you’ve accidentally misspelled a variable’s name:</p>
+<pre><code>Traceback (most recent call last):
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>   File "hello_world.py", line 2, in &lt;module&gt;
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     print(mesage)
+          ^^^^^^
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> NameError: name 'mesage' is not defined. Did you mean: 'message'?</code></pre>
+<p>The output reports that an error occurs in line 2 of the file <em>hello_world.py</em> <span aria-label="annotation1" class="CodeAnnotation">❶</span>. The interpreter shows this line <span aria-label="annotation2" class="CodeAnnotation">❷</span> to help us spot the error quickly and tells us what kind of error it found <span aria-label="annotation3" class="CodeAnnotation">❸</span>. In this case it found a <em>name error</em> and reports that the variable being printed, <code>mesage</code>, has not been defined. Python can’t identify the variable name provided. A name error usually means we either forgot to set a variable’s value before using it, or we made a spelling mistake when entering the variable’s name. If Python finds a variable name that’s similar to the one it doesn’t recognize, it will ask if that’s the name you meant to use.</p>
+<p>In this example we omitted the letter <em>s</em> in the variable name <code>message</code> in the second line. The Python interpreter doesn’t spellcheck your code, but it does ensure that variable names are spelled consistently. For example, watch what happens when we spell <em>message</em> incorrectly in the line that defines the variable:</p>
+<pre><code>mesage = "Hello Python Crash Course reader!"
+<span class="LiteralGray">print(mesage)</span></code></pre>
+<p>In this case, the program runs successfully!</p>
+<pre><code>Hello Python Crash Course reader!</code></pre>
+<p>The variable names match, so Python sees no issue. Programming languages are strict, but they disregard good and bad spelling. As a result, you don’t need to consider English spelling and grammar rules when you’re trying to create variable names and writing code.</p>
+<p>Many programming errors are simple, single-character typos in one line of a program. If you find yourself spending a long time searching for one of these errors, know that you’re in good company. Many experienced and talented programmers spend hours hunting down these kinds of tiny errors. Try to laugh about it and move on, knowing it will happen frequently throughout your programming life.</p>
+<h3 id="h2-502703c02-0003">Variables Are Labels</h3>
+<p class="BodyFirst">Variables are often described as boxes you can store values in. This idea can be helpful the first few times you use a variable, but it isn’t an accurate way to describe how variables are represented internally in Python. It’s much better to think of variables as labels that you can assign to values. You can also say that a variable references a certain value.</p>
+<p><span epub:type="pagebreak" id="Page_19" title="19"></span>This distinction probably won’t matter much in your initial programs, but it’s worth learning earlier rather than later. At some point, you’ll see unexpected behavior from a variable, and an accurate understanding of how variables work will help you identify what’s happening in your code.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	The best way to understand new programming concepts is to try using them in your programs. If you get stuck while working on an exercise in this book, try doing something else for a while. If you’re still stuck, review the relevant part of that chapter. If you still need help, see the suggestions in <span class="xref" itemid="xref_target_Appendix C">Appendix C</span>.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2>Try It Yourself</h2>
+<p class="BoxBodyFirst">Write a separate program to accomplish each of these exercises. Save each program with a filename that follows standard Python conventions, using lowercase letters and underscores, such as <em>simple_message.py</em> and <em>simple_messages.py</em>.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c02-04">2-1. Simple Message:</span> Assign a message to a variable, and then print that message.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c02-05">2-2. Simple Messages:</span> Assign a message to a variable, and print that message. Then change the value of the variable to a new message, and print the new message.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c02-0003">Strings</h2>
+<p class="BodyFirst">Because most programs define and gather some sort of data and then do something useful with it, it helps to classify different types of data. The first data type we’ll look at is the string. Strings are quite simple at first glance, but you can use them in many different ways.</p>
+<p>A <em>string</em> is a series of characters. Anything inside quotes is considered a string in Python, and you can use single or double quotes around your strings like this:</p>
+<pre><code>"This is a string."
+'This is also a string.'</code></pre>
+<p>This flexibility allows you to use quotes and apostrophes within your strings:</p>
+<pre><code>'I told my friend, "Python is my favorite language!"'
+"The language 'Python' is named after Monty Python, not the snake."
+"One of Python's strengths is its diverse and supportive community."</code></pre>
+<p>Let’s explore some of the ways you can use strings.</p>
+<h3 id="h2-502703c02-0004"><span epub:type="pagebreak" id="Page_20" title="20"></span>Changing Case in a String with Methods</h3>
+<p class="BodyFirst">One of the simplest tasks you can do with strings is change the case of the words in a string. Look at the following code, and try to determine what’s happening:</p>
+<p class="CodeLabel"><b>name.py</b></p>
+<pre><code>name = "ada lovelace"
+print(name.title())</code></pre>
+<p>Save this file as <em>name.py</em> and then run it. You should see this output:</p>
+<pre><code>Ada Lovelace</code></pre>
+<p>In this example, the variable <code>name</code> refers to the lowercase string <code>"ada lovelace"</code>. The method <code>title()</code> appears after the variable in the <code>print()</code> call. A <em>method</em> is an action that Python can perform on a piece of data. The dot (<code>.</code>) after <code>name</code> in <code>name.title()</code> tells Python to make the <code>title()</code> method act on the variable <code>name</code>. Every method is followed by a set of parentheses, because methods often need additional information to do their work. That information is provided inside the parentheses. The <code>title()</code> function doesn’t need any additional information, so its parentheses are empty.</p>
+<p>The <code>title()</code> method changes each word to title case, where each word begins with a capital letter. This is useful because you’ll often want to think of a name as a piece of information. For example, you might want your program to recognize the input values <code>Ada</code>, <code>ADA</code>, and <code>ada</code> as the same name, and display all of them as <code>Ada</code>.</p>
+<p>Several other useful methods are available for dealing with case as well. For example, you can change a string to all uppercase or all lowercase letters like this:</p>
+<pre><code>name = "Ada Lovelace"
+print(name.upper())
+print(name.lower())</code></pre>
+<p>This will display the following:</p>
+<pre><code>ADA LOVELACE
+ada lovelace</code></pre>
+<p>The <code>lower()</code> method is particularly useful for storing data. You typically won’t want to trust the capitalization that your users provide, so you’ll convert strings to lowercase before storing them. Then when you want to display the information, you’ll use the case that makes the most sense for each string.</p>
+<h3 id="h2-502703c02-0005">Using Variables in Strings</h3>
+<p class="BodyFirst">In some situations, you’ll want to use a variable’s value inside a string. For example, you might want to use two variables to represent a first name and <span epub:type="pagebreak" id="Page_21" title="21"></span>a last name, respectively, and then combine those values to display someone’s full name:</p>
+<p class="CodeLabel"><b>full_name.py</b></p>
+<pre><code>first_name = "ada"
+last_name = "lovelace"
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> full_name = f"{first_name} {last_name}"
+print(full_name)</code></pre>
+<p>To insert a variable’s value into a string, place the letter <code>f</code> immediately before the opening quotation mark <span aria-label="annotation1" class="CodeAnnotation">❶</span>. Put braces around the name or names of any variable you want to use inside the string. Python will replace each variable with its value when the string is displayed.</p>
+<p>These strings are called <em>f-strings</em>. The <em>f</em> is for <em>format</em>, because Python formats the string by replacing the name of any variable in braces with its value. The output from the previous code is:</p>
+<pre><code>ada lovelace</code></pre>
+<p>You can do a lot with f-strings. For example, you can use f-strings to compose complete messages using the information associated with a variable, as shown here:</p>
+<pre><code><span class="LiteralGray">first_name = "ada"</span>
+<span class="LiteralGray">last_name = "lovelace"</span>
+<span class="LiteralGray">full_name = f"{first_name} {last_name}"</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> print(f"Hello, {full_name.title()}!")</code></pre>
+<p>The full name is used in a sentence that greets the user <span aria-label="annotation1" class="CodeAnnotation">❶</span>, and the <code>title()</code> method changes the name to title case. This code returns a simple but nicely formatted greeting:</p>
+<pre><code>Hello, Ada Lovelace!</code></pre>
+<p>You can also use f-strings to compose a message, and then assign the entire message to a variable:</p>
+<pre><code><span class="LiteralGray">first_name = "ada"</span>
+<span class="LiteralGray">last_name = "lovelace"</span>
+<span class="LiteralGray">full_name = f"{first_name} {last_name}"</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> message = f"Hello, {full_name.title()}!"
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> print(message)</code></pre>
+<p>This code displays the message <code>Hello, Ada Lovelace!</code> as well, but by assigning the message to a variable <span aria-label="annotation1" class="CodeAnnotation">❶</span> we make the final <code>print()</code> call much simpler <span aria-label="annotation2" class="CodeAnnotation">❷</span>. </p>
+<h3 id="h2-502703c02-0006">Adding Whitespace to Strings with Tabs or Newlines</h3>
+<p class="BodyFirst">In programming, <em>whitespace</em> refers to any nonprinting characters, such as spaces, tabs, and end-of-line symbols. You can use whitespace to organize your output so it’s easier for users to read.</p>
+<p><span epub:type="pagebreak" id="Page_22" title="22"></span>To add a tab to your text, use the character combination <code>\t</code>:</p>
+<pre><code>&gt;&gt;&gt; <b>print("Python")</b>
+Python
+&gt;&gt;&gt; <b>print("\tPython")</b>
+    Python</code></pre>
+<p>To add a newline in a string, use the character combination <code>\n</code>:</p>
+<pre><code>&gt;&gt;&gt; <b>print("Languages:\nPython\nC\nJavaScript")</b>
+Languages:
+Python
+C
+JavaScript</code></pre>
+<p>You can also combine tabs and newlines in a single string. The string <code>"\n\t"</code> tells Python to move to a new line, and start the next line with a tab. The following example shows how you can use a one-line string to generate four lines of output:</p>
+<pre><code>&gt;&gt;&gt; <b>print("Languages:\n\tPython\n\tC\n\tJavaScript")</b>
+Languages:
+    Python
+    C
+    JavaScript</code></pre>
+<p>Newlines and tabs will be very useful in the next two chapters, when you start to produce many lines of output from just a few lines of code.</p>
+<h3 id="h2-502703c02-0007">Stripping Whitespace</h3>
+<p class="BodyFirst">Extra whitespace can be confusing in your programs. To programmers, <code>'python'</code> and <code>'python '</code> look pretty much the same. But to a program, they are two different strings. Python detects the extra space in <code>'python '</code> and considers it significant unless you tell it otherwise.</p>
+<p>It’s important to think about whitespace, because often you’ll want to compare two strings to determine whether they are the same. For example, one important instance might involve checking people’s usernames when they log in to a website. Extra whitespace can be confusing in much simpler situations as well. Fortunately, Python makes it easy to eliminate extra whitespace from data that people enter.</p>
+<p>Python can look for extra whitespace on the right and left sides of a string. To ensure that no whitespace exists at the right side of a string, use the <code>rstrip()</code> method:</p>
+<pre><code><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> &gt;&gt;&gt; <b>favorite_language = 'python '</b>
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> &gt;&gt;&gt; <b>favorite_language</b>
+'python '
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> &gt;&gt;&gt; <b>favorite_language.rstrip()</b>
+'python'
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> &gt;&gt;&gt; <b>favorite_language</b>
+'python '</code></pre>
+<p><span epub:type="pagebreak" id="Page_23" title="23"></span>The value associated with <code>favorite_language</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span> contains extra whitespace at the end of the string. When you ask Python for this value in a terminal session, you can see the space at the end of the value <span aria-label="annotation2" class="CodeAnnotation">❷</span>. When the <code>rstrip()</code> method acts on the variable <code>favorite_language</code> <span aria-label="annotation3" class="CodeAnnotation">❸</span>, this extra space is removed. However, it is only removed temporarily. If you ask for the value of <code>favorite_language</code> again, the string looks the same as when it was entered, including the extra whitespace <span aria-label="annotation4" class="CodeAnnotation">❹</span>.</p>
+<p>To remove the whitespace from the string permanently, you have to associate the stripped value with the variable name:</p>
+<pre><code>&gt;&gt;&gt; <b>favorite_language = 'python '</b>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> &gt;&gt;&gt; <b>favorite_language = favorite_language.rstrip()</b>
+&gt;&gt;&gt; <b>favorite_language</b>
+'python'</code></pre>
+<p>To remove the whitespace from the string, you strip the whitespace from the right side of the string and then associate this new value with the original variable <span aria-label="annotation1" class="CodeAnnotation">❶</span>. Changing a variable’s value is done often in programming. This is how a variable’s value can be updated as a program is executed or in response to user input.</p>
+<p>You can also strip whitespace from the left side of a string using the <code>lstrip()</code> method, or from both sides at once using <code>strip()</code>:</p>
+<pre><code><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> &gt;&gt;&gt; <b>favorite_language = ' python '</b>
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> &gt;&gt;&gt; <b>favorite_language.rstrip()</b>
+' python'
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> &gt;&gt;&gt; <b>favorite_language.lstrip()</b>
+'python '
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> &gt;&gt;&gt; <b>favorite_language.strip()</b>
+'python'</code></pre>
+<p>In this example, we start with a value that has whitespace at the beginning and the end <span aria-label="annotation1" class="CodeAnnotation">❶</span>. We then remove the extra space from the right side <span aria-label="annotation2" class="CodeAnnotation">❷</span>, from the left side <span aria-label="annotation3" class="CodeAnnotation">❸</span>, and from both sides <span aria-label="annotation4" class="CodeAnnotation">❹</span>. Experimenting with these stripping functions can help you become familiar with manipulating strings. In the real world, these stripping functions are used most often to clean up user input before it’s stored in a program.</p>
+<h3 id="h2-502703c02-0008">Removing Prefixes</h3>
+<p class="BodyFirst">When working with strings, another common task is to remove a prefix. Consider a URL with the common prefix <em>https://</em>. We want to remove this prefix, so we can focus on just the part of the URL that users need to enter into an address bar. Here’s how to do that:</p>
+<pre><code>&gt;&gt;&gt; nostarch_url = 'https://nostarch.com'
+&gt;&gt;&gt; nostarch_url.removeprefix('https://')
+'nostarch.com'</code></pre>
+<p><span epub:type="pagebreak" id="Page_24" title="24"></span>Enter the name of the variable followed by a dot, and then the method <code>removeprefix()</code>. Inside the parentheses, enter the prefix you want to remove from the original string.</p>
+<p>Like the methods for removing whitespace, <code>removeprefix()</code> leaves the original string unchanged. If you want to keep the new value with the prefix removed, either reassign it to the original variable or assign it to a new variable:</p>
+<pre><code>&gt;&gt;&gt; simple_url = nostarch_url.removeprefix('https://')</code></pre>
+<p>When you see a URL in an address bar and the <em>https://</em> part isn’t shown, the browser is probably using a method like <code>removeprefix()</code> behind the scenes.</p>
+<h3 id="h2-502703c02-0009">Avoiding Syntax Errors with Strings</h3>
+<p class="BodyFirst">One kind of error that you might see with some regularity is a syntax error. A <em>syntax error</em> occurs when Python doesn’t recognize a section of your program as valid Python code. For example, if you use an apostrophe within single quotes, you’ll produce an error. This happens because Python interprets everything between the first single quote and the apostrophe as a string. It then tries to interpret the rest of the text as Python code, which causes errors.</p>
+<p>Here’s how to use single and double quotes correctly. Save this program as <em>apostrophe.py</em> and then run it:</p>
+<p class="CodeLabel"><b>apostrophe.py</b></p>
+<pre><code>message = "One of Python's strengths is its diverse community."
+print(message)</code></pre>
+<p>The apostrophe appears inside a set of double quotes, so the Python interpreter has no trouble reading the string correctly:</p>
+<pre><code>One of Python's strengths is its diverse community.</code></pre>
+<p>However, if you use single quotes, Python can’t identify where the string should end:</p>
+<pre><code>message = 'One of Python's strengths is its diverse community.'
+<span class="LiteralGray">print(message)</span></code></pre>
+<p>You’ll see the following output:</p>
+<pre><code>  File "apostrophe.py", line 1
+    message = 'One of Python's strengths is its diverse community.'
+                                                                <span aria-label="annotation1" class="CodeAnnotationCode">❶</span> ^
+SyntaxError: unterminated string literal (detected at line 1)</code></pre>
+<p>In the output you can see that the error occurs right after the final single quote <span aria-label="annotation1" class="CodeAnnotation">❶</span>. This syntax error indicates that the interpreter doesn’t recognize <span epub:type="pagebreak" id="Page_25" title="25"></span>something in the code as valid Python code, and it thinks the problem might be a string that’s not quoted correctly. Errors can come from a variety of sources, and I’ll point out some common ones as they arise. You might see syntax errors often as you learn to write proper Python code. Syntax errors are also the least specific kind of error, so they can be difficult and frustrating to identify and correct. If you get stuck on a particularly stubborn error, see the suggestions in <span class="xref" itemid="xref_target_Appendix C">Appendix C</span>.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	Your editor’s syntax highlighting feature should help you spot some syntax errors quickly as you write your programs. If you see Python code highlighted as if it’s English or English highlighted as if it’s Python code, you probably have a mismatched quotation mark somewhere in your file.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2>Try It Yourself</h2>
+<p class="BoxBodyFirst">Save each of the following exercises as a separate file, with a name like <em>name_cases.py</em>. If you get stuck, take a break or see the suggestions in <span class="xref" itemid="xref_target_Appendix C">Appendix C</span>.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c02-12">2-3. Personal Message:</span> Use a variable to represent a person’s name, and print a message to that person. Your message should be simple, such as, “Hello Eric, would you like to learn some Python today?”</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c02-13">2-4. Name Cases:</span> Use a variable to represent a person’s name, and then print that person’s name in lowercase, uppercase, and title case.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c02-14">2-5. Famous Quote:</span> Find a quote from a famous person you admire. Print the quote and the name of its author. Your output should look something like the following, including the quotation marks:</p>
+<blockquote><p class="BoxExtractPara">Albert Einstein once said, “A person who never made a mistake never tried anything new.”</p></blockquote>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c02-15">2-6. Famous Quote 2:</span> Repeat Exercise 2-5, but this time, represent the famous person’s name using a variable called <code>famous_person</code>. Then compose your message and represent it with a new variable called <code>message</code>. Print your message.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c02-16">2-7. Stripping Names:</span> Use a variable to represent a person’s name, and include some whitespace characters at the beginning and end of the name. Make sure you use each character combination, <code>"\t"</code> and <code>"\n"</code>, at least once.</p>
+<p>Print the name once, so the whitespace around the name is displayed. Then print the name using each of the three stripping functions, <code>lstrip()</code>, <code>rstrip()</code>, and <code>strip()</code>.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c02-17">2-8. File Extensions:</span> Python has a <code>removesuffix()</code> method that works exactly like <code>removeprefix()</code>. Assign the value <code>'python_notes.txt'</code> to a variable called <code>filename</code>. Then use the <code>removesuffix()</code> method to display the filename without the file extension, like some file browsers do.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c02-0004"><span epub:type="pagebreak" id="Page_26" title="26"></span>Numbers</h2>
+<p class="BodyFirst">Numbers are used quite often in programming to keep score in games, represent data in visualizations, store information in web applications, and so on. Python treats numbers in several different ways, depending on how they’re being used. Let’s first look at how Python manages integers, because they’re the simplest to work with.</p>
+<h3 id="h2-502703c02-0010">Integers</h3>
+<p class="BodyFirst">You can add (<code>+</code>), subtract (<code>-</code>), multiply (<code>*</code>), and divide (<code>/</code>) integers in Python.</p>
+<pre><code>&gt;&gt;&gt; <b>2 + 3</b>
+5
+&gt;&gt;&gt; <b>3 - 2</b>
+1
+&gt;&gt;&gt; <b>2 * 3</b>
+6
+&gt;&gt;&gt; <b>3 / 2</b>
+1.5</code></pre>
+<p>In a terminal session, Python simply returns the result of the operation. Python uses two multiplication symbols to represent exponents:</p>
+<pre><code>&gt;&gt;&gt; <b>3 ** 2</b>
+9
+&gt;&gt;&gt; <b>3 ** 3</b>
+27
+&gt;&gt;&gt; <b>10 ** 6</b>
+1000000</code></pre>
+<p>Python supports the order of operations too, so you can use multiple operations in one expression. You can also use parentheses to modify the order of operations so Python can evaluate your expression in the order you specify. For example:</p>
+<pre><code>&gt;&gt;&gt; <b>2 + 3*4</b>
+14
+&gt;&gt;&gt; <b>(2 + 3) * 4</b>
+20</code></pre>
+<p>The spacing in these examples has no effect on how Python evaluates the expressions; it simply helps you more quickly spot the operations that have priority when you’re reading through the code.</p>
+<h3 id="h2-502703c02-0011">Floats</h3>
+<p class="BodyFirst">Python calls any number with a decimal point a <em>float</em>. This term is used in most programming languages, and it refers to the fact that a decimal point <span epub:type="pagebreak" id="Page_27" title="27"></span>can appear at any position in a number. Every programming language must be carefully designed to properly manage decimal numbers so numbers behave appropriately, no matter where the decimal point appears.</p>
+<p>For the most part, you can use floats without worrying about how they behave. Simply enter the numbers you want to use, and Python will most likely do what you expect:</p>
+<pre><code>&gt;&gt;&gt; <b>0.1 + 0.1</b>
+0.2
+&gt;&gt;&gt; <b>0.2 + 0.2</b>
+0.4
+&gt;&gt;&gt; <b>2 * 0.1</b>
+0.2
+&gt;&gt;&gt; <b>2 * 0.2</b>
+0.4</code></pre>
+<p>However, be aware that you can sometimes get an arbitrary number of decimal places in your answer:</p>
+<pre><code>&gt;&gt;&gt; <b>0.2 + 0.1</b>
+0.30000000000000004
+&gt;&gt;&gt; <b>3 * 0.1</b>
+0.30000000000000004</code></pre>
+<p>This happens in all languages and is of little concern. Python tries to find a way to represent the result as precisely as possible, which is sometimes difficult given how computers have to represent numbers internally. Just ignore the extra decimal places for now; you’ll learn ways to deal with the extra places when you need to in the projects in <span class="xref" itemid="xref_target_Part II">Part II</span>.</p>
+<h3 id="h2-502703c02-0012">Integers and Floats</h3>
+<p class="BodyFirst">When you divide any two numbers, even if they are integers that result in a whole number, you’ll always get a float:</p>
+<pre><code>&gt;&gt;&gt; <b>4/2</b>
+2.0</code></pre>
+<p>If you mix an integer and a float in any other operation, you’ll get a float as well:</p>
+<pre><code>&gt;&gt;&gt; <b>1 + 2.0</b>
+3.0
+&gt;&gt;&gt; <b>2 * 3.0</b>
+6.0
+&gt;&gt;&gt; <b>3.0 ** 2</b>
+9.0</code></pre>
+<p><span epub:type="pagebreak" id="Page_28" title="28"></span>Python defaults to a float in any operation that uses a float, even if the output is a whole number.</p>
+<h3 id="h2-502703c02-0013">Underscores in Numbers</h3>
+<p class="BodyFirst">When you’re writing long numbers, you can group digits using underscores to make large numbers more readable:</p>
+<pre><code>&gt;&gt;&gt; <b>universe_age = 14_000_000_000</b></code></pre>
+<p>When you print a number that was defined using underscores, Python prints only the digits:</p>
+<pre><code>&gt;&gt;&gt; <b>print(universe_age)</b>
+14000000000</code></pre>
+<p>Python ignores the underscores when storing these kinds of values. Even if you don’t group the digits in threes, the value will still be unaffected. To Python, <code>1000</code> is the same as <code>1_000</code>, which is the same as <code>10_00</code>. This feature works for both integers and floats.</p>
+<h3 id="h2-502703c02-0014">Multiple Assignment</h3>
+<p class="BodyFirst">You can assign values to more than one variable using just a single line of code. This can help shorten your programs and make them easier to read; you’ll use this technique most often when initializing a set of numbers.</p>
+<p>For example, here’s how you can initialize the variables <code>x</code>, <code>y</code>, and <code>z</code> to zero:</p>
+<pre><code>&gt;&gt;&gt; <b>x, y, z = 0, 0, 0</b></code></pre>
+<p>You need to separate the variable names with commas, and do the same with the values, and Python will assign each value to its respective variable. As long as the number of values matches the number of variables, Python will match them up correctly.</p>
+<h3 id="h2-502703c02-0015">Constants</h3>
+<p class="BodyFirst">A <em>constant</em> is a variable whose value stays the same throughout the life of a program. Python doesn’t have built-in constant types, but Python programmers use all capital letters to indicate a variable should be treated as a constant and never be changed:</p>
+<pre><code>MAX_CONNECTIONS = 5000</code></pre>
+<p>When you want to treat a variable as a constant in your code, write the name of the variable in all capital letters.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2><span epub:type="pagebreak" id="Page_29" title="29"></span>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c02-24">2-9. Number Eight:</span> Write addition, subtraction, multiplication, and division operations that each result in the number 8. Be sure to enclose your operations in <code>print()</code> calls to see the results. You should create four lines that look like this:</p>
+<pre><code>print(5+3)</code></pre>
+<p>Your output should be four lines, with the number 8 appearing once on each line.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c02-25">2-10. Favorite Number:</span> Use a variable to represent your favorite number. Then, using that variable, create a message that reveals your favorite number. Print that message.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c02-0005">Comments</h2>
+<p class="BodyFirst">Comments are an extremely useful feature in most programming languages. Everything you’ve written in your programs so far is Python code. As your programs become longer and more complicated, you should add notes within your programs that describe your overall approach to the problem you’re solving. A <em>comment</em> allows you to write notes in your spoken language, within your programs.</p>
+<h3 id="h2-502703c02-0016">How Do You Write Comments?</h3>
+<p class="BodyFirst">In Python, the hash mark (<code>#</code>) indicates a comment. Anything following a hash mark in your code is ignored by the Python interpreter. For example:</p>
+<p class="CodeLabel"><b>comment.py</b></p>
+<pre><code># Say hello to everyone.
+print("Hello Python people!")</code></pre>
+<p>Python ignores the first line and executes the second line.</p>
+<pre><code>Hello Python people!</code></pre>
+<h3 id="h2-502703c02-0017">What Kinds of Comments Should You Write?</h3>
+<p class="BodyFirst">The main reason to write comments is to explain what your code is supposed to do and how you are making it work. When you’re in the middle of working on a project, you understand how all of the pieces fit together. But when you return to a project after some time away, you’ll likely have <span epub:type="pagebreak" id="Page_30" title="30"></span>forgotten some of the details. You can always study your code for a while and figure out how segments were supposed to work, but writing good comments can save you time by summarizing your overall approach clearly.</p>
+<p>If you want to become a professional programmer or collaborate with other programmers, you should write meaningful comments. Today, most software is written collaboratively, whether by a group of employees at one company or a group of people working together on an open source project. Skilled programmers expect to see comments in code, so it’s best to start adding descriptive comments to your programs now. Writing clear, concise comments in your code is one of the most beneficial habits you can form as a new programmer.</p>
+<p>When you’re deciding whether to write a comment, ask yourself if you had to consider several approaches before coming up with a reasonable way to make something work; if so, write a comment about your solution. It’s much easier to delete extra comments later than to go back and write comments for a sparsely commented program. From now on, I’ll use comments in examples throughout this book to help explain sections of code.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c02-28">2-11. Adding Comments</span><b>:</b> Choose two of the programs you’ve written, and add at least one comment to each. If you don’t have anything specific to write because your programs are too simple at this point, just add your name and the current date at the top of each program file. Then write one sentence describing what the program does.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c02-0006">The Zen of Python</h2>
+<p class="BodyFirst">Experienced Python programmers will encourage you to avoid complexity and aim for simplicity whenever possible. The Python community’s philosophy is contained in “The Zen of Python” by Tim Peters. You can access this brief set of principles for writing good Python code by entering <code>import this</code> into your interpreter. I won’t reproduce the entire “Zen of Python” here, but I’ll share a few lines to help you understand why they should be important to you as a beginning Python programmer.</p>
+<pre><code>&gt;&gt;&gt; <b>import this</b>
+The Zen of Python, by Tim Peters
+Beautiful is better than ugly.</code></pre>
+<p>Python programmers embrace the notion that code can be beautiful and elegant. In programming, people solve problems. Programmers have always respected well-designed, efficient, and even beautiful solutions to problems. As you learn more about Python and use it to write more code, <span epub:type="pagebreak" id="Page_31" title="31"></span>someone might look over your shoulder one day and say, “Wow, that’s some beautiful code!”</p>
+<pre><code>Simple is better than complex.</code></pre>
+<p>If you have a choice between a simple and a complex solution, and both work, use the simple solution. Your code will be easier to maintain, and it will be easier for you and others to build on that code later on.</p>
+<pre><code>Complex is better than complicated.</code></pre>
+<p>Real life is messy, and sometimes a simple solution to a problem is unattainable. In that case, use the simplest solution that works.</p>
+<pre><code>Readability counts.</code></pre>
+<p>Even when your code is complex, aim to make it readable. When you’re working on a project that involves complex coding, focus on writing informative comments for that code.</p>
+<pre><code>There should be one-- and preferably only one --obvious way to do it.</code></pre>
+<p>If two Python programmers are asked to solve the same problem, they should come up with fairly compatible solutions. This is not to say there’s no room for creativity in programming. On the contrary, there is plenty of room for creativity! However, much of programming consists of using small, common approaches to simple situations within a larger, more creative project. The nuts and bolts of your programs should make sense to other Python programmers.</p>
+<pre><code>Now is better than never.</code></pre>
+<p>You could spend the rest of your life learning all the intricacies of Python and of programming in general, but then you’d never complete any projects. Don’t try to write perfect code; write code that works, and then decide whether to improve your code for that project or move on to something new.</p>
+<p>As you continue to the next chapter and start digging into more involved topics, try to keep this philosophy of simplicity and clarity in mind. Experienced programmers will respect your code more and will be happy to give you feedback and collaborate with you on interesting projects.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c02-29">2-12. Zen of Python:</span> Enter <code>import this</code> into a Python terminal session and skim through the additional principles.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c02-0007"><span epub:type="pagebreak" id="Page_32" title="32"></span>Summary</h2>
+<p class="BodyFirst">In this chapter you learned how to work with variables. You learned to use descriptive variable names and resolve name errors and syntax errors when they arise. You learned what strings are and how to display them using lowercase, uppercase, and title case. You started using whitespace to organize output neatly, and you learned how to remove unneeded elements from a string. You started working with integers and floats, and you learned some of the ways you can work with numerical data. You also learned to write explanatory comments to make your code easier for you and others to read. Finally, you read about the philosophy of keeping your code as simple as possible, whenever possible.</p>
+<p>In <span class="xref" itemid="xref_target_Chapter 3">Chapter 3</span>, you’ll learn how to store collections of information in data structures called <em>lists</em>. You’ll also learn how to work through a list, manipulating any information in that list.</p>
+</section>
+</div></body>
+</html>

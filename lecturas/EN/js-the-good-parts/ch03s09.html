@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Global Abatement</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Global Abatement"><div class="titlepage"><div><div><h1 class="title"><a id="global_abatement"/>Global Abatement</h1></div></div></div><p>JavaScript makes it easy to define global variables that can hold all of the
+                assets of your application. Unfortunately, global variables weaken the resiliency of
+                programs and should be avoided.<a id="IDX-CHP-3-0180" class="indexterm"/><a id="IDX-CHP-3-0181" class="indexterm"/></p><p>One way to minimize the use of global variables is to create a single global
+                variable for your application:</p><a id="I_programlisting3_d1e2338"/><pre class="programlisting">var MYAPP = {};</pre><p>That variable then becomes the container for your application:</p><a id="I_programlisting3_d1e2342"/><pre class="programlisting">MYAPP.stooge = {
+    "first-name": "Joe",
+    "last-name": "Howard"
+};
+
+MYAPP.flight = {
+    airline: "Oceanic",
+    number: 815,
+    departure: {
+        IATA: "SYD",
+        time: "2004-09-22 14:55",
+        city: "Sydney"
+    },
+    arrival: {
+        IATA: "LAX",
+        time: "2004-09-23 10:42",
+        city: "Los Angeles"
+    }
+};</pre><p>By reducing your global footprint to a single name, you significantly reduce the
+                chance of bad interactions with other applications, widgets, or libraries. Your
+                program also becomes easier to read because it is obvious that <code class="literal">MYAPP.stooge</code> refers to a top-level structure. In the
+                next chapter, we will see ways to use closure for information hiding, which is
+                another effective global abatement technique.</p></div></body></html>

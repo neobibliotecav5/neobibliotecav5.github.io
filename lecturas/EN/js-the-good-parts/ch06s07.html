@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Dimensions</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Dimensions"><div class="titlepage"><div><div><h1 class="title"><a id="dimensions"/>Dimensions</h1></div></div></div><p>JavaScript arrays usually are not initialized. If you ask for a new array with
+                    <code class="literal">[]</code>, it will be empty. If you access a missing
+                element, you will get the <code class="literal">undefined</code> value. If you
+                are aware of that, or if you will naturally set every element before you attempt to
+                retrieve it, then all is well. But if you are implementing algorithms that assume
+                that every element starts with a known value (such as 0), then you must prep the
+                array yourself. JavaScript should have provided some form of an <code class="literal">Array.dim</code> method to do this, but we can easily correct
+                this oversight:<a id="IDX-CHP-6-0315" class="indexterm"/><a id="IDX-CHP-6-0316" class="indexterm"/><a id="IDX-CHP-6-0317" class="indexterm"/><a id="IDX-CHP-6-0318" class="indexterm"/><a id="IDX-CHP-6-0319" class="indexterm"/><a id="IDX-CHP-6-0320" class="indexterm"/><a id="IDX-CHP-6-0321" class="indexterm"/><a id="IDX-CHP-6-0322" class="indexterm"/><a id="IDX-CHP-6-0323" class="indexterm"/><a id="IDX-CHP-6-0324" class="indexterm"/><a id="IDX-CHP-6-0325" class="indexterm"/><a id="IDX-CHP-6-0326" class="indexterm"/><a id="IDX-CHP-6-0327" class="indexterm"/><a id="IDX-CHP-6-0328" class="indexterm"/><a id="IDX-CHP-6-0329" class="indexterm"/><a id="IDX-CHP-6-0330" class="indexterm"/><a id="IDX-CHP-6-0331" class="indexterm"/><a id="IDX-CHP-6-0314" class="indexterm"/><a id="IDX-CHP-6-0332" class="indexterm"/></p><a id="I_programlisting6_d1e4793"/><pre class="programlisting">Array.dim = function (dimension, initial) {
+    var a = [], i;
+    for (i = 0; i &lt; dimension; i += 1) {
+        a[i] = initial;
+    }
+    return a;
+};
+
+// Make an array containing 10 zeros.
+
+var myArray = Array.dim(10, 0);</pre><p>JavaScript does not have arrays of more than one dimension, but like most C
+                languages, it can have arrays of arrays:<a id="IDX-CHP-6-0333" class="indexterm"/></p><a id="I_programlisting6_d1e4802"/><pre class="programlisting">var matrix = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8]
+];
+matrix[2][1]    // 7</pre><p>To make a two-dimensional array or an array of arrays, you must build the arrays
+                yourself:</p><a id="I_programlisting6_d1e4806"/><pre class="programlisting">for (i = 0; i &lt; n; i += 1) {
+    my_array[i] = [];
+}
+
+// Note: Array.dim(n, []) will not work here.
+// Each element would get a reference to the same
+// array, which would be very bad.</pre><p>The cells of an empty matrix will initially have the value <code class="literal">undefined</code>. If you want them to have a different
+                initial value, you must explicitly set them. Again, JavaScript should have provided
+                better support for matrixes. We can correct that, too:<a id="IDX-CHP-6-0334" class="indexterm"/></p><a id="I_programlisting6_d1e4818"/><pre class="programlisting">Array.matrix = function (m, n, initial) {
+    var a, i, j, mat = [];
+    for (i = 0; i &lt; m; i += 1) {
+        a = [];
+        for (j = 0; j &lt; n; j += 1) {
+            a[j] = initial;
+        }
+        mat[i] = a;
+    }
+    return mat;
+};
+
+// Make a 4 * 4 matrix filled with zeros.
+
+var myMatrix = Array.matrix(4, 4, 0);
+
+document.writeln(myMatrix[3][3]);    // 0
+
+// Method to make an identity matrix.
+
+Array.identity = function (n) {
+    var i, mat = Array.matrix(n, n, 0);
+    for (i = 0; i &lt; n; i += 1) {
+        mat[i][i] = 1;
+    }
+    return mat;
+};
+
+myMatrix = Array.identity(4);
+
+document.writeln(myMatrix[3][3]);    // 1</pre></div></body></html>

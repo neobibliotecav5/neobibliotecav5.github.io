@@ -1,0 +1,372 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body class="calibre">
+<div class="calibre1" id="sbo-rt-content">
+<h2 class="h2" id="after">
+<span class="calibre2" id="page_271">
+</span>
+  Epílogo: A dónde ir a partir de ahora </h2>
+<div class="image">
+<img alt="Image" class="calibre8" src="../images/common.jpg" translate="no"/>
+</div>
+<p class="indent">
+  Has aprendido algunos conceptos fundamentales de programación en tu recorrido por Python, pero hay mucho más por descubrir, ya sea con Python o utilizando otros lenguajes de programación. Aunque Python es increíblemente útil, no siempre es la mejor herramienta para cada tarea, así que no tengas miedo de probar otras formas de programar tu ordenador. </p>
+<p class="indent">
+<span id="page_272">
+</span>
+  Si quieres seguir con Python y buscas libros más avanzados para leer, la wiki de Python (página de libros) es un buen lugar para empezar: <em class="calibre7"><a class="calibre6" href="https://wiki.python.org/moin/PythonBooks/">https://wiki.python.org/moin/PythonBooks/ </a></em>. </p>
+<p class="indent">
+  Si sólo quieres explorar más de lo que Python puede hacer, tiene un montón de módulos incorporados. (Esta es la filosofía "pilas incluidas" de Python. Consulta la documentación de Python para ver la lista completa de lo que hay disponible: <em class="calibre7"><a class="calibre6" href="https://docs.python.org/3/py-modindex.html">https://docs.python.org/3/py-modindex.html </a></em>.) Además, hay un gran número de módulos que proporcionan gratuitamente programadores de todo el mundo. Por ejemplo, puedes probar <em class="calibre7">Pygame </em>( <em class="calibre7"><a class="calibre6" href="https://www.pygame.org">https://www.pygame.org </a></em>) para el desarrollo de juegos, o <em class="calibre7">Jupyter Notebooks </em>( <em class="calibre7"><a class="calibre6" href="https://jupyter.org">https://jupyter.org </a></em>), un entorno basado en la web para editar y ejecutar código Python en el navegador. Puedes consultar estos y otros módulos en https://pypi.org <em class="calibre7"><a class="calibre6" href="https://pypi.org">. </a></em>Para instalar estos módulos, necesitarás utilizar una herramienta llamada <span class="literal1" translate="no">
+   pip
+  </span>, que veremos brevemente a continuación. </p>
+<h3 class="h1" id="aftlev1sec1">
+  Instalar Python pip en Windows </h3>
+<p class="noindent">
+  Siempre que hayas instalado Python 3.10 o posterior, <span class="literal1" translate="no">
+   pip
+  </span>debería estar instalado por defecto. Para instalar <span class="literal1" translate="no">
+   pip
+  </span>en Windows, si utilizas una versión anterior de Python, puedes descargar el script <em class="calibre7">get-pip.py </em>de https://bootstrap.pypa.io/get-pip.py <em class="calibre7"><a class="calibre6" href="https://bootstrap.pypa.io/get-pip.py">. </a></em></p>
+<p class="indent">
+  Guarda el archivo en tu carpeta de inicio y, a continuación, abre un símbolo del sistema (haz clic en <strong class="calibre5">Inicio </strong>e introduce <span class="codestrong">cmd </span>en el cuadro de búsqueda). Para instalarlo, escribe  <strong class="calibre5">
+<span class="literal1" translate="no">
+    python get-pip.py
+   </span>
+</strong>
+  . </p>
+<div class="image1">
+<img alt="Image" class="calibre180" src="../images/f0272-01.jpg" translate="no"/>
+</div>
+<h3 class="h1" id="aftlev1sec2">
+<span class="calibre2" id="page_273">
+</span>
+  Instalar pip Python en Ubuntu </h3>
+<p class="noindent">
+  Para instalar <span class="literal1" translate="no">
+   pip
+  </span>en Ubuntu Linux, necesitarás la contraseña de administrador del sistema. Abre un terminal e introduce los siguientes comandos (asegúrate de cambiar el número de versión en el siguiente comando según sea necesario): </p>
+<pre class="pre" translate="no">sudo apt install <span class="codeitalic">python3.10</span>-distutils
+sudo apt install curl
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+<span class="codeitalic">python3.10</span> get-pip.py</pre>
+<p class="indent">
+  Con los dos primeros comandos, es posible que aparezca un error diciendo que ya están instalados; puedes ignorarlo sin problemas. </p>
+<div class="image1">
+<img alt="Image" class="calibre181" src="../images/f0273-01.jpg" translate="no"/>
+</div>
+<h3 class="h1" id="aftlev1sec3">
+  Instalación de Python pip en la Raspberry Pi </h3>
+<p class="noindent">
+  Para instalar <span class="literal1" translate="no">
+   pip
+  </span>en la Raspberry Pi, abre un terminal e introduce los siguientes comandos: </p>
+<pre class="pre" translate="no">curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+<span class="codeitalic">python3.10</span> get-pip.py</pre>
+<p class="indent">
+  Puedes ignorar con seguridad cualquier mensaje de advertencia que aparezca. </p>
+<div class="image1">
+<img alt="Image" class="calibre182" src="../images/f0274-01.jpg" translate="no"/>
+</div>
+<h3 class="h1" id="aftlev1sec4">
+<span class="calibre2" id="page_274">
+</span>
+  Instalar pip Python en macOS </h3>
+<p class="noindent">
+  Siempre que hayas instalado Python 3.10 o una versión más reciente, <span class="literal1" translate="no">
+   pip
+  </span>debería estar instalado por defecto. Si utilizas una versión anterior de Python, puede que tengas que instalar <span class="literal1" translate="no">
+   pip
+  </span>abriendo un terminal y ejecutando el siguiente comando: </p>
+<pre class="pre" translate="no">easy_install-<span class="codeitalic">3.9</span> pip</pre>
+<p class="indent">
+  Dependiendo de la versión de Python que tengas instalada, puede que necesites introducir una versión diferente de <span class="literal1" translate="no">
+   easy_install
+  </span>(como <span class="literal1" translate="no">
+   easy_install-3.7
+  </span>, por ejemplo). </p>
+<div class="image1">
+<img alt="Image" class="calibre183" src="../images/f0274-02.jpg" translate="no"/>
+</div>
+<h3 class="h1" id="aftlev1sec5">
+<span class="calibre2" id="page_275">
+</span>
+  Probar PyGame </h3>
+<p class="noindent">
+  Para hacerte una idea de cómo funciona <em class="calibre7">PyGame </em>, instálalo primero utilizando <span class="literal1" translate="no">
+   pip
+  </span>. Abre un símbolo del sistema (en Windows, introduce <span class="literal1" translate="no">
+   cmd
+  </span>en el cuadro de búsqueda; en Ubuntu, Raspberry Pi o macOS, busca <span class="literal1" translate="no">
+   Terminal
+  </span>) e introduce el siguiente comando (tu número de versión puede ser diferente): </p>
+<pre class="pre" translate="no">pip<span class="codeitalic">3.10</span> install pygame</pre>
+<div class="note">
+<p class="notet">
+<span class="notes">Nota </span></p>
+<p class="notep">
+<em class="calibre7">
+    Dependiendo de tu versión de Windows y de Python, puede que esto no funcione. Si aparece un error como éste </em></p>
+<p class="pre1">
+   'pip' no se reconoce como comando interno o externo, <br class="calibre1" translate="no"/>programa operable o archivo por lotes.  </p>
+<p class="notep">
+<em class="calibre7">entonces intenta ejecutar los siguientes comandos: </em></p>
+<pre class="pre" translate="no">cd %HOMEPATH%
+AppData\Local\Programs\Python\Python<span class="codeitalic">310</span>\python -m pip install pygame</pre>
+</div>
+<p class="indent">
+  Escribir código con <span class="literal1" translate="no">
+   PyGame
+  </span>es un poco más complicado que utilizar <span class="literal1" translate="no">
+   tkinter
+  </span>. Por ejemplo, en el <a class="calibre6" href="ch10.html#ch10">Capítulo 10 </a>, mostramos una imagen utilizando <span class="literal1" translate="no">
+   tkinter
+  </span>con este código: </p>
+<pre class="pre" translate="no"><span class="orange">from</span> tkinter <span class="orange">import</span> *
+tk = Tk()
+canvas = Canvas(tk, width=400, height=400)
+canvas.pack()
+myimage = PhotoImage(<span class="orange">file</span>=<span class="green">'c:\\Users\\jason\\test.gif'</span>)
+canvas.create_image(0, 0, anchor=NW, image=myimage)</pre>
+<p class="indent">
+  Para mostrar una imagen con <span class="literal1" translate="no">
+   PyGame
+  </span>, puedes utilizar lo siguiente: </p>
+<pre class="pre" translate="no"><span class="orange">import</span> pygame
+pygame.init()
+display = pygame.display.set_mode((500, 500))
+img = pygame.image.load(<span class="green">'c:\\Users\\jason\\test.gif'</span>)
+display.blit(img, (0, 0))
+pygame.display.flip()</pre>
+<p class="indent">
+  Tras importar el módulo <span class="literal1" translate="no">
+   pygame
+  </span>, llamamos a la función <span class="literal1" translate="no">
+   init
+  </span>; esto inicializa el módulo para que pueda ser utilizado. A continuación, configuramos <span id="page_276">
+</span>la visualización, pasando una tupla para la anchura y la altura (500 píxeles de ancho por 500 píxeles de alto). Observa que los paréntesis adicionales aquí son importantes: primero, paréntesis para la propia función ( <span class="literal1" translate="no">
+   set_mode(...)
+  </span>), y luego paréntesis para una tupla ( <span class="literal1" translate="no">
+   500,
+  </span><span class="literal1" translate="no">
+   500
+  </span> ). </p>
+<p class="indent">
+  A continuación, cargamos la imagen, cuya referencia (o etiqueta) es la variable <span class="literal1" translate="no">
+   img
+  </span>(recuerda que, dependiendo del sistema operativo que utilices, puede que tengas que cambiar la ruta de esa imagen). A continuación, dibujamos la imagen en la pantalla utilizando la función <span class="literal1" translate="no">
+   blit
+  </span>, pasándole la variable <span class="literal1" translate="no">
+   img
+  </span>y una tupla que contiene la posición superior izquierda de la imagen ( <span class="literal1" translate="no">
+   0, 0
+  </span>). La imagen aún no se mostrará en la ventana; la siguiente función de la última línea -donde <span class="literal1" translate="no">
+   flip
+  </span>la muestra- hace que la imagen aparezca realmente. Esta línea le está diciendo a <span class="literal1" translate="no">
+   Pygame
+  </span>que redibuje la ventana de visualización. </p>
+<div class="note">
+<p class="notet">
+<span class="notes">Nota </span></p>
+<p class="notep">
+<em class="calibre7">Si ejecutas esto fuera de IDLE, tendrás que añadir unas líneas adicionales al final: </em></p>
+<pre class="pre" translate="no"><span class="orange">while</span> <span class="violet">True</span>:
+    <span class="orange">for</span> event <span class="orange">in</span> pygame.event.get():
+        <span class="orange">if</span> event.<span class="orange">type</span> == pygame.QUIT:
+            <span class="orange">raise</span> SystemExit</pre>
+</div>
+<p class="noindent">
+  Este código es para evitar que la ventana se cierre inmediatamente después de mostrar la imagen. </p>
+<h3 class="h1" id="aftlev1sec6">
+  Otros juegos y programación gráfica </h3>
+<p class="noindent">
+  Si quieres hacer algo más con juegos o programación de gráficos, verás que hay muchas opciones disponibles, no sólo con Python. Aquí tienes sólo algunas: </p>
+<ul class="calibre22">
+<li class="noindent2">
+   Scratch ( <em class="calibre7"><a class="calibre6" href="http://scratch.mit.edu">http://scratch.mit.edu </a></em>), una herramienta para desarrollar juegos y animaciones. (Es un lenguaje de programación visual basado en bloques, por lo que es bastante diferente de programar con Python).  </li>
+<li class="noindent2">
+   Construct3 ( <em class="calibre7"><a class="calibre6" href="https://www.construct.net">https://www.construct.net </a></em>), una herramienta comercial para crear juegos en un navegador.  </li>
+<li class="noindent2">
+   Game Maker Studio ( <em class="calibre7"><a class="calibre6" href="https://www.yoyogames.com">https://www.yoyogames.com </a></em>), otra herramienta comercial para crear juegos.  </li>
+<li class="noindent2">
+<span id="page_277">
+</span>
+   Godot ( <em class="calibre7"><a class="calibre6" href="https://godotengine.org">https://godotengine.org </a></em>), un motor de juegos gratuito para crear gráficos en 2D y 3D.  </li>
+<li class="noindent2">
+   Unity ( <em class="calibre7"><a class="calibre6" href="http://unity.com">http://unity.com </a></em>), otra herramienta comercial para crear juegos.  </li>
+<li class="noindent2">
+   Unreal Engine ( <em class="calibre7"><a class="calibre6" href="https://www.unrealengine.com">https://www.unrealengine.com </a></em>), otra herramienta comercial para crear juegos.  </li>
+</ul>
+<p class="indent">
+  Una búsqueda en Internet te descubrirá una gran cantidad de recursos que te ayudarán a iniciarte en cualquiera de estas opciones, o al menos te mostrarán las posibilidades que tienes si sigues programando en el futuro. </p>
+<h3 class="h1" id="aftlev1sec7">
+  Otros lenguajes de programación </h3>
+<p class="noindent">
+  Si te interesan otros lenguajes de programación, considera echar un vistazo a algunos de los más populares: JavaScript, Java, C#, C, C++, Ruby, Go, Rust y Swift (aunque hay muchos más). Haremos un breve recorrido por estos lenguajes y veremos cómo sería un programa Hola Mundo (como la versión de Python con la que empezamos en el <a class="calibre6" href="ch01.html#ch01">Capítulo 1 </a>) en cada uno de ellos. Ten en cuenta que ninguno de estos lenguajes está pensado específicamente para programadores principiantes, y la mayoría son significativamente diferentes de Python. </p>
+<h4 class="h3" id="aftlev2sec1">
+  JavaScript </h4>
+<p class="noindent">
+  JavaScript ( <em class="calibre7"><a class="calibre6" href="https://dev.java/">https://dev.java/ </a></em>) es un lenguaje de programación utilizado normalmente para páginas web, programación de juegos y otras actividades. Puedes crear fácilmente una simple página <em class="calibre7">HTML </em>(el lenguaje utilizado para crear páginas web) que contenga un programa JavaScript y ejecutarlo dentro de un navegador sin necesidad de un intérprete de comandos, una línea de comandos ni nada parecido. </p>
+<p class="indent">
+  Un ejemplo de "Hola Mundo" en JavaScript será diferente dependiendo de si lo ejecutas en un navegador o en un shell. En un shell, puedes escribir lo siguiente: </p>
+<pre class="pre" translate="no"><span class="violet">print</span>('Hello World');</pre>
+<p class="indent">
+  En un navegador, podría tener este aspecto: </p>
+<pre class="pre" translate="no">&lt;html&gt;
+    &lt;body&gt;
+        &lt;script type="text/javascript"&gt;
+            alert("Hello World");
+        &lt;/script&gt;
+<span id="page_278"></span>    &lt;/body&gt;
+&lt;/html&gt;</pre>
+<h4 class="h3" id="aftlev2sec2">
+  Java </h4>
+<p class="noindent">
+  Java ( <em class="calibre7"><a class="calibre6" href="http://www.oracle.com/technetwork/java/index.html">http://www.oracle.com/technetwork/java/index.html </a></em>) es un lenguaje de programación moderadamente complicado con una gran biblioteca incorporada de módulos (llamados <em class="calibre7">paquetes </em>). Java es el lenguaje de programación utilizado en los dispositivos móviles Android, y puedes utilizarlo en la mayoría de los sistemas operativos. </p>
+<p class="indent">
+  Aquí tienes un ejemplo de impresión de "Hola Mundo" en Java: </p>
+<pre class="pre" translate="no">public class HelloWorld {
+    public static final void main(String[] args) {
+        System.out.println("Hello World");
+    }
+}</pre>
+<h4 class="h3" id="aftlev2sec3">
+  C# </h4>
+<p class="noindent">
+  C# ( <em class="calibre7"><a class="calibre6" href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide">https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide </a></em>), pronunciado "C sharp", es un lenguaje de programación moderadamente complicado para Windows que es muy similar a Java y JavaScript en cuanto a sintaxis. Forma parte de la plataforma .NET de Microsoft. </p>
+<p class="indent">
+  Aquí tienes un ejemplo de impresión de "Hola Mundo" en C#: </p>
+<pre class="pre" translate="no">public class Hello
+{
+   public static void Main()
+   {
+      System.Console.WriteLine("Hello World");
+   }
+}</pre>
+<h4 class="h3" id="aftlev2sec4">
+  C/C++ </h4>
+<p class="noindent">
+  C ( <em class="calibre7"><a class="calibre6" href="http://www.cprogramming.com">http://www.cprogramming.com </a></em>) y C++ ( <em class="calibre7"><a class="calibre6" href="http://www.stroustrup.com/C++.html">http://www.stroustrup.com/C++.html </a></em>) son complicados lenguajes de programación que se utilizan en todos los sistemas operativos. Encontrarás disponibles versiones gratuitas y comerciales. Ambos lenguajes (aunque quizás C++ más que C) tienen una curva de aprendizaje pronunciada (en otras palabras <span id="page_279">
+</span>, no son necesariamente buenos para principiantes). Por ejemplo, verás que tienes que codificar manualmente algunas funciones que ofrece Python (como decirle al ordenador que necesitas utilizar un trozo de memoria para almacenar un objeto). Muchos juegos comerciales y videoconsolas están programados en alguna forma de C o C++. </p>
+<p class="indent">
+  Un ejemplo de impresión de "Hola Mundo" en C es el siguiente: </p>
+<pre class="pre" translate="no">#include &lt;stdio.h&gt;
+<span class="violet">int</span> main ()
+{
+  printf ("Hello World\n");
+}</pre>
+<p class="indent">
+  Un ejemplo en C++ podría ser así: </p>
+<pre class="pre" translate="no">#include &lt;iostream&gt;
+<span class="violet">int</span> main()
+{
+  std::cout &lt;&lt; "Hello World\n";
+  return 0;
+}</pre>
+<h4 class="h3" id="aftlev2sec5">
+  Ruby </h4>
+<p class="noindent">
+  Ruby ( <em class="calibre7"><a class="calibre6" href="http://www.ruby-lang.org">http://www.ruby-lang.org </a></em>) es un lenguaje de programación libre disponible en los principales sistemas operativos. Se utiliza sobre todo para crear sitios web, concretamente utilizando el framework <em class="calibre7">Ruby on Rails . </em>(Un <em class="calibre7">framework </em>es un conjunto de bibliotecas que apoyan el desarrollo de tipos específicos de aplicaciones). </p>
+<p class="indent">
+  Aquí tienes un ejemplo de impresión de "Hola Mundo" en Ruby: </p>
+<pre class="pre" translate="no">puts "Hello World"</pre>
+<h4 class="h3" id="aftlev2sec6">
+  Go </h4>
+<p class="noindent">
+  Go ( <em class="calibre7"><a class="calibre6" href="https://golang.org">https://golang.org </a></em>) es un lenguaje de programación similar a C, pero ligeramente más sencillo. </p>
+<p class="indent">
+  Puedes imprimir "Hola Mundo" con Go de esta forma: </p>
+<pre class="pre" translate="no">package main
+import "fmt"
+func main() {
+<span id="page_280"></span>	fmt.Println("Hello World")
+}</pre>
+<h4 class="h3" id="aftlev2sec7">
+  Rust </h4>
+<p class="noindent">
+  Rust ( <em class="calibre7"><a class="calibre6" href="https://www.rust-lang.org">https://www.rust-lang.org </a></em>) es un lenguaje desarrollado originalmente por Mozilla Research (los mismos que hacen el navegador Firefox). </p>
+<p class="indent">
+  Un programa sencillo para imprimir "Hola Mundo" con Rust podría tener este aspecto: </p>
+<pre class="pre" translate="no">fn main() {
+    println!("Hello World")
+}</pre>
+<h4 class="h3" id="aftlev2sec8">
+  Swift </h4>
+<p class="noindent">
+  Swift ( <em class="calibre7"><a class="calibre6" href="https://swift.org">https://swift.org </a></em>) es un lenguaje desarrollado por Apple para sus dispositivos (iOS, macOS, etc.), por lo que es el más adecuado si utilizas un producto de Apple. </p>
+<p class="indent">
+  Podríamos imprimir "Hola Mundo" con Swift de esta forma: </p>
+<pre class="pre" translate="no">import Swift
+<span class="violet">print</span>("Hello World")</pre>
+<h3 class="h1" id="aftlev1sec8">
+  Palabras finales </h3>
+<p class="noindent">
+  Tanto si sigues con Python como si decides probar otro lenguaje de programación, los conceptos que has descubierto en este libro te seguirán resultando útiles. Aunque no continúes con la programación informática, comprender algunas de las ideas fundamentales puede ayudarte en todo tipo de actividades, ya sea en la escuela o, más adelante, en el trabajo. </p>
+<p class="indent">
+  ¡Buena suerte y diviértete programando! </p>
+<div class="image1">
+<span id="page_281">
+</span>
+<img alt="Image" class="calibre184" src="../images/f0281-01.jpg" translate="no"/>
+<span id="page_282">
+</span>
+</div>
+</div><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="ack.html">← Anterior</a><a href="app01.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="aft.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\..\EN\python_for_kids\xhtml\aft.html" target="_blank">&gt; Lectura en inglés</a></footer></body>
+</html>

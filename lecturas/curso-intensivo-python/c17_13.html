@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c17-0009">Añadir información sobre herramientas personalizada</h3>
+<p class="BodyFirst">En Plotly, puedes situar el cursor sobre una barra individual para mostrar la información que representa. Esto se denomina comúnmente <em translate="no">tooltip</em>, y en este caso, actualmente muestra el número de estrellas que tiene un proyecto. Vamos a crear una información sobre herramientas personalizada para mostrar la descripción de cada proyecto, así como su propietario.</p>
+<p>Necesitamos obtener algunos datos adicionales para generar la información sobre herramientas:</p>
+<p class="CodeLabel" translate="no"><b>python_repos_visual.py</b></p>
+<pre translate="no"><code translate="no"><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray"># Process repository information.</span>
+<span class="LiteralGray">repo_dicts = response_dict['items']</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> repo_names, stars, hover_texts = [], [], []
+<span class="LiteralGray">for repo_dict in repo_dicts:</span>
+<span class="LiteralGray">    repo_names.append(repo_dict['name'])</span>
+<span class="LiteralGray">    stars.append(repo_dict['stargazers_count'])</span>
+
+    # Build hover texts.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     owner = repo_dict['owner']['login']
+    description = repo_dict['description']
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     hover_text = f"{owner}&lt;br /&gt;{description}"
+    hover_texts.append(hover_text)
+
+<span class="LiteralGray"># Make visualization.</span>
+<span class="LiteralGray">title = "Most-Starred Python Projects on GitHub"</span>
+<span class="LiteralGray">labels = {'x': 'Repository', 'y': 'Stars'}</span>
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> fig = px.bar(x=repo_names, y=stars, title=title, labels=labels,
+        hover_name=hover_texts)
+
+<span epub:type="pagebreak" id="Page_366" title="366"></span><span class="LiteralGray">fig.update_layout(title_font_size=28, xaxis_title_font_size=20,</span>
+<span class="LiteralGray">        yaxis_title_font_size=20)</span>
+
+<span class="LiteralGray">fig.show()</span></code></pre>
+<p>Primero definimos una nueva lista vacía, <code translate="no">hover_texts</code>, para contener el texto que queremos mostrar para cada proyecto <span aria-label="annotation1" class="CodeAnnotation">❶.</span> En el bucle donde procesamos los datos, extraemos el propietario y la descripción de cada proyecto <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Plotly te permite utilizar código HTML dentro de los elementos de texto, así que generamos una cadena para la etiqueta con un salto de línea (<code translate="no"></code>) entre el nombre de usuario del propietario del proyecto y la descripción <span aria-label="annotation3" class="CodeAnnotation">❸.</span> A continuación, añadimos esta etiqueta a la lista <code translate="no">hover_texts</code>.</p>
+<p>En la llamada a <code translate="no">px.bar()</code>, añadimos el argumento <code translate="no">hover_name</code> y le pasamos <code translate="no">hover_texts</code> <span aria-label="annotation4" class="CodeAnnotation">❹.</span> Este es el mismo enfoque que utilizamos para personalizar la etiqueta de cada punto en el mapa de la actividad sísmica mundial. A medida que Plotly crea cada barra, extraerá etiquetas de esta lista y sólo las mostrará cuando el espectador pase el ratón por encima de una barra. <a href="#figure17-3" id="figureanchor17-3">La Figura 17-3</a> muestra uno de estos tooltips personalizados.</p>
+<figure><img alt="" class="keyline" height="399" src="Images/f17003.png" translate="no" width="571"/>
+<figcaption><p><a id="figure17-3">Figura 17-3</a>: Al</p></figcaption></figure>pasar el ratón por encima de<figure><figcaption><p>una barra se muestra el propietario y la descripción del proyecto.</p></figcaption></figure>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c17_12.html">anterior</a><a href="c17.html">Subtema 13 de 20: (Ver todo)</a><a href="c17_14.html">siguiente</a><br/></p>
+<br/><a href="c17_13.docx" target="_blank"></a></footer>
+</body>
+</html>

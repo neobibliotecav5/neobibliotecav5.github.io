@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch10lev1sec9">
+  Dibujar polígonos </h3>
+<p class="noindent">
+  Un <em class="calibre7">polígono </em>es cualquier forma con tres o más lados. Hay polígonos de formas regulares, como triángulos, cuadrados, rectángulos, pentágonos, hexágonos, etc., así como polígonos <em class="calibre7">irregulares </em>con bordes desiguales, muchos más lados y formas extrañas. </p>
+<p class="indent">
+<span id="page_154">
+</span>
+  Al dibujar polígonos con <span class="literal1" translate="no">
+   tkinter
+  </span>, tienes que proporcionar las coordenadas de cada punto del polígono. Podemos dibujar un triángulo con el siguiente código: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">from</span> tkinter <span class="orange">import</span> *
+<span class="brown">&gt;&gt;&gt;</span> tk = Tk()
+<span class="brown">&gt;&gt;&gt;</span> canvas = Canvas(tk, width=400, height=400)
+<span class="brown">&gt;&gt;&gt;</span> canvas.pack()
+<span class="brown">&gt;&gt;&gt;</span> canvas.create_polygon(10, 10, 100, 10, 100, 110, fill=<span class="green">''</span>, 
+    outline=<span class="green">'black'</span>)
+</pre>
+<p class="indent">
+  Este ejemplo dibuja un triángulo comenzando con las <em class="calibre7">coordenadas </em> <em class="calibre7">x e </em> <em class="calibre7">y </em>(10, 10), luego moviéndose a través de ( <span class="literal1" translate="no">
+   100, 10
+  </span>), y terminando en ( <span class="literal1" translate="no">
+   100, 110
+  </span>). Establecemos el color de relleno en nada (una cadena vacía), para que no se coloree el triángulo, y el contorno se establece en <span class="literal1" translate="no">
+   ’black’
+  </span>, para que se dibuje con una línea negra. Debería tener el aspecto de <a class="calibre6" href="ch10.xhtml#ch10fig13">la Figura 10-13 . </a></p>
+<div class="image" id="ch10fig13">
+<img alt="Image" class="calibre112" src="../images/10fig13.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figura 10-13: Dibujar un triángulo </em></p>
+<p class="indent">
+  Podemos añadir un polígono irregular utilizando este código: </p>
+<pre class="pre" translate="no">canvas.create_polygon(200, 10, 240, 30, 120, 100, 140, 120, fill=<span class="green">''</span>,
+outline=<span class="green">'black'</span>)
+</pre>
+<p class="indent">
+  Este código comienza con las coordenadas ( <span class="literal1" translate="no">
+   200, 10
+  </span>), se desplaza a ( <span class="literal1" translate="no">
+   240, 30
+  </span>), luego a ( <span class="literal1" translate="no">
+   120, 100
+  </span>), y finalmente a ( <span class="literal1" translate="no">
+   140, 120
+  </span>). El módulo <span class="literal1" translate="no">
+   tkinter
+  </span>une automáticamente la línea de vuelta a la primera coordenada. El resultado se muestra en la <a class="calibre6" href="ch10.xhtml#ch10fig14">Figura 10-14 . </a></p>
+<div class="image" id="ch10fig14">
+<span id="page_155">
+</span>
+<img alt="Image" class="calibre14" src="../images/10fig14.jpg" translate="no"/>
+</div>
+<p class="figcap">
+
+   Figura 10-14<em class="calibre7">: Polígono irregular </em></p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch10_9.html">anterior</a><a href="ch10.html">Subtema 10 de 17: (Ver todo)</a><a href="ch10_11.html">siguiente</a><br/></p>
+<br/><a href="ch10_10.docx" target="_blank"></a></footer>
+</body>
+</html>

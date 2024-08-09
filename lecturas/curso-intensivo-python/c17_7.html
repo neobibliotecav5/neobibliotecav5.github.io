@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c17-0005">Trabajar con el diccionario de respuesta</h3>
+<p class="BodyFirst">Con la información de la llamada a la API representada como un diccionario, podemos trabajar con los datos allí almacenados. Vamos a generar alguna salida que resuma la información. Es una buena forma de asegurarnos de que hemos recibido la información que esperábamos y de empezar a examinar la información que nos interesa:</p>
+<p class="CodeLabel" translate="no"><b>python_repos.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">import requests</span>
+
+<span class="LiteralGray"># Make an API call and store the response.</span>
+<em class="LiteralGrayItalic" translate="no">--snip--</em>
+
+<span class="LiteralGray"># Convert the response object to a dictionary.</span>
+<span class="LiteralGray">response_dict = r.json()</span>
+<span epub:type="pagebreak" id="Page_359" title="359"></span><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> print(f"Total repositories: {response_dict['total_count']}")
+print(f"Complete results: {not response_dict['incomplete_results']}")
+
+# Explore information about the repositories.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> repo_dicts = response_dict['items']
+print(f"Repositories returned: {len(repo_dicts)}")
+
+# Examine the first repository.
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> repo_dict = repo_dicts[0]
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> print(f"\nKeys: {len(repo_dict)}")
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span> for key in sorted(repo_dict.keys()):
+    print(key)</code></pre>
+<p>Empezamos a explorar el diccionario de respuestas imprimiendo el valor asociado a <code translate="no">'total_count'</code>, que representa el número total de repositorios Python devueltos por esta llamada a la API <span aria-label="annotation1" class="CodeAnnotation">❶.</span> También utilizamos el valor asociado a <code translate="no">'incomplete_results'</code>, para saber si GitHub pudo procesar completamente la consulta. En lugar de imprimir este valor directamente, imprimimos su opuesto: un valor de <code translate="no">True</code> indicará que hemos recibido un conjunto completo de resultados.</p>
+<p>El valor asociado a <code translate="no">'items'</code> es una lista que contiene una serie de diccionarios, cada uno de los cuales contiene datos sobre un repositorio Python individual. Asignamos esta lista de diccionarios a <code translate="no">repo_dicts</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> A continuación, imprimimos la longitud de <code translate="no">repo_dicts</code> para ver de cuántos repositorios tenemos información.</p>
+<p>Para ver más de cerca la información devuelta sobre cada repositorio, sacamos el primer elemento de <code translate="no">repo_dicts</code> y lo asignamos a <code translate="no">repo_dict</code> <span aria-label="annotation3" class="CodeAnnotation">❸.</span> A continuación, imprimimos el número de claves del diccionario para ver cuánta información tenemos <span aria-label="annotation4" class="CodeAnnotation">❹.</span> Por último, imprimimos todas las claves del diccionario para ver qué tipo de información se incluye <span aria-label="annotation5" class="CodeAnnotation">❺.</span></p>
+<p>Los resultados nos dan una idea más clara de los datos reales:</p>
+<pre translate="no"><code translate="no">Status code: 200
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> Total repositories: 248
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> Complete results: True
+Repositories returned: 30
+
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> Keys: 78
+allow_forking
+archive_url
+archived
+<var>--snip--</var>
+url
+visiblity
+watchers
+watchers_count</code></pre>
+<p>En el momento de escribir esto, sólo hay <code translate="no">248</code> repositorios de Python con más de 10.000 estrellas <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Podemos ver que GitHub fue capaz de procesar completamente la llamada a la API <span aria-label="annotation2" class="CodeAnnotation">❷.</span> En esta respuesta, GitHub devolvió información sobre los primeros <code translate="no">30</code> repositorios que coinciden con las condiciones de nuestra consulta. Si queremos más repositorios, podemos solicitar páginas adicionales de datos.</p>
+<p><span epub:type="pagebreak" id="Page_360" title="360"></span>La API de GitHub devuelve mucha información sobre cada repositorio: hay <code translate="no">78</code> claves en <code translate="no">repo_dict</code> <span aria-label="annotation3" class="CodeAnnotation">❸.</span> Cuando eches un vistazo a estas claves, te harás una idea del tipo de información que puedes extraer sobre un proyecto. (La única forma de saber qué información está disponible a través de una API es leer la documentación o examinar la información a través del código, como estamos haciendo aquí).</p>
+<p>Vamos a extraer los valores de algunas de las claves de <code translate="no">repo_dict</code>:</p>
+<p class="CodeLabel" translate="no"><b>python_repos.py</b></p>
+<pre translate="no"><code translate="no"><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray"># Examine the first repository.</span>
+<span class="LiteralGray">repo_dict = repo_dicts[0]</span>
+
+print("\nSelected information about first repository:")
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> print(f"Name: {repo_dict['name']}")
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> print(f"Owner: {repo_dict['owner']['login']}")
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> print(f"Stars: {repo_dict['stargazers_count']}")
+print(f"Repository: {repo_dict['html_url']}")
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> print(f"Created: {repo_dict['created_at']}")
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span> print(f"Updated: {repo_dict['updated_at']}")
+print(f"Description: {repo_dict['description']}")</code></pre>
+<p>Aquí imprimimos los valores de varias claves del diccionario del primer repositorio. Empezamos con el nombre del proyecto <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Un diccionario entero representa al propietario del proyecto, así que utilizamos la clave <code translate="no">owner</code> para acceder al diccionario que representa al propietario, y luego utilizamos la clave <code translate="no">login</code> para obtener el nombre de usuario del propietario <span aria-label="annotation2" class="CodeAnnotation">❷.</span> A continuación, imprimimos cuántas estrellas ha obtenido el proyecto <span aria-label="annotation3" class="CodeAnnotation">❸</span> y la URL del repositorio GitHub del proyecto. A continuación, mostramos cuándo se creó <span aria-label="annotation4" class="CodeAnnotation">❹</span> y cuándo se actualizó por última vez <span aria-label="annotation5" class="CodeAnnotation">❺.</span> Por último, imprimimos la descripción del repositorio.</p>
+<p>El resultado debería ser algo parecido a esto</p>
+<pre translate="no"><code translate="no">Status code: 200
+Total repositories: 248
+Complete results: True
+Repositories returned: 30
+
+Selected information about first repository:
+Name: public-apis
+Owner: public-apis
+Stars: 191493
+Repository: https://github.com/public-apis/public-apis
+Created: 2016-03-20T23:49:42Z
+Updated: 2022-05-12T06:37:11Z
+Description: A collective list of free APIs</code></pre>
+<p>Podemos ver que el proyecto Python con más estrellas en GitHub en el momento de escribir esto es <em translate="no">public-apis</em>. Su propietario es una organización con el mismo nombre, y ha recibido estrellas de casi 200.000 usuarios de GitHub. Podemos ver la URL del repositorio del proyecto, su fecha de creación en marzo de 2016, y que se ha actualizado recientemente. Además, la descripción nos dice que <em translate="no">public-apis</em> contiene una lista de API gratuitas que podrían interesar a los programadores.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c17_6.html">anterior</a><a href="c17.html">Subtema 7 de 20: (Ver todo)</a><a href="c17_8.html">siguiente</a><br/></p>
+<br/><a href="c17_7.docx" target="_blank"></a></footer>
+</body>
+</html>

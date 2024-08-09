@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c06-0001">Acceder a los valores de un diccionario</h3>
+<p class="BodyFirst">Para obtener el valor asociado a una clave, indica el nombre del diccionario y, a continuación, coloca la clave dentro de un conjunto de corchetes, como se muestra aquí:</p>
+<p class="CodeLabel" translate="no"><b>alien.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">alien_0 = {'color': 'green'}</span>
+print(alien_0['color'])</code></pre>
+<p><span epub:type="pagebreak" id="Page_93" title="93"></span>Esto devuelve el valor asociado a la clave <code translate="no">'color'</code> del diccionario <code translate="no">alien_0</code>:</p>
+<pre translate="no"><code translate="no">green</code></pre>
+<p>Puedes tener un número ilimitado de pares clave-valor en un diccionario. Por ejemplo, aquí tienes el diccionario original <code translate="no">alien_0</code> con dos pares clave-valor:</p>
+<pre translate="no"><code translate="no">alien_0 = {'color': 'green', 'points': 5}</code></pre>
+<p>Ahora puedes acceder al color o al valor en puntos de <code translate="no">alien_0</code>. Si un jugador derriba a este alienígena, puedes consultar cuántos puntos debe ganar utilizando un código como éste:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">alien_0 = {'color': 'green', 'points': 5}</span>
+
+new_points = alien_0['points']
+print(f"You just earned {new_points} points!")</code></pre>
+<p>Una vez definido el diccionario, extraemos del diccionario el valor asociado a la clave <code translate="no">'points'</code>. Este valor se asigna a la variable <code translate="no">new_points</code>. La última línea imprime una declaración sobre cuántos puntos acaba de ganar el jugador:</p>
+<pre translate="no"><code translate="no">You just earned 5 points!</code></pre>
+<p>Si ejecutas este código cada vez que se derriba a un alienígena, se recuperará el valor en puntos del alienígena.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c06_3.html">anterior</a><a href="c06.html">Subtema 4 de 28: (Ver todo)</a><a href="c06_5.html">siguiente</a><br/></p>
+<br/><a href="c06_4.docx" target="_blank"></a></footer>
+</body>
+</html>

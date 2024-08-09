@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Semicolon Insertion</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="Semicolon Insertion"><div class="titlepage"><div><div><h1 class="title"><a id="semicolon_insertion"></a>Inserción de punto y coma</h1></div></div></div><p>JavaScript tiene un mecanismo que intenta corregir los programas defectuosos insertando automáticamente puntos y comas. No dependas de esto. Puede ocultar errores más graves.<a class="indexterm" id="IDX-APP-A-0506"></a><a class="indexterm" id="IDX-APP-A-0507"></a></p><p>A veces inserta puntos y comas en lugares donde no son bienvenidos. Considera las consecuencias de la inserción del punto y coma en la sentencia <code class="literal" translate="no">return</code>. Si una sentencia <code class="literal" translate="no">return</code> devuelve un valor, esa expresión de valor debe comenzar en la misma línea que la sentencia <code class="literal" translate="no">return</code>:</p><a id="I_programlisting_d1e8239"></a><pre class="programlisting" translate="no">return
+{
+    status: true
+};</pre><p>Esto parece devolver un objeto que contiene un miembro <code class="literal" translate="no">status</code>. Por desgracia, la inserción del punto y coma la convierte en una sentencia que devuelve <code class="literal" translate="no">undefined</code>. No hay ninguna advertencia de que la inserción del punto y coma haya causado la interpretación errónea del programa. El problema puede evitarse si el <code class="literal" translate="no">{</code> se coloca al final de la línea anterior y no al principio de la línea siguiente:</p><a id="I_programlisting_d1e8252"></a><pre class="programlisting" translate="no">return {
+    status: true
+};</pre></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="apas02.html">← Anterior</a><a href="apas04.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="apas03.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\apas03.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

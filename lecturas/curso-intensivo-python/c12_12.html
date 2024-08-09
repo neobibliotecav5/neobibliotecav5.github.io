@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c12-0005">Crear la clase Nave</h3>
+<p class="BodyFirst">Después de elegir una imagen para la nave, necesitamos mostrarla en la pantalla. Para utilizar nuestra nave, crearemos un nuevo módulo <code translate="no">ship</code> que contendrá la clase <code translate="no">Ship</code>. Esta clase gestionará la mayor parte del comportamiento de la nave del jugador:</p>
+<p class="CodeLabel" translate="no"><b>ship.py</b></p>
+<pre translate="no"><code translate="no">import pygame
+
+class Ship:
+    """A class to manage the ship."""
+
+    def __init__(self, ai_game):
+        """Initialize the ship and set its starting position."""
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         self.screen = ai_game.screen
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         self.screen_rect = ai_game.screen.get_rect()
+
+        # Load the ship image and get its rect.
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>         self.image = pygame.image.load('images/ship.bmp')
+        self.rect = self.image.get_rect()
+
+        # Start each new ship at the bottom center of the screen.
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>         self.rect.midbottom = self.screen_rect.midbottom
+
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>     def blitme(self):
+        """Draw the ship at its current location."""
+        self.screen.blit(self.image, self.rect)</code></pre>
+<p>Pygame es eficiente porque te permite tratar todos los elementos del juego como rectángulos (<em translate="no">rects</em>), aunque no tengan exactamente la forma de rectángulos. Tratar un elemento como un rectángulo es eficiente porque los rectángulos son formas geométricas simples. Cuando Pygame necesita averiguar si dos elementos del juego han colisionado, por ejemplo, puede hacerlo más rápidamente si trata cada objeto como un rectángulo. Este enfoque suele funcionar lo suficientemente bien como para que nadie que juegue a <span epub:type="pagebreak" id="Page_235" title="235"></span>se dé cuenta de que no estamos trabajando con la forma exacta de cada elemento del juego. En esta clase trataremos la nave y la pantalla como rectángulos.</p>
+<p>Importamos el módulo <code translate="no">pygame</code> antes de definir la clase. El método <code translate="no">__init__()</code> de <code translate="no">Ship</code> toma dos parámetros: la referencia <code translate="no">self</code> y una referencia a la instancia actual de la clase <code translate="no">AlienInvasion</code>. Esto dará a <code translate="no">Ship</code> acceso a todos los recursos del juego definidos en <code translate="no">AlienInvasion</code>. A continuación, asignamos la pantalla a un atributo de <code translate="no">Ship</code> <span aria-label="annotation1" class="CodeAnnotation">❶,</span> para que podamos acceder a ella fácilmente en todos los métodos de esta clase. Accedemos al atributo <code translate="no">rect</code> de la pantalla mediante el método <code translate="no">get_rect()</code> y lo asignamos a <code translate="no">self.screen_rect</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Esto nos permite colocar la nave en el lugar correcto de la pantalla.</p>
+<p>Para cargar la imagen, llamamos a <code translate="no">pygame.image.load()</code> <span aria-label="annotation3" class="CodeAnnotation">❸</span> y le damos la ubicación de la imagen de nuestro barco. Esta función devuelve una superficie que representa el barco, que asignamos a <code translate="no">self.image</code>. Cuando la imagen está cargada, llamamos a <code translate="no">get_rect()</code> para acceder al atributo <code translate="no">rect</code> de la superficie del barco, de modo que podamos utilizarla posteriormente para colocar el barco.</p>
+<p>Cuando trabajes con un objeto <code translate="no">rect</code>, puedes utilizar las coordenadas <em translate="no">x</em>- y <em translate="no">y</em>- de los bordes superior, inferior, izquierdo y derecho del rectángulo, así como el centro, para colocar el objeto. Puedes fijar cualquiera de estos valores para establecer la posición actual del <code translate="no">rect</code>. Cuando estés centrando un elemento del juego, trabaja con los atributos <code translate="no">center</code>, <code translate="no">centerx</code> o <code translate="no">centery</code> de un <code translate="no">rect</code>. Cuando estés trabajando en un borde de la pantalla, trabaja con los atributos <code translate="no">top</code>, <code translate="no">bottom</code>, <code translate="no">left</code> o <code translate="no">right</code>. También hay atributos que combinan estas propiedades, como <code translate="no">midbottom</code>, <code translate="no">midtop</code>, <code translate="no">midleft</code>, y <code translate="no">midright</code>. Cuando estés ajustando la colocación horizontal o vertical de <code translate="no">rect</code>, puedes utilizar simplemente los atributos <code translate="no">x</code> y <code translate="no">y</code>, que son las coordenadas <em translate="no">x</em>- y <em translate="no">y</em>- de su esquina superior izquierda. Estos atributos te evitan tener que hacer cálculos que antes tenían que hacer manualmente los desarrolladores de juegos, y los utilizarás a menudo.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c12_11.html">anterior</a><a href="c12.html">Subtema 12 de 43: (Ver todo)</a><a href="c12_13.html">siguiente</a><br/></p>
+<br/><a href="c12_12.docx" target="_blank"></a></footer>
+</body>
+</html>

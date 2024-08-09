@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c18-0008">Definir modelos</h3>
+<p class="BodyFirst">Pensemos un momento en nuestros datos. Cada usuario tendrá que crear una serie de temas en su registro de aprendizaje. Cada entrada que hagan estará vinculada a un tema, y estas entradas se mostrarán como texto. También necesitaremos almacenar la marca de tiempo de cada entrada para poder mostrar a los usuarios cuándo hicieron cada una.</p>
+<p>Abre el archivo <em translate="no">models.py</em> y mira el contenido existente:</p>
+<p class="CodeLabel" translate="no"><b>models.py</b></p>
+<pre translate="no"><code translate="no">from django.db import models
+
+# Create your models here.</code></pre>
+<p>Se está importando un módulo llamado <code translate="no">models</code>, y se nos invita a crear modelos propios. Un <em translate="no">model</em> indica a Django cómo trabajar con los datos que se almacenarán en la aplicación. Un modelo es una clase; tiene atributos y métodos, como todas las clases de las que hemos hablado. Este es el modelo para los temas que almacenarán los usuarios:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">from django.db import models</span>
+
+class Topic(models.Model):
+    """A topic the user is learning about."""
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     text = models.CharField(max_length=200)
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     date_added = models.DateTimeField(auto_now_add=True)
+
+<span epub:type="pagebreak" id="Page_380" title="380"></span><span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     def __str__(self):
+        """Return a string representation of the model."""
+        return self.text</code></pre>
+<p>Hemos creado una clase llamada <code translate="no">Topic</code>, que hereda de <code translate="no">Model</code>-una clase padre incluida en Django que define la funcionalidad básica de un modelo. Añadimos dos atributos a la clase <code translate="no">Topic</code>: <code translate="no">text</code> y <code translate="no">date_added</code>.</p>
+<p>El atributo <code translate="no">text</code> es un <code translate="no">CharField</code>, un dato formado por caracteres o texto <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Utilizas <code translate="no">CharField</code> cuando quieres almacenar una pequeña cantidad de texto, como un nombre, un título o una ciudad. Cuando definimos un atributo <code translate="no">CharField</code>, tenemos que decirle a Django cuánto espacio debe reservar en la base de datos. Aquí le damos un <code translate="no">max_length</code> de <code translate="no">200</code> caracteres, que debería ser suficiente para contener la mayoría de los nombres de temas.</p>
+<p>El atributo <code translate="no">date_added</code> es un <code translate="no">DateTimeField</code>, un dato que registrará una fecha y una hora <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Pasamos el argumento <code translate="no">auto_now_add=True</code>, que indica a Django que establezca automáticamente este atributo con la fecha y hora actuales cada vez que el usuario cree un nuevo tema.</p>
+<p>Es una buena idea decirle a Django cómo quieres que represente una instancia de un modelo. Si un modelo tiene un método <code translate="no">__str__()</code>, Django llama a ese método cada vez que necesita generar una salida que haga referencia a una instancia de ese modelo. Aquí hemos escrito un método <code translate="no">__str__()</code> que devuelve el valor asignado al atributo <code translate="no">text</code> <span aria-label="annotation3" class="CodeAnnotation">❸.</span></p>
+<p>Para ver los distintos tipos de campos que puedes utilizar en un modelo, consulta la página "Referencia de campos de modelo" en <a class="LinkURL" href="https://docs.djangoproject.com/en/4.1/ref/models/fields">https://docs.djangoproject.com/en/4.1/ref/models/fields.</a> No necesitarás toda la información ahora mismo, pero te será muy útil cuando desarrolles tus propios proyectos Django.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c18_16.html">anterior</a><a href="c18.html">Subtema 17 de 41: (Ver todo)</a><a href="c18_18.html">siguiente</a><br/></p>
+<br/><a href="c18_17.docx" target="_blank"></a></footer>
+</body>
+</html>

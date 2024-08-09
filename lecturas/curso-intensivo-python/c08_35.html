@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c08-0018">Utilizar as para dar un alias a una función</h3>
+<p class="BodyFirst">Si el nombre de una función que estás importando puede entrar en conflicto con un nombre existente en tu programa, o si el nombre de la función es largo, puedes utilizar un <em translate="no">alias</em>corto y único -un nombre alternativo similar a un apodo para la función. Le darás a la función este apodo especial cuando importes la función.</p>
+<p>Aquí damos a la función <code translate="no">make_pizza()</code> un alias, <code translate="no">mp()</code>, importando <code translate="no">make_pizza as mp</code>. La palabra clave <code translate="no">as</code> cambia el nombre de una función utilizando el alias que le proporciones:</p>
+<pre translate="no"><code translate="no">from pizza import make_pizza as mp
+
+mp(16, 'pepperoni')
+mp(12, 'mushrooms', 'green peppers', 'extra cheese')</code></pre>
+<p>La sentencia <code translate="no">import</code> mostrada aquí cambia el nombre de la función <code translate="no">make_pizza()</code> a <code translate="no">mp()</code> en este programa. Cada vez que queramos llamar a <code translate="no">make_pizza()</code> podemos simplemente escribir <code translate="no">mp()</code> en su lugar, y Python ejecutará el código en <code translate="no">make_pizza()</code> evitando cualquier confusión con otra función <code translate="no">make_pizza()</code> que puedas haber escrito en este archivo de programa.</p>
+<p><span epub:type="pagebreak" id="Page_152" title="152"></span>La sintaxis general para proporcionar un alias es:</p>
+<pre translate="no"><code translate="no">from <var>module_name</var> import <var>function_name</var> as <var>fn</var></code></pre>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c08_34.html">anterior</a><a href="c08.html">Subtema 35 de 40: (Ver todo)</a><a href="c08_36.html">siguiente</a><br/></p>
+<br/><a href="c08_35.docx" target="_blank"></a></footer>
+</body>
+</html>

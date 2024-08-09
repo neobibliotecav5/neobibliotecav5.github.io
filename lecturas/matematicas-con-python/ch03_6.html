@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<meta charset="utf-8"/>
+<title>Capítulo 3: Describir datos con estadísticas</title>
+<link href="style.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="core.css" media="all" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch03lev1sec05"><strong>Cálculo de la correlación entre dos conjuntos de datos</strong></h3>
+<p class="noindent">En este apartado aprenderemos a calcular una medida estadística que nos indica la naturaleza y la fuerza de la relación entre dos conjuntos de números: el coeficiente de <em>correlación de Pearson</em>, que llamaré simplemente <em>coeficiente de correlación</em>. Observa que este coeficiente mide la fuerza de la relación <em>lineal</em>. Tendríamos que utilizar otras medidas (que no trataremos aquí) para averiguar el coeficiente cuando dos conjuntos tienen una relación no lineal. El coeficiente puede ser positivo o negativo, y su magnitud puede oscilar entre -1 y 1 (ambos inclusive).</p>
+<p class="indent">Un coeficiente de correlación de 0 indica que no hay correlación lineal entre las dos cantidades. (Ten en cuenta que esto no significa que las dos cantidades sean independientes entre sí. Podría seguir existiendo una relación no lineal entre ellas, por ejemplo). Un coeficiente de 1 o cercano a 1 indica que existe una fuerte correlación lineal positiva; un coeficiente de exactamente 1 se denomina <a id="page_76"></a>correlación positiva perfecta. Del mismo modo, un coeficiente de correlación de -1 o cercano a -1 indica una fuerte correlación negativa, donde 1 indica una correlación negativa perfecta.</p>
+<div class="sidebar">
+<p class="sidebart"><strong>CORRELACIÓN Y CAUSALIDAD</strong></p>
+<p class="noindent">En estadística, a menudo te encontrarás con la afirmación "correlación no implica causalidad". Esto es un recordatorio de que aunque dos conjuntos de observaciones estén fuertemente correlacionados entre sí, eso no significa que una variable <em>cause</em> la otra. Cuando dos variables están fuertemente correlacionadas, a veces hay un tercer factor que influye en ambas variables y explica la correlación. Un ejemplo clásico es la correlación entre las ventas de helados y los índices de delincuencia: si haces un seguimiento de estas dos variables en una ciudad típica, es probable que encuentres una correlación, pero esto no significa que las ventas de helados causen la delincuencia (o viceversa). La venta de helados y la delincuencia están correlacionadas porque ambas aumentan cuando hace más calor en verano. Por supuesto, esto tampoco significa que el calor provoque directamente el aumento de la delincuencia; también hay causas más complicadas detrás de esa correlación.</p>
+</div>
+<h4 class="h4" id="ch03lev2sec06"><strong><em>Cálculo del coeficiente de correlación</em></strong></h4>
+<p class="noindent">El coeficiente de correlación se calcula mediante la fórmula</p>
+<div class="image2"><img alt="image" src="images/e0076-01.jpg" translate="no"/></div>
+<p class="indent">En la fórmula anterior, <em>n</em> es el número total de valores presentes en cada conjunto de números (los conjuntos tienen que tener la misma longitud). Los dos conjuntos de números se denotan por <em>x</em> e <em>y</em> (no importa cuál denotes como cuál). Los demás términos se describen como sigue</p>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<td class="table" valign="top"><p class="table"><em>Σxy</em></p></td>
+<td class="table" valign="top"><p class="table">Suma de los productos de los elementos individuales de los dos conjuntos de números, <em>x</em> e <em>y</em></p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="table"><em>Σx</em></p></td>
+<td class="table" valign="top"><p class="table">Suma de los números del conjunto <em>x</em></p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="table"><em>Σy</em></p></td>
+<td class="table" valign="top"><p class="table">Suma de los números del conjunto <em>y</em></p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="table">(<em>Σx</em><sup>)2</sup></p></td>
+<td class="table" valign="top"><p class="table">Cuadrado de la suma de los números del conjunto <em>x</em></p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="table">(<em>Σy</em><sup>)</sup>2</p></td>
+<td class="table" valign="top"><p class="table">Cuadrado de la suma de los números del conjunto <em>y</em></p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="table"><sup>Σx2</sup></p></td>
+<td class="table" valign="top"><p class="table">Suma de los cuadrados de los números del conjunto <em>x</em></p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="table"><sup>Σy2</sup></p></td>
+<td class="table" valign="top"><p class="table">Suma de los cuadrados de los números del conjunto <em>y</em></p></td>
+</tr>
+</tbody>
+</table>
+<p class="indent"><a id="page_77"></a>Una vez calculados estos términos, puedes combinarlos según la fórmula anterior para hallar el coeficiente de correlación. Para listas pequeñas, es posible hacerlo a mano sin demasiado esfuerzo, pero ciertamente se complica a medida que aumenta el tamaño de cada conjunto de números.</p>
+<p class="indent">Dentro de un momento, escribiremos un programa que calcule por nosotros el coeficiente de correlación. En este programa, utilizaremos la función <span class="literal" translate="no">zip()</span>, que nos ayudará a calcular la suma de los productos de los dos conjuntos de números. Aquí tienes un ejemplo de cómo funciona la función <span class="literal" translate="no">zip()</span>:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">simple_list1 = [1, 2, 3]</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">simple_list2 = [4, 5, 6]</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">for x, y in zip(simple_list1, simple_list2):</span><br translate="no"/> <span class="codestrong">print(x, y)</span><br translate="no"/><br translate="no"/>1 4<br translate="no"/>2 5<br translate="no"/>3 6</p>
+<p class="indent">La función <span class="literal" translate="no">zip()</span> devuelve pares de los elementos correspondientes en <span class="literal" translate="no">x</span> y <span class="literal" translate="no">y</span>, que luego puedes utilizar en un bucle para realizar otras operaciones (como imprimir, como se muestra en el código anterior). Si las dos listas son desiguales en longitud, la función termina cuando se han leído todos los elementos de la lista más pequeña.</p>
+<p class="indent">Ahora estamos listos para escribir un programa que calcule por nosotros el coeficiente de correlación:</p>
+<p class="programs" translate="no">   def find_corr_x_y(x,y):<br translate="no"/>       n = len(x)<br translate="no"/><br translate="no"/>       # Find the sum of the products<br translate="no"/>       prod = []<br translate="no"/><span class="ent">➊</span>     for xi,yi in zip(x,y):<br translate="no"/>           prod.append(xi*yi)<br translate="no"/><br translate="no"/><span class="ent">➋</span>     sum_prod_x_y = sum(prod)<br translate="no"/><span class="ent">➌</span>     sum_x = sum(x)<br translate="no"/><span class="ent">➍</span>     sum_y = sum(y)<br translate="no"/>       squared_sum_x = sum_x**2<br translate="no"/>       squared_sum_y = sum_y**2<br translate="no"/><br translate="no"/>       x_square = []<br translate="no"/><span class="ent">➎</span>     for xi in x:<br translate="no"/>           x_square.append(xi**2)<br translate="no"/>       # Find the sum<br translate="no"/>       x_square_sum = sum(x_square)<br translate="no"/><br translate="no"/>       y_square=[]<br translate="no"/>        for yi in y:<br translate="no"/>           y_square.append(yi**2)<br translate="no"/>       # Find the sum<br translate="no"/>       y_square_sum = sum(y_square)<br translate="no"/><a id="page_78"></a><br translate="no"/>       # Use formula to calculate correlation<br translate="no"/><span class="ent">➏</span>     numerator = n*sum_prod_x_y - sum_x*sum_y<br translate="no"/>       denominator_term1 = n*x_square_sum - squared_sum_x<br translate="no"/>       denominator_term2 = n*y_square_sum - squared_sum_y<br translate="no"/><span class="ent">➐</span>     denominator = (denominator_term1*denominator_term2)**0.5<br translate="no"/><span class="ent">➑</span>     correlation = numerator/denominator<br translate="no"/><br translate="no"/>       return correlation</p>
+<p class="indent">La función <span class="literal" translate="no">find_corr_x_y()</span> acepta dos argumentos, <span class="literal" translate="no">x</span> y <span class="literal" translate="no">y</span>, que son los dos conjuntos de números para los que queremos calcular la correlación. Al principio de esta función, hallamos la longitud de las listas y creamos una etiqueta, <span class="literal" translate="no">n</span>, para referirnos a ella. A continuación, en <span class="ent">➊,</span> tenemos un bucle <span class="literal" translate="no">for</span> que utiliza la función <span class="literal" translate="no">zip()</span> para calcular el producto de los valores correspondientes de cada lista (multiplicando juntos el primer elemento de cada lista, luego el segundo elemento de cada lista, y así sucesivamente). Utilizamos el método <span class="literal" translate="no">append()</span> para añadir estos productos a la lista etiquetada <span class="literal" translate="no">prod</span>.</p>
+<p class="indent">En <span class="ent">➋,</span> calculamos la suma de los productos almacenados en <span class="literal" translate="no">prod</span> utilizando la función <span class="literal" translate="no">sum()</span>. En las sentencias <span class="ent">➌</span> y <span class="ent">➍,</span> calculamos la suma de los números de <span class="literal" translate="no">x</span> y <span class="literal" translate="no">y</span>, respectivamente (una vez más, utilizando la función <span class="literal" translate="no">sum()</span> ). A continuación, calculamos los cuadrados de la suma de los elementos en <span class="literal" translate="no">x</span> y <span class="literal" translate="no">y</span>, creando las etiquetas <span class="literal" translate="no">squared_sum_x</span> y <span class="literal" translate="no">squared_sum_y</span> para referirnos a ellos, respectivamente.</p>
+<p class="indent">En el bucle que comienza en <span class="ent">➎,</span> calculamos el cuadrado de cada uno de los elementos de <span class="literal" translate="no">x</span> y hallamos la suma de estos cuadrados. A continuación, hacemos lo mismo con los elementos de <span class="literal" translate="no">y</span>. Ahora tenemos todos los términos que necesitamos para calcular la correlación, y lo hacemos en las sentencias <span class="ent">➏,</span><span class="ent">➐</span> y <span class="ent">➑.</span> Por último, devolvemos la correlación. La correlación es una medida muy citada en los estudios estadísticos, tanto en los medios de comunicación populares como en los artículos científicos. A veces sabemos de antemano que existe una correlación, y sólo queremos averiguar la fuerza de esa correlación. Veremos un ejemplo de esto en "<a href="ch03.html#ch03lev2sec09">Lectura de datos de un archivo CSV</a>" en <a href="ch03.html#page_86">la página 86</a>, cuando calculemos la correlación entre los datos leídos de un archivo. Otras veces, sólo sospechamos que puede haber una correlación, y debemos investigar los datos para verificar si realmente la hay (como en el ejemplo siguiente).</p>
+<h4 class="h4" id="ch03lev2sec07"><strong><em>Notas de bachillerato y rendimiento en las pruebas de acceso a la universidad</em></strong></h4>
+<p class="noindent">En este apartado, consideraremos un grupo ficticio de 10 estudiantes de bachillerato e investigaremos si existe una relación entre sus calificaciones en la escuela y su rendimiento en las pruebas de acceso a la universidad. <a href="ch03.html#ch3tab2">La Tabla 3-2</a> enumera los datos que vamos a asumir para nuestro estudio y en los que vamos a basar nuestros experimentos. La columna "Notas de bachillerato" muestra las puntuaciones percentiles de las notas de los alumnos en el bachillerato, y la columna "Puntuaciones en el examen de acceso a la universidad" muestra sus puntuaciones percentiles en el examen de acceso a la universidad.</p>
+<p class="tablet"><a id="page_79"></a><a id="ch3tab2"></a><strong>Tabla 3-2:</strong> Calificaciones de bachillerato y resultados en la prueba de acceso a la universidad</p>
+<table border="0" cellpadding="0" cellspacing="0" class="topbot" width="100%">
+<thead>
+<tr>
+<td class="table_th" valign="top"><p class="table"><strong>Notas de bachillerato</strong></p></td>
+<td class="table_th" valign="top"><p class="table"><strong>Puntuaciones en la prueba de acceso a la universidad</strong></p></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="table" valign="top"><p class="table">90</p></td>
+<td class="table" valign="top"><p class="table">85</p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="table">92</p></td>
+<td class="table" valign="top"><p class="table">87</p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="table">95</p></td>
+<td class="table" valign="top"><p class="table">86</p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="table">96</p></td>
+<td class="table" valign="top"><p class="table">97</p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="table">87</p></td>
+<td class="table" valign="top"><p class="table">96</p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="table">87</p></td>
+<td class="table" valign="top"><p class="table">88</p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="table">90</p></td>
+<td class="table" valign="top"><p class="table">89</p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="table">95</p></td>
+<td class="table" valign="top"><p class="table">98</p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="table">98</p></td>
+<td class="table" valign="top"><p class="table">98</p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="table">96</p></td>
+<td class="table" valign="top"><p class="table">87</p></td>
+</tr>
+</tbody>
+</table>
+<p class="indent">Para analizar estos datos, veamos un <em>diagrama de</em> dispersión. <a href="ch03.html#ch3fig2">La Figura 3-2</a> muestra el diagrama de dispersión del conjunto de datos anterior, con el <em>eje x</em> representando las calificaciones de bachillerato y el <em>eje y</em> representando los resultados correspondientes de las pruebas de acceso a la universidad.</p>
+<div class="image"><img alt="image" src="images/f03-02.jpg" translate="no"/></div>
+<p class="figuret"><a id="ch3fig2"></a><em>Figura 3-2: Diagrama de dispersión de las notas de bachillerato y los resultados de las pruebas de acceso a la universidad</em></p>
+<p class="indent"><a id="page_80"></a>El diagrama de los datos indica que los alumnos con las notas más altas en el instituto no obtuvieron necesariamente mejores resultados en las pruebas de acceso a la universidad y viceversa. Algunos estudiantes con malas notas en el instituto obtuvieron muy buenos resultados en el examen de acceso a la universidad, mientras que otros tenían notas excelentes pero obtuvieron resultados relativamente malos en el examen de acceso a la universidad. Si calculamos el coeficiente de correlación de los dos conjuntos de datos (utilizando nuestro programa de antes), vemos que es aproximadamente 0,32. Esto significa que existe cierta correlación, pero no muy fuerte. Si la correlación fuera más cercana a 1, también lo veríamos reflejado en el diagrama de dispersión: los puntos se ajustarían más a una línea recta diagonal.</p>
+<p class="indent">Supongamos que las notas de bachillerato que aparecen en <a href="ch03.html#ch3tab2">la Tabla 3-2</a> son una media de las notas individuales en matemáticas, ciencias, inglés y ciencias sociales. Imaginemos también que el examen de la universidad hace mucho hincapié en las matemáticas, mucho más que en otras asignaturas. En lugar de fijarnos en las calificaciones generales de los alumnos en el instituto, veamos sólo sus calificaciones en matemáticas para ver si eso predice mejor cómo les fue en el examen de la universidad. <a href="ch03.html#ch3tab3">La Tabla 3-3</a> muestra ahora sólo las calificaciones en matemáticas (como percentiles) y las pruebas de acceso a la universidad. El gráfico de dispersión correspondiente se muestra en <a href="ch03.html#ch3fig3">la Figura 3-3</a>.</p>
+<p class="tablet"><a id="ch3tab3"></a><strong>Tabla 3-3:</strong> Notas de Matemáticas en el instituto y resultados en los exámenes de acceso a la universidad</p>
+<table border="0" cellpadding="0" cellspacing="0" class="topbot" width="100%">
+<thead>
+<tr>
+<td class="table_th" valign="top"><p class="table"><strong>Notas de matemáticas en el instituto</strong></p></td>
+<td class="table_th" valign="top"><p class="table"><strong>Puntuaciones en las pruebas de acceso a la universidad</strong></p></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="table" valign="top"><p class="table">83</p></td>
+<td class="table" valign="top"><p class="table">85</p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="table">85</p></td>
+<td class="table" valign="top"><p class="table">87</p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="table">84</p></td>
+<td class="table" valign="top"><p class="table">86</p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="table">96</p></td>
+<td class="table" valign="top"><p class="table">97</p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="table">94</p></td>
+<td class="table" valign="top"><p class="table">96</p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="table">86</p></td>
+<td class="table" valign="top"><p class="table">88</p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="table">87</p></td>
+<td class="table" valign="top"><p class="table">89</p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="table">97</p></td>
+<td class="table" valign="top"><p class="table">98</p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="table">97</p></td>
+<td class="table" valign="top"><p class="table">98</p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="table">85</p></td>
+<td class="table" valign="top"><p class="table">87</p></td>
+</tr>
+</tbody>
+</table>
+<p class="indent">Ahora, el diagrama de dispersión<a href="ch03.html#ch3fig3">(Figura 3-3</a>) muestra que los puntos de datos se extienden casi perfectamente a lo largo de una línea recta. Esto indica que existe una alta correlación entre las puntuaciones obtenidas en matemáticas en el instituto y el rendimiento en el examen de acceso a la universidad. El coeficiente de correlación, en este caso, resulta ser aproximadamente 1. Con la ayuda del diagrama de dispersión y el coeficiente de correlación, podemos concluir que, efectivamente, existe una fuerte relación en este conjunto de datos entre las calificaciones en matemáticas del bachillerato y el rendimiento en las pruebas de acceso a la universidad.</p>
+<div class="image"><a id="page_81"></a><img alt="image" src="images/f03-03.jpg" translate="no"/></div>
+<p class="figuret"><a id="ch3fig3"></a><em>Figura 3-3: Diagrama de dispersión de las calificaciones en matemáticas de bachillerato y los resultados en las pruebas de acceso a la universidad</em></p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch03_5.html">anterior</a><a href="ch03.html">Subtema 6 de 10: (Ver todo)</a><a href="ch03_7.html">siguiente</a><br/></p>
+<br/><a href="ch03_6.docx" target="_blank"></a></footer>
+</body>
+</html>

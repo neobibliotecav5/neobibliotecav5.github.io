@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c19-0001">Añadir nuevos temas</h3>
+<p class="BodyFirst">Empecemos por permitir a los usuarios añadir un nuevo tema. Añadir una página basada en un formulario funciona de forma muy parecida a añadir las páginas que ya hemos construido: definimos una URL, escribimos una función de vista y escribimos una plantilla. La única diferencia significativa es la adición de un nuevo módulo llamado <em translate="no">forms.py</em>, que contendrá los formularios.</p>
+<h4 id="h3-502703c19-0001">El Tema ModeloFormulario</h4>
+<p class="BodyFirst">Cualquier página que permita a un usuario introducir y enviar información en una página web implica un elemento HTML llamado <em translate="no">form</em>. Cuando los usuarios introducen información, necesitamos <em translate="no">validate</em> que la información proporcionada sea el tipo correcto de datos y no sea maliciosa, como código diseñado para interrumpir nuestro servidor. A continuación, necesitamos procesar y guardar la información válida en el lugar adecuado de la base de datos. Django automatiza gran parte de este trabajo.</p>
+<p>La forma más sencilla de construir un formulario en Django es utilizar un <code translate="no">ModelForm</code>, que utiliza la información de los modelos que definimos en <span class="xref" itemid="xref_target_Chapter 18">el Capítulo</span> 18 para construir un formulario automáticamente. Escribe tu primer formulario en el archivo <em translate="no">forms.py</em>, que debe crearse en el mismo directorio que <em translate="no">models.py</em>:</p>
+<p class="CodeLabel" translate="no"><b>forms.py</b></p>
+<pre translate="no"><code translate="no">from django import forms
+
+from .models import Topic
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> class TopicForm(forms.ModelForm):
+    class Meta:
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         model = Topic
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>         fields = ['text']
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>         labels = {'text': ''}</code></pre>
+<p>Primero importamos el módulo <code translate="no">forms</code> y el modelo con el que trabajaremos, <code translate="no">Topic</code>. A continuación, definimos una clase llamada <code translate="no">TopicForm</code>, que hereda de <code translate="no">forms.ModelForm</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span></p>
+<p>La versión más sencilla de <code translate="no">ModelForm</code> consiste en una clase anidada <code translate="no">Meta</code> que indica a Django en qué modelo debe basarse el formulario y qué campos debe incluir. Aquí especificamos que el formulario debe basarse en el modelo <code translate="no">Topic</code> <span aria-label="annotation2" class="CodeAnnotation">❷,</span> y que sólo debe incluir el campo <code translate="no">text</code> <span aria-label="annotation3" class="CodeAnnotation">❸.</span> La cadena vacía en el diccionario de etiquetas indica a Django que no genere una etiqueta para el campo <code translate="no">text</code> <span aria-label="annotation4" class="CodeAnnotation">❹.</span></p>
+<h4 id="h3-502703c19-0002"><span epub:type="pagebreak" id="Page_405" title="405"></span>La URL del nuevo_tema</h4>
+<p class="BodyFirst">La URL de una nueva página debe ser corta y descriptiva. Cuando el usuario quiera añadir un nuevo tema, le enviaremos a <em translate="no">http://localhost:8000/new_topic/</em>. Éste es el patrón de URL para la página <code translate="no">new_topic</code>; añádelo a <em translate="no">learning_logs/urls.py</em>:</p>
+<p class="CodeLabel" translate="no"><b>learning_logs/urls.py</b></p>
+<pre translate="no"><code translate="no"><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">urlpatterns = [</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">    </span># Page for adding a new topic.
+    path('new_topic/', views.new_topic, name='new_topic'),
+<span class="LiteralGray">]</span></code></pre>
+<p>Este patrón de URL envía peticiones a la función de vista <code translate="no">new_topic()</code>, que escribiremos a continuación.</p>
+<h4 id="h3-502703c19-0003">La función de vista new_topic()</h4>
+<p class="BodyFirst">La función <code translate="no">new_topic()</code> debe gestionar dos situaciones diferentes: las solicitudes iniciales de la página <code translate="no">new_topic</code>, en cuyo caso debe mostrar un formulario en blanco; y el procesamiento de los datos enviados en el formulario. Una vez procesados los datos de un formulario enviado, debe redirigir al usuario de nuevo a la página <code translate="no">topics</code>:</p>
+<p class="CodeLabel" translate="no"><b>views.py</b></p>
+<pre translate="no"><code translate="no">from django.shortcuts import render, redirect
+
+<span class="LiteralGray">from .models import Topic</span>
+from .forms import TopicForm
+
+<em class="LiteralGrayItalic" translate="no">--snip--</em>
+def new_topic(request):
+    """Add a new topic."""
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     if request.method != 'POST':
+        # No data submitted; create a blank form.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         form = TopicForm()
+    else:
+        # POST data submitted; process data.
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>         form = TopicForm(data=request.POST)
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>         if form.is_valid():
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>             form.save()
+<span aria-label="annotation6" class="CodeAnnotationHang">❻</span>             return redirect('learning_logs:topics')
+
+    # Display a blank or invalid form.
+<span aria-label="annotation7" class="CodeAnnotationHang">❼</span>     context = {'form': form}
+    return render(request, 'learning_logs/new_topic.html', context)</code></pre>
+<p>Importamos la función <code translate="no">redirect</code>, que utilizaremos para redirigir al usuario de vuelta a la página <code translate="no">topics</code> después de que envíe su tema. También importamos el formulario que acabamos de escribir, <code translate="no">TopicForm</code>.</p>
+<h4 id="h3-502703c19-0004"><span epub:type="pagebreak" id="Page_406" title="406"></span>Peticiones GET y POST</h4>
+<p class="BodyFirst">Los dos tipos principales de peticiones que utilizarás cuando construyas aplicaciones son GET y POST. Las peticiones <em translate="no">GET</em> se utilizan para páginas que sólo leen datos del servidor. Normalmente utilizas las peticiones <em translate="no">POST</em> cuando el usuario necesita enviar información a través de un formulario. Especificaremos el método POST para procesar todos nuestros formularios. (Existen algunos otros tipos de peticiones, pero no los utilizaremos en este proyecto).</p>
+<p>La función <code translate="no">new_topic()</code> toma como parámetro el objeto <code translate="no">request</code>. Cuando el usuario solicite inicialmente esta página, su navegador enviará una solicitud GET. Una vez que el usuario haya rellenado y enviado el formulario, su navegador enviará una solicitud POST. Dependiendo de la petición, sabremos si el usuario está solicitando un formulario en blanco (GET) o pidiéndonos que procesemos un formulario cumplimentado (POST).</p>
+<p>Utilizamos una prueba <code translate="no">if</code> para determinar si el método de solicitud es GET o POST <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Si el método de solicitud no es POST, probablemente la solicitud sea GET, por lo que tenemos que devolver un formulario en blanco. (Si es otro tipo de solicitud, sigue siendo seguro devolver un formulario en blanco.) Creamos una instancia de <code translate="no">TopicForm</code> <span aria-label="annotation2" class="CodeAnnotation">❷,</span> la asignamos a la variable <code translate="no">form</code>, y enviamos el formulario a la plantilla del diccionario <code translate="no">context</code> <span aria-label="annotation7" class="CodeAnnotation">❼.</span> Como no incluimos argumentos al instanciar <code translate="no">TopicForm</code>, Django crea un formulario en blanco que el usuario puede rellenar.</p>
+<p>Si el método de solicitud es POST, el bloque <code translate="no">else</code> se ejecuta y procesa los datos enviados en el formulario. Creamos una instancia de <code translate="no">TopicForm</code> <span aria-label="annotation3" class="CodeAnnotation">❸</span> y le pasamos los datos introducidos por el usuario, que se asignan a <code translate="no">request.POST</code>. El objeto <code translate="no">form</code> que se devuelve contiene la información enviada por el usuario.</p>
+<p>No podemos guardar la información enviada en la base de datos hasta que hayamos comprobado que es válida <span aria-label="annotation4" class="CodeAnnotation">❹.</span> El método <code translate="no">is_valid()</code> comprueba que se hayan rellenado todos los campos obligatorios (todos los campos de un formulario son obligatorios por defecto) y que los datos introducidos coincidan con los tipos de campo esperados; por ejemplo, que la longitud de <code translate="no">text</code> sea inferior a 200 caracteres, como especificamos en <em translate="no">models.py</em> en el <span class="xref" itemid="xref_target_Chapter 18">Capítulo 18</span>. Esta validación automática nos ahorra mucho trabajo. Si todo es válido, podemos llamar a <code translate="no">save()</code> <span aria-label="annotation5" class="CodeAnnotation">❺,</span> que escribe los datos del formulario en la base de datos.</p>
+<p>Una vez guardados los datos, podemos abandonar esta página. La función <code translate="no">redirect()</code> toma el nombre de una vista y redirige al usuario a la página asociada a esa vista. Aquí utilizamos <code translate="no">redirect()</code> para redirigir el navegador del usuario a la página <code translate="no">topics</code> <span aria-label="annotation6" class="CodeAnnotation">❻,</span> donde el usuario debería ver el tema que acaba de introducir en la lista de temas.</p>
+<p>La variable <code translate="no">context</code> se define al final de la función de vista, y la página se renderiza utilizando la plantilla <em translate="no">new_topic.html</em>, que crearemos a continuación. Este código se coloca fuera de cualquier bloque <code translate="no">if</code>; se ejecutará si se ha creado un formulario en blanco, y se ejecutará si se determina que un formulario enviado no es válido. Un formulario inválido incluirá algunos mensajes de error por defecto para ayudar al usuario a enviar datos aceptables.</p>
+<h4 id="h3-502703c19-0005"><span epub:type="pagebreak" id="Page_407" title="407"></span>La plantilla new_topic</h4>
+<p class="BodyFirst">Ahora crearemos una nueva plantilla llamada <em translate="no">new_topic.html</em> para mostrar el formulario que acabamos de crear:</p>
+<p class="CodeLabel" translate="no"><b>new_topic.html</b></p>
+<pre translate="no"><code translate="no">{% extends "learning_logs/base.html" %}
+
+{% block content %}
+  &lt;p&gt;Add a new topic:&lt;/p&gt;
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>   &lt;form action="{% url 'learning_logs:new_topic' %}" method='post'&gt;
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     {% csrf_token %}
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     {{ form.as_div }}
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>     &lt;button name="submit"&gt;Add topic&lt;/button&gt;
+  &lt;/form&gt;
+
+{% endblock content %}</code></pre>
+<p>Esta plantilla extiende <em translate="no">base.html</em>, por lo que tiene la misma estructura base que el resto de páginas del Registro de Aprendizaje. Utilizamos las etiquetas <code translate="no">&lt;/form&gt;</code> para definir un formulario HTML <span aria-label="annotation1" class="CodeAnnotation">❶.</span> El argumento <code translate="no">action</code> indica al navegador dónde enviar los datos enviados en el formulario; en este caso, los enviamos a la función de vista <code translate="no">new_topic()</code>. El argumento <code translate="no">method</code> indica al navegador que envíe los datos como una petición POST.</p>
+<p>Django utiliza la etiqueta de plantilla <code translate="no">{% csrf_token %}</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span> para evitar que los atacantes utilicen el formulario para obtener acceso no autorizado al servidor. (Este tipo de ataque se denomina <em translate="no">cross-site request forgery</em>.) A continuación, mostramos el formulario; aquí puedes ver lo sencillas que Django puede hacer ciertas tareas, como mostrar un formulario. Sólo tenemos que incluir la variable de plantilla <code translate="no">{{ form.as_div }}</code> para que Django cree automáticamente todos los campos necesarios para mostrar el formulario <span aria-label="annotation3" class="CodeAnnotation">❸.</span> El modificador <code translate="no">as_div</code> indica a Django que muestre todos los elementos del formulario como elementos HTML <code translate="no">&lt;/div&gt;</code>; ésta es una forma sencilla de mostrar el formulario de forma ordenada.</p>
+<p>Django no crea un botón de envío para los formularios, así que definimos uno antes de cerrar el formulario <span aria-label="annotation4" class="CodeAnnotation">❹.</span></p>
+<h4 id="h3-502703c19-0006">Enlace a la página nuevo_tema</h4>
+<p class="BodyFirst">A continuación, incluimos un enlace a la página <code translate="no">new_topic</code> en la página <code translate="no">topics</code>:</p>
+<p class="CodeLabel" translate="no"><b>topics.html</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">{% extends "learning_logs/base.html" %}</span>
+
+<span class="LiteralGray">{% block content %}</span>
+
+<span class="LiteralGray">  &lt;p&gt;Topics&lt;/p&gt;</span>
+
+<span class="LiteralGray">  &lt;ul&gt;</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">  &lt;/ul&gt;</span>
+
+<span class="LiteralGray">  </span>&lt;a href="{% url 'learning_logs:new_topic' %}"&gt;Add a new topic&lt;/a&gt;
+
+<span class="LiteralGray">{% endblock content %}</span></code></pre>
+<p><span epub:type="pagebreak" id="Page_408" title="408"></span>Coloca el enlace después de la lista de temas existentes. <a href="#figure19-1" id="figureanchor19-1">La Figura 19-1</a> muestra el formulario resultante; prueba a utilizarlo para añadir algunos temas nuevos por tu cuenta.</p>
+<figure><img alt="" class="keyline" height="342" src="Images/f19001.png" translate="no" width="581"/>
+<figcaption><p><a id="figure19-1">Figura 19-1</a>: Página para añadir un nuevo</p></figcaption></figure>tema
+        
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c19_2.html">anterior</a><a href="c19.html">Subtema 3 de 23: (Ver todo)</a><a href="c19_4.html">siguiente</a><br/></p>
+<br/><a href="c19_3.docx" target="_blank"></a></footer>
+</body>
+</html>

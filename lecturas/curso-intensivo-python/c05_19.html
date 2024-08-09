@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c05-0014">Probar múltiples condiciones</h3>
+<p class="BodyFirst">La cadena <code translate="no">if</code>-<code translate="no">elif</code>-<code translate="no">else</code> es potente, pero sólo es apropiado utilizarla cuando sólo necesitas que pase una prueba. En cuanto Python encuentra una prueba que pasa, se salta el resto de las pruebas. Este comportamiento es beneficioso, porque es eficiente y te permite comprobar una condición concreta.</p>
+<p>Sin embargo, a veces es importante comprobar todas las condiciones de interés. En este caso, debes utilizar una serie de sentencias <code translate="no">if</code> sencillas, sin <code translate="no">elif</code> ni bloques <code translate="no">else</code>. Esta técnica tiene sentido cuando más de una condición podría ser <code translate="no">True</code>, y quieres actuar sobre cada condición que sea <code translate="no">True</code>.</p>
+<p>Reconsideremos el ejemplo de la pizzería. Si alguien solicita una pizza con dos ingredientes, tendrás que asegurarte de incluir ambos ingredientes en su pizza:</p>
+<p class="CodeLabel" translate="no"><b>toppings.py</b></p>
+<pre translate="no"><code translate="no">requested_toppings = ['mushrooms', 'extra cheese']
+
+if 'mushrooms' in requested_toppings:
+    print("Adding mushrooms.")
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> if 'pepperoni' in requested_toppings:
+    print("Adding pepperoni.")
+<span epub:type="pagebreak" id="Page_83" title="83"></span>if 'extra cheese' in requested_toppings:
+    print("Adding extra cheese.")
+
+print("\nFinished making your pizza!")</code></pre>
+<p>Comenzamos con una lista que contiene los ingredientes solicitados. La primera sentencia <code translate="no">if</code> comprueba si la persona ha pedido champiñones en su pizza. Si es así, se imprime un mensaje confirmando ese ingrediente. La prueba de pepperoni <span aria-label="annotation1" class="CodeAnnotation">❶</span> es otra sentencia simple <code translate="no">if</code>, no una sentencia <code translate="no">elif</code> o <code translate="no">else</code>, por lo que esta prueba se ejecuta independientemente de si la prueba anterior se ha superado o no. La última sentencia <code translate="no">if</code> comprueba si se ha pedido queso extra, independientemente de los resultados de las dos primeras pruebas. Estas tres pruebas independientes se ejecutan cada vez que se ejecuta este programa.</p>
+<p>Como se evalúan todas las condiciones de este ejemplo, tanto los champiñones como el queso extra se añaden a la pizza:</p>
+<pre translate="no"><code translate="no">Adding mushrooms.
+Adding extra cheese.
+
+Finished making your pizza!</code></pre>
+<p>Este código no funcionaría correctamente si utilizáramos un bloque <code translate="no">if</code>-<code translate="no">elif</code>-<code translate="no">else</code>, porque el código dejaría de ejecutarse después de pasar una sola prueba. Esto es lo que ocurriría:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">requested_toppings = ['mushrooms', 'extra cheese']</span>
+
+<span class="LiteralGray">if 'mushrooms' in requested_toppings:</span>
+<span class="LiteralGray">    print("Adding mushrooms.")</span>
+elif 'pepperoni' in requested_toppings:
+    <span class="LiteralGray">print("Adding pepperoni.")</span>
+elif 'extra cheese' in requested_toppings:
+   <span class="LiteralGray"> print("Adding extra cheese.")</span>
+
+<span class="LiteralGray">print("\nFinished making your pizza!")</span></code></pre>
+<p>La prueba para <code translate="no">'mushrooms'</code> es la primera que se supera, por lo que se añaden champiñones a la pizza. Sin embargo, los valores <code translate="no">'extra cheese'</code> y <code translate="no">'pepperoni'</code> nunca se comprueban, porque Python no ejecuta ninguna prueba más allá de la primera prueba que pasa en una cadena <code translate="no">if-elif-else</code>. Se añadirá el primer ingrediente del cliente, pero se omitirán todos los demás:</p>
+<pre translate="no"><code translate="no">Adding mushrooms.
+
+Finished making your pizza!</code></pre>
+<p>En resumen, si sólo quieres que se ejecute un bloque de código, utiliza una cadena <code translate="no">if</code>-<code translate="no">elif</code>-<code translate="no">else</code>. Si necesitas que se ejecute más de un bloque de código, utiliza una serie de sentencias <code translate="no">if</code> independientes.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c05_18.html">anterior</a><a href="c05.html">Subtema 19 de 28: (Ver todo)</a><a href="c05_20.html">siguiente</a><br/></p>
+<br/><a href="c05_19.docx" target="_blank"></a></footer>
+</body>
+</html>

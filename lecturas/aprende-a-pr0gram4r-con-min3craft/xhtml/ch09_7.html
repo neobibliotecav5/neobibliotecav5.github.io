@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch09lev1sec06"><span epub:type="pagebreak" id="page_192"></span><strong><span class="blue1">Diccionarios</span></strong></h3>
+<p class="noindent">Los diccionarios son un tipo de lista que utiliza un enfoque diferente. En lugar de utilizar un índice para identificar los elementos, los diccionarios identifican los elementos utilizando un conjunto de claves definidas por el programador.</p>
+<p class="indent">Por ejemplo, este diccionario <span class="literal">raceTimes</span> almacena los nombres de las personas que corrieron en una carrera y sus tiempos de carrera:</p>
+<p class="programs" translate="no">raceTimes = {<span class="green">'Katy'</span>: 26,<br translate="no"/> <span class="green">'Alex'</span>: 30,<br translate="no"/> <span class="green">'Richard'</span>: 19}</p>
+<p class="indent">La clave identifica de forma única cada valor del diccionario. En este ejemplo, la clave es el nombre de la persona. La clave <span class="literal">"Katy</span> " tiene un valor asociado de <span class="literal">26</span>.</p>
+<p class="indent">Al igual que las listas, los diccionarios son mutables; su contenido puede modificarse.</p>
+<h4 class="h4" id="ch09lev2sec18"><strong><span class="blue1">Definir un diccionario</span></strong></h4>
+<p class="noindent">Para definir un diccionario, utiliza un par de llaves alrededor de un conjunto de pares clave-valor. Por ejemplo, puedes utilizar un diccionario para describir a una persona. Puedes utilizar claves como <span class="literal">"nombre"</span> y <span class="literal">"animal favorito</span> " para almacenar información sobre la persona, de esta forma</p>
+<p class="programs" translate="no">person = {<span class="green">'name'</span>: <span class="green">'David'</span>,<br translate="no"/> <span class="green">'age'</span>: 42,<br translate="no"/> <span class="green">'favoriteAnimal'</span>: <span class="green">'Snake'</span>,<br translate="no"/> <span class="green">'favoritePlace'</span>: <span class="green">'Inside a cardboard box'</span>}</p>
+<p class="indent">En este ejemplo, cada clave es una cadena. Cada clave se empareja con un valor mediante dos puntos. Por ejemplo, <span class="literal">"edad"</span> es una clave y <span class="literal">42</span> es su valor correspondiente. A continuación, los elementos del diccionario se separan mediante comas.</p>
+<p class="indent">Te habrás dado cuenta de que utilizar diccionarios facilita al programador la comprensión de lo que representa cada elemento de la lista; por ejemplo, es fácil entender que la clave <span class="literal">"nombre</span> " almacena un nombre, no un número u otra información aleatoria.</p>
+<p class="indent">También puedes utilizar enteros y flotantes como claves del diccionario. Utilizar flotantes o enteros en los diccionarios es muy útil cuando las claves que quieres emparejar con valores no siguen una secuencia estricta.</p>
+<p class="indent">El siguiente ejemplo crea un diccionario de horas de tren. La hora del tren (que es un flotante) se almacena como clave, y el destino del tren se almacena como valor:</p>
+<p class="programs" translate="no">trainTimes = {1.00: <span class="green">'Castle Town'</span>,<br translate="no"/>             2.30: <span class="green">'Sheep Farm'</span>,<br translate="no"/>             3.15: <span class="green">'Lake City'</span>,<br translate="no"/>             3.45: <span class="green">'Castle Town'</span>,<br translate="no"/>             3.55: <span class="green">'Storage Land'</span><br translate="no"/>             }</p>
+<p class="indent"><span epub:type="pagebreak" id="page_193"></span>Como los diccionarios pueden almacenar dos datos que van juntos como un par, son ideales para una situación como ésta. Si utilizara una lista de destinos de trenes en lugar de un diccionario, no podría emparejar los tiempos con los destinos. Sólo podría utilizar las posiciones de índice de la lista, que serían 0, 1, 2, 3, 4, etc., en lugar de las horas.</p>
+<h4 class="h4" id="ch09lev2sec19"><strong><span class="blue1">Acceder a los elementos de los diccionarios</span></strong></h4>
+<p class="noindent">Para acceder al valor de un elemento de un diccionario, utiliza corchetes y una clave en lugar de un índice. La clave suele ser una cadena o un número entero. Cuando crees un diccionario que utilice cadenas como claves, asegúrate de entrecomillarlas.</p>
+<p class="indent">Por ejemplo, para acceder al valor de la clave <span class="literal">"nombre</span> " en el diccionario de <span class="literal">personas</span> creado anteriormente, utilizarías esta sintaxis</p>
+<p class="programs" translate="no">person = {<span class="green">'name'</span>: <span class="green">'David'</span>,<br translate="no"/> <span class="green">'age'</span>: 42,<br translate="no"/> <span class="green">'favoriteAnimal'</span>: <span class="green">'Snake'</span>,<br translate="no"/> <span class="green">'favoritePlace'</span>: <span class="green">'Inside a cardboard box'</span>}<br translate="no"/><br translate="no"/>agentName = person[<span class="green">'name'</span>]</p>
+<p class="indent">La variable <span class="literal">NombreAgente</span> contendrá el valor <span class="literal">"David</span> " porque accede al valor de la clave " <span class="literal">nombre</span> ". Del mismo modo, si quisieras acceder a la edad del agente, utilizarías la clave ' <span class="literal">edad</span> ':</p>
+<p class="programs" translate="no">agentAge = person[<span class="green">'age'</span>]</p>
+<p class="indent">Esto almacenaría el valor <span class="literal">42</span> en la variable <span class="literal">agentAge</span>.</p>
+<p class="indent">En el ejemplo de <span class="literal">trainTimes</span>, puedes acceder a los valores del diccionario (los destinos) utilizando sus valores clave (las horas de los trenes), que son flotantes:</p>
+<p class="programs" translate="no">trainTimes = {1.00: <span class="green">'Castle Town'</span>,<br translate="no"/>             2.30: <span class="green">'Sheep Farm'</span>,<br translate="no"/>             3.15: <span class="green">'Lake City'</span>,<br translate="no"/>             3.45: <span class="green">'Castle Town'</span>,<br translate="no"/>             3.55: <span class="green">'Storage Land'</span><br translate="no"/>             }<br translate="no"/><br translate="no"/>myTrain = trainTimes[3.15]</p>
+<p class="indent">Al acceder a la clave <span class="literal">3.15</span> del diccionario <span class="literal">trainTimes</span>, la variable <span class="literal">myTrain</span> se establece en <span class="literal">'Lake City'</span>.</p>
+<h4 class="h4a" id="ch09lev2sec20"><span epub:type="pagebreak" id="page_194"></span><strong>Misión nº 53: Guía turística</strong></h4>
+<p class="noindent">Cuando utilizas diccionarios, puedes almacenar cualquier tipo de datos como valor, incluso listas y tuplas. Por ejemplo, puedes almacenar una tupla que contenga los valores de <span class="literal">x</span>, <span class="literal">y</span> y <span class="literal">z</span>. He aquí un ejemplo de código que hace exactamente eso:</p>
+<p class="programs" translate="no">places = {<span class="green">'Living room'</span>: (76, 1, -61), <span class="green">'Bedroom'</span>: (61, 9, -61)}</p>
+<p class="indent">El diccionario de <span class="literal">lugares</span> almacena dos elementos. La clave del diccionario es el nombre de una ubicación en mi juego Minecraft (como mi salón o mi dormitorio), y el valor es una tupla de las coordenadas. Si quisiera acceder a las coordenadas de mi salón, utilizaría el siguiente código:</p>
+<p class="programs" translate="no">location = places[<span class="green">'Living room'</span>]<br translate="no"/>x, y, z = location[0], location[1], location[2]</p>
+<p class="indent">Tu misión es crear un programa que utilice un diccionario para almacenar las ubicaciones de los distintos lugares de tu juego Minecraft, de forma que puedas teletransportarte a ellos por su nombre. Incluye tantas localizaciones en el diccionario como quieras. Para teletransportarte a esos lugares, tienes que acceder a la tupla de coordenadas almacenada en el diccionario y luego establecer <span class="literal">x</span>, <span class="literal">y</span> y <span class="literal">z</span> a los valores almacenados en la tupla. Los comentarios del código muestran dónde hacerlo.</p>
+<p class="indent">Copia <a href="ch09.xhtml#ch9ex7">el Listado 9-7</a> en el editor de texto IDLE y guárdalo en la carpeta de <em>listas</em> como <em>guiaviajes.py</em>.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>sightseeingGuide.py</em></span></p>
+<p class="programs" translate="no"> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>   mc = Minecraft.create()<br translate="no"/><br translate="no"/> <span class="red"># Add locations to the dictionary</span><br translate="no"/>   places = {}<br translate="no"/><br translate="no"/>   choice = <span class="green">""</span><br translate="no"/> <span class="orange">while</span> choice != <span class="green">"exit"</span>:<br translate="no"/><span class="ent">➊</span>     choice = <span class="rose">input</span>(<span class="green">"Enter a location ('exit' to close): "</span>)<br translate="no"/><span class="ent">➋</span> <span class="orange">if</span> choice <span class="orange">in</span> places:<br translate="no"/> <span class="red"># Store the dictionary item's value using its key (choice)</span><br translate="no"/>           location =<br translate="no"/> <span class="red"># Store the values stored in the tuple in the x, y, and z variables</span><br translate="no"/>           x, y, z =<br translate="no"/>           mc.player.setTilePos(x, y, z)</p>
+<p class="examplet"><a id="ch9ex7"></a><em>Listado 9-7: Código para teletransportarse a distintos lugares</em></p>
+<p class="indent">He incluido una sentencia que te pide que introduzcas el nombre del lugar al que quieres ir. Esta información se almacena en la variable de <span class="literal">elección</span> <span class="ent">➊.</span> A continuación, el programa utiliza una sentencia <span class="literal">if</span> para comprobar si el valor de <span class="literal">elección</span> está en el diccionario <span class="ent">➋.</span> La última línea utiliza las variables <span class="literal">x</span>, <span class="literal">y</span> y <span class="literal">z</span> para teletransportar al jugador a la posición almacenada en el diccionario.</p>
+<p class="indent">Cuando se ejecute el programa, introduce el nombre del lugar al que quieres ir. <a href="ch09.xhtml#ch9fig8">La Figura 9-8</a> muestra mi versión del programa teletransportándome a distintos lugares de mi juego.</p>
+<div class="image"><span epub:type="pagebreak" id="page_195"></span><img alt="image" src="../images/f09-08.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch9fig8"></a><em>Figura 9-8: Me teletransporté a mi salón (arriba) y a mi dormitorio (abajo).</em></p>
+<h4 class="h4" id="ch09lev2sec21"><strong><span class="blue1">Cambiar o añadir un elemento en un diccionario</span></strong></h4>
+<p class="noindent">No cuesta mucho trabajo cambiar el valor de un elemento de un diccionario. Utiliza corchetes con una tecla para acceder al elemento y establécelo como harías con una variable normal (con un signo igual). También puedes añadir un nuevo elemento utilizando este método.</p>
+<p class="indent">Cambiemos el valor del elemento <span class="literal">edad</span> del diccionario <span class="literal">persona</span> de 42 a 43:</p>
+<p class="programs" translate="no">person[<span class="green">'age'</span>] = 43</p>
+<p class="indent"><span epub:type="pagebreak" id="page_196"></span>Añadamos también un nuevo elemento llamado <span class="literal">ubicación</span> con el valor <span class="literal">"USS Discovery"</span>:</p>
+<p class="programs" translate="no">person[<span class="green">'location'</span>] = <span class="green">'USS Discovery'</span></p>
+<p class="indent">Después de ejecutar este código, el diccionario tendrá una nueva clave llamada <span class="literal">ubicación</span> con el valor "USS <span class="literal"> Discovery</span>".</p>
+<h4 class="h4" id="ch09lev2sec22"><strong><span class="blue1">Borrar elementos de los diccionarios</span></strong></h4>
+<p class="noindent">A veces querrás borrar un elemento de un diccionario. Al igual que con una lista, utiliza la palabra clave <span class="literal">del</span> para hacerlo. Por ejemplo, para borrar el ítem <span class="literal">AnimalFavorito</span> del diccionario <span class="literal">Persona</span>, harías lo siguiente:</p>
+<p class="programs" translate="no"><span class="orange">del</span> person[<span class="green">'favoriteAnimal'</span>]</p>
+<p class="indent">Como puedes ver, funciona igual que borrar elementos de una lista.</p>
+<h4 class="h4a" id="ch09lev2sec23"><strong>Misión nº 54: Bloquear la puntuación de los aciertos</strong></h4>
+<p class="noindent">En la Misión nº 50<a href="ch09.xhtml#page_184">(página 184</a>), escribiste un programa que cuenta el número de veces que el jugador golpea un bloque con su espada en 60 segundos. Por muy divertido que sea el programa, sería aún más genial si pudieras registrar las puntuaciones de todos los que jugaron.</p>
+<p class="indent">Para añadir un marcador al juego, utilizarás un diccionario. El diccionario almacenará el nombre del jugador y su puntuación, que luego podrá mostrarse junto a las puntuaciones de todos los demás.</p>
+<p class="indent">Para empezar, abre <em>swordHits.py</em> y guárdalo como <em>swordHitsScore.py</em> en la carpeta de <em>listas</em>. Actualiza el código para que coincida con <a href="ch09.xhtml#ch9ex8">el Listado 9-8</a>, donde he hecho algunos cambios en el programa para que se repita, pregunte al jugador su nombre y luego imprima todas las puntuaciones. (También he incluido las soluciones al código que falta en <em>swordHits.py</em>.) Las secciones antiguas están en gris. (Recuerda sangrar todo dentro del bucle).</p>
+<p class="sidenote" translate="no"><span class="blue"><em>swordHitsScore.py</em></span></p>
+<p class="programs" translate="no"> <span class="ash"># Connect to the Minecraft game</span><br translate="no"/> <span class="ash">from mcpi.minecraft import Minecraft</span><br translate="no"/> <span class="ash">mc = Minecraft.create()</span><br translate="no"/><br translate="no"/> <span class="ash">import time</span><br translate="no"/><br translate="no"/>   name = <span class="green">""</span><br translate="no"/>   scoreboard = {}<br translate="no"/><br translate="no"/> <span class="orange">while True</span>:<br translate="no"/> <span class="red"># Get the player's name</span><br translate="no"/>       name = <span class="rose">input</span>(<span class="green">"What is your name? "</span>)<br translate="no"/> <span class="red"># Break loop if name is exit</span><br translate="no"/> <span class="orange">if</span> name == <span class="green">"exit"</span>:<br translate="no"/> <span class="orange">break</span><br translate="no"/>       mc.postToChat("G<span class="green">o!")</span><br translate="no"/><br translate="no"/> <span class="ash"># Wait 60 seconds</span><br translate="no"/> <span class="ash">time.sleep(60)</span><br translate="no"/><br translate="no"/> <span class="ash"># Get the list of block hits</span><br translate="no"/> <span class="ash">blockHits = mc.events.pollBlockHits()</span><br translate="no"/><br translate="no"/> <span class="ash"># Display the length of the block hits list to chat</span><br translate="no"/> <span class="ash">blockHitsLength = len(blockHits)</span><br translate="no"/> <span class="ash">mc.postToChat("Your score is " + str(blockHitsLength))</span><br translate="no"/><br translate="no"/><span class="ent">➊</span> <span class="red"># Add the player to the scoreboard</span><br translate="no"/><br translate="no"/> <span class="red"># Display the scoreboard</span><br translate="no"/> <span class="rose">print</span>(scoreboard)</p>
+<p class="examplet"><span epub:type="pagebreak" id="page_197"></span><a id="ch9ex8"></a><em>Listado 9-8: Cuando el código esté completo, añadirá un marcador al juego de golpes de bloque.</em></p>
+<p class="indent">Para terminar el programa, necesitas almacenar el nombre y la puntuación de cada jugador que participe en el juego. Hazlo añadiendo un nuevo elemento de diccionario utilizando los datos del código en <span class="ent">➊.</span> El diccionario se llama <span class="literal">marcador</span>, y el nombre del jugador se almacena en la variable <span class="literal">nombre</span>.</p>
+<p class="indent"><a href="ch09.xhtml#ch9fig9">La Figura 9-9</a> muestra la salida de mi marcador.</p>
+<div class="image"><img alt="image" src="../images/f09-09.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch9fig9"></a><em>Figura 9-9: Mis amigos y yo jugamos una partida, y Jim es el ganador con 274 aciertos de bloque.</em></p>
+<div class="note">
+<p class="notet"><strong><span class="notes">NOTA</span></strong></p>
+<p class="notep"><em>Te habrás dado cuenta de que cuando</em> se <em>imprime el diccionario del marcador, no es fácil de leer. Aprenderás a solucionarlo en la Misión 59 (<a href="ch10.xhtml#page_209">página 209</a>).</em></p>
+</div>
+<div class="sidebar">
+<p class="sidebart" id="ch09sb05"><span epub:type="pagebreak" id="page_198"></span><strong>OBJETIVO EXTRA: MEJOR PUNTUACIÓN</strong></p>
+<p class="noindent">Actualmente, si alguien juega al juego <em>swordHitsScore.</em> py dos o más veces (e introduce el mismo nombre de usuario), el programa sólo registrará su puntuación más reciente. ¿Puedes averiguar cómo utilizar una sentencia <span class="literal">if</span> para comprobar si el jugador ya ha introducido una puntuación y almacenar la nueva puntuación sólo si es mayor que la anterior? Aquí tienes el principio del código para ayudarte. Comprueba si el nombre de alguien ya está en el diccionario <span class="literal">del marcador</span>:</p>
+<p class="programs" translate="no">if name in scoreboard:</p>
+</div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch09_6.html">anterior</a><a href="ch09.html">Subtema 7 de 8: (Ver todo)</a><a href="ch09_8.html">siguiente</a><br/></p>
+<br/><a href="ch09_7.docx" target="_blank"></a></footer>
+</body>
+</html>

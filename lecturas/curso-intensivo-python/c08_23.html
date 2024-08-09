@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c08-0012"><span epub:type="pagebreak" id="Page_143" title="143"></span>Modificar una lista en una función</h3>
+<p class="BodyFirst">Cuando pasas una lista a una función, la función puede modificar la lista. Cualquier cambio realizado en la lista dentro del cuerpo de la función es permanente, lo que te permite trabajar con eficacia incluso cuando manejas grandes cantidades de datos.</p>
+<p>Piensa en una empresa que crea modelos impresos en 3D de diseños que envían los usuarios. Los diseños que necesitan ser impresos se almacenan en una lista, y después de ser impresos se mueven a otra lista. El siguiente código hace esto sin utilizar funciones:</p>
+<p class="CodeLabel" translate="no"><b>printing_models.py</b></p>
+<pre translate="no"><code translate="no"># Start with some designs that need to be printed.
+unprinted_designs = ['phone case', 'robot pendant', 'dodecahedron']
+completed_models = []
+
+# Simulate printing each design, until none are left.
+#  Move each design to completed_models after printing.
+while unprinted_designs:
+    current_design = unprinted_designs.pop()
+    print(f"Printing model: {current_design}")
+    completed_models.append(current_design)
+
+# Display all completed models.
+print("\nThe following models have been printed:")
+for completed_model in completed_models:
+    print(completed_model)</code></pre>
+<p>Este programa comienza con una lista de diseños que necesitan ser impresos y una lista vacía llamada <code translate="no">completed_models</code> a la que se moverá cada diseño después de ser impreso. Mientras los diseños permanezcan en <code translate="no">unprinted_designs</code>, el bucle <code translate="no">while</code> simula la impresión de cada diseño eliminando un diseño del final de la lista, almacenándolo en <code translate="no">current_design</code>, y mostrando un mensaje de que se está imprimiendo el diseño actual. A continuación, añade el diseño a la lista de modelos completados. Cuando el bucle termina de ejecutarse, se muestra una lista de los diseños que se han impreso:</p>
+<pre translate="no"><code translate="no">Printing model: dodecahedron
+Printing model: robot pendant
+Printing model: phone case
+
+The following models have been printed:
+dodecahedron
+robot pendant
+phone case</code></pre>
+<p>Podemos reorganizar este código escribiendo dos funciones, cada una de las cuales realiza un trabajo específico. La mayor parte del código no cambiará; sólo lo estamos estructurando con más cuidado. La primera función se encargará de imprimir los diseños, y la segunda resumirá las impresiones realizadas:</p>
+<pre translate="no"><code translate="no"><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> def print_models(unprinted_designs, completed_models):
+    """
+    Simulate printing each design, until none are left.
+<span epub:type="pagebreak" id="Page_144" title="144"></span>    Move each design to completed_models after printing.
+    """
+    <span class="LiteralGray">while unprinted_designs:</span>
+        <span class="LiteralGray">current_design = unprinted_designs.pop()</span>
+        <span class="LiteralGray">print(f"Printing model: {current_design}")</span>
+        <span class="LiteralGray">completed_models.append(current_design)</span>
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> def show_completed_models(completed_models):
+    """Show all the models that were printed."""
+    <span class="LiteralGray">print("\nThe following models have been printed:")</span>
+    <span class="LiteralGray">for completed_model in completed_models:</span>
+        <span class="LiteralGray">print(completed_model)</span>
+
+<span class="LiteralGray">unprinted_designs = ['phone case', 'robot pendant', 'dodecahedron']</span>
+<span class="LiteralGray">completed_models = []</span>
+
+print_models(unprinted_designs, completed_models)
+show_completed_models(completed_models)</code></pre>
+<p>Definimos la función <code translate="no">print_models()</code> con dos parámetros: una lista de diseños que hay que imprimir y una lista de modelos completados <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Dadas estas dos listas, la función simula la impresión de cada diseño vaciando la lista de diseños sin imprimir y rellenando la lista de modelos completados. A continuación, definimos la función <code translate="no">show_completed_models()</code> con un parámetro: la lista de modelos completados <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Dada esta lista, <code translate="no">show_completed_models()</code> muestra el nombre de cada modelo que se imprimió.</p>
+<p>Este programa tiene la misma salida que la versión sin funciones, pero el código está mucho más organizado. El código que hace la mayor parte del trabajo se ha trasladado a dos funciones separadas, lo que hace que la parte principal del programa sea más fácil de entender. Mira el cuerpo del programa y fíjate en lo fácil que es seguir lo que ocurre:</p>
+<pre translate="no"><code translate="no">unprinted_designs = ['phone case', 'robot pendant', 'dodecahedron']
+completed_models = []
+
+print_models(unprinted_designs, completed_models)
+show_completed_models(completed_models)</code></pre>
+<p>Creamos una lista de diseños sin imprimir y una lista vacía que contendrá los modelos terminados. Luego, como ya hemos definido nuestras dos funciones, todo lo que tenemos que hacer es llamarlas y pasarles los argumentos adecuados. Llamamos a <code translate="no">print_models()</code> y le pasamos las dos listas que necesita; como era de esperar, <code translate="no">print_models()</code> simula la impresión de los diseños. Luego llamamos a <code translate="no">show_completed_models()</code> y le pasamos la lista de modelos completados para que nos informe de los modelos que se han impreso. Los nombres descriptivos de las funciones permiten que otros lean este código y lo entiendan, incluso sin comentarios.</p>
+<p>Este programa es más fácil de ampliar y mantener que la versión sin funciones. Si más adelante necesitamos imprimir más diseños, basta con volver a llamar a <code translate="no"></code><span epub:type="pagebreak" id="Page_145" title="145"></span>print_models(). Si nos damos cuenta de que hay que modificar el código de impresión, podemos cambiar el código una vez, y nuestros cambios tendrán lugar en todos los lugares donde se llame a la función. Esta técnica es más eficaz que tener que actualizar el código por separado en varios lugares del programa.</p>
+<p>Este ejemplo también demuestra la idea de que cada función debe tener un trabajo específico. La primera función imprime cada diseño, y la segunda muestra los modelos completados. Esto es más beneficioso que utilizar una función para hacer ambos trabajos. Si estás escribiendo una función y notas que realiza demasiadas tareas diferentes, intenta dividir el código en dos funciones. Recuerda que siempre puedes llamar a una función desde otra función, lo que puede ser útil al dividir una tarea compleja en una serie de pasos.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c08_22.html">anterior</a><a href="c08.html">Subtema 23 de 40: (Ver todo)</a><a href="c08_24.html">siguiente</a><br/></p>
+<br/><a href="c08_23.docx" target="_blank"></a></footer>
+</body>
+</html>

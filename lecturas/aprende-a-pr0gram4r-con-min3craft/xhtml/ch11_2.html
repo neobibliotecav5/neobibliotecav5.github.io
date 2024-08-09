@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch11lev1sec01"><strong><span class="blue1">Utilizar archivos</span></strong></h3>
+<p class="noindent">Cuando trabajas con ordenadores, trabajas con archivos todo el tiempo. Cada vez que escribes un documento de texto o algo de código Python y lo guardas, estás trabajando con archivos. El texto, las imágenes, los vídeos y la música son archivos. Incluso este libro se guardó como un archivo de texto mientras lo escribía. Las funciones de manejo de archivos de Python son fáciles de aprender y te permitirán crear archivos, guardar archivos y leer información de archivos para hacer cosas interesantes en Minecraft. Empecemos por lo básico y aprendamos a leer y escribir en un archivo de texto en Python.</p>
+<h4 class="h4" id="ch11lev2sec01"><strong><span class="blue1">Abrir un archivo</span></strong></h4>
+<p class="noindent">Abrir un archivo es el primer paso cuando trabajas con archivos. Para abrir un archivo en Python, utilizas la función <span class="literal">open()</span>, que toma dos argumentos: la ubicación del archivo y sus permisos. La <em>ubicación</em> de un archivo es dónde está almacenado en tu ordenador. La pasarás a la función <span class="literal">open</span> () en forma de cadena. <em>Los permisos</em> del archivo controlan si Python puede o no leer o modificar el archivo.</p>
+<p class="indent">Para abrir (o crear) un archivo de texto llamado archivosecreto <em>.txt</em> en Python, utilizarías el argumento <span class="literal">"archivosecreto.txt"</span>:</p>
+<p class="programs" translate="no">secretFile = <span class="rose">open</span>(<span class="green">"secretFile.txt"</span>, <span class="green">"w"</span>)</p>
+<p class="indent">El segundo argumento, <span class="literal">"</span>w", es el argumento de permisos, que especifica lo que el programa puede hacer con el archivo. En este caso, <span class="literal">w</span> significa que el programa puede escribir datos en el archivo archivoarchivo_secreto <em>.</em>txt.</p>
+<p class="indent">Cuando un programa llama a la función <span class="literal">open()</span> con un nombre de archivo, Python comprueba primero si ya existe un archivo con ese nombre. Si el archivo existe, Python utilizará su contenido en el programa. Si no existe, Python creará un nuevo archivo con ese nombre.</p>
+<p class="indent">Si no especificas un <em>directorio</em> con el nombre del archivo (una carpeta y un directorio son lo mismo), Python buscará el archivo en el directorio donde se encuentre el programa. Si el archivo está almacenado en un directorio diferente, debes especificarlo en el argumento. Por ejemplo, si <span class="literal"> secretFile</span> <em>.txt</em> estuviera en el directorio <em>secrets</em>, el primer argumento sería <span class="literal">"/secrets/secretFile.txt"</span>:</p>
+<p class="programs" translate="no">secretFile = <span class="rose">open</span>(<span class="green">"/secrets/secretFile.txt"</span>, <span class="green">"w"</span>)</p>
+<p class="indent">Si proporcionas un directorio en el argumento y el directorio no existe, o si el archivo no existe, recibirás un mensaje de error.</p>
+<p class="indentb">Hay cuatro opciones para el argumento permisos:</p>
+<p class="hanging"><span class="literal"><span class="codestrong">w</span></span> Significa sólo <em>escritura</em>. Los permisos de sólo escritura permiten al programa escribir nuevos datos en el archivo y sobrescribir el contenido que ya está en el archivo, <span epub:type="pagebreak" id="page_237"></span>pero el programa no puede leer el contenido del archivo. Si no existe un archivo con el nombre que proporcionas como primer argumento, el programa creará uno nuevo.</p>
+<p class="hanging"><span class="literal"><span class="codestrong">r</span></span> Significa <em>sólo</em> lectura. Los permisos de sólo lectura permiten al programa leer el contenido del archivo, pero no pueden modificarlo. Este permiso no puede utilizarse para crear un nuevo archivo.</p>
+<p class="hanging"><span class="literal"><span class="codestrong">r+</span></span> Significa <em>lectura y</em> escritura. Los permisos de lectura y escritura permiten al programa leer y modificar el contenido del archivo. El programa también puede escribir sobre cualquier contenido que ya esté en el archivo. Sin embargo, si el archivo no existe, no se creará uno nuevo; en su lugar, obtendrás un error.</p>
+<p class="hanging"><span class="literal"><span class="codestrong">a</span></span> Significa <em>añadir</em>. Los permisos para añadir permiten al programa escribir nuevos datos sólo al final del archivo, dejando intacto el resto del contenido. El programa tampoco puede leer el contenido del archivo. Este permiso puede utilizarse para crear un nuevo archivo.</p>
+<p class="indentt">Hay distintas circunstancias en las que utilizarías cada tipo de permiso. Digamos que escribes unas instrucciones para llegar a una impresionante mina de diamantes que has encontrado, y quieres cargar las instrucciones en Minecraft sin cambiarlas accidentalmente. En ese caso, querrías utilizar el permiso de sólo lectura para asegurarte de que no cambia nada del archivo. Alternativamente, si quieres que alguien pueda añadir datos a un archivo pero no quieres que vea los demás datos almacenados en el archivo, utilizarías el permiso append. Por ejemplo, podrías utilizar append si quieres que tus amigos añadan notas a un diario de viaje compartido, ¡sin dejar que se metan dentro y lean todos tus tesoros secretos!</p>
+<p class="indent">A continuación, aprenderás a escribir datos en un archivo abierto, y aprenderás a cerrar ese archivo para utilizar esos datos más tarde.</p>
+<h4 class="h4" id="ch11lev2sec02"><strong><span class="blue1">Escribir y guardar un archivo</span></strong></h4>
+<p class="noindent">La función <span class="literal">write(</span> ) escribe datos en un archivo que el programa ha abierto. Es el pan de cada día del trabajo con archivos, porque te permite guardar todo tipo de datos. Proporcionas los datos que quieres escribir en el archivo como argumento de la función write( <span class="literal">)</span>.</p>
+<p class="indent">Por ejemplo, vamos a abrir un fichero y escribir en él una simple cadena:</p>
+<p class="programs" translate="no">   secretFile = <span class="rose">open</span>(<span class="green">"secretFile.txt"</span>, <span class="green">"w"</span>)<br translate="no"/>   secretFile.write(<span class="green">"This is a secret file. Shhh! Don't tell anyone."</span>)<br translate="no"/><span class="ent">➊</span> secretFile.close()</p>
+<p class="indent">En primer lugar, debes abrir el fichero utilizando la función open( <span class="literal">)</span>. A continuación, utiliza la notación por puntos para llamar a la función escribir( <span class="literal">)</span> y escribir una cadena en <em>archivo secreto.txt</em>. A continuación, debes llamar a la función close( <span class="literal">)</span> <span class="ent">➊,</span> que guarda y cierra el archivo. Es importante que recuerdes incluir la función close( <span class="literal">)</span>; de lo contrario, los datos no se guardarán en el archivo.</p>
+<p class="indent">Ejecuta el programa y luego abre <em>secretFile.txt</em> en un editor de texto para ver si se ha guardado tu mensaje secreto. Intenta cambiar la cadena para escribir algo <span epub:type="pagebreak" id="page_238"></span>diferente en el archivo y vuelve a ejecutar el programa. ¿Qué ocurre? ¡El mensaje antiguo debería haber sido sustituido por el mensaje nuevo! Prueba a cambiar de nuevo el mensaje, pero en lugar de pasar <span class="literal">"w</span> " pasa en su lugar <span class="literal">"a"</span>. ¿Qué ocurre ahora? Muy chulo, ¿eh?</p>
+<h4 class="h4" id="ch11lev2sec03"><strong><span class="blue1">Leer un archivo</span></strong></h4>
+<p class="noindent">La función <span class="literal">read(</span> ) lee todo el contenido de un archivo que un programa ha abierto. Puede que quieras utilizar los datos en tu programa, modificarlos y luego devolverlos al archivo, o dar salida a los datos para facilitar su consulta. Sea cual sea el motivo, utilizarás la función <span class="literal">read()</span> para leer archivos.</p>
+<p class="indent">Para leer un fichero, primero debes abrirlo y luego acordarte de cerrarlo cuando hayas terminado. Es importante que aprendas este hábito cuando trabajes con archivos en tus programas, ¡para evitar errores!</p>
+<p class="indent">Vamos a leer un archivo y luego mostrar su contenido para que podamos ver lo que dice. Este programa, <em>showSecretFile.py</em>, muestra el contenido de un fichero utilizando las funciones <span class="literal">read()</span> e <span class="literal">print()</span>:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>showSecretFile.py</em></span></p>
+<p class="programs" translate="no">   secretFile = <span class="rose">open</span>(<span class="green">"secretFile.txt"</span>, <span class="green">"r"</span>)<br translate="no"/><br translate="no"/><span class="ent">➊</span> <span class="rose">print</span>(secretFile.read())<br translate="no"/>   secretFile.close()</p>
+<p class="indent">En primer lugar, abrimos el archivo y pasamos <span class="literal">"r"</span> como argumento de permiso para que nuestro programa pueda leer el archivo. También puedes pasar <span class="literal">"r+"</span>, pero en este caso no vamos a escribir en el archivo, así que es mejor <span class="literal">"r</span> ". Para imprimir el contenido de <em>archivo_secreto.txt</em>, pasamos <span class="literal">archivo_secreto.read()</span> a una sentencia <span class="literal">print</span>. Por último, aunque no hayamos escrito ningún dato en el archivo, conviene cerrarlo con la función <span class="literal">close()</span>.</p>
+<p class="indent">Ejecuta el programa para ver qué ocurre. El contenido de <em>archivo_secreto.txt</em> debería imprimirse en la pantalla. ¡Ahora puedes leer el archivo sin tener que abrirlo en un editor de texto como harías normalmente!</p>
+<h4 class="h4" id="ch11lev2sec04"><strong><span class="blue1">Leer una línea de un archivo</span></strong></h4>
+<p class="noindent">Supongamos que tienes un documento de texto largo y quieres ver sólo una parte. Aquí es donde resulta útil la función <span class="literal">readline(</span> ). A diferencia de la función <span class="literal">read</span> (), que obtiene todo el contenido del archivo, la función <span class="literal">readline</span> () obtiene una sola línea del archivo cada vez.</p>
+<p class="indent">Para probar la función <span class="literal">readline</span> (), primero añade un montón de texto a <em>secretFile.txt</em>. Puedes hacerlo utilizando un editor de texto o usando tus nuevas habilidades de Python para escribir un montón de información en él. Si utilizas Python para escribir en tu archivo, añade <span class="literal">\n</span> a tus cadenas cada vez que quieras una nueva línea. Por ejemplo, si escribes <span class="literal">"</span> <span class="literal">Guay\nBaile\nFiesta</span> <span class="literal">"</span> en un archivo, Python coloca <span class="literal">"Guay"</span> en una línea, <span class="literal">"Baile"</span> en la siguiente y <span class="literal">"Fiesta"</span> en la última, así:</p>
+<p class="programs" translate="no"><span class="blue1">Cool</span><br translate="no"/><span class="blue1">Dance</span><br translate="no"/><span class="blue1">Party</span></p>
+<p class="indent"><span epub:type="pagebreak" id="page_239"></span>Cuando hayas añadido el texto a <em>secretFile.txt</em>, escribe este código en un archivo Python y guárdalo como <em>showSecretLines.py</em> en una nueva carpeta llamada <em>files</em>:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>showSecretLines.py</em></span></p>
+<p class="programs" translate="no">secretFile = <span class="rose">open</span>(<span class="green">"secretFile.txt"</span>, <span class="green">"r"</span>)<br translate="no"/><br translate="no"/><span class="rose">print</span>(secretFile.readline())<br translate="no"/><span class="rose">print</span>(secretFile.readline())<br translate="no"/><span class="rose">print</span>(secretFile.readline())<br translate="no"/><br translate="no"/>secretFile.close()</p>
+<p class="indent">Una vez más, debes abrir secretFile <em>.txt</em> antes de poder leer de él utilizando la función <span class="literal">readline()</span>. Como quieres que tu programa showSecretLines <em>.</em> py lea datos del archivo, debes volver a introducir <span class="literal">r</span> (o <span class="literal">r+</span>). A continuación, incluye tres sentencias <span class="literal">print</span> para imprimir las tres primeras líneas de archivosecreto <em>.txt</em>. Por último, vuelve a cerrar el archivo utilizando <span class="literal">close()</span>.</p>
+<p class="indent">La función <span class="literal">readline</span> () comienza con la primera línea de tu archivo. Cada vez que se utiliza la función <span class="literal">readline</span> (), lee automáticamente la línea siguiente. Esta función es muy práctica para imprimir un par de líneas del principio de archivos de texto.</p>
+<div class="note">
+<p class="notet"><strong><span class="notes">NOTA</span></strong></p>
+<p class="notep"><em>La</em> función <span class="literal"><span class="codeitalic">readline</span></span> () <em>convierte el archivo en una lista de cadenas, donde cada elemento de la lista representa una sola línea. Si quieres imprimir una línea desde la mitad de un documento de texto, ¡podrías escribir un bucle para encontrar e imprimir una cadena concreta de la lista!</em></p>
+</div>
+<h4 class="h4a" id="ch11lev2sec05"><strong>Misión nº 64: Lista de tareas pendientes</strong></h4>
+<p class="noindent">A veces puede que no tengas mucho tiempo libre para jugar a Minecraft. Puede que construyas estructuras complejas a lo largo de varios días en sesiones cortas. A medida que añadas programas para abrir puertas o teletransportar al jugador a algún lugar, tus construcciones se volverán más complejas y podrías tardar más en terminarlas. Trabajar en proyectos a lo largo de varios días puede hacer que olvides lo que estabas haciendo y lo que tienes que hacer a continuación. Esto me ocurre a menudo. Afortunadamente, ¡puedes crear un programa que te ayude a recordar!</p>
+<p class="indent">Los programas de esta misión crean una lista de tareas pendientes y la muestran en el chat de Minecraft. Puedes utilizar este programa para hacer un seguimiento de tus objetivos en Minecraft, de modo que cuando tengas que dejar de jugar, puedas retomarlo fácilmente donde lo dejaste.</p>
+<p class="indent">Para hacer la lista de tareas, escribirás dos programas distintos: uno para escribir la lista y otro para mostrarla. Empecemos creando el programa que escribe la lista.</p>
+<h4 class="h4" id="ch11lev2sec06"><strong><span class="blue1">Parte 1: Escribir la lista de tareas pendientes</span></strong></h4>
+<p class="noindent">En primer lugar, necesitas un programa para crear los elementos de la lista de tareas. <a href="ch11.xhtml#ch11ex1">El listado 11-1</a> te inicia, utilizando un bucle <span class="literal">while</span> y la función <span class="literal">input()</span> para añadir elementos a la lista de tareas pendientes. Cópialo en un archivo en IDLE y guárdalo como <em>inputToDoList.py</em> en la carpeta de <em>archivos</em>.</p>
+<p class="sidenote" translate="no"><span epub:type="pagebreak" id="page_240"></span><span class="blue"><em>inputToDoList.py</em></span></p>
+<p class="programs" translate="no"><span class="ent">➊</span> toDoFile =<br translate="no"/><br translate="no"/><span class="ent">➋</span> toDoList = <span class="green">""</span><br translate="no"/><br translate="no"/><span class="ent">➌</span> toDoItem = <span class="rose">input</span>(<span class="green">"Enter a to-do list item: "</span>)<br translate="no"/><br translate="no"/><span class="ent">➍</span> <span class="orange">while</span> toDoItem != <span class="green">"exit"</span>:<br translate="no"/><span class="ent">➎</span>     toDoList = toDoList + toDoItem + <span class="green">"\n"</span><br translate="no"/>       toDoItem = <span class="rose">input</span>(<span class="green">"Enter a to-do list item: "</span>)<br translate="no"/><br translate="no"/><span class="ent">➏</span> <span class="red"># Write the to-do list to the file</span><br translate="no"/><span class="ent">➐</span> <span class="red"># Close the file</span></p>
+<p class="examplet"><a id="ch11ex1"></a><em>Lista 11-1: Inicio del programa para escribir elementos en tu lista de tareas pendientes</em></p>
+<p class="indent">El programa crea una cadena vacía llamada <span class="literal">toDoList</span> <span class="ent">➋,</span> que almacenará todos los elementos de tu lista de tareas pendientes cuando los introduzcas. Utilizando la función <span class="literal">input()</span>, el programa te pide que introduzcas un elemento en la lista de tareas pendientes <span class="ent">➌.</span> A continuación, el bucle <span class="literal">while</span> comprueba si la entrada no es igual a "exit <span class="literal">"</span> <span class="ent">➍;</span> si no lo es, el programa añade tu elemento a la lista de tareas pendientes con una nueva línea al final utilizando <span class="literal">"\n"</span> <span class="ent">➎.</span> Sin embargo, si introduces <span class="literal">"exit</span>", el bucle deja de ejecutarse y no podrás añadir más elementos a la lista de tareas pendientes.</p>
+<p class="indent">Tu misión es terminar el programa. Para ello, necesitas escribir el código que abra el archivo, escriba <span class="literal">toDoList</span> en el archivo y, a continuación, cierre el archivo. Utiliza la función <span class="literal">open()</span> para abrir el archivo al inicio del programa <span class="ent">➊.</span> Debes abrirlo con permisos de escritura. Nombra el archivo que abre la función <em>comoHacerLista.txt</em>. Tu programa creará el archivo si no existe ya en el directorio.</p>
+<p class="indent">Al final del programa, escribe el contenido de la lista de tareas en el archivo para poder acceder a él más tarde. Utiliza la función <span class="literal">write()</span> para escribir la variable <span class="literal">toDoList</span> en el archivo <span class="literal">toDoFile</span> ➏. Después de escribir en el archivo, asegúrate de cerrarlo con la función <span class="literal">close</span> () en la última línea ➐.</p>
+<p class="indent"><a href="ch11.xhtml#ch11fig1">La Figura 11-1</a> me muestra escribiendo una lista de tareas con el programa. Cuando termino, escribo <span class="literal">exit</span>.</p>
+<div class="image"><img alt="image" src="../images/f11-01.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch11fig1"></a><em>Figura 11-1: Introduciendo cosas que hacer, como construir un bosque de pasteles y jugar al escondite</em></p>
+<h4 class="h4" id="ch11lev2sec07"><span epub:type="pagebreak" id="page_241"></span><strong><span class="blue1">Parte 2: Visualización de la lista de cosas por hacer</span></strong></h4>
+<p class="noindent">Ahora que tienes un programa para escribir una lista de cosas por hacer en un archivo, necesitas mostrar la lista de cosas por hacer en el chat de Minecraft, línea a línea. El listado <a href="ch11.xhtml#ch11ex2">11-2</a> inicia el programa por ti. Copia el listado en un nuevo archivo y guárdalo como <em>outputToDoList.py</em> en la carpeta de <em>archivos</em>.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>outputToDoList.py</em></span></p>
+<p class="programs" translate="no"> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>   mc = Minecraft.create()<br translate="no"/><br translate="no"/><span class="ent">➊</span> toDoList =<br translate="no"/><br translate="no"/> <span class="orange">for</span> line <span class="orange">in</span> toDoList:<br translate="no"/><span class="ent">➋</span> <span class="red"># Output "line" to the chat</span></p>
+<p class="examplet"><a id="ch11ex2"></a><em>Listado 11-2: Programa para enviar el archivo de la lista de tareas al chat de Minecraft</em></p>
+<p class="indent"><a href="ch11.xhtml#ch11ex2">El listado 11-2</a> utiliza un bucle <span class="literal">for</span> para enviar cada línea del archivo <em>toDoList.txt</em> al chat de Minecraft, de una en una. De momento, el programa está incompleto. Para terminar el programa, añade la función <span class="literal">open()</span> para abrir el archivo <em>toDoList.t</em> xt que creaste con <em>inputToDoList.py</em> <span class="ent">➊.</span> Asegúrate de que el archivo tiene permisos de lectura. Después de abrir el archivo, añade código dentro del bucle <span class="literal">for</span> para enviar la cadena almacenada en la variable <span class="literal">line</span> al chat de Minecraft <span class="ent">➋.</span> Para ello tendrás que utilizar las funciones <span class="literal">readline()</span> y <span class="literal">postToChat()</span>.</p>
+<p class="indent"><a href="ch11.xhtml#ch11fig2">La Figura 11</a> -2 muestra mi lista de tareas pendientes en el chat de Minecraft.</p>
+<div class="image"><img alt="image" src="../images/f11-02.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch11fig2"></a><em>Figura 11-2: Ahora, cuando vuelva a construir, podré ver lo que tengo que hacer.</em></p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch11_1.html">anterior</a><a href="ch11.html">Subtema 2 de 7: (Ver todo)</a><a href="ch11_3.html">siguiente</a><br/></p>
+<br/><a href="ch11_2.docx" target="_blank"></a></footer>
+</body>
+</html>

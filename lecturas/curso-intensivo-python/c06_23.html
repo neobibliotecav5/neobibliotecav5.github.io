@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c06-0012">Una lista de diccionarios</h3>
+<p class="BodyFirst">El diccionario <code translate="no">alien_0</code> contiene información variada sobre un alienígena, pero no tiene espacio para almacenar información sobre un segundo alienígena, y mucho menos sobre una pantalla llena de alienígenas. ¿Cómo puedes gestionar una flota de alienígenas? Una forma es hacer una lista de alienígenas en la que cada alienígena sea un diccionario de información sobre ese alienígena. Por ejemplo, el siguiente código construye una lista de tres alienígenas:</p>
+<p class="CodeLabel" translate="no"><b>aliens.py</b></p>
+<pre translate="no"><code translate="no">alien_0 = {'color': 'green', 'points': 5}
+alien_1 = {'color': 'yellow', 'points': 10}
+alien_2 = {'color': 'red', 'points': 15}
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> aliens = [alien_0, alien_1, alien_2]
+
+for alien in aliens:
+    print(alien)</code></pre>
+<p><span epub:type="pagebreak" id="Page_106" title="106"></span>Primero creamos tres diccionarios, cada uno de los cuales representa a un alienígena diferente. Almacenamos cada uno de estos diccionarios en una lista llamada <code translate="no">aliens</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Por último, recorremos la lista e imprimimos cada alienígena:</p>
+<pre translate="no"><code translate="no">{'color': 'green', 'points': 5}
+{'color': 'yellow', 'points': 10}
+{'color': 'red', 'points': 15}</code></pre>
+<p>Un ejemplo más realista incluiría más de tres alienígenas con un código que generara automáticamente cada alienígena. En el siguiente ejemplo, utilizamos <code translate="no">range()</code> para crear una flota de 30 alienígenas:</p>
+<pre translate="no"><code translate="no"># Make an empty list for storing aliens.
+aliens = []
+
+# Make 30 green aliens.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> for alien_number in range(30):
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     new_alien = {'color': 'green', 'points': 5, 'speed': 'slow'}
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     aliens.append(new_alien)
+
+# Show the first 5 aliens.
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> for alien in aliens[:5]:
+    print(alien)
+print("...")
+
+# Show how many aliens have been created.
+print(f"Total number of aliens: {len(aliens)}")</code></pre>
+<p>Este ejemplo comienza con una lista vacía para contener todos los alienígenas que se crearán. La función <code translate="no">range()</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span> devuelve una serie de números, que sólo indican a Python cuántas veces queremos que se repita el bucle. Cada vez que se ejecuta el bucle, creamos un nuevo alien <span aria-label="annotation2" class="CodeAnnotation">❷</span> y luego añadimos cada nuevo alien a la lista <code translate="no">aliens</code> <span aria-label="annotation3" class="CodeAnnotation">❸.</span> Utilizamos una rebanada para imprimir los cinco primeros alienígenas <span aria-label="annotation4" class="CodeAnnotation">❹,</span> y finalmente, imprimimos la longitud de la lista para demostrar que realmente hemos generado la flota completa de 30 alienígenas:</p>
+<pre translate="no"><code translate="no">{'color': 'green', 'points': 5, 'speed': 'slow'}
+{'color': 'green', 'points': 5, 'speed': 'slow'}
+{'color': 'green', 'points': 5, 'speed': 'slow'}
+{'color': 'green', 'points': 5, 'speed': 'slow'}
+{'color': 'green', 'points': 5, 'speed': 'slow'}
+...
+
+Total number of aliens: 30</code></pre>
+<p>Todos estos alienígenas tienen las mismas características, pero Python considera a cada uno un objeto independiente, lo que nos permite modificar cada alienígena individualmente.</p>
+<p>¿Cómo podrías trabajar con un grupo de alienígenas como éste? Imagina que en un aspecto del juego algunos alienígenas cambian de color y se mueven más rápido a medida que avanza la partida. Cuando llegue el momento de cambiar los colores, podemos utilizar un bucle <code translate="no">for</code> y una sentencia <code translate="no">if</code> para cambiar el color de los alienígenas. Por ejemplo, para cambiar <span epub:type="pagebreak" id="Page_107" title="107"></span>los tres primeros aliens a amarillo, aliens de velocidad media que valen 10 puntos cada uno, podríamos hacer esto:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray"># Make an empty list for storing aliens.</span>
+<span class="LiteralGray">aliens = []</span>
+
+<span class="LiteralGray"># Make 30 green aliens.</span>
+<span class="LiteralGray">for alien_number in range (30):</span>
+<span class="LiteralGray">    new_alien = {'color': 'green', 'points': 5, 'speed': 'slow'}</span>
+<span class="LiteralGray">    aliens.append(new_alien)</span>
+
+for alien in aliens[:3]:
+    if alien['color'] == 'green':
+        alien['color'] = 'yellow'
+        alien['speed'] = 'medium'
+        alien['points'] = 10
+
+<span class="LiteralGray"># Show the first 5 aliens.</span>
+<span class="LiteralGray">for alien in aliens[:5]:</span>
+<span class="LiteralGray">    print(alien)</span>
+<span class="LiteralGray">print("...")</span></code></pre>
+<p>Como queremos modificar los tres primeros alienígenas, hacemos un bucle a través de una porción que incluya sólo a los tres primeros alienígenas. Ahora todos los alienígenas son verdes, pero no siempre será así, así que escribimos una sentencia <code translate="no">if</code> para asegurarnos de que sólo modificamos los alienígenas verdes. Si el alienígena es verde, cambiamos el color a <code translate="no">'yellow'</code>, la velocidad a <code translate="no">'medium'</code>, y el valor en puntos a <code translate="no">10</code>, como se muestra en la siguiente salida:</p>
+<pre translate="no"><code translate="no">{'color': 'yellow', 'points': 10, 'speed': 'medium'}
+{'color': 'yellow', 'points': 10, 'speed': 'medium'}
+{'color': 'yellow', 'points': 10, 'speed': 'medium'}
+{'color': 'green', 'points': 5, 'speed': 'slow'}
+{'color': 'green', 'points': 5, 'speed': 'slow'}
+...</code></pre>
+<p>Podrías ampliar este bucle añadiendo un bloque <code translate="no">elif</code> que convierta a los alienígenas amarillos en rojos y rápidos, con un valor de 15 puntos cada uno. Sin mostrar de nuevo todo el programa, ese bucle tendría el siguiente aspecto:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">for alien in aliens[0:3]:</span>
+<span class="LiteralGray">    if alien['color'] == 'green':</span>
+<span class="LiteralGray">        alien['color'] = 'yellow'</span>
+<span class="LiteralGray">        alien['speed'] = 'medium'</span>
+<span class="LiteralGray">        alien['points'] = 10</span>
+    elif alien['color'] == 'yellow':
+        alien['color'] = 'red'
+        alien['speed'] = 'fast'
+        alien['points'] = 15</code></pre>
+<p>Es habitual almacenar varios diccionarios en una lista cuando cada diccionario contiene muchos tipos de información sobre un objeto. Por ejemplo, podrías crear un diccionario para cada usuario de un sitio web, como hicimos en <em translate="no">user.py</em> <span epub:type="pagebreak" id="Page_108" title="108"></span> en <span class="xref" itemid="xref_target_page 99">la página 99</span>, y almacenar los diccionarios individuales en una lista llamada <code translate="no">users</code>. Todos los diccionarios de la lista deben tener una estructura idéntica, para que puedas recorrer la lista y trabajar con cada objeto diccionario de la misma manera.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c06_22.html">anterior</a><a href="c06.html">Subtema 23 de 28: (Ver todo)</a><a href="c06_24.html">siguiente</a><br/></p>
+<br/><a href="c06_23.docx" target="_blank"></a></footer>
+</body>
+</html>

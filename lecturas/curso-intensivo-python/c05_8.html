@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c05-0005">Comprobar varias condiciones</h3>
+<p class="BodyFirst">Puede que quieras comprobar varias condiciones al mismo tiempo. Por ejemplo, a veces puedes necesitar que dos condiciones sean <code translate="no">True</code> para realizar una acción. Otras veces, puedes estar satisfecho con que sólo una condición sea <code translate="no">True</code>. Las palabras clave <code translate="no">and</code> y <code translate="no">or</code> pueden ayudarte en estas situaciones.</p>
+<h4 id="h3-502703c05-0001">Utilizar y para comprobar varias condiciones</h4>
+<p class="BodyFirst">Para comprobar si dos condiciones son ambas <code translate="no">True</code> simultáneamente, utiliza la palabra clave <code translate="no">and</code> para combinar las dos pruebas condicionales; si cada prueba pasa, la expresión global se evalúa como <code translate="no">True</code>. Si alguna de las pruebas falla o si ambas fallan, la expresión se evalúa como <code translate="no">False</code>.</p>
+<p>Por ejemplo, puedes comprobar si dos personas tienen más de 21 años utilizando la siguiente prueba:</p>
+<pre translate="no"><code translate="no">&gt;&gt;&gt; <b>age_0 = 22</b>
+&gt;&gt;&gt; <b>age_1 = 18</b>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> &gt;&gt;&gt; <b>age_0 &gt;= 21 and age_1 &gt;= 21</b>
+False
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> &gt;&gt;&gt; <b>age_1 = 22</b>
+&gt;&gt;&gt; <b>age_0 &gt;= 21 and age_1 &gt;= 21</b>
+True</code></pre>
+<p>En primer lugar, definimos dos edades, <code translate="no">age_0</code> y <code translate="no">age_1</code>. Luego comprobamos si ambas edades son mayores de 21 años <span aria-label="annotation1" class="CodeAnnotation">❶.</span> La prueba de la izquierda pasa, pero la de la derecha falla, por lo que la expresión condicional global se evalúa como <code translate="no">False</code>. A continuación, cambiamos <code translate="no">age_1</code> por 22 <span aria-label="annotation2" class="CodeAnnotation">❷.</span> El valor de <code translate="no">age_1</code> es ahora mayor que 21, por lo que las dos pruebas individuales pasan, haciendo que la expresión condicional global se evalúe como <code translate="no">True</code>.</p>
+<p>Para mejorar la legibilidad, puedes utilizar paréntesis alrededor de las pruebas individuales, pero no es necesario. Si utilizas paréntesis, tu prueba tendría este aspecto:</p>
+<pre translate="no"><code translate="no">(age_0 &gt;= 21) and (age_1 &gt;= 21)</code></pre>
+<h4 id="h3-502703c05-0002"><span epub:type="pagebreak" id="Page_76" title="76"></span>Utilizar o para comprobar varias condiciones</h4>
+<p class="BodyFirst">La palabra clave <code translate="no">or</code> también te permite comprobar varias condiciones, pero se supera cuando se supera una o las dos pruebas individuales. Una expresión <code translate="no">or</code> sólo falla cuando fallan las dos pruebas individuales.</p>
+<p>Consideremos de nuevo dos edades, pero esta vez buscaremos que sólo una persona tenga más de 21 años:</p>
+<pre translate="no"><code translate="no">&gt;&gt;&gt; <b>age_0 = 22</b>
+&gt;&gt;&gt; <b>age_1 = 18</b>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> &gt;&gt;&gt; <b>age_0 &gt;= 21 or age_1 &gt;= 21</b>
+True
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> &gt;&gt;&gt; <b>age_0 = 18</b>
+&gt;&gt;&gt; <b>age_0 &gt;= 21 or age_1 &gt;= 21</b>
+False</code></pre>
+<p>Volvemos a empezar con dos variables de edad. Como la prueba para <code translate="no">age_0</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span> pasa, la expresión global se evalúa como <code translate="no">True</code>. A continuación, bajamos <code translate="no">age_0</code> a 18. En la prueba final <span aria-label="annotation2" class="CodeAnnotation">❷,</span> ahora ambas pruebas fallan y la expresión global se evalúa como <code translate="no">False</code>.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c05_7.html">anterior</a><a href="c05.html">Subtema 8 de 28: (Ver todo)</a><a href="c05_9.html">siguiente</a><br/></p>
+<br/><a href="c05_8.docx" target="_blank"></a></footer>
+</body>
+</html>

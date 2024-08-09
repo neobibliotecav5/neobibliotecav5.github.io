@@ -1,0 +1,53 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Using JSON Securely</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="Using JSON Securely"><div class="titlepage"><div><div><h1 class="title"><a id="using_json_securely"></a>Utilizar JSON con seguridad</h1></div></div></div><p>JSON es especialmente fácil de utilizar en aplicaciones web porque JSON es JavaScript. Un texto JSON puede convertirse en una estructura de datos útil con la función <code class="literal" translate="no">eval</code>:<a class="indexterm" id="IDX-APP-E-0699"></a><a class="indexterm" id="IDX-APP-E-0700"></a><a class="indexterm" id="IDX-APP-E-0701"></a></p><a id="I_programlisting_d1e11235"></a><pre class="programlisting" translate="no">var myData = eval('(' + myJSONText + ')');</pre><p>(La concatenación de los paréntesis alrededor del texto JSON es una solución para una ambigüedad en la gramática de JavaScript).</p><p>Sin embargo, la función <code class="literal" translate="no">eval</code> tiene terribles problemas de seguridad. ¿Es seguro utilizar <code class="literal" translate="no">eval</code> para analizar un texto JSON? Actualmente, la mejor técnica para obtener datos de un servidor en un navegador web es a través de <code class="literal" translate="no">XMLHttpRequest</code>. <code class="literal" translate="no">XMLHttpRequest</code> sólo puede obtener datos del mismo servidor que produjo el HTML. <code class="literal" translate="no">eval</code> ing texto de ese servidor no es menos seguro que el HTML original. Pero eso supone que el servidor es malicioso. ¿Y si el servidor es simplemente incompetente?<a class="indexterm" id="IDX-APP-E-0702"></a></p><p>Un servidor incompetente podría no realizar correctamente la codificación JSON. Si construye textos JSON juntando algunas cadenas en lugar de utilizar un codificador JSON adecuado, podría enviar involuntariamente material peligroso. Si actúa como un proxy y simplemente pasa el texto JSON sin determinar si está bien formado, entonces podría volver a enviar material peligroso.</p><p>El peligro puede evitarse utilizando el método <code class="literal" translate="no">JSON.parse</code> en lugar de <code class="literal" translate="no">eval</code>(ver <a class="ulink" href="http://www.JSON.org/json2.js">http://www.JSON.org/json2.js)</a>. <code class="literal" translate="no">JSON.parse</code> lanzará una excepción si el texto contiene algo peligroso. Se recomienda utilizar siempre <code class="literal" translate="no">JSON.parse</code> en lugar de <code class="literal" translate="no">eval</code> para defenderse de la incompetencia del servidor. También es una buena práctica para el día en que el navegador proporcione un acceso seguro a los datos de otros servidores.</p><p>Existe otro peligro en la interacción entre datos externos y <code class="literal" translate="no">innerHTML</code>. Un patrón Ajax habitual es que el servidor envíe un fragmento de texto HTML que se asigna a la propiedad <code class="literal" translate="no">innerHTML</code> de un elemento HTML. Esta es una práctica muy mala. Si el texto HTML contiene una etiqueta <code class="literal" translate="no">&lt;script&gt;</code> o su equivalente, se ejecutará un script maligno. Esto también podría deberse a la incompetencia del servidor.</p><p>¿Cuál es el peligro en concreto? Si un script maligno consigue ejecutarse en tu página, obtiene acceso a todo el estado y capacidades de la página. Puede interactuar con tu servidor, y éste no podrá distinguir las peticiones malignas de las legítimas. El script maligno tiene acceso al objeto global, que le da acceso a todos los datos de la aplicación excepto a las variables ocultas en los cierres. Tiene acceso al objeto documento, que le da acceso a todo lo que ve el usuario. También da al script maligno la capacidad de dialogar con el usuario. La barra de direcciones del navegador y todo el cromo antiphishing indicarán al usuario que debe confiar en el diálogo. El objeto documento también da al script maligno acceso a la red, permitiéndole cargar más scripts malignos, o sondear sitios dentro de tu cortafuegos, o enviar los secretos que ha aprendido a cualquier servidor del mundo.<a class="indexterm" id="IDX-APP-E-0703"></a></p><p>Este peligro es consecuencia directa del objeto global de JavaScript, que es de lejos la peor parte de las muchas partes malas de JavaScript. Estos peligros no están causados por Ajax o JSON o <code class="literal" translate="no">XMLHttpRequest</code> o Web 2.0 (sea lo que sea eso). Estos peligros han estado en el navegador desde la introducción de JavaScript, y permanecerán hasta que JavaScript sea sustituido o reparado. Ten cuidado.</p></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="ape.html">← Anterior</a><a href="apes03.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="apes02.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\apes02.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

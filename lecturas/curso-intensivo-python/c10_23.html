@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c10-0011">Utilizar excepciones para evitar fallos</h3>
+<p class="BodyFirst">Manejar los errores correctamente es especialmente importante cuando el programa tiene más trabajo que hacer después de que se produzca el error. Esto ocurre a menudo en los programas que piden a los usuarios que introduzcan datos. Si el programa responde adecuadamente a las entradas no válidas, puede pedir más entradas válidas en lugar de bloquearse.</p>
+<p>Creemos una calculadora sencilla que sólo haga divisiones:</p>
+<p class="CodeLabel" translate="no"><b>division_calculator.py</b></p>
+<pre translate="no"><code translate="no">print("Give me two numbers, and I'll divide them.")
+print("Enter 'q' to quit.")
+
+while True:
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     first_number = input("\nFirst number: ")
+    if first_number == 'q':
+        break
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     second_number = input("Second number: ")
+    if second_number == 'q':
+        break
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     answer = int(first_number) / int(second_number)
+    print(answer)</code></pre>
+<p><span epub:type="pagebreak" id="Page_194" title="194"></span>Este programa pide al usuario que introduzca un <code translate="no">first_number</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span> y, si no introduce <code translate="no">q</code> para salir, un <code translate="no">second_number</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> A continuación, dividimos estos dos números para obtener un <code translate="no">answer</code> <span aria-label="annotation3" class="CodeAnnotation">❸.</span> Este programa no hace nada para manejar los errores, por lo que pedirle que divida por cero hace que se bloquee:</p>
+<pre translate="no"><code translate="no">Give me two numbers, and I'll divide them.
+Enter 'q' to quit.
+
+First number: <b>5</b>
+Second number: <b>0</b>
+Traceback (most recent call last):
+  File "division_calculator.py", line 11, in &lt;module&gt;
+    answer = int(first_number) / int(second_number)
+             ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+ZeroDivisionError: division by zero</code></pre>
+<p>Es malo que el programa se bloquee, pero tampoco es buena idea dejar que los usuarios vean las trazas. Los usuarios no técnicos se sentirán confundidos por ellos, y en un entorno malicioso, los atacantes aprenderán más de lo que tú quieres. Por ejemplo, sabrán el nombre del archivo de tu programa y verán una parte de tu código que no funciona correctamente. A veces, un atacante hábil puede utilizar esta información para determinar qué tipo de ataques utilizar contra tu código.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c10_22.html">anterior</a><a href="c10.html">Subtema 23 de 37: (Ver todo)</a><a href="c10_24.html">siguiente</a><br/></p>
+<br/><a href="c10_23.docx" target="_blank"></a></footer>
+</body>
+</html>

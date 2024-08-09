@@ -1,0 +1,485 @@
+<html lang="en-us" xml:lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xmlns:ns="http://www.w3.org/2001/10/synthesis">
+<head>
+<title>Learn to Program with Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+</head>
+<body>
+<h2 class="h2a" id="index"><span epub:type="pagebreak" id="page_305"></span><strong>INDEX</strong></h2>
+<h3 class="h3i"><strong><span class="blue1">Symbols &amp; Numbers</span></strong></h3>
+<p class="indexmain"><span class="literal">+</span> (addition operator), <a href="ch03.xhtml#page_52">52–53</a></p>
+<p class="indexmain"><span class="literal">+=</span> (addition shorthand), <a href="ch03.xhtml#page_66">66</a></p>
+<p class="indexmain"><span class="literal">*</span> (asterisk), importing all functions with, <a href="ch11.xhtml#page_245">245</a></p>
+<p class="indexmain"><span class="literal">/</span> (division operator), <a href="ch03.xhtml#page_62">62</a></p>
+<p class="indexmain"><span class="literal">/=</span> (division shorthand), <a href="ch03.xhtml#page_66">66</a></p>
+<p class="indexmain"><span class="literal">""</span> (double quotation marks), for strings, <a href="ch04.xhtml#page_70">70</a></p>
+<p class="indexmain"><span class="literal">=</span> (equal sign), assigning values to variables with, <a href="ch02.xhtml#page_32">32</a></p>
+<p class="indexmain"><span class="literal">==</span> (equal to), <a href="ch05.xhtml#page_88">88</a></p>
+<p class="indexmain"><span class="literal">**</span> (exponential operator), <a href="ch03.xhtml#page_64">64–65</a>, <a href="ch05.xhtml#page_95">95–96</a></p>
+<p class="indexmain"><span class="literal">&gt;</span> (greater than), <a href="ch05.xhtml#page_92">92</a></p>
+<p class="indexmain"><span class="literal">&gt;=</span> (greater than or equal to), <a href="ch05.xhtml#page_93">93–94</a></p>
+<p class="indexmain"><span class="literal">#</span> (hash mark), for comments, <a href="ch02.xhtml#page_39">39</a></p>
+<p class="indexmain"><span class="literal">&lt;</span> (less than), <a href="ch05.xhtml#page_92">92–93</a></p>
+<p class="indexmain"><span class="literal">&lt;=</span> (less than or equal to), <a href="ch05.xhtml#page_93">93–94</a></p>
+<p class="indexmain"><span class="literal">*</span> (multiplication operator), <a href="ch03.xhtml#page_62">62</a></p>
+<p class="indexmain"><span class="literal">*=</span> (multiplication shorthand), <a href="ch03.xhtml#page_66">66</a></p>
+<p class="indexmain"><span class="literal">!=</span> (not equal to), <a href="ch05.xhtml#page_90">90–91</a></p>
+<p class="indexmain"><span class="literal">''</span> (single quotation marks), for strings, <a href="ch04.xhtml#page_70">70</a></p>
+<p class="indexmain"><span class="literal">[]</span> (square brackets), for defining lists, <a href="ch09.xhtml#page_172">172</a></p>
+<p class="indexmain"><span class="literal">-</span> (subtraction operator), <a href="ch03.xhtml#page_56">56</a></p>
+<p class="indexmain"><span class="literal">-=</span> (subtraction shorthand), <a href="ch03.xhtml#page_66">66</a></p>
+<p class="indexmain"><span class="literal">"""</span> (triple quotation marks), for docstrings, <a href="ch08.xhtml#page_156">156–157</a></p>
+<p class="indexmain">2D lists, <a href="ch10.xhtml#page_212">212–217</a>, <a href="ch10.xhtml#page_220">220</a></p>
+<p class="indexmain">3D lists, <a href="ch10.xhtml#page_222">222–229</a></p>
+<h3 class="h3i"><strong><span class="blue1">A</span></strong></h3>
+<p class="indexmain"><span class="literal">a</span> (append permission), <a href="ch11.xhtml#page_237">237</a></p>
+<p class="indexmain">addition operator (<span class="literal">+</span>), <a href="ch03.xhtml#page_52">52–53</a></p>
+<p class="indexsub">shorthand (<span class="literal">+=</span>), <a href="ch03.xhtml#page_66">66</a></p>
+<p class="indexmain">aliases, for modules, <a href="ch11.xhtml#page_245">245</a></p>
+<p class="indexmain"><span class="literal">and</span> operator, <a href="ch05.xhtml#page_97">97</a></p>
+<p class="indexmain">API (application programming interface), Minecraft Python</p>
+<p class="indexsub">installing on Mac, <a href="ch01.xhtml#page_16">16–18</a></p>
+<p class="indexsub">installing on Windows, <a href="ch01.xhtml#page_6">6–7</a></p>
+<p class="indexsub">troubleshooting, <a href="app02.xhtml#page_297">297–298</a></p>
+<p class="indexmain">append permission (<span class="literal">a</span>), <a href="ch11.xhtml#page_237">237</a></p>
+<p class="indexmain"><span class="literal">append()</span> function, <a href="ch09.xhtml#page_175">175–176</a></p>
+<p class="indexmain">application programming interface. <em>See</em> API</p>
+<p class="indexmain">arguments, <a href="ch02.xhtml#page_38">38</a>, <a href="ch08.xhtml#page_151">151–152</a></p>
+<p class="indexsub">line breaks in, <a href="ch08.xhtml#page_157">157</a></p>
+<p class="indexsub">math operators in, <a href="ch03.xhtml#page_58">58–59</a></p>
+<p class="indexmain">arrays. <em>See</em> lists</p>
+<p class="indexmain">asterisk (<span class="literal">*</span>), importing all functions with, <a href="ch11.xhtml#page_245">245</a></p>
+<p class="indexmain">attributes, <a href="ch12.xhtml#page_261">261</a>. <em>See also</em> variables</p>
+<p class="indexsub">accessing, <a href="ch12.xhtml#page_263">263–264</a></p>
+<p class="indexsub">class, <a href="ch12.xhtml#page_275">275–277</a></p>
+<h3 class="h3i"><strong><span class="blue1">B</span></strong></h3>
+<p class="indexmain">block hits program, <a href="ch09.xhtml#page_184">184–186</a>, <a href="ch10.xhtml#page_200">200–202</a></p>
+<p class="indexsub">scoreboard, <a href="ch09.xhtml#page_196">196–198</a>, <a href="ch10.xhtml#page_209">209–210</a></p>
+<p class="indexmain">blocks</p>
+<p class="indexsub">changing, <a href="ch03.xhtml#page_56">56–57</a>, <a href="ch07.xhtml#page_142">142–143</a>, <a href="ch10.xhtml#page_200">200–202</a></p>
+<p class="indexsub">finding highest, <a href="ch05.xhtml#page_94">94</a></p>
+<p class="indexsub">identifying, <a href="ch05.xhtml#page_89">89</a></p>
+<p class="indexsub">IDs</p>
+<p class="indexsub1">cheat sheet, <a href="app03.xhtml#page_299">299–304</a></p>
+<p class="indexsub1">finding by, <a href="ch05.xhtml#page_101">101–102</a>, <a href="ch09.xhtml#page_190">190–191</a>, <a href="ch10.xhtml#page_211">211–212</a></p>
+<p class="indexsub1">reminder program, <a href="ch08.xhtml#page_159">159–160</a></p>
+<p class="indexsub">moving, <a href="ch08.xhtml#page_167">167–169</a></p>
+<p class="indexsub">placing, <a href="ch03.xhtml#page_53">53</a>, <a href="ch03.xhtml#page_59">59–60</a></p>
+<p class="indexsub1">by user input, <a href="ch04.xhtml#page_78">78–79</a></p>
+<p class="indexsub">random, <a href="ch08.xhtml#page_164">164–165</a>, <a href="ch09.xhtml#page_187">187</a></p>
+<p class="indexsub">replacing, <a href="ch09.xhtml#page_177">177–178</a></p>
+<p class="indexsub">stacking, <a href="ch03.xhtml#page_53">53–54</a></p>
+<p class="indexsub"><span epub:type="pagebreak" id="page_306"></span>state, <a href="ch08.xhtml#page_162">162–163</a></p>
+<p class="indexsub">wool, setting color by name, <a href="ch08.xhtml#page_162">162–163</a></p>
+<p class="indexmain">Boolean operators. <em>See</em> logical operators</p>
+<p class="indexmain">Boolean values, <a href="ch05.xhtml#page_86">86–87</a></p>
+<p class="indexmain"><span class="literal">break</span> statements, <a href="ch07.xhtml#page_143">143</a>, <a href="ch10.xhtml#page_211">211</a></p>
+<p class="indexmain">building quickly, <a href="ch03.xhtml#page_59">59–61</a></p>
+<h3 class="h3i"><strong><span class="blue1">C</span></strong></h3>
+<p class="indexmain">chat</p>
+<p class="indexsub">persistent, <a href="ch07.xhtml#page_143">143–144</a></p>
+<p class="indexsub">posting to, <a href="ch04.xhtml#page_71">71–72</a>, <a href="ch04.xhtml#page_73">73–74</a></p>
+<p class="indexsub">usernames, <a href="ch04.xhtml#page_76">76–77</a></p>
+<p class="indexmain">cheat sheet, block IDs, <a href="app03.xhtml#page_299">299–304</a></p>
+<p class="indexmain"><span class="literal">choice()</span> function, <a href="ch09.xhtml#page_186">186</a></p>
+<p class="indexmain">class attributes, <a href="ch12.xhtml#page_275">275–277</a>. <em>See also</em> attributes, global variables</p>
+<p class="indexmain">classes, <a href="ch12.xhtml#page_261">261–264</a>, <a href="ch12.xhtml#page_277">277–278</a></p>
+<p class="indexmain"><span class="literal">close()</span> function, <a href="ch11.xhtml#page_237">237–238</a>, <a href="ch11.xhtml#page_251">251–252</a></p>
+<p class="indexmain">color of wool blocks, setting by name, <a href="ch08.xhtml#page_162">162–163</a></p>
+<p class="indexmain">command prompt, <a href="ch01.xhtml#page_24">24</a>, <a href="ch01.xhtml#page_27">27</a></p>
+<p class="indexmain">comments, <a href="ch02.xhtml#page_39">39</a>, <a href="ch08.xhtml#page_156">156–157</a></p>
+<p class="indexmain">comparators, <a href="ch05.xhtml#page_87">87–95</a>, <a href="ch06.xhtml#page_108">108–109</a>, <a href="ch07.xhtml#page_135">135–136</a></p>
+<p class="indexmain">concatenation, <a href="ch04.xhtml#page_75">75–76</a>, <a href="ch05.xhtml#page_87">87</a></p>
+<p class="indexmain">conditions, <a href="ch05.xhtml#page_85">85</a>, <a href="ch06.xhtml#page_108">108–109</a>, <a href="ch07.xhtml#page_135">135–136</a></p>
+<p class="indexmain">connecting to Minecraft, <a href="ch02.xhtml#page_38">38</a></p>
+<p class="indexmain">constructor, <a href="ch12.xhtml#page_263">263</a></p>
+<p class="indexmain">coordinates, <a href="ch02.xhtml#page_35">35–36</a></p>
+<p class="indexmain">copying structures, <a href="ch10.xhtml#page_229">229–233</a>, <a href="ch11.xhtml#page_246">246–250</a>, <a href="ch11.xhtml#page_252">252–256</a></p>
+<p class="indexmain">count variables, <a href="ch07.xhtml#page_128">128</a>, <a href="ch07.xhtml#page_131">131–132</a></p>
+<p class="indexmain">crater program, <a href="ch06.xhtml#page_109">109–110</a></p>
+<p class="indexmain">curse program, <a href="ch07.xhtml#page_132">132–133</a></p>
+<h3 class="h3i"><strong><span class="blue1">D</span></strong></h3>
+<p class="indexmain">dance floor, generating, <a href="ch07.xhtml#page_139">139–141</a></p>
+<p class="indexmain">data. <em>See also</em> files</p>
+<p class="indexsub">storing with variables, <a href="ch02.xhtml#page_32">32</a></p>
+<p class="indexsub">types, <a href="ch02.xhtml#page_35">35</a></p>
+<p class="indexmain">debugging, <a href="ch02.xhtml#page_46">46–48</a></p>
+<p class="indexmain">decimal values, <a href="ch02.xhtml#page_41">41–42</a></p>
+<p class="indexmain">decrementing values, <a href="ch07.xhtml#page_132">132</a></p>
+<p class="indexmain"><span class="literal">def</span> keyword, <a href="ch08.xhtml#page_150">150</a></p>
+<p class="indexmain"><span class="literal">del</span> keyword, <a href="ch09.xhtml#page_176">176–177</a></p>
+<p class="indexmain">delays, setting in programs, <a href="ch02.xhtml#page_43">43–44</a></p>
+<p class="indexmain">dictionaries. <em>See also</em> <span class="literal">shelve</span> module</p>
+<p class="indexsub">defining, <a href="ch09.xhtml#page_192">192–193</a></p>
+<p class="indexsub">items</p>
+<p class="indexsub1">accessing, <a href="ch09.xhtml#page_193">193</a></p>
+<p class="indexsub1">adding, <a href="ch09.xhtml#page_195">195–196</a></p>
+<p class="indexsub1">changing, <a href="ch09.xhtml#page_195">195–196</a></p>
+<p class="indexsub1">deleting, <a href="ch09.xhtml#page_196">196</a></p>
+<p class="indexsub">looping over, <a href="ch10.xhtml#page_209">209</a></p>
+<p class="indexsub">readability, <a href="ch10.xhtml#page_209">209</a></p>
+<p class="indexmain">diving contest program, <a href="ch07.xhtml#page_136">136–138</a></p>
+<p class="indexmain">division operator (<span class="literal">/</span>), <a href="ch03.xhtml#page_62">62</a></p>
+<p class="indexsub">shorthand (<span class="literal">/=</span>), <a href="ch03.xhtml#page_66">66</a></p>
+<p class="indexmain">docstrings, <a href="ch08.xhtml#page_156">156–157</a></p>
+<p class="indexmain">double quotation marks (<span class="literal">""</span>), for strings, <a href="ch04.xhtml#page_70">70</a></p>
+<p class="indexmain"><span class="literal">dump()</span> function, <a href="ch11.xhtml#page_243">243–244</a></p>
+<h3 class="h3i"><strong><span class="blue1">E</span></strong></h3>
+<p class="indexmain"><span class="literal">elif</span> statements, <a href="ch06.xhtml#page_113">113–114</a>, <a href="ch06.xhtml#page_116">116–117</a></p>
+<p class="indexmain"><span class="literal">else</span> statements, <a href="ch06.xhtml#page_111">111</a>, <a href="ch07.xhtml#page_145">145</a>, <a href="ch10.xhtml#page_210">210–211</a></p>
+<p class="indexmain"><span class="literal">else-if</span> statements. <em>See</em> <span class="literal">elif</span> statements</p>
+<p class="indexmain">equal to (<span class="literal">==</span>), <a href="ch05.xhtml#page_88">88</a></p>
+<p class="indexmain">equal sign (<span class="literal">=</span>), assigning values to variables with, <a href="ch02.xhtml#page_32">32</a></p>
+<p class="indexmain">errors. <em>See also</em> troubleshooting</p>
+<p class="indexsub">debugging, <a href="ch02.xhtml#page_46">46–48</a></p>
+<p class="indexsub">handling, <a href="ch04.xhtml#page_80">80–82</a></p>
+<p class="indexsub">index, <a href="ch09.xhtml#page_172">172–173</a></p>
+<p class="indexsub">scope, <a href="ch08.xhtml#page_166">166</a></p>
+<p class="indexsub">syntax, <a href="ch02.xhtml#page_34">34</a></p>
+<p class="indexsub">type, <a href="ch08.xhtml#page_151">151–152</a>, <a href="ch08.xhtml#page_158">158–159</a></p>
+<p class="indexmain">exception handling, <a href="ch04.xhtml#page_80">80–82</a></p>
+<p class="indexmain">exponential operator (<span class="literal">**</span>), <a href="ch03.xhtml#page_64">64–65</a>, <a href="ch05.xhtml#page_95">95–96</a></p>
+<p class="indexmain">expressions, <a href="ch03.xhtml#page_51">51–52</a></p>
+<h3 class="h3i"><strong><span class="blue1">F</span></strong></h3>
+<p class="indexmain"><span class="literal">False</span> (Boolean value), <a href="ch05.xhtml#page_86">86</a></p>
+<p class="indexmain">files, <a href="ch11.xhtml#page_235">235–239</a></p>
+<p class="indexsub">opening, <a href="ch11.xhtml#page_236">236–237</a>, <a href="ch11.xhtml#page_251">251</a></p>
+<p class="indexsub">reading, <a href="ch11.xhtml#page_238">238–239</a></p>
+<p class="indexsub"><span epub:type="pagebreak" id="page_307"></span>saving, <a href="ch11.xhtml#page_237">237–238</a>, <a href="ch11.xhtml#page_251">251–252</a></p>
+<p class="indexsub"><span class="literal">shelve</span> module, using with, <a href="ch11.xhtml#page_251">251–252</a></p>
+<p class="indexsub">writing to, <a href="ch11.xhtml#page_237">237–238</a></p>
+<p class="indexmain"><span class="literal">Flask</span> module, <a href="ch11.xhtml#page_257">257–259</a>. <em>See also</em> modules, pip</p>
+<p class="indexmain">floats, <a href="ch02.xhtml#page_41">41–42</a></p>
+<p class="indexsub">converting to strings, <a href="ch04.xhtml#page_75">75–76</a></p>
+<p class="indexmain">flower trail, creating, <a href="ch07.xhtml#page_134">134–135</a></p>
+<p class="indexmain">forest, building, <a href="ch08.xhtml#page_152">152–154</a></p>
+<p class="indexmain"><span class="literal">for</span> loops, <a href="ch10.xhtml#page_199">199–200</a></p>
+<p class="indexsub">with dictionaries, <a href="ch10.xhtml#page_209">209</a></p>
+<p class="indexsub">generating 2D lists with, <a href="ch10.xhtml#page_220">220</a></p>
+<p class="indexsub">with multidimensional lists, <a href="ch10.xhtml#page_212">212–217</a>, <a href="ch10.xhtml#page_222">222–229</a></p>
+<p class="indexmain"><span class="literal">for-else</span> loops, <a href="ch10.xhtml#page_210">210–211</a></p>
+<p class="indexmain">functions, <a href="ch08.xhtml#page_149">149</a>. <em>See also</em> methods</p>
+<p class="indexsub">arguments, <a href="ch08.xhtml#page_151">151–152</a></p>
+<p class="indexsub">calling, <a href="ch08.xhtml#page_150">150–151</a></p>
+<p class="indexsub">defining, <a href="ch08.xhtml#page_150">150</a></p>
+<p class="indexsub">returning values with, <a href="ch08.xhtml#page_157">157–159</a>, <a href="ch09.xhtml#page_183">183</a>, <a href="ch12.xhtml#page_270">270</a></p>
+<h3 class="h3i"><strong><span class="blue1">G</span></strong></h3>
+<p class="indexmain"><span class="literal">getBlock()</span> function, <a href="ch05.xhtml#page_89">89</a></p>
+<p class="indexmain"><span class="literal">getHeight()</span> function, <a href="ch05.xhtml#page_94">94</a></p>
+<p class="indexmain"><span class="literal">getPos()</span> function, <a href="ch03.xhtml#page_60">60</a></p>
+<p class="indexmain"><span class="literal">getTilePos()</span> function, <a href="ch03.xhtml#page_55">55</a></p>
+<p class="indexmain">ghost structures</p>
+<p class="indexsub">castle, <a href="ch12.xhtml#page_270">270–272</a></p>
+<p class="indexsub">hotel, <a href="ch12.xhtml#page_279">279–281</a></p>
+<p class="indexsub">house, <a href="ch12.xhtml#page_267">267–269</a></p>
+<p class="indexsub">tree, <a href="ch12.xhtml#page_284">284–285</a></p>
+<p class="indexsub">village, <a href="ch12.xhtml#page_273">273–275</a></p>
+<p class="indexmain">gifts program, <a href="ch06.xhtml#page_114">114–115</a></p>
+<p class="indexmain">global variables, <a href="ch08.xhtml#page_166">166–167</a></p>
+<p class="indexmain">greater than (<span class="literal">&gt;</span>), <a href="ch05.xhtml#page_92">92</a></p>
+<p class="indexmain">greater than or equal to (<span class="literal">&gt;=</span>), <a href="ch05.xhtml#page_93">93–94</a></p>
+<h3 class="h3i"><strong><span class="blue1">H</span></strong></h3>
+<p class="indexmain">hardcoded values, <a href="ch04.xhtml#page_72">72</a></p>
+<p class="indexmain">hash marks (<span class="literal">#</span>), for comments, <a href="ch02.xhtml#page_39">39</a></p>
+<p class="indexmain"><span class="literal">"Hello, Minecraft World"</span>, posting to chat, <a href="ch04.xhtml#page_71">71–72</a></p>
+<p class="indexmain">hot and cold game, <a href="ch07.xhtml#page_145">145–147</a></p>
+<h3 class="h3i"><strong><span class="blue1">I</span></strong></h3>
+<p class="indexmain">IDLE, <a href="ch01.xhtml#page_23">23–27</a></p>
+<p class="indexmain"><span class="literal">if</span> statements, <a href="ch06.xhtml#page_107">107–109</a></p>
+<p class="indexsub">with Boolean operators, <a href="ch06.xhtml#page_123">123–124</a></p>
+<p class="indexsub">in functions, <a href="ch08.xhtml#page_161">161–162</a></p>
+<p class="indexsub">with lists, <a href="ch09.xhtml#page_189">189–190</a></p>
+<p class="indexsub">nested, <a href="ch06.xhtml#page_119">119</a>, <a href="ch07.xhtml#page_141">141</a></p>
+<p class="indexsub">with range checks, <a href="ch06.xhtml#page_121">121</a></p>
+<p class="indexmain">importing modules, <a href="ch02.xhtml#page_43">43–44</a>, <a href="ch11.xhtml#page_242">242–245</a></p>
+<p class="indexmain">immutable</p>
+<p class="indexsub">strings, <a href="ch09.xhtml#page_179">179</a></p>
+<p class="indexsub">world, <a href="ch05.xhtml#page_86">86–87</a>, <a href="ch06.xhtml#page_112">112–113</a></p>
+<p class="indexmain"><span class="literal">in</span> operator, <a href="ch09.xhtml#page_189">189–190</a></p>
+<p class="indexmain">increment, <a href="ch07.xhtml#page_131">131–132</a></p>
+<p class="indexmain">indentation, <a href="ch04.xhtml#page_80">80</a>, <a href="ch06.xhtml#page_108">108</a>, <a href="ch08.xhtml#page_150">150</a></p>
+<p class="indexmain">index, of a list, <a href="ch09.xhtml#page_172">172–173</a>, <a href="ch10.xhtml#page_217">217–218</a>, <a href="ch10.xhtml#page_227">227–229</a></p>
+<p class="indexmain">infinite loops, <a href="ch07.xhtml#page_131">131–132</a></p>
+<p class="indexmain">inheritance, <a href="ch12.xhtml#page_277">277–279</a>, <a href="ch12.xhtml#page_282">282–284</a></p>
+<p class="indexmain"><span class="literal">__init__()</span> method, <a href="ch12.xhtml#page_262">262–264</a>, <a href="ch12.xhtml#page_282">282–284</a></p>
+<p class="indexmain">input</p>
+<p class="indexsub">numbers only, <a href="ch04.xhtml#page_81">81–82</a></p>
+<p class="indexsub">placing blocks by, <a href="ch04.xhtml#page_78">78–79</a></p>
+<p class="indexmain"><span class="literal">input()</span> function, <a href="ch04.xhtml#page_72">72–73</a></p>
+<p class="indexmain">installation. <em>See</em> Mac, Raspberry Pi, Windows</p>
+<p class="indexmain"><span class="literal">int()</span> function, <a href="ch04.xhtml#page_78">78</a></p>
+<p class="indexmain">integers, <a href="ch02.xhtml#page_35">35</a></p>
+<p class="indexsub">converting to a string, <a href="ch04.xhtml#page_75">75–76</a></p>
+<p class="indexsub">range checks, <a href="ch06.xhtml#page_121">121</a>, <a href="ch07.xhtml#page_139">139</a></p>
+<p class="indexmain">iteration, <a href="ch07.xhtml#page_127">127–128</a></p>
+<h3 class="h3i"><strong><span class="blue1">J</span></strong></h3>
+<p class="indexmain">Java</p>
+<p class="indexsub">installing on Mac, <a href="ch01.xhtml#page_15">15–16</a></p>
+<p class="indexsub">installing on Windows, <a href="ch01.xhtml#page_4">4–5</a></p>
+<p class="indexsub">troubleshooting, <a href="app02.xhtml#page_294">294</a>, <a href="app02.xhtml#page_296">296</a></p>
+<p class="indexmain">joining strings, <a href="ch04.xhtml#page_75">75–76</a></p>
+<h3 class="h3i"><strong><span class="blue1">K</span></strong></h3>
+<p class="indexmain">keys, in dictionaries, <a href="ch09.xhtml#page_192">192–193</a></p>
+<h3 class="h3i"><span epub:type="pagebreak" id="page_308"></span><strong><span class="blue1">L</span></strong></h3>
+<p class="indexmain">lava trap, setting, <a href="ch03.xhtml#page_56">56–57</a></p>
+<p class="indexmain"><span class="literal">len()</span> function, <a href="ch09.xhtml#page_183">183</a></p>
+<p class="indexmain">less than (<span class="literal">&lt;</span>), <a href="ch05.xhtml#page_92">92–93</a></p>
+<p class="indexmain">less than or equal to (<span class="literal">&lt;=</span>), <a href="ch05.xhtml#page_93">93–94</a></p>
+<p class="indexmain">lists, <a href="ch09.xhtml#page_171">171–173</a>, <a href="ch10.xhtml#page_212">212–217</a></p>
+<p class="indexsub">copying, <a href="ch09.xhtml#page_187">187–189</a></p>
+<p class="indexsub">creating, <a href="ch09.xhtml#page_172">172</a></p>
+<p class="indexsub">generating with <span class="literal">range()</span>, <a href="ch10.xhtml#page_202">202–203</a>, <a href="ch10.xhtml#page_204">204–205</a></p>
+<p class="indexsub">index positions of, <a href="ch09.xhtml#page_172">172–173</a>, <a href="ch10.xhtml#page_217">217–218</a>, <a href="ch10.xhtml#page_227">227–229</a></p>
+<p class="indexsub">items in</p>
+<p class="indexsub1">accessing, <a href="ch09.xhtml#page_172">172–173</a></p>
+<p class="indexsub1">adding, <a href="ch09.xhtml#page_175">175–176</a></p>
+<p class="indexsub1">changing, <a href="ch09.xhtml#page_173">173</a></p>
+<p class="indexsub1">deleting, <a href="ch09.xhtml#page_176">176–177</a></p>
+<p class="indexsub1">finding, <a href="ch09.xhtml#page_189">189–190</a></p>
+<p class="indexsub1">inserting, <a href="ch09.xhtml#page_176">176</a></p>
+<p class="indexsub">length, <a href="ch09.xhtml#page_183">183</a></p>
+<p class="indexsub">slicing, <a href="ch09.xhtml#page_188">188–189</a></p>
+<p class="indexsub">three-dimensional, <a href="ch10.xhtml#page_222">222–229</a></p>
+<p class="indexsub">two-dimensional, <a href="ch10.xhtml#page_212">212–217</a>, <a href="ch10.xhtml#page_220">220</a></p>
+<p class="indexmain">list slice, <a href="ch09.xhtml#page_188">188–189</a></p>
+<p class="indexmain"><span class="literal">list()</span> function, <a href="ch10.xhtml#page_204">204–205</a></p>
+<p class="indexmain"><span class="literal">load()</span> function, <a href="ch11.xhtml#page_245">245</a></p>
+<p class="indexmain">local variables, <a href="ch08.xhtml#page_166">166–167</a></p>
+<p class="indexmain">logical operators, <a href="ch05.xhtml#page_96">96–104</a></p>
+<p class="indexsub"><span class="literal">and</span>, <a href="ch05.xhtml#page_97">97</a></p>
+<p class="indexsub">and <span class="literal">if</span> statements, <a href="ch06.xhtml#page_123">123–124</a></p>
+<p class="indexsub"><span class="literal">not</span>, <a href="ch05.xhtml#page_100">100–101</a></p>
+<p class="indexsub"><span class="literal">or</span>, <a href="ch05.xhtml#page_99">99</a></p>
+<p class="indexsub">order of operations, <a href="ch05.xhtml#page_102">102–103</a></p>
+<p class="indexsub">and <span class="literal">while</span> loops, <a href="ch07.xhtml#page_138">138–139</a></p>
+<p class="indexmain">loops. <em>See</em> <span class="literal">for</span> loops, <span class="literal">while</span> loops</p>
+<h3 class="h3i"><strong><span class="blue1">M</span></strong></h3>
+<p class="indexmain">Mac, setup instructions, <a href="ch01.xhtml#page_13">13–22</a></p>
+<p class="indexmain">magic wand program, <a href="ch10.xhtml#page_200">200–202</a></p>
+<p class="indexmain"><span class="literal">math</span> module, <a href="ch07.xhtml#page_146">146</a></p>
+<p class="indexmain">math operators, <a href="ch03.xhtml#page_52">52–62</a></p>
+<p class="indexsub">addition (<span class="literal">+</span>), <a href="ch03.xhtml#page_52">52–53</a></p>
+<p class="indexsub">exponential (<span class="literal">**</span>), <a href="ch03.xhtml#page_64">64–65</a>, <a href="ch05.xhtml#page_95">95–96</a></p>
+<p class="indexsub">division (<span class="literal">/</span>), <a href="ch03.xhtml#page_62">62</a></p>
+<p class="indexsub">multiplication (<span class="literal">*</span>), <a href="ch03.xhtml#page_62">62</a></p>
+<p class="indexsub">order of operations, <a href="ch03.xhtml#page_65">65</a></p>
+<p class="indexsub">shorthand, <a href="ch03.xhtml#page_66">66</a></p>
+<p class="indexsub">subtraction (<span class="literal">-</span>), <a href="ch03.xhtml#page_56">56</a></p>
+<p class="indexmain">methods, <a href="ch12.xhtml#page_261">261</a>, <a href="ch12.xhtml#page_265">265–267</a>. <em>See also</em> classes, functions</p>
+<p class="indexsub">adding to subclasses, <a href="ch12.xhtml#page_279">279</a></p>
+<p class="indexsub">inheritance, <a href="ch12.xhtml#page_278">278</a></p>
+<p class="indexsub">overriding, <a href="ch12.xhtml#page_282">282–284</a></p>
+<p class="indexsub">returning values with, <a href="ch12.xhtml#page_270">270</a></p>
+<p class="indexmain">Midas touch program, <a href="ch07.xhtml#page_142">142–143</a></p>
+<p class="indexmain">Minecraft</p>
+<p class="indexsub">API (application programming interface)</p>
+<p class="indexsub1">installing on Mac, <a href="ch01.xhtml#page_16">16–18</a></p>
+<p class="indexsub1">installing on Windows, <a href="ch01.xhtml#page_6">6–7</a></p>
+<p class="indexsub">connecting programs to, <a href="ch02.xhtml#page_38">38</a></p>
+<p class="indexsub">game</p>
+<p class="indexsub1">installing on Mac, <a href="ch01.xhtml#page_13">13–14</a></p>
+<p class="indexsub1">installing on Windows, <a href="ch01.xhtml#page_2">2–3</a></p>
+<p class="indexsub">playing offline</p>
+<p class="indexsub1">on Mac, <a href="ch01.xhtml#page_21">21</a></p>
+<p class="indexsub1">on Windows, <a href="ch01.xhtml#page_11">11</a></p>
+<p class="indexsub">profile</p>
+<p class="indexsub1">creating on Mac, <a href="ch01.xhtml#page_18">18–20</a></p>
+<p class="indexsub1">creating on Windows, <a href="ch01.xhtml#page_7">7–9</a></p>
+<p class="indexsub">server</p>
+<p class="indexsub1">installing on Mac, <a href="ch01.xhtml#page_16">16–18</a></p>
+<p class="indexsub1">installing on Windows, <a href="ch01.xhtml#page_6">6–7</a></p>
+<p class="indexsub">troubleshooting, <a href="app02.xhtml#page_290">290–293</a></p>
+<p class="indexsub">worlds, creating new</p>
+<p class="indexsub1">on Mac, <a href="ch01.xhtml#page_18">18–21</a></p>
+<p class="indexsub1">on Windows, <a href="ch01.xhtml#page_7">7–11</a></p>
+<p class="indexmain">modules, <a href="ch11.xhtml#page_242">242–245</a></p>
+<p class="indexsub">installing with pip, <a href="ch11.xhtml#page_256">256–257</a></p>
+<p class="indexsub">nicknames for, <a href="ch11.xhtml#page_245">245</a></p>
+<p class="indexsub"><span class="literal">pickle</span>, <a href="ch11.xhtml#page_242">242–245</a></p>
+<p class="indexsub"><span class="literal">shelve</span>, <a href="ch11.xhtml#page_251">251–252</a></p>
+<p class="indexsub"><span class="literal">time</span>, <a href="ch02.xhtml#page_43">43–44</a></p>
+<p class="indexmain">moving block program, <a href="ch08.xhtml#page_167">167–169</a></p>
+<p class="indexmain">multiplication operator (<span class="literal">*</span>), <a href="ch03.xhtml#page_62">62</a></p>
+<p class="indexsub">shorthand (<span class="literal">*=</span>), <a href="ch03.xhtml#page_66">66</a></p>
+<h3 class="h3i"><strong><span class="blue1">N</span></strong></h3>
+<p class="indexmain">nicknames, for modules, <a href="ch11.xhtml#page_245">245</a></p>
+<p class="indexmain">night vision sword program, <a href="ch09.xhtml#page_190">190–191</a></p>
+<p class="indexmain">not equal to (<span class="literal">!=</span>), <a href="ch05.xhtml#page_90">90–91</a></p>
+<p class="indexmain"><span class="literal">not</span> operator, <a href="ch05.xhtml#page_100">100–101</a></p>
+<h3 class="h3i"><span epub:type="pagebreak" id="page_309"></span><strong><span class="blue1">O</span></strong></h3>
+<p class="indexmain">object-oriented programming, <a href="ch12.xhtml#page_261">261–262</a></p>
+<p class="indexmain">objects, <a href="ch12.xhtml#page_261">261–264</a>, <a href="ch12.xhtml#page_273">273–274</a></p>
+<p class="indexmain">offline, playing Minecraft</p>
+<p class="indexsub">on Mac, <a href="ch01.xhtml#page_21">21</a></p>
+<p class="indexsub">on Windows, <a href="ch01.xhtml#page_11">11</a></p>
+<p class="indexmain"><span class="literal">open()</span> function, <a href="ch11.xhtml#page_236">236–237</a>, <a href="ch11.xhtml#page_251">251</a></p>
+<p class="indexmain">operators. <em>See</em> logical operators, math operators</p>
+<p class="indexmain"><span class="literal">or</span> operator, <a href="ch05.xhtml#page_99">99</a></p>
+<p class="indexmain">order of operations</p>
+<p class="indexsub">logical operators, <a href="ch05.xhtml#page_102">102–103</a></p>
+<p class="indexsub">math operators, <a href="ch03.xhtml#page_65">65</a></p>
+<p class="indexmain">OS X, setup instructions, <a href="ch01.xhtml#page_13">13–22</a></p>
+<h3 class="h3i"><strong><span class="blue1">P</span></strong></h3>
+<p class="indexmain">package manager, <a href="ch11.xhtml#page_256">256</a></p>
+<p class="indexmain">parameters, of functions, <a href="ch08.xhtml#page_152">152</a></p>
+<p class="indexmain">permissions, for files, <a href="ch11.xhtml#page_236">236–237</a>, <a href="ch11.xhtml#page_243">243</a></p>
+<p class="indexmain"><span class="literal">pickle</span> module, <a href="ch11.xhtml#page_242">242–245</a></p>
+<p class="indexmain">pillars, building, <a href="ch10.xhtml#page_206">206–207</a></p>
+<p class="indexmain">pip, installing modules with, <a href="ch11.xhtml#page_256">256–257</a></p>
+<p class="indexmain">pixel art, <a href="ch10.xhtml#page_218">218–219</a></p>
+<p class="indexmain"><span class="literal">pollBlockHits()</span> function, <a href="ch09.xhtml#page_184">184–186</a>, <a href="ch10.xhtml#page_200">200–202</a></p>
+<p class="indexmain">position, of player, <a href="ch02.xhtml#page_35">35–37</a>. <em>See also</em> teleporting</p>
+<p class="indexsub">changing, <a href="ch02.xhtml#page_38">38</a></p>
+<p class="indexsub">finding, <a href="ch03.xhtml#page_55">55</a>, <a href="ch03.xhtml#page_60">60</a></p>
+<p class="indexsub1">in specific environments, <a href="ch05.xhtml#page_89">89–90</a>, <a href="ch05.xhtml#page_91">91–92</a>, <a href="ch05.xhtml#page_94">94–95</a>, <a href="ch05.xhtml#page_97">97–100</a></p>
+<p class="indexsub1">in specific locations, <a href="ch05.xhtml#page_95">95–96</a>, <a href="ch05.xhtml#page_104">104–105</a></p>
+<p class="indexsub">highest and lowest, <a href="ch09.xhtml#page_173">173–175</a></p>
+<p class="indexmain"><span class="literal">postToChat()</span> function, <a href="ch04.xhtml#page_71">71–72</a></p>
+<p class="indexmain"><span class="literal">print()</span> function, <a href="ch04.xhtml#page_70">70–71</a></p>
+<p class="indexmain">progress bar, <a href="ch09.xhtml#page_177">177–178</a></p>
+<p class="indexmain">pyramid, building, <a href="ch10.xhtml#page_207">207–208</a></p>
+<p class="indexmain">Python</p>
+<p class="indexsub">installing on Mac, <a href="ch01.xhtml#page_15">15</a></p>
+<p class="indexsub">installing on Windows, <a href="ch01.xhtml#page_3">3–4</a></p>
+<p class="indexsub">troubleshooting, <a href="app02.xhtml#page_293">293</a>, <a href="app02.xhtml#page_294">294–295</a></p>
+<p class="indexmain">Python shell, <a href="ch01.xhtml#page_24">24</a>, <a href="ch01.xhtml#page_26">26–27</a></p>
+<h3 class="h3i"><strong><span class="blue1">Q</span></strong></h3>
+<p class="indexmain">quotation marks</p>
+<p class="indexsub">for docstrings, <a href="ch08.xhtml#page_156">156–157</a></p>
+<p class="indexsub">for strings, <a href="ch04.xhtml#page_70">70</a></p>
+<h3 class="h3i"><strong><span class="blue1">R</span></strong></h3>
+<p class="indexmain"><span class="literal">r</span> (read permission), <a href="ch11.xhtml#page_237">237</a></p>
+<p class="indexmain"><span class="literal">r+</span> (read-and-write permission), <a href="ch11.xhtml#page_237">237</a></p>
+<p class="indexmain"><span class="literal">randint()</span> function, <a href="ch03.xhtml#page_66">66–67</a></p>
+<p class="indexmain"><span class="literal">random</span> module, <a href="ch03.xhtml#page_66">66–67</a>, <a href="ch09.xhtml#page_186">186–187</a></p>
+<p class="indexmain">range checks, <a href="ch06.xhtml#page_121">121</a>, <a href="ch07.xhtml#page_139">139</a></p>
+<p class="indexmain"><span class="literal">range()</span> function, <a href="ch10.xhtml#page_202">202–203</a>, <a href="ch10.xhtml#page_204">204–205</a></p>
+<p class="indexmain">Raspberry Pi, setup instructions, <a href="ch01.xhtml#page_22">22–23</a></p>
+<p class="indexmain">read-and-write permission (<span class="literal">r+</span>), <a href="ch11.xhtml#page_237">237</a></p>
+<p class="indexmain">read permission (<span class="literal">r</span>), <a href="ch11.xhtml#page_237">237</a></p>
+<p class="indexmain"><span class="literal">read()</span> function, <a href="ch11.xhtml#page_238">238</a></p>
+<p class="indexmain"><span class="literal">readline()</span> function, <a href="ch11.xhtml#page_238">238–239</a></p>
+<p class="indexmain">refactoring, <a href="ch08.xhtml#page_154">154–156</a></p>
+<p class="indexmain"><span class="literal">return</span> keyword, <a href="ch08.xhtml#page_157">157–159</a>, <a href="ch09.xhtml#page_183">183</a>, <a href="ch12.xhtml#page_270">270</a></p>
+<p class="indexmain"><span class="literal">reversed()</span> function, <a href="ch10.xhtml#page_205">205–206</a></p>
+<p class="indexmain">running a program, <a href="ch02.xhtml#page_40">40</a></p>
+<h3 class="h3i"><strong><span class="blue1">S</span></strong></h3>
+<p class="indexmain">scope, of variables, <a href="ch08.xhtml#page_166">166–167</a></p>
+<p class="indexmain">scoreboard, for block hits game, <a href="ch09.xhtml#page_196">196–198</a>, <a href="ch10.xhtml#page_209">209–210</a></p>
+<p class="indexmain">secret passage, building, <a href="ch06.xhtml#page_119">119–120</a></p>
+<p class="indexmain">server</p>
+<p class="indexsub">installing on Mac, <a href="ch01.xhtml#page_16">16–18</a></p>
+<p class="indexsub">installing on Windows, <a href="ch01.xhtml#page_6">6–7</a></p>
+<p class="indexsub">troubleshooting, <a href="app02.xhtml#page_296">296</a></p>
+<p class="indexmain"><span class="literal">setBlock()</span> function, <a href="ch03.xhtml#page_53">53</a>, <a href="ch08.xhtml#page_162">162–163</a></p>
+<p class="indexmain"><span class="literal">setBlocks()</span> function, <a href="ch03.xhtml#page_59">59–60</a></p>
+<p class="indexmain"><span class="literal">setPos()</span> function, <a href="ch02.xhtml#page_42">42</a></p>
+<p class="indexmain"><span class="literal">setTilePos()</span> function, <a href="ch02.xhtml#page_38">38–39</a></p>
+<p class="indexmain"><span class="literal">setting()</span> function, <a href="ch05.xhtml#page_86">86–87</a></p>
+<p class="indexmain">setup instructions</p>
+<p class="indexsub">for Mac, <a href="ch01.xhtml#page_13">13–22</a></p>
+<p class="indexsub">for Raspberry Pi, <a href="ch01.xhtml#page_22">22–23</a></p>
+<p class="indexsub">for Windows, <a href="ch01.xhtml#page_2">2–12</a></p>
+<p class="indexmain">shell, <a href="ch01.xhtml#page_24">24</a>, <a href="ch01.xhtml#page_26">26–27</a></p>
+<p class="indexmain"><span class="literal">shelve</span> module, <a href="ch11.xhtml#page_251">251–252</a></p>
+<p class="indexmain">shorthand operators, <a href="ch03.xhtml#page_66">66</a></p>
+<p class="indexmain">shower program, <a href="ch06.xhtml#page_124">124–126</a></p>
+<p class="indexmain"><span epub:type="pagebreak" id="page_310"></span>sightseeing guide, creating, <a href="ch09.xhtml#page_194">194–195</a></p>
+<p class="indexmain">single quotation marks (<span class="literal">''</span>), for strings, <a href="ch04.xhtml#page_70">70</a></p>
+<p class="indexmain"><span class="literal">sleep()</span> function, <a href="ch02.xhtml#page_43">43–44</a></p>
+<p class="indexmain">slices, of lists, <a href="ch09.xhtml#page_188">188–189</a></p>
+<p class="indexmain">sliding program, <a href="ch09.xhtml#page_181">181–182</a></p>
+<p class="indexmain">smashing, preventing, <a href="ch05.xhtml#page_86">86–87</a>, <a href="ch06.xhtml#page_112">112–113</a></p>
+<p class="indexmain">Spigot</p>
+<p class="indexsub">on Mac, <a href="ch01.xhtml#page_16">16–22</a></p>
+<p class="indexsub">on Windows, <a href="ch01.xhtml#page_6">6–12</a></p>
+<p class="indexmain">spires, creating, <a href="ch03.xhtml#page_62">62–64</a></p>
+<p class="indexmain">sprint record, <a href="ch04.xhtml#page_82">82–84</a></p>
+<p class="indexmain"><span class="literal">sqrt()</span> function, <a href="ch07.xhtml#page_146">146</a></p>
+<p class="indexmain">square brackets (<span class="literal">[]</span>), for defining lists, <a href="ch09.xhtml#page_172">172</a></p>
+<p class="indexmain">square root, calculating, <a href="ch07.xhtml#page_146">146</a></p>
+<p class="indexmain">stairs, building, <a href="ch10.xhtml#page_203">203–204</a></p>
+<p class="indexmain">state, of blocks, <a href="ch08.xhtml#page_162">162–163</a></p>
+<p class="indexmain">statements, <a href="ch02.xhtml#page_33">33–34</a>, <a href="ch03.xhtml#page_51">51–52</a></p>
+<p class="indexmain"><span class="literal">str()</span> function, <a href="ch04.xhtml#page_75">75–76</a>, <a href="ch05.xhtml#page_87">87</a></p>
+<p class="indexmain">strings, <a href="ch04.xhtml#page_70">70</a></p>
+<p class="indexsub">accessing characters in, <a href="ch09.xhtml#page_179">179</a></p>
+<p class="indexsub">concatenating, <a href="ch04.xhtml#page_75">75–76</a></p>
+<p class="indexsub">converting to integers, <a href="ch04.xhtml#page_78">78</a></p>
+<p class="indexmain">subclasses, <a href="ch12.xhtml#page_277">277–279</a>, <a href="ch12.xhtml#page_282">282–284</a></p>
+<p class="indexmain">subtraction operator (<span class="literal">-</span>), <a href="ch03.xhtml#page_56">56</a></p>
+<p class="indexsub">shorthand (<span class="literal">-=</span>), <a href="ch03.xhtml#page_66">66</a></p>
+<p class="indexmain">super jump program, <a href="ch03.xhtml#page_67">67–68</a></p>
+<p class="indexmain">superclasses, <a href="ch12.xhtml#page_277">277–279</a>, <a href="ch12.xhtml#page_282">282–284</a></p>
+<p class="indexmain">survival mode</p>
+<p class="indexsub">on Mac, <a href="ch01.xhtml#page_21">21–22</a></p>
+<p class="indexsub">on Windows, <a href="ch01.xhtml#page_11">11–12</a></p>
+<p class="indexmain">sword</p>
+<p class="indexsub">hits, <a href="ch09.xhtml#page_184">184–186</a>, <a href="ch10.xhtml#page_200">200–202</a></p>
+<p class="indexsub">magic wand, <a href="ch10.xhtml#page_200">200–202</a></p>
+<p class="indexsub">night vision, <a href="ch09.xhtml#page_190">190–191</a></p>
+<p class="indexmain">syntax, <a href="ch02.xhtml#page_33">33–34</a></p>
+<h3 class="h3i"><strong><span class="blue1">T</span></strong></h3>
+<p class="indexmain">teleporting, <a href="ch02.xhtml#page_35">35–39</a>, <a href="ch02.xhtml#page_44">44–46</a></p>
+<p class="indexsub">by location name, <a href="ch09.xhtml#page_194">194–195</a>, <a href="ch12.xhtml#page_264">264–265</a></p>
+<p class="indexsub">by point score, <a href="ch06.xhtml#page_117">117–118</a></p>
+<p class="indexsub">precisely, <a href="ch02.xhtml#page_42">42–43</a></p>
+<p class="indexsub">to random locations, <a href="ch07.xhtml#page_129">129–130</a></p>
+<p class="indexsub">restrictions, <a href="ch06.xhtml#page_122">122–123</a></p>
+<p class="indexmain">text. <em>See</em> files, strings</p>
+<p class="indexmain">text editor, <a href="ch01.xhtml#page_24">24–26</a></p>
+<p class="indexmain">three-dimensional lists, <a href="ch10.xhtml#page_222">222–229</a></p>
+<p class="indexmain">throwing an exception, <a href="ch04.xhtml#page_80">80</a></p>
+<p class="indexmain"><span class="literal">time</span> module, <a href="ch02.xhtml#page_43">43–44</a></p>
+<p class="indexmain">to-do list, <a href="ch11.xhtml#page_239">239–241</a></p>
+<p class="indexmain">triple quotation marks (<span class="literal">"""</span>), for docstrings, <a href="ch08.xhtml#page_156">156–157</a></p>
+<p class="indexmain">troubleshooting, <a href="app02.xhtml#page_289">289–298</a></p>
+<p class="indexsub">API, <a href="app02.xhtml#page_297">297–298</a></p>
+<p class="indexsub">Java, <a href="app02.xhtml#page_294">294</a>, <a href="app02.xhtml#page_296">296</a></p>
+<p class="indexsub">Minecraft, <a href="app02.xhtml#page_290">290–293</a></p>
+<p class="indexsub">Python, <a href="app02.xhtml#page_293">293</a>, <a href="app02.xhtml#page_294">294–295</a></p>
+<p class="indexsub">server, <a href="app02.xhtml#page_296">296</a></p>
+<p class="indexmain"><span class="literal">True</span> (Boolean value), <a href="ch05.xhtml#page_86">86</a></p>
+<p class="indexmain"><span class="literal">try-except</span> statements, <a href="ch04.xhtml#page_80">80–82</a></p>
+<p class="indexmain">tuples, <a href="ch09.xhtml#page_179">179–180</a>, <a href="ch09.xhtml#page_183">183</a></p>
+<p class="indexmain">two-dimensional lists, <a href="ch10.xhtml#page_212">212–217</a>, <a href="ch10.xhtml#page_220">220</a></p>
+<p class="indexmain"><span class="literal">TypeError</span>, <a href="ch08.xhtml#page_151">151–152</a>, <a href="ch08.xhtml#page_158">158–159</a></p>
+<h3 class="h3i"><strong><span class="blue1">U</span></strong></h3>
+<p class="indexmain"><span class="literal">UnboundLocalError</span>, <a href="ch08.xhtml#page_166">166</a></p>
+<p class="indexmain">usernames, adding to chat, <a href="ch04.xhtml#page_76">76–77</a></p>
+<h3 class="h3i"><strong><span class="blue1">V</span></strong></h3>
+<p class="indexmain">values</p>
+<p class="indexsub">in dictionaries, <a href="ch09.xhtml#page_192">192–193</a>, <a href="ch09.xhtml#page_195">195–196</a></p>
+<p class="indexsub">of variables, <a href="ch02.xhtml#page_32">32</a></p>
+<p class="indexmain">variables, <a href="ch02.xhtml#page_32">32–35</a>, <a href="ch09.xhtml#page_172">172</a></p>
+<p class="indexsub">assigning values to, <a href="ch02.xhtml#page_32">32</a></p>
+<p class="indexsub">changing values of, <a href="ch02.xhtml#page_35">35</a></p>
+<p class="indexsub">global, <a href="ch08.xhtml#page_166">166–167</a></p>
+<p class="indexsub">local, <a href="ch08.xhtml#page_166">166–167</a></p>
+<p class="indexsub">naming, <a href="ch02.xhtml#page_32">32–33</a></p>
+<p class="indexsub">syntax, <a href="ch02.xhtml#page_33">33–34</a></p>
+<h3 class="h3i"><strong><span class="blue1">W</span></strong></h3>
+<p class="indexmain"><span class="literal">w</span> (write permission), <a href="ch11.xhtml#page_236">236–237</a></p>
+<p class="indexmain">waiting, in programs, <a href="ch02.xhtml#page_43">43–44</a></p>
+<p class="indexmain">wand, magic, <a href="ch10.xhtml#page_200">200–202</a></p>
+<p class="indexmain">watery curse program, <a href="ch07.xhtml#page_132">132–133</a></p>
+<p class="indexmain">weather-worn wall, building, <a href="ch10.xhtml#page_221">221–222</a></p>
+<p class="indexmain"><span epub:type="pagebreak" id="page_311"></span>website, creating with Flask, <a href="ch11.xhtml#page_257">257–259</a></p>
+<p class="indexmain"><span class="literal">while</span> loops, <a href="ch07.xhtml#page_127">127–128</a></p>
+<p class="indexsub">conditions, <a href="ch07.xhtml#page_135">135–136</a></p>
+<p class="indexsub">ending, <a href="ch07.xhtml#page_131">131–132</a>, <a href="ch07.xhtml#page_143">143</a></p>
+<p class="indexsub">with <span class="literal">if</span> statements, <a href="ch07.xhtml#page_141">141</a></p>
+<p class="indexsub">infinite, <a href="ch07.xhtml#page_131">131–132</a>, <a href="ch07.xhtml#page_134">134</a></p>
+<p class="indexsub">with <span class="literal">return</span> statements, <a href="ch08.xhtml#page_164">164</a></p>
+<p class="indexmain"><span class="literal">while-else</span> statements, <a href="ch07.xhtml#page_145">145</a></p>
+<p class="indexmain">Windows, setup instructions, <a href="ch01.xhtml#page_2">2–12</a></p>
+<p class="indexmain">wool blocks, setting color by name, <a href="ch08.xhtml#page_162">162–163</a></p>
+<p class="indexmain">worlds (Minecraft), creating new</p>
+<p class="indexsub">on Mac, <a href="ch01.xhtml#page_18">18–21</a></p>
+<p class="indexsub">on Windows, <a href="ch01.xhtml#page_7">7–11</a></p>
+<p class="indexmain">write permission (<span class="literal">w</span>), <a href="ch11.xhtml#page_236">236–237</a></p>
+<p class="indexmain"><span class="literal">write()</span> function, <a href="ch11.xhtml#page_237">237–238</a></p>
+<h3 class="h3i"><strong><span class="blue1">X</span></strong></h3>
+<p class="indexmain"><span class="literal">x</span>, <span class="literal">y</span>, and <span class="literal">z</span> coordinates, <a href="ch02.xhtml#page_35">35–36</a><span epub:type="pagebreak" id="page_312"></span></p>
+</body>
+</html>

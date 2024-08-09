@@ -1,0 +1,61 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Length</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="Length"><div class="titlepage"><div><div><h1 class="title"><a id="length"></a>Longitud</h1></div></div></div><p>Cada matriz tiene una propiedad <code class="literal" translate="no">length</code>. A diferencia de la mayoría de los demás lenguajes, el array <code class="literal" translate="no">length</code> de JavaScript no es un límite superior. Si almacenas un elemento con un subíndice mayor o igual que el <code class="literal" translate="no">length</code> actual, el <code class="literal" translate="no">length</code> aumentará para contener el nuevo elemento. No se produce ningún error de límites de matriz.<a class="indexterm" id="IDX-CHP-6-0296"></a><a class="indexterm" id="IDX-CHP-6-0297"></a><a class="indexterm" id="IDX-CHP-6-0298"></a><a class="indexterm" id="IDX-CHP-6-0299"></a><a class="indexterm" id="IDX-CHP-6-0300"></a></p><p>La propiedad <code class="literal" translate="no">length</code> es el mayor nombre entero de propiedad de la matriz más uno. Éste no es necesariamente el número de propiedades de la matriz:</p><a id="I_programlisting6_d1e4425"></a><pre class="programlisting" translate="no">var myArray = [];
+myArray.length             // 0
+
+myArray[1000000] = true;
+myArray.length             // 1000001
+// myArray contains one property.</pre><p>El operador de subíndice postfijo <code class="literal" translate="no">[]</code> convierte su expresión en una cadena utilizando el método <code class="literal" translate="no">toString</code> de la expresión, si lo tiene. Esa cadena se utilizará como nombre de la propiedad. Si la cadena se parece a un número entero positivo que es mayor o igual que el <code class="literal" translate="no">length</code> actual de la matriz y es menor que 4.294.967.295, entonces el <code class="literal" translate="no">length</code> de la matriz se establece en el nuevo subíndice más uno.</p><p>El <code class="literal" translate="no">length</code> se puede establecer explícitamente. Hacer el <code class="literal" translate="no">length</code> más grande no asigna más espacio a la matriz. Hacer el <code class="literal" translate="no">length</code> más pequeño hará que se eliminen todas las propiedades con un subíndice mayor o igual que el nuevo <code class="literal" translate="no">length</code>:</p><a id="I_programlisting6_d1e4455"></a><pre class="programlisting" translate="no">numbers.length = 3;
+// numbers is ['zero', 'one', 'two']</pre><p>Se puede añadir un nuevo elemento al final de una matriz asignándolo al <code class="literal" translate="no">length</code> actual de la matriz:</p><a id="I_programlisting6_d1e4462"></a><pre class="programlisting" translate="no">numbers[numbers.length] = 'shi';
+// numbers is ['zero', 'one', 'two', 'shi']</pre><p>A veces es más cómodo utilizar el método <code class="literal" translate="no">push</code>para conseguir lo mismo:</p><a id="I_programlisting6_d1e4469"></a><pre class="programlisting" translate="no">numbers.push('go');
+// numbers is ['zero', 'one', 'two', 'shi', 'go']</pre></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="ch06.html">← Anterior</a><a href="ch06s03.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="ch06s02.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\ch06s02.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

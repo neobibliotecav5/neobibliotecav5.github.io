@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch14lev1sec8">
+  Sprites que colisionan verticalmente </h3>
+<p class="indent">
+  También necesitamos saber si los sprites colisionan verticalmente. La función <span class="literal1" translate="no">
+   within_y
+  </span>es muy similar a la función <span class="literal1" translate="no">
+   within_x
+  </span>. Para crearla, comprobamos si la posición <em class="calibre7">y1 </em>de la primera coordenada se ha cruzado con las posiciones <em class="calibre7">y1 </em>e <em class="calibre7">y2 </em>de la segunda, y viceversa. </p>
+<p class="indent">
+  Añade la siguiente función debajo de la función <span class="literal1" translate="no">
+   within_x
+  </span>. Esta vez, utilizaremos la versión más corta del código (en lugar de montones de sentencias <span class="literal1" translate="no">
+   if
+  </span>): </p>
+<div class="image">
+<img alt="Image" class="calibre153" src="../images/f0222-01.jpg" translate="no"/>
+</div>
+<pre class="pre" translate="no"><span class="orange">def</span> within_y(co1, co2):
+    <span class="orange">if</span> (co1.y1 &gt; co2.y1 <span class="orange">and</span> co1.y1 &lt; co2.y2) \
+            <span class="orange">or</span> (co1.y2 &gt; co2.y1 <span class="orange">and</span> co1.y2 &lt; co2.y2) \
+            <span class="orange">or</span> (co2.y1 &gt; co1.y1 <span class="orange">and</span> co2.y1 &lt; co1.y2) \
+            <span class="orange">or</span> (co2.y2 &gt; co1.y1 <span class="orange">and</span> co2.y2 &lt; co1.y2):
+        <span class="orange">return</span> <span class="violet">True</span>
+    <span class="orange">else</span>:
+        <span class="orange">return</span> <span class="violet">False</span>
+</pre>
+<p class="indent">
+  Nuestras funciones <span class="literal1" translate="no">
+   within_x
+  </span>y <span class="literal1" translate="no">
+   within_y
+  </span>se parecen bastante porque, en el fondo, están haciendo cosas parecidas. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch14_8.html">anterior</a><a href="ch14.html">Subtema 9 de 16: (Ver todo)</a><a href="ch14_10.html">siguiente</a><br/></p>
+<br/><a href="ch14_9.docx" target="_blank"></a></footer>
+</body>
+</html>

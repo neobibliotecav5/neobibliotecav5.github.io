@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c16-0009">Sombrear un área del gráfico</h3>
+<p class="BodyFirst">Habiendo añadido dos series de datos, ahora podemos examinar el rango de temperaturas de cada día. Vamos a dar un toque final al gráfico utilizando el sombreado para mostrar el rango entre las temperaturas máximas y mínimas de cada día. Para ello, utilizaremos el método <code translate="no">fill_between()</code>, que toma una serie de valores <em translate="no">x</em> y dos series de valores <em translate="no">y</em> y rellena el espacio entre las dos series de valores <em translate="no">y</em>:</p>
+<p class="CodeLabel" translate="no"><b>sitka_highs_lows.py</b></p>
+<pre translate="no"><code translate="no"><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray"># Plot the high and low temperatures.</span>
+<span class="LiteralGray">plt.style.use('seaborn')</span>
+<span epub:type="pagebreak" id="Page_338" title="338"></span><span class="LiteralGray">fig, ax = plt.subplots()</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> ax.plot(dates, highs, color='red', alpha=0.5)
+ax.plot(dates, lows, color='blue', alpha=0.5)
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> ax.fill_between(dates, highs, lows, facecolor='blue', alpha=0.1)
+<em class="LiteralGrayItalic" translate="no">--snip--</em></code></pre>
+<p>El argumento <code translate="no">alpha</code> controla la transparencia ❶ de un color <span aria-label="annotation1" class="CodeAnnotation">.</span> Un valor <code translate="no">alpha</code> de 0 es completamente transparente, y un valor de 1 (por defecto) es completamente opaco. Ajustando <code translate="no">alpha</code> a 0,5, hacemos que las líneas de trazado rojas y azules parezcan más claras.</p>
+<p>Pasamos a <code translate="no">fill_between()</code> la lista <code translate="no">dates</code> para los <em translate="no">x</em>-valores y, a continuación, las dos series <em translate="no">y</em>-valores <code translate="no">highs</code> y <code translate="no">lows</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> El argumento <code translate="no">facecolor</code> determina el color de la región sombreada; le damos un valor <code translate="no">alpha</code> bajo de 0,1 para que la región rellena conecte las dos series de datos sin distraer de la información que representan. <a href="#figure16-5" id="figureanchor16-5">La Figura 16-5</a> muestra el gráfico con la región sombreada entre los máximos y los mínimos.</p>
+<figure><img alt="" class="" height="346" src="Images/f16005.png" translate="no" width="646"/>
+<figcaption><p><a id="figure16-5">Figura 16-5</a>: La región entre las dos series de datos está sombreada.</p></figcaption></figure><p>El sombreado ayuda a que el rango entre los dos conjuntos de datos sea inmediatamente aparente.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c16_11.html">anterior</a><a href="c16.html">Subtema 12 de 29: (Ver todo)</a><a href="c16_13.html">siguiente</a><br/></p>
+<br/><a href="c16_12.docx" target="_blank"></a></footer>
+</body>
+</html>

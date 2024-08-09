@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h2><span class="NoteHead">Nota</span></h2>
+<p>	Las frases de código en <span aria-label="annotation2" class="CodeAnnotation">❷</span> y <span aria-label="annotation3" class="CodeAnnotation">❸</span> se llaman <em translate="no">queries</em>, porque consultan la base de datos en busca de información específica. Cuando escribas consultas como éstas en tus propios proyectos, es útil probarlas primero en el shell de Django. Obtendrás una respuesta mucho más rápida en el intérprete de comandos que si escribes una vista y una plantilla y luego compruebas los resultados en un navegador.</p>
+<div class="bottom hr"><hr/></div>
+<h4 id="h3-502703c18-0011">La plantilla de temas</h4>
+<p class="BodyFirst">La plantilla necesita mostrar el nombre del tema y las entradas. También necesitamos informar al usuario si aún no se han realizado entradas para este tema.</p>
+<p class="CodeLabel" translate="no"><b>topic.html</b></p>
+<pre translate="no"><code translate="no">{% extends 'learning_logs/base.html' %}
+
+{% block content %}
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>   &lt;p&gt;Topic: {{ topic.text }}&lt;/p&gt;
+
+  &lt;p&gt;Entries:&lt;/p&gt;
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>   &lt;ul&gt;
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     {% for entry in entries %}
+      &lt;li&gt;
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>         &lt;p&gt;{{ entry.date_added|date:'M d, Y H:i' }}&lt;/p&gt;
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>         &lt;p&gt;{{ entry.text|linebreaks }}&lt;/p&gt;
+      &lt;/li&gt;
+<span aria-label="annotation6" class="CodeAnnotationHang">❻</span>     {% empty %}
+<span epub:type="pagebreak" id="Page_399" title="399"></span>      &lt;li&gt;There are no entries for this topic yet.&lt;/li&gt;
+    {% endfor %}
+  &lt;/ul&gt;
+
+{% endblock content %}</code></pre>
+<p>Extendemos <em translate="no">base.html</em>, como haremos para todas las páginas del proyecto. A continuación, mostramos el atributo <code translate="no">text</code> del tema que se ha solicitado <span aria-label="annotation1" class="CodeAnnotation">❶.</span> La variable <code translate="no">topic</code> está disponible porque está incluida en el diccionario <code translate="no">context</code>. A continuación, iniciamos una lista con viñetas <span aria-label="annotation2" class="CodeAnnotation">❷</span> para mostrar cada una de las entradas y hacemos un bucle a través de ellas <span aria-label="annotation3" class="CodeAnnotation">❸,</span> como hicimos antes con los temas.</p>
+<p>Cada viñeta contiene dos datos: la marca de tiempo y el texto completo de cada entrada. Para la marca de tiempo <span aria-label="annotation4" class="CodeAnnotation">❹,</span> mostramos el valor del atributo <code translate="no">date_added</code>. En las plantillas Django, una línea vertical (<code translate="no">|</code>) representa una plantilla <em translate="no">filter</em>-una función que modifica el valor de una variable de plantilla durante el proceso de representación. El filtro <code translate="no">date:'M d, Y H:i'</code> muestra marcas de tiempo en el formato <em translate="no">January 1, 2022 23:00</em>. La siguiente línea muestra el valor del atributo <code translate="no">text</code> de la entrada actual. El filtro <code translate="no">linebreaks</code> <span aria-label="annotation5" class="CodeAnnotation">❺</span> garantiza que las entradas de texto largas incluyan saltos de línea en un formato que entiendan los navegadores, en lugar de mostrar un bloque de texto ininterrumpido. Volvemos a utilizar la etiqueta de plantilla <code translate="no">{% empty %}</code> <span aria-label="annotation6" class="CodeAnnotation">❻</span> para imprimir un mensaje que informe al usuario de que no se han realizado entradas.</p>
+<h4 id="h3-502703c18-0012">Enlaces desde la Página de Temas</h4>
+<p class="BodyFirst">Antes de ver la página de temas en un navegador, tenemos que modificar la plantilla de temas para que cada tema enlace con la página adecuada. Éste es el cambio que tienes que hacer en <em translate="no">topics.html</em>:</p>
+<p class="CodeLabel" translate="no"><b>topics.html</b></p>
+<pre translate="no"><code translate="no"><em class="LiteralGrayItalic" translate="no">--snip--</em>
+    <span class="LiteralGray">{% for topic in topics %}</span>
+      &lt;li&gt;
+        &lt;a href="{% url 'learning_logs:topic' topic.id %}"&gt;
+          {{ topic.text }}&lt;/a&gt;&lt;/li&gt;
+      &lt;/li&gt;
+<span class="LiteralGray">    {% empty %}</span>
+<em class="LiteralGrayItalic" translate="no">--snip--</em></code></pre>
+<p>Utilizamos la etiqueta de plantilla de URL para generar el enlace adecuado, basándonos en el patrón de URL de <code translate="no">learning_logs</code> con el nombre <code translate="no">'topic'</code>. Este patrón de URL requiere un argumento <code translate="no">topic_id</code>, así que añadimos el atributo <code translate="no">topic.id</code> a la etiqueta de plantilla de URL. Ahora cada tema de la lista de temas es un enlace a una página de tema, como <em translate="no">http://localhost:8000/topics/1/</em>.</p>
+<p>Cuando actualices la página de temas y hagas clic en un tema, deberías ver una página parecida a <a href="#figure18-5" id="figureanchor18-5">la Figura 18-5</a>.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c18_37.html">anterior</a><a href="c18.html">Subtema 38 de 41: (Ver todo)</a><a href="c18_39.html">siguiente</a><br/></p>
+<br/><a href="c18_38.docx" target="_blank"></a></footer>
+</body>
+</html>

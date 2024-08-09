@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch12lev1sec06"><strong><span class="blue1">Atributos de clase</span></strong></h3>
+<p class="noindent">A veces puedes querer establecer atributos que tengan el mismo valor para cada instancia de objeto de una clase. Sería redundante pasar el mismo argumento a la clase cada vez que se crea un objeto. En su lugar, puedes crear un atributo preestablecido en la clase, y todas las instancias de objetos de esa clase compartirán esos atributos.</p>
+<p class="indent">Cuando varios objetos comparten el mismo atributo, se denomina <em>atributo de</em> clase. Por ejemplo, todos los objetos gato que hemos creado pertenecen a Craig (yo). Puedo volver a visitar la clase <span class="literal">Gato</span> en el archivo <em>catClass.py</em>, crear un atributo de clase llamado <span class="literal">propietario</span> y establecerlo como <span class="literal">"Craig"</span>:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>catClass.py</em></span></p>
+<p class="programs" translate="no"><span class="ash">class Cat(object):</span><br translate="no"/>    owner = <span class="green">"Craig"</span><br translate="no"/><br translate="no"/> <span class="ash">def __init__(self, name, weight):</span><br translate="no"/> <span class="ash">self.name = name</span><br translate="no"/> <span class="ash">self.weight = weight</span></p>
+<p class="indent">Como puedes ver, los atributos de clase no utilizan <span class="literal">self</span> antes de su nombre. En este ejemplo, <span class="literal">owner</span> es un atributo de clase y <span class="literal">self.name</span> es un atributo. Observa que defines los atributos de clase fuera de la función <span class="literal">__init__()</span>.</p>
+<p class="indent">Los atributos de clase funcionan igual que cualquier otro atributo de un objeto. Por ejemplo, puedes acceder al valor de un atributo de clase como lo harías con un atributo normal. En este caso, para encontrar al propietario de Fluff, podemos imprimir el atributo de clase <span class="literal">propietario</span> del objeto <span class="literal">Fluff</span>:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>catClass.py</em></span></p>
+<p class="programs" translate="no"><span class="ash">fluff = Cat("Fluff", 4.5)</span><br translate="no"/><span class="rose">print</span>(fluff.owner)</p>
+<p class="indent"><span epub:type="pagebreak" id="page_276"></span>El valor impreso debería ser <span class="literal">"Craig"</span>. Si imprimiéramos el propietario de Stella, el valor sería el mismo porque los atributos de clase son iguales para todos los objetos de esa clase:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>catClass.py</em></span></p>
+<p class="programs" translate="no"><span class="ash">stella = Cat("Stella", 3.9)</span><br translate="no"/><span class="rose">print</span>(stella.owner)</p>
+<p class="indent">El valor impreso aquí también es " <span class="literal">Craig</span>".</p>
+<p class="indent">Puedes cambiar el valor de los atributos de clase para objetos individuales. Esto cambiará el valor del atributo para ese objeto, pero no para otros objetos de la clase. Por ejemplo, Stella ha sido adoptada por mi amigo Matthew, así que tenemos que cambiar el propietario de Stella a <span class="literal">"Matthew</span>":</p>
+<p class="sidenote" translate="no"><span class="blue"><em>catClass.py</em></span></p>
+<p class="programs" translate="no">stella.owner = <span class="green">"Matthew"</span><br translate="no"/><span class="ash">print(stella.owner)</span><br translate="no"/><span class="ash">print(fluff.owner)</span></p>
+<p class="indent">Cuando se imprime el atributo <span class="literal">propietario</span> de <span class="literal">stella</span>, aparece <span class="literal">"</span>Matthew", pero el propietario de <span class="literal">fluff</span>sigue siendo <span class="literal">"Craig"</span>.</p>
+<p class="indent">Después de todos los cambios que hemos hecho en <em>catClass.py</em>, el programa final tiene el siguiente aspecto. También está disponible en los recursos del libro en <em><a href="https://www.nostarch.com/programwithminecraft/">https://www.nostarch.com/programwithminecraft/.</a></em></p>
+<p class="sidenote" translate="no"><span class="blue"><em>catClass.py</em></span></p>
+<p class="programs" translate="no"><span class="orange">class</span> <span class="blue1">Cat</span>(<span class="rose">object</span>):<br translate="no"/>    owner = <span class="green">"Craig"</span><br translate="no"/><br translate="no"/> <span class="orange">def</span> <span class="blue1">__init_</span>_(self, name, weight):<br translate="no"/>        self.name = name<br translate="no"/>        self.weight = weight<br translate="no"/><br translate="no"/> <span class="orange">def</span> <span class="blue1">eat</span>(self, food):<br translate="no"/>        self.weight = self.weight + 0.05<br translate="no"/> <span class="rose">print</span>(self.name + <span class="green">" is eating "</span> + food)<br translate="no"/><br translate="no"/> <span class="orange">def</span> <span class="blue1">eatAndSleep</span>(self, food):<br translate="no"/>        self.eat(food)<br translate="no"/> <span class="rose">print</span>(self.name + <span class="green">" is now sleeping..."</span>)<br translate="no"/><br translate="no"/> <span class="orange">def</span> <span class="blue1">getWeightInGrams</span>(self):<br translate="no"/> <span class="orange">return</span> self.weight * 1000<br translate="no"/><br translate="no"/>fluff = Cat(<span class="green">"Fluff"</span>, 4.5)<br translate="no"/><span class="rose">print</span>(fluff.owner)<br translate="no"/>stella = Cat(<span class="green">"Stella"</span>, 3.9)<br translate="no"/><span class="rose">print</span>(stella.owner)<br translate="no"/><br translate="no"/><span class="rose">print</span>(fluff.weight)<br translate="no"/>fluff.eat(<span class="green">"tuna"</span>)<br translate="no"/>fluff.eatAndSleep(<span class="green">"tuna"</span>)<br translate="no"/><br translate="no"/><span class="rose">print</span>(fluff.getWeightInGrams())<br translate="no"/><span class="rose">print</span>(fluff.name)<br translate="no"/><span class="rose">print</span>(stella.name)<br translate="no"/><br translate="no"/>fluff.eat(<span class="green">"tuna"</span>)<br translate="no"/>stella.eat(<span class="green">"cake"</span>)<br translate="no"/><br translate="no"/>stella.owner = <span class="green">"Matthew"</span><br translate="no"/><span class="rose">print</span>(stella.owner)<br translate="no"/><span class="rose">print</span>(fluff.owner)</p>
+<p class="indent"><span epub:type="pagebreak" id="page_277"></span>Ahora que ya has visto cómo utilizar objetos, vamos a ver cómo hacerlos aún más potentes con la herencia.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch12_6.html">anterior</a><a href="ch12.html">Subtema 7 de 10: (Ver todo)</a><a href="ch12_8.html">siguiente</a><br/></p>
+<br/><a href="ch12_7.docx" target="_blank"></a></footer>
+</body>
+</html>

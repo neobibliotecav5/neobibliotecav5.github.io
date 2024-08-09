@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>The function Statement Versus the function Expression</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="The function Statement Versus the function Expression"><div class="titlepage"><div><div><h1 class="title"><a id="the_function_statement_versus_the_fun"/>The function Statement Versus the function Expression</h1></div></div></div><p>JavaScript has a <code class="literal">function</code> statement as well as
+                a <code class="literal">function</code> expression. This is confusing because
+                they can look exactly the same. A <code class="literal">function</code>
+                statement is shorthand for a <code class="literal">var</code> statement with a
+                function value.<a id="IDX-APP-B-0572" class="indexterm"/><a id="IDX-APP-B-0573" class="indexterm"/></p><p>The statement:</p><a id="I_programlisting_d1e9183"/><pre class="programlisting">function foo(  ) {}</pre><p>means about the same thing as:</p><a id="I_programlisting_d1e9187"/><pre class="programlisting">var foo = function foo(  ) {};</pre><p>Throughout this book, I have been using the second form because it makes it clear
+                that <code class="literal">foo</code> is a variable containing a function
+                value. To use the language well, it is important to understand that functions are
+                values.</p><p><code class="literal">function</code> statements are subject to
+                    <span class="emphasis"><em>hoisting</em></span>. This means that regardless of where a <code class="literal">function</code> is placed, it is moved to the top of the
+                scope in which it is defined. This relaxes the requirement that functions should be
+                declared before used, which I think leads to sloppiness. It also prohibits the use
+                of <code class="literal">function</code> statements in <code class="literal">if</code> statements. It turns out that most browsers allow
+                    <code class="literal">function</code> statements in <code class="literal">if</code> statements, but they vary in how that should be
+                interpreted. That creates portability problems.</p><p>The first thing in a statement cannot be a <code class="literal">function</code> expression because the official grammar assumes that a
+                statement that starts with the word <code class="literal">function</code> is a
+                    <code class="literal">function</code> statement. The workaround is to wrap
+                the whole invocation in parentheses:</p><a id="I_programlisting_d1e9231"/><pre class="programlisting">(function (  ) {
+    var hidden_variable;
+
+    // This function can have some impact on
+    // the environment, but introduces no new
+    // global variables.
+}());</pre></div></body></html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c19-0002">Añadir nuevos temas</h3>
+<p class="BodyFirst">Ahora que el usuario puede añadir un nuevo tema, también querrá añadir nuevas entradas. Definiremos de nuevo una URL, escribiremos una función de vista y una plantilla, y enlazaremos con la página. Pero antes, añadiremos otra clase a <em translate="no">forms.py</em>.</p>
+<h4 id="h3-502703c19-0007">El modelo de formulario de entrada</h4>
+<p class="BodyFirst">Necesitamos crear un formulario asociado al modelo <code translate="no">Entry</code>, pero esta vez, con un poco más de personalización que <code translate="no">TopicForm</code>:</p>
+<p class="CodeLabel" translate="no"><b>forms.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">from django import forms</span>
+
+from .models import Topic, Entry
+
+<span class="LiteralGray">class TopicForm(forms.ModelForm):</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+
+class EntryForm(forms.ModelForm):
+    class Meta:
+        model = Entry
+        fields = ['text']
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         labels = {'text': ''}
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         widgets = {'text': forms.Textarea(attrs={'cols': 80})}</code></pre>
+<p>Actualizamos la declaración <code translate="no">import</code> para incluir tanto <code translate="no">Entry</code> como <code translate="no">Topic</code>. Creamos una nueva clase llamada <code translate="no">EntryForm</code> que hereda de <code translate="no">forms.ModelForm</code>. La clase <code translate="no">EntryForm</code> tiene una clase anidada <code translate="no">Meta</code> que enumera el modelo en el que se basa y el campo a incluir en el formulario. Volvemos a dar al campo <code translate="no">'text'</code> una etiqueta en blanco <span aria-label="annotation1" class="CodeAnnotation">❶.</span></p>
+<p>Para <code translate="no">EntryForm</code>, incluimos el atributo <code translate="no">widgets</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Un <em translate="no">widget</em> es un elemento de formulario HTML, como un cuadro de texto de una línea, un área de texto multilínea o una lista desplegable. Al incluir el atributo <code translate="no">widgets</code>, puedes anular las opciones de widget predeterminadas de Django <span epub:type="pagebreak" id="Page_409" title="409"></span>. Aquí le estamos diciendo a Django que utilice un elemento <code translate="no">forms.Textarea</code> con una anchura de 80 columnas, en lugar de las 40 columnas por defecto. Esto da a los usuarios espacio suficiente para escribir una entrada con sentido.</p>
+<h4 id="h3-502703c19-0008">La URL de la nueva_entrada</h4>
+<p class="BodyFirst">Las nuevas entradas deben asociarse a un tema concreto, por lo que necesitamos incluir un argumento <code translate="no">topic_id</code> en la URL para añadir una nueva entrada. Aquí tienes la URL, que debes añadir a <em translate="no">learning_logs/urls.py</em>:</p>
+<p class="CodeLabel" translate="no"><b>learning_logs/urls.py</b></p>
+<pre translate="no"><code translate="no"><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">urlpatterns = [</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+    # Page for adding a new entry.
+    path('new_entry/&lt;int:topic_id&gt;/', views.new_entry, name='new_entry'),
+<span class="LiteralGray">]</span></code></pre>
+<p>Este patrón de URL coincide con cualquier URL de la forma <em translate="no">http://localhost:8000/new_entry/id/</em>, donde <var>id</var> es un número que coincide con el ID del tema. El código <code translate="no">&lt;int:topic_id&gt;</code> captura un valor numérico y lo asigna a la variable <code translate="no">topic_id</code>. Cuando se solicita una URL que coincide con este patrón, Django envía la solicitud y el ID del tema a la función de vista <code translate="no">new_entry()</code>.</p>
+<h4 id="h3-502703c19-0009">La función de vista new_entry()</h4>
+<p class="BodyFirst">La función de vista para <code translate="no">new_entry</code> es muy parecida a la función para añadir un nuevo tema. Añade el siguiente código a tu archivo <em translate="no">views.py</em>:</p>
+<p class="CodeLabel" translate="no"><b>views.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">from django.shortcuts import render, redirect</span>
+
+<span class="LiteralGray">from .models import Topic</span>
+from .forms import TopicForm, EntryForm
+
+<em class="LiteralGrayItalic" translate="no">--snip--</em>
+def new_entry(request, topic_id):
+    """Add a new entry for a particular topic."""
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     topic = Topic.objects.get(id=topic_id)
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     if request.method != 'POST':
+        # No data submitted; create a blank form.
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>         form = EntryForm()
+    else:
+        # POST data submitted; process data.
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>         form = EntryForm(data=request.POST)
+        if form.is_valid():
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>             new_entry = form.save(commit=False)
+<span aria-label="annotation6" class="CodeAnnotationHang">❻</span>             new_entry.topic = topic
+            new_entry.save()
+<span aria-label="annotation7" class="CodeAnnotationHang">❼</span>             return redirect('learning_logs:topic', topic_id=topic_id)
+
+    # Display a blank or invalid form.
+    context = {'topic': topic, 'form': form}
+    return render(request, 'learning_logs/new_entry.html', context)</code></pre>
+<p><span epub:type="pagebreak" id="Page_410" title="410"></span>Actualizamos la declaración <code translate="no">import</code> para incluir el <code translate="no">EntryForm</code> que acabamos de hacer. La definición de <code translate="no">new_entry()</code> tiene un parámetro <code translate="no">topic_id</code> para almacenar el valor que recibe de la URL. Necesitaremos el tema para renderizar la página y procesar los datos del formulario, así que utilizamos <code translate="no">topic_id</code> para obtener el objeto tema ❶ correcto <span aria-label="annotation1" class="CodeAnnotation">.</span></p>
+<p>A continuación, comprobamos si el método de solicitud es POST o GET <span aria-label="annotation2" class="CodeAnnotation">❷.</span> El bloque <code translate="no">if</code> se ejecuta si es una petición GET, y creamos una instancia vacía de <code translate="no">EntryForm</code> <span aria-label="annotation3" class="CodeAnnotation">❸.</span></p>
+<p>Si el método de solicitud es POST, procesamos los datos creando una instancia de <code translate="no">EntryForm</code>, rellenada con los datos POST del objeto <code translate="no">request</code> <span aria-label="annotation4" class="CodeAnnotation">❹.</span> A continuación, comprobamos si el formulario es válido. Si lo es, tenemos que establecer el atributo <code translate="no">topic</code> del objeto de entrada antes de guardarlo en la base de datos. Cuando llamamos a <code translate="no">save()</code>, incluimos el argumento <code translate="no">commit=False</code> <span aria-label="annotation5" class="CodeAnnotation">❺</span> para decirle a Django que cree un nuevo objeto de entrada y lo asigne a <code translate="no">new_entry</code>, sin guardarlo aún en la base de datos. Establecemos el atributo <code translate="no">topic</code> de <code translate="no">new_entry</code> al tema que sacamos de la base de datos al principio de la función <span aria-label="annotation6" class="CodeAnnotation">❻.</span> A continuación, llamamos a <code translate="no">save()</code> sin argumentos, guardando la entrada en la base de datos con el tema asociado correcto.</p>
+<p>La llamada a <code translate="no">redirect()</code> requiere dos argumentos: el nombre de la vista a la que queremos redirigir y el argumento que requiere la función vista <span aria-label="annotation7" class="CodeAnnotation">❼.</span> Aquí, estamos redirigiendo a <code translate="no">topic()</code>, que necesita el argumento <code translate="no">topic_id</code>. Esta vista muestra la página del tema para el que el usuario hizo una entrada, y debería ver su nueva entrada en la lista de entradas.</p>
+<p>Al final de la función, creamos un diccionario <code translate="no">context</code> y mostramos la página utilizando la plantilla <em translate="no">new_entry.html</em>. Este código se ejecutará para un formulario en blanco, o para un formulario que ha sido enviado pero resulta ser inválido.</p>
+<h4 id="h3-502703c19-0010">La plantilla new_entry</h4>
+<p class="BodyFirst">Como puedes ver en el código siguiente, la plantilla para <code translate="no">new_entry</code> es similar a la plantilla para <code translate="no">new_topic</code>:</p>
+<p class="CodeLabel" translate="no"><b>new_entry.html</b></p>
+<pre translate="no"><code translate="no">{% extends "learning_logs/base.html" %}
+
+{% block content %}
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>   &lt;p&gt;&lt;a href="{% url 'learning_logs:topic' topic.id %}"&gt;{{ topic }}&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;Add a new entry:&lt;/p&gt;
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>   &lt;form action="{% url 'learning_logs:new_entry' topic.id %}" method='post'&gt;
+    {% csrf_token %}
+    {{ form.as_div }}
+    &lt;button name='submit'&gt;Add entry&lt;/button&gt;
+  &lt;/form&gt;
+
+{% endblock content %}</code></pre>
+<p>Mostramos el tema en la parte superior de la página <span aria-label="annotation1" class="CodeAnnotation">❶,</span> para que el usuario pueda ver a qué tema está añadiendo una entrada. El tema también actúa como enlace a la página principal de ese tema.</p>
+<p><span epub:type="pagebreak" id="Page_411" title="411"></span>El argumento <code translate="no">action</code> del formulario incluye el valor <code translate="no">topic.id</code> en la URL, para que la función de vista pueda asociar la nueva entrada con el tema ❷ correcto <span aria-label="annotation2" class="CodeAnnotation">.</span> Aparte de eso, esta plantilla tiene el mismo aspecto que <em translate="no">new_topic.html</em>.</p>
+<h4 id="h3-502703c19-0011">Enlace a la página nueva_entrada</h4>
+<p class="BodyFirst">A continuación, tenemos que incluir un enlace a la página <code translate="no">new_entry</code> desde cada página de tema, en la plantilla de tema:</p>
+<p class="CodeLabel" translate="no"><b>topic.html</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">{% extends "learning_logs/base.html" %}</span>
+
+<span class="LiteralGray">{% block content %}</span>
+
+<span class="LiteralGray">  &lt;p&gt;Topic: {{ topic }}&lt;/p&gt;</span>
+
+<span class="LiteralGray">  &lt;p&gt;Entries:&lt;/p&gt;</span>
+  &lt;p&gt;
+    &lt;a href="{% url 'learning_logs:new_entry' topic.id %}"&gt;Add new entry&lt;/a&gt;
+  &lt;/p&gt;
+
+<span class="LiteralGray">  &lt;ul&gt;</span>
+<span class="LiteralGray">  </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">  &lt;/ul&gt;</span>
+
+<span class="LiteralGray">{% endblock content %}</span></code></pre>
+<p>Colocamos el enlace para añadir entradas justo antes de mostrar las entradas, porque añadir una nueva entrada será la acción más común en esta página. <a href="#figure19-2" id="figureanchor19-2">La Figura 19-2</a> muestra la página <code translate="no">new_entry</code>. Ahora los usuarios pueden añadir nuevos temas y tantas entradas como quieran para cada tema. Prueba la página <code translate="no">new_entry</code> añadiendo algunas entradas a algunos de los temas que has creado.</p>
+<figure><img alt="" class="keyline" height="399" src="Images/f19002.png" translate="no" width="679"/>
+<figcaption><p><a id="figure19-2">Figura 19-2</a>: La</p></figcaption></figure>página<figure><figcaption><p> <span class="LiteralInCaption"><code translate="no">new_entry</code></span> </p></figcaption></figure>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c19_3.html">anterior</a><a href="c19.html">Subtema 4 de 23: (Ver todo)</a><a href="c19_5.html">siguiente</a><br/></p>
+<br/><a href="c19_4.docx" target="_blank"></a></footer>
+</body>
+</html>

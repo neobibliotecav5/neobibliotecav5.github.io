@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch03lev1sec3">
+  Problemas con las cadenas </h3>
+<p class="noindent">
+  Considera ahora este tonto ejemplo de una cadena, que hace que Python muestre un mensaje de error: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> silly_string = <span class="green">'He said, "Aren't can't shouldn't wouldn't."'</span>
+<span class="red">SyntaxError: invalid syntax</span></pre>
+<p class="indent">
+  En la primera línea, intentamos crear una cadena (definida como la variable <span class="literal1" translate="no">
+   silly_string
+  </span>) encerrada entre comillas simples, pero que también contiene una mezcla de comillas simples en las palabras <span class="literal1" translate="no">
+   can’t
+  </span>, <span class="literal1" translate="no">
+   shouldn’t
+  </span>, y <span class="literal1" translate="no">
+   wouldn’t
+  </span>, así como comillas dobles. ¡Menudo lío! </p>
+<p class="indent">
+  Recuerda que Python no es tan inteligente como un ser humano, así que todo lo que ve es una cadena que contiene <span class="literal1" translate="no">
+   He said, "Aren
+  </span>, seguida de un montón de otros caracteres que no espera. Cuando Python ve una comilla (ya sea simple o doble), espera que una cadena comience tras la primera comilla y que la cadena termine tras la siguiente comilla que coincida <span id="page_28">
+</span>(ya sea simple o doble) en esa línea. En este caso, el inicio de la cadena es la comilla simple antes de <span class="literal1" translate="no">
+   He
+  </span>, y el final de la cadena, en lo que respecta a Python, es la comilla simple después de <span class="literal1" translate="no">
+   n
+  </span>en <span class="literal1" translate="no">
+   Aren
+  </span>. </p>
+<p class="indent">
+  En la última línea, Python nos dice qué tipo de error se ha producido, en este ejemplo, un error de sintaxis. </p>
+<p class="indent">
+  Utilizar comillas dobles en lugar de simples también produce un error: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> silly_string = <span class="green">"He said, "Aren't can't shouldn't wouldn't.""</span>
+<span class="red">SyntaxError: invalid syntax</span></pre>
+<p class="indent">
+  Aquí, Python ve una cadena entre comillas dobles, que contiene las letras <span class="literal1" translate="no">
+   He
+  </span><span class="literal1" translate="no">
+   said,
+  </span> (y un espacio). Todo lo que sigue a esa cadena (a partir de <span class="literal1" translate="no">
+   Aren’t
+  </span>) provoca el error. </p>
+<p class="indent">
+  Esto se debe a que, desde la perspectiva de Python, todo ese material extra no debería estar ahí. Python busca la siguiente comilla coincidente y no sabe qué quieres que haga con todo lo que sigue a esa comilla en la misma línea. </p>
+<p class="indent">
+  La solución a este problema es una cadena multilínea, de la que aprendimos antes, utilizando <em class="calibre7">tres </em>comillas simples ( <span class="literal1" translate="no">
+   '''
+  </span>). Esto nos permite combinar comillas dobles y simples en nuestra cadena sin provocar errores. De hecho, si utilizamos tres comillas simples, podemos poner cualquier combinación de comillas simples y dobles dentro de la cadena (siempre que no intentemos poner tres comillas simples). La versión sin errores de nuestra cadena tiene este aspecto: </p>
+<div class="image1">
+<img alt="Image" class="calibre33" src="../images/f0028-01.jpg" translate="no"/>
+</div>
+<pre class="pre" translate="no">silly_string = <span class="green">'''He said, "Aren't can't shouldn't wouldn't."'''</span></pre>
+<p class="indent">
+  Pero espera, hay más. Si realmente quieres utilizar comillas simples o dobles para rodear una cadena en Python, en lugar de tres comillas simples, puedes añadir una barra invertida (∖) antes de cada comilla dentro de la cadena. Esto se llama <em class="calibre7">escape . </em>Es una forma de decirle a Python: "Sí, sé que tengo comillas dentro de mi cadena, y quiero que las ignores hasta que veas la comilla final". </p>
+<p class="indent">
+  Escapar cadenas puede dificultar su lectura, por lo que se considera mejor práctica utilizar cadenas multilínea. Aun así, es posible que en <span id="page_29">
+</span>te encuentres con código que utiliza escapes, por lo que es útil saber por qué están ahí las barras invertidas. </p>
+<p class="indent">
+  Aquí tienes algunos ejemplos de cómo funciona el escape: </p>
+<pre class="pre" translate="no"><span class="ent">➊</span> <span class="brown">&gt;&gt;&gt;</span> single_quote_str = <span class="green">'He said, "Aren\'t can\'t shouldn\'t</span>
+       <span class="green">wouldn\'t."'</span>
+<span class="ent">➋</span> <span class="brown">&gt;&gt;&gt;</span> double_quote_str = <span class="green">"He said, \"Aren't can't shouldn't</span> 
+       <span class="green">wouldn't.\""</span>
+   <span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(single_quote_str)
+   <span class="blue1">He said, "Aren't can't shouldn't wouldn't."</span>
+   <span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(double_quote_str)
+   <span class="blue1">He said, "Aren't can't shouldn't wouldn't."</span></pre>
+<p class="indent">
+  Primero, en <span class="ent">➊ </span>, creamos una cadena con comillas simples, utilizando la barra invertida delante de las comillas simples dentro de esa cadena. En <span class="ent">➋ </span>, creamos una cadena con comillas dobles, y utilizamos la barra invertida delante de esas comillas en la cadena. En las líneas siguientes, imprimimos las variables que acabamos de crear. Observa que el carácter barra invertida no aparece en las cadenas cuando las imprimimos. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch03_3.html">anterior</a><a href="ch03.html">Subtema 4 de 14: (Ver todo)</a><a href="ch03_5.html">siguiente</a><br/></p>
+<br/><a href="ch03_4.docx" target="_blank"></a></footer>
+</body>
+</html>

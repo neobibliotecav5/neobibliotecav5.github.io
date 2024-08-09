@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Chapter 7. Regular Expressions</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="chapter" title="Chapter 7. Regular Expressions"><div class="titlepage"><div><div><h1 class="title"><a id="regular_expressions"/>Chapter 7. Regular Expressions</h1></div></div></div><div class="epigraph"><p>Whereas the contrary bringeth bliss, And is a pattern of celestial peace. Whom
+                should we match with Henry, being a king. . .</p><div class="attribution"><span>—<span class="attribution">William Shakespeare, <span class="emphasis"><em>The First Part of Henry the
+                Sixth</em></span></span></span></div></div><p>Many of JavaScript's features were borrowed from other languages. The syntax came from
+            Java, functions came from Scheme, and prototypal inheritance came from Self.
+            JavaScript's Regular Expression feature was borrowed from Perl.</p><p>A <span class="emphasis"><em>regular expression</em></span> is the specification of the syntax of a
+            simple language. Regular expressions are used with methods to search, replace, and
+            extract information from strings. The methods that work with regular expressions are
+                <code class="literal">regexp.exec</code>, <code class="literal">regexp.test</code>, <code class="literal">string.match</code>, <code class="literal">string.replace</code>, <code class="literal">string.search</code>, and <code class="literal">string.split</code>. These
+            will all be described in <a class="xref" href="ch08.html" title="Chapter 8. Methods">Chapter 8</a>. Regular expressions usually have a
+            significant performance advantage over equivalent string operations in
+                JavaScript.<a id="IDX-CHP-7-0335" class="indexterm"/><a id="IDX-CHP-7-0336" class="indexterm"/><a id="IDX-CHP-7-0337" class="indexterm"/></p><p>Regular expressions came from the mathematical study of formal languages. Ken Thompson
+            adapted Stephen Kleene's theoretical work on type-3 languages into a practical pattern
+            matcher that could be embedded in tools such as text editors and programming
+            languages.</p><p>The syntax of regular expressions in JavaScript conforms closely to the original
+            formulations from Bell Labs, with some reinterpretation and extension adopted from Perl.
+            The rules for writing regular expressions can be surprisingly complex because they
+            interpret characters in some positions as operators, and in slightly different positions
+            as literals. Worse than being hard to write, this makes regular expressions hard to read
+            and dangerous to modify. It is necessary to have a fairly complete understanding of the
+            full complexity of regular expressions to correctly read them. To mitigate this, I have
+            simplified the rules a little. As presented here, regular expressions will be slightly
+            less terse, but they will also be slightly easier to use correctly. And that is a good
+            thing because regular expressions can be very difficult to maintain and debug.</p><p>Today's regular expressions are not strictly regular, but they can be very useful.
+            Regular expressions tend to be extremely terse, even cryptic. They are easy to use in
+            their simplest form, but they can quickly become bewildering. JavaScript's regular
+            expressions are difficult to read in part because they do not allow comments or
+            whitespace. All of the parts of a regular expression are pushed tightly together, making
+            them almost indecipherable. This is a particular concern when they are used in security
+            applications for scanning and validation. If you cannot read and understand a regular
+            expression, how can you have confidence that it will work correctly for all inputs? Yet,
+            despite their obvious drawbacks, regular expressions are widely used.</p><div class="sect1" title="An Example"><div class="titlepage"><div><div><h1 class="title"><a id="an_example"/>An Example</h1></div></div></div><p>Here is an example. It is a regular expression that matches URLs. The pages of
+                this book are not infinitely wide, so I broke it into two lines. In a JavaScript
+                program, the regular expression must be on a single line. Whitespace is
+                    significant:<a id="IDX-CHP-7-0338" class="indexterm"/><a id="IDX-CHP-7-0339" class="indexterm"/><a id="IDX-CHP-7-0340" class="indexterm"/><a id="IDX-CHP-7-0341" class="indexterm"/><a id="IDX-CHP-7-0342" class="indexterm"/><a id="IDX-CHP-7-0343" class="indexterm"/><a id="IDX-CHP-7-0344" class="indexterm"/></p><a id="I_programlisting7_d1e4918"/><pre class="programlisting">var parse_url = /^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)
+(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/;
+
+var url = "http://www.ora.com:80/goodparts?q#fragment";</pre><p>Let's call <code class="literal">parse_url</code>'s <code class="literal">exec</code> method. If it successfully matches the string that we pass it,
+                it will return an array containing pieces extracted from the <code class="literal">url</code>:</p><a id="I_programlisting7_d1e4931"/><pre class="programlisting">var url = "http://www.ora.com:80/goodparts?q#fragment";
+
+var result = parse_url.exec(url);
+
+var names = ['url', 'scheme', 'slash', 'host', 'port',
+    'path', 'query', 'hash'];
+
+var blanks = '       ';
+var i;
+
+for (i = 0; i &lt; names.length; i += 1) {
+    document.writeln(names[i] + ':' +
+        blanks.substring(names[i].length), result[i]);
+}</pre><p>This produces:</p><a id="I_programlisting7_d1e4935"/><pre class="programlisting">url:    http://www.ora.com:80/goodparts?q#fragment
+scheme: http
+slash:  //
+host:   www.ora.com
+port:   80
+path:   goodparts
+query:  q
+hash:   fragment</pre><p>In <a class="xref" href="ch02.html" title="Chapter 2. Grammar">Chapter 2</a>, we used railroad diagrams to describe the JavaScript
+                language. We can also use them to describe the languages defined by regular
+                expressions. That may make it easier to see what a regular expression does. This is
+                a railroad diagram for <code class="literal">parse_url</code>.<a id="IDX-CHP-7-0345" class="indexterm"/><a id="IDX-CHP-7-0346" class="indexterm"/></p><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject7_d1e4953"/><img src="httpatomoreillycomsourceoreillyimages238822.png" alt="image with no caption"/></div></div><p>Regular expressions cannot be broken into smaller pieces the way that functions
+                can, so the track representing <code class="literal">parse_url</code> is a
+                long one.</p><p>Let's factor <code class="literal">parse_url</code> into its parts to see
+                how it works.</p><a id="I_programlisting7_d1e4969"/><pre class="programlisting">^</pre><p>The <code class="literal">^</code> character indicates the beginning of the
+                string. It is an anchor that prevents <code class="literal">exec</code> from
+                skipping over a non-URL-like prefix.</p><a id="I_programlisting7_d1e4979"/><pre class="programlisting">(?:([A-Za-z]+):)?</pre><p>This factor matches a scheme name, but only if it is followed by a <code class="literal">:</code> (colon). The <code class="literal">(?:</code>
+                . . . <code class="literal">)</code> indicates a noncapturing group. The
+                suffix <code class="literal">?</code> indicates that the group is
+                    optional.<a id="IDX-CHP-7-0347" class="indexterm"/></p><p>It means <span class="emphasis"><em>repeat zero or one time</em></span>. The ( . . . ) indicates a
+                capturing group. A capturing group copies the text it matches and places it in the
+                    <code class="literal">result</code> array. Each capturing group is given a
+                number. This first capturing group is 1, so a copy of the text matched by this
+                capturing group will appear in <code class="literal">result[1]</code>. The [ .
+                . . ] indicates a character class. This character class, <code class="literal">A-Za-z</code>, contains 26 uppercase letters and 26 lowercase letters. The
+                hyphens indicate ranges, from A to Z. The suffix <code class="literal">+</code> indicates that the character class will be matched one or more
+                times. The group is followed by the <code class="literal">:</code> character,
+                which will be matched literally.<a id="IDX-CHP-7-0348" class="indexterm"/><a id="IDX-CHP-7-0349" class="indexterm"/></p><a id="I_programlisting7_d1e5031"/><pre class="programlisting">(\/{0,3})</pre><p>The next factor is capturing group 2. <code class="literal">\/</code>
+                indicates that a <code class="literal">/</code> (slash) character should be
+                matched. It is escaped with <code class="literal">\</code> (backslash) so that
+                it is not misinterpreted as the end of the regular expression literal. The suffix
+                    <code class="literal">{0,3}</code> indicates that the <code class="literal">/</code> will be matched 0 or 1 or 2 or 3 times.</p><a id="I_programlisting7_d1e5050"/><pre class="programlisting">([0-9.\-A-Za-z]+)</pre><p>The next factor is capturing group 3. It will match a host name, which is made up
+                of one or more digits, letters, or <code class="literal">.</code> or <code class="literal">-</code>. The <code class="literal">-</code> was
+                escaped <code class="literal">as \-</code> to prevent it from being confused
+                with a range hyphen.</p><a id="I_programlisting7_d1e5066"/><pre class="programlisting">(?::(\d+))?</pre><p>The next factor optionally matches a port number, which is a sequence of one or
+                more digits preceded by a <code class="literal">:</code>. <code class="literal">\d</code> represents a digit character. The series of one or
+                more digits will be capturing group 4.</p><a id="I_programlisting7_d1e5077"/><pre class="programlisting">(?:\/([^?#]*))?</pre><p>We have another optional group. This one begins with a <code class="literal">/</code>. The character class <code class="literal">[^?#]</code>
+                begins with a <code class="literal">^</code>, which indicates that the class
+                includes all characters <span class="emphasis">except ? and #</span>. The <code class="literal">*</code> indicates that the character class is matched zero
+                or more times.<a id="IDX-CHP-7-0350" class="indexterm"/></p><p>Note that I am being sloppy here. The class of all characters <span class="emphasis"><em>except ?
+                    and #</em></span> includes line-ending characters, control characters, and lots
+                of other characters that really shouldn't be matched here. Most of the time this
+                will do what we want, but there is a risk that some bad text could slip through.
+                Sloppy regular expressions are a popular source of security exploits. It is a lot
+                easier to write sloppy regular expressions than rigorous regular
+                    expressions.<a id="IDX-CHP-7-0351" class="indexterm"/></p><a id="I_programlisting7_d1e5124"/><pre class="programlisting">(?:\?([^#]*))?</pre><p>Next, we have an optional group that begins with a <code class="literal">?</code>. It contains capturing group 6, which contains zero or more
+                characters that are not <code class="literal">#</code>.</p><a id="I_programlisting7_d1e5134"/><pre class="programlisting">(?:#(.*))?</pre><p>We have a final optional group that begins with <code class="literal">#</code>. The <code class="literal">.</code> will match any character
+                except a line-ending character.</p><a id="I_programlisting7_d1e5144"/><pre class="programlisting">$</pre><p>The <code class="literal">$</code> represents the end of the string. It
+                assures us that there was no extra material after the end of the URL.</p><p>Those are the factors of the regular expression <code class="literal">parse_url</code>.<sup>[<a id="CHP-7-FN-1" href="#ftn.CHP-7-FN-1" class="footnote">1</a>]</sup></p><p>It is possible to make regular expressions that are more complex than <code class="literal">parse_url</code>, but I wouldn't recommend it. Regular
+                expressions are best when they are short and simple. Only then can we have
+                confidence that they are working correctly and that they could be successfully
+                modified if necessary.</p><p>There is a very high degree of compatibility between JavaScript language
+                processors. The part of the language that is <span class="emphasis"><em>least</em></span> portable is
+                the implementation of regular expressions. Regular expressions that are very
+                complicated or convoluted are more likely to have portability problems. Nested
+                regular expressions can also suffer horrible performance problems in some
+                implementations. Simplicity is the best strategy.</p><p>Let's look at another example: a regular expression that matches numbers. Numbers
+                can have an integer part with an optional minus sign, an optional fractional part,
+                and an optional exponent part.</p><a id="I_programlisting7_d1e5174"/><pre class="programlisting">var parse_number = /^-?\d+(?:\.\d*)?(?:e[+\-]?\d+)?$/i;
+
+var test = function (num) {
+    document.writeln(parse_number.test(num));
+};
+
+test('1');                // true
+test('number');           // false
+test('98.6');             // true
+test('132.21.86.100');    // false
+test('123.45E-67');       // true
+test('123.45D-67');       // false</pre><p><code class="literal">parse_number</code> successfully identified the
+                strings that conformed to our specification and those that did not, but for those
+                that did not, it gives us no information on why or where they failed the number
+                test.</p><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject7_d1e5181"/><img src="httpatomoreillycomsourceoreillyimages238858.png" alt="image with no caption"/></div></div><p>Let's break down <code class="literal">parse_number</code>.</p><a id="I_programlisting7_d1e5191"/><pre class="programlisting">/^   $/i</pre><p>We again use <code class="literal">^</code> and <code class="literal">$</code> to anchor the regular expression. This causes all of the characters
+                in the text to be matched against the regular expression. If we had omitted the
+                anchors, the regular expression would tell us if a string contains a number. With
+                the anchors, it tells us if the string contains only a number. If we included just
+                the <code class="literal">^</code>, it would match strings starting with a
+                number. If we included just the <code class="literal">$</code>, it would match
+                strings ending with a number.</p><p>The <code class="literal">i</code> flag causes case to be ignored when
+                matching letters. The only letter in our pattern is <code class="literal">e</code>. We want that <code class="literal">e</code> to also match
+                    <code class="literal">E</code>. We could have written the <code class="literal">e</code> factor as <code class="literal">[Ee]</code> or
+                    <code class="literal">(?:E|e)</code>, but we didn't have to because we
+                used the <code class="literal">i</code> flag:</p><a id="I_programlisting7_d1e5234"/><pre class="programlisting">-?</pre><p>The <code class="literal">?</code> suffix on the minus sign indicates that
+                the minus sign is optional:</p><a id="I_programlisting7_d1e5242"/><pre class="programlisting">\d+</pre><p><code class="literal">\d</code> means the same as <code class="literal">[0-9]</code>. It matches a digit. The <code class="literal">+</code>
+                suffix causes it to match one or more digits:<a id="IDX-CHP-7-0352" class="indexterm"/></p><a id="I_programlisting7_d1e5259"/><pre class="programlisting">(?:\.\d*)?</pre><p>The (?: . . . <code class="literal">)?</code> indicates an optional
+                noncapturing group. It is usually better to use noncapturing groups instead of the
+                less ugly capturing groups because capturing has a performance penalty. The group
+                will match a decimal point followed by zero or more digits:<a id="IDX-CHP-7-0353" class="indexterm"/></p><a id="I_programlisting7_d1e5271"/><pre class="programlisting">(?:e[+\-]?\d+)?</pre><p>This is another optional noncapturing group. It matches <code class="literal">e</code> (or <code class="literal">E</code>), an optional sign, and
+                one or more digits.</p></div><div class="footnotes"><br/><hr/><div class="footnote"><p><sup>[<a id="ftn.CHP-7-FN-1" href="#CHP-7-FN-1" class="para">1</a>] </sup>When you press them all together again, it is visually quite confusing:
+                            <code class="literal">/^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/</code></p></div></div></div></body></html>

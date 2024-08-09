@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Reference</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Reference"><div class="titlepage"><div><div><h1 class="title"><a id="reference"/>Reference</h1></div></div></div><p>Objects are passed around by reference. They are never copied:<a id="IDX-CHP-3-0162" class="indexterm"/></p><a id="I_programlisting3_d1e2124"/><pre class="programlisting">var x = stooge;
+x.nickname = 'Curly';
+var nick = stooge.nickname;
+    // nick is 'Curly' because x and stooge
+    // are references to the same object
+
+var a = {}, b = {}, c = {};
+    // a, b, and c each refer to a
+    // different empty object
+a = b = c = {};
+    // a, b, and c all refer to
+    // the same empty object</pre></div></body></html>

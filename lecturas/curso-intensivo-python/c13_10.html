@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c13-0005">Añadir filas</h3>
+<p class="BodyFirst">Para terminar la flota, seguiremos añadiendo más filas hasta que nos quedemos sin espacio. Utilizaremos un bucle anidado: envolveremos otro bucle <code translate="no">while</code> alrededor del actual. El bucle interior colocará a los alienígenas horizontalmente en una fila centrándose en los valores <em translate="no">x</em> de los alienígenas. El bucle exterior colocará a los alienígenas verticalmente centrándose en los valores <em translate="no">y</em>. Dejaremos de añadir filas cuando nos acerquemos a la parte inferior de la pantalla, dejando espacio suficiente para la nave y algo de espacio para empezar a disparar a los alienígenas.</p>
+<p>He aquí cómo anidar los dos bucles <code translate="no">while</code> en <code translate="no">_create_fleet()</code>:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    def _create_fleet(self):</span>
+<span class="LiteralGray">        """Create the fleet of aliens."""</span>
+<span class="LiteralGray">        # Create an alien and keep adding aliens until there's no room left.</span>
+        # Spacing between aliens is one alien width and one alien height.
+<span class="LiteralGray">        alien = Alien(self)</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         alien_width, alien_height = alien.rect.size
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         current_x, current_y = alien_width, alien_height
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>         while current_y &lt; (self.settings.screen_height - 3 * alien_height):
+            <span class="LiteralGray">while current_x &lt; (self.settings.screen_width - 2 * alien_width):</span>
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>                 self._create_alien(current_x, current_y)
+                <span class="LiteralGray">current_x += 2 * alien_width</span>
+
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>             # Finished a row; reset x value, and increment y value.
+            current_x = alien_width
+            current_y += 2 * alien_height</code></pre>
+<p>Necesitaremos saber la altura del alienígena para colocar las filas, así que cogemos la anchura y la altura del alienígena utilizando el atributo <code translate="no">size</code> de un alienígena <code translate="no">rect</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> El atributo <code translate="no">size</code> de un <code translate="no">rect</code>es una tupla que contiene su anchura y altura.</p>
+<p>A continuación, fijamos los valores iniciales <em translate="no">x</em>- y <em translate="no">y</em>- para la colocación del primer alienígena de la flota <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Lo colocamos a una anchura de alienígena hacia dentro desde la izquierda y a una altura de alienígena hacia abajo desde arriba. Después definimos el bucle <code translate="no">while</code> que controla cuántas filas se colocan en la pantalla <span aria-label="annotation3" class="CodeAnnotation">❸.</span> Mientras el valor <em translate="no">y</em> de la siguiente fila sea menor que la altura de la pantalla, menos tres alturas de alienígena, seguiremos añadiendo filas. (Si esto no deja el espacio adecuado, podemos ajustarlo más tarde).</p>
+<p><span epub:type="pagebreak" id="Page_262" title="262"></span>Llamamos a <code translate="no">_create_alien()</code>, y le pasamos el -valor <em translate="no">y</em> así como su -posición <em translate="no">x</em><span aria-label="annotation4" class="CodeAnnotation">❹.</span> Modificaremos <code translate="no">_create_alien()</code> dentro de un momento.</p>
+<p>Fíjate en la sangría de las dos últimas líneas de código <span aria-label="annotation5" class="CodeAnnotation">❺.</span> Están dentro del bucle exterior <code translate="no">while</code>, pero fuera del bucle interior <code translate="no">while</code>. Este bloque se ejecuta una vez finalizado el bucle interno; se ejecuta una vez después de crear cada fila. Después de añadir cada fila, reiniciamos el valor de <code translate="no">current_x</code> para que el primer alienígena de la siguiente fila se coloque en la misma posición que el primer alienígena de las filas anteriores. A continuación, añadimos dos alturas de alienígena al valor actual de <code translate="no">current_y</code>, para que la siguiente fila se sitúe más abajo en la pantalla. La sangría es realmente importante aquí; si no ves la flota correcta cuando ejecutes <em translate="no">alien_invasion.py</em> al final de esta sección, comprueba la sangría de todas las líneas en estos bucles anidados.</p>
+<p>Tenemos que modificar <code translate="no">_create_alien()</code> para fijar correctamente la posición vertical del alienígena:</p>
+<pre translate="no"><code translate="no">    def _create_alien(self, x_position, y_position):
+        """Create an alien and place it in the fleet."""
+<span class="LiteralGray">        new_alien = Alien(self)</span>
+<span class="LiteralGray">        new_alien.x = x_position</span>
+<span class="LiteralGray">        new_alien.rect.x = x_position</span>
+        new_alien.rect.y = y_position
+<span class="LiteralGray">        self.aliens.add(new_alien)</span></code></pre>
+<p>Modificamos la definición del método para que acepte el -valor <em translate="no">y</em> para el nuevo alienígena, y fijamos la posición vertical del <code translate="no">rect</code> en el cuerpo del método.</p>
+<p>Cuando ejecutes ahora el juego, deberías ver una flota completa de alienígenas, como se muestra en la <a href="#figure13-4" id="figureanchor13-4">Figura 13-4</a>.</p>
+<figure>
+<img alt="" class="keyline" height="380" src="Images/f13004.png" translate="no" width="550"/>
+<figcaption><p>Figura<a id="figure13-4">13-4</a>: Aparece la flota completa.</p></figcaption>
+</figure>
+<p>En la siguiente sección, ¡haremos que la flota se mueva!</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c13_9.html">anterior</a><a href="c13.html">Subtema 10 de 33: (Ver todo)</a><a href="c13_11.html">siguiente</a><br/></p>
+<br/><a href="c13_10.docx" target="_blank"></a></footer>
+</body>
+</html>

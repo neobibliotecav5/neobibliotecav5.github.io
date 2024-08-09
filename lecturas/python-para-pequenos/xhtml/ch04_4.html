@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch04lev1sec3">
+  Mover la tortuga </h3>
+<p class="indent">
+  Puedes enviar instrucciones a la tortuga utilizando funciones disponibles en la variable <span class="literal1" translate="no">
+   t
+  </span>que acabamos de crear, de forma similar al uso de la función <span class="literal1" translate="no">
+   Turtle
+  </span>en el módulo <span class="literal1" translate="no">
+   turtle
+  </span>. Por ejemplo, la instrucción <span class="literal1" translate="no">
+   forward
+  </span>indica a la tortuga que avance. Para decirle a la tortuga que avance 50 píxeles, introduce la siguiente instrucción: </p>
+<div class="image1">
+<img alt="Image" class="calibre42" src="../images/f0045-01.jpg" translate="no"/>
+</div>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> t.forward(50)</pre>
+<p class="noindent">
+  Deberías ver algo como la <a class="calibre6" href="ch04.xhtml#ch04fig02">Figura 4-2 . </a></p>
+<div class="image1" id="ch04fig02">
+<img alt="Image" class="calibre43" src="../images/04fig02.jpg" translate="no"/>
+</div>
+<p class="figcap">
+
+   Figura<em class="calibre7">4-2: La </em>tortuga avanzando</p>
+<p class="indent">
+<span id="page_46">
+</span>
+  La tortuga ha avanzado 50 píxeles. Un <em class="calibre7">píxel </em>es un único punto de la pantalla, el elemento más pequeño que se puede representar. Todo lo que ves en el monitor de tu ordenador está formado por píxeles, que son pequeños puntos cuadrados. Si pudieras ampliar el lienzo y la línea dibujada por la tortuga, podrías ver que la flecha que representa la trayectoria de la tortuga no es más que un montón de píxeles. Esta es la base de los gráficos informáticos sencillos. </p>
+<div class="image1" id="ch04fig03">
+<img alt="Image" class="calibre44" src="../images/04fig03.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">Figura 4-3: ¡Los píxeles son puntos! </em></p>
+<p class="indent">
+<span id="page_47">
+</span>
+  Ahora le diremos a la tortuga que gire 90 grados a la izquierda con el siguiente comando: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> t.left(90)</pre>
+<p class="noindent">
+  Si aún no has aprendido lo que son los <em class="calibre7">grados </em>, imagina que estás de pie en el centro de un círculo: </p>
+<ul class="calibre22">
+<li class="noindent2">
+   La dirección hacia la que estás mirando es 0 grados.  </li>
+<li class="noindent2">
+   Si extiendes el brazo izquierdo, son 90 grados a la izquierda.  </li>
+<li class="noindent2">
+   Si extiendes el brazo derecho, son 90 grados a la derecha.  </li>
+</ul>
+<p class="noindent">
+  Puedes ver este giro de 90 grados a la izquierda o a la derecha en la Figura 4-4 <a class="calibre6" href="ch04.xhtml#ch04fig04">. </a></p>
+<div class="image1" id="ch04fig04">
+<img alt="Image" class="calibre45" src="../images/04fig04.jpg" translate="no"/>
+</div>
+<p class="figcap">
+
+   Figura<em class="calibre7">4-4: </em>90 grados a la izquierda y a la derecha</p>
+<p class="indent">
+  Si continúas alrededor del círculo hacia la derecha desde donde apunta tu brazo derecho, 180 grados es directamente detrás de ti, 270 grados es la dirección en la que apunta tu brazo izquierdo y 360 grados es volver a donde empezaste; los grados van de 0 a 360. Los grados en un círculo completo, al girar a la derecha, se pueden ver en incrementos de 45 grados en la Figura 4-5 <a class="calibre6" href="ch04.xhtml#ch04fig05">. </a></p>
+<div class="image1" id="ch04fig05">
+<img alt="Image" class="calibre46" src="../images/04fig05.jpg" translate="no"/>
+</div>
+<p class="figcap">
+
+   Figura<em class="calibre7">4-5: </em>Incrementos de 45 grados</p>
+<p class="indent">
+<span id="page_48">
+</span>
+  Cuando la tortuga de Python gira a la izquierda, gira para mirar hacia la nueva dirección (igual que si giraras tu cuerpo para mirar hacia donde apunta tu brazo 90 grados a la izquierda). El comando <span class="literal1" translate="no">
+   t.left(90)
+  </span>apunta la flecha hacia arriba (ya que empezó apuntando a la derecha). Puedes verlo en la <a class="calibre6" href="ch04.xhtml#ch04fig06">Figura 4-6 . </a></p>
+<div class="image1" id="ch04fig06">
+<img alt="Image" class="calibre47" src="../images/04fig06.jpg" translate="no"/>
+</div>
+<p class="figcap">
+
+   Figura<em class="calibre7">4-6: Tortuga después de girar a la izquierda </em></p>
+<div class="note">
+<p class="notet">
+<strong class="calibre3"><span class="notes">NOTA </span></strong></p>
+<p class="notep">
+<em class="calibre7">
+    Cuando llamas a <span class="literal1" translate="no">
+     t.left(90)
+    </span>, es lo mismo que llamar a <span class="literal1" translate="no">
+     t.right(270)
+    </span>en cuanto a la dirección en la que acaba mirando la tortuga al final. Lo mismo ocurre cuando llamas a <span class="literal1" translate="no">
+     t.right(90)
+    </span>, que es lo mismo que <span class="literal1" translate="no">
+     t.left(270)
+    </span>. Imagina ese círculo y sigue los grados. </em></p>
+</div>
+<p class="indent">
+  Ahora dibujaremos un cuadrado. Añade el código siguiente a las líneas que ya has introducido: </p>
+<pre class="pre" translate="no"><span id="page_49"></span><span class="brown">&gt;&gt;&gt;</span> t.forward(50)
+<span class="brown">&gt;&gt;&gt;</span> t.left(90)
+<span class="brown">&gt;&gt;&gt;</span> t.forward(50)
+<span class="brown">&gt;&gt;&gt;</span> t.left(90)
+<span class="brown">&gt;&gt;&gt;</span> t.forward(50)
+<span class="brown">&gt;&gt;&gt;</span> t.left(90)</pre>
+<p class="indent">
+  Tu tortuga debería haber dibujado un cuadrado y ahora debería estar mirando en la misma dirección en la que empezó, como se ve en la Figura 4-7 <a class="calibre6" href="ch04.xhtml#ch04fig07">. </a></p>
+<div class="image1" id="ch04fig07">
+<img alt="Image" class="calibre43" src="../images/04fig07.jpg" translate="no"/>
+</div>
+<p class="figcap">
+
+   Figura<em class="calibre7">4-7: Tortuga dibujando un </em>cuadrado</p>
+<p class="indent">
+  Para borrar el lienzo, introduce <span class="literal1" translate="no">
+   t.reset()
+  </span>. Esto borra el lienzo y devuelve a la tortuga a su posición inicial. </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> t.reset()</pre>
+<p class="indent">
+  También puedes utilizar <span class="literal1" translate="no">
+   t.clear()
+  </span>, que simplemente borra la pantalla y deja a la tortuga donde está. </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> t.clear()</pre>
+<p class="indent">
+  También podemos girar nuestra tortuga hacia la derecha o moverla hacia atrás. Podemos utilizar <span class="literal1" translate="no">
+   up
+  </span>para levantar el "lápiz" de la página (en otras palabras, decirle a la tortuga <span id="page_50">
+</span>que deje de dibujar), y <span class="literal1" translate="no">
+   down
+  </span>para empezar a dibujar de nuevo. Estas funciones están escritas de la misma forma que las demás que hemos utilizado. </p>
+<p class="indent">
+  Vamos a intentar otro dibujo utilizando algunos de estos comandos. Esta vez, haremos que la tortuga dibuje dos líneas. Introduce el código siguiente: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> t.reset()
+<span class="brown">&gt;&gt;&gt;</span> t.backward(100)
+<span class="brown">&gt;&gt;&gt;</span> t.up()
+<span class="brown">&gt;&gt;&gt;</span> t.right(90)
+<span class="brown">&gt;&gt;&gt;</span> t.forward(20)
+<span class="brown">&gt;&gt;&gt;</span> t.left(90)
+<span class="brown">&gt;&gt;&gt;</span> t.down()
+<span class="brown">&gt;&gt;&gt;</span> t.forward(100)</pre>
+<p class="indent">
+  En primer lugar, borramos el lienzo y movemos la tortuga a su posición inicial con <span class="literal1" translate="no">
+   t.reset()
+  </span>. A continuación, movemos la tortuga 100 píxeles hacia atrás con <span class="literal1" translate="no">
+   t.backward(100)
+  </span>, y luego utilizamos <span class="literal1" translate="no">
+   t.up()
+  </span>para coger el lápiz y dejar de dibujar. </p>
+<p class="indent">
+  A continuación, con el comando <span class="literal1" translate="no">
+   t.right(90)
+  </span>, giramos la tortuga 90 grados a la derecha para que apunte hacia abajo, hacia la parte inferior de la pantalla, y con <span class="literal1" translate="no">
+   t.forward(20)
+  </span>, avanzamos 20 píxeles. No se dibuja nada porque hemos utilizado el comando <span class="literal1" translate="no">
+   up
+  </span>en la tercera línea. A continuación, giramos la tortuga 90 grados a la izquierda para que mire hacia la derecha con <span class="literal1" translate="no">
+   t.left(90)
+  </span>, y luego utilizamos el comando <span class="literal1" translate="no">
+   down
+  </span>para decirle a la tortuga que empiece a dibujar de nuevo. Por último, trazamos una línea hacia delante, paralela a la primera línea que hemos dibujado, con <span class="literal1" translate="no">
+   t.forward(100)
+  </span>. Las dos líneas paralelas que hemos dibujado acaban pareciéndose a la Figura 4-8 <a class="calibre6" href="ch04.xhtml#ch04fig08">. </a></p>
+<div class="image1">
+<img alt="Image" class="calibre48" src="../images/f0050-01.jpg" translate="no"/>
+</div>
+<div class="image1" id="ch04fig08">
+<img alt="Image" class="calibre43" src="../images/04fig08.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figura 4-8: Tortuga dibujando </em>líneas paralelas</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch04_3.html">anterior</a><a href="ch04.html">Subtema 4 de 6: (Ver todo)</a><a href="ch04_5.html">siguiente</a><br/></p>
+<br/><a href="ch04_4.docx" target="_blank"></a></footer>
+</body>
+</html>

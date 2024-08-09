@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c08-0004">Argumentos de palabra clave</h3>
+<p class="BodyFirst">Un <em translate="no">keyword argument</em> es un par nombre-valor que pasas a una función. Asocias directamente el nombre y el valor dentro del argumento, de modo que cuando pases el argumento a la función, no haya confusión (no acabarás con un harry llamado Hamster). Los argumentos con palabras clave te liberan de tener que preocuparte de ordenar correctamente tus argumentos en la llamada a la función, y aclaran el papel de cada valor en la llamada a la función.</p>
+<p>Reescribamos <em translate="no">pets.py</em> utilizando argumentos de palabra clave para llamar a <code translate="no">describe_pet()</code>:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">def describe_pet(animal_type, pet_name):</span>
+<span class="LiteralGray">    """Display information about a pet."""</span>
+<span class="LiteralGray">    print(f"\nI have a {animal_type}.")</span>
+<span class="LiteralGray">    print(f"My {animal_type}'s name is {pet_name.title()}.")</span>
+
+describe_pet(animal_type='hamster', pet_name='harry')</code></pre>
+<p><span epub:type="pagebreak" id="Page_134" title="134"></span>La función <code translate="no">describe_pet()</code> no ha cambiado. Pero cuando llamamos a la función, le decimos explícitamente a Python con qué parámetro debe coincidir cada argumento. Cuando Python lee la llamada a la función, sabe que debe asignar el argumento <code translate="no">'hamster'</code> al parámetro <code translate="no">animal_type</code> y el argumento <code translate="no">'harry'</code> a <code translate="no">pet_name</code>. La salida muestra correctamente que tenemos un hámster llamado Harry.</p>
+<p>El orden de los argumentos de las palabras clave no importa porque Python sabe dónde debe ir cada valor. Las dos llamadas a funciones siguientes son equivalentes:</p>
+<pre translate="no"><code translate="no">describe_pet(animal_type='hamster', pet_name='harry')
+describe_pet(pet_name='harry', animal_type='hamster')</code></pre>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c08_8.html">anterior</a><a href="c08.html">Subtema 9 de 40: (Ver todo)</a><a href="c08_10.html">siguiente</a><br/></p>
+<br/><a href="c08_9.docx" target="_blank"></a></footer>
+</body>
+</html>

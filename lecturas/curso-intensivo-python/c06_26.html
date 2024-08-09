@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c06-0014"><span epub:type="pagebreak" id="Page_110" title="110"></span>Un diccionario dentro de otro diccionario</h3>
+<p class="BodyFirst">Puedes anidar un diccionario dentro de otro diccionario, pero tu código puede complicarse rápidamente cuando lo hagas. Por ejemplo, si tienes varios usuarios para un sitio web, cada uno con un nombre de usuario único, puedes utilizar los nombres de usuario como claves de un diccionario. A continuación, puedes almacenar información sobre cada usuario utilizando un diccionario como valor asociado a su nombre de usuario. En el siguiente listado, almacenamos tres datos sobre cada usuario: su nombre, apellidos y ubicación. Accederemos a esta información recorriendo los nombres de usuario y el diccionario de información asociado a cada nombre de usuario:</p>
+<p class="CodeLabel" translate="no"><b>many_users.py</b></p>
+<pre translate="no"><code translate="no">users = {
+    'aeinstein': {
+        'first': 'albert',
+        'last': 'einstein',
+        'location': 'princeton',
+        },
+
+    'mcurie': {
+        'first': 'marie',
+        'last': 'curie',
+        'location': 'paris',
+        },
+
+    }
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> for username, user_info in users.items():
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     print(f"\nUsername: {username}")
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     full_name = f"{user_info['first']} {user_info['last']}"
+    location = user_info['location']
+
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>     print(f"\tFull name: {full_name.title()}")
+    print(f"\tLocation: {location.title()}")</code></pre>
+<p>Primero definimos un diccionario llamado <code translate="no">users</code> con dos claves: una para cada uno de los nombres de usuario <code translate="no">'aeinstein'</code> y <code translate="no">'mcurie'</code>. El valor asociado a cada clave es un diccionario que incluye el nombre, apellidos y ubicación de cada usuario. A continuación, recorremos en bucle el diccionario <code translate="no">users</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Python asigna cada clave a la variable <code translate="no">username</code>, y el diccionario asociado a cada nombre de usuario se asigna a la variable <code translate="no">user_info</code>. Una vez dentro del bucle principal del diccionario, imprimimos el nombre de usuario <span aria-label="annotation2" class="CodeAnnotation">❷.</span></p>
+<p>A continuación, empezamos a acceder al diccionario interno <span aria-label="annotation3" class="CodeAnnotation">❸.</span> La variable <code translate="no">user_info</code>, que contiene el diccionario de información del usuario, tiene tres claves: <code translate="no">'first'</code>, <code translate="no">'last'</code>, y <code translate="no">'location'</code>. Utilizamos cada clave para generar un nombre completo y una ubicación de cada persona con un formato ordenado, y luego imprimimos un resumen de lo que sabemos de cada usuario <span aria-label="annotation4" class="CodeAnnotation">❹:</span></p>
+<pre translate="no"><code translate="no">Username: aeinstein
+    Full name: Albert Einstein
+    Location: Princeton
+
+<span epub:type="pagebreak" id="Page_111" title="111"></span>Username: mcurie
+    Full name: Marie Curie
+    Location: Paris</code></pre>
+<p>Observa que la estructura del diccionario de cada usuario es idéntica. Aunque Python no lo requiere, esta estructura facilita el trabajo con diccionarios anidados. Si el diccionario de cada usuario tuviera claves diferentes, el código dentro del bucle <code translate="no">for</code> sería más complicado.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c06_25.html">anterior</a><a href="c06.html">Subtema 26 de 28: (Ver todo)</a><a href="c06_27.html">siguiente</a><br/></p>
+<br/><a href="c06_26.docx" target="_blank"></a></footer>
+</body>
+</html>

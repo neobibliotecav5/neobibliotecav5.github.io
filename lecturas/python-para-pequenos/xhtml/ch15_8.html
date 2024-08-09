@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch15lev1sec7">
+  Lo que tenemos hasta ahora </h3>
+<p class="noindent">
+  Repasemos las definiciones de las clases y funciones de nuestro juego hasta ahora, y dónde deben estar en tu archivo. </p>
+<p class="indent">
+  En la parte superior de tu programa, deberías tener las declaraciones <span class="literal1" translate="no">
+   import
+  </span>, seguidas de las clases <span class="literal1" translate="no">
+   Game
+  </span>y <span class="literal1" translate="no">
+   Coords
+  </span>. La clase <span class="literal1" translate="no">
+   Game
+  </span>se utilizará para crear un objeto que será el controlador principal de nuestro juego, y los objetos de la clase <span class="literal1" translate="no">
+   Coords
+  </span>se utilizan para mantener las posiciones de las cosas en nuestro juego (como las plataformas y el Sr. Hombre de Palo): </p>
+<pre class="pre" translate="no"><span class="orange">from</span> tkinter <span class="orange">import</span> *
+<span class="orange">import</span> random
+<span class="orange">import</span> time
+
+<span class="orange">class</span> Game:
+    --<span class="codeitalic">snip</span>--
+<span class="orange">class</span> Coords:
+    --<span class="codeitalic">snip</span>--</pre>
+<p class="indent">
+  A continuación, deberías tener las funciones <span class="literal1" translate="no">
+   within
+  </span>(que dicen si las coordenadas de un sprite están dentro de la misma área de otro sprite), la clase padre <span class="literal1" translate="no">
+   Sprite
+  </span>(que es la clase padre de todos los sprites de nuestro juego), la clase <span class="literal1" translate="no">
+   PlatformSprite
+  </span>y el principio de la clase <span class="literal1" translate="no">
+   StickFigureSprite
+  </span>. Utilizamos la clase <span class="literal1" translate="no">
+   PlatformSprite
+  </span>para crear objetos plataforma, sobre los que saltará nuestra figura de palo. También creamos un objeto de la clase <span class="literal1" translate="no">
+   StickFigureSprite
+  </span>, para representar al personaje principal de nuestro juego: </p>
+<pre class="pre" translate="no"><span class="orange">def</span> within_x(co1, co2):
+     --<span class="codeitalic">snip</span>--
+<span class="orange">def</span> within_y(co1, co2):
+     --<span class="codeitalic">snip</span>--
+<span class="orange">def</span> collided_left(co1, co2):
+     --<span class="codeitalic">snip</span>--
+<span class="orange">def</span> collided_right(co1, co2):
+     --<span class="codeitalic">snip</span>--
+<span class="orange">def</span> collided_top(co1, co2):
+     --<span class="codeitalic">snip</span>--
+<span class="orange">def</span> collided_bottom(y, co1, co2):
+     --<span class="codeitalic">snip</span>--
+<span class="orange">class</span> Sprite:
+     --<span class="codeitalic">snip</span>--
+<span class="orange">class</span> PlatformSprite(Sprite):
+     --<span class="codeitalic">snip</span>--
+<span class="orange">class</span> StickFigureSprite(Sprite):
+     --<span class="codeitalic">snip</span>--</pre>
+<p class="indent">
+<span id="page_240">
+</span>
+  Por último, al final de tu programa, deberías tener el código que crea todos los objetos de nuestro juego hasta ahora: el propio objeto del juego y las plataformas. La línea final es donde llamamos a la función <span class="literal1" translate="no">
+   mainloop
+  </span>: </p>
+<pre class="pre" translate="no">g = Game()
+platform1 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform1.gif'</span>),
+                           0, 480, 100, 10)
+...
+g.sprites.append(platform1)
+...
+g.mainloop()</pre>
+<p class="indent">
+  Si tu código parece un poco diferente, o tienes problemas para hacerlo funcionar, siempre puedes saltar al final del <a class="calibre6" href="ch16.xhtml#ch16">Capítulo </a>16 para ver el listado completo de todo el juego. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch15_7.html">anterior</a><a href="ch15.html">Subtema 8 de 9: (Ver todo)</a><a href="ch15_9.html">siguiente</a><br/></p>
+<br/><a href="ch15_8.docx" target="_blank"></a></footer>
+</body>
+</html>

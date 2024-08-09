@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c18-0015">Asignar una URL</h3>
+<p class="BodyFirst">Los usuarios solicitan las páginas introduciendo URL en un navegador y haciendo clic en los enlaces, así que tendremos que decidir qué URL son necesarias. La URL de la página de inicio es lo primero: es la URL base que la gente utiliza para acceder al proyecto. Por el momento, la URL base, <em translate="no">http://localhost:8000/</em>, devuelve el sitio Django por defecto que nos permite saber que el proyecto se ha configurado correctamente. Cambiaremos esto asignando la URL base a la página de inicio de Learning Log.</p>
+<p><span epub:type="pagebreak" id="Page_389" title="389"></span>En la carpeta principal <em translate="no">ll_project</em>, abre el archivo <em translate="no">urls.py</em>. Deberías ver el siguiente código:</p>
+<p class="CodeLabel" translate="no"><b>ll_project/urls.py</b></p>
+<pre translate="no"><code translate="no"><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> from django.contrib import admin
+from django.urls import path
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> urlpatterns = [
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     path('admin/', admin.site.urls),
+]</code></pre>
+<p>Las dos primeras líneas importan el módulo <code translate="no">admin</code> y una función para construir rutas URL <span aria-label="annotation1" class="CodeAnnotation">❶.</span> El cuerpo del archivo define la variable <code translate="no">urlpatterns</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> En este archivo <em translate="no">urls.py</em>, que define las URL para el proyecto en su conjunto, la variable <code translate="no">urlpatterns</code> incluye conjuntos de URL de las aplicaciones del proyecto. La lista incluye el módulo <code translate="no">admin.site.urls</code>, que define todas las URL que se pueden solicitar desde el sitio de administración <span aria-label="annotation3" class="CodeAnnotation">❸.</span></p>
+<p>Necesitamos incluir las URL de <code translate="no">learning_logs</code>, así que añade lo siguiente:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">from django.contrib import admin</span>
+from django.urls import path, include
+
+<span class="LiteralGray">urlpatterns = [</span>
+<span class="LiteralGray">    path('admin/', admin.site.urls),</span>
+<span class="LiteralGray">    </span>path('', include('learning_logs.urls')),
+<span class="LiteralGray">]</span></code></pre>
+<p>Hemos importado la función <code translate="no">include()</code>, y también hemos añadido una línea para incluir el módulo <code translate="no">learning_logs.urls</code>.</p>
+<p>Por defecto, <em translate="no">urls.py</em> está en la carpeta <em translate="no">ll_project </em>; ahora necesitamos crear un segundo archivo <em translate="no">urls.py</em> en la carpeta <em translate="no">learning_logs </em>. Crea un nuevo archivo Python, guárdalo como <em translate="no">urls.py</em> en <em translate="no">learning_logs</em>, e introduce en él este código:</p>
+<p class="CodeLabel" translate="no"><b>learning_logs/urls.py</b></p>
+<pre translate="no"><code translate="no"><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> """Defines URL patterns for learning_logs."""
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> from django.urls import path
+
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> from . import views
+
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> app_name = 'learning_logs'
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span> urlpatterns = [
+    # Home page
+<span aria-label="annotation6" class="CodeAnnotationHang">❻</span>     path('', views.index, name='index'),
+]</code></pre>
+<p>Para dejar claro en qué <em translate="no">urls.py</em> estamos trabajando, añadimos un docstring al principio del archivo <span aria-label="annotation1" class="CodeAnnotation">❶.</span> A continuación, importamos la función <code translate="no">path</code>, necesaria para asignar URLs a vistas <span aria-label="annotation2" class="CodeAnnotation">❷.</span> También importamos el módulo <code translate="no">views</code> <span aria-label="annotation3" class="CodeAnnotation">❸;</span> el punto indica a Python que importe el módulo <em translate="no">views.py</em> del mismo directorio que el módulo actual <em translate="no">urls.py</em>. La variable <code translate="no">app_name</code> ayuda a Django a distinguir este archivo <em translate="no">urls.py</em> de los archivos del mismo nombre de otras aplicaciones del proyecto <span aria-label="annotation4" class="CodeAnnotation">❹.</span> La variable <code translate="no">urlpatterns</code> de este módulo es una lista de páginas individuales que pueden solicitarse a la aplicación <code translate="no">learning_logs</code> <span aria-label="annotation5" class="CodeAnnotation">❺.</span></p>
+<p><span epub:type="pagebreak" id="Page_390" title="390"></span>El patrón URL real es una llamada a la función <code translate="no">path()</code>, que toma tres argumentos <span aria-label="annotation6" class="CodeAnnotation">❻.</span> El primer argumento es una cadena que ayuda a Django a enrutar correctamente la solicitud actual. Django recibe la URL solicitada e intenta dirigir la solicitud a una vista. Para ello, busca en todos los patrones de URL que hemos definido uno que coincida con la solicitud actual. Django ignora la URL base del proyecto (<em translate="no">http://localhost:8000/</em>), por lo que la cadena vacía (<code translate="no">''</code>) coincide con la URL base. Cualquier otra URL no coincidirá con este patrón, y Django devolverá una página de error si la URL solicitada no coincide con ningún patrón de URL existente.</p>
+<p>El segundo argumento de <code translate="no">path()</code> <span aria-label="annotation6" class="CodeAnnotation">❻</span> especifica a qué función llamar en <em translate="no">views.py</em>. Cuando una URL solicitada coincide con el patrón que estamos definiendo, Django llama a la función <code translate="no">index()</code> de <em translate="no">views.py</em>. (Escribiremos esta función de vista en la siguiente sección.) El tercer argumento proporciona el nombre <em translate="no">index</em> a este patrón de URL para que podamos referirnos a él más fácilmente en otros archivos a lo largo del proyecto. Siempre que queramos proporcionar un enlace a la página de inicio, utilizaremos este nombre en lugar de escribir una URL.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c18_27.html">anterior</a><a href="c18.html">Subtema 28 de 41: (Ver todo)</a><a href="c18_29.html">siguiente</a><br/></p>
+<br/><a href="c18_28.docx" target="_blank"></a></footer>
+</body>
+</html>

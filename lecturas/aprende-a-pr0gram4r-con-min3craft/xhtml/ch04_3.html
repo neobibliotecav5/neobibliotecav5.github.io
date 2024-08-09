@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch04lev1sec02"><strong><span class="blue1">La función print()</span></strong></h3>
+<p class="noindent">Mostrar texto y otra información al usuario es importante para la interacción con él; de lo contrario, no sabrá lo que ocurre en tus programas. La información que muestras al usuario se llama <em>salida</em>. Para mostrar datos en la pantalla del usuario, utiliza la función <span class="literal">print()</span>.</p>
+<p class="indent">Para mostrar un mensaje, pasa una cadena a la función print( <span class="literal">)</span> como argumento:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> <span class="rose">print</span>(<span class="green">"String"</span>)</p>
+<p class="indent"><span epub:type="pagebreak" id="page_71"></span>Esto indica a Python que quieres mostrar al usuario la palabra <span class="literal">Cadena</span>. Así, para imprimir <span class="literal">chocolate</span> en el shell de Python, escribes:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> <span class="rose">print</span>(<span class="green">"chocolate"</span>)</p>
+<p class="indent">Y la salida sería</p>
+<p class="programs" translate="no"><span class="blue1">chocolate</span></p>
+<p class="indent">También puedes utilizar <span class="literal">print()</span> para imprimir los valores de las variables. Por ejemplo, si tienes una variable llamada <span class="literal">nombre</span> que almacena un nombre como cadena, y quieres mostrarlo en la pantalla, puedes hacer lo siguiente:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> name = <span class="green">"Steve the Miner"</span></p>
+<p class="indent">Después de almacenar la cadena <span class="literal">"Steve el minero"</span> en <span class="literal">nombre</span>, puedes escribir simplemente <span class="literal">print(nombre)</span> para mostrar esta salida:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> <span class="rose">print</span>(name)<br translate="no"/><span class="blue1">Steve the Miner</span></p>
+<p class="indent">Ahora que ya conoces los conceptos básicos de las cadenas, ¡completa la misión para saludar a tu mundo Minecraft!</p>
+<h4 class="h4a" id="ch04lev2sec01"><strong>Misión nº 11: Hola, Mundo Minecraft</strong></h4>
+<p class="noindent">Si quieres chatear con otros jugadores en Minecraft Pi, la API Python de Minecraft te permite enviar mensajes al chat utilizando la función <span class="literal">postToChat</span> (). La función <span class="literal">postToChat</span> () toma una cadena como argumento y publica esa cadena en la ventana de chat de Minecraft. Por ejemplo, <a href="ch04.xhtml#ch4ex1">el Listado 4-1</a> envía <span class="literal">"Hola, Mundo Minecraft"</span> al chat.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>message.py</em></span></p>
+<p class="programs" translate="no"><span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>mc = Minecraft.create()<br translate="no"/>mc.postToChat(<span class="green">"Hello, Minecraft World"</span>)</p>
+<p class="examplet"><a id="ch4ex1"></a><em>Listado 4-1: Utiliza Python para enviar un saludo a través del chat de Minecraft.</em></p>
+<p class="indent">Recuerda que un argumento es información que pasas a una función cuando la llamas. La función necesita esta información para hacer su trabajo. Por ejemplo, en el capítulo anterior, necesitábamos pasar números a nuestras funciones para definir lo que queríamos que hicieran. En este caso, postToChat( <span class="literal">)</span> necesita una cadena, como <span class="literal">"Hola, Mundo Minecraft"</span>.</p>
+<p class="indent">La función <span class="literal">postToChat</span> () es similar a la función <span class="literal">print()</span>. Ambas pueden mostrar cadenas en la pantalla, y ambas pueden tomar como argumento una variable que almacene una cadena. La diferencia es que la función <span class="literal">print</span> () envía cadenas al shell de Python, mientras que postToChat <span class="literal">()</span> muestra la salida en el chat de Minecraft.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_72"></span>Copia el código <a href="ch04.xhtml#ch4ex1">del Listado 4-1</a> y guárdalo como <em>mensaje.py</em> en una nueva carpeta llamada <em>cadenas</em>. Cuando ejecutes el programa, deberías ver el mensaje publicado en el chat, como se muestra en la <a href="ch04.xhtml#ch4fig1">Figura 4</a>-1.</p>
+<div class="image"><img alt="image" src="../images/f04-01.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch4fig1"></a><em>Figura 4-1: Mi mensaje se ha publicado en el chat.</em></p>
+<p class="indent">Prueba a pasar una cadena diferente a <span class="literal">postToChat()</span> para que muestre un mensaje de chat diferente.</p>
+<div class="sidebar">
+<p class="sidebart" id="ch04sb01"><strong>OBJETIVO EXTRA: ¿DÓNDE ESTÁS?</strong></p>
+<p class="noindent">Puedes publicar todo tipo de información en el chat utilizando la función <span class="literal">mc.postToChat()</span>. Prueba a mostrar la posición x actual del jugador o el tipo de bloque sobre el que se encuentra. Recuerda que la función mc. <span class="literal">player.getTilePos</span> () obtiene la posición actual del jugador y la función <span class="literal">mc.getBlock()</span> te indica el tipo de bloque en determinadas coordenadas.</p>
+</div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch04_2.html">anterior</a><a href="ch04.html">Subtema 3 de 8: (Ver todo)</a><a href="ch04_4.html">siguiente</a><br/></p>
+<br/><a href="ch04_3.docx" target="_blank"></a></footer>
+</body>
+</html>

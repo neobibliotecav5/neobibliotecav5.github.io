@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Exceptions</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Exceptions"><div class="titlepage"><div><div><h1 class="title"><a id="exceptions"/>Exceptions</h1></div></div></div><p>JavaScript provides an exception handling mechanism. Exceptions are unusual (but
+                not completely unexpected) mishaps that interfere with the normal flow of a program.
+                When such a mishap is detected, your program should throw an exception:<a id="IDX-CHP-4-0209" class="indexterm"/><a id="IDX-CHP-4-0210" class="indexterm"/><a id="IDX-CHP-4-0207" class="indexterm"/><a id="IDX-CHP-4-0208" class="indexterm"/></p><a id="I_programlisting4_d1e2789"/><pre class="programlisting">var add = function (a, b) {
+    if (typeof a !== 'number' || typeof b !== 'number') {
+        throw {
+            name: 'TypeError',
+            message: 'add needs numbers'
+        };
+    }
+    return a + b;
+}</pre><p>The <code class="literal">throw</code> statement interrupts execution of the
+                function. It should be given an <code class="literal">exception</code> object
+                containing a <code class="literal">name</code> property that identifies the
+                type of the exception, and a descriptive <code class="literal">message</code>
+                property. You can also add other properties.</p><p>The <code class="literal">exception</code> object will be delivered to the
+                    <code class="literal">catch</code> clause of a <code class="literal">try</code> statement:</p><a id="I_programlisting4_d1e2816"/><pre class="programlisting">// Make a try_it function that calls the new add
+// function incorrectly.
+
+var try_it = function (  ) {
+    try {
+        add("seven");
+    } catch (e) {
+        document.writeln(e.name + ': ' + e.message);
+    }
+}
+
+try_it(  );</pre><p>If an exception is thrown within a <code class="literal">try</code> block,
+                control will go to its <code class="literal">catch</code> clause.</p><p>A <code class="literal">try</code> statement has a single <code class="literal">catch</code> block that will catch all exceptions. If your
+                handling depends on the type of the exception, then the exception handler will have
+                to inspect the <code class="literal">name</code> to determine the type of the
+                exception.</p></div></body></html>

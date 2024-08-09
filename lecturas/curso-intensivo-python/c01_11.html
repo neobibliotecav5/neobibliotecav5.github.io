@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h2><span class="NoteHead">Nota</span></h2>
+<p>	Python 2 se incluía en versiones anteriores de macOS, pero es una versión obsoleta que no deberías utilizar.</p>
+<div class="bottom hr"><hr/></div>
+<h4 id="h3-502703c01-0004">Comprobar si Python 3 está instalado</h4>
+<p class="BodyFirst">Abre una ventana de terminal yendo a <b>Aplicaciones▶Utilidades▶Terminal</b>. También puedes pulsar la barra espaciadora ⌘, escribir <code class="bold" translate="no">terminal</code> y pulsar INTRO. Para ver si tienes instalada una versión suficientemente reciente de Python, escribe <code class="bold" translate="no">python3</code>. Lo más probable es que veas un mensaje sobre la instalación de <em translate="no">command line developer tools</em>. Es mejor instalar estas herramientas después de instalar Python, así que si aparece este mensaje, cancela la ventana emergente.</p>
+<p>Si la salida muestra que tienes instalado Python 3.9 o una versión posterior, puedes saltarte la siguiente sección y pasar a "<span class="xref" itemid="xref_target_Running Python in a Terminal Session">Ejecutar Python en una sesión de terminal</span>". Si ves alguna versión anterior a Python 3.9, sigue las instrucciones de la siguiente sección para instalar la última versión.</p>
+<p>Ten en cuenta que en macOS, siempre que veas el comando <code translate="no">python</code> en este libro, deberás utilizar en su lugar el comando <code translate="no">python3</code> para asegurarte de que estás utilizando Python 3. En la mayoría de los sistemas macOS, el comando <code translate="no">python</code> o bien apunta a una versión obsoleta de Python que sólo deberían utilizar las herramientas internas del sistema, o bien no apunta a nada y genera un mensaje de error.</p>
+<h4 id="h3-502703c01-0005">Instalar la última versión de Python</h4>
+<p class="BodyFirst">Puedes encontrar un instalador de Python para tu sistema en <a class="LinkURL" href="https://python.org">https://python.org.</a> Pasa el ratón por encima del enlace <b>Descargar</b>, y deberías ver un botón para descargar la última versión de Python. Haz clic en el botón, que debería iniciar automáticamente la descarga del instalador correcto para tu sistema. Una vez descargado el archivo, ejecuta el instalador.</p>
+<p>Una vez ejecutado el instalador, debería aparecer una ventana del Finder. Haz doble clic en el archivo <em translate="no">Install Certificates.command</em>. Ejecutar este archivo te permitirá instalar más fácilmente bibliotecas adicionales que necesitarás para proyectos del mundo real, incluidos los proyectos de la segunda mitad de este libro.</p>
+<h4 id="h3-502703c01-0006">Ejecutar Python en una sesión de terminal</h4>
+<p class="BodyFirst">Ahora puedes probar a ejecutar fragmentos de código Python abriendo una nueva ventana de terminal y escribiendo <code class="bold" translate="no">python3</code>:</p>
+<pre translate="no"><code translate="no">$ <b>python3</b>
+Python 3.<var>x</var>.<var>x</var> (v3.11.0:eb0004c271, Jun . . . , 10:03:01)
+[Clang 13.0.0 (clang-1300.0.29.30)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt;</code></pre>
+<p><span epub:type="pagebreak" id="Page_8" title="8"></span>Este comando inicia una sesión de terminal de Python. Deberías ver un prompt de Python (<code translate="no">&gt;&gt;&gt;</code>), lo que significa que macOS ha encontrado la versión de Python que acabas de instalar.</p>
+<p>Introduce la siguiente línea en la sesión de terminal:</p>
+<pre translate="no"><code translate="no">&gt;&gt;&gt; <b>print("Hello Python interpreter!")</b>
+Hello Python interpreter!
+&gt;&gt;&gt;</code></pre>
+<p>Deberías ver el mensaje <code translate="no">Hello Python interpreter!</code>, que debería imprimirse directamente en la ventana de terminal actual. Puedes cerrar el intérprete de Python pulsando CTRL-D o introduciendo el comando <code class="bold" translate="no">exit()</code>.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c01_10.html">anterior</a><a href="c01.html">Subtema 11 de 23: (Ver todo)</a><a href="c01_12.html">siguiente</a><br/></p>
+<br/><a href="c01_11.docx" target="_blank"></a></footer>
+</body>
+</html>

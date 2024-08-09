@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c15-0015">Estilizar el recorrido</h3>
+<p class="BodyFirst">En esta sección, personalizaremos nuestros trazados para resaltar las características importantes de cada paseo y restar importancia a los elementos que distraen. Para ello, identificamos las características que queremos resaltar, como dónde empezó el paseo, dónde terminó y el camino recorrido. A continuación, identificamos las características a las que queremos restar importancia, como las marcas de graduación y las etiquetas. El resultado debe ser una representación visual sencilla que comunique claramente el camino recorrido en cada paseo aleatorio.</p>
+<h4 id="h3-502703c15-0001">Colorear los puntos</h4>
+<p class="BodyFirst">Utilizaremos un mapa de colores para mostrar el orden de los puntos en el paseo, y eliminaremos el contorno negro de cada punto para que el color de los puntos sea más claro. Para colorear los puntos según su posición en el recorrido, pasamos al argumento <code translate="no">c</code> una lista que contiene la posición de cada punto. Como los puntos se trazan en orden, esta lista sólo contiene los números de 0 a 4.999:</p>
+<p class="CodeLabel" translate="no"><b>rw_visual.py</b></p>
+<pre translate="no"><code translate="no"><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">while True:</span>
+<span class="LiteralGray">    # Make a random walk.</span>
+<span class="LiteralGray">    rw = RandomWalk()</span>
+<span class="LiteralGray">    rw.fill_walk()</span>
+
+    <span class="LiteralGray"># Plot the points in the walk.</span>
+<span class="LiteralGray">    plt.style.use('classic')</span>
+<span class="LiteralGray">    fig, ax = plt.subplots()</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     point_numbers = range(rw.num_points)
+    ax.scatter(rw.x_values, rw.y_values, c=point_numbers, cmap=plt.cm.Blues,
+        edgecolors='none', s=15)
+    <span class="LiteralGray">ax.set_aspect('equal')</span>
+<span class="LiteralGray">    plt.show()</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic" translate="no">--snip--</em></code></pre>
+<p><span epub:type="pagebreak" id="Page_316" title="316"></span>Utilizamos <code translate="no">range()</code> para generar una lista de números igual al número de puntos del recorrido <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Asignamos esta lista a <code translate="no">point_numbers</code>, que utilizaremos para establecer el color de cada punto del paseo. Pasamos <code translate="no">point_numbers</code> al argumento <code translate="no">c</code>, utilizamos el mapa de colores <code translate="no">Blues</code>, y luego pasamos <code translate="no">edgecolors='none'</code> para deshacernos del contorno negro alrededor de cada punto. El resultado es un gráfico que varía de azul claro a azul oscuro, mostrando exactamente cómo se mueve el paseo desde su punto inicial hasta su punto final. Esto se muestra en la <a href="#figure15-10" id="figureanchor15-10">Figura 15</a>-10.</p>
+<figure>
+<img alt="" class="" height="338" src="Images/f15010.png" translate="no" width="629"/>
+<figcaption><p>Figura<a id="figure15-10">15-10</a>: Un paseo aleatorio coloreado con el mapa de colores <span class="LiteralInCaption"><code translate="no">Blues</code></span> </p></figcaption></figure><h4 id="h3-502703c15-0002">Trazar los puntos inicial y final</h4>
+<p class="BodyFirst">Además de colorear los puntos para mostrar su posición a lo largo del recorrido, sería útil ver exactamente dónde empieza y acaba cada recorrido. Para ello, podemos trazar los puntos inicial y final individualmente, una vez trazada la serie principal. Haremos los puntos finales más grandes y los colorearemos de forma diferente para que destaquen:</p>
+<p class="CodeLabel" translate="no"><b>rw_visual.py</b></p>
+<pre translate="no"><code translate="no"><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">while True:</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">    ax.scatter(rw.x_values, rw.y_values, c=point_numbers, cmap=plt.cm.Blues,</span>
+<span class="LiteralGray">        edgecolors='none', s=15)</span>
+<span class="LiteralGray">    ax.set_aspect('equal')</span>
+
+    # Emphasize the first and last points.
+    ax.scatter(0, 0, c='green', edgecolors='none', s=100)
+    ax.scatter(rw.x_values[-1], rw.y_values[-1], c='red', edgecolors='none',
+        s=100)
+
+<span class="LiteralGray">    plt.show()</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic" translate="no">--snip--</em></code></pre>
+<p>Para mostrar el punto inicial, trazamos el punto (0, 0) en verde y en un tamaño mayor (<code translate="no">s=100</code>) que el resto de los puntos. Para marcar el punto final, <span epub:type="pagebreak" id="Page_317" title="317"></span>trazamos los últimos valores <em translate="no">x</em>- y <em translate="no">y</em>- también en rojo y con un tamaño de 100. Asegúrate de insertar este código justo antes de la llamada a <code translate="no">plt.show()</code> para que los puntos inicial y final se dibujen encima de todos los demás puntos.</p>
+<p>Cuando ejecutes este código, deberías ser capaz de distinguir exactamente dónde empieza y acaba cada paseo. Si estos puntos finales no destacan con suficiente claridad, ajusta su color y tamaño hasta que lo hagan.</p>
+<h4 id="h3-502703c15-0003">Limpiar los ejes</h4>
+<p class="BodyFirst">Eliminemos los ejes de este gráfico para que no distraigan de la trayectoria de cada paseo. He aquí cómo ocultar los ejes:</p>
+<p class="CodeLabel" translate="no"><b>rw_visual.py</b></p>
+<pre translate="no"><code translate="no"><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">while True:</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">    ax.scatter(rw.x_values[-1], rw.y_values[-1], c='red', edgecolors='none',</span>
+<span class="LiteralGray">        s=100)</span>
+
+    # Remove the axes.
+    ax.get_xaxis().set_visible(False)
+    ax.get_yaxis().set_visible(False)
+
+<span class="LiteralGray">    plt.show()</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic" translate="no">--snip--</em></code></pre>
+<p>Para modificar los ejes, utilizamos los métodos <code translate="no">ax.get_xaxis()</code> y <code translate="no">ax.get_yaxis()</code> para obtener cada eje, y luego encadenamos el método <code translate="no">set_visible()</code> para hacer invisible cada eje. A medida que sigas trabajando con visualizaciones, verás con frecuencia este encadenamiento de métodos para personalizar distintos aspectos de una visualización.</p>
+<p>Ejecuta ahora <em translate="no">rw_visual.py</em>; deberías ver una serie de gráficos sin ejes.</p>
+<h4 id="h3-502703c15-0004">Añadir puntos de trazado</h4>
+<p class="BodyFirst">Aumentemos el número de puntos, para tener más datos con los que trabajar. Para ello, aumentamos el valor de <code translate="no">num_points</code> cuando hagamos una instancia de <code translate="no">RandomWalk</code> y ajustamos el tamaño de cada punto al dibujar el gráfico:</p>
+<p class="CodeLabel" translate="no"><b>rw_visual.py</b></p>
+<pre translate="no"><code translate="no"><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">while True:</span>
+<span class="LiteralGray">    # Make a random walk.</span>
+    rw = RandomWalk(50_000)
+<span class="LiteralGray">    rw.fill_walk()</span>
+
+<span class="LiteralGray">    # Plot the points in the walk.</span>
+<span class="LiteralGray">    plt.style.use('classic')</span>
+<span class="LiteralGray">    fig, ax = plt.subplots()</span>
+<span class="LiteralGray">    point_numbers = range(rw.num_points)</span>
+<span class="LiteralGray">    </span>ax.scatter(rw.x_values, rw.y_values, c=point_numbers, cmap=plt.cm.Blues,
+        edgecolors='none', s=1)
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic" translate="no">--snip--</em></code></pre>
+<p><span epub:type="pagebreak" id="Page_318" title="318"></span>Este ejemplo crea un paseo aleatorio con 50.000 puntos y traza cada punto con el tamaño <code translate="no">s=1</code>. El paseo resultante es difuso y con forma de nube, como se muestra en la <a href="#figure15-11" id="figureanchor15-11">Figura 15-11</a>. ¡Hemos creado una obra de arte a partir de un simple gráfico de dispersión!</p>
+<p>Experimenta con este código para ver cuánto puedes aumentar el número de puntos de un recorrido antes de que tu sistema empiece a ralentizarse significativamente o el gráfico pierda su atractivo visual.</p>
+<figure><img alt="" class="" height="447" src="Images/f15011.png" translate="no" width="694"/>
+<figcaption><p><a id="figure15-11">Figura 15-11</a>: Un paseo con 50.000</p></figcaption></figure>puntos<h4 id="h3-502703c15-0005">Alterar el tamaño para llenar la pantalla</h4>
+<p class="BodyFirst">Una visualización es mucho más eficaz a la hora de comunicar patrones en los datos si se ajusta bien a la pantalla. Para que la ventana de trazado se ajuste mejor a tu pantalla, puedes ajustar el tamaño de la salida de Matplotlib. Esto se hace en la llamada <code translate="no">subplots()</code>:</p>
+<pre translate="no"><code translate="no">fig, ax = plt.subplots(figsize=(15, 9))</code></pre>
+<p>Al crear un gráfico, puedes pasar a <code translate="no">subplots()</code> un argumento <code translate="no">figsize</code>, que establece el tamaño de la figura. El parámetro <code translate="no">figsize</code> toma una tupla que indica a Matplotlib las dimensiones de la ventana de trazado en pulgadas.</p>
+<p>Matplotlib asume que la resolución de tu pantalla es de 100 píxeles por pulgada; si este código no te da un tamaño de trazado exacto, ajusta los números según sea necesario. O, si conoces la resolución de tu sistema, puedes pasar a <code translate="no">subplots()</code> la resolución utilizando el parámetro <code translate="no">dpi</code>:</p>
+<pre translate="no"><code translate="no">fig, ax = plt.subplots(figsize=(10, 6), dpi=128)</code></pre>
+<p>Esto debería ayudarte a hacer un uso más eficiente del espacio disponible en tu pantalla.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c15_20.html">anterior</a><a href="c15.html">Subtema 21 de 35: (Ver todo)</a><a href="c15_22.html">siguiente</a><br/></p>
+<br/><a href="c15_21.docx" target="_blank"></a></footer>
+</body>
+</html>

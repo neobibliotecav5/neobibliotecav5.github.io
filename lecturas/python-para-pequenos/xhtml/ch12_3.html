@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch12lev1sec2">
+  Cómo mover la paleta </h3>
+<p class="noindent">
+  Para hacer que la paleta se mueva a izquierda y derecha, utilizaremos eventos para vincular las teclas de flecha <em class="calibre7">izquierda </em>y <em class="calibre7">derecha </em>a nuevas funciones de la clase <span class="literal1" translate="no">
+   Paddle
+  </span>. Cuando el jugador pulse la tecla de flecha izquierda, la variable <span class="literal1" translate="no">
+   x
+  </span>se establecerá en -2 (para moverse a la izquierda). Al pulsar la tecla de flecha derecha, la variable <span class="literal1" translate="no">
+   x
+  </span>se establece en 2 (para moverse a la derecha). </p>
+<div class="image1">
+<img alt="Image" class="calibre128" src="../images/f0187-01.jpg" translate="no"/>
+</div>
+<p class="indent">
+  El primer paso es añadir la variable de objeto <span class="literal1" translate="no">
+   x
+  </span>a la función <span class="literal1" translate="no">
+   __init__
+  </span>de nuestra clase <span class="literal1" translate="no">
+   Paddle
+  </span>, así como una variable para la anchura del lienzo, como hicimos con la clase <span class="literal1" translate="no">
+   Ball
+  </span>: </p>
+<pre class="pre" translate="no">    <span class="orange">def</span> __init__(self, canvas, color):
+        self.canvas = canvas
+        self.id = canvas.create_rectangle(0, 0, 100, 10, fill=color)        
+        self.canvas.move(self.id, 200, 300)
+      <span class="ent">➊</span> self.x = 0
+      <span class="ent">➋</span> self.canvas_width = self.canvas.winfo_width()
+</pre>
+<p class="indent">
+<span id="page_188">
+</span>
+  Consulta <span class="ent">➊ </span>y <span class="ent">➋ </span>para ver los cambios. Ahora añadiremos las funciones para cambiar la dirección entre izquierda ( <span class="literal1" translate="no">
+   turn_left
+  </span>) y derecha ( <span class="literal1" translate="no">
+   turn_right
+  </span>) justo después de la función <span class="literal1" translate="no">
+   draw
+  </span>: </p>
+<pre class="pre" translate="no">    <span class="orange">def</span> turn_left(self, evt):
+        self.x = -2
+
+    <span class="orange">def</span> turn_right(self, evt):
+        self.x = 2
+</pre>
+<p class="indent">
+  Podemos vincular estas funciones a la tecla correcta en la función <span class="literal1" translate="no">
+   __init__
+  </span>de la clase con estas dos líneas. En "Hacer que un objeto reaccione a algo", en <a class="calibre6" href="ch10.xhtml#ch10lev1sec13">la página 162 </a>, utilizamos la vinculación para hacer que Python llame a una función cuando se pulsa una tecla. En este caso, vinculamos la función <span class="literal1" translate="no">
+   turn_left
+  </span>de nuestra clase <span class="literal1" translate="no">
+   Paddle
+  </span>a la tecla de la flecha izquierda, utilizando el nombre de evento <span class="literal1" translate="no">
+   &lt;KeyPress-Left&gt;
+  </span>. A continuación, vinculamos la función <span class="literal1" translate="no">
+   turn_right
+  </span>a la tecla de flecha derecha, utilizando el nombre de evento <span class="literal1" translate="no">
+   &lt;KeyPress-Right&gt;
+  </span>. Nuestra función <span class="literal1" translate="no">
+   __init__
+  </span>tiene ahora este aspecto: </p>
+<pre class="pre" translate="no">    <span class="orange">def</span> __init__(self, canvas, color):
+        self.canvas = canvas
+        self.id = canvas.create_rectangle(0, 0, 100, 10, fill=color)
+        self.canvas.move(self.id, 200, 300)
+        self.x = 0
+        self.canvas_width = self.canvas.winfo_width()
+      <span class="ent">➊</span> self.canvas.bind_all(<span class="green">'&lt;KeyPress-Left&gt;'</span>, self.turn_left)
+      <span class="ent">➋</span> self.canvas.bind_all(<span class="green">'&lt;KeyPress-Right&gt;'</span>, self.turn_right)
+</pre>
+<p class="indent">
+  Consulta <span class="ent">➊ </span>y <span class="ent">➋ </span>para ver los cambios. La función <span class="literal1" translate="no">
+   draw
+  </span>para la clase <span class="literal1" translate="no">
+   Paddle
+  </span>es similar a la de la clase <span class="literal1" translate="no">
+   Ball
+  </span>: </p>
+<pre class="pre" translate="no">    <span class="orange">def</span> draw(self):
+        self.canvas.move(self.id, self.x, 0)
+        pos = self.canvas.coords(self.id)
+        <span class="orange">if</span> pos[0] &lt;= 0 <span class="orange">or</span> pos[2] &gt;= self.canvas_width:
+            self.x = 0
+</pre>
+<p class="indent">
+  Utilizamos la función <span class="literal1" translate="no">
+   move
+  </span>de <span class="literal1" translate="no">
+   canvas
+  </span>para mover la paleta en la dirección de la variable <span class="literal1" translate="no">
+   x
+  </span>con <span class="literal1" translate="no">
+   self.canvas.move(self.id, self.x, 0)
+  </span>. A continuación, obtenemos las coordenadas de la paleta para ver si ha golpeado el lado izquierdo o derecho de la pantalla, utilizando el valor de <span class="literal1" translate="no">
+   pos
+  </span>. En lugar de rebotar como la pelota, la pala debe dejar de moverse. Así, cuando la <em class="calibre7">coordenada x </em>izquierda ( <span class="literal1" translate="no">
+   pos[0]
+  </span>) es menor o igual que 0 ( <span class="literal1" translate="no">
+   &lt;= 0
+  </span>), ponemos la variable <span class="literal1" translate="no">
+   x
+  </span>a 0 con <span class="literal1" translate="no">
+   self.x = 0
+  </span>. Del mismo modo, cuando la <em class="calibre7">coordenada </em>x derecha ( <span class="literal1" translate="no">
+   pos[2]
+  </span>) sea mayor o igual que la anchura del lienzo <span id="page_189">
+</span>( <span class="literal1" translate="no">
+   &gt;= self.canvas_width
+  </span>), también ponemos la variable <span class="literal1" translate="no">
+   x
+  </span>a 0. </p>
+<div class="note">
+<p class="notet">
+<span class="notes">Nota </span></p>
+<p class="notep">
+<em class="calibre7">
+    Si ejecutas el programa ahora, es posible que tengas que hacer clic en el lienzo antes de que el juego reconozca las acciones de las teclas de flecha izquierda y derecha. </em>Hacer clic en el lienzo le<em class="calibre7">da foco, lo que significa que sabe que debe hacerse cargo cuando alguien pulsa una tecla del teclado. </em></p>
+</div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch12_2.html">anterior</a><a href="ch12.html">Subtema 3 de 7: (Ver todo)</a><a href="ch12_4.html">siguiente</a><br/></p>
+<br/><a href="ch12_3.docx" target="_blank"></a></footer>
+</body>
+</html>

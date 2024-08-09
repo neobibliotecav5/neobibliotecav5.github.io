@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Chapter 5. Inheritance</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="chapter" title="Chapter 5. Inheritance"><div class="titlepage"><div><div><h1 class="title"><a id="inheritance"/>Chapter 5. Inheritance</h1></div></div></div><div class="epigraph"><p>Divides one thing entire to many objects; Like perspectives, which rightly gazed
+                upon Show nothing but confusion. . .<a id="IDX-CHP-5-0250" class="indexterm"/></p><div class="attribution"><span>—<span class="attribution">William Shakespeare, <span class="emphasis"><em>The Tragedy of King Richard the
+                    Second</em></span></span></span></div></div><p>Inheritance is an important topic in most programming languages.</p><p>In the classical languages (such as Java), inheritance (or <code class="literal">extends</code>) provides two useful services. First, it is a form of code reuse.
+            If a new class is mostly similar to an existing class, you only have to specify the
+            differences. Patterns of code reuse are extremely important because they have the
+            potential to significantly reduce the cost of software development. The other benefit of
+            classical inheritance is that it includes the specification of a system of types. This
+            mostly frees the programmer from having to write explicit casting operations, which is a
+            very good thing because when casting, the safety benefits of a type system are
+                lost.<a id="IDX-CHP-5-0251" class="indexterm"/></p><p>JavaScript, being a loosely typed language, never casts. The lineage of an object is
+            irrelevant. What matters about an object is what it can do, not what it is descended
+                from.<a id="IDX-CHP-5-0252" class="indexterm"/></p><p>JavaScript provides a much richer set of code reuse patterns. It can ape the classical
+            pattern, but it also supports other patterns that are more expressive. The set of
+            possible inheritance patterns in JavaScript is vast. In this chapter, we'll look at a
+            few of the most straightforward patterns. Much more complicated constructions are
+            possible, but it is usually best to keep it simple.</p><p>In classical languages, objects are instances of classes, and a class can inherit from
+            another class. JavaScript is a prototypal language, which means that objects inherit
+            directly from other objects.</p><div class="sect1" title="Pseudoclassical"><div class="titlepage"><div><div><h1 class="title"><a id="pseudoclassical"/>Pseudoclassical</h1></div></div></div><p>JavaScript is conflicted about its prototypal nature. Its prototype mechanism is
+                obscured by some complicated syntactic business that looks vaguely classical.
+                Instead of having objects inherit directly from other objects, an unnecessary level
+                of indirection is inserted such that objects are produced by constructor
+                    functions.<a id="IDX-CHP-5-0253" class="indexterm"/><a id="IDX-CHP-5-0254" class="indexterm"/><a id="IDX-CHP-5-0255" class="indexterm"/><a id="IDX-CHP-5-0256" class="indexterm"/><a id="IDX-CHP-5-0257" class="indexterm"/><a id="IDX-CHP-5-0258" class="indexterm"/><a id="IDX-CHP-5-0259" class="indexterm"/><a id="IDX-CHP-5-0260" class="indexterm"/><a id="IDX-CHP-5-0261" class="indexterm"/><a id="IDX-CHP-5-0262" class="indexterm"/><a id="IDX-CHP-5-0263" class="indexterm"/><a id="IDX-CHP-5-0264" class="indexterm"/><a id="IDX-CHP-5-0265" class="indexterm"/><a id="IDX-CHP-5-0266" class="indexterm"/><a id="IDX-CHP-5-0267" class="indexterm"/><a id="IDX-CHP-5-0268" class="indexterm"/><a id="IDX-CHP-5-0269" class="indexterm"/><a id="IDX-CHP-5-0270" class="indexterm"/></p><p>When a function object is created, the <code class="literal">Function</code>
+                constructor that produces the function object runs some code like this:</p><a id="I_programlisting5_d1e3736"/><pre class="programlisting">this.prototype = {constructor: this};</pre><p>The new function object is given a <code class="literal">prototype</code>
+                property whose value is an object containing a <code class="literal">constructor</code> property whose value is the new function object. The
+                    <code class="literal">prototype</code> object is the place where inherited
+                traits are to be deposited. Every function gets a <code class="literal">prototype</code> object because the language does not provide a way of
+                determining which functions are intended to be used as constructors. The <code class="literal">constructor</code> property is not useful. It is the <code class="literal">prototype</code> object that is important.</p><p>When a function is invoked with the constructor invocation pattern using the new
+                prefix, this modifies the way in which the function is executed. If the <code class="literal">new</code> operator were a method instead of an operator, it
+                could have been implemented like this:</p><a id="I_programlisting5_d1e3764"/><pre class="programlisting">Function.method('new', function (  ) {
+
+// Create a new object that inherits from the
+// constructor's prototype.
+
+    var that = Object.beget(this.prototype);
+
+// Invoke the constructor, binding -this- to
+// the new object.
+
+    var other = this.apply(that, arguments);
+
+// If its return value isn't an object,
+// substitute the new object.
+
+    return (typeof other === 'object' &amp;&amp; other) || that;
+});</pre><p>We can define a constructor and augment its <code class="literal">prototype</code>:</p><a id="I_programlisting5_d1e3771"/><pre class="programlisting">var Mammal = function (name) {
+    this.name = name;
+};
+
+Mammal.prototype.get_name = function (  ) {
+    return this.name;
+};
+
+Mammal.prototype.says = function (  ) {
+    return this.saying || '';
+};</pre><p>Now, we can make an instance:</p><a id="I_programlisting5_d1e3775"/><pre class="programlisting">var myMammal = new Mammal('Herb the Mammal');
+var name = myMammal.get_name(  ); // 'Herb the Mammal'</pre><p>We can make another pseudoclass that inherits from <code class="literal">Mammal</code> by defining its <code class="literal">constructor</code>
+                function and replacing its <code class="literal">prototype</code> with an
+                instance of <code class="literal">Mammal</code>:</p><a id="I_programlisting5_d1e3792"/><pre class="programlisting">var Cat = function (name) {
+    this.name = name;
+    this.saying = 'meow';
+};
+
+// Replace Cat.prototype with a new instance of Mammal
+
+Cat.prototype = new Mammal(  );
+
+// Augment the new prototype with
+// purr and get_name methods.
+
+Cat.prototype.purr = function (n) {
+    var i, s = '';
+    for (i = 0; i &lt; n; i += 1) {
+        if (s) {
+            s += '-';
+        }
+        s += 'r';
+    }
+    return s;
+};
+Cat.prototype.get_name = function (  ) {
+    return this.says(  ) + ' ' + this.name + ' ' + this.says(  );
+};
+
+var myCat = new Cat('Henrietta');
+var says = myCat.says(  ); // 'meow'
+var purr = myCat.purr(5); // 'r-r-r-r-r'
+var name = myCat.get_name(  );
+//            'meow Henrietta meow'</pre><p>The pseudoclassical pattern was intended to look sort of object-oriented, but it
+                is looking quite alien. We can hide some of the ugliness by using the <code class="literal">method</code> method and defining an <code class="literal">inherits</code> method:</p><a id="I_programlisting5_d1e3802"/><pre class="programlisting">Function.method('inherits', function (Parent) {
+    this.prototype = new Parent(  );
+    return this;
+});</pre><p>Our <code class="literal">inherits</code> and <code class="literal">method</code> methods return <code class="literal">this</code>,
+                allowing us to program in a cascade style. We can now make our <code class="literal">Cat</code> with one statement.</p><a id="I_programlisting5_d1e3818"/><pre class="programlisting">var Cat = function (name) {
+    this.name = name;
+    this.saying = 'meow';
+}.
+    inherits(Mammal).
+    method('purr', function (n) {
+        var i, s = '';
+        for (i = 0; i &lt; n; i += 1) {
+            if (s) {
+                s += '-';
+            }
+            s += 'r';
+        }
+        return s;
+    }).
+    method('get_name', function (  ) {
+        return this.says(  ) + ' ' + this.name + ' ' + this.says(  );
+    });</pre><p>By hiding the <code class="literal">prototype</code> jazz, it now looks a
+                bit less alien. But have we really improved anything? We now have constructor
+                functions that act like classes, but at the edges, there may be surprising behavior.
+                There is no privacy; all properties are public. There is no access to <code class="literal">super</code> methods.</p><p>Even worse, there is a serious hazard with the use of constructor functions. If
+                you forget to include the <code class="literal">new</code> prefix when calling
+                a constructor function, then <code class="literal">this</code> will not be
+                bound to a new object. Sadly, <code class="literal">this</code> will be bound
+                to the global object, so instead of augmenting your new object, you will be
+                clobbering global variables. That is really bad. There is no compile warning, and
+                there is no runtime warning.</p><p>This is a serious design error in the language. To mitigate this problem, there is
+                a convention that all constructor functions are named with an initial capital, and
+                that nothing else is spelled with an initial capital. This gives us a prayer that
+                visual inspection can find a missing <code class="literal">new</code>. A much
+                better alternative is to not use <code class="literal">new</code> at
+                all.</p><p>The pseudoclassical form can provide comfort to programmers who are unfamiliar
+                with JavaScript, but it also hides the true nature of the language. The classically
+                inspired notation can induce programmers to compose hierarchies that are
+                unnecessarily deep and complicated. Much of the complexity of class hierarchies is
+                motivated by the constraints of static type checking. JavaScript is completely free
+                of those constraints. In classical languages, class inheritance is the only form of
+                code reuse. JavaScript has more and better options.</p></div></div></body></html>

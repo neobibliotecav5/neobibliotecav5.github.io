@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<meta charset="utf-8"/>
+<title>Capítulo 2: Visualizar datos con gráficos</title>
+<link href="style.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="core.css" media="all" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch02lev1sec02"><strong>Trabajar con listas y tuplas</strong></h3>
+<p class="noindent">Al hacer gráficos con Python, trabajaremos con <em>listas</em> y <em>tuplas</em>. En Python, se trata de dos formas distintas de almacenar grupos de valores. Las tuplas y las listas son muy similares en su mayor parte, con una diferencia importante: después de crear una lista, es posible añadirle valores y cambiar el orden de los valores. En cambio, los valores de una tupla se fijan inmediatamente y no pueden modificarse. Utilizaremos listas para almacenar <em>las coordenadas</em> <em>x</em> e <em>y</em> de los puntos que queremos trazar. Las tuplas aparecerán en "<a href="ch02.html#ch02lev2sec05">Personalizar gráficos</a>", en la <a href="ch02.html#page_41">página 41</a>, cuando aprendamos a personalizar el rango de nuestros gráficos. En primer lugar, repasemos algunas características de las listas.</p>
+<p class="indent">Puedes crear una lista introduciendo valores, separados por comas, entre corchetes. La siguiente sentencia crea una lista y utiliza la etiqueta <span class="literal" translate="no">simplelist</span> para referirse a ella:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">simplelist = [1, 2, 3]</span></p>
+<p class="indent">Ahora puedes referirte a los números individuales-1, 2 y 3-utilizando la etiqueta y la posición del número en la lista, que se denomina <em>índice</em>. Así, <span class="literal" translate="no">simplelist[0]</span> se refiere al primer número, <span class="literal" translate="no">simplelist[1]</span> al segundo y <span class="literal" translate="no">simplelist[2]</span> al tercero:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">simplelist[0]</span><br translate="no"/>1<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">simplelist[1]</span><br translate="no"/>2<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">simplelist[2]</span><br translate="no"/>3</p>
+<p class="indent">Observa que el primer elemento de la lista está en el índice 0, el segundo en el 1, y así sucesivamente, es decir, las posiciones de la lista empiezan a contar desde 0, no desde 1.</p>
+<p class="indent"><a id="page_30"></a>Las listas también pueden almacenar cadenas:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">stringlist = ['a string','b string','c string']</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">stringlist[0]</span><br translate="no"/>'a string'<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">stringlist[1]</span><br translate="no"/>'b string'<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">stringlist[2]</span><br translate="no"/>'c string'</p>
+<p class="indent">Una ventaja de crear una lista es que no tienes que crear una etiqueta distinta para cada valor; basta con crear una etiqueta para la lista y utilizar la posición del índice para referirte a cada elemento. Además, puedes añadir a la lista siempre que necesites almacenar nuevos valores, por lo que una lista es la mejor opción para almacenar datos si no sabes de antemano cuántos números o cadenas puedes necesitar almacenar.</p>
+<p class="indent">Una lista <em>vacía</em> es precisamente eso -una lista sin elementos- y puede crearse así:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">emptylist = []</span></p>
+<p class="indent">Las listas vacías son útiles sobre todo cuando no conoces de antemano ninguno de los elementos que habrá en tu lista, pero piensas rellenar los valores durante la ejecución de un programa. En ese caso, puedes crear una lista vacía y luego utilizar el método <span class="literal" translate="no">append()</span> para añadir elementos más adelante:</p>
+<p class="programs" translate="no"><span class="ent">➊</span> &gt;&gt;&gt; <span class="codestrong">emptylist</span><br translate="no"/>   []<br translate="no"/><span class="ent">➋</span> &gt;&gt;&gt; <span class="codestrong">emptylist.append(1)</span><br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">emptylist</span><br translate="no"/>   [1]<br translate="no"/><span class="ent">➌</span> &gt;&gt;&gt; <span class="codestrong">emptylist.append(2)</span><br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">emptylist</span><br translate="no"/><span class="ent">➍</span> [1, 2]</p>
+<p class="indent">En <span class="ent">➊,</span> <span class="literal" translate="no">emptylist</span> comienza vacía. A continuación, añadimos el número 1 a la lista en <span class="ent">➋</span> y luego añadimos el 2 en <span class="ent">➌.</span> En la línea <span class="ent">➍,</span> la lista es ahora [1, 2]. Ten en cuenta que cuando utilizas <span class="literal" translate="no">.append()</span>, el valor se añade al final de la lista. Ésta es sólo una forma de añadir valores a una lista. Hay otras, pero no las necesitaremos en este capítulo.</p>
+<p class="indent">Crear una tupla es similar a crear una lista, pero en lugar de corchetes, utilizas paréntesis:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">simpletuple = (1, 2, 3)</span></p>
+<p class="indent">Puedes referirte a un número individual en <span class="literal" translate="no">simpletuple</span> utilizando el índice correspondiente entre paréntesis, igual que con las listas:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">simpletuple[0]</span><br translate="no"/>1<br translate="no"/><a id="page_31"></a><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">simpletuple[1]</span><br translate="no"/>2<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">simpletuple[2]</span><br translate="no"/>3</p>
+<p class="indent">También puedes utilizar <em>índices negativos</em> tanto con listas como con tuplas. Por ejemplo, <span class="literal" translate="no">simplelist[-1]</span> y <span class="literal" translate="no">simpletuple[-1]</span> se referirían al último elemento de la lista o de la tupla, <span class="literal" translate="no">simplelist[-2]</span> y <span class="literal" translate="no">simpletuple[-2]</span> se referirían al penúltimo elemento, y así sucesivamente.</p>
+<p class="indent">Las tuplas, como las listas, pueden tener cadenas como valores, y puedes crear una <em>tupla vacía</em> sin elementos como <span class="literal" translate="no">emptytuple=()</span>. Sin embargo, no existe ningún método <span class="literal" translate="no">append()</span> para añadir un nuevo valor a una tupla existente, por lo que no puedes añadir valores a una tupla vacía. Una vez creada una tupla, su contenido no puede modificarse.</p>
+<h4 class="h4" id="ch02lev2sec01"><strong><em>Iterar sobre una lista o tupla</em></strong></h4>
+<p class="noindent">Podemos recorrer una lista o tupla utilizando un bucle <span class="literal" translate="no">for</span> como se indica a continuación:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">l = [1, 2, 3]</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">for item in l:</span><br translate="no"/> <span class="codestrong">print(item)</span></p>
+<p class="indent">Esto imprimirá los elementos de la lista:</p>
+<p class="programs" translate="no">1<br translate="no"/>2<br translate="no"/>3</p>
+<p class="indent">Los elementos de una tupla pueden recuperarse del mismo modo.</p>
+<p class="indent">A veces puedes necesitar conocer la posición o el índice de un elemento de una lista o tupla. Puedes utilizar la función <span class="literal" translate="no">enumerate()</span> para iterar sobre todos los elementos de una lista y devolver el índice de un elemento, así como el propio elemento. Utilizamos las etiquetas <span class="literal" translate="no">index</span> y <span class="literal" translate="no">item</span> para referirnos a ellas:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">l = [1, 2, 3]</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">for index, item in enumerate(l):</span><br translate="no"/> <span class="codestrong">print(index, item)</span></p>
+<p class="indent">Esto producirá el siguiente resultado:</p>
+<p class="programs" translate="no">0 1<br translate="no"/>1 2<br translate="no"/>2 3</p>
+<p class="indent">Esto también funciona para tuplas.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch02_2.html">anterior</a><a href="ch02.html">Subtema 3 de 7: (Ver todo)</a><a href="ch02_4.html">siguiente</a><br/></p>
+<br/><a href="ch02_3.docx" target="_blank"></a></footer>
+</body>
+</html>

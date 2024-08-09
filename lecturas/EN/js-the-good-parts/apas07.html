@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>parseInt</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="parseInt"><div class="titlepage"><div><div><h1 class="title"><a id="parseint"/>parseInt</h1></div></div></div><p><code class="literal">parseInt</code> is a function that converts a string
+                into an integer. It stops when it sees a nondigit, so <code class="literal">parseInt("16")</code> and <code class="literal">parseInt("16
+                    tons")</code> produce the same result. It would be nice if the function
+                somehow informed us about the extra text, but it doesn't.<a id="IDX-APP-A-0514" class="indexterm"/><a id="IDX-APP-A-0515" class="indexterm"/><a id="IDX-APP-A-0516" class="indexterm"/><a id="IDX-APP-A-0517" class="indexterm"/><a id="IDX-APP-A-0518" class="indexterm"/></p><p>If the first character of the string is 0, then the string is evaluated in base 8
+                instead of base 10. In base 8, 8 and 9 are not digits, so <code class="literal">parseInt("08")</code> and <code class="literal">parseInt("09")</code>
+                produce 0 as their result. This error causes problems in programs that parse dates
+                and times. Fortunately, <code class="literal">parseInt</code> can take a radix
+                parameter, so that <code class="literal">parseInt("08", 10)</code> produces 8.
+                I recommend that you always provide the radix parameter.</p></div></body></html>

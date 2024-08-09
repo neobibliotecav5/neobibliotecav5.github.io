@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c08-0014">Mezclar argumentos posicionales y arbitrarios</h3>
+<p class="BodyFirst">Si quieres que una función acepte varios tipos diferentes de argumentos, el parámetro que acepta un número arbitrario de argumentos debe colocarse en último lugar en la definición de la función. Python combina primero los argumentos posicionales y los de palabra clave, y luego reúne los argumentos restantes en el último parámetro.</p>
+<p>Por ejemplo, si la función necesita recoger un tamaño para la pizza, ese parámetro debe ir antes que el parámetro <code translate="no">*toppings</code>:</p>
+<pre translate="no"><code translate="no">def make_pizza(size, *toppings):
+    <span class="LiteralGray">"""Summarize the pizza we are about to make."""</span>
+    print(f"\nMaking a {size}-inch pizza with the following toppings:")
+    <span class="LiteralGray">for topping in toppings:</span>
+<span class="LiteralGray">        print(f"- {topping}")</span>
+
+make_pizza(16, 'pepperoni')
+make_pizza(12, 'mushrooms', 'green peppers', 'extra cheese')</code></pre>
+<p>En la definición de la función, Python asigna el primer valor que recibe al parámetro <code translate="no">size</code>. Todos los demás valores que vengan después se almacenan en la tupla <code translate="no">toppings</code>. Las llamadas a la función incluyen primero un argumento para el tamaño, seguido de tantos ingredientes como sean necesarios.</p>
+<p>Ahora cada pizza tiene un tamaño y un número de ingredientes, y cada información se imprime en el lugar adecuado, mostrando primero el tamaño y después los ingredientes:</p>
+<pre translate="no"><code translate="no">Making a 16-inch pizza with the following toppings:
+- pepperoni
+
+<span epub:type="pagebreak" id="Page_148" title="148"></span>Making a 12-inch pizza with the following toppings:
+- mushrooms
+- green peppers
+- extra cheese</code></pre>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c08_26.html">anterior</a><a href="c08.html">Subtema 27 de 40: (Ver todo)</a><a href="c08_28.html">siguiente</a><br/></p>
+<br/><a href="c08_27.docx" target="_blank"></a></footer>
+</body>
+</html>

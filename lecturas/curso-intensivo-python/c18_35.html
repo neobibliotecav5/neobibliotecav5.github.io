@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h2><span class="NoteHead">Nota</span></h2>
+<p>	En el código Python, casi siempre utilizamos cuatro espacios cuando hacemos sangrías. Los archivos de plantilla suelen tener más niveles de anidamiento que los archivos Python, por lo que es habitual utilizar sólo dos espacios para cada nivel de sangría.</p>
+<div class="bottom hr"><hr/></div>
+<h4 id="h3-502703c18-0005">La plantilla hija</h4>
+<p class="BodyFirst">Ahora tenemos que reescribir <em translate="no">index.html</em> para que herede de <em translate="no">base.html</em>. Añade el siguiente código a <em translate="no">index.html</em>:</p>
+<p class="CodeLabel" translate="no"><b>index.html</b></p>
+<pre translate="no"><code translate="no"><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> {% extends 'learning_logs/base.html' %}
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> {% block content %}
+<span class="LiteralGray">  &lt;p&gt;Learning Log helps you keep track of your learning, for any topic you're</span>
+<span class="LiteralGray">  interested in.&lt;/p&gt;</span>
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> {% endblock content %}</code></pre>
+<p>Si lo comparas con el original <em translate="no">index.html</em>, puedes ver que hemos sustituido el título Learning Log por el código para heredar de una plantilla padre <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Una plantilla hija debe tener una etiqueta <code translate="no">{% extends %}</code> en la primera línea para indicar a Django de qué plantilla padre debe heredar. El archivo <em translate="no">base.html</em> <span epub:type="pagebreak" id="Page_394" title="394"></span> forma parte de <code translate="no">learning_logs</code>, así que incluimos <em translate="no">learning_logs</em> en la ruta a la plantilla padre. Esta línea recoge todo lo que contiene la plantilla <em translate="no">base.html</em> y permite a <em translate="no">index.html</em> definir lo que va en el espacio reservado por el bloque <code translate="no">content</code>.</p>
+<p>Definimos el bloque de contenido insertando una etiqueta <code translate="no">{% block %}</code> con el nombre <code translate="no">content</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Todo lo que no estamos heredando de la plantilla padre va dentro del bloque <code translate="no">content</code>. Aquí, ese es el párrafo que describe el proyecto Learning Log. Indicamos que hemos terminado de definir el contenido utilizando una etiqueta <code translate="no">{% endblock content %}</code> <span aria-label="annotation3" class="CodeAnnotation">❸.</span> La etiqueta <code translate="no">{% endblock %}</code> no requiere un nombre, pero si una plantilla crece hasta contener varios bloques, puede ser útil saber exactamente qué bloque está terminando.</p>
+<p>Puedes empezar a ver el beneficio de la herencia de plantillas: en una plantilla hija, sólo necesitamos incluir contenido que sea exclusivo de esa página. Esto no sólo simplifica cada plantilla, sino que también facilita mucho la modificación de la página. Para modificar un elemento común a muchas páginas, sólo tienes que modificar la plantilla padre. Tus cambios se trasladarán a todas las páginas que hereden de esa plantilla. En un proyecto que incluya decenas o cientos de páginas, esta estructura puede hacer mucho más fácil y rápido mejorar tu sitio.</p>
+<p>En un proyecto grande, es habitual tener una plantilla padre llamada <em translate="no">base.html</em> para todo el sitio y plantillas padre para cada sección principal del sitio. Todas las plantillas de sección heredan de <em translate="no">base.html</em>, y cada página del sitio hereda de una plantilla de sección. De esta forma puedes modificar fácilmente el aspecto del sitio en su conjunto, de cualquier sección del sitio o de cualquier página individual. Esta configuración proporciona una forma muy eficaz de trabajar, y te anima a actualizar tu proyecto de forma constante a lo largo del tiempo.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c18_34.html">anterior</a><a href="c18.html">Subtema 35 de 41: (Ver todo)</a><a href="c18_36.html">siguiente</a><br/></p>
+<br/><a href="c18_35.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h2><span class="NoteHead">Nota</span></h2>
+<p>	Los usuarios de Windows utilizarán los mismos comandos que se muestran aquí (como <code translate="no">ls</code> en lugar de <code translate="no">dir</code>), porque estás ejecutando un terminal Linux a través de una conexión remota.</p>
+<div class="bottom hr"><hr/></div>
+<h4 id="h3-502703c20-0015">Asegurar el proyecto en vivo</h4>
+<p class="BodyFirst">Hay un problema de seguridad evidente en la forma en que se despliega actualmente nuestro proyecto: la configuración <code translate="no">DEBUG = True</code> en <em translate="no">settings.py</em>, que proporciona mensajes de depuración cuando se producen errores. Las páginas de error de Django te proporcionan información de depuración vital cuando estás desarrollando un proyecto; sin embargo, dan demasiada información a los atacantes si las dejas activadas en un servidor activo.</p>
+<p>Para ver lo malo que es esto, ve a la página de inicio de tu proyecto desplegado. Accede a la cuenta de un usuario y añade <em translate="no">/topics/999/</em> al final de la URL de la página de inicio. Suponiendo que no hayas hecho miles de temas, deberías ver una página con el mensaje <em translate="no">DoesNotExist at /topics/999/</em>. Si te desplazas hacia abajo, deberías ver un montón de información sobre el proyecto y el servidor. No querrás que tus usuarios vean esto, y desde luego no querrás que esta información esté disponible para cualquier persona interesada en atacar el sitio.</p>
+<p>Podemos evitar que esta información se muestre en el sitio en vivo configurando <code translate="no">DEBUG = False</code> en la parte de <em translate="no">settings.py</em> que sólo se aplica a la versión desplegada del proyecto. De este modo, seguirás viendo la información de depuración localmente, donde esa información es útil, pero no se mostrará en el sitio en vivo.</p>
+<p><span epub:type="pagebreak" id="Page_458" title="458"></span>Abre <em translate="no">settings.py</em> en tu editor de texto, y añade una línea de código a la parte que modifica la configuración de Platform.sh:</p>
+<p class="CodeLabel" translate="no"><b>settings.py</b></p>
+<pre translate="no"><code translate="no"><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">if config.is_valid_platform():</span>
+<span class="LiteralGray">    ALLOWED_HOSTS.append('.platformsh.site')</span>
+    DEBUG = False
+    <em class="LiteralGrayItalic" translate="no">--snip--</em></code></pre>
+<p>Todo el trabajo para establecer la configuración de la versión desplegada del proyecto ha dado sus frutos. Cuando queramos ajustar la versión en vivo del proyecto, sólo tenemos que cambiar la parte pertinente de la configuración que establecimos antes.</p>
+<h4 id="h3-502703c20-0016">Confirmar y enviar cambios</h4>
+<p class="BodyFirst">Ahora tenemos que confirmar los cambios realizados en <em translate="no">settings.py</em> y enviar los cambios a Platform.sh. Aquí tienes una sesión de terminal que muestra la primera parte de este proceso:</p>
+<pre translate="no"><code translate="no"><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> (ll_env)learning_log$ <b>git commit -am "Set DEBUG False on live site."</b>
+[main d2ad0f7] Set DEBUG False on live site.
+  1 file changed, 1 insertion(+)
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> (ll_env)learning_log$ <b>git status</b>
+On branch main
+nothing to commit, working tree clean
+(ll_env)learning_log$</code></pre>
+<p>Emitimos el comando <code translate="no">git commit</code> con un mensaje de confirmación breve pero descriptivo <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Recuerda que la bandera <code translate="no">-am</code> se asegura de que Git confirma todos los archivos que han cambiado y registra el mensaje de registro. Git reconoce que un archivo ha cambiado y consigna este cambio en el repositorio.</p>
+<p>Ejecutar <code class="bold" translate="no">git status</code> muestra que estamos trabajando en la rama <code translate="no">main</code> del repositorio y que ahora no hay nuevos cambios que confirmar <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Es importante comprobar el estado antes de enviar a un servidor remoto. Si no ves un estado limpio, entonces algunos cambios no se han confirmado y no se enviarán al servidor. Puedes intentar emitir de nuevo el comando <code translate="no">commit</code>; si no estás seguro de cómo resolver el problema, lee el <span class="xref" itemid="xref_target_Appendix D">Apéndice D</span> para comprender mejor cómo trabajar con Git.</p>
+<p>Ahora vamos a empujar el repositorio actualizado a Plataforma.sh:</p>
+<pre translate="no"><code translate="no">(ll_env)learning_log$ <b>platform push</b>
+Are you sure you want to push to the main (production) branch? [Y/n] <b>Y</b>
+Pushing HEAD to the existing environment main
+<var>--snip--</var>
+  To git.us-3.platform.sh:wmye2fx7wwqgu.git
+     fce0206..d2ad0f7  HEAD -&gt; main
+(ll_env)learning_log$</code></pre>
+<p>Platform.sh reconoce que el repositorio se ha actualizado, y reconstruye el proyecto para asegurarse de que se han tenido en cuenta todos los cambios. No reconstruye la base de datos, por lo que no hemos perdido ningún dato.</p>
+<p><span epub:type="pagebreak" id="Page_459" title="459"></span>Para asegurarte de que este cambio ha surtido efecto, visita de nuevo la URL <em class="Italic" translate="no">/topics/999/</em>. Sólo deberías ver el mensaje <em translate="no">Server Error (500)</em>, sin ningún tipo de información sensible sobre el proyecto.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c20_30.html">anterior</a><a href="c20.html">Subtema 31 de 37: (Ver todo)</a><a href="c20_32.html">siguiente</a><br/></p>
+<br/><a href="c20_31.docx" target="_blank"></a></footer>
+</body>
+</html>

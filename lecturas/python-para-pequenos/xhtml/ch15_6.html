@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch15lev1sec5">
+  Girar la figura de palo a izquierda y derecha </h3>
+<p class="noindent">
+  Las funciones <span class="literal1" translate="no">
+   turn_left
+  </span>y <span class="literal1" translate="no">
+   turn_right
+  </span>se aseguran de que la figura de palo no salta, y luego establecen el valor de la variable de objeto <span class="literal1" translate="no">
+   x
+  </span>para moverla a izquierda y derecha. (Nuestro juego no nos permite cambiar su dirección en el aire). </p>
+<div class="image1">
+<img alt="Image" class="calibre162" src="../images/f0237-01.jpg" translate="no"/>
+</div>
+<pre class="pre" translate="no">        <span class="gray">game.canvas.bind_all('&lt;KeyPress-Left&gt;', self.turn_left)
+        game.canvas.bind_all('&lt;KeyPress-Right&gt;', self.turn_right)
+        game.canvas.bind_all('&lt;space&gt;', self.jump)</span>
+
+    <span class="orange">def</span> turn_left(self, evt):
+        <span class="orange">if</span> self.y == 0:
+         <span class="ent">➊</span> self.x = -2
+
+    <span class="orange">def</span> turn_right(self, evt):
+        <span class="orange">if</span> self.y == 0:
+         <span class="ent">➋</span> self.x = 2</pre>
+<p class="indent">
+<span id="page_238">
+</span>
+  Python llama a la función <span class="literal1" translate="no">
+   turn_left
+  </span>cuando el jugador pulsa la tecla de flecha izquierda, y pasa como parámetro un objeto con información sobre lo que ha hecho el jugador. Este objeto se llama <em class="calibre7">objeto de evento </em>, y le damos el nombre de parámetro <span class="literal1" translate="no">
+   evt
+  </span>. </p>
+<div class="note">
+<p class="notet">
+<span class="notes">Nota </span></p>
+<p class="notep">
+<em class="calibre7">
+    El objeto evento no es importante para nuestros propósitos, pero necesitamos incluirlo como parámetro de nuestras funciones o recibiremos un error, porque Python espera que esté ahí. El objeto evento contiene cosas como las </em> <em class="calibre7">posiciones </em>x <em class="calibre7">e </em>y <em class="calibre7">del ratón (para un evento de ratón), un código que identifica una tecla concreta que se ha pulsado (para eventos de teclado) y otra información. Para este juego, ninguna de esa información es útil, así que podemos ignorarla sin problemas. </em></p>
+</div>
+<p class="indent">
+  Para saber si la figura de palo está saltando, comprobamos el valor de la variable de objeto <span class="literal1" translate="no">
+   y
+  </span>. Si el valor no es 0, la figura de palo está saltando. En este código, si el valor de <span class="literal1" translate="no">
+   y
+  </span>es 0, ponemos <span class="literal1" translate="no">
+   x
+  </span>a -2 para correr a la izquierda <span class="ent">➊ </span>o lo ponemos a 2 para correr a la derecha <span class="ent">➋ </span>. Usamos -2 y 2, porque establecer el valor en -1 o 1 no haría que la figura de palo se moviera por la pantalla lo suficientemente rápido. </p>
+<p class="indent">
+  Cuando la animación de tu muñeco funcione, prueba a cambiar este valor para ver qué diferencia hay. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch15_5.html">anterior</a><a href="ch15.html">Subtema 6 de 9: (Ver todo)</a><a href="ch15_7.html">siguiente</a><br/></p>
+<br/><a href="ch15_6.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703b05-0003">Despliegue desde Windows</h3>
+<p class="BodyFirst">Windows ha experimentado un resurgimiento de su popularidad entre los programadores en los últimos años. Windows ha integrado muchos elementos diferentes de otros sistemas operativos, proporcionando a los usuarios una serie de opciones sobre cómo realizar el trabajo de desarrollo local e interactuar con sistemas remotos.</p>
+<p><span epub:type="pagebreak" id="Page_498" title="498"></span>Una de las dificultades más significativas de la implantación desde Windows es que el sistema operativo base de Windows no es el mismo que utiliza un servidor remoto basado en Linux. Un sistema Windows base tiene un conjunto de herramientas y lenguajes distinto al de un sistema Linux base, por lo que, para llevar a cabo el trabajo de despliegue desde Windows, tendrás que elegir cómo integrar los conjuntos de herramientas basados en Linux en tu entorno local.</p>
+<h4 id="h3-502703b05-0001">Subsistema Windows para Linux</h4>
+<p class="BodyFirst">Un enfoque popular es utilizar <em translate="no">Windows Subsystem for Linux</em> (<em translate="no">WSL</em>), un entorno que permite ejecutar Linux directamente en Windows. Si tienes configurado WSL, utilizar la CLI Platform.sh en Windows será tan fácil como utilizarla en Linux. La CLI no sabrá que se está ejecutando en Windows; sólo verá el entorno Linux en el que la estás utilizando.</p>
+<p>Configurar WSL es un proceso de dos pasos: primero instalas WSL y luego eliges una distribución de Linux para instalarla en el entorno WSL. Configurar un entorno WSL es más de lo que se puede describir aquí; si te interesa este enfoque y aún no lo tienes configurado, consulta la documentación en <a class="LinkURL" href="https://docs.microsoft.com/en-us/windows/wsl/about">https://docs.microsoft.com/en-us/windows/wsl/about.</a> Una vez que tengas configurado WSL, puedes seguir las instrucciones de la sección Linux de este apéndice para continuar tu trabajo de despliegue.</p>
+<h4 id="h3-502703b05-0002">Git Bash</h4>
+<p class="BodyFirst">Otra forma de crear un entorno local desde el que puedas desplegar utiliza <em translate="no">Git Bash</em>, un entorno de terminal compatible con Bash pero que se ejecuta en Windows. Git Bash se instala junto con Git cuando utilizas el instalador de <a class="LinkURL" href="https://git-scm.com">https://git-scm.com.</a> Este enfoque puede funcionar, pero no es tan ágil como WSL. En este enfoque, tendrás que utilizar un terminal Windows para algunos pasos y un terminal Git Bash para otros.</p>
+<p>Primero tendrás que instalar PHP. Puedes hacerlo con <em translate="no">XAMPP</em>, un paquete que incluye PHP con algunas otras herramientas para desarrolladores. Ve a <a class="LinkURL" href="https://apachefriends.org">https://apachefriends.org</a> y haz clic en el botón para descargar XAMPP para Windows. Abre el instalador y ejecútalo; si ves una advertencia sobre las restricciones del Control de Cuentas de Usuario (UAC), haz clic en <b>Aceptar</b>. Acepta todos los valores predeterminados del instalador.</p>
+<p>Cuando termine de ejecutarse el instalador, tendrás que añadir PHP a la ruta de tu sistema; esto indicará a Windows dónde buscar cuando quieras ejecutar PHP. En el menú Inicio, escribe <code class="bold" translate="no">path</code> y haz clic en <b>Editar las variables de entorno del</b> sistema; haz clic en el botón <b>Variables de entorno</b>. Deberías ver la variable <code translate="no">Path</code> resaltada; haz clic en <b>Editar</b> en este panel. Haz clic en <b>Nueva</b> para añadir una nueva ruta a la lista actual de rutas. Suponiendo que mantuviste la configuración predeterminada al ejecutar el instalador de XAMPP, añade <code class="bold" translate="no">C:\xampp\php</code> en el cuadro que aparece y haz clic en <b>Aceptar</b>. Cuando hayas terminado, cierra todos los cuadros de diálogo del sistema que sigan abiertos.</p>
+<p>Una vez cumplidos estos requisitos, puedes instalar la CLI Platform.sh. Necesitarás utilizar un terminal de Windows con privilegios de administrador; introduce <code class="bold" translate="no">command</code> en el menú Inicio, y en la aplicación Símbolo del sistema, <span epub:type="pagebreak" id="Page_499" title="499"></span>haz clic en <b>Ejecutar como administrador</b>. En el terminal que aparece, introduce el siguiente comando:</p>
+<pre translate="no"><code translate="no">&gt; <b>curl -fsS https://platform.sh/cli/installer | php</b></code></pre>
+<p>Esto instalará la CLI Platform.sh, como se ha descrito anteriormente.</p>
+<p>Por último, trabajarás en Git Bash. Para abrir un terminal Git Bash, ve al menú Inicio y busca <code class="bold" translate="no">git bash</code>. Haz clic en la <b>aplicación G</b> it Bash que aparece; deberías ver que se abre una ventana de terminal. Puedes utilizar comandos tradicionales basados en Linux como <code translate="no">ls</code> en este terminal, así como comandos basados en Windows como <code translate="no">dir</code>. Para asegurarte de que la instalación se ha realizado correctamente, ejecuta el comando <code class="bold" translate="no">platform list</code>. Deberías ver una lista de todos los comandos de la CLI Platform.sh. A partir de este momento, realiza todo tu trabajo de despliegue utilizando la CLI Platform.sh dentro de una ventana de terminal Git Bash.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="b05_8.html">anterior</a><a href="b05.html">Subtema 9 de 12: (Ver todo)</a><a href="b05_10.html">siguiente</a><br/></p>
+<br/><a href="b05_9.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c14-0001">Crear una clase de botón</h3>
+<p class="BodyFirst">Como Pygame no tiene un método incorporado para crear botones, escribiremos una clase <code translate="no">Button</code> para crear un rectángulo relleno con una etiqueta. Puedes utilizar este código para crear cualquier botón en un juego. Aquí tienes la primera parte de la clase <code translate="no">Button</code>; guárdala como <em translate="no">button.py</em>:</p>
+<p class="CodeLabel" translate="no"><b>button.py</b></p>
+<pre translate="no"><code translate="no">import pygame.font
+
+class Button:
+    """A class to build buttons for the game."""
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     def __init__(self, ai_game, msg):
+        """Initialize button attributes."""
+        self.screen = ai_game.screen
+        self.screen_rect = self.screen.get_rect()
+
+        # Set the dimensions and properties of the button.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         self.width, self.height = 200, 50
+        self.button_color = (0, 135, 0)
+        self.text_color = (255, 255, 255)
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>         self.font = pygame.font.SysFont(None, 48)
+
+        # Build the button's rect object and center it.
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>         self.rect = pygame.Rect(0, 0, self.width, self.height)
+        self.rect.center = self.screen_rect.center
+
+        # The button message needs to be prepped only once.
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>         self._prep_msg(msg)</code></pre>
+<p>En primer lugar, importamos el módulo <code translate="no">pygame.font</code>, que permite a Pygame renderizar texto en la pantalla. El método <code translate="no">__init__()</code> toma los parámetros <code translate="no">self</code>, el objeto <code translate="no">ai_game</code>, y <code translate="no">msg</code>, que contiene el texto del botón <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Establecemos las dimensiones del botón <span aria-label="annotation2" class="CodeAnnotation">❷,</span> configuramos <code translate="no">button_color</code> para colorear el objeto <code translate="no">rect</code> del botón en verde oscuro, y configuramos <code translate="no">text_color</code> para renderizar el texto en blanco.</p>
+<p><span epub:type="pagebreak" id="Page_279" title="279"></span>A continuación, preparamos un atributo <code translate="no">font</code> para renderizar el texto <span aria-label="annotation3" class="CodeAnnotation">❸.</span> El argumento <code translate="no">None</code> indica a Pygame que utilice la fuente por defecto, y <code translate="no">48</code> especifica el tamaño del texto. Para centrar el botón en la pantalla, creamos un <code translate="no">rect</code> para el botón <span aria-label="annotation4" class="CodeAnnotation">❹</span> y establecemos su atributo <code translate="no">center</code> para que coincida con el de la pantalla.</p>
+<p>Pygame trabaja con texto renderizando la cadena que quieres mostrar como una imagen. Por último, llamamos a <code translate="no">_prep_msg()</code> para que se encargue de esta renderización <span aria-label="annotation5" class="CodeAnnotation">❺.</span></p>
+<p>Aquí tienes el código de <code translate="no">_prep_msg()</code>:</p>
+<p class="CodeLabel" translate="no"><b>button.py</b></p>
+<pre translate="no"><code translate="no"><code translate="no">    </code>def _prep_msg(self, msg):
+        """Turn msg into a rendered image and center text on the button."""
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         self.msg_image = self.font.render(msg, True, self.text_color,
+                self.button_color)
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         self.msg_image_rect = self.msg_image.get_rect()
+        self.msg_image_rect.center = self.rect.center</code></pre>
+<p>El método <code translate="no">_prep_msg()</code> necesita un parámetro <code translate="no">self</code> y el texto a representar como imagen (<code translate="no">msg</code>). La llamada a <code translate="no">font.render()</code> convierte el texto almacenado en <code translate="no">msg</code> en una imagen, que luego almacenamos en <code translate="no">self.msg_image</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> El método <code translate="no">font.render()</code> también toma un valor booleano para activar o desactivar el antialiasing (<em translate="no">antialiasing</em> hace que los bordes del texto sean más suaves). Los argumentos restantes son el color de fuente y el color de fondo especificados. Establecemos el antialiasing en <code translate="no">True</code> y el fondo del texto en el mismo color que el botón. (Si no incluyes un color de fondo, Pygame intentará renderizar la fuente con un fondo transparente).</p>
+<p>Centramos la imagen del texto en el botón creando un <code translate="no">rect</code> a partir de la imagen y fijando su atributo <code translate="no">center</code> para que coincida con el del botón <span aria-label="annotation2" class="CodeAnnotation">❷.</span></p>
+<p>Por último, creamos un método <code translate="no">draw_button()</code> al que podemos llamar para mostrar el botón en pantalla:</p>
+<p class="CodeLabel" translate="no"><b>button.py</b></p>
+<pre translate="no"><code translate="no"><code translate="no">    </code>def draw_button(self):
+        """Draw blank button and then draw message."""
+        self.screen.fill(self.button_color, self.rect)
+        self.screen.blit(self.msg_image, self.msg_image_rect)</code></pre>
+<p>Llamamos a <code translate="no">screen.fill()</code> para dibujar la parte rectangular del botón. Luego llamamos a <code translate="no">screen.blit()</code> para dibujar la imagen del texto en la pantalla, pasándole una imagen y el objeto <code translate="no">rect</code> asociado a la imagen. Esto completa la clase <code translate="no">Button</code>.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c14_2.html">anterior</a><a href="c14.html">Subtema 3 de 29: (Ver todo)</a><a href="c14_4.html">siguiente</a><br/></p>
+<br/><a href="c14_3.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c13-0017">Alienígenas que llegan al fondo de la pantalla</h3>
+<p class="BodyFirst">Si un alienígena llega a la parte inferior de la pantalla, haremos que el juego responda del mismo modo que cuando un alienígena golpea la nave. Para comprobar cuándo ocurre esto, añade un nuevo método en <em translate="no">alien_invasion.py</em>:</p>
+<p class="CodeLabel" translate="no"><b>alien_invasion.py</b></p>
+<pre translate="no"><code translate="no">    def _check_aliens_bottom(self):
+        """Check if any aliens have reached the bottom of the screen."""
+        for alien in self.aliens.sprites():
+<span epub:type="pagebreak" id="Page_274" title="274"></span><span aria-label="annotation1" class="CodeAnnotationHang">❶</span>             if alien.rect.bottom &gt;= self.settings.screen_height:
+                # Treat this the same as if the ship got hit.
+                self._ship_hit()
+                break</code></pre>
+<p>El método <code translate="no">_check_aliens_bottom()</code> comprueba si algún alienígena ha llegado al fondo de la pantalla. Un alienígena llega al fondo cuando su valor <code translate="no">rect.bottom</code> es mayor o igual que la altura de la pantalla <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Si un alienígena llega al fondo, llamamos a <code translate="no">_ship_hit()</code>. Si un alienígena llega al fondo, no es necesario comprobar el resto, así que salimos del bucle tras llamar a <code translate="no">_ship_hit()</code>.</p>
+<p>Llamaremos a este método desde <code translate="no">_update_aliens()</code>:</p>
+<p class="CodeLabel" translate="no"><b>alien_invasion.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    def _update_aliens(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">        # Look for alien-ship collisions.</span>
+<span class="LiteralGray">        if pygame.sprite.spritecollideany(self.ship, self.aliens):</span>
+<span class="LiteralGray">            self._ship_hit()</span>
+
+        # Look for aliens hitting the bottom of the screen.
+        self._check_aliens_bottom()</code></pre>
+<p>Llamamos a <code translate="no">_check_aliens_bottom()</code> después de actualizar las posiciones de todos los alienígenas y después de buscar colisiones alienígena-nave. Ahora aparecerá una nueva flota cada vez que la nave sea alcanzada por un alienígena o que un alienígena llegue al fondo de la pantalla.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c13_28.html">anterior</a><a href="c13.html">Subtema 29 de 33: (Ver todo)</a><a href="c13_30.html">siguiente</a><br/></p>
+<br/><a href="c13_29.docx" target="_blank"></a></footer>
+</body>
+</html>

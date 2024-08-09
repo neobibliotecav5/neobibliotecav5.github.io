@@ -1,0 +1,119 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Functional</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="Functional"><div class="titlepage"><div><div><h1 class="title"><a id="functional"></a>Funcional</h1></div></div></div><p>Uno de los puntos débiles de los patrones de herencia que hemos visto hasta ahora es que no tenemos privacidad. Todas las propiedades de un objeto son visibles. No obtenemos variables privadas ni métodos privados. A veces eso no importa, pero a veces importa mucho. En su frustración, algunos programadores desinformados han adoptado el patrón <span class="emphasis"><em translate="no">pretend
+                    privacy</em></span>. Si tienen una propiedad que desean hacer privada, le dan un nombre de aspecto extraño, con la esperanza de que otros usuarios del código finjan que no pueden ver los miembros de aspecto extraño. Afortunadamente, tenemos una alternativa mucho mejor en una aplicación del patrón módulo.<a class="indexterm" id="IDX-CHP-5-0277"></a><a class="indexterm" id="IDX-CHP-5-0278"></a><a class="indexterm" id="IDX-CHP-5-0279"></a><a class="indexterm" id="IDX-CHP-5-0280"></a><a class="indexterm" id="IDX-CHP-5-0281"></a><a class="indexterm" id="IDX-CHP-5-0282"></a><a class="indexterm" id="IDX-CHP-5-0283"></a><a class="indexterm" id="IDX-CHP-5-0284"></a><a class="indexterm" id="IDX-CHP-5-0285"></a></p><p>Empezaremos creando una función que producirá objetos. Le daremos un nombre que empiece por minúscula porque no requerirá el uso del prefijo <code class="literal" translate="no">new</code>. La función contiene cuatro pasos:</p><div class="orderedlist"><ol class="orderedlist"><li class="listitem"><p>Crea un nuevo objeto. Hay muchas formas de crear un objeto. Puede hacer un objeto literal, o puede llamar a una función constructora con el prefijo <code class="literal" translate="no">new</code>, o puede utilizar el método <code class="literal" translate="no">Object.create</code> para hacer una nueva instancia a partir de un objeto existente, o puede llamar a cualquier función que devuelva un objeto.</p></li><li class="listitem"><p>Opcionalmente, define variables de instancia y métodos privados. Éstos no son más que <code class="literal" translate="no">var</code>s ordinarios de la función.</p></li><li class="listitem"><p>Aumenta ese nuevo objeto con métodos. Esos métodos tendrán acceso privilegiado a los parámetros y a los <code class="literal" translate="no">var</code>s definidos en el segundo paso.</p></li><li class="listitem"><p>Devuelve ese nuevo objeto.</p></li></ol></div><p>He aquí una plantilla de pseudocódigo para un constructor funcional (el texto en negrita se ha añadido para resaltarlo):</p><a id="I_programlisting5_d1e4004"></a><pre class="programlisting" translate="no">var <strong class="userinput"><code translate="no">constructor</code></strong> = function (spec, my) {
+    var that, <strong class="userinput"><code translate="no">other private instance variables</code></strong>;
+    my = my || {};
+
+    <span class="strong"><strong>Add shared variables and functions to my</strong></span>
+
+    that = <strong class="userinput"><code translate="no">a new object</code></strong>;
+
+    <span class="strong"><strong>Add privileged methods to that</strong></span>
+
+    return that;
+};</pre><p>El objeto <code class="literal" translate="no">spec</code> contiene toda la información que el constructor necesita para crear una instancia. El contenido de <code class="literal" translate="no">spec</code> puede copiarse en variables privadas o ser transformado por otras funciones. O los métodos pueden acceder a la información de <code class="literal" translate="no">spec</code> cuando la necesiten. (Una simplificación es sustituir <code class="literal" translate="no">spec</code> por un único valor. Esto es útil cuando el objeto que se está construyendo no necesita un objeto <code class="literal" translate="no">spec</code> completo).</p><p>El objeto <code class="literal" translate="no">my</code> es un contenedor de secretos que comparten los constructores de la cadena de herencia. El uso del objeto <code class="literal" translate="no">my</code> es opcional. Si no se pasa un objeto <code class="literal" translate="no">my</code>, entonces se construye un objeto <code class="literal" translate="no">my</code>.</p><p>A continuación, declara las variables de instancia privadas y los métodos privados del objeto. Esto se hace simplemente declarando variables. Las variables y funciones internas del constructor se convierten en miembros privados de la instancia. Las funciones internas tienen acceso a <code class="literal" translate="no">spec</code> y <code class="literal" translate="no">my</code> y <code class="literal" translate="no">that</code> y a las variables privadas.<a class="indexterm" id="IDX-CHP-5-0286"></a></p><p>A continuación, añade los secretos compartidos al objeto <code class="literal" translate="no">my</code>. Esto se hace mediante asignación:</p><a id="I_programlisting5_d1e4071"></a><pre class="programlisting" translate="no">my.<strong class="userinput"><code translate="no">member</code></strong> = <strong class="userinput"><code translate="no">value</code></strong>;</pre><p>Ahora, creamos un nuevo objeto y lo asignamos a <code class="literal" translate="no">that</code>. Hay muchas formas de crear un nuevo objeto. Podemos utilizar un literal de objeto. Podemos llamar a un constructor pseudoclásico con el operador <code class="literal" translate="no">new</code>. Podemos utilizar el método <code class="literal" translate="no"><code class="literal" translate="no">Object.</code>create</code> en un objeto prototipo. O podemos llamar a otro constructor funcional, pasándole un objeto <code class="literal" translate="no">spec</code> (posiblemente el mismo objeto <code class="literal" translate="no">spec</code> que se pasó a este constructor) y el objeto <code class="literal" translate="no">my</code>. El objeto <code class="literal" translate="no">my</code> permite al otro constructor compartir el material que pusimos en <code class="literal" translate="no">my</code>. El otro constructor también puede poner sus propios secretos compartidos en <code class="literal" translate="no">my</code> para que nuestro constructor pueda aprovecharlos.</p><p>A continuación, aumentamos <code class="literal" translate="no">that</code>, añadiendo los métodos privilegiados que componen la interfaz del objeto. Podemos asignar nuevas funciones a miembros de <code class="literal" translate="no">that</code>. O, de forma más segura, podemos definir las funciones primero como métodos privados, y luego asignarlas a <code class="literal" translate="no">that</code>:<a class="indexterm" id="IDX-CHP-5-0287"></a></p><a id="I_programlisting5_d1e4124"></a><pre class="programlisting" translate="no">var methodical = function (  ) {
+    ...
+};
+that.methodical = methodical;</pre><p>La ventaja de definir <code class="literal" translate="no">methodical</code> en dos pasos es que si otros métodos quieren llamar a <code class="literal" translate="no">methodical</code>, pueden llamar a <code class="literal" translate="no">methodical(
+                    )</code> en lugar de a <code class="literal" translate="no">that.methodical( )</code>. Si la instancia se daña o se manipula de forma que <code class="literal" translate="no">that.methodical</code> se sustituye, los métodos que llaman a <code class="literal" translate="no">methodical</code> seguirán funcionando igual porque su <code class="literal" translate="no">methodical</code> privado no se ve afectado por la modificación de la instancia.</p><p>Por último, devolvemos <code class="literal" translate="no">that</code>.</p><p>Apliquemos este patrón a nuestro ejemplo de mamífero. Aquí no necesitamos <code class="literal" translate="no">my</code>, así que lo omitiremos, pero utilizaremos un objeto <code class="literal" translate="no">spec</code>.</p><p>Las propiedades <code class="literal" translate="no">name</code> y <code class="literal" translate="no">saying</code> son ahora completamente privadas. Sólo son accesibles a través de los métodos privilegiados <code class="literal" translate="no">get_name</code> y <code class="literal" translate="no">says</code>:</p><a id="I_programlisting5_d1e4177"></a><pre class="programlisting" translate="no">var mammal = function (spec) {
+    var that = {};
+
+    that.get_name = function (  ) {
+        return spec.name;
+    };
+
+    that.says = function (  ) {
+        return spec.saying || '';
+    };
+
+    return that;
+};
+
+var myMammal = mammal({name: 'Herb'});</pre><p>En el patrón pseudoclásico, la función del constructor <code class="literal" translate="no">Cat</code>tenía que duplicar el trabajo realizado por el constructor <code class="literal" translate="no">Mammal</code>. Eso no es necesario en el patrón funcional porque el constructor <code class="literal" translate="no">Cat</code> llamará al constructor <code class="literal" translate="no">Mammal</code>, dejando que <code class="literal" translate="no">Mammal</code> haga la mayor parte del trabajo de creación del objeto, de modo que <code class="literal" translate="no">Cat</code> sólo tiene que preocuparse de las diferencias:<a class="indexterm" id="IDX-CHP-5-0288"></a></p><a id="I_programlisting5_d1e4205"></a><pre class="programlisting" translate="no">var cat = function (spec) {
+    spec.saying = spec.saying || 'meow';
+    var that = mammal(spec);
+    that.purr = function (n) {
+        var i, s = '';
+        for (i = 0; i &lt; n; i += 1) {
+            if (s) {
+                s += '-';
+            }
+            s += 'r';
+        }
+        return s;
+    };
+    that.get_name = function () {
+        return that.says() + ' ' + spec.name + ' ' + that.says();
+    };
+    return that;
+};
+
+var myCat = cat({name: 'Henrietta'});</pre><p>El patrón funcional también nos da una forma de tratar los supermétodos. Haremos un método <code class="literal" translate="no">superior</code> que tome un nombre de método y devuelva una función que invoque a ese método. La función invocará al método original aunque se modifique la propiedad:</p><a id="I_programlisting5_d1e4213"></a><pre class="programlisting" translate="no">Object.method('superior', function (name) {
+    var that = this,
+        method = that[name];
+    return function (  ) {
+        return method.apply(that, arguments);
+    };
+});</pre><p>Vamos a probarlo en un <code class="literal" translate="no">coolcat</code> que es igual que <code class="literal" translate="no">cat</code> excepto que tiene un método <code class="literal" translate="no">get_name</code> más fresco que llama al supermétodo. Sólo requiere un poco de preparación. Declararemos una variable <code class="literal" translate="no">super_get_name</code> y le asignaremos el resultado de invocar al método superior:<a class="indexterm" id="IDX-CHP-5-0289"></a></p><a id="I_programlisting5_d1e4232"></a><pre class="programlisting" translate="no">var coolcat = function (spec) {
+    var that = cat(spec),
+        super_get_name = that.superior('get_name');
+    that.get_name = function (n) {
+        return 'like ' + super_get_name(  ) + ' baby';
+    };
+    return that;
+};
+
+var myCoolCat = coolcat({name: 'Bix'});
+var name = myCoolCat.get_name(  );
+//        'like meow Bix meow baby'</pre><p>El patrón funcional tiene una gran flexibilidad. Requiere menos esfuerzo que el patrón pseudoclásico, y nos proporciona una mejor encapsulación y ocultación de información y acceso a los métodos superiores.</p><p>Si todo el estado de un objeto es privado, entonces el objeto es a prueba de manipulaciones. Las propiedades del objeto se pueden sustituir o eliminar, pero la integridad del objeto no se ve comprometida. Si creamos un objeto en el estilo funcional, y si todos los métodos del objeto no hacen uso de <code class="literal" translate="no">this</code> o <code class="literal" translate="no">that</code>, entonces el objeto es  <span class="emphasis"><em translate="no">durable</em></span>. Un objeto duradero es simplemente una colección de funciones que actúan como <span class="emphasis"><em translate="no">capabilities</em></span>.<a class="indexterm" id="IDX-CHP-5-0290"></a><a class="indexterm" id="IDX-CHP-5-0291"></a></p><p>Un objeto duradero no puede ser comprometido. El acceso a un objeto duradero no da a un atacante la capacidad de acceder al estado interno del objeto, excepto en lo permitido por los métodos.</p></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="ch05s03.html">← Anterior</a><a href="ch05s05.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="ch05s04.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\ch05s04.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

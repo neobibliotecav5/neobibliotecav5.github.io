@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Curry</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Curry"><div class="titlepage"><div><div><h1 class="title"><a id="curry"/>Curry</h1></div></div></div><p>Functions are values, and we can manipulate function values in interesting ways.
+                    <span class="emphasis"><em>Currying</em></span> allows us to produce a new function by combining a
+                function and an argument:<a id="IDX-CHP-4-0242" class="indexterm"/><a id="IDX-CHP-4-0243" class="indexterm"/></p><a id="I_programlisting4_d1e3478"/><pre class="programlisting">var add1 = add.curry(1);
+document.writeln(add1(6));    // 7</pre><p><code class="literal">add1</code> is a function that was created by passing
+                1 to <code class="literal">add</code> 's <code class="literal">curry</code> method. The <code class="literal">add1</code> function
+                adds 1 to its argument. JavaScript does not have a <code class="literal">curry</code> method, but we can fix that by augmenting <code class="literal">Function.prototype</code>:</p><a id="I_programlisting4_d1e3499"/><pre class="programlisting">Function.method('curry', function (  ) {
+    var args = arguments, that = this;
+    return function (  ) {
+        return that.apply(null, args.concat(arguments));
+    };
+});    // Something isn't right...</pre><p>The <code class="literal">curry</code> method works by creating a closure
+                that holds that original function and the arguments to curry. It returns a function
+                that, when invoked, returns the result of calling that original function, passing it
+                all of the arguments from the invocation of <code class="literal">curry</code>
+                and the current invocation. It uses the <code class="literal">Array
+                    concat</code> method to concatenate the two arrays of arguments
+                together.</p><p>Unfortunately, as we saw earlier, the <code class="literal">arguments</code>
+                array is not an array, so it does not have the <code class="literal">concat</code> method. To work around that, we will apply the array <code class="literal">slice</code> method on both of the <code class="literal">arguments</code> arrays. This produces arrays that behave correctly with the
+                    <code class="literal">concat</code> method:</p><a id="I_programlisting4_d1e3529"/><pre class="programlisting">Function.method('curry', function (  ) {
+    var slice = Array.prototype.slice,
+        args = slice.apply(arguments),
+        that = this;
+    return function (  ) {
+        return that.apply(null, args.concat(slice.apply(arguments)));
+    };
+});</pre></div></body></html>

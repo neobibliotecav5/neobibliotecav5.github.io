@@ -1,0 +1,71 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Augmenting Types</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="Augmenting Types"><div class="titlepage"><div><div><h1 class="title"><a id="augmenting_types"></a>Aumentar tipos</h1></div></div></div><p>JavaScript permite que los tipos básicos del lenguaje sean    <span class="emphasis"><em translate="no">augmented</em></span>. En el <a class="xref" href="ch03.html" title="Chapter 3. Objects">Capítulo 3</a>, vimos que añadir un método a <code class="literal" translate="no">Object.prototype</code> hace que ese método esté disponible para todos los objetos. Esto también funciona para funciones, matrices, cadenas, números, expresiones regulares y booleanos.<a class="indexterm" id="IDX-CHP-4-0211"></a><a class="indexterm" id="IDX-CHP-4-0212"></a></p><p>Por ejemplo, aumentando <code class="literal" translate="no">Function.prototype</code>, podemos hacer que un método esté disponible para todas las funciones:</p><a id="I_programlisting4_d1e2861"></a><pre class="programlisting" translate="no">Function.prototype.method = function (name, func) {
+    this.prototype[name] = func;
+    return this;
+};</pre><p>Al aumentar <code class="literal" translate="no">Function.prototype</code> con un método <code class="literal" translate="no">method</code>, ya no tenemos que escribir el nombre de la propiedad <code class="literal" translate="no">prototype</code>. Ahora podemos ocultar esa fealdad.</p><p>JavaScript no tiene un tipo entero independiente, por lo que a veces es necesario extraer sólo la parte entera de un número. El método que proporciona JavaScript para hacerlo es feo. Podemos arreglarlo añadiendo un método <code class="literal" translate="no">integer</code>a <code class="literal" translate="no">Number.prototype</code>. Utiliza <code class="literal" translate="no">Math.ceil</code> o <code class="literal" translate="no">Math.floor</code>, dependiendo del signo del número:</p><a id="I_programlisting4_d1e2888"></a><pre class="programlisting" translate="no">Number.method('integer', function (  ) {
+    return Math[this &lt; 0 ? 'ceil' : 'floor'](this);
+});
+
+document.writeln((-10 / 3).integer(  ));  // −3</pre><p>JavaScript carece de un método que elimine los espacios de los extremos de una cadena. Es un descuido fácil de arreglar:</p><a id="I_programlisting4_d1e2892"></a><pre class="programlisting" translate="no">String.method('trim', function (  ) {
+    return this.replace(/^\s+|\s+$/g, '');
+});
+
+document.writeln('"' + "   neat   ".trim(  ) + '"');</pre><p>Nuestro método <code class="literal" translate="no">trim</code> utiliza una expresión regular. Veremos mucho más sobre expresiones regulares en <a class="xref" href="ch07.html" title="Chapter 7. Regular Expressions">el Capítulo 7</a>.</p><p>Aumentando los tipos básicos, podemos mejorar significativamente la expresividad del lenguaje. Debido a la naturaleza dinámica de la herencia prototípica de JavaScript, todos los valores están dotados inmediatamente de los nuevos métodos, incluso los valores que se crearon antes de que se crearan los métodos.</p><p>Los prototipos de los tipos básicos son estructuras públicas, por lo que hay que tener cuidado al mezclar bibliotecas. Una técnica defensiva consiste en añadir un método sólo si se sabe que falta:<a class="indexterm" id="IDX-CHP-4-0213"></a></p><a id="I_programlisting4_d1e2911"></a><pre class="programlisting" translate="no">// Add a method conditionally.
+
+Function.prototype.method = function (name, func) {
+    if (!this.prototype[name]) {
+        this.prototype[name] = func;
+        return this;
+    }
+};</pre><p>Otra preocupación es que la declaración <code class="literal" translate="no">for in</code> interactúa mal con los prototipos. En el <a class="xref" href="ch03.html" title="Chapter 3. Objects">Capítulo 3</a> vimos un par de formas de mitigarlo: podemos utilizar el método <code class="literal" translate="no">hasOwnProperty</code> para filtrar las propiedades heredadas, y podemos buscar tipos específicos.</p></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="ch04s06.html">← Anterior</a><a href="ch04s08.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="ch04s07.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\ch04s07.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

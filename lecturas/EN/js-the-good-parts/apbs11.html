@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>new</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="new"><div class="titlepage"><div><div><h1 class="title"><a id="new"/>new</h1></div></div></div><p>JavaScript's <code class="literal">new</code> operator creates a new object
+                that inherits from the operand's prototype member, and then calls the operand,
+                binding the new object to <code class="literal">this</code>. This gives the
+                operand (which had better be a constructor function) a chance to customize the new
+                object before it is returned to the requestor.</p><p>If you forget to use the <code class="literal">new</code> operator, you
+                instead get an ordinary function call, and <code class="literal">this</code>
+                is bound to the global object instead of to a new object. That means that your
+                function will be clobbering global variables when it attempts to initialize the new
+                members. That is a very bad thing. There is no compile-time warning. There is no
+                runtime warning.</p><p>By convention, functions that are intended to be used with <code class="literal">new</code> should be given names with initial capital
+                letters, and names with initial capital letters should be used only with constructor
+                functions that take the <code class="literal">new</code> prefix. This
+                convention gives us a visual cue that can help spot expensive mistakes that the
+                language itself is keen to overlook.</p><p>An even better coping strategy is to not use <code class="literal">new</code> at all.</p></div></body></html>

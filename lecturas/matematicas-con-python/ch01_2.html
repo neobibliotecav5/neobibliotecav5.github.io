@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<meta charset="utf-8"/>
+<title>Capítulo 1: Trabajar con números</title>
+<link href="style.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="core.css" media="all" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch01lev1sec01"><strong>Operaciones matemáticas básicas</strong></h3>
+<p class="noindent">El <em>shell interactivo de</em> Python va a ser nuestro amigo en este libro. Inicia el intérprete de comandos IDLE de Python 3 y di "hola" (ver <a href="ch01.html#ch1fig1">Figura 1-1</a>) escribiendo <span class="literal" translate="no">print('Hello IDLE')</span> y pulsando <small>INTRO</small>. (Para obtener instrucciones sobre cómo instalar Python e iniciar IDLE, consulta <a href="app01.html#app01">el Apéndice A</a>.) IDLE obedece tu orden e imprime las palabras en la pantalla. Enhorabuena: ¡acabas de escribir un programa!</p>
+<p class="indent">Cuando vuelvas a ver el prompt <span class="literal" translate="no">&gt;&gt;&gt;</span>, IDLE estará listo para recibir más instrucciones.</p>
+<div class="image"><a id="page_2"></a><img alt="image" src="images/f01-01.jpg" translate="no"/></div>
+<p class="figuret"><a id="ch1fig1"></a><em>Figura 1-1: Shell IDLE de Python 3</em></p>
+<p class="indent">Python puede actuar como una calculadora glorificada, haciendo cálculos sencillos. Sólo tienes que escribir una expresión y Python la evaluará. Después de pulsar <small>ENTER</small>, el resultado aparece inmediatamente.</p>
+<p class="indent">Pruébalo. Puedes sumar y restar números utilizando los operadores de suma (<span class="literal" translate="no">+</span>) y resta (<span class="literal" translate="no">–</span>). Por ejemplo:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">1 + 2</span><br translate="no"/>3<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">1 + 3.5</span><br translate="no"/>4.5<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">-1 + 2.5</span><br translate="no"/>1.5<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">100 – 45</span><br translate="no"/>55<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">-1.1 + 5</span><br translate="no"/>3.9</p>
+<p class="indent">Para multiplicar, utiliza el operador multiplicación (<span class="literal" translate="no">*</span>):</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">3 * 2</span><br translate="no"/>6<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">3.5 * 1.5</span><br translate="no"/>5.25</p>
+<p class="indent">Para dividir, utiliza el operador división (<span class="literal" translate="no">/</span>):</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">3 / 2</span><br translate="no"/>1.5<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">4 / 2</span><br translate="no"/>2.0</p>
+<p class="indent">Como puedes ver, cuando pides a Python que realice una operación de división, te devuelve también la parte fraccionaria del número. Si quieres el resultado en forma de número entero, sin los valores decimales, debes utilizar el operador división suelo (<span class="literal" translate="no">//</span>):</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">3 // 2</span><br translate="no"/>1</p>
+<p class="indent"><a id="page_3"></a>El operador de división piso divide el primer número entre el segundo y redondea el resultado al entero inmediatamente inferior. Esto resulta interesante cuando uno de los números es negativo. Por ejemplo:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">-3 // 2</span><br translate="no"/>-2</p>
+<p class="indent">El resultado final es el número entero inferior al resultado de la operación de división (<span class="literal" translate="no">-3/2 = -1.5</span>, por lo que el resultado final es <span class="literal" translate="no">-2</span>).</p>
+<p class="indent">En cambio, si sólo quieres el resto, debes utilizar el operador módulo (<span class="literal" translate="no">%</span>):</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">9 % 2</span><br translate="no"/>1</p>
+<p class="indent">Puedes calcular la potencia de los números utilizando el operador exponencial (<span class="literal" translate="no">**</span>). Los ejemplos siguientes lo ilustran:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">2 ** 2</span><br translate="no"/>4<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">2 ** 10</span><br translate="no"/>1024<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">1 ** 10</span><br translate="no"/>1</p>
+<p class="indent">También podemos utilizar el símbolo exponencial para calcular potencias menores que 1. Por ejemplo, la raíz cuadrada de un número <em>n</em> puede expresarse como <sup>n1/2</sup> y la raíz cúbica como <sup>n1/3</sup>:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">8 ** (1/3)</span><br translate="no"/>2.0</p>
+<p class="indent">Como muestra este ejemplo, puedes utilizar paréntesis para combinar operaciones matemáticas en expresiones más complicadas. Python evaluará la expresión siguiendo la regla estándar <em>PEMDAS</em> para el orden de los cálculos: paréntesis, exponentes, multiplicación, división, suma y resta. Considera las dos expresiones siguientes: una sin paréntesis y otra con paréntesis:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">5 + 5 * 5</span><br translate="no"/>30<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">(5 + 5) * 5</span><br translate="no"/>50</p>
+<p class="indent">En el primer ejemplo, Python calcula primero la multiplicación: 5 por 5 es 25; 25 más 5 es 30. En el segundo ejemplo, se evalúa primero la expresión entre paréntesis, tal como cabría esperar: 5 más 5 es 10; 10 por 5 es 50.</p>
+<p class="indent">Estos son los fundamentos absolutos de la manipulación de números en Python. Aprendamos ahora cómo podemos asignar nombres a los números.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch01_1.html">anterior</a><a href="ch01.html">Subtema 2 de 8: (Ver todo)</a><a href="ch01_3.html">siguiente</a><br/></p>
+<br/><a href="ch01_2.docx" target="_blank"></a></footer>
+</body>
+</html>

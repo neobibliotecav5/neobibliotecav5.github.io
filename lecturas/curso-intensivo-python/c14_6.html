@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c14-0004">Reiniciar el juego</h3>
+<p class="BodyFirst">El código del botón Jugar que acabamos de escribir funciona la primera vez que el jugador pulsa Jugar. Pero no funciona después de que termine la primera partida, porque las condiciones que hicieron que terminara la partida no se han reiniciado.</p>
+<p>Para reiniciar la partida cada vez que el jugador haga clic en Jugar, tenemos que reiniciar las estadísticas de la partida, eliminar los antiguos alienígenas y balas, construir una nueva flota y centrar la nave, como se muestra aquí:</p>
+<p class="CodeLabel" translate="no"><b>alien_invasion.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    def _check_play_button(self, mouse_pos):</span>
+<span class="LiteralGray">        """Start a new game when the player clicks Play."""</span>
+<span class="LiteralGray">        if self.play_button.rect.collidepoint(mouse_pos):</span>
+            # Reset the game statistics.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>             self.stats.reset_stats()
+<span class="LiteralGray">            self.game_active = True</span>
+
+<span epub:type="pagebreak" id="Page_282" title="282"></span>            # Get rid of any remaining bullets and aliens.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>             self.bullets.empty()
+            self.aliens.empty()
+
+            # Create a new fleet and center the ship.
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>             self._create_fleet()
+            self.ship.center_ship()</code></pre>
+<p>Reiniciamos las estadísticas del juego <span aria-label="annotation1" class="CodeAnnotation">❶,</span> lo que proporciona al jugador tres naves nuevas. Luego ponemos <code translate="no">game_active</code> en <code translate="no">True</code> para que el juego comience en cuanto termine de ejecutarse el código de esta función. Vaciamos los grupos <code translate="no">aliens</code> y <code translate="no">bullets</code> <span aria-label="annotation2" class="CodeAnnotation">❷,</span> y después creamos una nueva flota y centramos la nave <span aria-label="annotation3" class="CodeAnnotation">❸.</span></p>
+<p>Ahora el juego se reiniciará correctamente cada vez que pulses Jugar, ¡lo que te permitirá jugarlo tantas veces como quieras!</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c14_5.html">anterior</a><a href="c14.html">Subtema 6 de 29: (Ver todo)</a><a href="c14_7.html">siguiente</a><br/></p>
+<br/><a href="c14_6.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch10lev1sec01"><strong><span class="blue1">Un simple bucle for</span></strong></h3>
+<p class="noindent">Un bucle <span class="literal">for</span> repite un bloque de código para cada elemento de una lista hasta que ésta termina, en lugar de utilizar una condición como un bucle <span class="literal">while</span> o una sentencia <span class="literal">if</span>.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_200"></span>La lista que utilices en una sentencia <span class="literal">for</span> puede contener cualquier número de elementos de cualquier tipo de datos. El bucle <span class="literal">for</span> recorrerá cada uno de ellos en orden, es decir, por su índice. Por ejemplo, para imprimir todos los elementos de la lista de la sopa de fideos, utilizaríamos el código siguiente:</p>
+<p class="programs" translate="no">noodleSoup = [<span class="green">"water"</span>, <span class="green">"soy sauce"</span>, <span class="green">"spring onions"</span>, <span class="green">"pepper"</span>, <span class="green">"noodles"</span>,<br translate="no"/><span class="green">"beef"</span>, <span class="green">"vegetables"</span>]<br translate="no"/><br translate="no"/><span class="orange">for</span> ingredient <span class="orange">in</span> noodleSoup:<br translate="no"/> <span class="rose">print</span>(ingredient)</p>
+<p class="indent">Utilizamos el operador <span class="literal">for</span> para indicar a Python que estamos utilizando un bucle.</p>
+<p class="indent">Tras el operador <span class="literal">for</span> hay una variable, <span class="literal">ingrediente</span>, que representa el elemento que el bucle está utilizando en ese momento. El valor cambia cada vez que el bucle itera hasta que ha recorrido cada elemento de la lista. La primera vez que se ejecute el bucle, el valor será el elemento en la posición 0 del índice (en este caso <span class="literal">"agua"</span>), la segunda vez el valor será el elemento en el índice 1 (<span class="literal">"salsa de soja"</span>), la tercera vez el valor será el elemento en el índice 2 (<span class="literal">"cebolletas"</span>), y así sucesivamente.</p>
+<p class="indent">El operador <span class="literal">in</span> y el nombre de la lista al final de la sentencia indican a Python qué lista estás utilizando. En este ejemplo, el nombre de la lista es <span class="literal">sopa de fideos</span>.</p>
+<p class="indent">El bucle se ejecuta una vez por cada elemento de la lista y termina cuando llega al final de la lista. Aquí tienes la salida de este programa:</p>
+<p class="programs" translate="no"><span class="blue1">water</span><br translate="no"/><span class="blue1">soy sauce</span><br translate="no"/><span class="blue1">spring onions</span><br translate="no"/><span class="blue1">pepper</span><br translate="no"/><span class="blue1">noodles</span><br translate="no"/><span class="blue1">beef</span><br translate="no"/><span class="blue1">vegetables</span></p>
+<p class="indent">Se imprimen todos los elementos de la lista. Ahora vamos a divertirnos un poco con los bucles <span class="literal">for</span> en Minecraft.</p>
+<h4 class="h4a" id="ch10lev2sec01"><strong>Misión nº 55: Varita mágica</strong></h4>
+<p class="noindent">Cada herramienta en Minecraft tiene su propio propósito. La pala cava tierra, el pico rompe bloques de piedra, el hacha corta madera y la espada golpea a los malos. Normalmente, no puedes cambiar cómo se comportan las herramientas; sólo tienes que aceptar que la espada sólo golpea a los enemigos. Pero con Python, puedes cambiar cómo funcionan las herramientas. En este programa, convertiremos la espada en una varita mágica.</p>
+<p class="indent">En el <a href="ch09.xhtml#ch09">Capítulo 9</a>, aprendiste sobre la función <span class="literal">pollBlockHits()</span>. Esta función devuelve una lista de coordenadas de bloque que la espada ha golpeado. Utilizando un bucle <span class="literal">for</span>, puedes acceder a cada conjunto de coordenadas de esta lista. Vamos a convertir en melones todos los bloques que hayamos golpeado en los últimos 60 segundos. Puedes ver cómo funciona en la <a href="ch10.xhtml#ch10fig1">Figura 10-1</a>.</p>
+<div class="image"><span epub:type="pagebreak" id="page_201"></span><img alt="image" src="../images/f10-01.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch10fig1"></a><em>Figura 10-1: ¡Abracadabra! Todos los bloques que golpeo son ahora melones.</em></p>
+<p class="indent"><a href="ch10.xhtml#ch10ex1">El listado 10-1</a> contiene el inicio del programa. Guárdalo como <em>varita mágica.py</em> en una nueva carpeta llamada <em>forLoops</em>.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>magicWand.py</em></span></p>
+<p class="programs" translate="no"> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>   mc = Minecraft.create()<br translate="no"/><br translate="no"/> <span class="orange">import</span> time<br translate="no"/><br translate="no"/>   time.sleep(60)<br translate="no"/><br translate="no"/><span class="ent">➊</span> hits = mc.events.pollBlockHits()<br translate="no"/>   block = 103<br translate="no"/><br translate="no"/><span class="ent">➋</span> <span class="orange">for</span><br translate="no"/><span class="ent">➌</span> x, y, z = hit.pos.x, hit.pos.y, hit.pos.z<br translate="no"/><span class="ent">➍</span> <span class="red"># Set melon blocks at the coordinates</span></p>
+<p class="examplet"><a id="ch10ex1"></a><em>Listado 10-1: El inicio del programa varita mágica</em></p>
+<p class="indent">Para obtener la lista de éxitos de bloque, llamamos a la función <span class="literal">pollBlockHits()</span> y almacenamos el resultado en la variable <span class="literal">éxitos</span> <span class="ent">➊.</span></p>
+<p class="indent">Se incluye una línea de código que obtendrá la posición de cualquier bloque que golpees y almacenará sus coordenadas en las variables <span class="literal">x</span>, <span class="literal">y</span>, y <span class="literal">z</span> <span class="ent">➌.</span> Utiliza una tupla (introducida en "<a href="ch09.xhtml#ch09lev1sec04">Tuplas</a>" en <a href="ch09.xhtml#page_179">la página 179</a>) para asignar las tres variables en una sola línea.</p>
+<p class="indent">De momento, esta línea de código no funcionará porque la variable <span class="literal">hit</span> no existe. Crea un bucle <span class="literal">for</span> en <span class="ent">➋</span> y llama <span class="literal">hit</span> a la variable del bucle <span class="literal">for</span>. El bucle <span class="literal">for</span> debe iterar sobre la lista de <span class="literal">hits</span>. El código de la primera parte del bucle <span class="literal">for</span> debería tener este aspecto:</p>
+<p class="programs" translate="no"><span class="orange">for</span> hit <span class="orange">in</span> hits:</p>
+<p class="indent"><span epub:type="pagebreak" id="page_202"></span>Asegúrate de sangrar la línea de código que obtiene los valores <span class="literal">x</span>, <span class="literal">y</span>, y <span class="literal">z</span> dentro del bucle <span class="literal">for</span> en <span class="ent">➌.</span> En la última línea del bucle <span class="literal">for</span>, añade la función <span class="literal">setBlock()</span> para establecer un bloque de melón en las coordenadas x, y y z <span class="ent">➍.</span></p>
+<p class="indent">Cuando el usuario ejecute el programa terminado, tendrá 60 segundos para correr y hacer clic con el botón derecho del ratón en todos los bloques que pueda con su espada. Pasados los 60 segundos, todos los bloques que hayan sido golpeados con la espada se convertirán en melones.</p>
+<div class="sidebar">
+<p class="sidebart" id="ch10sb01"><strong>OBJETIVO EXTRA: ERES UN MAGO</strong></p>
+<p class="noindent">Cambia el programa <em>magicWand.py</em> para que teletransporte al jugador: el primer golpe fija la ubicación, y el segundo lo lleva allí.</p>
+</div>
+<h4 class="h4" id="ch10lev2sec02"><strong><span class="blue1">La función range()</span></strong></h4>
+<p class="noindent">La función <span class="literal">range</span> () crea una lista de números enteros. Es una buena forma de crear rápidamente una lista de números para tus bucles <span class="literal">for</span>. Echemos un vistazo y pasemos dos argumentos, 0 y 5, a la función range( <span class="literal">)</span>:</p>
+<p class="programs" translate="no">aRange = <span class="rose">range</span>(0, 5)</p>
+<p class="indent">Esta es una forma más rápida de crear una lista que escribir cada elemento de la lista individualmente, lo que tendría este aspecto:</p>
+<p class="programs" translate="no">aRange = [0, 1, 2, 3, 4]</p>
+<p class="indent">Observa que el segundo argumento de la función <span class="literal">range</span> () es 5, pero el último elemento de la lista es 4. Esto se debe a que la función sólo crea valores que sean menores pero no iguales que el segundo argumento.</p>
+<p class="indent">Para crear un bucle que utilice la función rango <span class="literal">()</span> para imprimir los números del 1 al 15, utilizarías el siguiente código:</p>
+<p class="programs" translate="no"><span class="orange">for</span> item <span class="orange">in</span> <span class="rose">range</span>(1, 16):<br translate="no"/> <span class="rose">print</span>(item)</p>
+<p class="indent">Así podrías imprimir el doble del valor de cada elemento de una lista:</p>
+<p class="programs" translate="no"><span class="orange">for</span> item <span class="orange">in</span> <span class="rose">range</span>(1, 16):<br translate="no"/> <span class="rose">print</span>(item * 2)</p>
+<p class="indent">Puedes hacer lo mismo con un bucle <span class="literal">while</span>, que conociste en el <a href="ch07.xhtml#ch07">Capítulo 7</a>. El siguiente código utiliza un bucle <span class="literal">while</span> en lugar de un bucle <span class="literal">for</span> para imprimir los números del 1 al 15:</p>
+<p class="programs" translate="no">count = 1<br translate="no"/><span class="orange">while</span> count &lt; 16:<br translate="no"/> <span class="rose">print</span>(count)<br translate="no"/>    count += 1</p>
+<p class="indent"><span epub:type="pagebreak" id="page_203"></span>Observa que el bucle <span class="literal">for</span> es más sencillo y fácil de leer. En programas grandes y complejos, un bucle <span class="literal">for</span> suele ser mejor opción que un bucle <span class="literal">while</span> con <span class="literal">count</span>.</p>
+<h4 class="h4a" id="ch10lev2sec03"><strong>Misión nº 56: Escaleras mágicas</strong></h4>
+<p class="noindent">Una de las mejores características de usar Minecraft con Python es que puedes construir cosas rápidamente con sólo unas pocas líneas de código. En lugar de pasar mucho tiempo construyendo muros, puedes ejecutar un poco de código y listo. También puedes reutilizar el código tantas veces como quieras, ahorrando tiempo y esfuerzo.</p>
+<p class="indent">Construir escaleras es una tarea que suele llevar mucho tiempo. Afortunadamente, con unas pocas líneas de código Python, puedes crear rápidamente una escalera en Minecraft. En esta misión, utilizarás un bucle <span class="literal">for</span> para hacer aparecer una escalera en el mundo del juego.</p>
+<p class="indent"><a href="ch10.xhtml#ch10ex2">El listado 10-2</a> crea una escalera en Minecraft utilizando un bucle <span class="literal">while</span>. Guárdalo como <em>escaleras.py</em> en la carpeta <em>forLoops</em>.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>stairs.py</em></span></p>
+<p class="programs" translate="no"><span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>mc = Minecraft.create()<br translate="no"/><br translate="no"/>pos = mc.player.getTilePos()<br translate="no"/>x, y, z = pos.x, pos.y, pos.z<br translate="no"/><br translate="no"/>stairBlock = 53<br translate="no"/><br translate="no"/>step = 0<br translate="no"/><span class="orange">while</span> step &lt; 10:<br translate="no"/>    mc.setblock(x + step, y + step, z, stairBlock)<br translate="no"/>    step += 1</p>
+<p class="examplet"><a id="ch10ex2"></a><em>Listado 10-2: Programa que</em> crea una escalera utilizando un <em>bucle</em> <span class="literal"><span class="codeitalic">while</span></span> </p>
+<p class="indent">Aunque puedes utilizar un bucle <span class="literal">while</span> para este programa, como se muestra aquí, en realidad es más adecuado un bucle <span class="literal">for</span>. A diferencia del bucle <span class="literal">while</span>, un bucle <span class="literal">for</span> no requiere una variable <span class="literal">count</span> o <span class="literal">step</span>. En su lugar, puedes utilizar la función <span class="literal">range()</span> para determinar cuántas veces se repite el bucle.</p>
+<p class="indent">Para completar el programa, cambia el código para que utilice un bucle <span class="literal">for</span> en lugar de un bucle <span class="literal">while</span>.</p>
+<p class="indent">Puedes ver el resultado del programa en la <a href="ch10.xhtml#ch10fig2">Figura 10-2</a>.</p>
+<div class="sidebar">
+<p class="sidebart" id="ch10sb02"><strong>OBJETIVO EXTRA: ¿BAJAR?</strong></p>
+<p class="noindent">De momento, el programa <em>escaleras.</em> py sólo construye escaleras en una dirección. Intenta averiguar cómo construir escaleras en otras direcciones. Pista: Utilizarás el argumento opcional estados del bloque en la función <span class="literal">setBlock()</span> y añadirás o quitarás variables <span class="literal">x</span> o <span class="literal">z</span>.</p>
+</div>
+<div class="image"><span epub:type="pagebreak" id="page_204"></span><img alt="image" src="../images/f10-02.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch10fig2"></a><em>Figura 10-2: ¿Adónde llevará tu escalera mágica?</em></p>
+<h4 class="h4" id="ch10lev2sec04"><strong><span class="blue1">Jugando con range()</span></strong></h4>
+<p class="noindent">Has aprendido un poco sobre la función range( <span class="literal">)</span> y lo que ocurre cuando pasas dos argumentos a la función. ¿Y si le pasas un solo argumento? Introduce este código en el intérprete de comandos IDLE para ver qué ocurre:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> aRange = <span class="rose">range</span>(5)<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> <span class="rose">list</span>(aRange)<br translate="no"/><span class="blue1">[0, 1, 2, 3, 4]</span></p>
+<p class="indent">Cuando le das a la función rango <span class="literal">(</span> ) un solo argumento, empezará en 0 y almacenará cada valor hasta uno menos que el valor que le pases como argumento. En otras palabras, es como si pasaras 0 como primer argumento y 5 como segundo argumento. En este ejemplo, la función <span class="literal">list(</span> ) muestra los valores de la lista creada por la función <span class="literal">range()</span> (de lo contrario, ¡no los verías!). Como puedes ver, el valor de <span class="literal">list(aRango)</span> es una lista de cinco números que empiezan en 0: <span class="literal">[0, 1, 2, 3, 4]</span>. Ésta es una forma rápida de crear un rango si quieres empezar con 0 como primer valor.</p>
+<p class="indent">Como has visto, cuando pasas dos argumentos a <span class="literal">range()</span>, la lista comienza en el primer argumento proporcionado y termina antes del segundo argumento:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> aRange = <span class="rose">range</span>(2, 5)<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> <span class="rose">list</span>(aRange)<br translate="no"/><span class="blue1">[2, 3, 4]</span></p>
+<p class="indent">Este ejemplo crea un rango equivalente a la lista <span class="literal">[2, 3, 4]</span>.</p>
+<p class="indent">Cuando das tres argumentos a range( <span class="literal">)</span>, el tercer argumento define el <em>paso</em> entre elementos. Normalmente, cada valor de la lista creada por la función range <span class="literal">(</span> ) es uno mayor que el valor anterior. Al cambiar el paso, cambias la diferencia entre valores. Por ejemplo, un paso de 2 haría que <span epub:type="pagebreak" id="page_205"></span>el siguiente valor de una lista fuera 2 más que el elemento anterior. Un paso de 3 lo haría 3 más que el elemento anterior, y así sucesivamente.</p>
+<p class="indent">Por ejemplo, esta lista suma 2 al valor anterior para obtener el siguiente valor:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> aRange = <span class="rose">range</span>(3, 10, 2)<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> <span class="rose">list</span>(aRange)<br translate="no"/><span class="blue1">[3, 5, 7, 9]</span></p>
+<p class="indent">Observa que cada elemento es 2 más que el elemento anterior (5 es 3 + 2, 7 es 5 + 2 y 9 es 7 + 2).</p>
+<p class="indent">Incluso puedes dar a <span class="literal">range(</span> ) un valor de paso negativo, como éste:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> newRange = <span class="rose">range</span>(100, 0, -2)<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> <span class="rose">list</span>(newRange)<br translate="no"/><span class="blue1">[100, 98, 96, 94, 92, 90, 88, 86, 84, 82, 80, 78, 76, 74, 72, 70, 68, 66, 64,</span><br translate="no"/><span class="blue1">62, 60, 58, 56, 54, 52, 50, 48, 46, 44, 42, 40, 38, 36, 34, 32, 30, 28, 26,</span><br translate="no"/><span class="blue1">24, 22, 20, 18, 16, 14, 12, 10, 8, 6, 4, 2]</span></p>
+<p class="indent">Observa que los valores de la lista disminuyen en 2 debido al valor de paso negativo.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch10_1.html">anterior</a><a href="ch10.html">Subtema 2 de 7: (Ver todo)</a><a href="ch10_3.html">siguiente</a><br/></p>
+<br/><a href="ch10_2.docx" target="_blank"></a></footer>
+</body>
+</html>

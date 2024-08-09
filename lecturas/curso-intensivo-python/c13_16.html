@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c13-0009">Soltar la flota y cambiar de dirección</h3>
+<p class="BodyFirst">Cuando un alienígena alcanza el borde, toda la flota debe descender y cambiar de dirección. Por lo tanto, tenemos que añadir algo de código a <code translate="no">AlienInvasion</code> porque ahí es donde comprobaremos si hay algún alienígena en el borde izquierdo o derecho. Lo haremos escribiendo los métodos <code translate="no">_check_fleet_edges()</code> y <code translate="no">_change_fleet_direction()</code>, y modificando <code translate="no">_update_aliens()</code>. Pondré estos nuevos métodos después de <code translate="no">_create_alien()</code>, pero, de nuevo, la ubicación de estos métodos en la clase no es crítica.</p>
+<p class="CodeLabel" translate="no"><b>alien_invasion.py</b></p>
+<pre translate="no"><code translate="no">    def _check_fleet_edges(self):
+        """Respond appropriately if any aliens have reached an edge."""
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         for alien in self.aliens.sprites():
+            if alien.check_edges():
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>                 self._change_fleet_direction()
+                break
+
+    def _change_fleet_direction(self):
+<span epub:type="pagebreak" id="Page_266" title="266"></span>        """Drop the entire fleet and change the fleet's direction."""
+        for alien in self.aliens.sprites():
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>             alien.rect.y += self.settings.fleet_drop_speed
+        self.settings.fleet_direction *= -1</code></pre>
+<p>En <code translate="no">_check_fleet_edges()</code>, hacemos un bucle a través de la flota y llamamos a <code translate="no">check_edges()</code> en cada ❶ alienígena <span aria-label="annotation1" class="CodeAnnotation">.</span> Si <code translate="no">check_edges()</code> devuelve <code translate="no">True</code>, sabemos que un alienígena está en un borde y que toda la flota necesita cambiar de dirección; así que llamamos a <code translate="no">_change_fleet_direction()</code> y salimos del bucle <span aria-label="annotation2" class="CodeAnnotation">❷.</span> En <code translate="no">_change_fleet_direction()</code>, hacemos un bucle a través de todos los alienígenas y soltamos a cada uno utilizando el parámetro <code translate="no">fleet_drop_speed</code> <span aria-label="annotation3" class="CodeAnnotation">❸;</span> luego cambiamos el valor de <code translate="no">fleet_direction</code> multiplicando su valor actual por -1. La línea que cambia la dirección de la flota no forma parte del bucle <code translate="no">for</code>. Queremos cambiar la posición vertical de cada alienígena, pero sólo queremos cambiar la dirección de la flota una vez.</p>
+<p>Estos son los cambios en <code translate="no">_update_aliens()</code>:</p>
+<p class="CodeLabel" translate="no"><b>alien_invasion.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    def _update_aliens(self):</span>
+        """Check if the fleet is at an edge, then update positions."""
+        self._check_fleet_edges()
+   <span class="LiteralGray">     self.aliens.update()</span></code></pre>
+<p>Hemos modificado el método llamando a <code translate="no">_check_fleet_edges()</code> antes de actualizar la posición de cada alienígena.</p>
+<p>Ahora, al ejecutar el juego, la flota debería moverse de un lado a otro de los bordes de la pantalla y descender cada vez que toque un borde. Ahora podemos empezar a derribar alienígenas y vigilar si alguno choca contra la nave o llega al fondo de la pantalla.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c13_15.html">anterior</a><a href="c13.html">Subtema 16 de 33: (Ver todo)</a><a href="c13_17.html">siguiente</a><br/></p>
+<br/><a href="c13_16.docx" target="_blank"></a></footer>
+</body>
+</html>

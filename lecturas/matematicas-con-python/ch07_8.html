@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<meta charset="utf-8"/>
+<title>Capítulo 7: Resolución de problemas de cálculo</title>
+<link href="style.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="core.css" media="all" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch07lev1sec07"><a id="page_200"></a><strong>Hallar las integrales de funciones</strong></h3>
+<p class="noindent">La <em>integral indefinida</em>, o la <em>antiderivada</em>, de una función <em>f</em><em>(x</em>) es otra función <em>F</em><em>(x</em>), tal que <em>F′</em><em>(x</em>) = <em>f</em><em>(x</em>). Es decir, la integral de una función es otra función cuya derivada es la función original. Matemáticamente, se escribe como <em>F</em><em>(x</em>) = ∫ <em>f</em><em>(x</em><em>)dx</em>. La <em>integral definida</em>, por su parte, es la integral</p>
+<div class="image2"><img alt="image" src="images/e0200-01.jpg" translate="no"/></div>
+<p class="noindent">que en realidad es <em>F</em>(<em>b</em>) - <em>F</em><em>(a</em>), donde <em>F</em><em>(b</em>) y <em>F</em><em>(a</em>) son los valores de la antiderivada de la función en <em>x</em> = <em>b</em> y en <em>x</em> = <em>a</em>, respectivamente. Podemos hallar ambas integrales creando un objeto <span class="literal" translate="no">Integral</span>.</p>
+<p class="indent">Así es como podemos hallar la integral ∫ <em>kxdx</em>, donde <em>k</em> es un término constante:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">from sympy import Integral, Symbol</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">x = Symbol('x')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">k = Symbol('k')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">Integral(k*x, x)</span><br translate="no"/>Integral(k*x, x)</p>
+<p class="indent">Importamos las clases <span class="literal" translate="no">Integral</span> y <span class="literal" translate="no">Symbol</span> y creamos dos objetos <span class="literal" translate="no">Symbol</span> correspondientes a <span class="literal" translate="no">k</span> y <span class="literal" translate="no">x</span>. A continuación, creamos un objeto <span class="literal" translate="no">Integral</span> con la función <span class="literal" translate="no">kx</span>, especificando la variable a integrar con respecto a <span class="literal" translate="no">x</span>. De forma similar a las clases <span class="literal" translate="no">Limit</span> y <span class="literal" translate="no">Derivative</span>, ahora podemos evaluar la integral utilizando el método <span class="literal" translate="no">doit()</span>:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">Integral(k*x, x).doit()</span><br translate="no"/>k*x**2/2</p>
+<p class="indent">La integral resulta ser <sup>kx2/2</sup>. Si calculas la derivada de <sup>kx2/2</sup>, obtendrás la función original, <em>kx</em>.</p>
+<p class="indent">Para hallar la integral <em>definida</em>, basta con especificar la variable, el límite inferior y el límite superior como una tupla al crear el objeto <span class="literal" translate="no">Integral</span>:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">Integral(k*x, (x, 0, 2)).doit()</span><br translate="no"/>2*k</p>
+<p class="indent">El resultado devuelto es la integral definida</p>
+<div class="image2"><img alt="image" src="images/e0200-02.jpg" translate="no"/></div>
+<p class="indent">Puede ser útil visualizar las integrales definidas analizándolas en un contexto geométrico. Considera <a href="ch07.html#ch7fig7">la Figura 7-7</a>, que muestra la gráfica de la función <em>f</em><em>(x</em>) = <em>x</em> entre <em>x</em> = 0 y <em>x</em> = 5.</p>
+<p class="indent">Considera ahora la región bajo la gráfica <em>ABDE</em>, que está delimitada por el <em>eje x</em>, entre los puntos <em>x</em> = 2 y <em>x</em> = 4 puntos <em>A</em> y <em>B</em>, respectivamente. El área de la región se puede hallar sumando el área del cuadrado <em>ABCE</em> y el triángulo rectángulo <em>ECD</em>, que es 2 × 2 + (1/2) × 2 × 2 = 6.</p>
+<div class="image"><a id="page_201"></a><img alt="image" src="images/f07-07.jpg" translate="no"/></div>
+<p class="figuret"><a id="ch7fig7"></a><em>Figura 7-7: La integral definida de una función entre dos puntos es el área encerrada por la gráfica de la función limitada por el</em> eje x<em>.</em></p>
+<p class="indent">Calculemos ahora la integral <img alt="image" src="images/e0201-01.jpg" translate="no"/>:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">from sympy import Integral, Symbol</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">x = Symbol('x')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">Integral(x, (x, 2, 4)).doit()</span><br translate="no"/>6</p>
+<p class="indent">El valor de la integral resulta ser el mismo que el área de la región <em>ABDE</em>. Esto no es una coincidencia; verás que esto es cierto para cualquier función de <em>x</em> para la que se pueda determinar la integral.</p>
+<p class="indent">Comprender que la integral definida es el área encerrada por la función entre puntos especificados del <em>eje</em> x es clave para entender los cálculos de probabilidad en sucesos aleatorios que implican variables aleatorias continuas.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch07_7.html">anterior</a><a href="ch07.html">Subtema 8 de 11: (Ver todo)</a><a href="ch07_9.html">siguiente</a><br/></p>
+<br/><a href="ch07_8.docx" target="_blank"></a></footer>
+</body>
+</html>

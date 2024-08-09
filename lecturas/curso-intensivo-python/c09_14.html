@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c09-0007">El método __init__() de una clase hija</h3>
+<p class="BodyFirst">Cuando escribas una nueva clase basada en una clase existente, a menudo querrás llamar al método <code translate="no">__init__()</code> de la clase padre. Esto inicializará los atributos definidos en el método <code translate="no">__init__()</code> de la clase padre y los pondrá a disposición de la clase hija.</p>
+<p>Por ejemplo, modelemos un coche eléctrico. Un coche eléctrico es sólo una clase específica de coche, así que podemos basar nuestra nueva clase <code translate="no">ElectricCar</code> en la clase <code translate="no">Car</code> que escribimos antes. Así sólo tendremos que escribir código para los atributos y comportamientos específicos de los coches eléctricos.</p>
+<p>Empecemos haciendo una versión sencilla de la clase <code translate="no">ElectricCar</code>, que hace todo lo que hace la clase <code translate="no">Car</code>:</p>
+<p class="CodeLabel" translate="no"><b>electric_car.py</b></p>
+<pre translate="no"><code translate="no"><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> <span class="LiteralGray">class Car:</span>
+<span class="LiteralGray">    """A simple attempt to represent a car."""</span>
+
+<span class="LiteralGray">    def __init__(self, make, model, year):</span>
+<span class="LiteralGray">        """Initialize attributes to describe a car.""</span>
+<span class="LiteralGray">        self.make = make</span>
+<span class="LiteralGray">        self.model = model</span>
+<span epub:type="pagebreak" id="Page_168" title="168"></span><span class="LiteralGray">        self.year = year</span>
+<span class="LiteralGray">        self.odometer_reading = 0</span>
+
+<span class="LiteralGray">    def get_descriptive_name(self):</span>
+<span class="LiteralGray">        """Return a neatly formatted descriptive name."""</span>
+<span class="LiteralGray">        long_name = f"{self.year} {self.make} {self.model}"</span>
+<span class="LiteralGray">        return long_name.title()</span>
+
+<span class="LiteralGray">    def read_odometer(self):</span>
+<span class="LiteralGray">        """Print a statement showing the car's mileage."""</span>
+<span class="LiteralGray">        print(f"This car has {self.odometer_reading} miles on it.")</span>
+
+<span class="LiteralGray">    def update_odometer(self, mileage):</span>
+<span class="LiteralGray">        """Set the odometer reading to the given value."""</span>
+<span class="LiteralGray">        if mileage &gt;= self.odometer_reading:</span>
+<span class="LiteralGray">            self.odometer_reading = mileage</span>
+<span class="LiteralGray">        else:</span>
+<span class="LiteralGray">            print("You can't roll back an odometer!")</span>
+
+<span class="LiteralGray">    def increment_odometer(self, miles):</span>
+<span class="LiteralGray">        """Add the given amount to the odometer reading."""</span>
+<span class="LiteralGray">        self.odometer_reading += miles</span>
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> class ElectricCar(Car):
+    """Represent aspects of a car, specific to electric vehicles."""
+
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     def __init__(self, make, model, year):
+        """Initialize attributes of the parent class."""
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>         super().__init__(make, model, year)
+
+
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span> my_leaf = ElectricCar('nissan', 'leaf', 2024)
+print(my_leaf.get_descriptive_name())</code></pre>
+<p>Empezaremos con <code translate="no">Car</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Cuando creas una clase hija, la clase padre debe formar parte del archivo actual y debe aparecer antes que la clase hija en el archivo. A continuación definimos la clase hija, <code translate="no">ElectricCar</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> El nombre de la clase padre debe incluirse entre paréntesis en la definición de una clase hija. El método <code translate="no">__init__()</code> recoge la información necesaria para crear una instancia de <code translate="no">Car</code> <span aria-label="annotation3" class="CodeAnnotation">❸.</span></p>
+<p>La función <code translate="no">super()</code> <span aria-label="annotation4" class="CodeAnnotation">❹</span> es una función especial que te permite llamar a un método de la clase padre. Esta línea indica a Python que llame al método <code translate="no">__init__()</code> desde <code translate="no">Car</code>, lo que proporciona a una instancia de <code translate="no">ElectricCar</code> todos los atributos definidos en ese método. El nombre <em translate="no">super</em> proviene de la convención de llamar a la clase padre <em translate="no">superclass</em> y a la clase hija <em translate="no">subclass</em>.</p>
+<p>Comprobamos si la herencia funciona correctamente intentando crear un coche eléctrico con el mismo tipo de información que proporcionaríamos al crear un coche normal. Creamos una instancia de la clase <code translate="no">ElectricCar</code> y la asignamos a <code translate="no">my_leaf</code> <span aria-label="annotation5" class="CodeAnnotation">❺.</span> Esta línea llama al método <code translate="no">__init__()</code> definido en <code translate="no">ElectricCar</code>, que a su vez le dice a Python que llame al método <code translate="no">__init__()</code> definido en la clase padre <code translate="no">Car</code>. Proporcionamos los argumentos <code translate="no">'nissan'</code>, <code translate="no">'leaf'</code>, y <code translate="no">2024</code>.</p>
+<p><span epub:type="pagebreak" id="Page_169" title="169"></span>Aparte de <code translate="no">__init__()</code>, aún no hay atributos ni métodos particulares de un coche eléctrico. En este momento sólo nos estamos asegurando de que el coche eléctrico tiene los comportamientos <code translate="no">Car</code> adecuados:</p>
+<pre translate="no"><code translate="no">2024 Nissan Leaf</code></pre>
+<p>La instancia de <code translate="no">ElectricCar</code> funciona igual que una instancia de <code translate="no">Car</code>, así que ahora podemos empezar a definir atributos y métodos específicos de los coches eléctricos.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c09_13.html">anterior</a><a href="c09.html">Subtema 14 de 34: (Ver todo)</a><a href="c09_15.html">siguiente</a><br/></p>
+<br/><a href="c09_14.docx" target="_blank"></a></footer>
+</body>
+</html>

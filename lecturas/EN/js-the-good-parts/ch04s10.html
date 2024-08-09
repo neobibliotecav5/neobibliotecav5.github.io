@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Closure</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Closure"><div class="titlepage"><div><div><h1 class="title"><a id="closure"/>Closure</h1></div></div></div><p>The good news about scope is that inner functions get access to the parameters and
+                variables of the functions they are defined within (with the exception of <code class="literal">this</code> and <code class="literal">arguments</code>). This is a very good thing.<a id="IDX-CHP-4-0229" class="indexterm"/><a id="IDX-CHP-4-0230" class="indexterm"/></p><p>Our <code class="literal">getElementsByAttribute</code> function worked
+                because it declared a <code class="literal">results</code> variable, and the
+                inner function that it passed to <code class="literal">walk_the_DOM</code>
+                also had access to the <code class="literal">results</code> variable.</p><p>A more interesting case is when the inner function has a longer lifetime than its
+                outer function.</p><p>Earlier, we made a <code class="literal">myObject</code> that had a <code class="literal">value</code> and an <code class="literal">increment</code> method. Suppose we wanted to protect the value from
+                unauthorized changes.</p><p>Instead of initializing <code class="literal">myObject</code> with an object
+                literal, we will initialize <code class="literal">myObject</code> by calling a
+                function that returns an object literal. That function defines a <code class="literal">value</code> variable. That variable is always available to
+                the <code class="literal">increment</code> and <code class="literal">getValue</code> methods, but the function's scope keeps it hidden from the
+                rest of the program:</p><a id="I_programlisting4_d1e3109"/><pre class="programlisting">var myObject = (function () {
+    var value = 0;
+
+    return {
+        increment: function (inc) {
+            value += typeof inc === 'number' ? inc : 1;
+        },
+        getValue: function (  ) {
+            return value;
+        }
+    };
+}());</pre><p>We are not assigning a function to <code class="literal">myObject</code>. We
+                are assigning the result of invoking that function. Notice the <code class="literal">( )</code> on the last line. The function returns an object
+                containing two methods, and those methods continue to enjoy the privilege of access
+                to the <code class="literal">value</code> variable.</p><p>The <code class="literal">Quo</code> constructor from earlier in this
+                chapter produced an object with a <code class="literal">status</code> property
+                and a <code class="literal">get_status</code> method. But that doesn't seem
+                very interesting. Why would you call a getter method on a property you could access
+                directly? It would be more useful if the <code class="literal">status</code>
+                property were private. So, let's define a different kind of <code class="literal">quo</code> function to do that:</p><a id="I_programlisting4_d1e3136"/><pre class="programlisting">// Create a maker function called quo. It makes an
+// object with a get_status method and a private
+// status property.
+
+var quo = function (status) {
+    return {
+        get_status: function (  ) {
+            return status;
+        }
+    };
+};
+
+// Make an instance of quo.
+
+var myQuo = quo("amazed");
+
+document.writeln(myQuo.get_status(  ));</pre><p>This <code class="literal">quo</code> function is designed to be used
+                without the <code class="literal">new</code> prefix, so the name is not
+                capitalized. When we call <code class="literal">quo</code>, it returns a new
+                object containing a <code class="literal">get_status</code> method. A
+                reference to that object is stored in <code class="literal">myQuo</code>. The
+                    <code class="literal">get_status</code> method still has privileged access
+                to <code class="literal">quo</code>'s <code class="literal">status</code> property even though <code class="literal">quo</code>
+                has already returned. <code class="literal">get_status</code> does not have
+                access to a copy of the parameter; it has access to the parameter itself. This is
+                possible because the function has access to the context in which it was created.
+                This is called <span class="emphasis"><em>closure</em></span>.</p><p>Let's look at a more useful example:</p><a id="I_programlisting4_d1e3177"/><pre class="programlisting">// Define a function that sets a DOM node's color
+// to yellow and then fades it to white.
+
+var fade = function (node) {
+    var level = 1;
+    var step = function (  ) {
+        var hex = level.toString(16);
+        node.style.backgroundColor = '#FFFF' + hex + hex;
+        if (level &lt; 15) {
+            level += 1;
+            setTimeout(step, 100);
+        }
+    };
+    setTimeout(step, 100);
+};
+
+fade(document.body);</pre><p>We call <code class="literal">fade</code>, passing it <code class="literal">document.body</code> (the node created by the HTML <code class="literal">&lt;body&gt;</code> tag). <code class="literal">fade</code> sets <code class="literal">level</code> to 1. It defines a
+                    <code class="literal">step</code> function. It calls <code class="literal">setTimeout</code>, passing it the <code class="literal">step</code> function and a time (100 milliseconds). It then returns—<code class="literal">fade</code> has finished.</p><p>Suddenly, about a 10th of a second later, the <code class="literal">step</code> function gets invoked. It makes a base 16 character from
+                    <code class="literal">fade</code>'s <code class="literal">level</code>. It then modifies the background color of <code class="literal">fade</code>'s node. It then looks at <code class="literal">fade</code>'s <code class="literal">level</code>. If it hasn't gotten
+                to white yet, it then increments <code class="literal">fade</code>'s <code class="literal">level</code> and uses <code class="literal">setTimeout</code> to schedule itself to run again.</p><p>Suddenly, the <code class="literal">step</code> function gets invoked again.
+                But this time, <code class="literal">fade</code> 's <code class="literal">level</code> is 2. <code class="literal">fade</code> returned a while
+                ago, but its variables continue to live as long as they are needed by one or more of
+                    <code class="literal">fade</code>'s inner functions.</p><p>It is important to understand that the inner function has access to the actual
+                variables of the outer functions and not copies in order to avoid the following
+                problem.</p><a id="I_programlisting4_d1e3258"/><pre class="programlisting"><span class="strong"><strong>// BAD EXAMPLE</strong></span>
+
+// Make a function that assigns event handler functions to an array
+ of nodes the wrong way.
+// When you click on a node, an alert box is supposed to display the ordinal
+of the node.
+// But it always displays the number of nodes instead.
+
+var add_the_handlers = function (nodes) {
+    var i;
+    for (i = 0; i &lt; nodes.length; i += 1) {
+        nodes[i].onclick = function (e) {
+            alert(i);
+        };
+    }
+};
+
+<span class="strong"><strong>// END BAD EXAMPLE</strong></span></pre><p>The <code class="literal">add_the_handlers</code> function was intended to
+                give each handler a unique number <code class="literal">i</code>. It fails
+                because the handler functions are bound to the variable <code class="literal">i</code>, not the value of the variable <code class="literal">i</code>
+                at the time the function was made.</p><a id="I_programlisting4_d1e3278"/><pre class="programlisting">// BETTER EXAMPLE
+
+// Make a function that assigns event handler functions to an array of nodes.
+// When you click on a node, an alert box will display the ordinal of the node.
+
+var add_the_handlers = function (nodes) {
+    var helper = function (i) {
+       return function (e) {
+          alert(i);
+       };
+    };
+    var i;
+    for (i = 0; i &lt; nodes.length; i += 1) {
+        modes[i].onclick = helper(i);
+    }
+};</pre><p>Avoid creating functions within a loop. It can be wasteful computationally,and it
+                can cause confusion, as we saw with the bad example. We avoid the confusion by
+                creating a helper function outside of the loop that will deliver a function that
+                binds to the current value of <code class="literal">i</code>.</p></div></body></html>

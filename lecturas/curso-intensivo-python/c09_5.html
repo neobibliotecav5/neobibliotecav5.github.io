@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c09-0003">Crear una instancia a partir de una clase</h3>
+<p class="BodyFirst">Piensa en una clase como un conjunto de instrucciones sobre cómo crear una instancia. La clase <code translate="no">Dog</code> es un conjunto de instrucciones que indica a Python cómo crear instancias individuales que representen a perros concretos.</p>
+<p><span epub:type="pagebreak" id="Page_160" title="160"></span>Hagamos una instancia que represente a un perro concreto:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">class Dog:</span>
+<em class="LiteralGrayItalic" translate="no">    --snip--</em>
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> my_dog = Dog('Willie', 6)
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> print(f"My dog's name is {my_dog.name}.")
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> print(f"My dog is {my_dog.age} years old.")</code></pre>
+<p>La clase <code translate="no">Dog</code> que utilizamos aquí es la que acabamos de escribir en el ejemplo anterior. Aquí, le decimos a Python que cree un perro cuyo nombre sea <code translate="no">'Willie'</code> y cuya edad sea <code translate="no">6</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Cuando Python lee esta línea, llama al método <code translate="no">__init__()</code> en <code translate="no">Dog</code> con los argumentos <code translate="no">'Willie'</code> y <code translate="no">6</code>. El método <code translate="no">__init__()</code> crea una instancia que representa a este perro concreto y establece los atributos <code translate="no">name</code> y <code translate="no">age</code> utilizando los valores que le hemos proporcionado. Python devuelve entonces una instancia que representa a este perro. Asignamos esa instancia a la variable <code translate="no">my_dog</code>. La convención de nomenclatura es útil aquí; normalmente podemos asumir que un nombre en mayúsculas como <code translate="no">Dog</code> se refiere a una clase, y un nombre en minúsculas como <code translate="no">my_dog</code> se refiere a una única instancia creada a partir de una clase.</p>
+<h4 id="h3-502703c09-0001">Acceder a los atributos</h4>
+<p class="BodyFirst">Para acceder a los atributos de una instancia, se utiliza la notación con puntos. Accedemos al valor del atributo <code translate="no">my_dog</code>' <code translate="no">name</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span> escribiendo:</p>
+<pre translate="no"><code translate="no">my_dog.name</code></pre>
+<p>La notación con puntos se utiliza a menudo en Python. Esta sintaxis muestra cómo Python encuentra el valor de un atributo. Aquí, Python busca en la instancia <code translate="no">my_dog</code> y luego encuentra el atributo <code translate="no">name</code> asociado a <code translate="no">my_dog</code>. Se trata del mismo atributo denominado <code translate="no">self.name</code> en la clase <code translate="no">Dog</code>. Utilizamos el mismo enfoque para trabajar con el atributo <code translate="no">age</code> <span aria-label="annotation3" class="CodeAnnotation">❸.</span></p>
+<p>El resultado es un resumen de lo que sabemos sobre <code translate="no">my_dog</code>:</p>
+<pre translate="no"><code translate="no">My dog's name is Willie.
+My dog is 6 years old.</code></pre>
+<h4 id="h3-502703c09-0002">Llamada a métodos</h4>
+<p class="BodyFirst">Después de crear una instancia de la clase <code translate="no">Dog</code>, podemos utilizar la notación punto para llamar a cualquier método definido en <code translate="no">Dog</code>. Hagamos que nuestro perro se siente y se dé la vuelta:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">class Dog:</span>
+<em class="LiteralGrayItalic" translate="no">    --snip--</em>
+
+<span class="LiteralGray">my_dog = Dog('Willie', 6)</span>
+my_dog.sit()
+my_dog.roll_over()</code></pre>
+<p><span epub:type="pagebreak" id="Page_161" title="161"></span>Para llamar a un método, indica el nombre de la instancia (en este caso, <code translate="no">my_dog</code>) y el método al que quieres llamar, separados por un punto. Cuando Python lee <code translate="no">my_dog.sit()</code>, busca el método <code translate="no">sit()</code> en la clase <code translate="no">Dog</code> y ejecuta ese código. Python interpreta la línea <code translate="no">my_dog.roll_over()</code> del mismo modo.</p>
+<p>Ahora Willie hace lo que le decimos:</p>
+<pre translate="no"><code translate="no">Willie is now sitting.
+Willie rolled over!</code></pre>
+<p>Esta sintaxis es bastante útil. Cuando a los atributos y métodos se les han dado nombres adecuadamente descriptivos como <code translate="no">name</code>, <code translate="no">age</code>, <code translate="no">sit()</code>, y <code translate="no">roll_over()</code>, podemos deducir fácilmente lo que se supone que debe hacer un bloque de código, incluso uno que nunca hemos visto antes.</p>
+<h4 id="h3-502703c09-0003">Crear varias instancias</h4>
+<p class="BodyFirst">Puedes crear tantas instancias de una clase como necesites. Vamos a crear un segundo perro llamado <code translate="no">your_dog</code>:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">class Dog:</span>
+<em class="LiteralGrayItalic" translate="no">    --snip--</em>
+
+<span class="LiteralGray">my_dog = Dog('Willie', 6)</span>
+your_dog = Dog('Lucy', 3)
+
+print(f"My dog's name is {my_dog.name}.")
+print(f"My dog is {my_dog.age} years old.")
+my_dog.sit()
+
+print(f"\nYour dog's name is {your_dog.name}.")
+print(f"Your dog is {your_dog.age} years old.")
+your_dog.sit()</code></pre>
+<p>En este ejemplo creamos un perro llamado Willie y un perro llamado Lucy. Cada perro es una instancia independiente con su propio conjunto de atributos, capaz del mismo conjunto de acciones:</p>
+<pre translate="no"><code translate="no">My dog's name is Willie.
+My dog is 6 years old.
+Willie is now sitting.
+
+Your dog's name is Lucy.
+Your dog is 3 years old.
+Lucy is now sitting.</code></pre>
+<p>Aunque utilizáramos el mismo nombre y la misma edad para el segundo perro, Python seguiría creando una instancia independiente a partir de la clase <code translate="no">Dog</code>. Puedes crear tantas instancias de una clase como necesites, siempre que des a cada instancia un nombre de variable único o que ocupe un lugar único en una lista o diccionario.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c09_4.html">anterior</a><a href="c09.html">Subtema 5 de 34: (Ver todo)</a><a href="c09_6.html">siguiente</a><br/></p>
+<br/><a href="c09_5.docx" target="_blank"></a></footer>
+</body>
+</html>

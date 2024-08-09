@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c09-0008">Definir atributos y métodos para la clase hija</h3>
+<p class="BodyFirst">Una vez que tengas una clase hija que hereda de una clase padre, puedes añadir los atributos y métodos nuevos que sean necesarios para diferenciar la clase hija de la clase padre.</p>
+<p>Añadamos un atributo específico de los coches eléctricos (una batería, por ejemplo) y un método para informar sobre este atributo. Almacenaremos el tamaño de la batería y escribiremos un método que imprima una descripción de la batería:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">class Car:</span>
+<em class="LiteralGrayItalic" translate="no">    --snip--</em>
+
+<span class="LiteralGray">class ElectricCar(Car):</span>
+<span class="LiteralGray">    """Represent aspects of a car, specific to electric vehicles."""</span>
+
+<span class="LiteralGray">    def __init__(self, make, model, year):</span>
+<span class="LiteralGray">        </span>"""
+        Initialize attributes of the parent class.
+        Then initialize attributes specific to an electric car.
+        """
+<span class="LiteralGray">        super().__init__(make, model, year)</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         self.battery_size = 40
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     def describe_battery(self):
+        """Print a statement describing the battery size."""
+        print(f"This car has a {self.battery_size}-kWh battery.")
+
+<span class="LiteralGray">my_leaf = ElectricCar('nissan', 'leaf', 2024)</span>
+<span class="LiteralGray">print(my_leaf.get_descriptive_name())</span>
+my_leaf.describe_battery()</code></pre>
+<p>Añadimos un nuevo atributo <code translate="no">self.battery_size</code> y establecemos su valor inicial en <code translate="no">40</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Este atributo se asociará a todas las instancias creadas a partir de la clase <code translate="no">ElectricCar</code>, pero no se asociará a ninguna instancia de <code translate="no">Car</code>. También añadimos un método llamado <code translate="no">describe_battery()</code> que imprime información sobre la pila <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Cuando llamamos a este método, obtenemos una descripción claramente específica de un coche eléctrico:</p>
+<pre translate="no"><code translate="no">2024 Nissan Leaf
+This car has a 40-kWh battery.</code></pre>
+<p>No hay límite en cuanto a la especialización de la clase <code translate="no">ElectricCar</code>. Puedes añadir tantos atributos y métodos como necesites para modelar un coche eléctrico <span epub:type="pagebreak" id="Page_170" title="170"></span>con el grado de precisión que necesites. Un atributo o método que podría pertenecer a cualquier coche, en lugar de uno específico de un coche eléctrico, debería añadirse a la clase <code translate="no">Car</code> en lugar de a la clase <code translate="no">ElectricCar</code>. Así, cualquiera que utilice la clase <code translate="no">Car</code> tendrá también disponible esa funcionalidad, y la clase <code translate="no">ElectricCar</code> sólo contendrá código para la información y el comportamiento específicos de los vehículos eléctricos.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c09_14.html">anterior</a><a href="c09.html">Subtema 15 de 34: (Ver todo)</a><a href="c09_16.html">siguiente</a><br/></p>
+<br/><a href="c09_15.docx" target="_blank"></a></footer>
+</body>
+</html>

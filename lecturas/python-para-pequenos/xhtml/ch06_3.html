@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch06lev1sec2">
+  Ya que hablamos de bucles . . . </h3>
+<p class="noindent">
+  Un bucle <span class="literal1" translate="no">
+   for
+  </span>no es el único tipo de bucle que puedes hacer en Python. También existe el bucle <span class="literal1" translate="no">
+   while
+  </span>. Mientras que un bucle <span class="literal1" translate="no">
+   for
+  </span>tiene una longitud específica, un bucle <span class="literal1" translate="no">
+   while
+  </span>no la tiene. Se utiliza cuando no sabes con antelación cuándo debe detenerse el bucle. </p>
+<p class="indent">
+  Imagina una escalera con 20 peldaños. La escalera está en el interior, y sabes que puedes subir fácilmente 20 peldaños. Un bucle <span class="literal1" translate="no">
+   for
+  </span>es así: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> step <span class="orange">in</span> <span class="violet">range</span>(0, 20):
+        <span class="violet">print</span>(step)</pre>
+<p class="indent">
+  Ahora imagina una escalera que sube por la ladera de una montaña. La montaña es muy alta, y puede que te quedes sin energía antes de llegar a la cima. O puede que el tiempo empeore y te obligue a detenerte. Así es un bucle <span class="literal1" translate="no">
+   while
+  </span>: </p>
+<pre class="pre" translate="no">step = 0
+<span class="orange">while</span> step &lt; 10000:
+    <span class="violet">print</span>(step)
+    <span class="orange">if</span> tired == <span class="violet">True</span>:
+        <span class="orange">break</span>
+<span id="page_78"></span>    <span class="orange">elif</span> badweather == <span class="violet">True</span>:
+        <span class="orange">break</span>
+    <span class="orange">else</span>:
+        step = step + 1</pre>
+<p class="indent">
+  Si intentas ejecutar este código, obtendrás un error, porque no hemos creado las variables <span class="literal1" translate="no">
+   tired
+  </span>y <span class="literal1" translate="no">
+   badweather
+  </span>. Aunque aquí no hay suficiente código para hacer un programa que funcione, demuestra un bucle <span class="literal1" translate="no">
+   while
+  </span>sencillo. </p>
+<div class="image1">
+<img alt="Image" class="calibre66" src="../images/f0078-01.jpg" translate="no"/>
+</div>
+<p class="indent">
+  Empezamos creando la variable <span class="literal1" translate="no">
+   step
+  </span>con <span class="literal1" translate="no">
+   step = 0
+  </span>. A continuación, creamos un bucle <span class="literal1" translate="no">
+   while
+  </span>que comprueba si el valor de <span class="literal1" translate="no">
+   step
+  </span>es menor que 10.000 ( <span class="literal1" translate="no">
+   step &lt; 10000
+  </span>), que es el número de pasos que hay desde la base de la montaña hasta la cima. Mientras <span class="literal1" translate="no">
+   step
+  </span>sea menor que 10.000, Python ejecutará el resto del código. </p>
+<p class="indent">
+  Con <span class="literal1" translate="no">
+   print(step)
+  </span>, imprimimos el valor de <span class="literal1" translate="no">
+   step
+  </span>y luego comprobamos si el valor de la variable <span class="literal1" translate="no">
+   tired
+  </span>es <span class="literal1" translate="no">
+   True
+  </span>con la condición <span class="literal1" translate="no">
+   if tired == True
+  </span>. Si lo es, utilizamos <span class="literal1" translate="no">
+   break
+  </span>para salir del bucle. La palabra clave <span class="literal1" translate="no">
+   break
+  </span>es una forma de saltar fuera (o detener) un bucle inmediatamente, y funciona tanto con los bucles <span class="literal1" translate="no">
+   while
+  </span>como con los <span class="literal1" translate="no">
+   for
+  </span>. </p>
+<p class="indent">
+  En este ejemplo, <span class="literal1" translate="no">
+   break
+  </span>hace que Python salte del bloque y pase a cualquier comando que apareciera después de la línea <span class="literal1" translate="no">
+   step = step + 1
+  </span>. </p>
+<p class="indent">
+  La línea <span class="literal1" translate="no">
+   elif badweather == True
+  </span>comprueba si <span class="literal1" translate="no">
+   badweather
+  </span>está en <span class="literal1" translate="no">
+   True
+  </span>; si es así, <span class="literal1" translate="no">
+   break
+  </span>sale del bucle. Si ni <span class="literal1" translate="no">
+   tired
+  </span>ni <span class="literal1" translate="no">
+   badweather
+  </span>son <span class="literal1" translate="no">
+   True
+  </span>(visto en <span class="literal1" translate="no">
+   else
+  </span>), añadimos 1 a la variable <span class="literal1" translate="no">
+   step
+  </span>con <span class="literal1" translate="no">
+   step = step + 1
+  </span>, y el bucle continúa. </p>
+<p class="indent">
+  Los pasos de un bucle <span class="literal1" translate="no">
+   while
+  </span>son los siguientes: </p>
+<ol class="calibre9">
+<li class="noindent1">
+   Comprueba la condición.  </li>
+<li class="noindent1">
+   Ejecuta el código del bloque.  </li>
+<li class="noindent1">
+   Repetir.  </li>
+</ol>
+<p class="indent">
+  Lo más habitual es crear un bucle <span class="literal1" translate="no">
+   while
+  </span>con varias condiciones, en lugar de sólo una, como en este caso: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> x = 45
+<span class="brown">&gt;&gt;&gt;</span> y = 80
+<span id="page_79"></span><span class="brown">&gt;&gt;&gt;</span> <span class="orange">while</span> x &lt; 50 <span class="orange">and</span> y &lt; 100:
+        x = x + 1
+        y = y + 1
+        <span class="violet">print</span>(x, y)</pre>
+<p class="indent">
+  Aquí, creamos una variable <span class="literal1" translate="no">
+   x
+  </span>con el valor 45 y una variable <span class="literal1" translate="no">
+   y
+  </span>con el valor 80. El bucle comprueba dos condiciones: si <span class="literal1" translate="no">
+   x
+  </span>es menor que 50 y si <span class="literal1" translate="no">
+   y
+  </span>es menor que 100. Si ambas condiciones son verdaderas, se ejecutan las líneas siguientes, que suman 1 a ambas variables y luego las imprimen. La salida de este código es la siguiente: </p>
+<pre class="pre" translate="no"><span class="blue1">46 81
+47 82
+48 83
+49 84
+50 85</span></pre>
+<p class="indent">
+  ¿Puedes averiguar cómo funciona esto? </p>
+<p class="indent">
+  Empezamos a contar en 45 para <span class="literal1" translate="no">
+   x
+  </span>y en 80 para <span class="literal1" translate="no">
+   y
+  </span>, y luego <em class="calibre7">incrementamos </em>(añadimos 1 a cada variable) cada vez que se ejecuta el código del bucle. El bucle se ejecutará mientras <span class="literal1" translate="no">
+   x
+  </span>sea menor que 50 y <span class="literal1" translate="no">
+   y
+  </span>sea menor que 100. Después de ejecutar el bucle cinco veces, el valor de <span class="literal1" translate="no">
+   x
+  </span>alcanza 50. Ahora la primera condición ( <span class="literal1" translate="no">
+   x &lt; 50
+  </span>) ya no es cierta, por lo que Python detiene el bucle. </p>
+<p class="indent">
+  También podemos utilizar un bucle <span class="literal1" translate="no">
+   while
+  </span>para crear un <em class="calibre7">bucle semi-eterno </em>que podría durar eternamente, pero que continúa hasta que ocurre algo en el código para salir de él. </p>
+<p class="indent">
+  Aquí tienes un ejemplo: </p>
+<pre class="pre" translate="no"><span class="orange">while</span> <span class="violet">True</span>:
+    lots of code here
+    lots of code here
+    lots of code here
+    <span class="orange">if</span> some_value == <span class="violet">True</span>:
+        <span class="orange">break</span></pre>
+<p class="indent">
+  La condición para el bucle <span class="literal1" translate="no">
+   while
+  </span>es simplemente <span class="literal1" translate="no">
+   True
+  </span>, que siempre es verdadera, por lo que el código del bloque siempre se ejecutará (por tanto, el bucle es eterno). Python saldrá del bucle sólo si la variable <span class="literal1" translate="no">
+   some_value
+  </span>es verdadera. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch06_2.html">anterior</a><a href="ch06.html">Subtema 3 de 5: (Ver todo)</a><a href="ch06_4.html">siguiente</a><br/></p>
+<br/><a href="ch06_3.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h2>Pruébalo tú mismo</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c16-27">16-6. Refactorización:</span> El bucle que extrae datos de <code translate="no">all_eq_dicts</code> utiliza variables para la magnitud, la longitud, la latitud y el título de cada terremoto antes de añadir estos valores a sus listas correspondientes. Este enfoque se eligió para aclarar cómo extraer datos de un archivo GeoJSON, pero no es necesario en tu código. En lugar de utilizar estas variables temporales, extrae cada valor de <code translate="no">eq_dict</code> y añádelo a la lista correspondiente en una sola línea. Haciendo esto acortarás el cuerpo de este bucle a sólo cuatro líneas.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c16-28">16-7. Título automatizado:</span> En esta sección, hemos utilizado el título genérico <em translate="no">Global Earthquakes</em>. En su lugar, puedes utilizar el título del conjunto de datos en la parte de metadatos del archivo GeoJSON. Extrae este valor y asígnalo a la variable <code translate="no">title</code>.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c16-29">16-8. Terremotos recientes:</span> Puedes encontrar en Internet archivos de datos que contienen información sobre los terremotos más recientes en periodos de 1 hora, 1 día, 7 días y 30 días. Entra en <a class="LinkURL" href="https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php">https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php</a> y verás una lista de enlaces a conjuntos de datos para varios periodos de tiempo, centrados en terremotos de diferentes magnitudes. Descarga uno de estos conjuntos de datos y crea una visualización de la actividad sísmica más reciente.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c16-30">16-9. Incendios en el Mundo: </span>En los recursos para este capítulo, encontrarás un archivo llamado <em translate="no">world_fires_1_day.csv</em>. Este archivo contiene información sobre los incendios que arden en diferentes lugares del planeta, incluyendo la latitud, la longitud y la luminosidad de cada incendio. Utilizando el trabajo de procesamiento de datos de la primera parte de este capítulo y el trabajo de cartografía de esta sección, haz un mapa que muestre qué partes del mundo están afectadas por incendios.</p>
+<p class="BoxBody">Puedes descargar versiones más recientes de estos datos en <a class="LinkURL" href="https://earthdata.nasa.gov/earth-observation-data/near-real-time/firms/active-fire-data">https://earthdata.nasa.gov/earth-observation-data/near-real-time/firms/active-fire-data.</a> Puedes encontrar enlaces a los datos en formato CSV en la sección <em translate="no">SHP, KML, and TXT Files</em>.</p>
+<div class="bottom hr"><hr/></div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c16_27.html">anterior</a><a href="c16.html">Subtema 28 de 29: (Ver todo)</a><a href="c16_29.html">siguiente</a><br/></p>
+<br/><a href="c16_28.docx" target="_blank"></a></footer>
+</body>
+</html>

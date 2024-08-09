@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/><title>Chapter 5. Inheritance</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h1 class="title"><a id="pseudoclassical"></a>Pseudoclásico</h1><p>JavaScript es conflictivo en cuanto a su naturaleza prototípica. Su mecanismo prototípico está oscurecido por un complicado negocio sintáctico que parece vagamente clásico. En lugar de hacer que los objetos hereden directamente de otros objetos, se inserta un nivel innecesario de indirección, de modo que los objetos se producen mediante funciones constructoras.<a class="indexterm" id="IDX-CHP-5-0253"></a><a class="indexterm" id="IDX-CHP-5-0254"></a><a class="indexterm" id="IDX-CHP-5-0255"></a><a class="indexterm" id="IDX-CHP-5-0256"></a><a class="indexterm" id="IDX-CHP-5-0257"></a><a class="indexterm" id="IDX-CHP-5-0258"></a><a class="indexterm" id="IDX-CHP-5-0259"></a><a class="indexterm" id="IDX-CHP-5-0260"></a><a class="indexterm" id="IDX-CHP-5-0261"></a><a class="indexterm" id="IDX-CHP-5-0262"></a><a class="indexterm" id="IDX-CHP-5-0263"></a><a class="indexterm" id="IDX-CHP-5-0264"></a><a class="indexterm" id="IDX-CHP-5-0265"></a><a class="indexterm" id="IDX-CHP-5-0266"></a><a class="indexterm" id="IDX-CHP-5-0267"></a><a class="indexterm" id="IDX-CHP-5-0268"></a><a class="indexterm" id="IDX-CHP-5-0269"></a><a class="indexterm" id="IDX-CHP-5-0270"></a></p><p>Cuando se crea un objeto función, el constructor <code class="literal" translate="no">Function</code>que produce el objeto función ejecuta algún código como éste:</p><a id="I_programlisting5_d1e3736"></a><pre class="programlisting" translate="no">this.prototype = {constructor: this};</pre><p>Al nuevo objeto función se le da una propiedad <code class="literal" translate="no">prototype</code>cuyo valor es un objeto que contiene una propiedad <code class="literal" translate="no">constructor</code> cuyo valor es el nuevo objeto función. El objeto <code class="literal" translate="no">prototype</code> es el lugar donde se depositarán los rasgos heredados. Cada función recibe un objeto <code class="literal" translate="no">prototype</code> porque el lenguaje no proporciona una forma de determinar qué funciones están destinadas a ser utilizadas como constructoras. La propiedad <code class="literal" translate="no">constructor</code> no es útil. Lo importante es el objeto <code class="literal" translate="no">prototype</code>.</p><p>Cuando se invoca una función con el patrón de invocación a constructor utilizando el prefijo new, se modifica la forma en que se ejecuta la función. Si el operador <code class="literal" translate="no">new</code> fuera un método en lugar de un operador, podría haberse implementado así:</p><a id="I_programlisting5_d1e3764"></a><pre class="programlisting" translate="no">Function.method('new', function (  ) {
+
+// Create a new object that inherits from the
+// constructor's prototype.
+
+    var that = Object.beget(this.prototype);
+
+// Invoke the constructor, binding -this- to
+// the new object.
+
+    var other = this.apply(that, arguments);
+
+// If its return value isn't an object,
+// substitute the new object.
+
+    return (typeof other === 'object' &amp;&amp; other) || that;
+});</pre><p>Podemos definir un constructor y aumentar su <code class="literal" translate="no">prototype</code>:</p><a id="I_programlisting5_d1e3771"></a><pre class="programlisting" translate="no">var Mammal = function (name) {
+    this.name = name;
+};
+
+Mammal.prototype.get_name = function (  ) {
+    return this.name;
+};
+
+Mammal.prototype.says = function (  ) {
+    return this.saying || '';
+};</pre><p>Ahora, podemos crear una instancia:</p><a id="I_programlisting5_d1e3775"></a><pre class="programlisting" translate="no">var myMammal = new Mammal('Herb the Mammal');
+var name = myMammal.get_name(  ); // 'Herb the Mammal'</pre><p>Podemos hacer otra pseudoclase que herede de <code class="literal" translate="no">Mammal</code> definiendo su función <code class="literal" translate="no">constructor</code>y sustituyendo su <code class="literal" translate="no">prototype</code> por una instancia de <code class="literal" translate="no">Mammal</code>:</p><a id="I_programlisting5_d1e3792"></a><pre class="programlisting" translate="no">var Cat = function (name) {
+    this.name = name;
+    this.saying = 'meow';
+};
+
+// Replace Cat.prototype with a new instance of Mammal
+
+Cat.prototype = new Mammal(  );
+
+// Augment the new prototype with
+// purr and get_name methods.
+
+Cat.prototype.purr = function (n) {
+    var i, s = '';
+    for (i = 0; i &lt; n; i += 1) {
+        if (s) {
+            s += '-';
+        }
+        s += 'r';
+    }
+    return s;
+};
+Cat.prototype.get_name = function (  ) {
+    return this.says(  ) + ' ' + this.name + ' ' + this.says(  );
+};
+
+var myCat = new Cat('Henrietta');
+var says = myCat.says(  ); // 'meow'
+var purr = myCat.purr(5); // 'r-r-r-r-r'
+var name = myCat.get_name(  );
+//            'meow Henrietta meow'</pre><p>El patrón pseudoclásico pretendía parecer algo orientado a objetos, pero tiene un aspecto bastante extraño. Podemos ocultar parte de la fealdad utilizando el método <code class="literal" translate="no">method</code> y definiendo un método <code class="literal" translate="no">inherits</code>:</p><a id="I_programlisting5_d1e3802"></a><pre class="programlisting" translate="no">Function.method('inherits', function (Parent) {
+    this.prototype = new Parent(  );
+    return this;
+});</pre><p>Nuestros métodos <code class="literal" translate="no">inherits</code> y <code class="literal" translate="no">method</code> devuelven <code class="literal" translate="no">this</code>, lo que nos permite programar en cascada. Ahora podemos hacer nuestro <code class="literal" translate="no">Cat</code> con una sola declaración.</p><a id="I_programlisting5_d1e3818"></a><pre class="programlisting" translate="no">var Cat = function (name) {
+    this.name = name;
+    this.saying = 'meow';
+}.
+    inherits(Mammal).
+    method('purr', function (n) {
+        var i, s = '';
+        for (i = 0; i &lt; n; i += 1) {
+            if (s) {
+                s += '-';
+            }
+            s += 'r';
+        }
+        return s;
+    }).
+    method('get_name', function (  ) {
+        return this.says(  ) + ' ' + this.name + ' ' + this.says(  );
+    });</pre><p>Al ocultar el <code class="literal" translate="no">prototype</code> jazz, ahora parece un poco menos extraño. Pero, ¿hemos mejorado algo realmente? Ahora tenemos funciones constructoras que actúan como clases, pero en los bordes puede haber un comportamiento sorprendente. No hay privacidad; todas las propiedades son públicas. No hay acceso a los métodos de <code class="literal" translate="no">super</code>.</p><p>Peor aún, existe un grave peligro con el uso de funciones constructoras. Si olvidas incluir el prefijo <code class="literal" translate="no">new</code> al llamar a una función constructora, entonces <code class="literal" translate="no">this</code> no estará vinculado a un nuevo objeto. Lamentablemente, <code class="literal" translate="no">this</code> estará ligado al objeto global, así que en lugar de aumentar tu nuevo objeto, estarás destrozando variables globales. Eso está muy mal. No hay ninguna advertencia de compilación ni de ejecución.</p><p>Se trata de un grave error de diseño del lenguaje. Para mitigar este problema, existe la convención de que todas las funciones constructoras se nombren con mayúscula inicial, y que nada más se escriba con mayúscula inicial. Esto nos permite rezar para que la inspección visual pueda encontrar la falta de <code class="literal" translate="no">new</code>. Una alternativa mucho mejor es no utilizar <code class="literal" translate="no">new</code> en absoluto.</p><p>La forma pseudoclásica puede proporcionar comodidad a los programadores que no están familiarizados con JavaScript, pero también oculta la verdadera naturaleza del lenguaje. La notación de inspiración clásica puede inducir a los programadores a componer jerarquías innecesariamente profundas y complicadas. Gran parte de la complejidad de las jerarquías de clases está motivada por las restricciones de la comprobación estática de tipos. JavaScript está completamente libre de esas restricciones. En los lenguajes clásicos, la herencia de clases es la única forma de reutilización del código. JavaScript tiene más y mejores opciones.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch05_1.html">anterior</a><a href="ch05.html">Subtema 2 de 2: (Ver todo)</a><br/></p>
+<br/><a href="ch05_2.docx" target="_blank"></a></footer>
+</body>
+</html>

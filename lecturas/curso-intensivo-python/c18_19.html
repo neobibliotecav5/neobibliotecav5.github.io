@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c18-0010">El sitio de administración de Django</h3>
+<p class="BodyFirst">Django facilita el trabajo con tus modelos a través de su sitio de administración. El sitio <em translate="no">admin site</em> de Django sólo está pensado para ser utilizado por los administradores del sitio; no está pensado para usuarios normales. En esta sección, configuraremos el sitio de administración y lo utilizaremos para añadir algunos temas a través del modelo <code translate="no">Topic</code>.</p>
+<h4 id="h3-502703c18-0001"><span epub:type="pagebreak" id="Page_382" title="382"></span>Configurar un superusuario</h4>
+<p class="BodyFirst">Django te permite crear un <em translate="no">superuser</em>, un usuario que tiene todos los privilegios disponibles en el sitio. Los <em translate="no">privileges</em> de un usuario controlan las acciones que puede realizar. La configuración de privilegios más restrictiva permite a un usuario leer únicamente la información pública del sitio. Los usuarios registrados suelen tener el privilegio de leer sus propios datos privados y alguna información seleccionada disponible sólo para los miembros. Para administrar eficazmente un proyecto, el propietario del sitio suele necesitar acceso a toda la información almacenada en él. Un buen administrador es cuidadoso con la información sensible de sus usuarios, porque éstos depositan mucha confianza en las aplicaciones a las que acceden.</p>
+<p>Para crear un superusuario en Django, introduce el siguiente comando y responde a las indicaciones:</p>
+<pre translate="no"><code translate="no">(ll_env)learning_log$ <b>python manage.py createsuperuser</b>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> Username (leave blank to use 'eric'): <b>ll_admin</b>
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> Email address:
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> Password:
+Password (again):
+Superuser created successfully.
+(ll_env)learning_log$</code></pre>
+<p>Cuando emitas el comando <code translate="no">createsuperuser</code>, Django te pedirá que introduzcas un nombre de usuario para el superusuario <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Aquí estoy utilizando <code translate="no">ll_admin</code>, pero puedes introducir cualquier nombre de usuario que desees. Puedes introducir una dirección de correo electrónico o simplemente dejar este campo en blanco <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Tendrás que introducir tu contraseña dos veces <span aria-label="annotation3" class="CodeAnnotation">❸.</span></p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c18_18.html">anterior</a><a href="c18.html">Subtema 19 de 41: (Ver todo)</a><a href="c18_20.html">siguiente</a><br/></p>
+<br/><a href="c18_19.docx" target="_blank"></a></footer>
+</body>
+</html>

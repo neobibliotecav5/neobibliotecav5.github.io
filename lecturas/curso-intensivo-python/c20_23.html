@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c20-0015">Utilizar Git para rastrear los archivos del proyecto</h3>
+<p class="BodyFirst">Como se comentó en el <span class="xref" itemid="xref_target_Chapter 17">Capítulo 17</span>, Git es un programa de control de versiones que te permite tomar una instantánea del código de tu proyecto cada vez que implementas con éxito una nueva característica. Si algo va mal, puedes volver fácilmente a <span epub:type="pagebreak" id="Page_452" title="452"></span>a la última instantánea funcional de tu proyecto; por ejemplo, si accidentalmente introduces un error mientras trabajas en una nueva función. Cada instantánea se denomina <em translate="no">commit</em>.</p>
+<p>Utilizando Git, puedes probar a implementar nuevas funciones sin preocuparte de romper tu proyecto. Cuando despliegues en un servidor activo, debes asegurarte de que estás desplegando una versión funcional de tu proyecto. Para leer más sobre Git y el control de versiones, consulta <span class="xref" itemid="xref_target_Appendix D">el Apéndice D</span>.</p>
+<h4 id="h3-502703c20-0010">Instalar Git</h4>
+<p class="BodyFirst">Puede que Git ya esté instalado en tu sistema. Para averiguarlo, abre una nueva ventana de terminal y emite el comando <code class="bold" translate="no">git --version</code>:</p>
+<pre translate="no"><code translate="no">(ll_env)learning_log$ <b>git --version</b>
+git version 2.30.1 (Apple Git-130)</code></pre>
+<p>Si aparece un mensaje indicando que Git no está instalado, consulta las instrucciones de instalación en <span class="xref" itemid="xref_target_Appendix D">el Apéndice D</span>.</p>
+<h4 id="h3-502703c20-0011">Configurar Git</h4>
+<p class="BodyFirst">Git hace un seguimiento de quién realiza cambios en un proyecto, incluso cuando sólo una persona está trabajando en el proyecto. Para ello, Git necesita saber tu nombre de usuario y tu correo electrónico. Debes proporcionar un nombre de usuario, pero puedes inventarte un correo electrónico para tus proyectos de prácticas:</p>
+<pre translate="no"><code translate="no">(ll_env)learning_log$ <b>git config --global user.name "eric"</b>
+(ll_env)learning_log$ <b>git config --global user.email "eric@example.com"</b></code></pre>
+<p>Si olvidas este paso, Git te pedirá esta información cuando hagas tu primera confirmación.</p>
+<h4 id="h3-502703c20-0012">Ignorar archivos</h4>
+<p class="BodyFirst">No necesitamos que Git rastree todos los archivos del proyecto, así que le diremos que ignore algunos archivos. Crea un archivo llamado <em translate="no">.gitignore</em> en la carpeta que contiene <em translate="no">manage.py</em>. Observa que este nombre de archivo comienza con un punto y no tiene extensión. Este es el código que va en <em translate="no">.gitignore</em>:</p>
+<p class="CodeLabel" translate="no"><b>.gitignore</b></p>
+<pre translate="no"><code translate="no">ll_env/
+__pycache__/
+*.sqlite3</code></pre>
+<p>Le decimos a Git que ignore todo el directorio <em translate="no">ll_env</em>, porque podemos volver a crearlo automáticamente en cualquier momento. Tampoco rastreamos el directorio <em translate="no">__pycache__</em>, que contiene los archivos <em translate="no">.pyc</em> que se crean automáticamente cuando se ejecutan los archivos <em translate="no">.py</em>. No hacemos un seguimiento de los cambios en la base de datos local, porque es una mala costumbre: si alguna vez utilizas SQLite en un servidor, podrías sobrescribir accidentalmente la base de datos activa con tu base de datos de prueba local cuando envíes el proyecto al servidor. El asterisco en <code translate="no">*.sqlite3</code> indica a Git que ignore cualquier archivo que termine con la extensión <em translate="no">.sqlite3</em>.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<span epub:type="pagebreak" id="Page_453" title="453"></span></section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c20_22.html">anterior</a><a href="c20.html">Subtema 23 de 37: (Ver todo)</a><a href="c20_24.html">siguiente</a><br/></p>
+<br/><a href="c20_23.docx" target="_blank"></a></footer>
+</body>
+</html>

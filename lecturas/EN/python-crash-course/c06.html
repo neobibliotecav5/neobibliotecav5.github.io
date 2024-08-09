@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://www.w3.org/2002/06/xhtml2/ http://www.w3.org/MarkUp/SCHEMA/xhtml2.xsd">
+<head>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style></head>
+<body><div id="sbo-rt-content"><section>
+<header>
+<h1 class="chapter">
+<span class="ChapterNumber"><span epub:type="pagebreak" id="Page_91" title="91"></span>6</span><br/>
+<span class="ChapterTitle">Dictionaries</span></h1>
+</header>
+<figure class="opener">
+<img alt="" height="406" src="Images/chapterart.png" width="406"/>
+</figure>
+<p class="ChapterIntro">In this chapter you’ll learn how to use Python’s dictionaries, which allow you to connect pieces of related information. You’ll learn how to access the information once it’s in a dictionary and how to modify that information. Because dictionaries can store an almost limitless amount of information, I’ll show you how to loop through the data in a dictionary. Additionally, you’ll learn to nest dictionaries inside lists, lists inside dictionaries, and even dictionaries inside other dictionaries.</p>
+<p>Understanding dictionaries allows you to model a variety of real-world objects more accurately. You’ll be able to create a dictionary representing a person and then store as much information as you want about that person. You can store their name, age, location, profession, and any other aspect of a person you can describe. You’ll be able to store any two kinds of information that can be matched up, such as a list of words and their meanings, a list of people’s names and their favorite numbers, a list of mountains and their elevations, and so forth.</p>
+<h2 id="h1-502703c06-0001"><span epub:type="pagebreak" id="Page_92" title="92"></span>A Simple Dictionary</h2>
+<p class="BodyFirst">Consider a game featuring aliens that can have different colors and point values. This simple dictionary stores information about a particular alien:</p>
+<p class="CodeLabel"><b>alien.py</b></p>
+<pre><code>alien_0 = {'color': 'green', 'points': 5}
+
+print(alien_0['color'])
+print(alien_0['points'])</code></pre>
+<p>The dictionary <code>alien_0</code> stores the alien’s color and point value. The last two lines access and display that information, as shown here:</p>
+<pre><code>green
+5</code></pre>
+<p>As with most new programming concepts, using dictionaries takes practice. Once you’ve worked with dictionaries for a bit, you’ll see how effectively they can model real-world situations.</p>
+<h2 id="h1-502703c06-0002">Working with Dictionaries</h2>
+<p class="BodyFirst">A <em>dictionary</em> in Python is a collection of <em>key-value pairs</em>. Each <em>key</em> is connected to a value, and you can use a key to access the value associated with that key. A key’s value can be a number, a string, a list, or even another dictionary. In fact, you can use any object that you can create in Python as a value in a dictionary.</p>
+<p>In Python, a dictionary is wrapped in braces (<code>{}</code>) with a series of key-value pairs inside the braces, as shown in the earlier example:</p>
+<pre><code>alien_0 = {'color': 'green', 'points': 5}</code></pre>
+<p>A <em>key-value pair</em> is a set of values associated with each other. When you provide a key, Python returns the value associated with that key. Every key is connected to its value by a colon, and individual key-value pairs are separated by commas. You can store as many key-value pairs as you want in a dictionary.</p>
+<p>The simplest dictionary has exactly one key-value pair, as shown in this modified version of the <code>alien_0</code> dictionary:</p>
+<pre><code>alien_0 = {'color': 'green'}</code></pre>
+<p>This dictionary stores one piece of information about <code>alien_0</code>: the alien’s color. The string <code>'color'</code> is a key in this dictionary, and its associated value is <code>'green'</code>.</p>
+<h3 id="h2-502703c06-0001">Accessing Values in a Dictionary</h3>
+<p class="BodyFirst">To get the value associated with a key, give the name of the dictionary and then place the key inside a set of square brackets, as shown here:</p>
+<p class="CodeLabel"><b>alien.py</b></p>
+<pre><code><span class="LiteralGray">alien_0 = {'color': 'green'}</span>
+print(alien_0['color'])</code></pre>
+<p><span epub:type="pagebreak" id="Page_93" title="93"></span>This returns the value associated with the key <code>'color'</code> from the dictionary <code>alien_0</code>:</p>
+<pre><code>green</code></pre>
+<p>You can have an unlimited number of key-value pairs in a dictionary. For example, here’s the original <code>alien_0</code> dictionary with two key-value pairs:</p>
+<pre><code>alien_0 = {'color': 'green', 'points': 5}</code></pre>
+<p>Now you can access either the color or the point value of <code>alien_0</code>. If a player shoots down this alien, you can look up how many points they should earn using code like this:</p>
+<pre><code><span class="LiteralGray">alien_0 = {'color': 'green', 'points': 5}</span>
+
+new_points = alien_0['points']
+print(f"You just earned {new_points} points!")</code></pre>
+<p>Once the dictionary has been defined, we pull the value associated with the key <code>'points'</code> from the dictionary. This value is then assigned to the variable <code>new_points</code>. The last line prints a statement about how many points the player just earned:</p>
+<pre><code>You just earned 5 points!</code></pre>
+<p>If you run this code every time an alien is shot down, the alien’s point value will be retrieved.</p>
+<h3 id="h2-502703c06-0002">Adding New Key-Value Pairs</h3>
+<p class="BodyFirst">Dictionaries are dynamic structures, and you can add new key-value pairs to a dictionary at any time. To add a new key-value pair, you would give the name of the dictionary followed by the new key in square brackets, along with the new value.</p>
+<p>Let’s add two new pieces of information to the <code>alien_0</code> dictionary: the alien’s <em>x</em>- and <em>y</em>-coordinates, which will help us display the alien at a particular position on the screen. Let’s place the alien on the left edge of the screen, 25 pixels down from the top. Because screen coordinates usually start at the upper-left corner of the screen, we’ll place the alien on the left edge of the screen by setting the <em>x</em>-coordinate to 0 and 25 pixels from the top by setting its <em>y</em>-coordinate to positive 25, as shown here:</p>
+<p class="CodeLabel"><b>alien.py</b></p>
+<pre><code><span class="LiteralGray">alien_0 = {'color': 'green', 'points': 5}</span>
+print(alien_0)
+
+alien_0['x_position'] = 0
+alien_0['y_position'] = 25
+print(alien_0)</code></pre>
+<p><span epub:type="pagebreak" id="Page_94" title="94"></span>We start by defining the same dictionary that we’ve been working with. We then print this dictionary, displaying a snapshot of its information. Next, we add a new key-value pair to the dictionary: the key <code>'x_position'</code> and the value <code>0</code>. We do the same for the key <code>'y_position'</code>. When we print the modified dictionary, we see the two additional key-value pairs:</p>
+<pre><code>{'color': 'green', 'points': 5}
+{'color': 'green', 'points': 5, 'x_position': 0, 'y_position': 25}</code></pre>
+<p>The final version of the dictionary contains four key-value pairs. The original two specify color and point value, and two more specify the alien’s position.</p>
+<p>Dictionaries retain the order in which they were defined. When you print a dictionary or loop through its elements, you will see the elements in the same order they were added to the dictionary.</p>
+<h3 id="h2-502703c06-0003">Starting with an Empty Dictionary</h3>
+<p class="BodyFirst">It’s sometimes convenient, or even necessary, to start with an empty dictionary and then add each new item to it. To start filling an empty dictionary, define a dictionary with an empty set of braces and then add each key-value pair on its own line. For example, here’s how to build the <code>alien_0</code> dictionary using this approach:</p>
+<p class="CodeLabel"><b>alien.py</b></p>
+<pre><code>alien_0 = {}
+
+alien_0['color'] = 'green'
+alien_0['points'] = 5
+
+print(alien_0)</code></pre>
+<p>We first define an empty <code>alien_0</code> dictionary, and then add color and point values to it. The result is the dictionary we’ve been using in previous examples:</p>
+<pre><code>{'color': 'green', 'points': 5}</code></pre>
+<p>Typically, you’ll use empty dictionaries when storing user-supplied data in a dictionary or when writing code that generates a large number of key-value pairs automatically.</p>
+<h3 id="h2-502703c06-0004">Modifying Values in a Dictionary</h3>
+<p class="BodyFirst">To modify a value in a dictionary, give the name of the dictionary with the key in square brackets and then the new value you want associated with that key. For example, consider an alien that changes from green to yellow as a game progresses:</p>
+<p class="CodeLabel"><b>alien.py</b></p>
+<pre><code>alien_0 = {'color': 'green'}
+print(f"The alien is {alien_0['color']}.")
+
+<span epub:type="pagebreak" id="Page_95" title="95"></span>alien_0['color'] = 'yellow'
+print(f"The alien is now {alien_0['color']}.")</code></pre>
+<p>We first define a dictionary for <code>alien_0</code> that contains only the alien’s color; then we change the value associated with the key <code>'color'</code> to <code>'yellow'</code>. The output shows that the alien has indeed changed from green to yellow:</p>
+<pre><code>The alien is green.
+The alien is now yellow.</code></pre>
+<p>For a more interesting example, let’s track the position of an alien that can move at different speeds. We’ll store a value representing the alien’s current speed and then use it to determine how far to the right the alien should move:</p>
+<pre><code>alien_0 = {'x_position': 0, 'y_position': 25, 'speed': 'medium'}
+print(f"Original position: {alien_0['x_position']}")
+
+# Move the alien to the right.
+# Determine how far to move the alien based on its current speed.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> if alien_0['speed'] == 'slow':
+    x_increment = 1
+elif alien_0['speed'] == 'medium':
+    x_increment = 2
+else:
+    # This must be a fast alien.
+    x_increment = 3
+
+# The new position is the old position plus the increment.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> alien_0['x_position'] = alien_0['x_position'] + x_increment
+
+print(f"New position: {alien_0['x_position']}")</code></pre>
+<p>We start by defining an alien with an initial <em>x</em> position and <em>y</em> position, and a speed of <code>'medium'</code>. We’ve omitted the color and point values for the sake of simplicity, but this example would work the same way if you included those key-value pairs as well. We also print the original value of <code>x_position</code> to see how far the alien moves to the right.</p>
+<p>An <code>if</code>-<code>elif</code>-<code>else</code> chain determines how far the alien should move to the right, and assigns this value to the variable <code>x_increment</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>. If the alien’s speed is <code>'slow'</code>, it moves one unit to the right; if the speed is <code>'medium'</code>, it moves two units to the right; and if it’s <code>'fast'</code>, it moves three units to the right. Once the increment has been calculated, it’s added to the value of <code>x_position</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span>, and the result is stored in the dictionary’s <code>x_position</code>.</p>
+<p>Because this is a medium-speed alien, its position shifts two units to the right:</p>
+<pre><code>Original x-position: 0
+New x-position: 2</code></pre>
+<p><span epub:type="pagebreak" id="Page_96" title="96"></span>This technique is pretty cool: by changing one value in the alien’s dictionary, you can change the overall behavior of the alien. For example, to turn this medium-speed alien into a fast alien, you would add this line:</p>
+<pre><code>alien_0['speed'] = 'fast'</code></pre>
+<p>The <code>if</code>-<code>elif</code>-<code>else</code> block would then assign a larger value to <code>x_increment</code> the next time the code runs.</p>
+<h3 id="h2-502703c06-0005">Removing Key-Value Pairs</h3>
+<p class="BodyFirst">When you no longer need a piece of information that’s stored in a dictionary, you can use the <code>del</code> statement to completely remove a key-value pair. All <code>del</code> needs is the name of the dictionary and the key that you want to remove.</p>
+<p>For example, let’s remove the key <code>'points'</code> from the <code>alien_0</code> dictionary, along with its value:</p>
+<p class="CodeLabel"><b>alien.py</b></p>
+<pre><code>alien_0 = {'color': 'green', 'points': 5}
+print(alien_0)
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> del alien_0['points']
+print(alien_0)</code></pre>
+<p>The <code>del</code> statement <span aria-label="annotation1" class="CodeAnnotation">❶</span> tells Python to delete the key <code>'points'</code> from the dictionary <code>alien_0</code> and to remove the value associated with that key as well. The output shows that the key <code>'points'</code> and its value of <code>5</code> are deleted from the dictionary, but the rest of the dictionary is unaffected:</p>
+<pre><code>{'color': 'green', 'points': 5}
+{'color': 'green'}</code></pre>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	Be aware that the deleted key-value pair is removed permanently.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h3 id="h2-502703c06-0006">A Dictionary of Similar Objects</h3>
+<p class="BodyFirst">The previous example involved storing different kinds of information about one object, an alien in a game. You can also use a dictionary to store one kind of information about many objects. For example, say you want to poll a number of people and ask them what their favorite programming language is. A dictionary is useful for storing the results of a simple poll, like this:</p>
+<p class="CodeLabel"><b>favorite_languages.py</b></p>
+<pre><code>favorite_languages = {
+    'jen': 'python',
+    'sarah': 'c',
+    'edward': 'rust',
+    'phil': 'python',
+    }</code></pre>
+<p><span epub:type="pagebreak" id="Page_97" title="97"></span>As you can see, we’ve broken a larger dictionary into several lines. Each key is the name of a person who responded to the poll, and each value is their language choice. When you know you’ll need more than one line to define a dictionary, press ENTER after the opening brace. Then indent the next line one level (four spaces) and write the first key-value pair, followed by a comma. From this point forward when you press ENTER, your text editor should automatically indent all subsequent key-value pairs to match the first key-value pair.</p>
+<p>Once you’ve finished defining the dictionary, add a closing brace on a new line after the last key-value pair, and indent it one level so it aligns with the keys in the dictionary. It’s good practice to include a comma after the last key-value pair as well, so you’re ready to add a new key-value pair on the next line.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	Most editors have some functionality that helps you format extended lists and dictionaries in a similar manner to this example. Other acceptable ways to format long dictionaries are available as well, so you may see slightly different formatting in your editor, or in other sources.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<p>To use this dictionary, given the name of a person who took the poll, you can easily look up their favorite language:</p>
+<p class="CodeLabel"><b>favorite_languages.py</b></p>
+<pre><code><span class="LiteralGray">favorite_languages = {</span>
+<span class="LiteralGray">    'jen': 'python',</span>
+<span class="LiteralGray">    'sarah': 'c',</span>
+<span class="LiteralGray">    'edward': 'rust',</span>
+<span class="LiteralGray">    'phil': 'python',</span>
+<span class="LiteralGray">    }</span>
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> language = favorite_languages['sarah'].title()
+print(f"Sarah's favorite language is {language}.")</code></pre>
+<p>To see which language Sarah chose, we ask for the value at:</p>
+<pre><code>favorite_languages['sarah']</code></pre>
+<p>We use this syntax to pull Sarah’s favorite language from the dictionary <span aria-label="annotation1" class="CodeAnnotation">❶</span> and assign it to the variable <code>language</code>. Creating a new variable here makes for a much cleaner <code>print()</code> call. The output shows Sarah’s favorite language:</p>
+<pre><code>Sarah's favorite language is C.</code></pre>
+<p>You could use this same syntax with any individual represented in the dictionary.</p>
+<h3 id="h2-502703c06-0007">Using get() to Access Values</h3>
+<p class="BodyFirst">Using keys in square brackets to retrieve the value you’re interested in from a dictionary might cause one potential problem: if the key you ask for doesn’t exist, you’ll get an error.</p>
+<p><span epub:type="pagebreak" id="Page_98" title="98"></span>Let’s see what happens when you ask for the point value of an alien that doesn’t have a point value set:</p>
+<p class="CodeLabel"><b>alien_no_points.py</b></p>
+<pre><code>alien_0 = {'color': 'green', 'speed': 'slow'}
+print(alien_0['points'])</code></pre>
+<p>This results in a traceback, showing a <code>KeyError</code>:</p>
+<pre><code>Traceback (most recent call last):
+  File "alien_no_points.py", line 2, in &lt;module&gt;
+    print(alien_0['points'])
+          ~~~~~~~^^^^^^^^^^
+KeyError: 'points'</code></pre>
+<p>You’ll learn more about how to handle errors like this in general in <span class="xref" itemid="xref_target_Chapter 10">Chapter 10</span>. For dictionaries specifically, you can use the <code>get()</code> method to set a default value that will be returned if the requested key doesn’t exist.</p>
+<p>The <code>get()</code> method requires a key as a first argument. As a second optional argument, you can pass the value to be returned if the key doesn’t exist:</p>
+<pre><code><span class="LiteralGray">alien_0 = {'color': 'green', 'speed': 'slow'}</span>
+
+point_value = alien_0.get('points', 'No point value assigned.')
+print(point_value)</code></pre>
+<p>If the key <code>'points'</code> exists in the dictionary, you’ll get the corresponding value. If it doesn’t, you get the default value. In this case, <code>points</code> doesn’t exist, and we get a clean message instead of an error:</p>
+<pre><code>No point value assigned.</code></pre>
+<p>If there’s a chance the key you’re asking for might not exist, consider using the <code>get()</code> method instead of the square bracket notation.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	If you leave out the second argument in the call to <code>get()</code> and the key doesn’t exist, Python will return the value <code>None</code>. The special value <code>None</code> means “no value exists.” This is not an error: it’s a special value meant to indicate the absence of a value. You’ll see more uses for <code>None</code> in <span class="xref" itemid="xref_target_Chapter 8">Chapter 8</span>.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c06-08">6-1. Person: </span>Use a dictionary to store information about a person you know. Store their first name, last name, age, and the city in which they live. You should have keys such as <code>first_name</code>, <code>last_name</code>, <code>age</code>, and <code>city</code>. Print each piece of information stored in your dictionary.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c06-09">6-2. Favorite Numbers:</span> Use a dictionary to store people’s favorite numbers. Think of five names, and use them as keys in your dictionary. Think of a favorite <span epub:type="pagebreak" id="Page_99" title="99"></span>number for each person, and store each as a value in your dictionary. Print each person’s name and their favorite number. For even more fun, poll a few friends and get some actual data for your program.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c06-10">6-3. Glossary:</span> A Python dictionary can be used to model an actual dictionary. However, to avoid confusion, let’s call it a glossary.</p>
+<ul>
+<li>Think of five programming words you’ve learned about in the previous chapters. Use these words as the keys in your glossary, and store their meanings as values.</li>
+<li>Print each word and its meaning as neatly formatted output. You might print the word followed by a colon and then its meaning, or print the word on one line and then print its meaning indented on a second line. Use the newline character (<code>\n</code>) to insert a blank line between each word-meaning pair in your output.</li>
+</ul>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c06-0003">Looping Through a Dictionary</h2>
+<p class="BodyFirst">A single Python dictionary can contain just a few key-value pairs or millions of pairs. Because a dictionary can contain large amounts of data, Python lets you loop through a dictionary. Dictionaries can be used to store information in a variety of ways; therefore, several different ways exist to loop through them. You can loop through all of a dictionary’s key-value pairs, through its keys, or through its values.</p>
+<h3 id="h2-502703c06-0008">Looping Through All Key-Value Pairs</h3>
+<p class="BodyFirst">Before we explore the different approaches to looping, let’s consider a new dictionary designed to store information about a user on a website. The following dictionary would store one person’s username, first name, and last name:</p>
+<p class="CodeLabel"><b>user.py</b></p>
+<pre><code>user_0 = {
+    'username': 'efermi',
+    'first': 'enrico',
+    'last': 'fermi',
+    }</code></pre>
+<p>You can access any single piece of information about <code>user_0</code> based on what you’ve already learned in this chapter. But what if you wanted to see everything stored in this user’s dictionary? To do so, you could loop through the dictionary using a <code>for</code> loop:</p>
+<pre><code><span class="LiteralGray">user_0 = {</span>
+<span class="LiteralGray">    'username': 'efermi',</span>
+<span class="LiteralGray">    'first': 'enrico',</span>
+<span class="LiteralGray">    'last': 'fermi',</span>
+<span class="LiteralGray">    }</span>
+
+<span epub:type="pagebreak" id="Page_100" title="100"></span>for key, value in user_0.items():
+    print(f"\nKey: {key}")
+    print(f"Value: {value}")</code></pre>
+<p>To write a <code>for</code> loop for a dictionary, you create names for the two variables that will hold the key and value in each key-value pair. You can choose any names you want for these two variables. This code would work just as well if you had used abbreviations for the variable names, like this:</p>
+<pre><code>for k, v in user_0.items()</code></pre>
+<p>The second half of the <code>for</code> statement includes the name of the dictionary followed by the method <code>items()</code>, which returns a sequence of key-value pairs. The <code>for</code> loop then assigns each of these pairs to the two variables provided. In the preceding example, we use the variables to print each <code>key</code>, followed by the associated <code>value</code>. The <code>"\n"</code> in the first <code>print()</code> call ensures that a blank line is inserted before each key-value pair in the output:</p>
+<pre><code>Key: username
+Value: efermi
+
+Key: first
+Value: enrico
+
+Key: last
+Value: fermi</code></pre>
+<p>Looping through all key-value pairs works particularly well for dictionaries like the <em>favorite_languages.py</em> example on <span class="xref" itemid="xref_target_page 96">page 96</span>, which stores the same kind of information for many different keys. If you loop through the <code>favorite_languages</code> dictionary, you get the name of each person in the dictionary and their favorite programming language. Because the keys always refer to a person’s name and the value is always a language, we’ll use the variables <code>name</code> and <code>language</code> in the loop instead of <code>key</code> and <code>value</code>. This will make it easier to follow what’s happening inside the loop:</p>
+<p class="CodeLabel"><b>favorite_languages.py</b></p>
+<pre><code><span class="LiteralGray">favorite_languages = {</span>
+<span class="LiteralGray">    'jen': 'python',</span>
+<span class="LiteralGray">    'sarah': 'c',</span>
+<span class="LiteralGray">    'edward': 'rust',</span>
+<span class="LiteralGray">    'phil': 'python',</span>
+<span class="LiteralGray">    }</span>
+
+for name, language in favorite_languages.items():
+    print(f"{name.title()}'s favorite language is {language.title()}.")</code></pre>
+<p>This code tells Python to loop through each key-value pair in the dictionary. As it works through each pair the key is assigned to the variable <code>name</code>, and the value is assigned to the variable <code>language</code>. These descriptive names make it much easier to see what the <code>print()</code> call is doing.</p>
+<p><span epub:type="pagebreak" id="Page_101" title="101"></span>Now, in just a few lines of code, we can display all of the information from the poll:</p>
+<pre><code>Jen's favorite language is Python.
+Sarah's favorite language is C.
+Edward's favorite language is Rust.
+Phil's favorite language is Python.</code></pre>
+<p>This type of looping would work just as well if our dictionary stored the results from polling a thousand or even a million people.</p>
+<h3 id="h2-502703c06-0009">Looping Through All the Keys in a Dictionary</h3>
+<p class="BodyFirst">The <code>keys()</code> method is useful when you don’t need to work with all of the values in a dictionary. Let’s loop through the <code>favorite_languages</code> dictionary and print the names of everyone who took the poll:</p>
+<pre><code><span class="LiteralGray">favorite_languages = {</span>
+<span class="LiteralGray">    'jen': 'python',</span>
+<span class="LiteralGray">    'sarah': 'c',</span>
+<span class="LiteralGray">    'edward': 'rust',</span>
+<span class="LiteralGray">    'phil': 'python',</span>
+<span class="LiteralGray">    }</span>
+
+for name in favorite_languages.keys():
+    print(name.title())</code></pre>
+<p>This <code>for</code> loop tells Python to pull all the keys from the dictionary <code>favorite_languages</code> and assign them one at a time to the variable <code>name</code>. The output shows the names of everyone who took the poll:</p>
+<pre><code>Jen
+Sarah
+Edward
+Phil</code></pre>
+<p>Looping through the keys is actually the default behavior when looping through a dictionary, so this code would have exactly the same output if you wrote:</p>
+<pre><code>for name in favorite_languages:</code></pre>
+<p class="BodyContinued">rather than:</p>
+<pre><code>for name in favorite_languages.keys():</code></pre>
+<p>You can choose to use the <code>keys()</code> method explicitly if it makes your code easier to read, or you can omit it if you wish.</p>
+<p>You can access the value associated with any key you care about inside the loop, by using the current key. Let’s print a message to a couple of friends about the languages they chose. We’ll loop through the names in <span epub:type="pagebreak" id="Page_102" title="102"></span>the dictionary as we did previously, but when the name matches one of our friends, we’ll display a message about their favorite language:</p>
+<pre><code><span class="LiteralGray">favorite_languages = {</span>
+    <em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">    }</span>
+
+friends = ['phil', 'sarah']
+<span class="LiteralGray">for name in favorite_languages.keys():</span>
+    print(f"Hi {name.title()}.")
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     if name in friends:
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         language = favorite_languages[name].title()
+        print(f"\t{name.title()}, I see you love {language}!")</code></pre>
+<p>First, we make a list of friends that we want to print a message to. Inside the loop, we print each person’s name. Then we check whether the <code>name</code> we’re working with is in the list <code>friends</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>. If it is, we determine the person’s favorite language using the name of the dictionary and the current value of <code>name</code> as the key <span aria-label="annotation2" class="CodeAnnotation">❷</span>. We then print a special greeting, including a reference to their language of choice.</p>
+<p>Everyone’s name is printed, but our friends receive a special message:</p>
+<pre><code>Hi Jen.
+Hi Sarah.
+    Sarah, I see you love C!
+Hi Edward.
+Hi Phil.
+    Phil, I see you love Python!</code></pre>
+<p>You can also use the <code>keys()</code> method to find out if a particular person was polled. This time, let’s find out if Erin took the poll:</p>
+<pre><code><span class="LiteralGray">favorite_languages = {</span>
+<em class="LiteralGrayItalic">    --snip--</em>
+<span class="LiteralGray">    }</span>
+
+if 'erin' not in favorite_languages.keys():
+    print("Erin, please take our poll!")</code></pre>
+<p>The <code>keys()</code> method isn’t just for looping: it actually returns a sequence of all the keys, and the <code>if</code> statement simply checks if <code>'erin'</code> is in this sequence. Because she’s not, a message is printed inviting her to take the poll:</p>
+<pre><code>Erin, please take our poll!</code></pre>
+<h3 id="h2-502703c06-0010">Looping Through a Dictionary’s Keys in a Particular Order</h3>
+<p class="BodyFirst">Looping through a dictionary returns the items in the same order they were inserted. Sometimes, though, you’ll want to loop through a dictionary in a different order.</p>
+<p><span epub:type="pagebreak" id="Page_103" title="103"></span>One way to do this is to sort the keys as they’re returned in the <code>for</code> loop. You can use the <code>sorted()</code> function to get a copy of the keys in order:</p>
+<pre><code><span class="LiteralGray">favorite_languages = {</span>
+<span class="LiteralGray">    'jen': 'python',</span>
+<span class="LiteralGray">    'sarah': 'c',</span>
+<span class="LiteralGray">    'edward': 'rust',</span>
+<span class="LiteralGray">    'phil': 'python',</span>
+<span class="LiteralGray">    }</span>
+
+for name in sorted(favorite_languages.keys()):
+    print(f"{name.title()}, thank you for taking the poll.")</code></pre>
+<p>This <code>for</code> statement is like other <code>for</code> statements, except that we’ve wrapped the <code>sorted()</code> function around the <code>dictionary.keys()</code> method. This tells Python to get all the keys in the dictionary and sort them before starting the loop. The output shows everyone who took the poll, with the names displayed in order:</p>
+<pre><code>Edward, thank you for taking the poll.
+Jen, thank you for taking the poll.
+Phil, thank you for taking the poll.
+Sarah, thank you for taking the poll.</code></pre>
+<h3 id="h2-502703c06-0011">Looping Through All Values in a Dictionary</h3>
+<p class="BodyFirst">If you are primarily interested in the values that a dictionary contains, you can use the <code>values()</code> method to return a sequence of values without any keys. For example, say we simply want a list of all languages chosen in our programming language poll, without the name of the person who chose each language:</p>
+<pre><code><span class="LiteralGray">favorite_languages = {</span>
+<span class="LiteralGray">    'jen': 'python',</span>
+<span class="LiteralGray">    'sarah': 'c',</span>
+<span class="LiteralGray">    'edward': 'rust',</span>
+<span class="LiteralGray">    'phil': 'python',</span>
+<span class="LiteralGray">    }</span>
+
+print("The following languages have been mentioned:")
+for language in favorite_languages.values():
+    print(language.title())</code></pre>
+<p>The <code>for</code> statement here pulls each value from the dictionary and assigns it to the variable <code>language</code>. When these values are printed, we get a list of all chosen languages:</p>
+<pre><code>The following languages have been mentioned:
+Python
+C
+Rust
+Python</code></pre>
+<p><span epub:type="pagebreak" id="Page_104" title="104"></span>This approach pulls all the values from the dictionary without checking for repeats. This might work fine with a small number of values, but in a poll with a large number of respondents, it would result in a very repetitive list. To see each language chosen without repetition, we can use a set. A <em>set</em> is a collection in which each item must be unique:</p>
+<pre><code><span class="LiteralGray">favorite_languages = {</span>
+<em class="LiteralGrayItalic">    --snip--</em>
+<span class="LiteralGray">    }</span>
+
+<span class="LiteralGray">print("The following languages have been mentioned:")</span>
+for language in set(favorite_languages.values()):
+<span class="LiteralGray">    print(language.title())</span></code></pre>
+<p>When you wrap <code>set()</code> around a collection of values that contains duplicate items, Python identifies the unique items in the collection and builds a set from those items. Here we use <code>set()</code> to pull out the unique languages in <code>favorite_languages.values()</code>.</p>
+<p>The result is a nonrepetitive list of languages that have been mentioned by people taking the poll:</p>
+<pre><code>The following languages have been mentioned:
+Python
+C
+Rust</code></pre>
+<p>As you continue learning about Python, you’ll often find a built-in feature of the language that helps you do exactly what you want with your data.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	You can build a set directly using braces and separating the elements with commas:</p>
+<pre><code>&gt;&gt;&gt; <code class="bold">languages = {'python', 'rust', 'python', 'c'}</code>
+&gt;&gt;&gt; <code class="bold">languages</code>
+{'rust', 'python', 'c'}</code></pre>
+<p class="Continued">It’s easy to mistake sets for dictionaries because they’re both wrapped in braces. When you see braces but no key-value pairs, you’re probably looking at a set. Unlike lists and dictionaries, sets do not retain items in any specific order.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c06-15">6-4. Glossary 2: </span>Now that you know how to loop through a dictionary, clean up the code from <span class="xref" itemid="xref_target_Exercise 6-3">Exercise 6-3</span> (<span class="xref" itemid="xref_target_page 99">page 99</span>) by replacing your series of <code>print()</code> calls with a loop that runs through the dictionary’s keys and values. When you’re sure that your loop works, add five more Python terms to your glossary. When you run your program again, these new words and meanings should automatically be included in the output.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c06-16">6-5. <span epub:type="pagebreak" id="Page_105" title="105"></span>Rivers:</span> Make a dictionary containing three major rivers and the country each river runs through. One key-value pair might be <code>'nile': 'egypt'</code>.</p>
+<ul>
+<li>Use a loop to print a sentence about each river, such as <em>The Nile runs through Egypt</em>.</li>
+<li>Use a loop to print the name of each river included in the dictionary.</li>
+<li>Use a loop to print the name of each country included in the dictionary.</li>
+</ul>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c06-17">6-6. Polling: </span>Use the code in <em>favorite_languages.py</em> (<span class="xref" itemid="xref_target_page 96">page 96</span>).</p>
+<ul>
+<li>Make a list of people who should take the favorite languages poll. Include some names that are already in the dictionary and some that are not.</li>
+<li>Loop through the list of people who should take the poll. If they have already taken the poll, print a message thanking them for responding. If they have not yet taken the poll, print a message inviting them to take the poll.</li>
+</ul>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c06-0004">Nesting</h2>
+<p class="BodyFirst">Sometimes you’ll want to store multiple dictionaries in a list, or a list of items as a value in a dictionary. This is called <em>nesting</em>. You can nest dictionaries inside a list, a list of items inside a dictionary, or even a dictionary inside another dictionary. Nesting is a powerful feature, as the following examples will demonstrate.</p>
+<h3 id="h2-502703c06-0012">A List of Dictionaries</h3>
+<p class="BodyFirst">The <code>alien_0</code> dictionary contains a variety of information about one alien, but it has no room to store information about a second alien, much less a screen full of aliens. How can you manage a fleet of aliens? One way is to make a list of aliens in which each alien is a dictionary of information about that alien. For example, the following code builds a list of three aliens:</p>
+<p class="CodeLabel"><b>aliens.py</b></p>
+<pre><code>alien_0 = {'color': 'green', 'points': 5}
+alien_1 = {'color': 'yellow', 'points': 10}
+alien_2 = {'color': 'red', 'points': 15}
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> aliens = [alien_0, alien_1, alien_2]
+
+for alien in aliens:
+    print(alien)</code></pre>
+<p><span epub:type="pagebreak" id="Page_106" title="106"></span>We first create three dictionaries, each representing a different alien. We store each of these dictionaries in a list called <code>aliens</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>. Finally, we loop through the list and print out each alien:</p>
+<pre><code>{'color': 'green', 'points': 5}
+{'color': 'yellow', 'points': 10}
+{'color': 'red', 'points': 15}</code></pre>
+<p>A more realistic example would involve more than three aliens with code that automatically generates each alien. In the following example, we use <code>range()</code> to create a fleet of 30 aliens:</p>
+<pre><code># Make an empty list for storing aliens.
+aliens = []
+
+# Make 30 green aliens.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> for alien_number in range(30):
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     new_alien = {'color': 'green', 'points': 5, 'speed': 'slow'}
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     aliens.append(new_alien)
+
+# Show the first 5 aliens.
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> for alien in aliens[:5]:
+    print(alien)
+print("...")
+
+# Show how many aliens have been created.
+print(f"Total number of aliens: {len(aliens)}")</code></pre>
+<p>This example begins with an empty list to hold all of the aliens that will be created. The <code>range()</code> function <span aria-label="annotation1" class="CodeAnnotation">❶</span> returns a series of numbers, which just tells Python how many times we want the loop to repeat. Each time the loop runs, we create a new alien <span aria-label="annotation2" class="CodeAnnotation">❷</span> and then append each new alien to the list <code>aliens</code> <span aria-label="annotation3" class="CodeAnnotation">❸</span>. We use a slice to print the first five aliens <span aria-label="annotation4" class="CodeAnnotation">❹</span>, and finally, we print the length of the list to prove we’ve actually generated the full fleet of 30 aliens:</p>
+<pre><code>{'color': 'green', 'points': 5, 'speed': 'slow'}
+{'color': 'green', 'points': 5, 'speed': 'slow'}
+{'color': 'green', 'points': 5, 'speed': 'slow'}
+{'color': 'green', 'points': 5, 'speed': 'slow'}
+{'color': 'green', 'points': 5, 'speed': 'slow'}
+...
+
+Total number of aliens: 30</code></pre>
+<p>These aliens all have the same characteristics, but Python considers each one a separate object, which allows us to modify each alien individually.</p>
+<p>How might you work with a group of aliens like this? Imagine that one aspect of a game has some aliens changing color and moving faster as the game progresses. When it’s time to change colors, we can use a <code>for</code> loop and an <code>if</code> statement to change the color of the aliens. For example, to change <span epub:type="pagebreak" id="Page_107" title="107"></span>the first three aliens to yellow, medium-speed aliens worth 10 points each, we could do this:</p>
+<pre><code><span class="LiteralGray"># Make an empty list for storing aliens.</span>
+<span class="LiteralGray">aliens = []</span>
+
+<span class="LiteralGray"># Make 30 green aliens.</span>
+<span class="LiteralGray">for alien_number in range (30):</span>
+<span class="LiteralGray">    new_alien = {'color': 'green', 'points': 5, 'speed': 'slow'}</span>
+<span class="LiteralGray">    aliens.append(new_alien)</span>
+
+for alien in aliens[:3]:
+    if alien['color'] == 'green':
+        alien['color'] = 'yellow'
+        alien['speed'] = 'medium'
+        alien['points'] = 10
+
+<span class="LiteralGray"># Show the first 5 aliens.</span>
+<span class="LiteralGray">for alien in aliens[:5]:</span>
+<span class="LiteralGray">    print(alien)</span>
+<span class="LiteralGray">print("...")</span></code></pre>
+<p>Because we want to modify the first three aliens, we loop through a slice that includes only the first three aliens. All of the aliens are green now, but that won’t always be the case, so we write an <code>if</code> statement to make sure we’re only modifying green aliens. If the alien is green, we change the color to <code>'yellow'</code>, the speed to <code>'medium'</code>, and the point value to <code>10</code>, as shown in the following output:</p>
+<pre><code>{'color': 'yellow', 'points': 10, 'speed': 'medium'}
+{'color': 'yellow', 'points': 10, 'speed': 'medium'}
+{'color': 'yellow', 'points': 10, 'speed': 'medium'}
+{'color': 'green', 'points': 5, 'speed': 'slow'}
+{'color': 'green', 'points': 5, 'speed': 'slow'}
+...</code></pre>
+<p>You could expand this loop by adding an <code>elif</code> block that turns yellow aliens into red, fast-moving ones worth 15 points each. Without showing the entire program again, that loop would look like this:</p>
+<pre><code><span class="LiteralGray">for alien in aliens[0:3]:</span>
+<span class="LiteralGray">    if alien['color'] == 'green':</span>
+<span class="LiteralGray">        alien['color'] = 'yellow'</span>
+<span class="LiteralGray">        alien['speed'] = 'medium'</span>
+<span class="LiteralGray">        alien['points'] = 10</span>
+    elif alien['color'] == 'yellow':
+        alien['color'] = 'red'
+        alien['speed'] = 'fast'
+        alien['points'] = 15</code></pre>
+<p>It’s common to store a number of dictionaries in a list when each dictionary contains many kinds of information about one object. For example, you might create a dictionary for each user on a website, as we did in <em>user.py</em> <span epub:type="pagebreak" id="Page_108" title="108"></span>on <span class="xref" itemid="xref_target_page 99">page 99</span>, and store the individual dictionaries in a list called <code>users</code>. All of the dictionaries in the list should have an identical structure, so you can loop through the list and work with each dictionary object in the same way.</p>
+<h3 id="h2-502703c06-0013">A List in a Dictionary</h3>
+<p class="BodyFirst">Rather than putting a dictionary inside a list, it’s sometimes useful to put a list inside a dictionary. For example, consider how you might describe a pizza that someone is ordering. If you were to use only a list, all you could really store is a list of the pizza’s toppings. With a dictionary, a list of toppings can be just one aspect of the pizza you’re describing.</p>
+<p>In the following example, two kinds of information are stored for each pizza: a type of crust and a list of toppings. The list of toppings is a value associated with the key <code>'toppings'</code>. To use the items in the list, we give the name of the dictionary and the key <code>'toppings'</code>, as we would any value in the dictionary. Instead of returning a single value, we get a list of toppings:</p>
+<p class="CodeLabel"><b>pizza.py</b></p>
+<pre><code># Store information about a pizza being ordered.
+pizza = {
+    'crust': 'thick',
+    'toppings': ['mushrooms', 'extra cheese'],
+    }
+
+# Summarize the order.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> print(f"You ordered a {pizza['crust']}-crust pizza "
+    "with the following toppings:")
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> for topping in pizza['toppings']:
+    print(f"\t{topping}")</code></pre>
+<p>We begin with a dictionary that holds information about a pizza that has been ordered. One key in the dictionary is <code>'crust'</code>, and the associated value is the string <code>'thick'</code>. The next key, <code>'toppings'</code>, has a list as its value that stores all requested toppings. We summarize the order before building the pizza <span aria-label="annotation1" class="CodeAnnotation">❶</span>. When you need to break up a long line in a <code>print()</code> call, choose an appropriate point at which to break the line being printed, and end the line with a quotation mark. Indent the next line, add an opening quotation mark, and continue the string. Python will automatically combine all of the strings it finds inside the parentheses. To print the toppings, we write a <code>for</code> loop <span aria-label="annotation2" class="CodeAnnotation">❷</span>. To access the list of toppings, we use the key <code>'toppings'</code>, and Python grabs the list of toppings from the dictionary.</p>
+<p>The following output summarizes the pizza that we plan to build:</p>
+<pre><code>You ordered a thick-crust pizza with the following toppings:
+    mushrooms
+    extra cheese</code></pre>
+<p>You can nest a list inside a dictionary anytime you want more than one value to be associated with a single key in a dictionary. In the earlier example of favorite programming languages, if we were to store each person’s responses in a list, people could choose more than one favorite language. <span epub:type="pagebreak" id="Page_109" title="109"></span>When we loop through the dictionary, the value associated with each person would be a list of languages rather than a single language. Inside the dictionary’s <code>for</code> loop, we use another <code>for</code> loop to run through the list of languages associated with each person:</p>
+<p class="CodeLabel"><b>favorite_languages.py</b></p>
+<pre><code>favorite_languages = {
+ <code>   </code>'jen': ['python', 'rust'],
+ <code>   </code>'sarah': ['c'],
+    'edward': ['rust', 'go'],
+    'phil': ['python', 'haskell'],
+    }
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> for name, languages in favorite_languages.items():
+    print(f"\n{name.title()}'s favorite languages are:")
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     for language in languages:
+        print(f"\t{language.title()}")</code></pre>
+<p>The value associated with each name in <code>favorite_languages</code> is now a list. Note that some people have one favorite language and others have multiple favorites. When we loop through the dictionary <span aria-label="annotation1" class="CodeAnnotation">❶</span>, we use the variable name <code>languages</code> to hold each value from the dictionary, because we know that each value will be a list. Inside the main dictionary loop, we use another <code>for</code> loop <span aria-label="annotation2" class="CodeAnnotation">❷</span> to run through each person’s list of favorite languages. Now each person can list as many favorite languages as they like:</p>
+<pre><code>Jen's favorite languages are:
+    Python
+    Rust
+
+Sarah's favorite languages are:
+    C
+
+Edward's favorite languages are:
+    Rust
+    Go
+
+Phil's favorite languages are:
+    Python
+    Haskell</code></pre>
+<p>To refine this program even further, you could include an <code>if</code> statement at the beginning of the dictionary’s <code>for</code> loop to see whether each person has more than one favorite language by examining the value of <code>len(languages)</code>. If a person has more than one favorite, the output would stay the same. If the person has only one favorite language, you could change the wording to reflect that. For example, you could say, “Sarah’s favorite language is C.”</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	You should not nest lists and dictionaries too deeply. If you’re nesting items much deeper than what you see in the preceding examples, or if you’re working with someone else’s code with significant levels of nesting, there’s most likely a simpler way to solve the problem.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h3 id="h2-502703c06-0014"><span epub:type="pagebreak" id="Page_110" title="110"></span>A Dictionary in a Dictionary</h3>
+<p class="BodyFirst">You can nest a dictionary inside another dictionary, but your code can get complicated quickly when you do. For example, if you have several users for a website, each with a unique username, you can use the usernames as the keys in a dictionary. You can then store information about each user by using a dictionary as the value associated with their username. In the following listing, we store three pieces of information about each user: their first name, last name, and location. We’ll access this information by looping through the usernames and the dictionary of information associated with each username:</p>
+<p class="CodeLabel"><b>many_users.py</b></p>
+<pre><code>users = {
+    'aeinstein': {
+        'first': 'albert',
+        'last': 'einstein',
+        'location': 'princeton',
+        },
+
+    'mcurie': {
+        'first': 'marie',
+        'last': 'curie',
+        'location': 'paris',
+        },
+
+    }
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> for username, user_info in users.items():
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     print(f"\nUsername: {username}")
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     full_name = f"{user_info['first']} {user_info['last']}"
+    location = user_info['location']
+
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>     print(f"\tFull name: {full_name.title()}")
+    print(f"\tLocation: {location.title()}")</code></pre>
+<p>We first define a dictionary called <code>users</code> with two keys: one each for the usernames <code>'aeinstein'</code> and <code>'mcurie'</code>. The value associated with each key is a dictionary that includes each user’s first name, last name, and location. Then, we loop through the <code>users</code> dictionary <span aria-label="annotation1" class="CodeAnnotation">❶</span>. Python assigns each key to the variable <code>username</code>, and the dictionary associated with each username is assigned to the variable <code>user_info</code>. Once inside the main dictionary loop, we print the username <span aria-label="annotation2" class="CodeAnnotation">❷</span>.</p>
+<p>Then, we start accessing the inner dictionary <span aria-label="annotation3" class="CodeAnnotation">❸</span>. The variable <code>user_info</code>, which contains the dictionary of user information, has three keys: <code>'first'</code>, <code>'last'</code>, and <code>'location'</code>. We use each key to generate a neatly formatted full name and location for each person, and then print a summary of what we know about each user <span aria-label="annotation4" class="CodeAnnotation">❹</span>:</p>
+<pre><code>Username: aeinstein
+    Full name: Albert Einstein
+    Location: Princeton
+
+<span epub:type="pagebreak" id="Page_111" title="111"></span>Username: mcurie
+    Full name: Marie Curie
+    Location: Paris</code></pre>
+<p>Notice that the structure of each user’s dictionary is identical. Although not required by Python, this structure makes nested dictionaries easier to work with. If each user’s dictionary had different keys, the code inside the <code>for</code> loop would be more complicated.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c06-21">6-7. People:</span> Start with the program you wrote for Exercise 6-1 (<span class="xref" itemid="xref_target_page 98">page 98</span>). Make two new dictionaries representing different people, and store all three dictionaries in a list called <code>people</code>. Loop through your list of people. As you loop through the list, print everything you know about each person.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c06-22">6-8. Pets:</span> Make several dictionaries, where each dictionary represents a different pet. In each dictionary, include the kind of animal and the owner’s name. Store these dictionaries in a list called <code>pets</code>. Next, loop through your list and as you do, print everything you know about each pet.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c06-23">6-9. Favorite Places:</span> Make a dictionary called <code>favorite_places</code>. Think of three names to use as keys in the dictionary, and store one to three favorite places for each person. To make this exercise a bit more interesting, ask some friends to name a few of their favorite places. Loop through the dictionary, and print each person’s name and their favorite places.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c06-24">6-10. Favorite Numbers:</span> Modify your program from Exercise 6-2 (<span class="xref" itemid="xref_target_page 98">page 98</span>) so each person can have more than one favorite number. Then print each person’s name along with their favorite numbers.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c06-25">6-11. Cities:</span> Make a dictionary called <code>cities</code>. Use the names of three cities as keys in your dictionary. Create a dictionary of information about each city and include the country that the city is in, its approximate population, and one fact about that city. The keys for each city’s dictionary should be something like <code>country</code>, <code>population</code>, and <code>fact</code>. Print the name of each city and all of the information you have stored about it.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c06-26">6-12. Extensions:</span> We’re now working with examples that are complex enough that they can be extended in any number of ways. Use one of the example programs from this chapter, and extend it by adding new keys and values, changing the context of the program, or improving the formatting of the output.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c06-0005">Summary</h2>
+<p class="BodyFirst">In this chapter, you learned how to define a dictionary and how to work with the information stored in a dictionary. You learned how to access and modify individual elements in a dictionary, and how to loop through all <span epub:type="pagebreak" id="Page_112" title="112"></span>of the information in a dictionary. You learned to loop through a dictionary’s key-value pairs, its keys, and its values. You also learned how to nest multiple dictionaries in a list, nest lists in a dictionary, and nest a dictionary inside a dictionary.</p>
+<p>In the next chapter you’ll learn about <code>while</code> loops and how to accept input from people who are using your programs. This will be an exciting chapter, because you’ll learn to make all of your programs interactive: they’ll be able to respond to user input.</p>
+</section>
+</div></body>
+</html>

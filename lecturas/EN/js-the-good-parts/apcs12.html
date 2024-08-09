@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>var Statement</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="var Statement"><div class="titlepage"><div><div><h1 class="title"><a id="var_statement"/>var Statement</h1></div></div></div><p>JavaScript allows <code class="literal">var</code> definitions to occur
+                anywhere within a function. JSLint is stricter.</p><p>JSLint expects that:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>A <code class="literal">var</code> will be declared only once, and
+                        that it will be declared before it is used.</p></li><li class="listitem"><p>A function will be declared before it is used.</p></li><li class="listitem"><p>Parameters will not also be declared as <code class="literal">var</code>s.</p></li></ul></div><p>JSLint does not expect:</p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>The <code class="literal">arguments</code> array to be declared as a
+                            <code class="literal">var</code>.</p></li><li class="listitem"><p>That a variable will be declared in a block. This is because JavaScript
+                        blocks do not have block scope. This can have unexpected consequences, so
+                        define all variables at the top of the function body.</p></li></ul></div></div></body></html>

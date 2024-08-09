@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c11-0005">Ejecutar una prueba</h3>
+<p class="BodyFirst">Si ejecutas directamente el archivo <em translate="no">test_name_function.py</em>, no obtendrás ninguna salida porque nunca hemos llamado a la función de prueba. En su lugar, haremos que <code translate="no">pytest</code> ejecute el archivo de prueba por nosotros.</p>
+<p>Para ello, abre una ventana de terminal y navega hasta la carpeta que contiene el archivo de prueba. Si utilizas VS Code, puedes abrir la carpeta que contiene el archivo de prueba y utilizar el terminal que está incrustado en la ventana del editor. En la ventana del terminal, introduce el comando <code class="bold" translate="no">pytest</code>. Esto es lo que deberías ver:</p>
+<pre translate="no"><code translate="no">$ <b>pytest</b>
+========================= test session starts =========================
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> platform darwin -- Python 3.<var>x</var>.<var>x</var>, pytest-7.<var>x</var>.<var>x</var>, pluggy-1.<var>x</var>.<var>x</var>
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> rootdir: /.../python_work/chapter_11
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> collected 1 item
+
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> test_name_function.py .                                          [100%]
+========================== 1 passed in 0.00s ==========================</code></pre>
+<p><span epub:type="pagebreak" id="Page_214" title="214"></span>Intentemos dar sentido a esta salida. En primer lugar, vemos algo de información sobre el sistema en el que se está ejecutando la prueba <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Lo estoy probando en un sistema macOS, por lo que es posible que veas algunos resultados diferentes. Lo más importante es que podemos ver qué versiones de Python, <code translate="no">pytest</code> y otros paquetes se están utilizando para ejecutar la prueba.</p>
+<p>A continuación, vemos el directorio desde el que se está ejecutando la prueba <span aria-label="annotation2" class="CodeAnnotation">❷:</span> en mi caso, <em translate="no">python_work/chapter_11</em>. Podemos ver que <code translate="no">pytest</code> ha encontrado una prueba para ejecutar <span aria-label="annotation3" class="CodeAnnotation">❸,</span> y podemos ver el archivo de prueba que se está ejecutando <span aria-label="annotation4" class="CodeAnnotation">❹.</span> El único punto tras el nombre del archivo nos indica que se ha superado una única prueba, y el <code translate="no">100%</code> deja claro que se han ejecutado todas las pruebas. Un proyecto grande puede tener cientos o miles de pruebas, y los puntos y el indicador de porcentaje completado pueden ser útiles para controlar el progreso general de la ejecución de las pruebas.</p>
+<p>La última línea nos indica que se ha superado una prueba y que se ha tardado menos de 0,01 segundos en ejecutarla.</p>
+<p>Esta salida indica que la función <code translate="no">get_formatted_name()</code> siempre funcionará para nombres que tengan nombre y apellidos, a menos que modifiquemos la función. Cuando modifiquemos <code translate="no">get_formatted_name()</code>, podremos volver a ejecutar esta prueba. Si la prueba se supera, sabremos que la función seguirá funcionando para nombres como Janis Joplin.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c11_9.html">anterior</a><a href="c11.html">Subtema 10 de 22: (Ver todo)</a><a href="c11_11.html">siguiente</a><br/></p>
+<br/><a href="c11_10.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Construction</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="Construction"><div class="titlepage"><div><div><h1 class="title"><a id="construction"></a>Construcción</h1></div></div></div><p>Hay dos formas de construir un objeto <code class="literal" translate="no">RegExp</code>. La forma preferida, como vimos en los ejemplos, es utilizar un literal de expresión regular.<a class="indexterm" id="IDX-CHP-7-0355"></a><a class="indexterm" id="IDX-CHP-7-0356"></a><a class="indexterm" id="IDX-CHP-7-0354"></a></p><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject7_d1e5305"></a><img alt="image with no caption" src="httpatomoreillycomsourceoreillyimages238776.png" translate="no"/></div></div><p>Los literales de expresión regular se encierran entre barras. Esto puede ser un poco complicado porque la barra también se utiliza como operador de división y en los comentarios.</p><p>Hay tres indicadores que se pueden establecer en <code class="literal" translate="no">RegExp</code>. Se indican con las letras <code class="literal" translate="no">g</code>, <code class="literal" translate="no">i</code>, y <code class="literal" translate="no">m</code>, como se indica en <a class="xref" href="ch07s02.html#flags_for_regular_expressions" title="Table 7-1. Flags for regular expressions">la Tabla 7-1</a>. Los indicadores se añaden directamente al final del literal <code class="literal" translate="no">RegExp</code>:<a class="indexterm" id="IDX-CHP-7-0357"></a></p><a id="I_programlisting7_d1e5337"></a><pre class="programlisting" translate="no">// Make a regular expression object that matches
+// a JavaScript string.
+
+var my_regexp = /"(?:\\.|[^\\\"])*"/g;</pre><div class="table"><a id="flags_for_regular_expressions"></a><p class="title">Tabla 7-1. Indicadores para expresiones regulares</p><div class="table-contents"><table style="border-collapse: collapse;border-top: 0.5pt solid ; border-bottom: 0.5pt solid ; border-left: 0.5pt solid ; border-right: 0.5pt solid ; " summary="Flags for regular expressions"><colgroup><col/><col/></colgroup><thead><tr><th style="text-align: left" valign="bottom">
+<p>Indicador</p>
+</th><th style="text-align: left" valign="bottom">
+<p>Significado</p>
+</th></tr></thead><tbody><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">g</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p>Global (coincide varias veces; su significado exacto varía según el método)</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">i</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p>Insensible (ignora las mayúsculas y minúsculas de los caracteres)</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">m</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p>Multilínea (^ y $ pueden coincidir con caracteres de final de línea)</p>
+</td></tr></tbody></table></div></div><p>La otra forma de crear una expresión regular es utilizar el constructor <code class="literal" translate="no">RegExp</code>. El constructor toma una cadena y la compila en un objeto <code class="literal" translate="no">RegExp</code>. Hay que tener cierto cuidado al construir la cadena porque las barras invertidas tienen un significado algo diferente en las expresiones regulares que en los literales de cadena. Suele ser necesario duplicar las barras invertidas y escapar las comillas:</p><a id="I_programlisting7_d1e5386"></a><pre class="programlisting" translate="no">// Make a regular expression object that matches
+// a JavaScript string.
+
+var my_regexp = new RegExp("\"(?:\\\\.|[^\\\\\\\"])*\"", 'g');</pre><p>El segundo parámetro es una cadena que especifica las banderas. El constructor <code class="literal" translate="no">RegExp</code> es útil cuando hay que generar una expresión regular en tiempo de ejecución utilizando material del que no dispone el programador.</p><p><code class="literal" translate="no">RegExp</code> contienen las propiedades enumeradas en <a class="xref" href="ch07s02.html#properties_of_regexp_objects" title="Table 7-2. Properties of RegExp objects">la Tabla 7-2</a>.</p><div class="table"><a id="properties_of_regexp_objects"></a><p class="title">Tabla 7-2. Propiedades de los objetos RegExp</p><div class="table-contents"><table style="border-collapse: collapse;border-top: 0.5pt solid ; border-bottom: 0.5pt solid ; border-left: 0.5pt solid ; border-right: 0.5pt solid ; " summary="Properties of RegExp objects"><colgroup><col/><col/></colgroup><thead><tr><th style="text-align: left" valign="bottom">
+<p>Propiedad</p>
+</th><th style="text-align: left" valign="bottom">
+<p>Utiliza</p>
+</th></tr></thead><tbody><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">global</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p><code class="literal" translate="no">true</code> si se ha utilizado la bandera <code class="literal" translate="no">g</code>.</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">ignoreCase</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p><code class="literal" translate="no">true</code> si se utilizó la bandera <code class="literal" translate="no">i</code>.</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">lastIndex</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p>El índice en el que se inicia la siguiente coincidencia <code class="literal" translate="no">exec</code>. Inicialmente es cero.</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">multiline</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p><code class="literal" translate="no">true</code> si se utilizó la bandera <code class="literal" translate="no">m</code>.</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">source</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p>El texto fuente de la expresión regular.</p>
+</td></tr></tbody></table></div></div><p><code class="literal" translate="no">RegExp</code> Los objetos formados por literales de expresión regular comparten una única instancia:</p><a id="I_programlisting7_d1e5477"></a><pre class="programlisting" translate="no">function make_a_matcher(  ) {
+    return /a/gi;
+}
+
+var x = make_a_matcher(  );
+var y = make_a_matcher(  );
+
+// Beware: x and y are the same object!
+
+x.lastIndex = 10;
+
+document.writeln(y.lastIndex);    // 10</pre></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="ch07.html">← Anterior</a><a href="ch07s03.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="ch07s02.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\ch07s02.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

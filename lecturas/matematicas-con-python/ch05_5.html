@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<meta charset="utf-8"/>
+<title>Capítulo 5: Jugar con conjuntos y probabilidad</title>
+<link href="style.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="core.css" media="all" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch05lev1sec04"><strong><span class="bordera">Retos de programación</span></strong></h3>
+<p class="noindent">A continuación, tienes que resolver algunos retos de programación que te darán la oportunidad de aplicar lo que has aprendido en este capítulo.</p>
+<h4 class="h4" id="ch05lev2sec08"><strong><em>#nº 1: Utilizar diagramas de Venn para visualizar relaciones entre conjuntos</em></strong></h4>
+<p class="noindent">Un <em>diagrama</em> de Venn es una forma sencilla de ver gráficamente la relación entre conjuntos. Nos dice cuántos elementos son comunes entre los dos conjuntos, cuántos elementos están sólo en un conjunto y cuántos elementos no están en ninguno de los dos conjuntos. Consideremos un conjunto, <em>A</em>, que representa el conjunto de los números impares positivos menores que 20 -es decir, <em>A</em> = {1, 3, 5, 7, 9, 11, 13, 15, 17, 19}- y consideremos otro conjunto, <em>B</em>, que representa el conjunto de los números primos menores que 20 -es decir, <em>B</em> = {2, 3, 5, 7, 11, 13, 17, 19}. Podemos dibujar diagramas de Venn con Python utilizando el paquete <span class="literal" translate="no">matplotlib_venn</span> (consulta el <a href="app01.html#app01">Apéndice A</a> para ver las instrucciones de instalación de este paquete). Una vez instalado, puedes dibujar el diagrama de Venn como se indica a continuación:</p>
+<p class="programs" translate="no">'''<br translate="no"/>Draw a Venn diagram for two sets<br translate="no"/>'''<br translate="no"/><br translate="no"/>from matplotlib_venn import venn2<br translate="no"/>import matplotlib.pyplot as plt<br translate="no"/>from sympy import FiniteSet<br translate="no"/><br translate="no"/>def draw_venn(sets):<br translate="no"/><br translate="no"/>    venn2(subsets=sets)<br translate="no"/>    plt.show()<br translate="no"/><br translate="no"/>if __name__ == '__main__':<br translate="no"/><br translate="no"/>    s1 = FiniteSet(1, 3, 5, 7, 9, 11, 13, 15, 17, 19)<br translate="no"/>    s2 = FiniteSet(2, 3, 5, 7, 11, 13, 17, 19)<br translate="no"/><br translate="no"/>    draw_venn([s1, s2])</p>
+<p class="indent"><a id="page_141"></a>Una vez que importamos todos los módulos y funciones necesarios (la función <span class="literal" translate="no">venn2()</span>, <span class="literal" translate="no">matplotlib.pyplot</span>, y la clase <span class="literal" translate="no">FiniteSet</span> ), todo lo que tenemos que hacer es crear los dos conjuntos y luego llamar a la función <span class="literal" translate="no">venn2()</span>, utilizando el argumento <span class="literal" translate="no">subsets</span> palabra clave para especificar los conjuntos como una tupla.</p>
+<p class="indent"><a href="ch05.html#ch5fig4">La Figura 5-4</a> muestra el diagrama de Venn creado por el programa anterior. Los conjuntos <em>A</em> y <em>B</em> comparten siete elementos comunes, por lo que se escribe 7 en el área común. Cada uno de los conjuntos también tiene elementos únicos, por lo que el número de elementos únicos -3 y 1, respectivamente- se escribe en las áreas individuales. Las etiquetas debajo de los dos conjuntos se muestran como <em>A</em> y <em>B</em>. Puedes especificar tus propias etiquetas utilizando el argumento de la palabra clave <span class="literal" translate="no">set_labels</span>:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">venn2(subsets=(a,b), set_labels=('S', 'T'))</span></p>
+<p class="indent">Esto cambiaría las etiquetas de los conjuntos a <span class="literal" translate="no">S</span> y <span class="literal" translate="no">T</span>.</p>
+<div class="image"><img alt="image" src="images/f05-04.jpg" translate="no"/></div>
+<p class="figuret"><a id="ch5fig4"></a><em>Figura 5-4: Diagrama de Venn que muestra la relación entre dos</em> conjuntos, A <em>y</em> B</p>
+<p class="indent"><a id="page_142"></a>Para tu reto, imagina que has creado un cuestionario online en el que planteas a tus compañeros la siguiente pregunta: <em>¿Practicas fútbol, otro deporte o ningún deporte?</em> Una vez que tengas los resultados, crea un archivo CSV, <em>deportes.csv</em>, como el siguiente</p>
+<p class="programs" translate="no">StudentID,Football,Others<br translate="no"/>1,1,0<br translate="no"/>2,1,1<br translate="no"/>3,0,1<br translate="no"/>--<span class="codeitalic">snip</span>--</p>
+<p class="indent">Crea 20 filas de este tipo para los 20 alumnos de tu clase. La primera columna es el ID del alumno (la encuesta no es anónima), la segunda columna tiene un 1 si el alumno ha marcado "fútbol" como el deporte que más le gusta practicar, y la tercera columna tiene un 1 si el alumno practica cualquier otro deporte o ninguno. Escribe un programa para crear un diagrama de Venn que represente los resultados resumidos de la encuesta, como se muestra en la <a href="ch05.html#ch5fig5">Figura 5-5</a>.</p>
+<div class="image"><img alt="image" src="images/f05-05.jpg" translate="no"/></div>
+<p class="figuret"><a id="ch5fig5"></a><em>Figura 5-5: Diagrama de Venn que muestra el número de alumnos a los que les gusta jugar al fútbol y el número de alumnos a los que les gusta practicar otros deportes</em></p>
+<p class="indent"><a id="page_143"></a>Dependiendo de los datos del archivo <em>sports.csv</em> que hayas creado, los números de cada conjunto variarán. La siguiente función lee un archivo CSV y devuelve dos listas correspondientes a los ID de los alumnos que practican fútbol y otros deportes:</p>
+<p class="programs" translate="no">def read_csv(filename):<br translate="no"/>    football = []<br translate="no"/>    others = []<br translate="no"/>    with open(filename) as f:<br translate="no"/>        reader = csv.reader(f)<br translate="no"/>        next(reader)<br translate="no"/>        for row in reader:<br translate="no"/>            if row[1] == '1':<br translate="no"/>                football.append(row[0])<br translate="no"/>            if row[2] == '1':<br translate="no"/>                others.append(row[0])<br translate="no"/><br translate="no"/>    return football, others</p>
+<h4 class="h4" id="ch05lev2sec09"><strong><em>#2: Ley de los grandes números</em></strong></h4>
+<p class="noindent">Nos hemos referido a la tirada de un dado y al lanzamiento de una moneda como dos ejemplos de sucesos aleatorios que podemos simular utilizando números aleatorios. Hemos utilizado el término <em>suceso</em> para referirnos a la aparición de un número determinado en la tirada de un dado o a la aparición de cara o cruz en el lanzamiento de una moneda, y cada suceso tiene un valor de probabilidad asociado. En probabilidad, una <em>variable aleatoria -denotada normalmente</em>por <em>X- describe</em>un suceso. Por ejemplo, <em>X</em> = 1 describe el suceso de que aparezca 1 en la tirada de un dado, y <em>P</em><em>(X</em> = 1) describe la probabilidad asociada. Hay dos tipos de variables aleatorias: (1) las variables aleatorias <em>discretas</em>, que sólo toman valores integrales y son el único tipo de variables aleatorias que veremos en este capítulo, y (2) las variables aleatorias <em>continuas</em>, que -como su nombre indica- pueden tomar cualquier valor real.</p>
+<p class="indentb">La <em>expectativa</em>, <em>E</em>, de una variable aleatoria discreta es el equivalente de la media o promedio que conocimos en el <a href="ch03.html#ch03">Capítulo 3</a>. La expectativa se puede calcular de la siguiente manera:</p>
+<p class="center"><em>E</em> = <em>x1P</em><em>(</em><sub>x1</sub>) + <em>x2P</em><em>(</em><sub>x2</sub>) + <em>x3P</em><em>(</em><sub>x3</sub>) + ... + <em><sub>xnP</sub></em>(<em><sub>xn</sub></em>)</p>
+<p class="indentt">Así, para un dado de seis caras, el <em>valor esperado</em> de una tirada puede calcularse así:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">e = 1*(1/6) + 2*(1/6) + 3*(1/6) + 4*(1/6) + 5*(1/6) + 6*(1/6)</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">e</span><br translate="no"/>3.5</p>
+<p class="indent"><a id="page_144"></a>Según la <em>ley de los grandes números</em>, el valor medio de los resultados en múltiples ensayos se aproxima al valor esperado a medida que aumenta el número de ensayos. Tu reto en esta tarea es verificar esta ley al lanzar un dado de seis caras para el siguiente número de ensayos 100, 1000, 10000, 100000 y 500000. Aquí tienes un ejemplo de ejecución de tu programa completo:</p>
+<p class="programs" translate="no">Expected value: 3.5<br translate="no"/>Trials: 100 Trial average 3.39<br translate="no"/>Trials: 1000 Trial average 3.576<br translate="no"/>Trials: 10000 Trial average 3.5054<br translate="no"/>Trials: 100000 Trial average 3.50201<br translate="no"/>Trials: 500000 Trial average 3.495568</p>
+<h4 class="h4" id="ch05lev2sec10"><strong><em>#3: ¿Cuántas tiradas antes de quedarte sin dinero?</em></strong></h4>
+<p class="noindent">Consideremos un juego sencillo jugado con un lanzamiento de moneda justo. Un jugador gana 1$ por cara y pierde 1,50$ por cruz. El juego termina cuando el saldo del jugador llega a 0 $. Dada una determinada cantidad inicial especificada por el usuario como entrada, tu reto es escribir un programa que simule este juego. Supón que el ordenador -tu oponente aquí- tiene una reserva de dinero ilimitada. He aquí una posible sesión de juego:</p>
+<p class="programs" translate="no">Enter your starting amount: 10<br translate="no"/>Tails! Current amount: 8.5<br translate="no"/>Tails! Current amount: 7.0<br translate="no"/>Tails! Current amount: 5.5<br translate="no"/>Tails! Current amount: 4.0<br translate="no"/>Tails! Current amount: 2.5<br translate="no"/>Heads! Current amount: 3.5<br translate="no"/>Tails! Current amount: 2.0<br translate="no"/>Tails! Current amount: 0.5<br translate="no"/>Tails! Current amount: -1.0<br translate="no"/>Game over :( Current amount: -1.0. Coin tosses: 9</p>
+<h4 class="h4" id="ch05lev2sec11"><strong><em>#4: Barajar una baraja de cartas</em></strong></h4>
+<p class="noindent">Considera una baraja estándar de 52 cartas. Tu reto aquí es escribir un programa para simular el barajado de esta baraja. Para simplificar la implementación, te sugiero que utilices los números enteros 1, 2, 3, ..., 52 para representar la baraja. Cada vez que ejecutes el programa, debe salir una baraja barajada, en este caso, una lista de enteros barajados.</p>
+<p class="indent">Aquí tienes una posible salida de tu programa:</p>
+<p class="programs" translate="no">[3, 9, 21, 50, 32, 4, 20, 52, 7, 13, 41, 25, 49, 36, 23, 45, 1, 22, 40, 19, 2,<br translate="no"/>35, 28, 30, 39, 44, 29, 38, 48, 16, 15, 18, 46, 31, 14, 33, 10, 6, 24, 5, 43,<br translate="no"/>47, 11, 34, 37, 27, 8, 17, 51, 12, 42, 26]</p>
+<p class="indent"><a id="page_145"></a>El módulo <span class="literal" translate="no">random</span> de la biblioteca estándar de Python tiene una función, <span class="literal" translate="no">shuffle()</span>, para esta misma operación:</p>
+<p class="programs" translate="no">   &gt;&gt;&gt; <span class="codestrong">import random</span><br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">x = [1, 2, 3, 4]</span><br translate="no"/><span class="ent">➊</span> &gt;&gt;&gt; <span class="codestrong">random.shuffle(x)</span><br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">x</span><br translate="no"/>   [4, 2, 1, 3]</p>
+<p class="indent">Crea una lista, <span class="literal" translate="no">x</span>, formada por los números [1, 2, 3, 4]. A continuación, llama a la función <span class="literal" translate="no">shuffle()</span> <span class="ent">➊,</span> pasando esta lista como argumento. Verás que los números de <span class="literal" translate="no">x</span> se han barajado. Observa que la lista se baraja "en su sitio". Es decir, se pierde el orden original.</p>
+<p class="indent">Pero, ¿y si quisieras utilizar este programa en un juego de cartas? En ese caso, no basta con obtener la lista de enteros barajada. También necesitarás una forma de volver a asignar los enteros al palo y rango específicos de cada carta. Una forma de hacerlo es crear una clase Python que represente una sola carta:</p>
+<p class="programs" translate="no">class Card:<br translate="no"/>    def __init__(self, suit, rank):<br translate="no"/>        self.suit = suit<br translate="no"/>        self.rank = rank</p>
+<p class="indent">Para representar el as de tréboles, crea un objeto tarjeta, <span class="literal" translate="no">card1 = Card('clubs', 'ace')</span>. A continuación, haz lo mismo con las demás cartas. A continuación, crea una lista formada por cada uno de los objetos carta y baraja esta lista. El resultado será una baraja de cartas barajada de la que también sabrás el palo y el rango de cada carta. El resultado del programa debería ser algo parecido a esto:</p>
+<p class="programs" translate="no">10 of spades<br translate="no"/>6 of clubs<br translate="no"/>jack of spades<br translate="no"/>9 of spades</p>
+<h4 class="h4" id="ch05lev2sec12"><strong><em>#5: Estimación del área de un círculo</em></strong></h4>
+<p class="noindent">Considera una diana con un círculo de radio <em>r</em> inscrito en un cuadrado de lado <em>2r</em>. Supongamos que empiezas a lanzarle un gran número de dardos. Algunos de ellos caerán en la diana dentro del círculo -digamos, <em>N- y</em>otros fuera de él -digamos, <em>M</em>. Si consideramos la fracción de dardos que caen dentro del círculo,</p>
+<div class="image2"><img alt="image" src="images/e0145-01.jpg" translate="no"/></div>
+<p class="noindent">entonces el valor de <em>f</em> × <em>A</em>, donde <em>A</em> es el área del cuadrado, sería aproximadamente igual al área del círculo (ver <a href="ch05.html#ch5fig6">Figura 5-6</a>). Los dardos están representados por los pequeños puntos circulares de la figura. Denominaremos área estimada al valor de <em>f</em> × <em>A</em>. El área real es, por supuesto, <sup>πr2</sup>.</p>
+<div class="image"><a id="page_146"></a><img alt="image" src="images/f05-06.jpg" translate="no"/></div>
+<p class="figuret"><a id="ch5fig6"></a><em>Figura 5-6: Un círculo de radio</em> r <em>inscrito en un tablero cuadrado de lado 2r</em><em>. Los puntos representan dardos lanzados al azar contra el tablero.</em></p>
+<p class="indent">Como parte de este reto, escribe un programa que encuentre el área estimada de un círculo, dado cualquier radio, utilizando este enfoque. El programa debe imprimir el área estimada del círculo para tres valores diferentes del número de dardos:<sup>103</sup>,<sup>105</sup> y<sup>106</sup>. ¡Son muchos dardos! Verás que al aumentar el número de dardos el área estimada se aproxima al área real. Aquí tienes un ejemplo de salida de la solución completada:</p>
+<p class="programs" translate="no">Radius: 2<br translate="no"/>Area: 12.566370614359172, Estimated (1000 darts): 12.576<br translate="no"/>Area: 12.566370614359172, Estimated (100000 darts): 12.58176<br translate="no"/>Area: 12.566370614359172, Estimated (1000000 darts): 12.560128</p>
+<p class="indent">El lanzamiento de dardos puede simularse mediante una llamada a la función <span class="literal" translate="no">random.uniform(a, b)</span>, que devolverá un número aleatorio entre <em>a</em> y <em>b</em>. En este caso, utiliza los valores <em>a</em> = 0, <em>b</em> = <em>2r</em> (el lado del cuadrado).</p>
+<h5 class="h5" id="ch05lev3sec12"><a id="page_147"></a><strong>Estimación del valor de Pi</strong></h5>
+<p class="noindent">Considera de nuevo <a href="ch05.html#ch5fig6">la Figura 5-6</a>. El área del cuadrado es <sup>4r2</sup>, y el área del círculo inscrito es <sup>πr2</sup>. Si dividimos el área del círculo por el área del cuadrado, obtenemos <em>π/4</em>. La fracción <em>f</em> que hemos calculado antes</p>
+<div class="image2"><img alt="image" src="images/e0147-01.jpg" translate="no"/></div>
+<p class="noindent">es por tanto una aproximación de <em>π/4</em>, lo que a su vez significa que el valor de</p>
+<div class="image2"><img alt="image" src="images/e0147-02.jpg" translate="no"/></div>
+<p class="noindent">debe ser próximo al valor de <em>π</em>. Tu siguiente reto es escribir un programa que estime el valor de <em>π</em> suponiendo cualquier valor para el radio. A medida que aumentes el número de dardos, el valor estimado de <em>π</em> debería acercarse al valor conocido de la constante.<a id="page_148"></a></p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch05_4.html">anterior</a><a href="ch05.html">Subtema 5 de 5: (Ver todo)</a><br/></p>
+<br/><a href="ch05_5.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c14-0013">Asegurarse de anotar todos los golpes</h3>
+<p class="BodyFirst">Tal y como está escrito actualmente, nuestro código podría no puntuar a algunos alienígenas. Por ejemplo, si dos balas chocan con los alienígenas durante la misma pasada por el bucle o si hacemos una bala extra ancha para golpear a varios alienígenas, el jugador sólo recibirá puntos por golpear a uno de los alienígenas. Para solucionar esto, vamos a refinar la forma en que se detectan las colisiones bala-extraterrestre.</p>
+<p>En <code translate="no">_check_bullet_alien_collisions()</code>, cualquier bala que colisione con un alienígena se convierte en una clave del diccionario <code translate="no">collisions</code>. El valor asociado a cada bala es una lista de los alienígenas con los que ha colisionado. Recorremos en bucle los valores del diccionario <code translate="no">collisions</code> para asegurarnos de que otorgamos puntos por cada alienígena alcanzado:</p>
+<p class="CodeLabel" translate="no"><b>alien_invasion.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    def _check_bullet_alien_collisions(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">        if collisions:</span>
+            for aliens in collisions.values():
+                self.stats.score += self.settings.alien_points * len(aliens)
+<span class="LiteralGray">            self.sb.prep_score()</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic" translate="no">--snip--</em></code></pre>
+<p>Si se ha definido el diccionario <code translate="no">collisions</code>, recorremos todos los valores del diccionario. Recuerda que cada valor es una lista de alienígenas alcanzados por una sola bala. Multiplicamos el valor de cada alienígena por el número de alienígenas de cada lista y añadimos esta cantidad a la puntuación actual. Para probarlo, cambia la anchura de una bala a 300 píxeles y comprueba que recibes puntos por cada alienígena que golpeas con tus balas extra anchas; luego devuelve la anchura de la bala a su valor normal.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c14_18.html">anterior</a><a href="c14.html">Subtema 19 de 29: (Ver todo)</a><a href="c14_20.html">siguiente</a><br/></p>
+<br/><a href="c14_19.docx" target="_blank"></a></footer>
+</body>
+</html>

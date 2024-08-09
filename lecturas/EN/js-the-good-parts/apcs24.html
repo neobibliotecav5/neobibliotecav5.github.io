@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Constructors and new</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Constructors and new"><div class="titlepage"><div><div><h1 class="title"><a id="constructors_and_new"/>Constructors and new</h1></div></div></div><p>Constructors are functions that are designed to be used with the <code class="literal">new</code> prefix. The <code class="literal">new</code>
+                prefix creates a new object based on the function's prototype, and binds that object
+                to the function's implied <code class="literal">this</code> parameter. If you
+                neglect to use the <code class="literal">new</code> prefix, no new object will
+                be made, and <code class="literal">this</code> will be bound to the global
+                object. This is a serious mistake.</p><p>JSLint enforces the convention that constructor functions be given names with
+                initial uppercase letters. JSLint does not expect to see a function invocation with
+                an initial uppercase name unless it has the <code class="literal">new</code>
+                prefix. JSLint does not expect to see the <code class="literal">new</code>
+                prefix used with functions whose names do not start with initial
+                    uppercase.<a id="IDX-APP-C-0680" class="indexterm"/><a id="IDX-APP-C-0681" class="indexterm"/></p><p>JSLint does not expect to see the wrapper forms <code class="literal">new
+                    Number</code>, <code class="literal">new String</code>, or <code class="literal">new Boolean</code>.</p><p>JSLint does not expect to see <code class="literal">new Object</code> (use
+                    <code class="literal">{}</code> instead).</p><p>JSLint does not expect to see <code class="literal">new Array</code> (use
+                    <code class="literal">[]</code> instead).</p></div></body></html>

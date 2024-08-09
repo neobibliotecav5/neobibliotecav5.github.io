@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/><title>Invocation</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h1 class="title"><a id="invocation"></a>Invocación</h1><p>La invocación de una función suspende la ejecución de la función actual, pasando el control y los parámetros a la nueva función. Además de los parámetros declarados, toda función recibe dos parámetros adicionales: <code class="literal" translate="no">this</code> y <code class="literal" translate="no">arguments</code>. El parámetro <code class="literal" translate="no">this</code> es muy importante en la programación orientada a objetos, y su valor viene determinado por el parámetro <span class="emphasis"><em translate="no">invocation
+                    pattern</em></span>. Existen cuatro patrones de invocación en JavaScript: el patrón de invocación a métodos, el patrón de invocación a funciones, el patrón de invocación a constructores y el patrón de invocación a aplicaciones. Los patrones difieren en cómo se inicializa el parámetro de bonificación <code class="literal" translate="no">this</code>.<a class="indexterm" id="IDX-CHP-4-0186"></a></p><p>El operador de invocación es un par de paréntesis que siguen a cualquier expresión que produzca un valor de función. Los paréntesis pueden contener cero o más expresiones, separadas por comas. Cada expresión produce un valor de argumento. Cada uno de los valores de los argumentos se asignará a los nombres de los parámetros de la función. No se produce ningún error de ejecución cuando el número de argumentos y el número de parámetros no coinciden. Si hay demasiados valores de argumento, se ignorarán los valores de argumento adicionales. Si hay muy pocos valores de argumentos, el valor <code class="literal" translate="no">undefined</code> se sustituirá por los valores que falten. No hay comprobación de tipo en los valores de los argumentos: se puede pasar cualquier tipo de valor a cualquier parámetro.<a class="indexterm" id="IDX-CHP-4-0187"></a><a class="indexterm" id="IDX-CHP-4-0188"></a><a class="indexterm" id="IDX-CHP-4-0189"></a></p><div class="sect2" title="The Method Invocation Pattern"><div class="titlepage"><div><div></div></div></div></div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch04s03.html">Subtema 1 de 5: (Ver todo)</a><a href="ch04s03_2.html">siguiente</a><br/></p>
+<br/><a href="ch04s03_1.docx" target="_blank"></a></footer>
+</body>
+</html>

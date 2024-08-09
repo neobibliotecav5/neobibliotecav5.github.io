@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch16lev1sec2">
+  Creación de la función Animar </h3>
+<p class="noindent">
+  En primer lugar, añadiremos la función <span class="literal1" translate="no">
+   animate
+  </span>, que tendrá que comprobar si hay movimiento y cambiar la imagen en consecuencia. </p>
+<h4 class="h3" id="ch16lev2sec1">
+  Comprobar el movimiento </h4>
+<p class="noindent">
+  No queremos cambiar la imagen de la figura de palo demasiado rápido en nuestra animación, o su movimiento no parecerá realista. Piensa en una animación de volteo, dibujada en la esquina de un bloc de notas: si pasas las páginas demasiado deprisa, puede que no consigas el efecto completo de lo que has dibujado. </p>
+<p class="indent">
+  La primera mitad de la función <span class="literal1" translate="no">
+   animate
+  </span>comprueba si la figura de palo está corriendo hacia la izquierda o hacia la derecha, y luego utiliza la variable <span class="literal1" translate="no">
+   last_time
+  </span>para decidir si cambia la imagen actual. Esta variable nos ayudará a controlar la velocidad de nuestra animación. La función irá después de la función <span class="literal1" translate="no">
+   jump
+  </span>, que añadimos a nuestra clase <span class="literal1" translate="no">
+   StickFigureSprite
+  </span>en <a class="calibre6" href="ch15.xhtml#ch15">el Capítulo 15 </a>( <a class="calibre6" href="ch15.xhtml#ch15lev1sec6">página 238 </a>): </p>
+<pre class="pre" translate="no">    <span class="orange">def</span> animate(self):
+        <span class="orange">if</span> self.x != 0 <span class="orange">and</span> self.y == 0:
+            <span class="orange">if</span> time.time() - self.last_time &gt; 0.1:
+                self.last_time = time.time()
+                self.current_image += self.current_image_add
+                <span class="orange">if</span> self.current_image &gt;= 2:
+                    self.current_image_add = -1
+                <span class="orange">if</span> self.current_image &lt;= 0:
+                    self.current_image_add = 1</pre>
+<p class="indent">
+<span id="page_245">
+</span>
+  En la primera sentencia <span class="literal1" translate="no">
+   if
+  </span>, comprobamos si <span class="literal1" translate="no">
+   x
+  </span>no es 0 para determinar si la figura de palo se está moviendo (hacia la izquierda o hacia la derecha), y comprobamos si <span class="literal1" translate="no">
+   y
+  </span>es 0 para determinar que la figura de palo no está saltando. Si esta declaración <span class="literal1" translate="no">
+   if
+  </span>es <span class="literal1" translate="no">
+   True
+  </span>, tenemos que animar nuestra figura de palo; si no, está quieta, así que no hace falta seguir dibujando. Si la figura de palo no se mueve, abandonamos la función, y el resto del código de este listado se ignora. </p>
+<p class="indent">
+  A continuación, calculamos el tiempo transcurrido desde la última vez que se llamó a la función <span class="literal1" translate="no">
+   animate
+  </span>, restando el valor de la variable <span class="literal1" translate="no">
+   last_time
+  </span>del tiempo actual, mediante <span class="literal1" translate="no">
+   time.time()
+  </span>. Este cálculo se utiliza para decidir si se dibuja la siguiente imagen de la secuencia. Si el resultado es superior a una décima de segundo (0,1), continuamos con el bloque de código. Establecemos la variable <span class="literal1" translate="no">
+   last_time
+  </span>en el tiempo actual, básicamente reiniciando el cronómetro para empezar a cronometrar de nuevo el siguiente cambio de imagen. </p>
+<p class="indent">
+  A continuación, añadimos el valor de la variable objeto <span class="literal1" translate="no">
+   current_image_add
+  </span>a la variable <span class="literal1" translate="no">
+   current_image
+  </span>, que almacena la posición del índice de la imagen mostrada actualmente. Recuerda que creamos la variable <span class="literal1" translate="no">
+   current_image_add
+  </span>en la función <span class="literal1" translate="no">
+   __init__
+  </span>de la figura de palo en <a class="calibre6" href="ch15.xhtml#ch15">el Capítulo 15 </a>(ver <a class="calibre6" href="ch15.xhtml#ch15lev1sec3">página 235 </a>), de modo que cuando se llama por primera vez a la función <span class="literal1" translate="no">
+   animate
+  </span>, el valor de la variable ya se ha establecido en 1. </p>
+<p class="indent">
+  A continuación, comprobamos si el valor de la posición del índice en <span class="literal1" translate="no">
+   current_image
+  </span>es mayor o igual que 2; si es así, cambiamos el valor de <span class="literal1" translate="no">
+   current_image_add
+  </span>a -1. El proceso es similar para las dos últimas líneas; una vez que llegamos a 0, tenemos que volver a empezar a contar. </p>
+<div class="note">
+<p class="notet">
+<span class="notes">Nota </span></p>
+<p class="notep">
+<em class="calibre7">Si tienes problemas para averiguar cómo sangrar este código, aquí tienes una pista: hay 8 espacios en la línea que comienza <span class="literal1" translate="no">
+     if self.x
+    </span>y 20 espacios en la última línea. </em></p>
+</div>
+<p class="indent">
+  Para ayudarte a entender lo que ocurre en la función hasta ahora, imagina que tienes una secuencia de bloques de colores en una línea en el suelo. Mueves el dedo de un bloque al siguiente, y cada bloque al que apunta tu dedo tiene un número (1, 2, 3, 4, etc.): ésta es la variable <span class="literal1" translate="no">
+   current_image
+  </span>. El número <span id="page_246">
+</span>del bloque al que se mueve tu dedo (apunta a un bloque cada vez) es el número almacenado en la variable <span class="literal1" translate="no">
+   current_image_add
+  </span>. Cuando tu dedo se mueve hacia arriba en la línea de bloques, estás sumando 1 cada vez, y cuando llega al final de la línea y se mueve hacia abajo, estás restando 1 (sumando -1). </p>
+<p class="indent">
+  El código que hemos añadido a nuestra función <span class="literal1" translate="no">
+   animate
+  </span>realiza este proceso, pero en lugar de bloques de colores, tenemos las tres imágenes de figuras de palo para cada dirección almacenadas en una lista. Las posiciones índice de estas imágenes son 0, 1 y 2. Al animar la figura de palitos, cuando llegamos a la última imagen, empezamos a contar hacia abajo, y cuando llegamos a la primera imagen, tenemos que volver a contar hacia arriba. Como resultado, creamos el efecto de una figura que corre. </p>
+<p class="indent">
+<a class="calibre6" href="ch16.xhtml#ch16tab01">La Tabla 16-1 </a>muestra cómo nos movemos por la lista de imágenes, utilizando las posiciones índice que calculamos en la función <span class="literal1" translate="no">
+   animate
+  </span>. </p>
+<p class="tabcap" id="ch16tab01">
+
+   Tabla<strong class="calibre5">16-1: </strong>Posiciones de las imágenes en la animación </p>
+<table class="all">
+<colgroup class="calibre23">
+<col class="calibre165"/>
+<col class="calibre166"/>
+<col class="calibre165"/>
+<col class="calibre166"/>
+<col class="calibre165"/>
+<col class="calibre167"/>
+</colgroup>
+<thead class="calibre25">
+<tr class="calibre26">
+<th class="table-h">
+<p class="taba">
+      Posición 0 </p>
+</th>
+<th class="table-h">
+<p class="taba">
+      Posición 1 </p>
+</th>
+<th class="table-h">
+<p class="taba">
+      Posición 2 </p>
+</th>
+<th class="table-h">
+<p class="taba">
+      Posición 1 </p>
+</th>
+<th class="table-h">
+<p class="taba">
+      Posición 0 </p>
+</th>
+<th class="table-h">
+<p class="taba">
+      Posición 1 </p>
+</th>
+</tr>
+</thead>
+<tbody class="calibre27">
+<tr class="calibre26">
+<td class="table-1bw_bot">
+<p class="taba">
+      Contar hacia arriba     </p>
+</td>
+<td class="table-1bw_bot">
+<p class="taba">
+      Contar hacia arriba     </p>
+</td>
+<td class="table-1bw_bot">
+<p class="taba">
+      Contar hacia arriba     </p>
+</td>
+<td class="table-1bw_bot">
+<p class="taba">
+      Cuenta atrás     </p>
+</td>
+<td class="table-1bw_bot">
+<p class="taba">
+      Contar hacia abajo     </p>
+</td>
+<td class="table-1bw_bot">
+<p class="taba">
+      Contar hacia arriba     </p>
+</td>
+</tr>
+<tr class="calibre26">
+<td class="table-1bw_bot">
+<div class="imagec" id="ch246fig01">
+<img alt="Image" class="calibre168" src="../images/246fig01.jpg" translate="no"/>
+</div>
+</td>
+<td class="table-1bw_bot">
+<div class="imagec" id="ch246fig02">
+<img alt="Image" class="calibre169" src="../images/246fig02.jpg" translate="no"/>
+</div>
+</td>
+<td class="table-1bw_bot">
+<div class="imagec" id="ch246fig03">
+<img alt="Image" class="calibre170" src="../images/246fig03.jpg" translate="no"/>
+</div>
+</td>
+<td class="table-1bw_bot">
+<div class="imagec" id="ch246fig04">
+<img alt="Image" class="calibre169" src="../images/246fig04.jpg" translate="no"/>
+</div>
+</td>
+<td class="table-1bw_bot">
+<div class="imagec" id="ch246fig05">
+<img alt="Image" class="calibre168" src="../images/246fig05.jpg" translate="no"/>
+</div>
+</td>
+<td class="table-1bw_bot">
+<div class="imagec" id="ch246fig06">
+<img alt="Image" class="calibre169" src="../images/246fig06.jpg" translate="no"/>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<h4 class="h3" id="ch16lev2sec2">
+  Cambiar la imagen </h4>
+<p class="noindent">
+  En la siguiente mitad de la función <span class="literal1" translate="no">
+   animate
+  </span>, cambiamos la imagen mostrada actualmente, utilizando la posición del índice calculado: </p>
+<pre class="pre" translate="no">    <span class="orange">def</span> animate(self):
+    ...
+        <span class="orange">if</span> self.x &lt; 0:
+            <span class="orange">if</span> self.y != 0:
+                self.game.canvas.itemconfig(self.image, 
+                        image=self.images_left[2])
+         <span class="ent">➊</span> <span class="orange">else</span>:
+                self.game.canvas.itemconfig(self.image, 
+                        image=self.images_left[self.current_image])
+        <span class="orange">elif</span> self.x &gt; 0:
+            <span class="orange">if</span> self.y != 0:
+                self.game.canvas.itemconfig(self.image, 
+                        image=self.images_right[2])
+            <span class="orange">else</span>:
+                self.game.canvas.itemconfig(self.image, 
+                        image=self.images_right[self.current_image])</pre>
+<p class="indent">
+<span id="page_247">
+</span>
+  En primer lugar, si <span class="literal1" translate="no">
+   x
+  </span>es menor que 0, la figura de palo se está moviendo hacia la izquierda, por lo que Python pasa al bloque de código que comprueba si <span class="literal1" translate="no">
+   y
+  </span>no es igual a 0 (lo que significa que la figura de palo está saltando). Si <span class="literal1" translate="no">
+   y
+  </span>no es igual a 0 (la figura del palo está saltando), utilizamos la función <span class="literal1" translate="no">
+   itemconfig
+  </span>del lienzo para cambiar la imagen mostrada a la última imagen de nuestra lista de imágenes orientadas a la izquierda en <span class="literal1" translate="no">
+   images_left[2]
+  </span>. Como la figura de palo está saltando, utilizaremos la imagen que le muestra en plena zancada para que la animación parezca un poco más realista, como puedes ver en la <a class="calibre6" href="ch16.xhtml#ch16fig01">Figura 16-1 . </a></p>
+<div class="image1">
+<img alt="Image" class="calibre171" id="ch16fig01" src="../images/16fig01.jpg" translate="no"/>
+</div>
+<p class="figcap">
+
+   Figura<em class="calibre7">16-1: </em>Imágenes de salto</p>
+<p class="indent">
+  Si la figura de palo no está saltando (es decir, <span class="literal1" translate="no">
+   y
+  </span>es igual a 0), el bloque <span class="literal1" translate="no">
+   else
+  </span><span class="ent">➊ </span>utiliza <span class="literal1" translate="no">
+   itemconfig
+  </span>para cambiar la imagen mostrada a cualquier posición de índice que esté en la variable <span class="literal1" translate="no">
+   current_image
+  </span>. </p>
+<p class="indent">
+  En la declaración <span class="literal1" translate="no">
+   elif
+  </span>, vemos si la figura de palo se está ejecutando correctamente ( <span class="literal1" translate="no">
+   x
+  </span>es mayor que 0), y Python pasa al bloque de código. Este código es muy similar al del primer bloque, de nuevo comprobando si la figura de palo está saltando y dibujando la imagen correcta en caso afirmativo, salvo que utiliza la lista <span class="literal1" translate="no">
+   images_right
+  </span>. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch16_2.html">anterior</a><a href="ch16.html">Subtema 3 de 13: (Ver todo)</a><a href="ch16_4.html">siguiente</a><br/></p>
+<br/><a href="ch16_3.docx" target="_blank"></a></footer>
+</body>
+</html>

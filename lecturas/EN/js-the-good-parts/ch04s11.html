@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Callbacks</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Callbacks"><div class="titlepage"><div><div><h1 class="title"><a id="callbacks"/>Callbacks</h1></div></div></div><p>Functions can make it easier to deal with discontinuous events. For example,
+                suppose there is a sequence that begins with a user interaction, making a request of
+                the server, and finally displaying the server's response. The naïve way to write
+                that would be:<a id="IDX-CHP-4-0233" class="indexterm"/><a id="IDX-CHP-4-0234" class="indexterm"/><a id="IDX-CHP-4-0231" class="indexterm"/><a id="IDX-CHP-4-0232" class="indexterm"/></p><a id="I_programlisting4_d1e3320"/><pre class="programlisting">request = prepare_the_request(  );
+response = send_request_synchronously(request);
+display(response);</pre><p>The problem with this approach is that a synchronous request over the network will
+                leave the client in a frozen state. If either the network or the server is slow, the
+                degradation in responsiveness will be unacceptable.</p><p>A better approach is to make an asynchronous request, providing a callback
+                function that will be invoked when the server's response is received. An
+                asynchronous function returns immediately, so the client isn't blocked:</p><a id="I_programlisting4_d1e3326"/><pre class="programlisting">request = prepare_the_request(  );
+send_request_asynchronously(request, function (response) {
+    display(response);
+    });</pre><p>We pass a function parameter to the <code class="literal">send_request_asynchronously</code> function that will be called when the
+                response is available.</p></div></body></html>

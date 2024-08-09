@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="app02lev1sec12">
+  La función exec </h3>
+<p class="noindent">
+  La función <span class="literal1" translate="no">
+   exec
+  </span>es como <span class="literal1" translate="no">
+   eval
+  </span>, salvo que puedes utilizarla para ejecutar programas más complicados. Mientras que <span class="literal1" translate="no">
+   eval
+  </span>devuelve un valor (algo que puedes guardar en una variable), <span class="literal1" translate="no">
+   exec
+  </span>no lo hace. He aquí un ejemplo: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> my_small_program = <span class="brown">'''print('ham')
+print('sandwich')'''</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">exec</span>(my_small_program)
+<span class="blue1">ham
+sandwich</span>
+</pre>
+<p class="indent">
+  En las dos primeras líneas, creamos una variable con una cadena multilínea que contiene dos sentencias <span class="literal1" translate="no">
+   print
+  </span>, y luego utilizamos <span class="literal1" translate="no">
+   exec
+  </span>para ejecutar la cadena. </p>
+<p class="indent">
+  Puedes utilizar <span class="literal1" translate="no">
+   exec
+  </span>para ejecutar miniprogramas que tu programa Python lea de archivos: ¡programas dentro de programas! Esto puede ser muy útil al escribir aplicaciones largas y complejas. Por ejemplo, podrías crear un juego de <em class="calibre7">Duelo de Robots </em>, en el que dos robots se mueven por una pantalla e intentan atacarse mutuamente. Los jugadores del juego proporcionarían las instrucciones para su robot como miniprogramas Python. El juego <em class="calibre7">Duelo </em>de Robots leería estos scripts y utilizaría <span class="literal1" translate="no">
+   exec
+  </span>para ejecutarse. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="app02_12.html">anterior</a><a href="app02.html">Subtema 13 de 25: (Ver todo)</a><a href="app02_14.html">siguiente</a><br/></p>
+<br/><a href="app02_13.docx" target="_blank"></a></footer>
+</body>
+</html>

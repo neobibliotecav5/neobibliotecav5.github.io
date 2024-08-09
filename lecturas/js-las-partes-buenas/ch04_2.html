@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/><title>Chapter 4. Functions</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h1 class="title"><a id="function_objects"></a>Objetos de función</h1><p>Las funciones en JavaScript son objetos. Los objetos son colecciones de pares nombre/valor que tienen un enlace oculto a un objeto prototipo. Los objetos producidos a partir de literales de objeto están vinculados a <code class="literal" translate="no">Object.prototype</code>. Los objetos de función están vinculados a <code class="literal" translate="no">Function.prototype</code> (que a su vez está vinculado a <code class="literal" translate="no">Object.prototype</code>). Cada función también se crea con dos propiedades ocultas adicionales: el contexto de la función y el código que implementa el comportamiento de la función.</p><p>Cada objeto función también se crea con una propiedad <code class="literal" translate="no">prototype</code>. Su valor es un objeto con una propiedad <code class="literal" translate="no">constructor</code> cuyo valor es la función. Esto es distinto del enlace oculto a <code class="literal" translate="no">Function.prototype</code>. El significado de esta enrevesada construcción se desvelará en el próximo capítulo.</p><p>Puesto que las funciones son objetos, pueden utilizarse como cualquier otro valor. Las funciones pueden almacenarse en variables, objetos y matrices. Las funciones pueden pasarse como argumentos a funciones, y las funciones pueden devolverse desde funciones. Además, como las funciones son objetos, las funciones pueden tener métodos.</p><p>Lo que tienen de especial las funciones es que se pueden invocar.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch04_1.html">anterior</a><a href="ch04.html">Subtema 2 de 2: (Ver todo)</a><br/></p>
+<br/><a href="ch04_2.docx" target="_blank"></a></footer>
+</body>
+</html>

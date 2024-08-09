@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="app02lev1sec11">
+  La función eval </h3>
+<p class="noindent">
+  La función <span class="literal1" translate="no">
+   eval
+  </span>(abreviatura de <em class="calibre7">evaluar </em>) toma una cadena como parámetro y la ejecuta como si fuera una expresión de Python. Por ejemplo, <span class="literal1" translate="no">
+   eval(’print(’’wow’’)’)
+  </span>ejecutará en realidad la expresión <span class="literal1" translate="no">
+   print(’’wow’’)
+  </span>. </p>
+<p class="indent">
+  La función <span class="literal1" translate="no">
+   eval
+  </span>sólo funciona con expresiones sencillas, como las siguientes: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">eval</span>(<span class="green">'10*5'</span>)
+<span class="blue1">50</span>
+</pre>
+<p class="indent">
+  Las expresiones que se dividen en más de una línea (como las sentencias <span class="literal1" translate="no">
+   if
+  </span>) generalmente no se evaluarán, como en este ejemplo: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">eval</span>(<span class="brown">'''if True:
+        print("this won't work at all")'''</span>)
+
+<span class="red">Traceback (most recent call last):
+  File "&lt;pyshell#2&gt;", line 1, in &lt;module&gt;
+    eval('''if True:
+  File "&lt;string&gt;", line 1
+    if True:
+    ^^
+SyntaxError: invalid syntax</span>
+</pre>
+<p class="indent">
+  La función <span class="literal1" translate="no">
+   eval
+  </span>se utiliza a menudo para convertir las entradas del usuario en expresiones de Python. Por ejemplo, puedes escribir un sencillo programa calculadora que lea las ecuaciones introducidas en Python y luego calcule (evalúe) las respuestas. </p>
+<div class="image1">
+<img alt="Image" class="calibre192" src="../images/f0309-01.jpg" translate="no"/>
+</div>
+<p class="indent">
+<span id="page_310">
+</span>
+  Como la entrada del usuario se lee como una cadena, Python necesita convertirla en números y operadores antes de realizar cualquier cálculo. La función <span class="literal1" translate="no">
+   eval
+  </span>facilita esa conversión: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> your_calculation = <span class="violet">input</span>(<span class="green">'Enter a calculation: '</span>)
+
+<span class="blue1">Enter a calculation</span>: 12*52
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">eval</span>(your_calculation)
+<span class="blue1">624</span>
+</pre>
+<p class="indent">
+  En este ejemplo, utilizamos la función <span class="literal1" translate="no">
+   input
+  </span>para leer lo que el usuario introduce en la variable <span class="literal1" translate="no">
+   your_calculation
+  </span>. En la línea siguiente, introducimos la expresión <span class="literal1" translate="no">
+   12*52
+  </span>. Utilizamos <span class="literal1" translate="no">
+   eval
+  </span>para ejecutar este cálculo, y el resultado se imprime en la última línea. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="app02_11.html">anterior</a><a href="app02.html">Subtema 12 de 25: (Ver todo)</a><a href="app02_13.html">siguiente</a><br/></p>
+<br/><a href="app02_12.docx" target="_blank"></a></footer>
+</body>
+</html>

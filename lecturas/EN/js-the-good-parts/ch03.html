@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Chapter 3. Objects</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="chapter" title="Chapter 3. Objects"><div class="titlepage"><div><div><h1 class="title"><a id="objects"/>Chapter 3. Objects</h1></div></div></div><div class="epigraph"><p>Upon a homely object Love can wink.<a id="IDX-CHP-3-0144" class="indexterm"/></p><div class="attribution"><span>—<span class="attribution">William Shakespeare, <span class="emphasis"><em>The Two Gentlemen of
+                Verona</em></span></span></span></div></div><p>The simple types of JavaScript are numbers, strings, booleans (<code class="literal">true</code> and <code class="literal">false</code>),
+                <code class="literal">null</code>, and <code class="literal">undefined</code>. All other values are <span class="emphasis"><em>objects</em></span>. Numbers,
+            strings, and booleans are object-like in that they have methods, but they are immutable.
+            Objects in JavaScript are mutable keyed collections. In JavaScript, arrays are objects,
+            functions are objects, regular expressions are objects, and, of course, objects are
+                objects.<a id="IDX-CHP-3-0145" class="indexterm"/><a id="IDX-CHP-3-0146" class="indexterm"/><a id="IDX-CHP-3-0147" class="indexterm"/><a id="IDX-CHP-3-0148" class="indexterm"/><a id="IDX-CHP-3-0149" class="indexterm"/><a id="IDX-CHP-3-0150" class="indexterm"/></p><p>An object is a container of properties, where a property has a name and a value. A
+            property name can be any string, including the empty string. A property value can be any
+            JavaScript value except for <code class="literal">undefined</code>.</p><p>Objects in JavaScript are class-free. There is no constraint on the names of new
+            properties or on the values of properties. Objects are useful for collecting and
+            organizing data. Objects can contain other objects, so they can easily represent tree or
+            graph structures.</p><p>JavaScript includes a prototype linkage feature that allows one object to inherit the
+            properties of another. When used well, this can reduce object initialization time and
+            memory consumption.</p><div class="sect1" title="Object Literals"><div class="titlepage"><div><div><h1 class="title"><a id="object_literals"/>Object Literals</h1></div></div></div><p>Object literals provide a very convenient notation for creating new object values.
+                An object literal is a pair of curly braces surrounding zero or more name/value
+                pairs. An object literal can appear anywhere an expression can appear:<a id="IDX-CHP-3-0151" class="indexterm"/><a id="IDX-CHP-3-0152" class="indexterm"/></p><a id="I_programlisting3_d1e2006"/><pre class="programlisting">var empty_object = {};
+
+var stooge = {
+    "first-name": "Jerome",
+    "last-name": "Howard"
+};</pre><p>A property's name can be any string, including the empty string. The quotes around
+                a property's name in an object literal are optional if the name would be a legal
+                JavaScript name and not a reserved word. So quotes are required around <code class="literal">"first-name"</code>, but are optional around <code class="literal">first_name</code>. Commas are used to separate the
+                pairs.</p><p>A property's value can be obtained from any expression, including another object
+                literal. Objects can nest:</p><a id="I_programlisting3_d1e2018"/><pre class="programlisting">var flight = {
+    airline: "Oceanic",
+    number: 815,
+    departure: {
+        IATA: "SYD",
+        time: "2004-09-22 14:55",
+        city: "Sydney"
+    },
+    arrival: {
+        IATA: "LAX",
+        time: "2004-09-23 10:42",
+        city: "Los Angeles"
+    }
+};</pre></div></div></body></html>

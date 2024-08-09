@@ -1,0 +1,60 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>NaN</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="NaN"><div class="titlepage"><div><div><h1 class="title"><a id="nan"></a>NaN</h1></div></div></div><p>El valor <code class="literal" translate="no">NaN</code> es una cantidad especial definida por IEEE 754. Representa <span class="emphasis"><em translate="no">not a number</em></span>aunque<a class="indexterm" id="IDX-APP-A-0521"></a><a class="indexterm" id="IDX-APP-A-0522"></a></p><a id="I_programlisting_d1e8455"></a><pre class="programlisting" translate="no">typeof NaN === 'number'    // true</pre><p>El valor se puede producir al intentar convertir una cadena en un número cuando la cadena no tiene forma de número. Por ejemplo:</p><a id="I_programlisting_d1e8459"></a><pre class="programlisting" translate="no">+ '0'       // 0
++ 'oops'    // NaN</pre><p>Si <code class="literal" translate="no">NaN</code> es un operando en una operación aritmética, entonces <code class="literal" translate="no">NaN</code> será el resultado. Por lo tanto, si tienes una cadena de fórmulas que producen <code class="literal" translate="no">NaN</code> como resultado, al menos una de las entradas era <code class="literal" translate="no">NaN</code>, o se generó <code class="literal" translate="no">NaN</code> en alguna parte.</p><p>Puedes probar <code class="literal" translate="no">NaN</code>. Como hemos visto, <code class="literal" translate="no">typeof</code> no distingue entre números y <code class="literal" translate="no">NaN</code>, y resulta que <code class="literal" translate="no">NaN</code> no es igual a sí mismo. Así que, sorprendentemente</p><a id="I_programlisting_d1e8492"></a><pre class="programlisting" translate="no">NaN === NaN    // false
+NaN !== NaN    // true</pre><p>JavaScript proporciona una función <code class="literal" translate="no">isNaN</code> que puede distinguir entre números y <code class="literal" translate="no">NaN</code>:</p><a id="I_programlisting_d1e8502"></a><pre class="programlisting" translate="no">isNaN(NaN)       // true
+isNaN(0)         // false
+isNaN('oops')    // true
+isNaN('0')       // false</pre><p>La función <code class="literal" translate="no">isFinite</code> es la mejor forma de determinar si un valor puede utilizarse como un número, porque rechaza <code class="literal" translate="no">NaN</code> y <code class="literal" translate="no">Infinity</code>. Por desgracia, <code class="literal" translate="no">isFinite</code> intentará convertir su operando en un número, por lo que no es una buena prueba si un valor no es realmente un número. Quizás quieras definir tu propia función <code class="literal" translate="no">isNumber</code>:</p><a id="I_programlisting_d1e8522"></a><pre class="programlisting" translate="no">var isNumber = function isNumber(value) {
+            return typeof value === 'number' &amp;&amp; isFinite(value);
+};</pre></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="apas09.html">← Anterior</a><a href="apas11.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="apas10.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\apas10.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Scope</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Scope"><div class="titlepage"><div><div><h1 class="title"><a id="scope"/>Scope</h1></div></div></div><p><span class="emphasis"><em>Scope</em></span> in a programming language controls the visibility and
+                lifetimes of variables and parameters. This is an important service to the
+                programmer because it reduces naming collisions and provides automatic memory
+                    management:<a id="IDX-CHP-4-0226" class="indexterm"/><a id="IDX-CHP-4-0227" class="indexterm"/><a id="IDX-CHP-4-0225" class="indexterm"/></p><a id="I_programlisting4_d1e3033"/><pre class="programlisting">var foo = function (  ) {
+    var a = 3, b = 5;
+
+    var bar = function (  ) {
+        var b = 7, c = 11;
+
+// At this point, a is 3, b is 7, and c is 11
+
+        a += b + c;
+
+// At this point, a is 21, b is 7, and c is 11
+
+    };
+
+// At this point, a is 3, b is 5, and c is not defined
+
+    bar(  );
+
+// At this point, a is 21, b is 5
+
+};</pre><p>Most languages with C syntax have block scope. All variables defined in a block (a
+                list of statements wrapped with curly braces) are not visible from outside of the
+                block. The variables defined in a block can be released when execution of the block
+                is finished. This is a good thing.<a id="IDX-CHP-4-0228" class="indexterm"/></p><p>Unfortunately, JavaScript does not have block scope even though its block syntax
+                suggests that it does. This confusion can be a source of errors.</p><p>JavaScript does have function scope. That means that the parameters and variables
+                defined in a function are not visible outside of the function, and that a variable
+                defined anywhere within a function is visible everywhere within the function.</p><p>In many modern languages, it is recommended that variables be declared as late as
+                possible, at the first point of use. That turns out to be bad advice for JavaScript
+                because it lacks block scope. So instead, it is best to declare all of the variables
+                used in a function at the top of the function body.</p></div></body></html>

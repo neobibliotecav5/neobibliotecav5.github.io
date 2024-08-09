@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch08lev1sec5">
+  Añadir características de clase </h3>
+<p class="noindent">
+  Considera las clases hijas de la clase <span class="literal1" translate="no">
+   Animate
+  </span>que definimos en la sección Hijos y padres. Podemos añadir características a cada clase que describan lo que es y lo que puede hacer. Una <em class="calibre7">característica </em>es un rasgo que comparten todos los miembros de la clase (y sus hijos). </p>
+<p class="indent">
+  Por ejemplo, ¿qué tienen en común todos los animales? Para empezar, respiran, se mueven y comen. ¿Y los mamíferos? Los mamíferos alimentan a sus crías con leche, y también respiran, se mueven y comen. Sabemos que las jirafas comen hojas de lo alto de los árboles. Y como todos los mamíferos, alimentan a sus crías con leche, respiran, se mueven y comen. Cuando añadimos estas características a nuestro diagrama de árbol, obtenemos algo como <a class="calibre6" href="ch08.xhtml#ch08fig02">la Figura 8-2 . </a></p>
+<div class="image" id="ch08fig02">
+<span id="page_100">
+</span>
+<img alt="Image" class="calibre74" src="../images/08fig02.jpg" translate="no"/>
+</div>
+<p class="figcap">
+
+   Figura 8-2<em class="calibre7">: Clases con </em>características</p>
+<p class="indent">
+  Estas características pueden considerarse acciones o funciones, cosas que puede hacer un objeto de esa clase. </p>
+<p class="indent">
+  Para añadir una función a una clase, utilizamos la palabra clave <span class="literal1" translate="no">
+   def
+  </span>. Así, la clase <span class="literal1" translate="no">
+   Animal
+  </span>tendrá este aspecto: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> Animal(Animate):
+        <span class="orange">def</span> breathe(self):
+            <span class="orange">pass</span>
+        <span class="orange">def</span> move(self):
+            <span class="orange">pass</span>
+        <span class="orange">def</span> eat_food(self):
+            <span class="orange">pass</span>
+</pre>
+<p class="indent">
+  En la primera línea de este listado, definimos la clase como antes, pero en lugar de utilizar <span class="literal1" translate="no">
+   pass
+  </span>en la línea siguiente, definimos una función llamada <span class="literal1" translate="no">
+   breathe
+  </span>y le damos el parámetro <span class="literal1" translate="no">
+   self
+  </span>. El parámetro <span class="literal1" translate="no">
+   self
+  </span>es una forma de que una función de la clase llame a otra función de la clase (y de la clase padre). Veremos cómo se utiliza este parámetro más adelante. </p>
+<div class="image">
+<img alt="Image" class="calibre75" src="../images/f0100-01.jpg" translate="no"/>
+</div>
+<p class="indent">
+  En la línea siguiente, <span class="literal1" translate="no">
+   pass
+  </span>indica a Python que no vamos a dar más información sobre la función <span class="literal1" translate="no">
+   breathe
+  </span>porque no va a hacer nada por ahora. A continuación, añadimos las funciones <span class="literal1" translate="no">
+   move
+  </span>y <span class="literal1" translate="no">
+   eat_food
+  </span>y utilizamos la palabra clave <span class="literal1" translate="no">
+   pass
+  </span>para ambas. En breve recrearemos nuestras clases y pondremos código adecuado en las funciones. Esta es una forma habitual de desarrollar programas. </p>
+<div class="note">
+<p class="notet">
+<span class="calibre2" id="page_101">
+</span>
+<strong class="calibre3"><span class="notes">NOTA </span></strong></p>
+<p class="notep">
+<em class="calibre7">A menudo, los programadores crean clases con funciones que no hacen nada, como forma de averiguar qué debe hacer la clase antes de entrar en los detalles de las funciones individuales. </em></p>
+</div>
+<p class="indent">
+  También podemos añadir funciones a las clases <span class="literal1" translate="no">
+   Mammal
+  </span>y <span class="literal1" translate="no">
+   Giraffe
+  </span>. Cada clase podrá utilizar las características (o funciones) de su clase madre, lo que significa que no necesitas crear una clase realmente complicada. En su lugar, puedes poner tus funciones en la clase padre más alta en la que se aplique la característica. (Esto hace que tus clases sean más sencillas y fáciles de entender). </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> Mammal(Animal):
+        <span class="orange">def</span> feed_young_with_milk(self):
+            <span class="orange">pass</span>
+
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> Giraffe(Mammal):
+        <span class="orange">def</span> eat_leaves_from_trees(self):
+            <span class="orange">pass</span>
+</pre>
+<p class="indent">
+  En el código anterior, la clase <span class="literal1" translate="no">
+   Mammal
+  </span>proporciona una función <span class="literal1" translate="no">
+   feed
+  </span><span class="literal1" translate="no">
+   _young_with_milk
+  </span> . La clase <span class="literal1" translate="no">
+   Giraffe
+  </span>es una clase hija (o <em class="calibre7">subclase </em>) de <span class="literal1" translate="no">
+   Mammal
+  </span>y proporciona otra función: <span class="literal1" translate="no">
+   eat_leaves_from_trees
+  </span>. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch08_5.html">anterior</a><a href="ch08.html">Subtema 6 de 14: (Ver todo)</a><a href="ch08_7.html">siguiente</a><br/></p>
+<br/><a href="ch08_6.docx" target="_blank"></a></footer>
+</body>
+</html>

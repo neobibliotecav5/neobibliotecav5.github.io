@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c14-0017">Visualización del nivel</h3>
+<p class="BodyFirst">Para mostrar el nivel del jugador en el juego, primero necesitamos un atributo en <code translate="no">GameStats</code> que represente el nivel actual. Para restablecer el nivel al comienzo de cada nueva partida, inicialízalo en <code translate="no">reset_stats()</code>:</p>
+<p class="CodeLabel" translate="no"><b>game_stats.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    def reset_stats(self):</span>
+<span class="LiteralGray">        """Initialize statistics that can change during the game."""</span>
+<span class="LiteralGray">        self.ships_left = self.settings.ship_limit</span>
+<span class="LiteralGray">        self.score = 0</span>
+<span class="LiteralGray">    </span>    self.level = 1</code></pre>
+<p>Para que <code translate="no">Scoreboard</code> muestre el nivel actual, llamamos a un nuevo método, <code translate="no">prep_level()</code>, desde <code translate="no">__init__()</code>:</p>
+<p class="CodeLabel" translate="no"><b>scoreboard.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    def __init__(self, ai_game):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">        self.prep_high_score()</span>
+    <span class="LiteralGray">    </span>self.prep_level()</code></pre>
+<p>Aquí tienes <code translate="no">prep_level()</code>:</p>
+<p class="CodeLabel" translate="no"><b>scoreboard.py</b></p>
+<pre translate="no"><code translate="no"><code translate="no">    </code>def prep_level(self):
+        """Turn the level into a rendered image."""
+        level_str = str(self.stats.level)
+<span epub:type="pagebreak" id="Page_295" title="295"></span><span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         self.level_image = self.font.render(level_str, True,
+                self.text_color, self.settings.bg_color)
+
+        # Position the level below the score.
+        self.level_rect = self.level_image.get_rect()
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         self.level_rect.right = self.score_rect.right
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>         self.level_rect.top = self.score_rect.bottom + 10</code></pre>
+<p>El método <code translate="no">prep_level()</code> crea una imagen a partir del valor almacenado en <code translate="no">stats.level</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span> y establece el atributo <code translate="no">right</code> de la imagen para que coincida con el atributo <code translate="no">right</code> de la puntuación <span aria-label="annotation2" class="CodeAnnotation">❷.</span> A continuación, establece el atributo <code translate="no">top</code> 10 píxeles por debajo de la parte inferior de la imagen de la puntuación para dejar espacio entre la puntuación y el nivel <span aria-label="annotation3" class="CodeAnnotation">❸.</span></p>
+<p>También tenemos que actualizar <code translate="no">show_score()</code>:</p>
+<p class="CodeLabel" translate="no"><b>scoreboard.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    def show_score(self):</span>
+        """Draw scores and level to the screen."""
+<span class="LiteralGray">        self.screen.blit(self.score_image, self.score_rect)</span>
+<span class="LiteralGray">        self.screen.blit(self.high_score_image, self.high_score_rect)</span>
+<span class="LiteralGray">    </span>    self.screen.blit(self.level_image, self.level_rect)</code></pre>
+<p>Esta nueva línea dibuja la imagen del nivel en la pantalla.</p>
+<p>Incrementaremos <code translate="no">stats.level</code> y actualizaremos la imagen de nivel en <code translate="no">_check_bullet_alien_collisions()</code>:</p>
+<p class="CodeLabel" translate="no"><b>alien_invasion.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    def _check_bullet_alien_collisions(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">        if not self.aliens:</span>
+<span class="LiteralGray">          </span>  <span class="LiteralGray"># Destroy existing bullets and create new fleet.</span>
+<span class="LiteralGray">            self.bullets.empty()</span>
+<span class="LiteralGray">            self._create_fleet()</span>
+<span class="LiteralGray">            self.settings.increase_speed()</span>
+
+            # Increase level.
+            self.stats.level += 1
+            self.sb.prep_level()</code></pre>
+<p>Si se destruye una flota, incrementamos el valor de <code translate="no">stats.level</code> y llamamos a <code translate="no">prep_level()</code> para asegurarnos de que el nuevo nivel se muestra correctamente.</p>
+<p>Para asegurarnos de que la imagen del nivel se actualiza correctamente al inicio de una nueva partida, también llamamos a <code translate="no">prep_level()</code> cuando el jugador pulsa el botón Jugar:</p>
+<p class="CodeLabel" translate="no"><b>alien_invasion.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    def _check_play_button(self, mouse_pos):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">        if button_clicked and not self.game_active:</span>
+<span class="LiteralGray">            </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+            <span class="LiteralGray">self.sb.prep_score()</span>
+            self.sb.prep_level()
+            <em class="LiteralGrayItalic" translate="no">--snip--</em></code></pre>
+<p>Llamamos a <code translate="no">prep_level()</code> justo después de llamar a <code translate="no">prep_score()</code>.</p>
+<p>Ahora verás cuántos niveles has completado, como se muestra en la <a href="#figure14-5" id="figureanchor14-5">Figura 14-5</a>.</p>
+<span epub:type="pagebreak" id="Page_296" title="296"></span><figure>
+<img alt="" class="keyline" height="442" src="Images/f14005.png" translate="no" width="641"/>
+<figcaption><p>Figura<a id="figure14-5">14-5</a>: El nivel actual aparece justo debajo de la puntuación actual.</p></figcaption></figure><aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c14_23.html">anterior</a><a href="c14.html">Subtema 24 de 29: (Ver todo)</a><a href="c14_25.html">siguiente</a><br/></p>
+<br/><a href="c14_24.docx" target="_blank"></a></footer>
+</body>
+</html>

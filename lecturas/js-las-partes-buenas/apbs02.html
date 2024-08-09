@@ -1,0 +1,62 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>with Statement</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="with Statement"><div class="titlepage"><div><div><h1 class="title"><a id="with_statement"></a>Declaración with</h1></div></div></div><p>JavaScript dispone de una sentencia <code class="literal" translate="no">with</code> cuya finalidad es proporcionar una forma abreviada de acceder a las propiedades de un objeto. Desgraciadamente, sus resultados a veces pueden ser impredecibles, por lo que conviene evitarla.<a class="indexterm" id="IDX-APP-B-0543"></a><a class="indexterm" id="IDX-APP-B-0544"></a><a class="indexterm" id="IDX-APP-B-0545"></a><a class="indexterm" id="IDX-APP-B-0546"></a></p><p>La sentencia:</p><a id="I_programlisting_d1e8895"></a><pre class="programlisting" translate="no">with (obj) {
+    a = b;
+}</pre><p>hace lo mismo que:</p><a id="I_programlisting_d1e8899"></a><pre class="programlisting" translate="no">if (obj.a === undefined) {
+    a = obj.b === undefined ? b : obj.b;
+} else {
+    obj.a = obj.b === undefined ? b : obj.b;
+}</pre><p>Por lo tanto, es lo mismo que una de estas declaraciones:</p><a id="I_programlisting_d1e8903"></a><pre class="programlisting" translate="no">a = b;
+a = obj.b;
+obj.a = b;
+obj.a = obj.b;</pre><p>No es posible saber leyendo el programa cuál de esas sentencias obtendrás. Puede variar de una ejecución a otra del programa. Incluso puede variar mientras se ejecuta el programa. Si no puedes leer un programa y comprender lo que va a hacer, es imposible tener confianza en que hará correctamente lo que deseas.</p><p>Simplemente por estar en el lenguaje, la sentencia <code class="literal" translate="no">with</code>ralentiza significativamente los procesadores de JavaScript porque frustra la vinculación léxica de los nombres de las variables. Era bien intencionada, pero el lenguaje sería mejor si no la tuviera.</p></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="apb.html">← Anterior</a><a href="apbs03.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="apbs02.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\apbs02.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

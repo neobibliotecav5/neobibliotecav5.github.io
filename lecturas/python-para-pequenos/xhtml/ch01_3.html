@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch01lev1sec2">
+  Instalar Python </h3>
+<p class="noindent">
+  Instalar Python es bastante sencillo. Aquí repasaremos los pasos para instalarlo en Windows, macOS, Ubuntu y Raspberry Pi. Al instalar Python, también instalarás el programa IDLE, que es el <strong class="calibre5">I ntegrated </strong> <strong class="calibre5">D eve </strong> <strong class="calibre5">L opment </strong> <strong class="calibre5">E nvironment </strong>que te permite escribir programas para Python. Si ya has instalado Python en tu ordenador, pasa a "Una vez instalado Python" en la <a class="calibre6" href="ch01.xhtml#ch01lev1sec3">página 10 . </a></p>
+<h4 class="h3" id="ch01lev2sec1">
+  Instalar Python en Windows </h4>
+<p class="noindent">
+  Para instalar Python para Microsoft Windows 11, descarga una versión de Python para Windows que sea 3.10 o superior en http://www.python.org/downloads/ <em class="calibre7"><a class="calibre6" href="http://www.python.org/downloads/">. </a></em>La versión exacta de Python que descargues no es importante, siempre que sea al menos la versión 3.10. Sin embargo, si utilizas una versión antigua de Windows (como Windows 7), la última versión de Python no funcionará; en este caso, tendrás que instalar Python 3.8. Consulta la página de descarga de Windows ( <em class="calibre7"><a class="calibre6" href="https://www.python.org/downloads/windows/">https://www.python.org/downloads/windows/ </a></em>) para saber qué versiones de Python funcionarán con tu versión de Windows. </p>
+<div class="image1" id="ch01fig01">
+<img alt="Image" class="calibre11" src="../images/01fig01.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">Figura 1-1: La descarga de Python para </em>Windows</p>
+<p class="indent">
+  Si tu navegador te pregunta si quieres guardar o abrir el archivo, elige guardarlo. Una vez que hayas descargado el archivo de instalación de Python para Windows, se te debería pedir que lo ejecutes. Si no es así, abre tu carpeta de <em class="calibre7">Descargas </em>y haz doble clic en el archivo. Ahora, sigue <span id="page_6">
+</span>las instrucciones de instalación que aparecen en pantalla para instalar Python en la ubicación predeterminada, como se indica a continuación: </p>
+<ol class="calibre9">
+<li class="noindent1">
+   Haz clic en <strong class="calibre5">Instalar ahora . </strong></li>
+<li class="noindent1">
+   Cuando se te pregunte si deseas permitir que la aplicación realice cambios en tu dispositivo, elige <strong class="calibre5">Sí . </strong></li>
+<li class="noindent1">
+   Haz clic en <strong class="calibre5">Cerrar </strong>una vez finalizada la instalación, y deberías ver varios <em class="calibre7">iconos </em>de Python 3.1 <em class="calibre7">x </em>en tu menú Inicio de Windows:  </li>
+</ol>
+<div class="image1" id="ch01fig02">
+<img alt="Image" class="calibre12" src="../images/01fig02.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">Figura 1-2: Tu menú Inicio puede tener un aspecto diferente según la versión de Python que utilices. </em></p>
+<p class="indent">
+  Ahora pasa a "Una vez que hayas instalado Python" en la <a class="calibre6" href="ch01.xhtml#ch01lev1sec3">página 10 </a>para empezar a utilizar Python. </p>
+<h4 class="h3" id="ch01lev2sec2">
+  Instalar Python en macOS </h4>
+<p class="noindent">
+  Si utilizas un Mac, deberías encontrar una versión de Python preinstalada, pero podría ser una versión antigua del lenguaje. Para asegurarte de que estás ejecutando una versión lo suficientemente reciente, haz clic en el icono del foco (la lupa de la esquina superior derecha), y escribe <strong class="calibre5">terminal </strong>en el cuadro de diálogo que aparece. Cuando se abra el terminal, escribe  <strong class="calibre5">
+<span class="literal1" translate="no">
+    python3 --version
+   </span>
+</strong>
+  (son dos guiones, seguidos de la palabra <em class="calibre7">versión </em>) y pulsa ENTER. </p>
+<p class="indent">
+  Si ves <span class="literal1" translate="no">
+   command not found
+  </span>o una versión inferior a la 3.10, dirige tu navegador a la siguiente URL para descargar el último instalador para macOS: <em class="calibre7"><a class="calibre6" href="http://www.python.org/downloads/">http://www.python.org/downloads/ </a></em>. </p>
+<div class="image1" id="ch01fig03">
+<img alt="Image" class="calibre13" src="../images/01fig03.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">Figura 1-3: Descarga de Python para </em>macOS</p>
+<p class="indent">
+<span id="page_7">
+</span>
+  Una vez descargado, haz doble clic en el archivo (debe llamarse algo así como <em class="calibre7">python-3.10.0-macosx11.pkg </em>) <em class="calibre7">. </em>Acepta la licencia y sigue las instrucciones en pantalla para instalar el software. Se te pedirá la contraseña de administrador de tu Mac antes de instalar Python. Si no tienes la contraseña, pídesela a tus padres o a quien sea el propietario de tu máquina. </p>
+<div class="image1" id="ch01fig04">
+<img alt="Image" class="calibre14" src="../images/01fig04.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figura 1-4: </em>Python<em class="calibre7">en el Finder del </em>Mac</p>
+<p class="indent">
+  Pasa a "Una vez instalado Python" en la <a class="calibre6" href="ch01.xhtml#ch01lev1sec3">página 10 </a>para empezar a utilizar Python. </p>
+<h4 class="h3" id="ch01lev2sec3">
+  Instalar Python en Ubuntu </h4>
+<p class="noindent">
+  Python viene preinstalado en Ubuntu Linux, pero puede que no sea la última versión. Sigue estas instrucciones para obtener la última versión de Python (ten en cuenta que puede que tengas que cambiar el número de versión en el comando que sigue para reflejar la última versión). </p>
+<ol class="calibre9">
+<li class="noindent1">
+<span id="page_8">
+</span>
+   Haz clic en el icono Mostrar aplicaciones (normalmente nueve puntos en la esquina inferior izquierda de la pantalla).  </li>
+<li class="noindent1">
+   Introduce <strong class="calibre5">terminal </strong>en el cuadro de entrada (o haz clic en <strong class="calibre5">Terminal </strong>si ya aparece).  </li>
+<li class="noindent1">
+   Cuando aparezca la ventana de terminal, introduce   <pre class="pre" translate="no">sudo apt update
+sudo apt install python<span class="codeitalic">3.10</span> idle-python<span class="codeitalic">3.10</span></pre>
+<p class="noindent">
+    Es posible que se te pida que introduzcas la contraseña de administrador de tu ordenador después de introducir el primer comando (si no tienes la contraseña de administrador, es posible que tengas que pedírsela a uno de tus padres o a un profesor).   </p>
+</li>
+</ol>
+<div class="image1" id="ch01fig05">
+<img alt="Image" class="calibre15" src="../images/01fig05.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figura 1-5: Instalación de Python en el Terminal en Ubuntu; tu salida puede ser ligeramente diferente dependiendo de la versión que descargues </em></p>
+<p class="indent">
+  Pasa a "Una vez que hayas instalado Python" en la <a class="calibre6" href="ch01.xhtml#ch01lev1sec3">página 10 </a>para empezar a utilizar Python. </p>
+<h4 class="h3" id="ch01lev2sec4">
+  Instalar Python en Raspberry Pi (Raspberry Pi OS o Raspbian) </h4>
+<p class="noindent">
+  Python 3 viene preinstalado con el sistema operativo de Raspberry Pi, pero en el momento de escribir esto, es la versión 3.7. Instalar una versión posterior es algo más complicado que con los otros sistemas operativos: tienes que descargar y compilar tú mismo la instalación de Python <span id="page_9">
+</span>. Esto no da tanto miedo como parece. Simplemente introduce los siguientes comandos uno a uno y espera a que se complete cada uno (ten en cuenta que puede que tengas que cambiar los números de versión si estás descargando una versión de Python posterior a la 3.10): </p>
+<pre class="pre" translate="no">sudo apt update
+sudo apt install libffi-dev libssl-dev tk tk-dev
+wget https://www.python.org/ftp/python/<span class="codeitalic">3.10.0</span>/Python-<span class="codeitalic">3.10.0</span>.tar.xz
+tar -xvf Python<span class="codeitalic">3.10.0</span>.tar.xz
+cd Python-<span class="codeitalic">3.10.0</span>
+./configure --prefix=/usr/local/opt/python-<span class="codeitalic">3.10.0</span>
+make -j 4
+sudo make altinstall</pre>
+<p class="indent">
+  El penúltimo paso es el que más tardará en completarse porque está construyendo todo el código que va en la aplicación Python. </p>
+<div class="image1" id="ch01fig06">
+<img alt="Image" class="calibre16" src="../images/01fig06.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figura 1-6: Instalación de Python en el Terminal en la Raspberry Pi; el resultado puede ser ligeramente diferente según la versión de Python que descargues. </em></p>
+<p class="indent">
+  Una vez instalado Python, tienes que añadir un programa llamado IDLE en el menú (esto te facilitará la vida más adelante): </p>
+<ol class="calibre9">
+<li class="noindent1">
+   Haz clic en el icono de la frambuesa en la parte superior izquierda de la pantalla, luego en <strong class="calibre5">Preferencias </strong>y <strong class="calibre5">Editor del Menú Principal . </strong></li>
+<li class="noindent1">
+<span id="page_10">
+</span>
+   En la ventana que aparece, haz clic en <strong class="calibre5">Programación </strong>y, a continuación, en el botón <strong class="calibre5">Nuevo elemento </strong>.  </li>
+<li class="noindent1">
+   En el cuadro de diálogo Propiedades del Lanzador que se muestra en <a class="calibre6" href="ch01.xhtml#ch01fig07">la Figura 1-7 </a>, introduce el nombre <strong class="calibre5">idle3.10 </strong>, e introduce esto como comando, cambiando el número de versión según sea necesario: <pre class="pre" translate="no">/usr/local/opt/python-3.10.0/bin/idle3.10</pre></li>
+<li class="noindent1">
+   Haz clic en <strong class="calibre5">Aceptar </strong>, y de nuevo en <strong class="calibre5">Aceptar </strong>en la ventana principal del editor para finalizar. Entonces podrás pasar a la siguiente sección.  </li>
+</ol>
+<div class="image1" id="ch01fig07">
+<img alt="Image" class="calibre17" src="../images/01fig07.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figura 1-7: Lanzador configurado en la Raspberry Pi </em></p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch01_2.html">anterior</a><a href="ch01.html">Subtema 3 de 6: (Ver todo)</a><a href="ch01_4.html">siguiente</a><br/></p>
+<br/><a href="ch01_3.docx" target="_blank"></a></footer>
+</body>
+</html>

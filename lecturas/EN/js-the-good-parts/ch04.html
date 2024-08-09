@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Chapter 4. Functions</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="chapter" title="Chapter 4. Functions"><div class="titlepage"><div><div><h1 class="title"><a id="functions"/>Chapter 4. Functions</h1></div></div></div><div class="epigraph"><p>Why, every fault's condemn'd ere it be done: Mine were the very cipher of a
+                function. . .<a id="IDX-CHP-4-0182" class="indexterm"/><a id="IDX-CHP-4-0183" class="indexterm"/></p><div class="attribution"><span>—<span class="attribution">William Shakespeare, <span class="emphasis"><em>Measure for Measure</em></span></span></span></div></div><p>The best thing about JavaScript is its implementation of functions. It got almost
+            everything right. But, as you should expect with JavaScript, it didn't get everything
+            right.</p><p>A function encloses a set of statements. Functions are the fundamental modular unit of
+            JavaScript. They are used for code reuse, information hiding, and composition. Functions
+            are used to specify the behavior of objects. Generally, the craft of programming is the
+            factoring of a set of requirements into a set of functions and data
+                structures.<a id="IDX-CHP-4-0184" class="indexterm"/></p><div class="sect1" title="Function Objects"><div class="titlepage"><div><div><h1 class="title"><a id="function_objects"/>Function Objects</h1></div></div></div><p>Functions in JavaScript are objects. Objects are collections of name/value pairs
+                having a hidden link to a prototype object. Objects produced from object literals
+                are linked to <code class="literal">Object.prototype</code>. Function objects
+                are linked to <code class="literal">Function.prototype</code> (which is itself
+                linked to <code class="literal">Object.prototype</code>). Every function is
+                also created with two additional hidden properties: the function's context and the
+                code that implements the function's behavior.</p><p>Every function object is also created with a <code class="literal">prototype</code> property. Its value is an object with a <code class="literal">constructor</code> property whose value is the function. This
+                is distinct from the hidden link to <code class="literal">Function.prototype</code>. The meaning of this convoluted construction will
+                be revealed in the next chapter.</p><p>Since functions are objects, they can be used like any other value. Functions can
+                be stored in variables, objects, and arrays. Functions can be passed as arguments to
+                functions, and functions can be returned from functions. Also, since functions are
+                objects, functions can have methods.</p><p>The thing that is special about functions is that they can be invoked.</p></div></div></body></html>

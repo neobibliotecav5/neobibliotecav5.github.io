@@ -1,0 +1,885 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
+  <head>
+    <meta name="cover" content="cover"/>
+    <meta name="dtb:uid" content="isbn:9780596158736"/>
+    <meta name="dtb:depth" content="-1"/>
+    <meta name="dtb:totalPageCount" content="0"/>
+    <meta name="dtb:maxPageNumber" content="0"/>
+  </head>
+  <docTitle>
+    <text>JavaScript: The Good Parts</text>
+  </docTitle>
+  <navMap>
+    <navPoint id="id2669158" playOrder="1">
+      <navLabel>
+        <text>JavaScript: The Good Parts</text>
+      </navLabel>
+      <content src="index.html"/>
+      <navPoint id="id2770382" playOrder="2">
+        <navLabel>
+          <text>A Note Regarding Supplemental Files</text>
+        </navLabel>
+        <content src="examples_page.html"/>
+      </navPoint>
+      <navPoint id="id2730281" playOrder="3">
+        <navLabel>
+          <text>Preface</text>
+        </navLabel>
+        <content src="pr02.html"/>
+        <navPoint id="id2714782" playOrder="4">
+          <navLabel>
+            <text>Conventions Used in This Book</text>
+          </navLabel>
+          <content src="pr02.html#conventions_used_in_this_book"/>
+        </navPoint>
+        <navPoint id="id2663852" playOrder="5">
+          <navLabel>
+            <text>Using Code Examples</text>
+          </navLabel>
+          <content src="pr02s02.html"/>
+        </navPoint>
+        <navPoint id="id2676257" playOrder="6">
+          <navLabel>
+            <text>Safari® Books Online</text>
+          </navLabel>
+          <content src="pr02s03.html"/>
+        </navPoint>
+        <navPoint id="id2757085" playOrder="7">
+          <navLabel>
+            <text>How to Contact Us</text>
+          </navLabel>
+          <content src="pr02s04.html"/>
+        </navPoint>
+        <navPoint id="id2739304" playOrder="8">
+          <navLabel>
+            <text>Acknowledgments</text>
+          </navLabel>
+          <content src="pr02s05.html"/>
+        </navPoint>
+      </navPoint>
+      <navPoint id="id2597861" playOrder="9">
+        <navLabel>
+          <text>1. Good Parts</text>
+        </navLabel>
+        <content src="ch01.html"/>
+        <navPoint id="id2597970" playOrder="10">
+          <navLabel>
+            <text>Why JavaScript?</text>
+          </navLabel>
+          <content src="ch01.html#why_javascript_question"/>
+        </navPoint>
+        <navPoint id="id2598008" playOrder="11">
+          <navLabel>
+            <text>Analyzing JavaScript</text>
+          </navLabel>
+          <content src="ch01s02.html"/>
+        </navPoint>
+        <navPoint id="id2658794" playOrder="12">
+          <navLabel>
+            <text>A Simple Testing Ground</text>
+          </navLabel>
+          <content src="ch01s03.html"/>
+        </navPoint>
+      </navPoint>
+      <navPoint id="id2676283" playOrder="13">
+        <navLabel>
+          <text>2. Grammar</text>
+        </navLabel>
+        <content src="ch02.html"/>
+        <navPoint id="id2770046" playOrder="14">
+          <navLabel>
+            <text>Whitespace</text>
+          </navLabel>
+          <content src="ch02.html#whitespace"/>
+        </navPoint>
+        <navPoint id="id2598273" playOrder="15">
+          <navLabel>
+            <text>Names</text>
+          </navLabel>
+          <content src="ch02s02.html"/>
+        </navPoint>
+        <navPoint id="id2597720" playOrder="16">
+          <navLabel>
+            <text>Numbers</text>
+          </navLabel>
+          <content src="ch02s03.html"/>
+        </navPoint>
+        <navPoint id="id2757920" playOrder="17">
+          <navLabel>
+            <text>Strings</text>
+          </navLabel>
+          <content src="ch02s04.html"/>
+        </navPoint>
+        <navPoint id="id2758286" playOrder="18">
+          <navLabel>
+            <text>Statements</text>
+          </navLabel>
+          <content src="ch02s05.html"/>
+        </navPoint>
+        <navPoint id="id2776259" playOrder="19">
+          <navLabel>
+            <text>Expressions</text>
+          </navLabel>
+          <content src="ch02s06.html"/>
+        </navPoint>
+        <navPoint id="id2777292" playOrder="20">
+          <navLabel>
+            <text>Literals</text>
+          </navLabel>
+          <content src="ch02s07.html"/>
+        </navPoint>
+        <navPoint id="id2777521" playOrder="21">
+          <navLabel>
+            <text>Functions</text>
+          </navLabel>
+          <content src="ch02s08.html"/>
+        </navPoint>
+      </navPoint>
+      <navPoint id="id2777672" playOrder="22">
+        <navLabel>
+          <text>3. Objects</text>
+        </navLabel>
+        <content src="ch03.html"/>
+        <navPoint id="id2777818" playOrder="23">
+          <navLabel>
+            <text>Object Literals</text>
+          </navLabel>
+          <content src="ch03.html#object_literals"/>
+        </navPoint>
+        <navPoint id="id2777904" playOrder="24">
+          <navLabel>
+            <text>Retrieval</text>
+          </navLabel>
+          <content src="ch03s02.html"/>
+        </navPoint>
+        <navPoint id="id2778094" playOrder="25">
+          <navLabel>
+            <text>Update</text>
+          </navLabel>
+          <content src="ch03s03.html"/>
+        </navPoint>
+        <navPoint id="id2778155" playOrder="26">
+          <navLabel>
+            <text>Reference</text>
+          </navLabel>
+          <content src="ch03s04.html"/>
+        </navPoint>
+        <navPoint id="id2778193" playOrder="27">
+          <navLabel>
+            <text>Prototype</text>
+          </navLabel>
+          <content src="ch03s05.html"/>
+        </navPoint>
+        <navPoint id="id2778390" playOrder="28">
+          <navLabel>
+            <text>Reflection</text>
+          </navLabel>
+          <content src="ch03s06.html"/>
+        </navPoint>
+        <navPoint id="id2778530" playOrder="29">
+          <navLabel>
+            <text>Enumeration</text>
+          </navLabel>
+          <content src="ch03s07.html"/>
+        </navPoint>
+        <navPoint id="id2778688" playOrder="30">
+          <navLabel>
+            <text>Delete</text>
+          </navLabel>
+          <content src="ch03s08.html"/>
+        </navPoint>
+        <navPoint id="id2778737" playOrder="31">
+          <navLabel>
+            <text>Global Abatement</text>
+          </navLabel>
+          <content src="ch03s09.html"/>
+        </navPoint>
+      </navPoint>
+      <navPoint id="id2778822" playOrder="32">
+        <navLabel>
+          <text>4. Functions</text>
+        </navLabel>
+        <content src="ch04.html"/>
+        <navPoint id="id2778894" playOrder="33">
+          <navLabel>
+            <text>Function Objects</text>
+          </navLabel>
+          <content src="ch04.html#function_objects"/>
+        </navPoint>
+        <navPoint id="id2778966" playOrder="34">
+          <navLabel>
+            <text>Function Literal</text>
+          </navLabel>
+          <content src="ch04s02.html"/>
+        </navPoint>
+        <navPoint id="id2779074" playOrder="35">
+          <navLabel>
+            <text>Invocation</text>
+          </navLabel>
+          <content src="ch04s03.html"/>
+          <navPoint id="id2779186" playOrder="36">
+            <navLabel>
+              <text>The Method Invocation Pattern</text>
+            </navLabel>
+            <content src="ch04s03.html#the_method_invocation_pattern"/>
+          </navPoint>
+          <navPoint id="id2779299" playOrder="37">
+            <navLabel>
+              <text>The Function Invocation Pattern</text>
+            </navLabel>
+            <content src="ch04s03.html#the_function_invocation_pattern"/>
+          </navPoint>
+          <navPoint id="id2779413" playOrder="38">
+            <navLabel>
+              <text>The Constructor Invocation Pattern</text>
+            </navLabel>
+            <content src="ch04s03.html#the_constructor_invocation_pattern"/>
+          </navPoint>
+          <navPoint id="id2779600" playOrder="39">
+            <navLabel>
+              <text>The Apply Invocation Pattern</text>
+            </navLabel>
+            <content src="ch04s03.html#the_apply_invocation_pattern"/>
+          </navPoint>
+        </navPoint>
+        <navPoint id="id2779684" playOrder="40">
+          <navLabel>
+            <text>Arguments</text>
+          </navLabel>
+          <content src="ch04s04.html"/>
+        </navPoint>
+        <navPoint id="id2779805" playOrder="41">
+          <navLabel>
+            <text>Return</text>
+          </navLabel>
+          <content src="ch04s05.html"/>
+        </navPoint>
+        <navPoint id="id2779892" playOrder="42">
+          <navLabel>
+            <text>Exceptions</text>
+          </navLabel>
+          <content src="ch04s06.html"/>
+        </navPoint>
+        <navPoint id="id2780069" playOrder="43">
+          <navLabel>
+            <text>Augmenting Types</text>
+          </navLabel>
+          <content src="ch04s07.html"/>
+        </navPoint>
+        <navPoint id="id2780304" playOrder="44">
+          <navLabel>
+            <text>Recursion</text>
+          </navLabel>
+          <content src="ch04s08.html"/>
+        </navPoint>
+        <navPoint id="id2780627" playOrder="45">
+          <navLabel>
+            <text>Scope</text>
+          </navLabel>
+          <content src="ch04s09.html"/>
+        </navPoint>
+        <navPoint id="id2780734" playOrder="46">
+          <navLabel>
+            <text>Closure</text>
+          </navLabel>
+          <content src="ch04s10.html"/>
+        </navPoint>
+        <navPoint id="id2781300" playOrder="47">
+          <navLabel>
+            <text>Callbacks</text>
+          </navLabel>
+          <content src="ch04s11.html"/>
+        </navPoint>
+        <navPoint id="id2781412" playOrder="48">
+          <navLabel>
+            <text>Module</text>
+          </navLabel>
+          <content src="ch04s12.html"/>
+        </navPoint>
+        <navPoint id="id2781686" playOrder="49">
+          <navLabel>
+            <text>Cascade</text>
+          </navLabel>
+          <content src="ch04s13.html"/>
+        </navPoint>
+        <navPoint id="id2781798" playOrder="50">
+          <navLabel>
+            <text>Curry</text>
+          </navLabel>
+          <content src="ch04s14.html"/>
+        </navPoint>
+        <navPoint id="id2781973" playOrder="51">
+          <navLabel>
+            <text>Memoization</text>
+          </navLabel>
+          <content src="ch04s15.html"/>
+        </navPoint>
+      </navPoint>
+      <navPoint id="id2782254" playOrder="52">
+        <navLabel>
+          <text>5. Inheritance</text>
+        </navLabel>
+        <content src="ch05.html"/>
+        <navPoint id="id2782357" playOrder="53">
+          <navLabel>
+            <text>Pseudoclassical</text>
+          </navLabel>
+          <content src="ch05.html#pseudoclassical"/>
+        </navPoint>
+        <navPoint id="id2782950" playOrder="54">
+          <navLabel>
+            <text>Object Specifiers</text>
+          </navLabel>
+          <content src="ch05s02.html"/>
+        </navPoint>
+        <navPoint id="id2783051" playOrder="55">
+          <navLabel>
+            <text>Prototypal</text>
+          </navLabel>
+          <content src="ch05s03.html"/>
+        </navPoint>
+        <navPoint id="id2783228" playOrder="56">
+          <navLabel>
+            <text>Functional</text>
+          </navLabel>
+          <content src="ch05s04.html"/>
+        </navPoint>
+        <navPoint id="id2784065" playOrder="57">
+          <navLabel>
+            <text>Parts</text>
+          </navLabel>
+          <content src="ch05s05.html"/>
+        </navPoint>
+      </navPoint>
+      <navPoint id="id2784249" playOrder="58">
+        <navLabel>
+          <text>6. Arrays</text>
+        </navLabel>
+        <content src="ch06.html"/>
+        <navPoint id="id2784308" playOrder="59">
+          <navLabel>
+            <text>Array Literals</text>
+          </navLabel>
+          <content src="ch06.html#array_literals"/>
+        </navPoint>
+        <navPoint id="id2784474" playOrder="60">
+          <navLabel>
+            <text>Length</text>
+          </navLabel>
+          <content src="ch06s02.html"/>
+        </navPoint>
+        <navPoint id="id2784698" playOrder="61">
+          <navLabel>
+            <text>Delete</text>
+          </navLabel>
+          <content src="ch06s03.html"/>
+        </navPoint>
+        <navPoint id="id2784843" playOrder="62">
+          <navLabel>
+            <text>Enumeration</text>
+          </navLabel>
+          <content src="ch06s04.html"/>
+        </navPoint>
+        <navPoint id="id2784926" playOrder="63">
+          <navLabel>
+            <text>Confusion</text>
+          </navLabel>
+          <content src="ch06s05.html"/>
+        </navPoint>
+        <navPoint id="id2785039" playOrder="64">
+          <navLabel>
+            <text>Methods</text>
+          </navLabel>
+          <content src="ch06s06.html"/>
+        </navPoint>
+        <navPoint id="id2785255" playOrder="65">
+          <navLabel>
+            <text>Dimensions</text>
+          </navLabel>
+          <content src="ch06s07.html"/>
+        </navPoint>
+      </navPoint>
+      <navPoint id="id2785637" playOrder="66">
+        <navLabel>
+          <text>7. Regular Expressions</text>
+        </navLabel>
+        <content src="ch07.html"/>
+        <navPoint id="id2785803" playOrder="67">
+          <navLabel>
+            <text>An Example</text>
+          </navLabel>
+          <content src="ch07.html#an_example"/>
+        </navPoint>
+        <navPoint id="id2786833" playOrder="68">
+          <navLabel>
+            <text>Construction</text>
+          </navLabel>
+          <content src="ch07s02.html"/>
+        </navPoint>
+        <navPoint id="id2787466" playOrder="69">
+          <navLabel>
+            <text>Elements</text>
+          </navLabel>
+          <content src="ch07s03.html"/>
+          <navPoint id="id2787503" playOrder="70">
+            <navLabel>
+              <text>Regexp Choice</text>
+            </navLabel>
+            <content src="ch07s03.html#regexp_choice"/>
+          </navPoint>
+          <navPoint id="id2787620" playOrder="71">
+            <navLabel>
+              <text>Regexp Sequence</text>
+            </navLabel>
+            <content src="ch07s03.html#regexp_sequence"/>
+          </navPoint>
+          <navPoint id="id2787698" playOrder="72">
+            <navLabel>
+              <text>Regexp Factor</text>
+            </navLabel>
+            <content src="ch07s03.html#regexp_factor"/>
+          </navPoint>
+          <navPoint id="id2788066" playOrder="73">
+            <navLabel>
+              <text>Regexp Escape</text>
+            </navLabel>
+            <content src="ch07s03.html#regexp_escape"/>
+          </navPoint>
+          <navPoint id="id2788400" playOrder="74">
+            <navLabel>
+              <text>Regexp Group</text>
+            </navLabel>
+            <content src="ch07s03.html#regexp_group"/>
+          </navPoint>
+          <navPoint id="id2788666" playOrder="75">
+            <navLabel>
+              <text>Regexp Class</text>
+            </navLabel>
+            <content src="ch07s03.html#regexp_class"/>
+          </navPoint>
+          <navPoint id="id2788912" playOrder="76">
+            <navLabel>
+              <text>Regexp Class Escape</text>
+            </navLabel>
+            <content src="ch07s03.html#regexp_class_escape"/>
+          </navPoint>
+          <navPoint id="id2789012" playOrder="77">
+            <navLabel>
+              <text>Regexp Quantifier</text>
+            </navLabel>
+            <content src="ch07s03.html#regexp_quantifier"/>
+          </navPoint>
+        </navPoint>
+      </navPoint>
+      <navPoint id="id2790066" playOrder="78">
+        <navLabel>
+          <text>8. Methods</text>
+        </navLabel>
+        <content src="ch08.html"/>
+      </navPoint>
+      <navPoint id="id2793324" playOrder="79">
+        <navLabel>
+          <text>9. Style</text>
+        </navLabel>
+        <content src="ch09.html"/>
+      </navPoint>
+      <navPoint id="id2793970" playOrder="80">
+        <navLabel>
+          <text>10. Beautiful Features</text>
+        </navLabel>
+        <content src="ch10.html"/>
+      </navPoint>
+      <navPoint id="id2794247" playOrder="81">
+        <navLabel>
+          <text>A. Awful Parts</text>
+        </navLabel>
+        <content src="apa.html"/>
+        <navPoint id="id2794286" playOrder="82">
+          <navLabel>
+            <text>Global Variables</text>
+          </navLabel>
+          <content src="apa.html#global_variables"/>
+        </navPoint>
+        <navPoint id="id2794434" playOrder="83">
+          <navLabel>
+            <text>Scope</text>
+          </navLabel>
+          <content src="apas02.html"/>
+        </navPoint>
+        <navPoint id="id2794486" playOrder="84">
+          <navLabel>
+            <text>Semicolon Insertion</text>
+          </navLabel>
+          <content src="apas03.html"/>
+        </navPoint>
+        <navPoint id="id2794594" playOrder="85">
+          <navLabel>
+            <text>Reserved Words</text>
+          </navLabel>
+          <content src="apas04.html"/>
+        </navPoint>
+        <navPoint id="id2794695" playOrder="86">
+          <navLabel>
+            <text>Unicode</text>
+          </navLabel>
+          <content src="apas05.html"/>
+        </navPoint>
+        <navPoint id="id2794743" playOrder="87">
+          <navLabel>
+            <text>typeof</text>
+          </navLabel>
+          <content src="apas06.html"/>
+        </navPoint>
+        <navPoint id="id2794900" playOrder="88">
+          <navLabel>
+            <text>parseInt</text>
+          </navLabel>
+          <content src="apas07.html"/>
+        </navPoint>
+        <navPoint id="id2795024" playOrder="89">
+          <navLabel>
+            <text>+</text>
+          </navLabel>
+          <content src="apas08.html"/>
+        </navPoint>
+        <navPoint id="id2795055" playOrder="90">
+          <navLabel>
+            <text>Floating Point</text>
+          </navLabel>
+          <content src="apas09.html"/>
+        </navPoint>
+        <navPoint id="id2795111" playOrder="91">
+          <navLabel>
+            <text>NaN</text>
+          </navLabel>
+          <content src="apas10.html"/>
+        </navPoint>
+        <navPoint id="id2795325" playOrder="92">
+          <navLabel>
+            <text>Phony Arrays</text>
+          </navLabel>
+          <content src="apas11.html"/>
+        </navPoint>
+        <navPoint id="id2795426" playOrder="93">
+          <navLabel>
+            <text>Falsy Values</text>
+          </navLabel>
+          <content src="apas12.html"/>
+        </navPoint>
+        <navPoint id="id2795817" playOrder="94">
+          <navLabel>
+            <text>hasOwnProperty</text>
+          </navLabel>
+          <content src="apas13.html"/>
+        </navPoint>
+        <navPoint id="id2795915" playOrder="95">
+          <navLabel>
+            <text>Object</text>
+          </navLabel>
+          <content src="apas14.html"/>
+        </navPoint>
+      </navPoint>
+      <navPoint id="id2796087" playOrder="96">
+        <navLabel>
+          <text>B. Bad Parts</text>
+        </navLabel>
+        <content src="apb.html"/>
+        <navPoint id="id2796117" playOrder="97">
+          <navLabel>
+            <text>==</text>
+          </navLabel>
+          <content src="apb.html#equalsequals"/>
+        </navPoint>
+        <navPoint id="id2796286" playOrder="98">
+          <navLabel>
+            <text>with Statement</text>
+          </navLabel>
+          <content src="apbs02.html"/>
+        </navPoint>
+        <navPoint id="id2796419" playOrder="99">
+          <navLabel>
+            <text>eval</text>
+          </navLabel>
+          <content src="apbs03.html"/>
+        </navPoint>
+        <navPoint id="id2796580" playOrder="100">
+          <navLabel>
+            <text>continue Statement</text>
+          </navLabel>
+          <content src="apbs04.html"/>
+        </navPoint>
+        <navPoint id="id2796709" playOrder="101">
+          <navLabel>
+            <text>switch Fall Through</text>
+          </navLabel>
+          <content src="apbs05.html"/>
+        </navPoint>
+        <navPoint id="id2796764" playOrder="102">
+          <navLabel>
+            <text>Block-less Statements</text>
+          </navLabel>
+          <content src="apbs06.html"/>
+        </navPoint>
+        <navPoint id="id2796881" playOrder="103">
+          <navLabel>
+            <text>++ −−</text>
+          </navLabel>
+          <content src="apbs07.html"/>
+        </navPoint>
+        <navPoint id="id2797037" playOrder="104">
+          <navLabel>
+            <text>Bitwise Operators</text>
+          </navLabel>
+          <content src="apbs08.html"/>
+        </navPoint>
+        <navPoint id="id2797116" playOrder="105">
+          <navLabel>
+            <text>The function Statement Versus the function Expression</text>
+          </navLabel>
+          <content src="apbs09.html"/>
+        </navPoint>
+        <navPoint id="id2797302" playOrder="106">
+          <navLabel>
+            <text>Typed Wrappers</text>
+          </navLabel>
+          <content src="apbs10.html"/>
+        </navPoint>
+        <navPoint id="id2797448" playOrder="107">
+          <navLabel>
+            <text>new</text>
+          </navLabel>
+          <content src="apbs11.html"/>
+        </navPoint>
+        <navPoint id="id2797527" playOrder="108">
+          <navLabel>
+            <text>void</text>
+          </navLabel>
+          <content src="apbs12.html"/>
+        </navPoint>
+      </navPoint>
+      <navPoint id="id2797592" playOrder="109">
+        <navLabel>
+          <text>C. JSLint</text>
+        </navLabel>
+        <content src="apc.html"/>
+        <navPoint id="id2797717" playOrder="110">
+          <navLabel>
+            <text>Undefined Variables and Functions</text>
+          </navLabel>
+          <content src="apc.html#undefined_variables_and_functions"/>
+        </navPoint>
+        <navPoint id="id2797945" playOrder="111">
+          <navLabel>
+            <text>Members</text>
+          </navLabel>
+          <content src="apcs02.html"/>
+        </navPoint>
+        <navPoint id="id2798012" playOrder="112">
+          <navLabel>
+            <text>Options</text>
+          </navLabel>
+          <content src="apcs03.html"/>
+        </navPoint>
+        <navPoint id="id2799073" playOrder="113">
+          <navLabel>
+            <text>Semicolon</text>
+          </navLabel>
+          <content src="apcs04.html"/>
+        </navPoint>
+        <navPoint id="id2799227" playOrder="114">
+          <navLabel>
+            <text>Line Breaking</text>
+          </navLabel>
+          <content src="apcs05.html"/>
+        </navPoint>
+        <navPoint id="id2799296" playOrder="115">
+          <navLabel>
+            <text>Comma</text>
+          </navLabel>
+          <content src="apcs06.html"/>
+        </navPoint>
+        <navPoint id="id2799396" playOrder="116">
+          <navLabel>
+            <text>Required Blocks</text>
+          </navLabel>
+          <content src="apcs07.html"/>
+        </navPoint>
+        <navPoint id="id2799490" playOrder="117">
+          <navLabel>
+            <text>Forbidden Blocks</text>
+          </navLabel>
+          <content src="apcs08.html"/>
+        </navPoint>
+        <navPoint id="id2799572" playOrder="118">
+          <navLabel>
+            <text>Expression Statements</text>
+          </navLabel>
+          <content src="apcs09.html"/>
+        </navPoint>
+        <navPoint id="id2799688" playOrder="119">
+          <navLabel>
+            <text>for in Statement</text>
+          </navLabel>
+          <content src="apcs10.html"/>
+        </navPoint>
+        <navPoint id="id2799745" playOrder="120">
+          <navLabel>
+            <text>switch Statement</text>
+          </navLabel>
+          <content src="apcs11.html"/>
+        </navPoint>
+        <navPoint id="id2799789" playOrder="121">
+          <navLabel>
+            <text>var Statement</text>
+          </navLabel>
+          <content src="apcs12.html"/>
+        </navPoint>
+        <navPoint id="id2799888" playOrder="122">
+          <navLabel>
+            <text>with Statement</text>
+          </navLabel>
+          <content src="apcs13.html"/>
+        </navPoint>
+        <navPoint id="id2800047" playOrder="123">
+          <navLabel>
+            <text>=</text>
+          </navLabel>
+          <content src="apcs14.html"/>
+        </navPoint>
+        <navPoint id="id2800103" playOrder="124">
+          <navLabel>
+            <text>== and !=</text>
+          </navLabel>
+          <content src="apcs15.html"/>
+        </navPoint>
+        <navPoint id="id2800254" playOrder="125">
+          <navLabel>
+            <text>Labels</text>
+          </navLabel>
+          <content src="apcs16.html"/>
+        </navPoint>
+        <navPoint id="id2800610" playOrder="126">
+          <navLabel>
+            <text>Unreachable Code</text>
+          </navLabel>
+          <content src="apcs17.html"/>
+        </navPoint>
+        <navPoint id="id2800662" playOrder="127">
+          <navLabel>
+            <text>Confusing Pluses and Minuses</text>
+          </navLabel>
+          <content src="apcs18.html"/>
+        </navPoint>
+        <navPoint id="id2800721" playOrder="128">
+          <navLabel>
+            <text>++ and −−</text>
+          </navLabel>
+          <content src="apcs19.html"/>
+        </navPoint>
+        <navPoint id="id2800755" playOrder="129">
+          <navLabel>
+            <text>Bitwise Operators</text>
+          </navLabel>
+          <content src="apcs20.html"/>
+        </navPoint>
+        <navPoint id="id2800805" playOrder="130">
+          <navLabel>
+            <text>eval Is Evil</text>
+          </navLabel>
+          <content src="apcs21.html"/>
+        </navPoint>
+        <navPoint id="id2800849" playOrder="131">
+          <navLabel>
+            <text>void</text>
+          </navLabel>
+          <content src="apcs22.html"/>
+        </navPoint>
+        <navPoint id="id2800956" playOrder="132">
+          <navLabel>
+            <text>Regular Expressions</text>
+          </navLabel>
+          <content src="apcs23.html"/>
+        </navPoint>
+        <navPoint id="id2801006" playOrder="133">
+          <navLabel>
+            <text>Constructors and new</text>
+          </navLabel>
+          <content src="apcs24.html"/>
+        </navPoint>
+        <navPoint id="id2801148" playOrder="134">
+          <navLabel>
+            <text>Not Looked For</text>
+          </navLabel>
+          <content src="apcs25.html"/>
+        </navPoint>
+        <navPoint id="id2801183" playOrder="135">
+          <navLabel>
+            <text>HTML</text>
+          </navLabel>
+          <content src="apcs26.html"/>
+        </navPoint>
+        <navPoint id="id2801326" playOrder="136">
+          <navLabel>
+            <text>JSON</text>
+          </navLabel>
+          <content src="apcs27.html"/>
+        </navPoint>
+        <navPoint id="id2801378" playOrder="137">
+          <navLabel>
+            <text>Report</text>
+          </navLabel>
+          <content src="apcs28.html"/>
+        </navPoint>
+      </navPoint>
+      <navPoint id="id2801498" playOrder="138">
+        <navLabel>
+          <text>D. Syntax Diagrams</text>
+        </navLabel>
+        <content src="apd.html"/>
+      </navPoint>
+      <navPoint id="id2803046" playOrder="139">
+        <navLabel>
+          <text>E. JSON</text>
+        </navLabel>
+        <content src="ape.html"/>
+        <navPoint id="id2803103" playOrder="140">
+          <navLabel>
+            <text>JSON Syntax</text>
+          </navLabel>
+          <content src="ape.html#json_syntax"/>
+        </navPoint>
+        <navPoint id="id2803531" playOrder="141">
+          <navLabel>
+            <text>Using JSON Securely</text>
+          </navLabel>
+          <content src="apes02.html"/>
+        </navPoint>
+        <navPoint id="id2803785" playOrder="142">
+          <navLabel>
+            <text>A JSON Parser</text>
+          </navLabel>
+          <content src="apes03.html"/>
+        </navPoint>
+      </navPoint>
+      <navPoint id="id2804091" playOrder="143">
+        <navLabel>
+          <text>Index</text>
+        </navLabel>
+        <content src="ix01.html"/>
+      </navPoint>
+      <navPoint id="id2804104" playOrder="144">
+        <navLabel>
+          <text>About the Author</text>
+        </navLabel>
+        <content src="author_bios.html"/>
+      </navPoint>
+      <navPoint id="id2804120" playOrder="145">
+        <navLabel>
+          <text>Colophon</text>
+        </navLabel>
+        <content src="co02.html"/>
+      </navPoint>
+    </navPoint>
+  </navMap>
+</ncx>

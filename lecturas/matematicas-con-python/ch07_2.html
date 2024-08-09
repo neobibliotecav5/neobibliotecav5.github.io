@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<meta charset="utf-8"/>
+<title>Capítulo 7: Resolución de problemas de cálculo</title>
+<link href="style.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="core.css" media="all" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch07lev1sec01"><a id="page_178"></a><strong>¿Qué es una función?</strong></h3>
+<p class="noindent">Empecemos con algunas definiciones básicas. Una función es una <em>correspondencia</em> entre un conjunto de entrada y un conjunto de salida. La condición especial de una función es que un elemento del conjunto de entrada esté relacionado <em>exactamente</em> con <em>un</em> elemento del conjunto de salida. Por ejemplo, <a href="ch07.html#ch7fig1">la Figura 7-1</a> muestra dos conjuntos tales que un elemento del conjunto de salida es el cuadrado de un elemento que pertenece al conjunto de entrada.</p>
+<div class="image"><img alt="image" src="images/f07-01.jpg" translate="no"/></div>
+<p class="figuret"><a id="ch7fig1"></a><em>Figura 7-1: Una función describe una correspondencia entre un conjunto de entrada y un conjunto de salida. Aquí, un elemento del conjunto de salida es el cuadrado de un elemento del conjunto de entrada.</em></p>
+<p class="indent">Utilizando la conocida notación de funciones, escribiríamos esta función como <em>f</em>(<em>x</em>) = <sup>x2</sup>, donde <em>x</em> es la cantidad variable independiente. Así, <em>f</em>(2) = 4, <em>f</em>(100) = 10000, etc. Nos referimos a <em>x</em> como la cantidad variable independiente porque somos libres de asumir un valor para ella siempre que ese valor esté dentro de su dominio (véase el siguiente apartado).</p>
+<p class="indent">Las funciones también pueden definirse en términos de múltiples variables. Por ejemplo, <em>f</em><em>(x</em>, <em>y</em>) = <sup>x2</sup> + <sup>y2</sup> define una función de dos variables, <em>x</em> e <em>y</em>.</p>
+<h4 class="h4" id="ch07lev2sec01"><strong><em>Dominio y rango de una función</em></strong></h4>
+<p class="noindent">El <em>dominio</em> de una función es el conjunto de valores de entrada que la variable independiente puede asumir válidamente. El conjunto de valores de salida de una función se llama <em>rango</em>.</p>
+<p class="indent">Por ejemplo, el dominio de la función <em>f</em><em>(x</em>) = <em>1/x</em> son todos los números reales y complejos distintos de cero, porque 1/0 no está definido. El rango está formado por el conjunto de valores obtenidos al sustituir cada número del dominio por <em>1/x</em>, por lo que en este caso también son todos los números reales y complejos distintos de cero.</p>
+<div class="note">
+<p class="notet"><strong><span class="bordera">NOTA</span></strong></p>
+<p class="noindent"><em>El dominio y el rango de una función pueden ser ciertamente diferentes. Por ejemplo, para la función</em><em><sup>x2</sup>, el dominio son todos los números positivos y negativos, pero el rango son sólo los números positivos.</em></p>
+</div>
+<h4 class="h4" id="ch07lev2sec02"><strong><em>Visión general de las funciones matemáticas más comunes</em></strong></h4>
+<p class="noindent">Ya hemos utilizado varias funciones matemáticas comunes del módulo <span class="literal" translate="no">math</span> de la biblioteca estándar de Python. Un par de ejemplos familiares son las funciones <span class="literal" translate="no">sin()</span> y <span class="literal" translate="no">cos()</span>, que corresponden a las funciones trigonométricas <a id="page_179"></a>seno y coseno. También se definen otras funciones trigonométricas:<span class="literal" translate="no">tan()</span> y los equivalentes inversos de estas funciones, <span class="literal" translate="no">asin()</span>, <span class="literal" translate="no">acos()</span> y <span class="literal" translate="no">atan()</span>.</p>
+<p class="indent">El módulo <span class="literal" translate="no">math</span> también incluye funciones que hallan el logaritmo de un número -la función logaritmo natural <span class="literal" translate="no">log()</span>, el logaritmo de base-2 <span class="literal" translate="no">log2()</span>, y el logaritmo de base-10 <span class="literal" translate="no">log10()</span>-, así como la función <span class="literal" translate="no">exp()</span>, que halla el valor de <em><sup>ex</sup></em>, donde <em>e</em> es el número de Euler (aproximadamente 2,71828).</p>
+<p class="indent">Un inconveniente de todas estas funciones es que no son adecuadas para trabajar con expresiones simbólicas. Si queremos manipular una expresión matemática que incluya símbolos, tenemos que empezar a utilizar las funciones equivalentes definidas por SymPy.</p>
+<p class="indent">Veamos un ejemplo rápido:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">import math</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">math.sin(math.pi/2)</span><br translate="no"/>1.0</p>
+<p class="indent">Aquí, encontramos el seno del ángulo <em>π/2</em> utilizando la función <span class="literal" translate="no">sin()</span> definida por el módulo <span class="literal" translate="no">math</span> de la biblioteca estándar. A continuación, podemos hacer lo mismo utilizando SymPy.</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">import sympy</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">sympy.sin(math.pi/2)</span><br translate="no"/>1.00000000000000</p>
+<p class="indent">Al igual que la función <span class="literal" translate="no">sin()</span> de la biblioteca estándar, la función <span class="literal" translate="no">sin()</span> de SymPy espera que el ángulo se exprese en radianes. Ambas funciones devuelven 1.</p>
+<p class="indent">Ahora, intentemos llamar a cada función con un símbolo en su lugar y veamos qué ocurre:</p>
+<p class="programs" translate="no">   &gt;&gt;&gt; <span class="codestrong">from sympy import Symbol</span><br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">theta = Symbol('theta')</span><br translate="no"/><span class="ent">➊</span> &gt;&gt;&gt; <span class="codestrong">math.sin(theta) + math.sin(theta)</span><br translate="no"/>   Traceback (most recent call last):<br translate="no"/>     File "&lt;pyshell#53&gt;", line 1, in <br translate="no"/>       math.sin(theta) + math.sin(theta)<br translate="no"/>     File "/usr/lib/python3.4/site-packages/sympy/core/expr.py", line 225, in<br translate="no"/>   __float__<br translate="no"/>       raise TypeError("can't convert expression to float")<br translate="no"/>   TypeError: can't convert expression to float<br translate="no"/><br translate="no"/><span class="ent">➋</span> &gt;&gt;&gt; <span class="codestrong">sympy.sin(theta) + sympy.sin(theta)</span><br translate="no"/>   2*sin(theta)</p>
+<p class="indent">La función <span class="literal" translate="no">sin()</span> de la biblioteca estándar no sabe qué hacer cuando la llamamos con <span class="literal" translate="no">theta</span> en <span class="ent">➊,</span> así que lanza una excepción para indicar que espera un valor numérico como argumento de la función <span class="literal" translate="no">sin()</span>. En cambio, SymPy es capaz de realizar la misma operación en <span class="ent">➋,</span> y devuelve como resultado la expresión <a id="page_180"></a> <span class="literal" translate="no">2*sin(theta)</span> . Esto apenas nos sorprende ahora, pero ilustra el tipo de tareas en las que las funciones matemáticas de la biblioteca estándar pueden quedarse cortas.</p>
+<p class="indent">Consideremos otro ejemplo. Supongamos que queremos deducir la expresión del tiempo que tarda un cuerpo en movimiento de proyectil en alcanzar el punto más alto si se lanza con velocidad inicial <span class="literal" translate="no">u</span> con un ángulo <span class="literal" translate="no">theta</span> (ver "<a href="ch02.html#ch02lev2sec08">Movimiento de proyectil</a>" en <a href="ch02.html#page_48">la página 48</a>).</p>
+<p class="indent">En el punto más alto, <span class="literal" translate="no">u*sin(theta)-g*t = 0</span>, así que para hallar <span class="literal" translate="no">t</span>, utilizaremos la función <span class="literal" translate="no">solve()</span> que aprendimos en el <a href="ch04.html#ch04">Capítulo 4</a>:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">from sympy import sin, solve, Symbol</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">u = Symbol('u')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">t = Symbol('t')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">g = Symbol('g')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">theta = Symbol('theta')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">solve(u*sin(theta)-g*t, t)</span><br translate="no"/>[u*sin(theta)/g]</p>
+<p class="indent">La expresión para <span class="literal" translate="no">t</span>, como aprendimos antes, resulta ser <span class="literal" translate="no">u*sin(theta)/g</span>, e ilustra cómo la función <span class="literal" translate="no">solve()</span> puede utilizarse también para encontrar soluciones a ecuaciones que contienen funciones matemáticas.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch07_1.html">anterior</a><a href="ch07.html">Subtema 2 de 11: (Ver todo)</a><a href="ch07_3.html">siguiente</a><br/></p>
+<br/><a href="ch07_2.docx" target="_blank"></a></footer>
+</body>
+</html>

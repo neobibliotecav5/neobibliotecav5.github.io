@@ -1,0 +1,60 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Delete</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="Delete"><div class="titlepage"><div><div><h1 class="title"><a id="delete"></a>Eliminar</h1></div></div></div><p>El operador <code class="literal" translate="no">delete</code> se puede utilizar para eliminar una propiedad de un objeto. Eliminará una propiedad del objeto si la tiene. No tocará ninguno de los objetos del prototipo.<a class="indexterm" id="IDX-CHP-3-0179"></a></p><p>Eliminar una propiedad de un objeto puede permitir que aparezca una propiedad del prototipo de enlace:</p><a id="I_programlisting3_d1e2321"></a><pre class="programlisting" translate="no">another_stooge.nickname    // 'Moe'
+
+// Remove nickname from another_stooge, revealing
+// the nickname of the prototype.
+
+delete another_stooge.nickname;
+
+another_stooge.nickname    // 'Curly'</pre></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="ch03s07.html">← Anterior</a><a href="ch03s09.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="ch03s08.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\ch03s08.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c07-0001">Escribir instrucciones claras</h3>
+<p class="BodyFirst">Cada vez que utilices la función <code translate="no">input()</code>, debes incluir una instrucción clara y fácil de seguir que indique al usuario exactamente qué tipo de información estás buscando. Cualquier instrucción que indique al usuario lo que debe introducir debería funcionar. Por ejemplo:</p>
+<p class="CodeLabel" translate="no"><b>greeter.py</b></p>
+<pre translate="no"><code translate="no">name = input("Please enter your name: ")
+print(f"\nHello, {name}!")</code></pre>
+<p>Añade un espacio al final de tus indicaciones (después de los dos puntos en el ejemplo anterior) para separar la indicación de la respuesta del usuario y para dejarle claro dónde introducir su texto. Por ejemplo:</p>
+<pre translate="no"><code translate="no">Please enter your name: <b>Eric</b>
+Hello, Eric!</code></pre>
+<p><span epub:type="pagebreak" id="Page_115" title="115"></span>A veces querrás escribir un aviso de más de una línea. Por ejemplo, puede que quieras decirle al usuario por qué le pides que introduzca determinada información. Puedes asignar tu pregunta a una variable y pasar esa variable a la función <code translate="no">input()</code>. Esto te permite construir tu pregunta en varias líneas, y luego escribir una sentencia <code translate="no">input()</code> limpia.</p>
+<p class="CodeLabel" translate="no"><b>greeter.py</b></p>
+<pre translate="no"><code translate="no">prompt = "If you share your name, we can personalize the messages you see."
+prompt += "\nWhat is your first name? "
+
+name = input(prompt)
+<span class="LiteralGray">print(f"\nHello, {name}!")</span></code></pre>
+<p>Este ejemplo muestra una forma de construir una cadena de varias líneas. La primera línea asigna la primera parte del mensaje a la variable <code translate="no">prompt</code>. En la segunda línea, el operador <code translate="no">+=</code> toma la cadena que se asignó a <code translate="no">prompt</code> y añade la nueva cadena al final.</p>
+<p>El mensaje abarca ahora dos líneas, de nuevo con espacio tras el signo de interrogación para mayor claridad:</p>
+<pre translate="no"><code translate="no">If you share your name, we can personalize the messages you see.
+What is your first name? <b>Eric</b>
+
+Hello, Eric!</code></pre>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c07_3.html">anterior</a><a href="c07.html">Subtema 4 de 23: (Ver todo)</a><a href="c07_5.html">siguiente</a><br/></p>
+<br/><a href="c07_4.docx" target="_blank"></a></footer>
+</body>
+</html>

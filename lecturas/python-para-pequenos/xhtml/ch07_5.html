@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch07lev1sec4">
+  Utilización de módulos </h3>
+<p class="indent">
+<em class="calibre7">Los módulos </em>se utilizan para agrupar funciones, variables y otras cosas en programas más grandes y potentes. Algunos módulos están integrados en Python, y otros deben descargarse por separado. Hay módulos que te ayudan a escribir juegos (como <span class="literal1" translate="no">
+   tkinter
+  </span>, que está incorporado, y <span class="literal1" translate="no">
+   PyGame
+  </span>, que no lo está), módulos para manipular imágenes (como <span class="literal1" translate="no">
+   Pillow
+  </span>, la Python Imaging Library), y módulos para dibujar gráficos tridimensionales (como <span class="literal1" translate="no">
+   Panda3D
+  </span>). </p>
+<div class="image1">
+<img alt="Image" class="calibre69" src="../images/f0089-01.jpg" translate="no"/>
+</div>
+<p class="indent">
+  Los módulos pueden utilizarse para hacer todo tipo de cosas útiles. Por ejemplo, si estuvieras diseñando un juego de simulación y quisieras que el mundo cambiara de acuerdo con el mundo real, podrías calcular la fecha y la hora actuales utilizando el módulo incorporado <span class="literal1" translate="no">
+   time
+  </span>: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">import</span> time</pre>
+<p class="indent">
+  El comando <span class="literal1" translate="no">
+   import
+  </span>indica a Python que queremos utilizar el módulo <span class="literal1" translate="no">
+   time
+  </span>. </p>
+<p class="indent">
+  A continuación, podemos llamar a funciones disponibles en este módulo utilizando el símbolo punto. (En el <a class="calibre6" href="ch04.xhtml#ch04">Capítulo 4 </a>utilizamos funciones similares para trabajar con el módulo <span class="literal1" translate="no">
+   turtle
+  </span>, como <span class="literal1" translate="no">
+   t.forward(50)
+  </span>.) Por ejemplo, así es como podríamos llamar a la función <span class="literal1" translate="no">
+   asctime
+  </span>en el módulo <span class="literal1" translate="no">
+   time
+  </span>: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(time.asctime())
+<span class="blue1">Tue Aug 12 07:05:32 2025</span></pre>
+<p class="indent">
+<span id="page_90">
+</span>
+  La función <span class="literal1" translate="no">
+   asctime
+  </span>es una parte del módulo <span class="literal1" translate="no">
+   time
+  </span>que devuelve la fecha y hora actuales en forma de cadena. </p>
+<p class="indent">
+  Ahora supongamos que quieres pedir a alguien que introduzca un valor, como su fecha de nacimiento o su edad. Puedes hacerlo utilizando una sentencia <span class="literal1" translate="no">
+   print
+  </span>para mostrar un mensaje, y el módulo <span class="literal1" translate="no">
+   sys
+  </span>(abreviatura de <em class="calibre7">sistema </em>), que contiene utilidades para interactuar con el propio sistema Python. En primer lugar, importamos el módulo <span class="literal1" translate="no">
+   sys
+  </span>: </p>
+<div class="image1">
+<img alt="Image" class="calibre70" src="../images/f0090-01.jpg" translate="no"/>
+</div>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">import</span> sys</pre>
+<p class="indent">
+  Dentro del módulo <span class="literal1" translate="no">
+   sys
+  </span>hay un objeto especial llamado <span class="literal1" translate="no">
+   stdin
+  </span>(para <em class="calibre7">entrada estándar </em>), que proporciona una función útil llamada <span class="literal1" translate="no">
+   readline
+  </span>. La función <span class="literal1" translate="no">
+   readline
+  </span>se utiliza para leer una línea de texto escrita en el teclado hasta que pulsas ENTER. (Veremos cómo funcionan los objetos en el <a class="calibre6" href="ch08.xhtml#ch08">Capítulo 8 . </a>) Para probar <span class="literal1" translate="no">
+   readline
+  </span>, introduce el siguiente código en la Shell de Python: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">import</span> sys
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(sys.stdin.readline())</pre>
+<p class="indent">
+  Si a continuación escribes unas palabras y pulsas ENTER, esas palabras se imprimirán en el Shell de Python. </p>
+<p class="indent">
+  Piensa en el código que escribimos en el <a class="calibre6" href="ch05.xhtml#ch05">Capítulo 5 </a>, utilizando una sentencia <span class="literal1" translate="no">
+   if
+  </span>: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">if</span> age &gt;= 10 <span class="orange">and</span> age &lt;= 13:
+        <span class="violet">print</span>(<span class="green">'What is 13 + 49 + 84 + 155 + 97? A headache!'</span>)
+    <span class="orange">else</span>:
+        <span class="violet">print</span>(<span class="green">'Huh?'</span>)</pre>
+<p class="indent">
+  En lugar de crear la variable <span class="literal1" translate="no">
+   age
+  </span>y darle un valor específico antes de la sentencia <span class="literal1" translate="no">
+   if
+  </span>, ahora podemos pedir a alguien que introduzca el valor en su lugar. Pero primero, convirtamos el código en una función: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">def</span> silly_age_joke(age):
+        <span class="orange">if</span> age &gt;= 10 <span class="orange">and</span> age &lt;= 13:
+            <span class="violet">print</span>(<span class="green">'What is 13 + 49 + 84 + 155 + 97? A headache!'</span>)
+        <span class="orange">else</span>:
+            <span class="violet">print</span>(<span class="green">'Huh?'</span>)</pre>
+<p class="indent">
+<span id="page_91">
+</span>
+  Ahora puedes llamar a la función introduciendo su nombre y diciéndole qué número debe utilizar introduciendo el número entre paréntesis. ¿Funciona? </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> silly_age_joke(9)
+<span class="blue1">Huh?</span>
+<span class="brown">&gt;&gt;&gt;</span> silly_age_joke(10)
+<span class="blue1">What is 13 + 49 + 84 + 155 + 97? A headache!</span></pre>
+<p class="indent">
+  ¡Funciona! Ahora hagamos que la función pregunte la edad de una persona. (Puedes añadir o modificar una función tantas veces como quieras). </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">def</span> silly_age_joke():
+        <span class="violet">print</span>(<span class="green">'How old are you?'</span>)
+     <span class="ent">➊</span> age = <span class="violet">int</span>(sys.stdin.readline())
+     <span class="ent">➋</span> <span class="orange">if</span> age &gt;= 10 <span class="orange">and</span> age &lt;= 13:
+            <span class="violet">print</span>(<span class="green">'What is 13 + 49 + 84 + 155 + 97? A headache!'</span>)
+        <span class="orange">else</span>:
+            <span class="violet">print</span>(<span class="green">'Huh?'</span>)</pre>
+<p class="indent">
+  ¿Has reconocido la función <span class="literal1" translate="no">
+   int
+  </span><span class="ent">➊ </span>, que convierte una cadena en un número? Hemos incluido esa función porque <span class="literal1" translate="no">
+   sys.stdin.
+  </span><span class="literal1" translate="no">
+   readline()
+  </span> devuelve cualquier cosa que alguien introduzca como cadena, pero nosotros queremos un número para poder compararlo con los números 10 y 13 <span class="ent">➋ </span>. Para probarlo tú mismo, llama a la función sin ningún parámetro y escribe un número cuando aparezca <span class="literal1" translate="no">
+   How old are you?
+  </span>: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> silly_age_joke()
+<span class="blue1">How old are you?</span>
+10
+<span class="blue1">What is 13 + 49 + 84 + 155 + 97? A headache!</span>
+<span class="brown">&gt;&gt;&gt;</span> silly_age_joke()
+<span class="blue1">How old are you?</span>
+15
+<span class="blue1">Huh?</span></pre>
+<p class="indent">
+  La primera vez que llamamos a la función, aparece "¿Cuántos años tienes?"; entonces introducimos <span class="literal1" translate="no">
+   10
+  </span>, e imprime el chiste. La segunda vez, introducimos <span class="literal1" translate="no">
+   15
+  </span>e imprime "¿Eh?". </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch07_4.html">anterior</a><a href="ch07.html">Subtema 5 de 8: (Ver todo)</a><a href="ch07_6.html">siguiente</a><br/></p>
+<br/><a href="ch07_5.docx" target="_blank"></a></footer>
+</body>
+</html>

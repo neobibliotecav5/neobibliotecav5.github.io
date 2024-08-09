@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch04lev1sec03"><strong><span class="blue1">La función input()</span></strong></h3>
+<p class="noindent">Hasta ahora, todas tus variables se han establecido en tus programas, o se han <em>codificado</em>. Para cambiar el valor de una variable, tendrías que editar el programa. Sería práctico poder cambiar estas variables mientras el programa se está ejecutando o aceptar la <em>entrada</em> del usuario por parte del jugador.</p>
+<p class="indent">Una forma de añadir este tipo de interactividad a tu programa es utilizar la función <span class="literal">input()</span>. Imprime una cadena en la consola (para indicar al usuario qué tipo de información debe introducir) y luego espera a que el usuario escriba una respuesta. Intenta introducir este código en el intérprete de comandos de Python para ver qué ocurre:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> <span class="rose">input</span>(<span class="green">"What is your name? "</span>)</p>
+<p class="indent"><span epub:type="pagebreak" id="page_73"></span>Verás la cadena que pasaste a <span class="literal">input()</span>, y podrás escribir una respuesta.</p>
+<p class="programs" translate="no"><span class="blue1">What is your name?</span></p>
+<p class="indent">Cuando introduzcas una respuesta, deberías ver algo así:</p>
+<p class="programs" translate="no"><span class="blue1">What is your name?</span> Craig<br translate="no"/>'Craig'</p>
+<p class="indent">¡Genial! Pero si quieres utilizar esta entrada en algún lugar de tu programa, tendrás que guardarla en una variable. A diferencia del shell de Python, los programas creados en el editor de texto no muestran automáticamente los resultados de las sentencias. Por ejemplo:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> name = <span class="rose">input</span>(<span class="green">"What is your name? "</span>)<br translate="no"/><span class="blue1">What is your name?</span> Craig</p>
+<p class="indent">Observa cómo esta vez, después de escribir tu nombre y pulsar <small>INTRO</small>, el programa no muestra automáticamente tu entrada. Para ver la entrada guardada, sólo tienes que pasar el <span class="literal">nombre de</span> la variable como argumento a la función <span class="literal">print()</span>:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> <span class="rose">print</span>(name)<br translate="no"/><span class="blue1">Craig</span></p>
+<p class="indent">¡Genial! Ahora has guardado tu entrada en una variable y has impreso el valor de la variable. Esto es muy útil porque te permite obtener información del usuario para utilizarla en cualquier parte de tu programa. ¡Utilicemos esta técnica para escribir mensajes de chat en el chat de Minecraft!</p>
+<h4 class="h4a" id="ch04lev2sec02"><strong>Misión nº 12: Escribe tu propio mensaje de chat</strong></h4>
+<p class="noindent">¡Hagamos el chat más interactivo! Puedes utilizar el intérprete de comandos Python para escribir un mensaje en el chat de Minecraft, como hiciste en la Misión nº 11. En esta misión, escribiremos un programa ligeramente diferente que guarde la cadena que quieras publicar en el chat en una variable llamada <span class="literal">mensaje</span>.</p>
+<p class="indent"><a href="ch04.xhtml#ch4ex2">El listado 4-2</a> te ayudará a empezar. Cópialo en un nuevo archivo en IDLE y guárdalo como <em>mensajeInput.</em> py en tu carpeta de <em>cadenas</em>.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>messageInput.py</em></span></p>
+<p class="programs" translate="no"> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>   mc = Minecraft.create()<br translate="no"/><span class="ent">➊</span> message = <span class="green">"This is the default message."</span><br translate="no"/><span class="ent">➋</span> mc.postToChat(message)</p>
+<p class="examplet"><a id="ch4ex2"></a><em>Listado 4-2: Cómo enviar cadenas al chat de Minecraft</em></p>
+<p class="indent">El programa almacena el mensaje que quieres enviar al chat en la variable <span class="literal">mensaje</span> <span class="ent">➊.</span> En este caso, la variable es una cadena que dice <span class="literal">"Este es el mensaje por defecto".</span> Luego el programa pasa <span class="literal">el</span> mensaje a la función <span class="literal">postToChat(</span> ) <span class="ent">➋,</span> que emite la cadena al chat de Minecraft.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_74"></span>En este programa, la cadena está codificada, lo que significa que será la misma cada vez que se ejecute el programa. Pero con un simple cambio, ¡puedes hacer que imprima lo que el usuario escriba! En otras palabras, puedes escribir tus propios mensajes personalizados cada vez que ejecutes el programa. Crearás tu propio programa de chat.</p>
+<p class="indent">Para que el programa acepte entradas, sustituye la cadena " <span class="literal">Este es el mensaje por defecto"</span>. <span class="ent">➊</span> por la función input( <span class="literal">)</span>. Dale a la función input( <span class="literal">)</span> un argumento, como <span class="literal">"Introduce tu</span> mensaje: <span class="literal">"</span>. Recuerda poner esta cadena dentro de los paréntesis de la función input( <span class="literal">)</span>. Cuando hayas hecho los cambios en el programa, ejecútalo. Deberías ver un mensaje en el intérprete de comandos de Python que diga "Introduce tu mensaje <span class="literal">:</span> <span class="literal">"</span>. Escribe tu mensaje y pulsa <small>INTRO</small>. El mensaje aparecerá en el intérprete de comandos y en el chat de Minecraft, como se muestra en la <a href="ch04.xhtml#ch4fig2">Figura 4-2</a>.</p>
+<div class="image"><img alt="image" src="../images/f04-02.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch4fig2"></a><em>Figura 4-2: Cuando introduzco un mensaje en el intérprete de comandos IDLE, se publica en el chat de Minecraft.</em></p>
+<p class="indent">Ahora tu programa te permite escribir un mensaje para mostrarlo en el chat, en lugar de tener que escribir tú el mensaje en tu programa. ¿Ves cuánto más fácil es chatear utilizando la entrada?</p>
+<div class="sidebar">
+<p class="sidebart" id="ch04sb02"><strong>OBJETIVO EXTRA: MÁS MENSAJES</strong></p>
+<p class="noindent">El programa pide un mensaje, pero ¿puedes averiguar cómo hacer que pida un mensaje, espere unos segundos (utilizando la función <span class="literal">sleep()</span> ), y luego pida un segundo mensaje?</p>
+</div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch04_3.html">anterior</a><a href="ch04.html">Subtema 4 de 8: (Ver todo)</a><a href="ch04_5.html">siguiente</a><br/></p>
+<br/><a href="ch04_4.docx" target="_blank"></a></footer>
+</body>
+</html>

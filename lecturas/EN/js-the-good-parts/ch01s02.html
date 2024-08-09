@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Analyzing JavaScript</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Analyzing JavaScript"><div class="titlepage"><div><div><h1 class="title"><a id="analyzing_javascript"/>Analyzing JavaScript</h1></div></div></div><p>JavaScript is built on some very good ideas and a few very bad ones.<a id="IDX-CHP-1-0002" class="indexterm"/><a id="IDX-CHP-1-0003" class="indexterm"/></p><p>The very good ideas include functions, loose typing, dynamic objects, and an
+                expressive object literal notation. The bad ideas include a programming model based
+                on global variables.</p><p>JavaScript's functions are first class objects with (mostly) lexical scoping.
+                JavaScript is the first lambda language to go mainstream. Deep down, JavaScript has
+                more in common with Lisp and Scheme than with Java. It is Lisp in C's clothing. This
+                makes JavaScript a remarkably powerful language.</p><p>The fashion in most programming languages today demands strong typing. The theory
+                is that strong typing allows a compiler to detect a large class of errors at compile
+                time. The sooner we can detect and repair errors, the less they cost us. JavaScript
+                is a loosely typed language, so JavaScript compilers are unable to detect type
+                errors. This can be alarming to people who are coming to JavaScript from strongly
+                typed languages. But it turns out that strong typing does not eliminate the need for
+                careful testing. And I have found in my work that the sorts of errors that strong
+                type checking finds are not the errors I worry about. On the other hand, I find
+                loose typing to be liberating. I don't need to form complex class hierarchies. And I
+                never have to cast or wrestle with the type system to get the behavior that I
+                want.</p><p>JavaScript has a very powerful object literal notation. Objects can be created
+                simply by listing their components. This notation was the inspiration for JSON, the
+                popular data interchange format. (There will be more about JSON in <a class="xref" href="ape.html" title="Appendix E. JSON">Appendix E</a>.)</p><p>A controversial feature in JavaScript is prototypal inheritance. JavaScript has a
+                class-free object system in which objects inherit properties directly from other
+                objects. This is really powerful, but it is unfamiliar to classically trained
+                programmers. If you attempt to apply classical design patterns directly to
+                JavaScript, you will be frustrated. But if you learn to work with JavaScript's
+                prototypal nature, your efforts will be rewarded.<a id="IDX-CHP-1-0004" class="indexterm"/><a id="IDX-CHP-1-0005" class="indexterm"/></p><p>JavaScript is much maligned for its choice of key ideas. For the most part,
+                though, those choices were good, if unusual. But there was one choice that was
+                particularly bad: JavaScript depends on global variables for linkage. All of the
+                top-level variables of all compilation units are tossed together in a common
+                namespace called <span class="emphasis"><em>the global object</em></span>. This is a bad thing because
+                global variables are evil, and in JavaScript they are fundamental. Fortunately, as
+                we will see, JavaScript also gives us the tools to mitigate this problem.</p><p>In a few cases, we can't ignore the bad parts. There are some unavoidable awful
+                parts, which will be called out as they occur. They will also be summarized in <a class="xref" href="apa.html" title="Appendix A. Awful Parts">Appendix A</a>. But we will succeed in avoiding most of the bad parts
+                in this book, summarizing much of what was left out in <a class="xref" href="apb.html" title="Appendix B. Bad Parts">Appendix B</a>.
+                If you want to learn more about the bad parts and how to use them badly, consult any
+                other JavaScript book.</p><p>The standard that defines JavaScript (aka JScript) is the third edition of
+                    <span class="emphasis"><em>The ECMAScript Programming Language</em></span>, which is available
+                from <a class="ulink" href="http://www.ecma-international.org/publications/files/ecma-st/ECMA-262.pdf">http://www.ecma-international.org/publications/files/ecma-st/ECMA-262.pdf</a>. The language described in this book is a proper subset of ECMAScript. This book
+                does not describe the whole language because it leaves out the bad parts. The
+                treatment here is not exhaustive. It avoids the edge cases. You should, too. There
+                is danger and misery at the edges.<a id="IDX-CHP-1-0006" class="indexterm"/></p><p><a class="xref" href="apc.html" title="Appendix C. JSLint">Appendix C</a> describes a programming tool called JSLint, a JavaScript
+                parser that can analyze a JavaScript program and report on the bad parts that it
+                contains. JSLint provides a degree of rigor that is generally lacking in JavaScript
+                development. It can give you confidence that your programs contain only the good
+                    parts.<a id="IDX-CHP-1-0007" class="indexterm"/></p><p>JavaScript is a language of many contrasts. It contains many errors and sharp
+                edges, so you might wonder, "Why should I use JavaScript?" There are two answers.
+                The first is that you don't have a choice. The Web has become an important platform
+                for application development, and JavaScript is the only language that is found in
+                all browsers. It is unfortunate that Java failed in that environment; if it hadn't,
+                there could be a choice for people desiring a strongly typed classical language. But
+                Java did fail and JavaScript is flourishing, so there is evidence that JavaScript
+                did something right.</p><p>The other answer is that, despite its deficiencies, <span class="emphasis"><em>JavaScript is really
+                    good</em></span>. It is lightweight and expressive. And once you get the hang of
+                it, functional programming is a lot of fun.</p><p>But in order to use the language well, you must be well informed about its
+                limitations. I will pound on those with some brutality. Don't let that discourage
+                you. The good parts are good enough to compensate for the bad parts.</p></div></body></html>

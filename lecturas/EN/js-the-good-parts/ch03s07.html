@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Enumeration</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Enumeration"><div class="titlepage"><div><div><h1 class="title"><a id="enumeration"/>Enumeration</h1></div></div></div><p>The <code class="literal">for in</code> statement can loop over all of the
+                property names in an object. The enumeration will include all of the
+                properties—including functions and prototype properties that you might not be
+                interested in—so it is necessary to filter out the values you don't want. The most
+                common filters are the <code class="literal">hasOwnProperty</code> method and
+                using <code class="literal">typeof</code> to exclude functions:<a id="IDX-CHP-3-0176" class="indexterm"/><a id="IDX-CHP-3-0177" class="indexterm"/><a id="IDX-CHP-3-0178" class="indexterm"/><a id="IDX-CHP-3-0174" class="indexterm"/><a id="IDX-CHP-3-0175" class="indexterm"/></p><a id="I_programlisting3_d1e2289"/><pre class="programlisting">var name;
+for (name in another_stooge) {
+    if (typeof another_stooge[name] !== 'function') {
+        document.writeln(name + ': ' + another_stooge[name]);
+    }
+}</pre><p>There is no guarantee on the order of the names, so be prepared for the names to
+                appear in any order. If you want to assure that the properties appear in a
+                particular order, it is best to avoid the <code class="literal">for in</code>
+                statement entirely and instead make an array containing the names of the properties
+                in the correct order:</p><a id="I_programlisting3_d1e2296"/><pre class="programlisting">var i;
+var properties = [
+    'first-name',
+    'middle-name',
+    'last-name',
+    'profession'
+];
+for (i = 0; i &lt; properties.length; i += 1) {
+    document.writeln(properties[i] + ': ' +
+            another_stooge[properties[i]]);
+    }
+</pre><p>By using <code class="literal">for</code> instead of <code class="literal">for in</code>, we were able to get the properties we wanted
+                without worrying about what might be dredged up from the prototype chain, and we got
+                them in the correct order.</p></div></body></html>

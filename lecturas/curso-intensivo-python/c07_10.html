@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c07-0005">Dejar que el usuario elija cuándo salir</h3>
+<p class="BodyFirst">Podemos hacer que el programa <em translate="no">parrot.py</em> se ejecute tanto tiempo como quiera el usuario poniendo la mayor parte del programa dentro de un bucle <code translate="no">while</code>. Definiremos un <em translate="no">quit value</em> y luego mantendremos el programa en ejecución mientras el usuario no haya introducido el valor de abandonar:</p>
+<p class="CodeLabel" translate="no"><b>parrot.py</b></p>
+<pre translate="no"><code translate="no">prompt = "\nTell me something, and I will repeat it back to you:"
+prompt += "\nEnter 'quit' to end the program. "
+
+message = ""
+while message != 'quit':
+    message = input(prompt)
+    print(message)</code></pre>
+<p>Primero definimos un prompt que indica al usuario sus dos opciones: introducir un mensaje o introducir el valor de abandonar (en este caso, <code translate="no">'quit'</code>). A continuación, creamos una variable <code translate="no">message</code> para registrar cualquier valor que introduzca el usuario. Definimos <code translate="no">message</code> como una cadena vacía, <code translate="no">""</code>, para que Python tenga algo que comprobar la primera vez que llegue a la línea <code translate="no">while</code>. La primera vez que se ejecuta el programa y Python llega a la sentencia <code translate="no">while</code>, necesita comparar el valor de <code translate="no">message</code> con <code translate="no">'quit'</code>, pero todavía no se ha introducido ninguna entrada del usuario. Si Python no tiene nada que comparar, no podrá seguir ejecutando el programa. Para resolver este problema de <span epub:type="pagebreak" id="Page_119" title="119"></span>, nos aseguramos de dar a <code translate="no">message</code> un valor inicial. Aunque sólo sea una cadena vacía, tendrá sentido para Python y le permitirá realizar la comparación que hace funcionar el bucle <code translate="no">while</code>. Este bucle <code translate="no">while</code> se ejecuta mientras el valor de <code translate="no">message</code> no sea <code translate="no">'quit'</code>.</p>
+<p>La primera vez que pasa por el bucle, <code translate="no">message</code> es sólo una cadena vacía, por lo que Python entra en el bucle. En <code translate="no">message = input(prompt)</code>, Python muestra el prompt y espera a que el usuario introduzca sus datos. Lo que introduzca se asigna a <code translate="no">message</code> y se imprime; después, Python reevalúa la condición en la sentencia <code translate="no">while</code>. Mientras el usuario no introduzca la palabra <code translate="no">'quit'</code>, se vuelve a mostrar el prompt y Python espera a que introduzca más datos. Cuando finalmente el usuario introduce <code translate="no">'quit'</code>, Python deja de ejecutar el bucle <code translate="no">while</code> y el programa termina:</p>
+<pre translate="no"><code translate="no">Tell me something, and I will repeat it back to you:
+Enter 'quit' to end the program. <b>Hello everyone!</b>
+Hello everyone!
+
+Tell me something, and I will repeat it back to you:
+Enter 'quit' to end the program. <b>Hello again.</b>
+Hello again.
+
+Tell me something, and I will repeat it back to you:
+Enter 'quit' to end the program. <b>quit</b>
+quit</code></pre>
+<p>Este programa funciona bien, excepto porque imprime la palabra <code translate="no">'quit'</code> como si fuera un mensaje real. Una simple comprobación de <code translate="no">if</code> lo soluciona:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">prompt = "\nTell me something, and I will repeat it back to you:"</span>
+<span class="LiteralGray">prompt += "\nEnter 'quit' to end the program. "</span>
+
+<span class="LiteralGray">message = ""</span>
+<span class="LiteralGray">while message != 'quit':</span>
+<span class="LiteralGray">    message = input(prompt)</span>
+
+    if message != 'quit':
+        <span class="LiteralGray">print(message)</span></code></pre>
+<p>Ahora el programa hace una comprobación rápida antes de mostrar el mensaje y sólo imprime el mensaje si no coincide con el valor de abandonar:</p>
+<pre translate="no"><code translate="no">Tell me something, and I will repeat it back to you:
+Enter 'quit' to end the program. <b>Hello everyone!</b>
+Hello everyone!
+
+Tell me something, and I will repeat it back to you:
+Enter 'quit' to end the program. <b>Hello again.</b>
+Hello again.
+
+Tell me something, and I will repeat it back to you:
+Enter 'quit' to end the program. <b>quit</b></code></pre>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c07_9.html">anterior</a><a href="c07.html">Subtema 10 de 23: (Ver todo)</a><a href="c07_11.html">siguiente</a><br/></p>
+<br/><a href="c07_10.docx" target="_blank"></a></footer>
+</body>
+</html>

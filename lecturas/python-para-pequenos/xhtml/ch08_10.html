@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch08lev1sec9">
+  Funciones heredadas </h3>
+<p class="noindent">
+  Puedes darte cuenta de que quien acabe trabajando en la clase <span class="literal1" translate="no">
+   Giraffe
+  </span>tiene suerte, porque cualquier función creada por las personas que trabajan en las clases <span class="literal1" translate="no">
+   Animal
+  </span>y <span class="literal1" translate="no">
+   Mammal
+  </span>también puede ser utilizada por la clase <span class="literal1" translate="no">
+   Giraffe
+  </span>. La clase <span class="literal1" translate="no">
+   Giraffe
+  </span><em class="calibre7">hereda </em>funciones de la clase <span class="literal1" translate="no">
+   Mammal
+  </span>, que, a su vez, hereda funciones de la clase <span class="literal1" translate="no">
+   Animal
+  </span>. En otras palabras, cuando creamos un objeto <span class="literal1" translate="no">
+   Giraffe
+  </span>, podemos utilizar funciones definidas en la clase <span class="literal1" translate="no">
+   Giraffe
+  </span>, así como funciones definidas en las clases <span class="literal1" translate="no">
+   Mammal
+  </span>y <span class="literal1" translate="no">
+   Animal
+  </span>. Y, del mismo modo, si creamos un objeto <span class="literal1" translate="no">
+   Mammal
+  </span>, podemos utilizar funciones definidas en la clase <span class="literal1" translate="no">
+   Mammal
+  </span>, así como en su clase padre, <span class="literal1" translate="no">
+   Animal
+  </span>. </p>
+<p class="indent">
+<span id="page_107">
+</span>
+  Observa de nuevo las relaciones entre las clases <span class="literal1" translate="no">
+   Animal
+  </span>, <span class="literal1" translate="no">
+   Mammal
+  </span>y <span class="literal1" translate="no">
+   Giraffe
+  </span>. La clase <span class="literal1" translate="no">
+   Animal
+  </span>es la clase padre de la clase <span class="literal1" translate="no">
+   Mammal
+  </span>, y <span class="literal1" translate="no">
+   Mammal
+  </span>es la clase padre de la clase <span class="literal1" translate="no">
+   Giraffe
+  </span>( <a class="calibre6" href="ch08.xhtml#ch08fig05">Figura 8-5 </a>). </p>
+<div class="image" id="ch08fig05">
+<img alt="Image" class="calibre79" src="../images/08fig05.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">Figura 8-5: Clases y funciones heredadas </em></p>
+<p class="indent">
+  Aunque <span class="literal1" translate="no">
+   reginald
+  </span>sea un objeto de la clase <span class="literal1" translate="no">
+   Giraffe
+  </span>, podemos llamar a la función <span class="literal1" translate="no">
+   move
+  </span>que definimos en la clase <span class="literal1" translate="no">
+   Animal
+  </span>, porque las funciones definidas en cualquier clase padre están disponibles para sus clases hijas: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> reginald = Giraffe()
+<span class="brown">&gt;&gt;&gt;</span> reginald.move()
+<span class="blue1">moving</span>
+</pre>
+<p class="indent">
+  De hecho, todas las funciones que definimos en las clases <span class="literal1" translate="no">
+   Animal
+  </span>y <span class="literal1" translate="no">
+   Mammal
+  </span>pueden llamarse desde nuestro objeto <span class="literal1" translate="no">
+   reginald
+  </span>porque las funciones son heredadas: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> reginald = Giraffe()
+<span class="brown">&gt;&gt;&gt;</span> reginald.breathe()
+<span class="blue1">breathing</span>
+<span class="brown">&gt;&gt;&gt;</span> reginald.eat_food()
+<span class="blue1">eating food</span>
+<span class="brown">&gt;&gt;&gt;</span> reginald.feed_young_with_milk()
+<span class="blue1">feeding young</span>
+</pre>
+<p class="indent">
+  En este código, creamos un objeto de la clase <span class="literal1" translate="no">
+   Giraffe
+  </span>llamado <span class="literal1" translate="no">
+   reginald
+  </span>. Cuando llamamos a cada función, imprime un mensaje independientemente de si la función está definida en <span class="literal1" translate="no">
+   Giraffe
+  </span>o en una clase padre. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch08_9.html">anterior</a><a href="ch08.html">Subtema 10 de 14: (Ver todo)</a><a href="ch08_11.html">siguiente</a><br/></p>
+<br/><a href="ch08_10.docx" target="_blank"></a></footer>
+</body>
+</html>

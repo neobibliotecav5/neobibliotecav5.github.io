@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c20-0016">Crear un proyecto en Plataforma.sh</h3>
+<p class="BodyFirst">Llegados a este punto, el proyecto Learning Log sigue ejecutándose en nuestro sistema local y también está configurado para ejecutarse correctamente en un servidor remoto. Utilizaremos la CLI Plataforma.sh para crear un nuevo proyecto en el servidor y, a continuación, enviaremos nuestro proyecto al servidor remoto.</p>
+<p>Asegúrate de que estás en un terminal, en el directorio <em translate="no">learning_log/</em>, y emite el siguiente comando:</p>
+<pre translate="no"><code translate="no">(ll_env)learning_log$ <b>platform login</b>
+Opened URL: http://127.0.0.1:5000
+Please use the browser to log in.
+<var>--snip--</var>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> Do you want to create an SSH configuration file automatically? [Y/n] <b>Y</b></code></pre>
+<p><span epub:type="pagebreak" id="Page_454" title="454"></span>Este comando abrirá una pestaña del navegador donde podrás iniciar sesión. Una vez iniciada la sesión, puedes cerrar la pestaña del navegador y volver al terminal. Si se te pide que crees un archivo de configuración SSH <span aria-label="annotation1" class="CodeAnnotation">❶,</span> introduce <code class="bold" translate="no">Y</code> para que puedas conectarte al servidor remoto más tarde.</p>
+<p>Ahora crearemos un proyecto. Hay mucha salida, así que veremos el proceso de creación por secciones. Comienza emitiendo el comando <code class="bold" translate="no">create</code>:</p>
+<pre translate="no"><code translate="no">(ll_env)learning_log$ <b>platform create</b>
+* Project title (--title)
+Default: Untitled Project
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> &gt; <b>ll_project</b>
+
+* Region (--region)
+The region where the project will be hosted
+  <var>--snip--</var>
+  [us-3.platform.sh] Moses Lake, United States (AZURE) [514 gC02eq/kWh]
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> &gt; <b>us-3.platform.sh</b>
+* Plan (--plan)
+Default: development
+Enter a number to choose:
+  [0] development
+  <var>--snip--</var>
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> &gt; <b>0</b>
+
+* Environments (--environments)
+The number of environments
+Default: 3
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> &gt; <b>3</b>
+
+* Storage (--storage)
+The amount of storage per environment, in GiB
+Default: 5
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span> &gt; <b>5</b></code></pre>
+<p>El primer mensaje nos pide un nombre para el proyecto <span aria-label="annotation1" class="CodeAnnotation">❶,</span> así que utilizaremos el nombre <code class="bold" translate="no">ll_project</code>. El siguiente mensaje nos pregunta en qué región queremos que esté el servidor <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Elige el servidor que te quede más cerca; en mi caso, <code translate="no">us-3.platform.sh</code>. Para el resto de las preguntas, puedes aceptar los valores predeterminados: un servidor en el plan de desarrollo más bajo <span aria-label="annotation3" class="CodeAnnotation">❸,</span> tres entornos para el proyecto <span aria-label="annotation4" class="CodeAnnotation">❹,</span> y 5 GB de almacenamiento para el proyecto en general <span aria-label="annotation5" class="CodeAnnotation">❺.</span></p>
+<p>Hay tres preguntas más a las que responder:</p>
+<pre translate="no"><code translate="no">Default branch (--default-branch)
+The default Git branch name for the project (the production environment)
+Default: main
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> &gt; <b>main</b>
+
+Git repository detected: /Users/eric/.../learning_log
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> Set the new project ll_project as the remote for this repository? [Y/n] <b>Y</b>
+
+The estimated monthly cost of this project is: $10 USD
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> Are you sure you want to continue? [Y/n] <b>Y</b>
+
+<span epub:type="pagebreak" id="Page_455" title="455"></span>The Platform.sh Bot is activating your project
+
+      ▀▄   ▄▀
+    █▄█▀███▀█▄█
+    ▀█████████▀
+     ▄▀     ▀▄
+
+The project is now ready!</code></pre>
+<p>Un repositorio Git puede tener varias ramas; Platform.sh nos pregunta si la rama por defecto para el proyecto debe ser <code translate="no">main</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Después nos pregunta si queremos conectar el repositorio local del proyecto con el repositorio remoto <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Por último, se nos informa de que este proyecto costará unos 10$ al mes si lo mantenemos en funcionamiento más allá del periodo de prueba gratuito <span aria-label="annotation3" class="CodeAnnotation">❸.</span> Si aún no has introducido una tarjeta de crédito, no deberías preocuparte por este coste. Platform.sh simplemente suspenderá tu proyecto si superas los límites de la prueba gratuita sin añadir una tarjeta de crédito.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c20_24.html">anterior</a><a href="c20.html">Subtema 25 de 37: (Ver todo)</a><a href="c20_26.html">siguiente</a><br/></p>
+<br/><a href="c20_25.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h2><span class="NoteHead">Nota</span></h2>
+<p>	VS Code busca los archivos en la carpeta que se abrió más recientemente. Si utilizas VS Code, empieza abriendo la carpeta donde guardas los programas de este capítulo. Por ejemplo, si estás guardando los archivos de tus programas en una carpeta llamada <em translate="no">chapter_10</em>, pulsa CTRL-O (⌘-O en macOS), y abre esa carpeta.</p>
+<div class="bottom hr"><hr/></div>
+<p>Una vez que tenemos un objeto <code translate="no">Path</code> que representa a <em translate="no">pi_digits.txt</em>, utilizamos el método <code translate="no">read_text()</code> para leer todo el contenido del archivo <span aria-label="annotation2" class="CodeAnnotation">❷.</span> El contenido del archivo se devuelve como una única cadena, que asignamos a la variable <code translate="no">contents</code>. Cuando imprimimos el valor de <code translate="no">contents</code>, vemos todo el contenido del archivo de texto:</p>
+<pre translate="no"><code translate="no">3.1415926535
+  8979323846
+  2643383279
+
+</code></pre>
+<p>La única diferencia entre esta salida y el archivo original es la línea en blanco adicional al final de la salida. La línea en blanco aparece porque <code translate="no">read_text()</code> devuelve una cadena vacía cuando llega al final del archivo; esta cadena vacía aparece como una línea en blanco.</p>
+<p>Podemos eliminar la línea en blanco adicional utilizando <code translate="no">rstrip()</code> en la cadena <code translate="no">contents</code>:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">from pathlib import Path</span>
+
+<span class="LiteralGray">path = Path('pi_digits.txt')</span>
+<span class="LiteralGray">contents = path.read_text()</span>
+contents = contents.rstrip()
+<span class="LiteralGray">print(contents)</span></code></pre>
+<p>Recuerda del <span class="xref" itemid="xref_target_Chapter 2">Capítulo 2</span> que el método <code translate="no">rstrip()</code> de Python elimina, o quita, cualquier carácter de espacio en blanco de la parte derecha de una cadena. Ahora la salida coincide exactamente con el contenido del archivo original:</p>
+<pre translate="no"><code translate="no">3.1415926535
+  8979323846
+  2643383279</code></pre>
+<p>Podemos eliminar el carácter de nueva línea final cuando leamos el contenido del archivo, aplicando el método <code translate="no">rstrip()</code> inmediatamente después de llamar a <code translate="no">read_text()</code>:</p>
+<pre translate="no"><code translate="no">contents = path.read_text().rstrip()</code></pre>
+<p>Esta línea indica a Python que llame al método <code translate="no">read_text()</code> en el archivo con el que estamos trabajando. Luego aplica el método <code translate="no">rstrip()</code> a la cadena que devuelve <code translate="no">read_text()</code>. La cadena limpiada se asigna entonces a la variable <code translate="no">contents</code>. Este método se denomina <em translate="no">method chaining</em>, y lo verás utilizado a menudo en programación.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c10_3.html">anterior</a><a href="c10.html">Subtema 4 de 37: (Ver todo)</a><a href="c10_5.html">siguiente</a><br/></p>
+<br/><a href="c10_4.docx" target="_blank"></a></footer>
+</body>
+</html>

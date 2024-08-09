@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch14lev1sec7">
+<span class="calibre2" id="page_220">
+</span>
+  Colisión horizontal de sprites </h3>
+<p class="noindent">
+  En primer lugar, crearemos la función <span class="literal1" translate="no">
+   within_x
+  </span>para determinar si un conjunto de <em class="calibre7">coordenadas </em> <em class="calibre7">x </em>( <em class="calibre7">x1 </em>y <em class="calibre7">x2 </em>) se ha cruzado con otro conjunto de <em class="calibre7">coordenadas x </em>( de nuevo, <em class="calibre7">x1 </em>y <em class="calibre7">x2 </em>). Añade lo siguiente directamente debajo de la clase <span class="literal1" translate="no">
+   Coords
+  </span>: </p>
+<pre class="pre" translate="no"><span class="gray">class Coords:
+    def __init__(self, x1=0, y1=0, x2=0, y2=0):
+        self.x1 = x1
+        self.y1 = y1
+        self.x2 = x2
+        self.y2 = y2</span>
+
+<span class="orange">def</span> within_x(co1, co2):
+ <span class="ent">➊</span> <span class="orange">if</span> co1.x1 &gt; co2.x1 <span class="orange">and</span> co1.x1 &lt; co2.x2:
+        <span class="orange">return</span> <span class="violet">True</span>
+ <span class="ent">➋</span> <span class="orange">elif</span> co1.x2 &gt; co2.x1 <span class="orange">and</span> co1.x2 &lt; co2.x2:
+        <span class="orange">return</span> <span class="violet">True</span>
+    <span class="orange">elif</span> co2.x1 &gt; co1.x1 <span class="orange">and</span> co2.x1 &lt; co1.x2:
+        <span class="orange">return</span> <span class="violet">True</span>
+    <span class="orange">elif</span> co2.x2 &gt; co1.x1 <span class="orange">and</span> co2.x2 &lt; co1.x2:
+        <span class="orange">return</span> <span class="violet">True</span>
+    <span class="orange">else</span>:
+        <span class="orange">return</span> <span class="violet">False</span>
+</pre>
+<p class="indent">
+  La función <span class="literal1" translate="no">
+   within_x
+  </span>toma los parámetros <span class="literal1" translate="no">
+   co1
+  </span>y <span class="literal1" translate="no">
+   co2
+  </span>, ambos objetos <span class="literal1" translate="no">
+   Coords
+  </span>. Primero comprobamos si la posición más a la izquierda del primer objeto de coordenadas ( <span class="literal1" translate="no">
+   co1.x1
+  </span>) está entre la posición más a la izquierda ( <span class="literal1" translate="no">
+   co2.x1
+  </span>) y la posición más a la derecha ( <span class="literal1" translate="no">
+   co2.x2
+  </span>) del segundo objeto de coordenadas <span class="ent">➊ </span>. Si es así, devolvemos <span class="literal1" translate="no">
+   True
+  </span>. </p>
+<div class="image">
+<img alt="Image" class="calibre151" src="../images/f0220-01.jpg" translate="no"/>
+</div>
+<p class="indent">
+  Echemos un vistazo a dos líneas con <em class="calibre7">coordenadas x </em>superpuestas para entender cómo funciona esto. Cada línea de la <a class="calibre6" href="ch14.xhtml#ch14fig04">Figura 14-4 </a>comienza en <span class="literal1" translate="no">
+   x1
+  </span>y termina en <span class="literal1" translate="no">
+   x2
+  </span>. </p>
+<div class="image1">
+<img alt="Image" class="calibre152" id="ch14fig04" src="../images/14fig04.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<span id="page_221">
+</span>
+<em class="calibre7">Figura 14-4: Coordenadas horizontales ( </em>x) superpuestas</p>
+<p class="indent">
+  La primera línea de este diagrama ( <span class="literal1" translate="no">
+   co1
+  </span>) comienza en la posición de píxel 50 ( <span class="literal1" translate="no">
+   x1
+  </span>) y termina en 100 ( <span class="literal1" translate="no">
+   x2
+  </span>). La segunda línea ( <span class="literal1" translate="no">
+   co2
+  </span>) comienza en la posición 40 y termina en 150. En este caso, como la posición <span class="literal1" translate="no">
+   x1
+  </span>de la primera línea está entre las posiciones <span class="literal1" translate="no">
+   x1
+  </span>y <span class="literal1" translate="no">
+   x2
+  </span>de la segunda línea, la afirmación <span class="literal1" translate="no">
+   if
+  </span>de la función sería verdadera para estos dos conjuntos de coordenadas. </p>
+<p class="indent">
+  Con la primera sentencia <span class="literal1" translate="no">
+   elif
+  </span><span class="ent">➋ </span>, vemos si la posición más a la derecha de la primera línea ( <span class="literal1" translate="no">
+   co1.x2
+  </span>) está entre la posición más a la izquierda ( <span class="literal1" translate="no">
+   co2.x1
+  </span>) y la posición más a la derecha ( <span class="literal1" translate="no">
+   co2.x2
+  </span>) de la segunda. Si es así, devolvemos <span class="literal1" translate="no">
+   True
+  </span>. Las dos siguientes sentencias <span class="literal1" translate="no">
+   elif
+  </span>hacen casi lo mismo: comprueban las posiciones más a la izquierda y más a la derecha de la segunda línea ( <span class="literal1" translate="no">
+   co2
+  </span>) con la primera ( <span class="literal1" translate="no">
+   co1
+  </span>). </p>
+<p class="indent">
+  Si ninguna de las sentencias <span class="literal1" translate="no">
+   if
+  </span>coincide, llegamos a <span class="literal1" translate="no">
+   else
+  </span>y devolvemos <span class="literal1" translate="no">
+   False
+  </span>. Esto equivale a decir: "No, los dos objetos de coordenadas no se cruzan horizontalmente". </p>
+<p class="indent">
+  Para ver un ejemplo del funcionamiento de la función, vuelve a mirar la <a class="calibre6" href="ch14.xhtml#ch14fig04">Figura 14-4 . </a>Las posiciones <span class="literal1" translate="no">
+   x1
+  </span>y <span class="literal1" translate="no">
+   x2
+  </span>del primer objeto de coordenadas son 50 y 100, y las posiciones <span class="literal1" translate="no">
+   x1
+  </span>y <span class="literal1" translate="no">
+   x2
+  </span>del segundo objeto de coordenadas son 40 y 150. Esto es lo que ocurre cuando llamamos a la función <span class="literal1" translate="no">
+   within_x
+  </span>que hemos creado: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> c1 = Coords(50, 50, 100, 100)
+<span class="brown">&gt;&gt;&gt;</span> c2 = Coords(40, 40, 150, 150)
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(within_x(c1, c2))
+<span class="blue1">True</span>
+</pre>
+<p class="indent">
+  La función devuelve <span class="literal1" translate="no">
+   True
+  </span>. Este es el primer paso para determinar si un sprite ha chocado con otro. Por ejemplo, cuando creemos una clase para el Sr. Hombre de Palo y para las plataformas, podremos saber si sus <em class="calibre7">coordenadas x </em>se han cruzado. </p>
+<p class="indent">
+  No es una buena práctica tener muchas sentencias <span class="literal1" translate="no">
+   if
+  </span>o <span class="literal1" translate="no">
+   elif
+  </span>que devuelvan el mismo valor. Para resolver este problema, podemos acortar la función <span class="literal1" translate="no">
+   within_x
+  </span>rodeando cada una de sus condiciones con paréntesis, separados por la palabra clave <span class="literal1" translate="no">
+   or
+  </span>. Para obtener una función algo más ordenada y con menos líneas de código, puedes cambiar la función <span id="page_222">
+</span>para que tenga este aspecto: </p>
+<pre class="pre" translate="no"><span class="orange">def</span> within_x(co1, co2):
+    <span class="orange">if</span> (co1.x1 &gt; co2.x1 <span class="orange">and</span> co1.x1 &lt; co2.x2) \
+            <span class="orange">or</span> (co1.x2 &gt; co2.x1 <span class="orange">and</span> co1.x2 &lt; co2.x2) \
+            <span class="orange">or</span> (co2.x1 &gt; co1.x1 <span class="orange">and</span> co2.x1 &lt; co1.x2) \
+            <span class="orange">or</span> (co2.x2 &gt; co1.x1 <span class="orange">and</span> co2.x2 &lt; co1.x2):
+        <span class="orange">return</span> <span class="violet">True</span>
+    <span class="orange">else</span>:
+        <span class="orange">return</span> <span class="violet">False</span>
+</pre>
+<p class="indent">
+  Para extender la sentencia <span class="literal1" translate="no">
+   if
+  </span>a lo largo de varias líneas, de modo que no acabemos con una línea realmente larga que contenga todas las condiciones, utilizamos una barra invertida (\), como se muestra arriba. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch14_7.html">anterior</a><a href="ch14.html">Subtema 8 de 16: (Ver todo)</a><a href="ch14_9.html">siguiente</a><br/></p>
+<br/><a href="ch14_8.docx" target="_blank"></a></footer>
+</body>
+</html>

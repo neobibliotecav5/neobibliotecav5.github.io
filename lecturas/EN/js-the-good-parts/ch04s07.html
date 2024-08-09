@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Augmenting Types</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Augmenting Types"><div class="titlepage"><div><div><h1 class="title"><a id="augmenting_types"/>Augmenting Types</h1></div></div></div><p>JavaScript allows the basic types of the language to be
+                    <span class="emphasis"><em>augmented</em></span>. In <a class="xref" href="ch03.html" title="Chapter 3. Objects">Chapter 3</a>, we saw that adding
+                a method to <code class="literal">Object.prototype</code> makes that method
+                available to all objects. This also works for functions, arrays, strings, numbers,
+                regular expressions, and booleans.<a id="IDX-CHP-4-0211" class="indexterm"/><a id="IDX-CHP-4-0212" class="indexterm"/></p><p>For example, by augmenting <code class="literal">Function.prototype</code>,
+                we can make a method available to all functions:</p><a id="I_programlisting4_d1e2861"/><pre class="programlisting">Function.prototype.method = function (name, func) {
+    this.prototype[name] = func;
+    return this;
+};</pre><p>By augmenting <code class="literal">Function.prototype</code> with a
+                    <code class="literal">method</code> method, we no longer have to type the
+                name of the <code class="literal">prototype</code> property. That bit of
+                ugliness can now be hidden.</p><p>JavaScript does not have a separate integer type, so it is sometimes necessary to
+                extract just the integer part of a number. The method JavaScript provides to do that
+                is ugly. We can fix it by adding an <code class="literal">integer</code>
+                method to <code class="literal">Number.prototype</code>. It uses either
+                    <code class="literal">Math.ceil</code> or <code class="literal">Math.floor</code>, depending on the sign of the number:</p><a id="I_programlisting4_d1e2888"/><pre class="programlisting">Number.method('integer', function (  ) {
+    return Math[this &lt; 0 ? 'ceil' : 'floor'](this);
+});
+
+document.writeln((-10 / 3).integer(  ));  // −3</pre><p>JavaScript lacks a method that removes spaces from the ends of a string. That is
+                an easy oversight to fix:</p><a id="I_programlisting4_d1e2892"/><pre class="programlisting">String.method('trim', function (  ) {
+    return this.replace(/^\s+|\s+$/g, '');
+});
+
+document.writeln('"' + "   neat   ".trim(  ) + '"');</pre><p>Our <code class="literal">trim</code> method uses a regular expression. We
+                will see much more about regular expressions in <a class="xref" href="ch07.html" title="Chapter 7. Regular Expressions">Chapter 7</a>.</p><p>By augmenting the basic types, we can make significant improvements to the
+                expressiveness of the language. Because of the dynamic nature of JavaScript's
+                prototypal inheritance, all values are immediately endowed with the new methods,
+                even values that were created before the methods were created.</p><p>The prototypes of the basic types are public structures, so care must be taken
+                when mixing libraries. One defensive technique is to add a method only if the method
+                is known to be missing:<a id="IDX-CHP-4-0213" class="indexterm"/></p><a id="I_programlisting4_d1e2911"/><pre class="programlisting">// Add a method conditionally.
+
+Function.prototype.method = function (name, func) {
+    if (!this.prototype[name]) {
+        this.prototype[name] = func;
+        return this;
+    }
+};</pre><p>Another concern is that the <code class="literal">for in</code> statement
+                interacts badly with prototypes. We saw a couple of ways to mitigate that in <a class="xref" href="ch03.html" title="Chapter 3. Objects">Chapter 3</a>: we can use the <code class="literal">hasOwnProperty</code> method to screen out inherited properties, and we can
+                look for specific types.</p></div></body></html>

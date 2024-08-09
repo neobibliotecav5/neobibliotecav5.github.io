@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch08lev1sec6">
+  ¿Por qué utilizar clases y objetos? </h3>
+<p class="noindent">
+  Ahora hemos añadido funciones a nuestras clases, pero ¿por qué utilizar clases y objetos cuando podrías escribir funciones normales llamadas <span class="literal1" translate="no">
+   breathe
+  </span>, <span class="literal1" translate="no">
+   move
+  </span>, <span class="literal1" translate="no">
+   eat_food
+  </span>, etc.? </p>
+<p class="indent">
+  Para responder a esa pregunta, utilizaremos nuestra jirafa llamada Reginald, que creamos antes como un objeto de la clase <span class="literal1" translate="no">
+   Giraffe
+  </span>, de la siguiente manera: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> reginald = Giraffe()
+</pre>
+<p class="indent">
+  Como <span class="literal1" translate="no">
+   reginald
+  </span>es un objeto, podemos llamar (o ejecutar) funciones proporcionadas por la clase <span class="literal1" translate="no">
+   Giraffe
+  </span>y sus clases padre. Llamamos a funciones de un objeto utilizando el operador punto ( <span class="literal1" translate="no">
+   .
+  </span>) y el nombre de la función. Para decirle a Reginald que se mueva o que coma, podemos llamar a las funciones de la siguiente manera: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="gray">reginald = Giraffe()</span>
+<span class="brown">&gt;&gt;&gt;</span> reginald.move()
+<span class="brown">&gt;&gt;&gt;</span> reginald.eat_leaves_from_trees()
+</pre>
+<p class="indent">
+<span id="page_102">
+</span>
+  Supongamos que Reginald tiene una amiga jirafa llamada Harriet. Vamos a crear otro objeto <span class="literal1" translate="no">
+   Giraffe
+  </span>llamado <span class="literal1" translate="no">
+   harriet
+  </span>: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> harriet = Giraffe()
+</pre>
+<p class="indent">
+  Como estamos utilizando objetos y clases, podemos decirle a Python de qué jirafa estamos hablando cuando queramos ejecutar la función <span class="literal1" translate="no">
+   move
+  </span>. Por ejemplo, si queremos hacer que Harriet se mueva pero dejar a Reginald en su sitio, podríamos llamar a la función <span class="literal1" translate="no">
+   move
+  </span>utilizando nuestro objeto <span class="literal1" translate="no">
+   harriet
+  </span>, así: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> harriet.move()
+</pre>
+<p class="indent">
+  En este caso, sólo se movería Harriet. </p>
+<p class="indent">
+  Cambiemos un poco nuestras clases para que esto sea más evidente. Añade una sentencia <span class="literal1" translate="no">
+   print
+  </span>a cada función en lugar de utilizar <span class="literal1" translate="no">
+   pass
+  </span>: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> Animal(Animate):
+        <span class="orange">def</span> breathe(self):
+            <span class="violet">print</span>(<span class="green">'breathing'</span>)
+        <span class="orange">def</span> move(self):
+            <span class="violet">print</span>(<span class="green">'moving'</span>)
+        <span class="orange">def</span> eat_food(self):
+            <span class="violet">print</span>(<span class="green">'eating food'</span>)
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> Mammal(Animal):
+        <span class="orange">def</span> feed_young_with_milk(self):
+            <span class="violet">print</span>(<span class="green">'feeding young'</span>)
+
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> Giraffe(Mammal):
+        <span class="orange">def</span> eat_leaves_from_trees(self):
+            <span class="violet">print</span>(<span class="green">'eating leaves'</span>)
+</pre>
+<p class="indent">
+  Ahora, cuando creamos nuestros objetos <span class="literal1" translate="no">
+   reginald
+  </span>y <span class="literal1" translate="no">
+   harriet
+  </span>y llamamos a funciones sobre ellos, podemos ver que realmente ocurre algo: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> reginald = Giraffe()
+<span class="brown">&gt;&gt;&gt;</span> harriet = Giraffe()
+<span class="brown">&gt;&gt;&gt;</span> reginald.move()
+<span class="blue1">moving</span>
+<span class="brown">&gt;&gt;&gt;</span> harriet.eat_leaves_from_trees()
+<span class="blue1">eating leaves</span>
+</pre>
+<p class="indent">
+<span id="page_103">
+</span>
+  En las dos primeras líneas, creamos las variables <span class="literal1" translate="no">
+   reginald
+  </span>y <span class="literal1" translate="no">
+   harriet
+  </span>, que son objetos de la clase <span class="literal1" translate="no">
+   Giraffe
+  </span>. A continuación, llamamos a la función <span class="literal1" translate="no">
+   move
+  </span>sobre <span class="literal1" translate="no">
+   reginald
+  </span>, y Python imprime <span class="literal1" translate="no">
+   moving
+  </span>en la línea siguiente. Del mismo modo, llamamos a la función <span class="literal1" translate="no">
+   eat_leaves_from_trees
+  </span>sobre <span class="literal1" translate="no">
+   harriet
+  </span>, y Python imprime <span class="literal1" translate="no">
+   eating leaves
+  </span>. Si se tratara de jirafas reales, en lugar de objetos de un ordenador, una jirafa estaría caminando y la otra comiendo. </p>
+<div class="image">
+<img alt="Image" class="calibre76" src="../images/f0103-01.jpg" translate="no"/>
+</div>
+<div class="note">
+<p class="notet">
+<strong class="calibre3"><span class="notes">NOTA </span></strong></p>
+<p class="notep">
+<em class="calibre7">
+    Las funciones definidas para las clases se llaman en realidad <span class="literal1" translate="no">
+     methods
+    </span>. Los términos son casi intercambiables, salvo que los métodos sólo pueden invocarse sobre objetos de una clase. Otra forma de decir esto es que un método está asociado a una clase, pero una función no. Dado que son casi lo mismo, en este libro utilizaremos el término <span class="literal1" translate="no">
+     function
+    </span></em>.</p>
+</div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch08_6.html">anterior</a><a href="ch08.html">Subtema 7 de 14: (Ver todo)</a><a href="ch08_8.html">siguiente</a><br/></p>
+<br/><a href="ch08_7.docx" target="_blank"></a></footer>
+</body>
+</html>

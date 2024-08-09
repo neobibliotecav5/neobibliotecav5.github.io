@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c16-0021">Añadir texto sobreimpresionado</h3>
+<p class="BodyFirst">Para terminar este mapa, añadiremos un texto informativo que aparecerá cuando pases el ratón por encima del marcador que representa un terremoto. Además de mostrar la longitud y la latitud, que aparecen por defecto, mostraremos también la magnitud y proporcionaremos una descripción de la ubicación aproximada.</p>
+<p><span epub:type="pagebreak" id="Page_351" title="351"></span>Para realizar este cambio, necesitamos extraer un poco más de datos del archivo:</p>
+<p class="CodeLabel" translate="no"><b>eq_world_map.py</b></p>
+<pre translate="no"><code translate="no"><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> mags, lons, lats, eq_titles = [], [], [], []
+<span class="LiteralGray">    mag = eq_dict['properties']['mag']</span>
+<span class="LiteralGray">    lon = eq_dict['geometry']['coordinates'][0]</span>
+<span class="LiteralGray">    lat = eq_dict['geometry']['coordinates'][1]</span>
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     eq_title = eq_dict['properties']['title']
+<span class="LiteralGray">    mags.append(mag)</span>
+<span class="LiteralGray">    lons.append(lon)</span>
+<span class="LiteralGray">    lats.append(lat)</span>
+    eq_titles.append(eq_title)
+
+<span class="LiteralGray">title = 'Global Earthquakes'</span>
+<span class="LiteralGray">fig = px.scatter_geo(lat=lats, lon=lons, size=mags, title=title,</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">        projection='natural earth',</span>
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>         hover_name=eq_titles,
+<span class="LiteralGray">    )</span>
+<span class="LiteralGray">fig.show()</span></code></pre>
+<p>Primero hacemos una lista llamada <code translate="no">eq_titles</code> para almacenar el título de cada terremoto <span aria-label="annotation1" class="CodeAnnotation">❶.</span> La sección <code translate="no">'title'</code> de los datos contiene un nombre descriptivo de la magnitud y ubicación de cada terremoto, además de su longitud y latitud. Extraemos esta información y la asignamos a la variable <code translate="no">eq_title</code> <span aria-label="annotation2" class="CodeAnnotation">❷,</span> y luego la añadimos a la lista <code translate="no">eq_titles</code>.</p>
+<p>En la llamada a <code translate="no">px.scatter_geo()</code>, pasamos <code translate="no">eq_titles</code> al argumento <code translate="no">hover_name</code> <span aria-label="annotation3" class="CodeAnnotation">❸.</span> Plotly añadirá ahora la información del título de cada terremoto al texto hover de cada punto. Cuando ejecutes este programa, deberías poder pasar el ratón por encima de cualquier marcador, ver una descripción de dónde tuvo lugar ese terremoto y leer su magnitud exacta. En la <a href="#figure16-10" id="figureanchor16-10">Figura 16-10</a> se muestra un ejemplo de esta información.</p>
+<figure>
+<img alt="" class="keyline" height="340" src="Images/f16010.png" translate="no" width="579"/>
+<figcaption><p>Figura<a id="figure16-10">16-10</a>: El texto que aparece al pasar el ratón incluye ahora un resumen de cada terremoto.</p></figcaption></figure><p>¡Es impresionante! En menos de 30 líneas de código, hemos creado un mapa visualmente atractivo y significativo de la actividad sísmica mundial que también ilustra en <span epub:type="pagebreak" id="Page_352" title="352"></span>la estructura geológica del planeta. Plotly ofrece una amplia gama de formas de personalizar el aspecto y el comportamiento de tus visualizaciones. Utilizando las numerosas opciones de Plotly, puedes hacer gráficos y mapas que muestren exactamente lo que quieres que muestren.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c16_26.html">anterior</a><a href="c16.html">Subtema 27 de 29: (Ver todo)</a><a href="c16_28.html">siguiente</a><br/></p>
+<br/><a href="c16_27.docx" target="_blank"></a></footer>
+</body>
+</html>

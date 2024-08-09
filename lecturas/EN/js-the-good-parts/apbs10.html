@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Typed Wrappers</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Typed Wrappers"><div class="titlepage"><div><div><h1 class="title"><a id="typed_wrappers"/>Typed Wrappers</h1></div></div></div><p>JavaScript has a set of typed wrappers. For example:<a id="IDX-APP-B-0574" class="indexterm"/><a id="IDX-APP-B-0575" class="indexterm"/><a id="IDX-APP-B-0576" class="indexterm"/><a id="IDX-APP-B-0577" class="indexterm"/><a id="IDX-APP-B-0578" class="indexterm"/><a id="IDX-APP-B-0579" class="indexterm"/></p><a id="I_programlisting_d1e9260"/><pre class="programlisting">new Boolean(false)</pre><p>produces an object that has a <code class="literal">valueOf</code> method
+                that returns the wrapped value. This turns out to be completely unnecessary and
+                occasionally confusing. Don't use <code class="literal">new Boolean</code> or
+                    <code class="literal">new Number</code> or <code class="literal">new
+                    String</code>.</p><p>Also avoid <code class="literal">new Object</code> and <code class="literal">new Array</code>. Use <code class="literal">{}</code>
+                and <code class="literal">[]</code> instead.</p></div></body></html>

@@ -1,0 +1,76 @@
+@page {
+    margin-bottom: 5pt;
+    margin-top: 5pt
+    }
+@font-face {
+    font-family: "TradeGothicLTStd";
+    src: url(fonts/TradeGothicLTStd.otf);
+    font-style: normal;
+    font-weight: normal
+    }
+@font-face {
+    font-family: "TradeGothicLTStd";
+    src: url(fonts/TradeGothicLTStd-Obl.otf);
+    font-style: italic;
+    font-weight: normal
+    }
+@font-face {
+    font-family: "TradeGothicLTStd";
+    src: url(fonts/TradeGothicLTStd-Bold.otf);
+    font-style: normal;
+    font-weight: bold
+    }
+@font-face {
+    font-family: "TradeGothicLTStd";
+    src: url(fonts/TradeGothicLTStd-BoldObl.otf);
+    font-style: italic;
+    font-weight: bold
+    }
+@font-face {
+    font-family: "JansonTextLTStd";
+    src: url(fonts/JansonTextLTStd-Bold.otf);
+    font-style: normal;
+    font-weight: bold
+    }
+@font-face {
+    font-family: "JansonTextLTStd";
+    src: url(fonts/JansonTextLTStd-BoldItalic.otf);
+    font-style: italic;
+    font-weight: bold
+    }
+@font-face {
+    font-family: "JansonTextLTStd";
+    src: url(fonts/JansonTextLTStd-Italic.otf);
+    font-style: italic;
+    font-weight: normal
+    }
+@font-face {
+    font-family: "JansonTextLTStd";
+    src: url(fonts/JansonTextLTStd-Roman.otf);
+    font-style: normal;
+    font-weight: normal
+    }
+@font-face {
+    font-family: "UbuntuMono";
+    src: url(fonts/UbuntuMono-Regular.ttf);
+    font-style: normal;
+    font-weight: normal
+    }
+@font-face {
+    font-family: "UbuntuMono";
+    src: url(fonts/UbuntuMono-Bold.ttf);
+    font-style: normal;
+    font-weight: bold
+    }
+@font-face {
+    font-family: "UbuntuMono";
+    src: url(fonts/UbuntuMono-Italic.ttf);
+    font-style: italic;
+    font-weight: normal
+    }
+@font-face {
+    font-family: "UbuntuMono";
+    src: url(fonts/UbuntuMono-BoldItalic.ttf);
+    font-style: italic;
+    font-weight: bold
+    }

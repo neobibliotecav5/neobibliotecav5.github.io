@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://www.w3.org/2002/06/xhtml2/ http://www.w3.org/MarkUp/SCHEMA/xhtml2.xsd">
+<head>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style></head>
+<body><div id="sbo-rt-content"><section>
+<header>
+<h1 class="chapter">
+<span class="ChapterNumber"><span epub:type="pagebreak" id="Page_433" title="433"></span>20</span><br/>
+<span class="ChapterTitle">Styling and Deploying an App</span></h1>
+</header>
+<figure class="opener">
+<img alt="" height="406" src="Images/chapterart.png" width="406"/>
+</figure>
+<p class="ChapterIntro">Learning Log is fully functional now, but it has no styling and runs only on your local machine. In this chapter, you’ll style the project in a simple but professional manner and then deploy it to a live server so anyone in the world can make an account and use it.</p>
+<p>For the styling, we’ll use the <em>Bootstrap</em> library, a collection of tools for styling web applications so they look professional on all modern devices, from a small phone to a large desktop monitor. To do this, we’ll use the django-bootstrap5 app, which will also give you practice using apps made by other Django developers.</p>
+<p>We’ll deploy Learning Log using <em>Platform.sh</em>, a site that lets you push your project to one of its servers, making it available to anyone with an internet connection. We’ll also start using a version control system called Git to track changes to the project.</p>
+<p><span epub:type="pagebreak" id="Page_434" title="434"></span>When you’re finished with Learning Log, you’ll be able to develop simple web applications, give them a professional look and feel, and deploy them to a live server. You’ll also be able to use more advanced learning resources as you develop your skills.</p>
+<h2 id="h1-502703c20-0001">Styling Learning Log</h2>
+<p class="BodyFirst">We’ve purposely ignored styling until now to focus on Learning Log’s functionality first. This is a good way to approach development, because an app is only useful if it works. Once an app is working, its appearance is critical so people will want to use it.</p>
+<p>In this section, we’ll install the django-bootstrap5 app and add it to the project. We’ll then use it to style the individual pages in the project, so all the pages have a consistent look and feel.</p>
+<h3 id="h2-502703c20-0001">The django-bootstrap5 App</h3>
+<p class="BodyFirst">We’ll use django-bootstrap5 to integrate Bootstrap into our project. This app downloads the required Bootstrap files, places them in an appropriate location in your project, and makes the styling directives available in your project’s templates.</p>
+<p>To install django-bootstrap5, issue the following command in an active virtual environment:</p>
+<pre><code>(ll_env)learning_log$ <b>pip install django-bootstrap5</b>
+<var>--snip--</var>
+Successfully installed beautifulsoup4-4.11.1 django-bootstrap5-21.3
+    soupsieve-2.3.2.post1</code></pre>
+<p>Next, we need to add django-bootstrap5 to <code>INSTALLED_APPS</code> in <em>settings.py</em>:</p>
+<p class="CodeLabel"><b>settings.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">INSTALLED_APPS = [</span>
+<span class="LiteralGray">    # My apps.</span>
+<span class="LiteralGray">    'learning_logs',</span>
+<span class="LiteralGray">    'accounts',</span>
+
+    # Third party apps.
+    'django_bootstrap5',
+
+<span class="LiteralGray">    # Default django apps.</span>
+<span class="LiteralGray">    'django.contrib.admin',</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>Start a new section called <code>Third party apps</code>, for apps created by other developers, and add <code>'django_bootstrap5'</code> to this section. Make sure you place this section after <code>My apps</code> but before the section containing Django’s default apps.</p>
+<h3 id="h2-502703c20-0002">Using Bootstrap to Style Learning Log</h3>
+<p class="BodyFirst">Bootstrap is a large collection of styling tools. It also has a number of templates you can apply to your project to create an overall style. It’s much easier to use these templates than to use individual styling tools. To see the <span epub:type="pagebreak" id="Page_435" title="435"></span>templates Bootstrap offers, go to <a class="LinkURL" href="https://getbootstrap.com">https://getbootstrap.com</a> and click <b>Examples</b>. We’ll use the<em> Navbar static</em> template, which provides a simple top navigation bar and a container for the page’s content.</p>
+<p><a href="#figure20-1" id="figureanchor20-1">Figure 20-1</a> shows what the home page will look like after we apply Bootstrap’s template to <em>base.html</em> and modify<em> index.html</em> slightly.</p>
+<figure>
+<img alt="" class="keyline" height="392" src="Images/f20001.png" width="604"/>
+<figcaption><p><a id="figure20-1">Figure 20-1</a>: The Learning Log home page using Bootstrap</p></figcaption>
+</figure>
+<h3 id="h2-502703c20-0003">Modifying base.html</h3>
+<p class="BodyFirst">We need to rewrite <em>base.html</em> using the Bootstrap template. We’ll develop the new<em> base.html </em>in sections. This is a large file; you may want to copy this file from the online resources, available at <a class="LinkURL" href="https://ehmatthes.github.io/pcc_3e">https://ehmatthes.github.io/pcc_3e</a>. If you do copy the file, you should still read through the following section to understand the changes that were made.</p>
+<h4 id="h3-502703c20-0001">Defining the HTML Headers</h4>
+<p class="BodyFirst">The first change we’ll make to <em>base.html</em> defines the HTML headers in the file. We’ll also add some requirements for using Bootstrap in our templates, and give the page a title. Delete everything in <em>base.html</em> and replace it with the following code:</p>
+<p class="CodeLabel"><b>base.html</b></p>
+<pre><code><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> &lt;!doctype html&gt;
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> &lt;html lang="en"&gt;
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> &lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>   &lt;title&gt;Learning Log&lt;/title&gt;
+
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>   {% load django_bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+
+&lt;/head&gt;</code></pre>
+<p><span epub:type="pagebreak" id="Page_436" title="436"></span>We first declare this file as an HTML document <span aria-label="annotation1" class="CodeAnnotation">❶</span> written in English <span aria-label="annotation2" class="CodeAnnotation">❷</span>. An HTML file is divided into two main parts: the <em>head</em> and the <em>body</em>. The head of the file begins with an opening <code>&lt;head&gt;</code> tag <span aria-label="annotation3" class="CodeAnnotation">❸</span>. The head of an HTML file doesn’t hold any of the page’s content; it just tells the browser what it needs to know to display the page correctly. We include a <code>&lt;title&gt;</code> element for the page, which will display in the browser’s title bar whenever Learning Log is open <span aria-label="annotation4" class="CodeAnnotation">❹</span>.</p>
+<p>Before closing the head section, we load the collection of template tags available in django-bootstrap5 <span aria-label="annotation5" class="CodeAnnotation">❺</span>. The template tag <code>{% bootstrap_css %}</code> is a custom tag from django-bootstrap5; it loads all of the CSS files required to implement Bootstrap styles. The tag that follows enables all the interactive behavior you might use on a page, such as collapsible navigation bars. The closing <code>&lt;/head&gt;</code> tag appears on the last line.</p>
+<p>All Bootstrap styling options are now available in any template that inherits from <em>base.html</em>. If you want to use custom template tags from django-bootstrap5, each template will need to include the <code>{% load django_bootstrap5 %}</code> tag.</p>
+<h4 id="h3-502703c20-0002">Defining the Navigation Bar</h4>
+<p class="BodyFirst">The code that defines the navigation bar at the top of the page is fairly long, because it has to work equally well on narrow phone screens and wide desktop monitors. We’ll work through the navigation bar in sections.</p>
+<p>Here’s the first part of the navigation bar:</p>
+<p class="CodeLabel"><b>base.html</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">&lt;/head&gt;</span>
+&lt;body&gt;
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>   &lt;nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border"&gt;
+    &lt;div class="container-fluid"&gt;
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>       &lt;a class="navbar-brand" href="{% url 'learning_logs:index' %}"&gt;
+          Learning Log&lt;/a&gt;
+
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>       &lt;button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarCollapse" aria-controls="navbarCollapse"
+        aria-expanded="false" aria-label="Toggle navigation"&gt;
+        &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+      &lt;/button&gt;
+
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>       &lt;div class="collapse navbar-collapse" id="navbarCollapse"&gt;
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>         &lt;ul class="navbar-nav me-auto mb-2 mb-md-0"&gt;
+<span aria-label="annotation6" class="CodeAnnotationHang">❻</span>           &lt;li class="nav-item"&gt;
+<span aria-label="annotation7" class="CodeAnnotationHang">❼</span>             &lt;a class="nav-link" href="{% url 'learning_logs:topics' %}"&gt;
+              Topics&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt; &lt;!-- End of links on left side of navbar --&gt;
+      &lt;/div&gt; &lt;!-- Closes collapsible parts of navbar --&gt;
+
+    &lt;/div&gt; &lt;!-- Closes navbar's container --&gt;
+  &lt;/nav&gt; &lt;!-- End of navbar --&gt;
+
+<span epub:type="pagebreak" id="Page_437" title="437"></span><span aria-label="annotation8" class="CodeAnnotationHang">❽</span> {% block content %}{% endblock content %}
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>The first new element is the opening <code>&lt;body&gt;</code> tag. The <em>body</em> of an HTML file contains the content users will see on a page. Next we have a <code>&lt;nav&gt;</code> element, which opens the code for the navigation bar at the top of the page <span aria-label="annotation1" class="CodeAnnotation">❶</span>. Everything contained in this element is styled according to the Bootstrap style rules defined by the selectors <code>navbar</code>, <code>navbar-expand-md</code>, and the rest that you see here. A <em>selector</em> determines which elements on a page a certain style rule applies to. The <code>navbar-light</code> and <code>bg-light</code> selectors style the navigation bar with a light-themed background. The <code>mb</code> in <code>mb-4</code> is short for <em>margin-bottom</em>; this selector ensures that a little space appears between the navigation bar and the rest of the page. The <code>border</code> selector provides a thin border around the light background to set it off a little from the rest of the page.</p>
+<p>The <code>&lt;div&gt;</code> tag on the next line opens a resizable container that will hold the overall navigation bar. The term <em>div</em> is short for <em>division</em>; you build a web page by dividing it into sections and defining style and behavior rules that apply to that section. Any styling or behavior rules that are defined in an opening <code>&lt;div&gt;</code> tag affect everything you see until its corresponding closing tag, written as <code>&lt;/div&gt;</code>.</p>
+<p>Next we set the project’s name, <code>Learning Log</code>, to appear as the first element on the navigation bar <span aria-label="annotation2" class="CodeAnnotation">❷</span>. This will also serve as a link to the home page, just as it’s been doing in the minimally styled version of the project we built in the previous two chapters. The <code>navbar-brand</code> selector styles this link so it stands out from the rest of the links and helps add some branding to the site.</p>
+<p>The Bootstrap template then defines a button that appears if the browser window is too narrow to display the whole navigation bar horizontally <span aria-label="annotation3" class="CodeAnnotation">❸</span>. When the user clicks the button, the navigation elements appear in a drop-down list. The <code>collapse</code> reference causes the navigation bar to collapse when the user shrinks the browser window or when the site is displayed on devices with small screens.</p>
+<p>Next, we open a new section (<code>&lt;div&gt;</code>) of the navigation bar <span aria-label="annotation4" class="CodeAnnotation">❹</span>. This is the part of the navigation bar that can collapse depending on the size of the browser window.</p>
+<p>Bootstrap defines navigation elements as items in an unordered list <span aria-label="annotation5" class="CodeAnnotation">❺</span>, with style rules that make it look nothing like a list. Every link or element you need on the bar can be included as an item in an unordered list <span aria-label="annotation6" class="CodeAnnotation">❻</span>. Here, the only item in the list is our link to the topics page <span aria-label="annotation7" class="CodeAnnotation">❼</span>. Notice the closing <code>&lt;/li&gt;</code> tag at the end of the link; every opening tag needs a corresponding closing tag.</p>
+<p>The rest of the lines shown here close out all of the tags that have been opened. In HTML, a comment is written like this:</p>
+<pre><code>&lt;!-- This is an HTML comment. --&gt;</code></pre>
+<p><span epub:type="pagebreak" id="Page_438" title="438"></span>Closing tags don’t usually have comments, but if you’re new to HTML, it can be really helpful to label some of your closing tags. A single missing tag or an extra tag can throw off the layout of an entire page. We include the <code>content</code> block <span aria-label="annotation8" class="CodeAnnotation">❽</span> and the closing <code>&lt;/body&gt;</code> and <code>&lt;/html&gt;</code> tags as well.</p>
+<p>We’re not finished with the navigation bar, but we now have a complete HTML document. If <code>runserver</code> is currently active, stop the current server and restart it. Go to the project’s home page, and you should see a navigation bar that has some of the elements shown in <a href="#figure20-1">Figure 20-1</a>. Now let’s add the rest of the elements to the navigation bar.</p>
+<h4 id="h3-502703c20-0003">Adding User Account Links</h4>
+<p class="BodyFirst">We still need to add the links associated with user accounts. We’ll start by adding all of the account-related links except the logout form.</p>
+<p>Make the following changes to <em>base.html</em>:</p>
+<p class="CodeLabel"><b>base.html</b></p>
+<pre><code>        <em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">        &lt;/ul&gt; &lt;!-- End of links on left side of navbar --&gt;</span>
+
+        &lt;!-- Account-related links --&gt;
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         &lt;ul class="navbar-nav ms-auto mb-2 mb-md-0"&gt;
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>           {% if user.is_authenticated %}
+            &lt;li class="nav-item"&gt;
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>               &lt;span class="navbar-text me-2"&gt;Hello, {{ user.username }}.
+                &lt;/span&gt;&lt;/li&gt;
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>           {% else %}
+            &lt;li class="nav-item"&gt;
+              &lt;a class="nav-link" href="{% url 'accounts:register' %}"&gt;
+                  Register&lt;/a&gt;&lt;/li&gt;
+            &lt;li class="nav-item"&gt;
+              &lt;a class="nav-link" href="{% url 'accounts:login' %}"&gt;
+                  Log in&lt;/a&gt;&lt;/li&gt;
+          {% endif %}
+
+        &lt;/ul&gt; &lt;!-- End of account-related links --&gt;
+
+<span class="LiteralGray">      &lt;/div&gt; &lt;!-- Closes collapsible parts of navbar --&gt;</span>
+<span class="LiteralGray">      </span><em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>We begin a new set of links by using another opening <code>&lt;ul&gt;</code> tag <span aria-label="annotation1" class="CodeAnnotation">❶</span>. You can have as many groups of links as you need on a page. The selector <code>ms-auto</code> is short for <em>margin-start-automatic</em>: this selector examines the other elements in the navigation bar and works out a left (start) margin that pushes this group of links to the right side of the browser window.</p>
+<p>The <code>if</code> block is the same conditional block we used earlier to display appropriate messages to users, depending on whether they’re logged in <span aria-label="annotation2" class="CodeAnnotation">❷</span>. The block is a little longer now because there are some styling rules inside the conditional tags. The greeting for authenticated users is wrapped in a <code>&lt;span&gt;</code> element <span aria-label="annotation3" class="CodeAnnotation">❸</span>. A <em>span element</em> styles pieces of text or elements of a page that are part of a longer line. While div elements create their own divisions in a page, span elements are continuous within a larger section. This can <span epub:type="pagebreak" id="Page_439" title="439"></span>be confusing at first, because many pages have deeply nested div elements. Here, we’re using the span element to style informational text on the navigation bar: in this case, the logged-in user’s name.</p>
+<p>In the <code>else</code> block, which runs for unauthenticated users, we include the links for registering a new account and logging in <span aria-label="annotation4" class="CodeAnnotation">❹</span>. These should look just like the link to the topics page.</p>
+<p>If you wanted to add more links to the navigation bar, you’d add another <code>&lt;li&gt;</code> item to one of the <code>&lt;ul&gt;</code> groups that we’ve defined, using styling directives like the ones you’ve seen here.</p>
+<p>Now let’s add the logout form to the navigation bar.</p>
+<h4 id="h3-502703c20-0004">Adding the Logout Form to the Navigation Bar</h4>
+<p class="BodyFirst">When we first wrote the logout form, we added it to the bottom of <em>base.html</em>. Now let’s put it in a better place, in the navigation bar:</p>
+<p class="CodeLabel"><b>base.html</b></p>
+<pre><code><span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">        &lt;/ul&gt; &lt;!-- End of account-related links --&gt;</span>
+
+        {% if user.is_authenticated %}
+          &lt;form action="{% url 'accounts:logout' %}" method='post'&gt;
+            {% csrf_token %}
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>             &lt;button name='submit' class='btn btn-outline-secondary btn-sm'&gt;
+                Log out&lt;/button&gt;
+          &lt;/form&gt;
+        {% endif %}
+
+<span class="LiteralGray">      &lt;/div&gt; &lt;!-- Closes collapsible parts of navbar --&gt;</span>
+<span class="LiteralGray">      </span><em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>The logout form should be placed after the set of account-related links, but inside the collapsible section of the navigation bar. The only change in the form is the addition of a number of Bootstrap styling classes in the <code>&lt;button&gt;</code> element, which apply Bootstrap styling elements to the logout button <span aria-label="annotation1" class="CodeAnnotation">❶</span>.</p>
+<p>Reload the home page, and you should be able to log in and out using any of the accounts you’ve created.</p>
+<p>There’s still a bit more we need to add to <em>base.html</em>. We need to define two blocks that the individual pages can use to place the content specific to those pages.</p>
+<h4 id="h3-502703c20-0005">Defining the Main Part of the Page</h4>
+<p class="BodyFirst">The rest of <em>base.html</em> contains the main part of the page:</p>
+<p class="CodeLabel"><b>base.html</b></p>
+<pre><code><span class="LiteralGray">  </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">  &lt;/nav&gt; &lt;!-- End of navbar --&gt;</span>
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>   &lt;main class="container"&gt;
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     &lt;div class="pb-2 mb-2 border-bottom"&gt;
+      {% block page_header %}{% endblock page_header %}
+    &lt;/div&gt;
+<span epub:type="pagebreak" id="Page_440" title="440"></span><span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     &lt;div&gt;
+      <span class="LiteralGray">{% block content %}{% endblock content %}</span>
+    &lt;/div&gt;
+  &lt;/main&gt;
+
+<span class="LiteralGray">&lt;/body&gt;</span>
+<span class="LiteralGray">&lt;/html&gt;</span></code></pre>
+<p>We first open a <code>&lt;main&gt;</code> tag <span aria-label="annotation1" class="CodeAnnotation">❶</span>. The <em>main</em> element is used for the most significant part of the body of a page. Here we assign the bootstrap selector <code>container</code>, which is a simple way to group elements on a page. We’ll place two div elements in this container.</p>
+<p>The first div element contains a <code>page_header</code> block <span aria-label="annotation2" class="CodeAnnotation">❷</span>. We’ll use this block to title most pages. To make this section stand out from the rest of the page, we place some padding below the header. <em>Padding</em> refers to space between an element’s content and its border. The selector <code>pb-2</code> is a bootstrap directive that provides a moderate amount of padding at the bottom of the styled element. A <em>margin</em> is the space between an element’s border and other elements on the page. The selector <code>mb-2</code> provides a moderate amount of margin at the bottom of this div. We want a border on the bottom of this block, so we use the selector <code>border-bottom</code>, which provides a thin border at the bottom of the <code>page_header</code> block.</p>
+<p>We then define one more div element that contains the block <code>content</code> <span aria-label="annotation3" class="CodeAnnotation">❸</span>. We don’t apply any specific style to this block, so we can style the content of any page as we see fit for that page. The end of the <em>base.html</em> file has closing tags for the <code>main</code>, <code>body</code>, and <code>html</code> elements.</p>
+<p>When you load Learning Log’s home page in a browser, you should see a professional-looking navigation bar that matches the one shown in <a href="#figure20-1">Figure 20-1</a>. Try resizing the window so it’s really narrow; a button should replace the navigation bar. Click the button, and all the links should appear in a drop-down list.</p>
+<h3 id="h2-502703c20-0004">Styling the Home Page Using a Jumbotron</h3>
+<p class="BodyFirst">To update the home page, we’ll use a Bootstrap element called a <em>jumbotron</em>, a large box that stands out from the rest of the page. Typically, it’s used on home pages to hold a brief description of the overall project and a call to action that invites the viewer to get involved.</p>
+<p>Here’s the revised <em>index.html</em> file:</p>
+<p class="CodeLabel"><b>index.html</b></p>
+<pre><code><span class="LiteralGray">{% extends "learning_logs/base.html" %}</span>
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> {% block page_header %}
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>   &lt;div class="p-3 mb-4 bg-light border rounded-3"&gt;
+    &lt;div class="container-fluid py-4"&gt;
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>       &lt;h1 class="display-3"&gt;Track your learning.&lt;/h1&gt;
+
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>       &lt;p class="lead"&gt;Make your own Learning Log, and keep a list of the
+      topics you're learning about. Whenever you learn something new
+      about a topic, make an entry summarizing what you've learned.&lt;/p&gt;
+
+<span epub:type="pagebreak" id="Page_441" title="441"></span><span aria-label="annotation5" class="CodeAnnotationHang">❺</span>       &lt;a class="btn btn-primary btn-lg mt-1"
+        href="{% url 'accounts:register' %}"&gt;Register &amp;raquo;&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+{% endblock page_header %}</code></pre>
+<p>We first tell Django that we’re about to define what goes in the <code>page_header</code> block <span aria-label="annotation1" class="CodeAnnotation">❶</span>. A jumbotron is implemented as a pair of div elements with a set of styling directives applied to them <span aria-label="annotation2" class="CodeAnnotation">❷</span>. The outer div has padding and margin settings, a light background color, and rounded corners. The inner div is a container that changes along with the window size and has some padding as well. The <code>py-4</code> selector adds padding to the top and bottom of the div element. Feel free to adjust the numbers in these settings and see how the home page changes.</p>
+<p>Inside the jumbotron are three elements. The first is a short message, <code>Track your learning</code>, that gives new visitors a sense of what Learning Log does <span aria-label="annotation3" class="CodeAnnotation">❸</span>. The <code>&lt;h1&gt;</code> element is a first-level header, and the <code>display-3</code> selector adds a thinner and taller look to this particular header. We also include a longer message that provides more information about what the user can do with their learning log <span aria-label="annotation4" class="CodeAnnotation">❹</span>. This is formatted as a <code>lead</code> paragraph, which is meant to stand out from regular paragraphs.</p>
+<p>Rather than just using a text link, we create a button that invites users to register an account on Learning Log <span aria-label="annotation5" class="CodeAnnotation">❺</span>. This is the same link as in the header, but the button stands out on the page and shows the viewer what they need to do in order to start using the project. The selectors you see here style this as a large button that represents a call to action. The code <code>&amp;raquo;</code> is an <em>HTML entity</em> that looks like two right angle brackets combined (&gt;&gt;). Finally, we provide closing div tags and close the <code>page_header</code> block. With only two div elements in this file, it’s not particularly helpful to label the closing div tags. We aren’t adding anything else to this page, so we don’t need to define the <code>content</code> block in this template.</p>
+<p>The home page now looks like <a href="#figure20-1">Figure 20-1</a>. This is a significant improvement over the unstyled version of the project!</p>
+<h3 id="h2-502703c20-0005">Styling the Login Page</h3>
+<p class="BodyFirst">We’ve refined the overall appearance of the login page, but the login form itself doesn’t have any styling yet. Let’s make the form look consistent with the rest of the page by modifying <em>login.html</em>:</p>
+<p class="CodeLabel"><b>login.html</b></p>
+<pre><code><span class="LiteralGray">{% extends 'learning_logs/base.html' %}</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> {% load django_bootstrap5 %}
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> {% block page_header %}
+  &lt;h2&gt;Log in to your account.&lt;/h2&gt;
+{% endblock page_header %}
+
+<span class="LiteralGray">{% block content %}</span>
+
+<span epub:type="pagebreak" id="Page_442" title="442"></span><span class="LiteralGray">  &lt;form action="{% url 'accounts:login' %}" method='post'&gt;</span>
+<span class="LiteralGray">    {% csrf_token %}</span>
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     {% bootstrap_form form %}
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>     {% bootstrap_button button_type="submit" content="Log in" %}
+<span class="LiteralGray">  &lt;/form&gt;</span>
+
+<span class="LiteralGray">{% endblock content %}</span></code></pre>
+<p>We first load the <code>bootstrap5</code> template tags into this template <span aria-label="annotation1" class="CodeAnnotation">❶</span>. We then define the <code>page_header</code> block, which tells the user what the page is for <span aria-label="annotation2" class="CodeAnnotation">❷</span>. Notice that we’ve removed the <code>{% if form.errors %}</code> block from the template; django-bootstrap5 manages form errors automatically.</p>
+<p>To display the form, we use the template tag <code>{% bootstrap_form %}</code> <span aria-label="annotation3" class="CodeAnnotation">❸</span>; this replaces the <code>{{ form.as_div }}</code> element we were using in <span class="xref" itemid="xref_target_Chapter 19">Chapter 19</span>. The <code>{% booststrap_form %}</code> template tag inserts Bootstrap style rules into the form’s individual elements as the form is rendered. To generate the submit button, we use the <code>{% bootstrap_button %}</code> tag with arguments that designate it as a submit button, and give it the label <code>Log in</code> <span aria-label="annotation4" class="CodeAnnotation">❹</span>.</p>
+<p><a href="#figure20-2" id="figureanchor20-2">Figure 20-2</a> shows the login form now. The page is much cleaner, with consistent styling and a clear purpose. Try logging in with an incorrect username or password; you’ll see that even the error messages are styled consistently and integrate well with the overall site.</p>
+<figure>
+<img alt="" class="keyline" height="406" src="Images/f20002.png" width="624"/>
+<figcaption><p><a id="figure20-2">Figure 20-2</a>: The login page styled with Bootstrap</p></figcaption>
+</figure>
+<h3 id="h2-502703c20-0006">Styling the Topics Page</h3>
+<p class="BodyFirst">Let’s make sure the pages for viewing information are styled appropriately as well, starting with the topics page:</p>
+<p class="CodeLabel"><b>topics.html</b></p>
+<pre><code><span class="LiteralGray">{% extends 'learning_logs/base.html' %}</span>
+
+{% block page_header %}
+<span epub:type="pagebreak" id="Page_443" title="443"></span><span aria-label="annotation1" class="CodeAnnotationHang">❶</span>   &lt;h1&gt;Topics&lt;/h1&gt;
+{% endblock page_header %}
+
+<span class="LiteralGray">{% block content %}</span>
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>   &lt;ul class="list-group border-bottom pb-2 mb-4"&gt;
+<span class="LiteralGray">    {% for topic in topics %}</span>
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>       &lt;li class="list-group-item border-0"&gt;
+        &lt;a href="{% url 'learning_logs:topic' topic.id %}"&gt;
+          {{ topic.text }}&lt;/a&gt;
+      &lt;/li&gt;
+<span class="LiteralGray">    {% empty %}</span>
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>       &lt;li class="list-group-item border-0"&gt;No topics have been added yet.&lt;/li&gt;
+<span class="LiteralGray">    {% endfor %}</span>
+<span class="LiteralGray">  &lt;/ul&gt;</span>
+
+<span class="LiteralGray">  &lt;a href="{% url 'learning_logs:new_topic' %}"&gt;Add a new topic&lt;/a&gt;</span>
+
+<span class="LiteralGray">{% endblock content %}</span></code></pre>
+<p>We don’t need the <code>{% load bootstrap5 %}</code> tag, because we’re not using any custom bootstrap5 template tags in this file. We move the heading <code>Topics</code> into the <code>page_header</code> block and make it an <code>&lt;h1&gt;</code> element instead of a simple paragraph <span aria-label="annotation1" class="CodeAnnotation">❶</span>.</p>
+<p>The main content on this page is a list of topics, so we use Bootstrap’s <em>list group</em> component to render the page. This applies a simple set of styling directives to the overall list and to each item in the list. When we open the <code>&lt;ul&gt;</code> tag, we first include the <code>list-group</code> class to apply the default style directives to the list <span aria-label="annotation2" class="CodeAnnotation">❷</span>. We further customize the list by putting a border at the bottom of the list, a little padding below the list (<code>pb-2</code>), and a margin below the bottom border (<code>mb-4</code>).</p>
+<p>Each item in the list needs the <code>list-group-item</code> class, and we customize the default style by removing the border around individual items <span aria-label="annotation3" class="CodeAnnotation">❸</span>. The message that’s displayed when the list is empty needs these same classes <span aria-label="annotation4" class="CodeAnnotation">❹</span>.</p>
+<p>When you visit the topics page now, you should see a page with styling that matches the home page.</p>
+<h3 id="h2-502703c20-0007">Styling the Entries on the Topic Page</h3>
+<p class="BodyFirst">On the topic page, we’ll use Bootstrap’s card component to make each entry stand out. A <em>card</em> is a nestable set of divs with flexible, predefined styles that are perfect for displaying a topic’s entries:</p>
+<p class="CodeLabel"><b>topic.html</b></p>
+<pre><code><span class="LiteralGray">{% extends 'learning_logs/base.html' %}</span>
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> {% block page_header %}
+  &lt;h1&gt;{{ topic.text }}&lt;/h1&gt;
+{% endblock page_header %}
+
+<span epub:type="pagebreak" id="Page_444" title="444"></span><span class="LiteralGray">{% block content %}</span>
+<span class="LiteralGray">  &lt;p&gt;</span>
+<span class="LiteralGray">    &lt;a href="{% url 'learning_logs:new_entry' topic.id %}"&gt;Add new entry&lt;/a&gt;</span>
+<span class="LiteralGray">  &lt;/p&gt;</span>
+
+<span class="LiteralGray">  {% for entry in entries %}</span>
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     &lt;div class="card mb-3"&gt;
+      &lt;!-- Card header with timestamp and edit link --&gt;
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>       &lt;h4 class="card-header"&gt;
+        {{ entry.date_added|date:'M d, Y H:i' }}
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>         &lt;small&gt;&lt;a href="{% url 'learning_logs:edit_entry' entry.id %}"&gt;
+          edit entry&lt;/a&gt;&lt;/small&gt;
+      &lt;/h4&gt;
+      &lt;!-- Card body with entry text --&gt;
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>       &lt;div class="card-body"&gt;{{ entry.text|linebreaks }}&lt;/div&gt;
+    &lt;/div&gt;
+<span class="LiteralGray">  {% empty %}</span>
+<span aria-label="annotation6" class="CodeAnnotationHang">❻</span>     &lt;p&gt;There are no entries for this topic yet.&lt;/p&gt;
+<span class="LiteralGray">  {% endfor %}</span>
+
+<span class="LiteralGray">{% endblock content %}</span></code></pre>
+<p>We first place the topic in the <code>page_header</code> block <span aria-label="annotation1" class="CodeAnnotation">❶</span>. Then we delete the unordered list structure previously used in this template. Instead of making each entry a list item, we open a div element with the selector <code>card</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span>. This card has two nested elements: one to hold the timestamp and the link to edit the entry, and another to hold the body of the entry. The <code>card</code> selector takes care of most of the styling we need for this div; we customize the card by adding a small margin to the bottom of each card (<code>mb-3</code>).</p>
+<p>The first element in the card is a header, which is an <code>&lt;h4&gt;</code> element with the selector <code>card-header</code> <span aria-label="annotation3" class="CodeAnnotation">❸</span>. This header contains the date the entry was made and a link to edit the entry. The <code>&lt;small&gt;</code> tag around the <code>edit_entry</code> link makes it appear a little smaller than the timestamp <span aria-label="annotation4" class="CodeAnnotation">❹</span>. The second element is a div with the selector <code>card-body</code> <span aria-label="annotation5" class="CodeAnnotation">❺</span>, which places the text of the entry in a simple box on the card. Notice that the Django code for including the information on the page hasn’t changed; only elements that affect the appearance of the page have. Since we no longer have an unordered list, we’ve replaced the list item tags around the empty list message with simple paragraph tags <span aria-label="annotation6" class="CodeAnnotation">❻</span>.</p>
+<p><a href="#figure20-3" id="figureanchor20-3">Figure 20-3</a> shows the topic page with its new look. Learning Log’s functionality hasn’t changed, but it looks significantly more professional and inviting to users.</p>
+<p>If you want to use a different Bootstrap template for a project, follow a process that’s similar to what we’ve done so far in this chapter. Copy the template you want to use into <em>base.html</em>, and modify the elements that contain actual content so the template displays your project’s information. Then use Bootstrap’s individual styling tools to style the content on each page.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	The Bootstrap project has excellent documentation. Visit the home page at <a class="LinkURL" href="https://getbootstrap.com">https://getbootstrap.com</a> and click <b>Docs</b> to learn more about what Bootstrap offers.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<span epub:type="pagebreak" id="Page_445" title="445"></span><figure>
+<img alt="" class="keyline" height="514" src="Images/f20003.png" width="624"/>
+<figcaption><p><a id="figure20-3">Figure 20-3</a>: The topic page with Bootstrap styling</p></figcaption>
+</figure>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c20-08">20-1.	Other Forms: </span>We applied Bootstrap’s styles to the <code>login</code> page. Make similar changes to the rest of the form-based pages, including <code>new_topic</code>, <code>new_entry</code>, <code>edit_entry</code>, and <code>register</code>.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c20-09">20-2.	Stylish Blog:</span> Use Bootstrap to style the Blog project you created in <span class="xref" itemid="xref_target_Chapter 19">Chapter 19</span>.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c20-0002">Deploying Learning Log</h2>
+<p class="BodyFirst">Now that we have a professional-looking project, let’s deploy it to a live server so anyone with an internet connection can use it. We’ll use Platform.sh, a web-based platform that allows you to manage the deployment of web applications. We’ll get Learning Log up and running on Platform.sh.</p>
+<h3 id="h2-502703c20-0008">Making a Platform.sh Account</h3>
+<p class="BodyFirst">To make an account, go to <a class="LinkURL" href="https://platform.sh">https://platform.sh</a> and click the <b>Free Trial</b> button. Platform.sh has a free tier that, as of this writing, does not require a credit card. The trial period allows you to deploy an app with minimal resources, which lets you test your project in a live deployment before committing to a paid hosting plan.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<span epub:type="pagebreak" id="Page_446" title="446"></span><h2><span class="NoteHead">Note</span></h2>
+<p>	The specific limits of trial plans tend to change periodically, as hosting platforms fight spam and abuse of resources. You can see the current limits of the free trial at <a class="LinkURL" href="https://platform.sh/free-trial">https://platform.sh/free-trial</a>.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h3 id="h2-502703c20-0009">Installing the Platform.sh CLI</h3>
+<p class="BodyFirst">To deploy and manage a project on Platform.sh, you’ll need the tools available in the Command Line Interface (CLI). To install the latest version of the CLI, visit <a class="LinkURL" href="https://docs.platform.sh/development/cli.html">https://docs.platform.sh/development/cli.html</a> and follow the instructions for your operating system.</p>
+<p>On most systems, you can install the CLI by running the following command in a terminal:</p>
+<pre><code>$ curl -fsS https://platform.sh/cli/installer | php</code></pre>
+<p>After this command has finished running, you will need to open a new terminal window before you can use the CLI.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	This command will probably not work in a standard terminal on Windows. You can use Windows Subsystem for Linux (WSL) or a Git Bash terminal. If you need to install PHP, you can use the XAMPP installer from <a class="LinkURL" href="https://apachefriends.org">https://apachefriends.org</a>. If you have any difficulty installing the Platform.sh CLI, see the more detailed installation instructions in <span class="xref" itemid="xref_target_Appendix E">Appendix E</span>.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h3 id="h2-502703c20-0010">Installing platformshconfig</h3>
+<p class="BodyFirst">You’ll also need to install one additional package, <code>platformshconfig</code>. This package helps detect whether the project is running on your local system or on a Platform.sh server. In an active virtual environment, issue the following command:</p>
+<pre><code>(ll_env)learning_log$ <b>pip install platformshconfig</b></code></pre>
+<p>We’ll use this package to modify the project’s settings when it’s running on the live server.</p>
+<h3 id="h2-502703c20-0011">Creating a requirements.txt File</h3>
+<p class="BodyFirst">The remote server needs to know which packages Learning Log depends on, so we’ll use pip to generate a file listing them. Again, from an active virtual environment, issue the following command:</p>
+<pre><code>(ll_env)learning_log$ <b>pip freeze &gt; requirements.txt</b></code></pre>
+<p>The <code>freeze</code> command tells pip to write the names of all the packages currently installed in the project into the file <em>requirements.txt</em>. Open this file to see the packages and version numbers installed in your project:</p>
+<p class="CodeLabel"><b>requirements.txt</b></p>
+<pre><code>asgiref==3.5.2
+beautifulsoup4==4.11.1
+Django==4.1
+<span epub:type="pagebreak" id="Page_447" title="447"></span>django-bootstrap5==21.3
+platformshconfig==2.4.0
+soupsieve==2.3.2.post1
+sqlparse==0.4.2</code></pre>
+<p>Learning Log already depends on specific versions of seven different packages, so it requires a matching environment to run properly on a remote server. (We installed three of these packages manually, and four of them were installed automatically as dependencies of these packages.)</p>
+<p>When we deploy Learning Log, Platform.sh will install all the packages listed in <em>requirements.txt</em>, creating an environment with the same packages we’re using locally. Because of this, we can be confident the deployed project will function just like it has on our local system. This approach to managing a project is critical as you start to build and maintain multiple projects on your system.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	If the version number for a package listed on your system differs from what’s shown here, keep the version you have on your system.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h3 id="h2-502703c20-0012">Additional Deployment Requirements</h3>
+<p class="BodyFirst">The live server requires two additional packages. These packages are used to serve the project in a production environment, where many users can be making requests at the same time.</p>
+<p>In the same directory where <em>requirements.txt</em> is saved, make a new file called <em>requirements_remote.txt</em>. Add the following two packages to it:</p>
+<p class="CodeLabel"><b>requirements_remote.txt</b></p>
+<pre><code># Requirements for live project.
+gunicorn
+psycopg2</code></pre>
+<p>The <code>gunicorn</code> package responds to requests as they come in to the remote server; this takes the place of the development server we’ve been using locally. The <code>psycopg2</code> package is required to let Django manage the Postgres database that Platform.sh uses. <em>Postgres</em> is an open source database that’s extremely well suited to production apps.</p>
+<h3 id="h2-502703c20-0013">Adding Configuration Files</h3>
+<p class="BodyFirst">Every hosting platform requires some configuration for a project to run correctly on its servers. In this section, we’ll add three configuration files:</p>
+<p class="RunInPara"><span class="RunInHead"><em>.platform.app.yaml</em></span>  This is the main configuration file for the project. This tells Platform.sh what kind of project we’re trying to deploy and what kinds of resources our project needs, and it includes commands for building the project on the server.</p>
+<p class="RunInPara"><span class="RunInHead"><em>.platform/routes.yaml</em></span>  This file defines the routes to our project. When a request is received by Platform.sh, this is the configuration that helps direct these requests to our specific project.</p>
+<p class="RunInPara"><span class="RunInHead"><em>.platform/services.yaml</em></span>  This file defines any additional services our project needs.</p>
+<p><span epub:type="pagebreak" id="Page_448" title="448"></span>These are all YAML (YAML Ain’t Markup Language) files. <em>YAML</em> is a language designed for writing configuration files; it’s made to be read easily by both humans and computers. You can write or modify a typical YAML file by hand, but a computer can also read and interpret the file unambiguously.</p>
+<p>YAML files are great for deployment configuration, because they give you a good deal of control over what happens during the deployment process.</p>
+<h4 id="h3-502703c20-0006">Making Hidden Files Visible</h4>
+<p class="BodyFirst">Most operating systems hide files and folders that begin with a dot, such as <em>.platform</em>. When you open a file browser, you won’t see these kinds of files and folders by default. But as a programmer, you’ll need to see them. Here’s how to view hidden files, depending on your operating system:</p>
+<ul>
+<li>On Windows, open Windows Explorer, and then open a folder such as <em>Desktop</em>. Click the <b>View</b> tab, and make sure <b>File name extensions</b> and <b>Hidden items</b> are checked.</li>
+<li>On macOS, you can press ⌘-SHIFT-. (dot) in any Finder window to see hidden files and folders.</li>
+<li>On Linux systems such as Ubuntu, you can press CTRL-H in any file browser to display hidden files and folders. To make this setting permanent, open a file browser such as Nautilus and click the options tab (indicated by three lines). Select the <b>Show Hidden Files</b> checkbox.</li>
+</ul>
+<h4 id="h3-502703c20-0007">The .platform.app.yaml Configuration File</h4>
+<p class="BodyFirst">The first configuration file is the longest, because it controls the overall deployment process. We’ll show it in parts; you can either enter it by hand in your text editor or download a copy from the online resources at <a class="LinkURL" href="https://ehmatthes.github.io/pcc_3e">https://ehmatthes.github.io/pcc_3e</a>.</p>
+<p>Here’s the first part of <em>.platform.app.yaml</em>, which should be saved in the same directory as <em>manage.py</em>:</p>
+<p class="CodeLabel"><b>.platform.app.yaml</b></p>
+<pre><code><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> name: "ll_project"
+type: "python:3.10"
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> relationships:
+    database: "db:postgresql"
+
+# The configuration of the app when it's exposed to the web.
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> web:
+    upstream:
+        socket_family: unix
+    commands:
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>         start: "gunicorn -w 4 -b unix:$SOCKET ll_project.wsgi:application"
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>     locations:
+        "/":
+            passthru: true
+        "/static":
+<span epub:type="pagebreak" id="Page_449" title="449"></span>            root: "static"
+            expires: 1h
+            allow: true
+
+# The size of the persistent disk of the application (in MB).
+<span aria-label="annotation6" class="CodeAnnotationHang">❻</span> disk: 512</code></pre>
+<p>When you save this file, make sure you include the dot at the beginning of the filename. If you omit the dot, Platform.sh won’t find the file and your project will not be deployed.</p>
+<p>You don’t need to understand everything in <em>.platform.app.yaml</em> at this point; I’ll highlight the most important parts of the configuration. The file starts off by specifying the <code>name</code> of the project, which we’re calling <code>'ll_project'</code> to be consistent with the name we used when starting the project <span aria-label="annotation1" class="CodeAnnotation">❶</span>. We also need to specify the version of Python we’re using (3.10 at the time of this writing). You can find a list of supported versions at <a class="LinkURL" href="https://docs.platform.sh/languages/python.html">https://docs.platform.sh/languages/python.html</a>.</p>
+<p>Next is a section labeled <code>relationships</code> that defines other services the project needs <span aria-label="annotation2" class="CodeAnnotation">❷</span>. Here the only relationship is to a Postgres database. After that is the <code>web</code> section <span aria-label="annotation3" class="CodeAnnotation">❸</span>. The <code>commands:start</code> section tells Platform.sh what process to use to serve incoming requests. Here we’re specifying that <code>gunicorn</code> will handle requests <span aria-label="annotation4" class="CodeAnnotation">❹</span>. This command takes the place of the <code>python manage.py runserver</code> command we’ve been using locally.</p>
+<p>The <code>locations</code> section tells Platform.sh where to send incoming requests <span aria-label="annotation5" class="CodeAnnotation">❺</span>. Most requests should be passed through to <code>gunicorn</code>; our <em>urls.py</em> files will tell <code>gunicorn</code> exactly how to handle those requests. Requests for static files will be handled separately and will be refreshed once an hour. The last line shows that we’re requesting 512MB of disk space on one of Platform.sh’s servers <span aria-label="annotation6" class="CodeAnnotation">❻</span>.</p>
+<p>The rest of <a class="LinkURL" href="http://.platform.app.yaml">.platform.app.yaml</a> is as follows:</p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">disk: 512</span>
+
+# Set a local read/write mount for logs.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> mounts:
+    "logs":
+        source: local
+        source_path: logs
+
+# The hooks executed at various points in the lifecycle of the application.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> hooks:
+    build: |
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>         pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install -r requirements_remote.txt
+
+        mkdir logs
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>         python manage.py collectstatic
+        rm -rf logs
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>     deploy: |
+        python manage.py migrate</code></pre>
+<p><span epub:type="pagebreak" id="Page_450" title="450"></span>The <code>mounts</code> section <span aria-label="annotation1" class="CodeAnnotation">❶</span> lets us define directories where we can read and write data while the project is running. This section defines a <em>logs/</em> directory for the deployed project.</p>
+<p>The <code>hooks</code> section <span aria-label="annotation2" class="CodeAnnotation">❷</span> defines actions that are taken at various points during the deployment process. In the <code>build</code> section, we install all the packages that are required to serve the project in the live environment <span aria-label="annotation3" class="CodeAnnotation">❸</span>. We also run <code>collectstatic</code> <span aria-label="annotation4" class="CodeAnnotation">❹</span>, which collects all the static files needed for the project into one place so they can be served efficiently.</p>
+<p>Finally, in the <code>deploy</code> section <span aria-label="annotation5" class="CodeAnnotation">❺</span>, we specify that migrations should be run each time the project is deployed. In a simple project, this will have no effect when there have been no changes.</p>
+<p>The other two configuration files are much shorter; let’s write them now.</p>
+<h4 id="h3-502703c20-0008">The routes.yaml Configuration File</h4>
+<p class="BodyFirst">A <em>route</em> is the path a request takes as it’s processed by the server. When a request is received by Platform.sh, it needs to know where to send the request.</p>
+<p>Make a new folder called <em>.platform</em>, in the same directory as <em>manage.py</em>. Make sure you include the dot at the beginning of the name. Inside that folder, make a file called <em>routes.yaml</em> and enter the following:</p>
+<p class="CodeLabel"><b>.platform/routes.yaml</b></p>
+<pre><code># Each route describes how an incoming URL will be processed by Platform.sh.
+
+"https://{default}/":
+    type: upstream
+    upstream: "ll_project:http"
+
+"https://www.{default}/":
+    type: redirect
+    to: "https://{default}/"</code></pre>
+<p>This file makes sure requests like <em>https://project_url.com</em> and <em>www.project_url.com</em> all get routed to the same place.</p>
+<h4 id="h3-502703c20-0009">The services.yaml Configuration File</h4>
+<p class="BodyFirst">This last configuration file specifies services that our project needs in order to run. Save this file in the <em>.platform/</em> directory, alongside <em>routes.yaml</em>:</p>
+<p class="CodeLabel"><b>.platform/routes.yaml</b></p>
+<pre><code># Each service listed will be deployed in its own container as part of your
+#   Platform.sh project.
+
+db:
+    type: postgresql:12
+    disk: 1024</code></pre>
+<p>This file defines one service, a Postgres database.</p>
+<h3 id="h2-502703c20-0014"><span epub:type="pagebreak" id="Page_451" title="451"></span>Modifying settings.py for Platform.sh</h3>
+<p class="BodyFirst">Now we need to add a section at the end of <em>settings.py</em> to modify some settings for the Platform.sh environment. Add this code to the very end of <em>settings.py</em>:</p>
+<p class="CodeLabel"><b>settings.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+# Platform.sh settings.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> from platformshconfig import Config
+
+config = Config()
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> if config.is_valid_platform():
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     ALLOWED_HOSTS.append('.platformsh.site')
+
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>     if config.appDir:
+        STATIC_ROOT = Path(config.appDir) / 'static'
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>     if config.projectEntropy:
+        SECRET_KEY = config.projectEntropy
+
+    if not config.in_build():
+<span aria-label="annotation6" class="CodeAnnotationHang">❻</span>         db_settings = config.credentials('database')
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql',
+                'NAME': db_settings['path'],
+                'USER': db_settings['username'],
+                'PASSWORD': db_settings['password'],
+                'HOST': db_settings['host'],
+                'PORT': db_settings['port'],
+            },
+        }</code></pre>
+<p>We normally place <code>import</code> statements at the beginning of a module, but in this case, it’s helpful to keep all the remote-specific settings in one section. Here we import <code>Config</code> from <code>platformshconfig</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>, which helps determine settings on the remote server. We only modify settings if the method <code>config.is_valid_platform()</code> returns <code>True</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span>, indicating the settings are being used on a Platform.sh server.</p>
+<p>We modify <code>ALLOWED_HOSTS</code> to allow the project to be served by hosts ending in <em>.platformsh.site</em> <span aria-label="annotation3" class="CodeAnnotation">❸</span>. All projects deployed to the free tier will be served using this host. If settings are being loaded in the deployed app’s directory <span aria-label="annotation4" class="CodeAnnotation">❹</span>, we set <code>STATIC_ROOT</code> so that static files are served correctly. We also set a more secure <code>SECRET_KEY</code> on the remote server <span aria-label="annotation5" class="CodeAnnotation">❺</span>.</p>
+<p>Finally, we configure the production database <span aria-label="annotation6" class="CodeAnnotation">❻</span>. This is only set if the build process has finished running and the project is being served. Everything you see here is necessary to let Django talk to the Postgres server that Platform.sh set up for the project.</p>
+<h3 id="h2-502703c20-0015">Using Git to Track the Project’s Files</h3>
+<p class="BodyFirst">As discussed in <span class="xref" itemid="xref_target_Chapter 17">Chapter 17</span>, Git is a version control program that allows you to take a snapshot of the code in your project each time you implement a new feature successfully. If anything goes wrong, you can easily return to <span epub:type="pagebreak" id="Page_452" title="452"></span>the last working snapshot of your project; for example, if you accidentally introduce a bug while working on a new feature. Each snapshot is called a <em>commit</em>.</p>
+<p>Using Git, you can try implementing new features without worrying about breaking your project. When you’re deploying to a live server, you need to make sure you’re deploying a working version of your project. To read more about Git and version control, see <span class="xref" itemid="xref_target_Appendix D">Appendix D</span>.</p>
+<h4 id="h3-502703c20-0010">Installing Git</h4>
+<p class="BodyFirst">Git may already be installed on your system. To find out, open a new terminal window and issue the command <code class="bold">git --version</code>:</p>
+<pre><code>(ll_env)learning_log$ <b>git --version</b>
+git version 2.30.1 (Apple Git-130)</code></pre>
+<p>If you get a message indicating that Git is not installed, see the installation instructions in <span class="xref" itemid="xref_target_Appendix D">Appendix D</span>.</p>
+<h4 id="h3-502703c20-0011">Configuring Git</h4>
+<p class="BodyFirst">Git keeps track of who makes changes to a project, even when only one person is working on the project. To do this, Git needs to know your username and email. You must provide a username, but you can make up an email for your practice projects:</p>
+<pre><code>(ll_env)learning_log$ <b>git config --global user.name "eric"</b>
+(ll_env)learning_log$ <b>git config --global user.email "eric@example.com"</b></code></pre>
+<p>If you forget this step, Git will prompt you for this information when you make your first commit.</p>
+<h4 id="h3-502703c20-0012">Ignoring Files</h4>
+<p class="BodyFirst">We don’t need Git to track every file in the project, so we’ll tell it to ignore some files. Create a file called <em>.gitignore</em> in the folder that contains <em>manage.py</em>. Notice that this filename begins with a dot and has no file extension. Here’s the code that goes in <em>.gitignore</em>:</p>
+<p class="CodeLabel"><b>.gitignore</b></p>
+<pre><code>ll_env/
+__pycache__/
+*.sqlite3</code></pre>
+<p>We tell Git to ignore the entire <em>ll_env</em> directory, because we can re-create it automatically at any time. We also don’t track the <em>__pycache__</em> directory, which contains the <em>.pyc</em> files that are created automatically when the <em>.py</em> files are executed. We don’t track changes to the local database, because it’s a bad habit: if you’re ever using SQLite on a server, you might accidentally overwrite the live database with your local test database when you push the project to the server. The asterisk in <code>*.sqlite3</code> tells Git to ignore any file that ends with the extension <em>.sqlite3</em>.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<span epub:type="pagebreak" id="Page_453" title="453"></span><h2><span class="NoteHead">Note</span></h2>
+<p>	If you’re using macOS, add <code>.DS_Store</code> to your <em>.gitignore</em> file. This is a file that stores information about folder settings on macOS, and it has nothing to do with this project.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h4 id="h3-502703c20-0013">Committing the Project</h4>
+<p class="BodyFirst">We need to initialize a Git repository for Learning Log, add all the necessary files to the repository, and commit the initial state of the project. Here’s how to do that:</p>
+<pre><code><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> (ll_env)learning_log$ <b>git init</b>
+Initialized empty Git repository in /Users/eric/.../learning_log/.git/
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> (ll_env)learning_log$ <b>git add .</b>
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> (ll_env)learning_log$ <b>git commit -am "Ready for deployment to Platform.sh."</b>
+[main (root-commit) c7ffaad] Ready for deployment to Platform.sh.
+ 42 files changed, 879 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 .platform.app.yaml
+<var> --snip--</var>
+ create mode 100644 requirements_remote.txt
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> (ll_env)learning_log$ <b>git status</b>
+On branch main
+nothing to commit, working tree clean
+(ll_env)learning_log$</code></pre>
+<p>We issue the <code>git init</code> command to initialize an empty repository in the directory containing Learning Log <span aria-label="annotation1" class="CodeAnnotation">❶</span>. We then use the <code>git add .</code> command, which adds all the files that aren’t being ignored to the repository <span aria-label="annotation2" class="CodeAnnotation">❷</span>. (Don’t forget the dot.) Next, we issue the command <code>git commit -am</code> <code>"</code><var>commit message</var><code>"</code>: the <code>-a</code> flag tells Git to include all changed files in this commit, and the <code>-m</code> flag tells Git to record a log message <span aria-label="annotation3" class="CodeAnnotation">❸</span>.</p>
+<p>Issuing the <code>git status</code> command <span aria-label="annotation4" class="CodeAnnotation">❹</span> indicates that we’re on the <em>main</em> branch and that our working tree is <em>clean</em>. This is the status you’ll want to see anytime you push your project to a remote server.</p>
+<h3 id="h2-502703c20-0016">Creating a Project on Platform.sh</h3>
+<p class="BodyFirst">At this point, the Learning Log project still runs on our local system and is also configured to run correctly on a remote server. We’ll use the Platform.sh CLI to create a new project on the server and then push our project to the remote server.</p>
+<p>Make sure you’re in a terminal, at the <em>learning_log/</em> directory, and issue the following command:</p>
+<pre><code>(ll_env)learning_log$ <b>platform login</b>
+Opened URL: http://127.0.0.1:5000
+Please use the browser to log in.
+<var>--snip--</var>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> Do you want to create an SSH configuration file automatically? [Y/n] <b>Y</b></code></pre>
+<p><span epub:type="pagebreak" id="Page_454" title="454"></span>This command will open a browser tab where you can log in. Once you’re logged in, you can close the browser tab and return to the terminal. If you’re prompted about creating an SSH configuration file <span aria-label="annotation1" class="CodeAnnotation">❶</span>, enter <code class="bold">Y</code> so you can connect to the remote server later.</p>
+<p>Now we’ll create a project. There’s a lot of output, so we’ll look at the creation process in sections. Start by issuing the <code class="bold">create</code> command:</p>
+<pre><code>(ll_env)learning_log$ <b>platform create</b>
+* Project title (--title)
+Default: Untitled Project
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> &gt; <b>ll_project</b>
+
+* Region (--region)
+The region where the project will be hosted
+  <var>--snip--</var>
+  [us-3.platform.sh] Moses Lake, United States (AZURE) [514 gC02eq/kWh]
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> &gt; <b>us-3.platform.sh</b>
+* Plan (--plan)
+Default: development
+Enter a number to choose:
+  [0] development
+  <var>--snip--</var>
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> &gt; <b>0</b>
+
+* Environments (--environments)
+The number of environments
+Default: 3
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> &gt; <b>3</b>
+
+* Storage (--storage)
+The amount of storage per environment, in GiB
+Default: 5
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span> &gt; <b>5</b></code></pre>
+<p>The first prompt asks for a name for the project <span aria-label="annotation1" class="CodeAnnotation">❶</span>, so we use the name <code class="bold">ll_project</code>. The next prompt asks which region we’d like the server to be in <span aria-label="annotation2" class="CodeAnnotation">❷</span>. Choose the server closest to you; for me, that’s <code>us-3.platform.sh</code>. For the rest of the prompts, you can accept the defaults: a server on the lowest development plan <span aria-label="annotation3" class="CodeAnnotation">❸</span>, three environments for the project <span aria-label="annotation4" class="CodeAnnotation">❹</span>, and 5GB of storage for the overall project <span aria-label="annotation5" class="CodeAnnotation">❺</span>.</p>
+<p>There are three more prompts to respond to:</p>
+<pre><code>Default branch (--default-branch)
+The default Git branch name for the project (the production environment)
+Default: main
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> &gt; <b>main</b>
+
+Git repository detected: /Users/eric/.../learning_log
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> Set the new project ll_project as the remote for this repository? [Y/n] <b>Y</b>
+
+The estimated monthly cost of this project is: $10 USD
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> Are you sure you want to continue? [Y/n] <b>Y</b>
+
+<span epub:type="pagebreak" id="Page_455" title="455"></span>The Platform.sh Bot is activating your project
+
+      ▀▄   ▄▀
+    █▄█▀███▀█▄█
+    ▀█████████▀
+     ▄▀     ▀▄
+
+The project is now ready!</code></pre>
+<p>A Git repository can have multiple branches; Platform.sh is asking us if the default branch for the project should be <code>main</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>. It then asks if we want to connect the local project’s repository to the remote repository <span aria-label="annotation2" class="CodeAnnotation">❷</span>. Finally, we’re informed that this project will cost about $10 per month if we keep it running beyond the free trial period <span aria-label="annotation3" class="CodeAnnotation">❸</span>. If you haven’t entered a credit card yet, you shouldn’t have to worry about this cost. Platform.sh will simply suspend your project if you exceed the free trial’s limits without adding a credit card.</p>
+<h3 id="h2-502703c20-0017">Pushing to Platform.sh</h3>
+<p class="BodyFirst">The last step before seeing the live version of the project is to push our code to the remote server. To do that, issue the following command:</p>
+<pre><code>(ll_env)learning_log$ <b>platform push</b>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> Are you sure you want to push to the main (production) branch? [Y/n] <b>Y</b>
+<var>--snip--</var>
+The authenticity of host 'git.us-3.platform.sh (...)' can't be established.
+RSA key fingerprint is SHA256:Tvn...7PM
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> Are you sure you want to continue connecting (yes/no/[fingerprint])? <b>Y</b>
+Pushing HEAD to the existing environment main
+  <var>--snip--</var>
+  To git.us-3.platform.sh:3pp3mqcexhlvy.git
+   * [new branch]      HEAD -&gt; main</code></pre>
+<p>When you issue the command <code class="bold">platform push</code>, you’ll be asked for one more confirmation that you want to push the project <span aria-label="annotation1" class="CodeAnnotation">❶</span>. You may also see a message about the authenticity of Platform.sh, if this is your first time connecting to the site <span aria-label="annotation2" class="CodeAnnotation">❷</span>. Enter <code class="bold">Y</code> for each of these prompts, and you’ll see a bunch of output scroll by. This output will probably look confusing at first, but if anything goes wrong, it’s really useful to have during troubleshooting. If you skim through the output, you can see where Platform.sh installs necessary packages, collects static files, applies migrations, and sets up URLs for the project.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	You may see an error from something that you can easily diagnose, such as a typo in one of the configuration files. If this happens, fix the error in your text editor, save the file, and reissue the <code class="bold">git commit</code> command. Then you can run <code class="bold">platform push</code> again.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h3 id="h2-502703c20-0018"><span epub:type="pagebreak" id="Page_456" title="456"></span>Viewing the Live Project</h3>
+<p class="BodyFirst">Once the push is complete, you can open the project:</p>
+<pre><code>(ll_env)learning_log$ <b>platform url</b>
+Enter a number to open a URL
+  [0] https://main-bvxea6i-wmye2fx7wwqgu.us-3.platformsh.site/
+  <var>--snip--</var>
+ &gt; <b>0</b></code></pre>
+<p>The <code>platform url</code> command lists the URLs associated with a deployed project; you’ll be given a choice of several URLs that are all valid for your project. Choose one, and your project should open in a new browser tab! This will look just like the project we’ve been running locally, but you can share this URL with anyone in the world, and they can access and use your project.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	When you deploy your project using a trial account, don’t be surprised if it sometimes takes longer than usual for a page to load. On most hosting platforms, free resources that are idle are often suspended and only restarted when new requests come in. Most platforms are much more responsive on paid hosting plans.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h3 id="h2-502703c20-0019">Refining the Platform.sh Deployment</h3>
+<p class="BodyFirst">Now we’ll refine the deployment by creating a superuser, just as we did locally. We’ll also make the project more secure by changing the setting <code>DEBUG</code> to <code>False</code>, so error messages won’t show users any extra information that they could use to attack the server.</p>
+<h4 id="h3-502703c20-0014">Creating a Superuser on Platform.sh</h4>
+<p class="BodyFirst">The database for the live project has been set up, but it’s completely empty. All the users we created earlier only exist in our local version of the project.</p>
+<p>To create a superuser on the live version of the project, we’ll start an SSH (secure socket shell) session where we can run management commands on the remote server:</p>
+<pre><code>(ll_env)learning_log$ <b>platform environment:ssh</b>
+
+ ___ _      _    __                    _
+| _ \ |__ _| |_ / _|___ _ _ _ __    __| |_
+|  _/ / _` |  _|  _/ _ \ '_| '  \ _(_-&lt; ' \
+|_| |_\__,_|\__|_| \___/_| |_|_|_(_)__/_||_|
+
+ Welcome to Platform.sh.
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> web@ll_project.0:~$ <b>ls</b>
+accounts  learning_logs  ll_project  logs  manage.py  requirements.txt
+    requirements_remote.txt  static
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> web@ll_project.0:~$ <b>python manage.py createsuperuser</b>
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> Username (leave blank to use 'web'): <b>ll_admin_live</b>
+Email address:
+<span epub:type="pagebreak" id="Page_457" title="457"></span>Password:
+Password (again):
+Superuser created successfully.
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> web@ll_project.0:~$ <b>exit</b>
+logout
+Connection to ssh.us-3.platform.sh closed.
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span> (ll_env)learning_log$</code></pre>
+<p>When you first run the <code class="bold">platform environment:ssh</code> command, you may get another prompt about the authenticity of this host. If you see this message, enter <code class="bold">Y</code> and you should be logged in to a remote terminal session.</p>
+<p>After running the <code class="bold">ssh</code> command, your terminal acts just like a terminal on the remote server. Note that your prompt has changed to indicate that you’re in a <code>web</code> session associated with the project named <code>ll_project</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>. If you issue the <code class="bold">ls</code> command, you’ll see the files that have been pushed to the Platform.sh server.</p>
+<p>Issue the same <code class="bold">createsuperuser</code> command we used in <span class="xref" itemid="xref_target_Chapter 18">Chapter 18</span> <span aria-label="annotation2" class="CodeAnnotation">❷</span>. This time, I entered an admin username, <code class="bold">ll_admin_live</code>, that’s distinct from the one I used locally <span aria-label="annotation3" class="CodeAnnotation">❸</span>. When you’re finished working in the remote terminal session, enter the <code class="bold">exit</code> command <span aria-label="annotation4" class="CodeAnnotation">❹</span>. Your prompt will indicate that you’re working in your local system again <span aria-label="annotation5" class="CodeAnnotation">❺</span>.</p>
+<p>Now you can add <em>/admin/</em> to the end of the URL for the live app and log in to the admin site. If others have already started using your project, be aware that you’ll have access to all their data! Take this responsibility seriously, and users will continue to trust you with their data.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	Windows users will use the same commands shown here (such as <code>ls</code> instead of <code>dir</code>), because you’re running a Linux terminal through a remote connection.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h4 id="h3-502703c20-0015">Securing the Live Project</h4>
+<p class="BodyFirst">There’s one glaring security issue in the way our project is currently deployed: the setting <code>DEBUG = True</code> in <em>settings.py</em>, which provides debug messages when errors occur. Django’s error pages give you vital debugging information when you’re developing a project; however, they give way too much information to attackers if you leave them enabled on a live server.</p>
+<p>To see how bad this is, go to the home page of your deployed project. Log in to a user’s account and add <em>/topics/999/</em> to the end of the home page URL. Assuming you haven’t made thousands of topics, you should see a page with the message <em>DoesNotExist at /topics/999/</em>. If you scroll down, you should see a whole bunch of information about the project and the server. You won’t want your users to see this, and you certainly wouldn’t want this information available to anyone interested in attacking the site.</p>
+<p>We can prevent this information from being shown on the live site by setting <code>DEBUG = False</code> in the part of <em>settings.py</em> that only applies to the deployed version of the project. This way you’ll continue to see debugging information locally, where that information is useful, but it won’t show up on the live site.</p>
+<p><span epub:type="pagebreak" id="Page_458" title="458"></span>Open <em>settings.py</em> in your text editor, and add one line of code to the part that modifies settings for Platform.sh:</p>
+<p class="CodeLabel"><b>settings.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">if config.is_valid_platform():</span>
+<span class="LiteralGray">    ALLOWED_HOSTS.append('.platformsh.site')</span>
+    DEBUG = False
+    <em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>All the work to set up configuration for the deployed version of the project has paid off. When we want to adjust the live version of the project, we just change the relevant part of the configuration we set up earlier.</p>
+<h4 id="h3-502703c20-0016">Committing and Pushing Changes</h4>
+<p class="BodyFirst">Now we need to commit the changes made to <em>settings.py</em> and push the changes to Platform.sh. Here’s a terminal session showing the first part of this process:</p>
+<pre><code><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> (ll_env)learning_log$ <b>git commit -am "Set DEBUG False on live site."</b>
+[main d2ad0f7] Set DEBUG False on live site.
+  1 file changed, 1 insertion(+)
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> (ll_env)learning_log$ <b>git status</b>
+On branch main
+nothing to commit, working tree clean
+(ll_env)learning_log$</code></pre>
+<p>We issue the <code>git commit</code> command with a short but descriptive commit message <span aria-label="annotation1" class="CodeAnnotation">❶</span>. Remember the <code>-am</code> flag makes sure Git commits all the files that have changed and records the log message. Git recognizes that one file has changed and commits this change to the repository.</p>
+<p>Running <code class="bold">git status</code> shows that we’re working on the <code>main</code> branch of the repository and that there are now no new changes to commit <span aria-label="annotation2" class="CodeAnnotation">❷</span>. It’s important to check the status before pushing to a remote server. If you don’t see a clean status, then some changes haven’t been committed and those changes won’t be pushed to the server. You can try issuing the <code>commit</code> command again; if you’re not sure how to resolve the issue, read through <span class="xref" itemid="xref_target_Appendix D">Appendix D</span> to better understand how to work with Git.</p>
+<p>Now let’s push the updated repository to Platform.sh:</p>
+<pre><code>(ll_env)learning_log$ <b>platform push</b>
+Are you sure you want to push to the main (production) branch? [Y/n] <b>Y</b>
+Pushing HEAD to the existing environment main
+<var>--snip--</var>
+  To git.us-3.platform.sh:wmye2fx7wwqgu.git
+     fce0206..d2ad0f7  HEAD -&gt; main
+(ll_env)learning_log$</code></pre>
+<p>Platform.sh recognizes that the repository has been updated, and it rebuilds the project to make sure all the changes have been taken into account. It doesn’t rebuild the database, so we haven’t lost any data.</p>
+<p><span epub:type="pagebreak" id="Page_459" title="459"></span>To make sure this change took effect, visit the <em class="Italic">/topics/999/</em> URL again. You should see just the message <em>Server Error (500)</em>, with no sensitive information about the project at all.</p>
+<h3 id="h2-502703c20-0020">Creating Custom Error Pages</h3>
+<p class="BodyFirst">In <span class="xref" itemid="xref_target_Chapter 19">Chapter 19</span>, we configured Learning Log to return a 404 error if the user requests a topic or entry that doesn’t belong to them. Now you’ve seen a 500 server error as well. A 404 error usually means your Django code is correct, but the object being requested doesn’t exist. A 500 error usually means there’s an error in the code you’ve written, such as an error in a function in <em>views.py</em>. Django currently returns the same generic error page in both situations, but we can write our own 404 and 500 error page templates that match Learning Log’s overall appearance. These templates belong in the root template directory.</p>
+<h4 id="h3-502703c20-0017">Making Custom Templates</h4>
+<p class="BodyFirst">In the <em>learning_log</em> folder, make a new folder called <em>templates</em>. Then make a new file called <em>404.html</em>; the path to this file should be <em>learning_log/templates/404.html</em>. Here’s the code for this file:</p>
+<p class="CodeLabel"><b>404.html</b></p>
+<pre><code>{% extends "learning_logs/base.html" %}
+
+{% block page_header %}
+  &lt;h2&gt;The item you requested is not available. (404)&lt;/h2&gt;
+{% endblock page_header %}</code></pre>
+<p>This simple template provides the generic 404 error page information but is styled to match the rest of the site.</p>
+<p>Make another file called <em>500.html</em> using the following code:</p>
+<p class="CodeLabel"><b>500.html</b></p>
+<pre><code>{% extends "learning_logs/base.html" %}
+
+{% block page_header %}
+  &lt;h2&gt;There has been an internal error. (500)&lt;/h2&gt;
+{% endblock page_header %}</code></pre>
+<p>These new files require a slight change to <em>settings.py</em>.</p>
+<p class="CodeLabel"><b>settings.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">TEMPLATES = [</span>
+<span class="LiteralGray">    {</span>
+<span class="LiteralGray">        'BACKEND': 'django.template.backends.django.DjangoTemplates',</span>
+        'DIRS': [BASE_DIR / 'templates'],
+<span class="LiteralGray">        'APP_DIRS': True,</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">    },</span>
+<span class="LiteralGray">]</span>
+<em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p><span epub:type="pagebreak" id="Page_460" title="460"></span>This change tells Django to look in the root template directory for the error page templates and any other templates that aren’t associated with a particular app.</p>
+<h4 id="h3-502703c20-0018">Pushing the Changes to Platform.sh</h4>
+<p class="BodyFirst">Now we need to commit the changes we just made and push them to Platform.sh:</p>
+<pre><code><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> (ll_env)learning_log$ <b>git add .</b>
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> (ll_env)learning_log$ <b>git commit -am "Added custom 404 and 500 error pages."</b>
+ 3 files changed, 11 insertions(+), 1 deletion(-)
+ create mode 100644 templates/404.html
+ create mode 100644 templates/500.html
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> (ll_env)learning_log$ <b>platform push</b>
+<var>--snip--</var>
+  To git.us-3.platform.sh:wmye2fx7wwqgu.git
+     d2ad0f7..9f042ef  HEAD -&gt; main
+(ll_env)learning_log$</code></pre>
+<p>We issue the <code>git add .</code> command <span aria-label="annotation1" class="CodeAnnotation">❶</span> because we created some new files in the project. Then we commit the changes <span aria-label="annotation2" class="CodeAnnotation">❷</span> and push the updated project to Platform.sh <span aria-label="annotation3" class="CodeAnnotation">❸</span>.</p>
+<p>Now when an error page appears, it should have the same styling as the rest of the site, making for a smoother user experience when errors arise.</p>
+<h3 id="h2-502703c20-0021">Ongoing Development</h3>
+<p class="BodyFirst">You might want to further develop Learning Log after your initial push to a live server, or you might want to develop your own projects to deploy. When doing so, there’s a fairly consistent process for updating your projects.</p>
+<p>First, you’ll make the necessary changes to your local project. If your changes result in any new files, add those files to the Git repository using the command <code>git add .</code> (making sure to include the dot at the end of the command). Any change that requires a database migration will need this command, because each migration generates a new migration file.</p>
+<p>Second, commit the changes to your repository using <code>git commit -am "</code><var>commit message</var><code>"</code>. Then push your changes to Platform.sh, using the command <code>platform push</code>. Visit your live project and make sure the changes you expect to see have taken effect.</p>
+<p>It’s easy to make mistakes during this process, so don’t be surprised when something goes wrong. If the code doesn’t work, review what you’ve done and try to spot the mistake. If you can’t find the mistake or you can’t figure out how to undo it, refer to the suggestions for getting help in <span class="xref" itemid="xref_target_Appendix C">Appendix C</span>. Don’t be shy about asking for help: everyone else learned to build projects by asking the same questions you’re likely to ask, so someone will be happy to help you. Solving each problem that arises helps you steadily develop your skills until you’re building meaningful, reliable projects and answering other people’s questions as well.</p>
+<h3 id="h2-502703c20-0022"><span epub:type="pagebreak" id="Page_461" title="461"></span>Deleting a Project on Platform.sh</h3>
+<p class="BodyFirst">It’s great practice to run through the deployment process a number of times with the same project or with a series of small projects, to get the hang of deployment. But you’ll need to know how to delete a project that’s been deployed. Platform.sh also limits the number of projects you can host for free, and you don’t want to clutter your account with practice projects.</p>
+<p>You can delete a project using the CLI:</p>
+<pre><code>(ll_env)learning_log$ <b>platform project:delete</b></code></pre>
+<p>You’ll be asked to confirm that you want to take this destructive action. Respond to the prompts, and your project will be deleted.</p>
+<p>The command <code>platform create</code> also gave the local Git repository a reference to the remote repository on Platform.sh’s servers. You can remove this remote from the command line as well:</p>
+<pre><code>(ll_env)learning_log$ <b>git remote</b>
+platform
+(ll_env)learning_log$ <b>git remote remove platform</b></code></pre>
+<p>The command <code>git remote</code> lists the names of all remote URLs associated with the current repository. The command <code>git remote remove</code><code class="bold"> </code><var>remote_name</var> deletes these remote URLs from the local repository.</p>
+<p>You can also delete a project’s resources by logging in to the Platform.sh website and visiting your dashboard at <a class="LinkURL" href="https://console.platform.sh">https://console.platform.sh</a>. This page lists all your active projects. Click the three dots in a project’s box, and click <b>Edit Plan</b>. This is a pricing page for the project; click the <b>Delete Project</b> button at the bottom of the page, and you’ll be shown a confirmation page where you can follow through with the deletion. Even if you deleted your project using the CLI, it’s a good idea to familiarize yourself with the dashboard of any hosting provider you deploy to.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	Deleting a project on Platform.sh does nothing to your local version of the project. If no one has used your deployed project and you’re just practicing the deployment process, it’s perfectly reasonable to delete your project on Platform.sh and redeploy it. Just be aware that if things stop working, you may have run into the host’s free-tier limitations.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c20-25">20-3.	Live Blog:</span> Deploy the Blog project you’ve been working on to Platform.sh. Make sure you set <code>DEBUG</code> to <code>False</code>, so users don’t see the full Django error pages when something goes wrong.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c20-26">20-4.	<span epub:type="pagebreak" id="Page_462" title="462"></span>Extended Learning Log:</span> Add one feature to Learning Log, and push the change to your live deployment. Try a simple change, such as writing more about the project on the home page. Then try adding a more advanced feature, such as giving users the option of making a topic public. This would require an attribute called <code>public</code> as part of the <code>Topic</code> model (this should be set to <code>False</code> by default) and a form element on the new_topic page that allows the user to change a topic from private to public. You’d then need to migrate the project and revise <em>views.py</em> so any topic that’s public is visible to unauthenticated users as well.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c20-0003">Summary</h2>
+<p class="BodyFirst">In this chapter, you learned to give your projects a simple but professional appearance using the Bootstrap library and the django-bootstrap5 app. With Bootstrap, the styles you choose will work consistently on almost any device people use to access your project.</p>
+<p>You learned about Bootstrap’s templates and used the <em>Navbar static</em> template to create a simple look and feel for Learning Log. You used a jumbotron to make a home page’s message stand out, and learned to style all the pages in a site consistently.</p>
+<p>In the final part of the project, you learned how to deploy a project to a remote server so anyone can access it. You made a Platform.sh account and installed some tools that help manage the deployment process. You used Git to commit the working project to a repository, and then pushed the repository to a remote server on Platform.sh. Finally, you learned to begin securing your app by setting <code>DEBUG = False</code> on the live server. You also made custom error pages, so the inevitable errors that come up will look well-handled.</p>
+<p>Now that you’ve finished Learning Log, you can start building your own projects. Start simple, and make sure the project works before adding complexity. Enjoy your continued learning, and good luck with your projects!</p>
+</section>
+</div></body>
+</html>

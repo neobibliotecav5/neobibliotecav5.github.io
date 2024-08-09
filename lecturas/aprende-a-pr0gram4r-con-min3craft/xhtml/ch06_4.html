@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch06lev1sec03"><strong><span class="blue1">Operadores booleanos y sentencias if</span></strong></h3>
+<p class="noindent">En la misión anterior, utilizaste <span class="literal">not</span> en tus sentencias <span class="literal">if</span>. También puedes utilizar <span class="literal">and</span> y <span class="literal">or</span>. En este caso, la sentencia <span class="literal">if</span> actuará igual que con una simple condición: si la expresión global se evalúa como <span class="literal">True</span>, se ejecutará el cuerpo de la sentencia. He aquí un programa que pregunta a alguien si tiene pastel y si quiere darnos un poco de pastel:</p>
+<p class="programs" translate="no">hasCake = <span class="rose">input</span>(<span class="green">"Do you have any cake? Y/N"</span>)<br translate="no"/>wouldShare = <span class="rose">input</span>(<span class="green">"Would you give me some cake? Y/N"</span>)<br translate="no"/><span class="orange">if</span> hasCake == <span class="green">"Y"</span> <span class="orange">and</span> wouldShare == <span class="green">"Y"</span>:<br translate="no"/> <span class="rose">print</span>(<span class="green">"Yay!"</span>)<br translate="no"/><span class="orange">else</span>:<br translate="no"/> <span class="rose">print</span>(<span class="green">"Boo!"</span>)</p>
+<p class="indent"><span epub:type="pagebreak" id="page_124"></span>Este código utiliza el operador <span class="literal">y</span>, por lo que Python sólo imprimirá <span class="literal">"¡Sí!"</span> si la persona tiene tarta<span class="literal">(tieneTarta == "</span><span class="literal">Y</span> " es <span class="literal">Verdadero</span>) y está dispuesta a compartirla<span class="literal">(compartiría= "Y</span> " es <span class="literal">Verdadero</span>). Si alguna de estas comparaciones no es <span class="literal">Verdadera</span>, el código dentro de la sentencia <span class="literal">else</span> imprimirá "¡Bu! <span class="literal">"</span>.</p>
+<p class="indent">Puedes sustituir <span class="literal">y</span> por el operador <span class="literal">o</span> para que Python imprima " <span class="literal">¡Sí!"</span> si la persona tiene tarta o está dispuesta a compartirla:</p>
+<p class="programs" translate="no">hasCake = <span class="rose">input</span>(<span class="green">"Do you have any cake? Y/N"</span>)<br translate="no"/>wouldShare = <span class="rose">input</span>(<span class="green">"Would you give me some cake? Y/N"</span>)<br translate="no"/><br translate="no"/><span class="orange">if</span> hasCake == <span class="green">"Y"</span> <span class="orange">or</span> wouldShare == <span class="green">"Y"</span>:<br translate="no"/> <span class="rose">print</span>(<span class="green">"Yay!"</span>)<br translate="no"/><span class="orange">else</span>:<br translate="no"/> <span class="rose">print</span>(<span class="green">"Boo!"</span>)</p>
+<p class="indent">Si <span class="literal">hasPastel == "Y"</span> o <span class="literal">compartiría == "Y"</span> es <span class="literal">Verdadero</span>, toda la expresión se evalúa como <span class="literal">Verdadero</span> e imprimimos " <span class="literal">¡Sí</span>! La única vez que imprimimos "¡Bu <span class="literal">!"</span> es si ninguna de las dos condiciones es <span class="literal">Verdadera</span>: la persona no tiene tarta y no la compartiría si la tuviera.</p>
+<p class="indent">Probemos a utilizar el operador <span class="literal">not</span> con una sentencia <span class="literal">if</span>:</p>
+<p class="programs" translate="no">wearingShoes = <span class="rose">input</span>(<span class="green">"Are you wearing shoes? Y/N"</span>)<br translate="no"/><span class="orange">if not</span> wearingShoes == <span class="green">"Y"</span>:<br translate="no"/> <span class="rose">print</span>(<span class="green">"You're not wearing shoes."</span>)</p>
+<p class="indent">Este programa pide al usuario que introduzca <span class="literal">Y</span> si lleva zapatos y <span class="literal">N</span> si no los lleva. Almacena la entrada en <span class="literal">llevandoZapatos</span>. A continuación compara <span class="literal">wearingShoes</span> e <span class="literal">"Y</span> " para ver si son iguales. El operador <span class="literal">not</span> invierte el resultado de una comparación <span class="literal">-Verdadero</span> se convierte en <span class="literal">Falso</span> y <span class="literal">Falso</span> en <span class="literal">Verdadero-, de modo que</span>si el usuario introdujo <span class="literal">Y</span>, la comparación empieza siendo <span class="literal">Verdadera</span> y <span class="literal">not</span> la convierte en <span class="literal">Falsa</span>, con lo que la expresión global es <span class="literal">Falsa</span>. No imprimimos ningún mensaje. Si el usuario no introdujo <span class="literal">Y</span>, la comparación es <span class="literal">Falsa</span> y <span class="literal">no</span> la convierte en <span class="literal">Verdadera</span>. La expresión global se evalúa como <span class="literal">Verdadero</span>, e imprimimos " <span class="literal">No llevas zapatos".</span></p>
+<h4 class="h4a" id="ch06lev2sec11"><strong>Misión nº 32: Ducharse</strong></h4>
+<p class="noindent">Las mejores casas de Minecraft prestan mucha atención a los detalles. Mucha gente incluye suelos de madera, chimeneas y cuadros en sus casas para que se sientan más como en casa. Tú irás un paso más allá y harás una ducha que funcione.</p>
+<p class="indent">Para que la ducha funcione, tendrás que utilizar comprobaciones de rango y operadores booleanos. Crearás una zona de ducha, y cuando el jugador entre en la ducha <span epub:type="pagebreak" id="page_125"></span>, el agua se abrirá. En otras palabras, cuando el jugador camine dentro de un rango de coordenadas, el programa deberá crear bloques de agua sobre ellas.</p>
+<p class="indent"><a href="ch06.xhtml#ch6ex7">El listado 6-7</a> proporciona la estructura básica del programa con unas pocas líneas de código para ayudarte a empezar. Es tu trabajo completar el resto.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>shower.py</em></span></p>
+<p class="programs" translate="no"> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>   mc = Minecraft.create()<br translate="no"/><br translate="no"/><span class="ent">➊</span> shwrX =<br translate="no"/>   shwrY =<br translate="no"/>   shwrZ =<br translate="no"/><br translate="no"/><span class="ent">➋</span> width = 5<br translate="no"/>   height = 5<br translate="no"/>   length = 5<br translate="no"/><br translate="no"/>   pos = mc.player.getTilePos()<br translate="no"/>   x = pos.x<br translate="no"/>   y = pos.y<br translate="no"/>   z = pos.z<br translate="no"/><br translate="no"/><span class="ent">➌</span> <span class="orange">if</span> shwrX &lt;= x &lt; shwrX + width <span class="orange">and</span><br translate="no"/>       mc.setBlocks(shwrX, shwrY + height, shwrZ,<br translate="no"/>                    shwrX + width, shwrY + height, shwrZ + length, 8)<br translate="no"/> <span class="orange">else</span>:<br translate="no"/>       mc.setBlocks(shwrX, shwrY + height, shwrZ,<br translate="no"/><span class="ent">➍</span>                  shwrX + width, shwrY + height, shwrZ + length, 0)</p>
+<p class="examplet"><a id="ch6ex7"></a><em>Listado 6-7: El inicio del programa ducha</em></p>
+<p class="indent">Copia <a href="ch06.xhtml#ch6ex7">el Listado 6-7</a> y guárdalo como <em>ducha.py</em> en la carpeta <em>declaracionessi</em>.</p>
+<p class="indent">Para terminar el programa, añade las coordenadas de tu ducha en las variables <span class="literal">shwrX</span>, <span class="literal">shwrY</span> y <span class="literal">shwrZ</span> <span class="ent">➊.</span> A continuación, añade el tamaño de la ducha en las variables <span class="literal">anchura</span>, <span class="literal">altura</span> y <span class="literal">longitud</span> <span class="ent">➋.</span> He incluido un valor por defecto de 5, pero deberías cambiarlo para que tu ducha tenga el tamaño que tú quieras.</p>
+<p class="indent">Termina la sentencia <span class="literal">if</span> para que compruebe si las variables <span class="literal">y</span> y <span class="literal">z</span> están dentro del área de la ducha <span class="ent">➌.</span> He incluido la comprobación de la posición <span class="literal">x</span> para ayudarte<span class="literal">(shwrX &lt; x &lt; shwrX + anchura</span>). Las expresiones para las posiciones <span class="literal">y</span> y <span class="literal">z</span> son similares a ésta. Pista: Querrás combinar todas estas comprobaciones utilizando <span class="literal">y</span>.</p>
+<p class="indent">La ducha se enciende y se apaga mediante la función <span class="literal">setBlocks()</span> <span class="ent">➍.</span> Los bloques se establecen en agua (bloque ID 8) para encender la ducha y aire (bloque ID 0) para apagarla.</p>
+<p class="indent">Las funciones <span class="literal">setBlocks</span> () de la última declaración <span class="literal">if/else</span> están divididas en dos líneas porque sus argumentos son muy largos. Python te permite hacer esto. Podrían escribirse en una sola línea; yo las escribí en dos para que fueran más fáciles de leer.</p>
+<p class="indent">La Figura<a href="ch06.xhtml#ch6fig7">6-7</a> muestra mi ducha funcionando.</p>
+<div class="image"><span epub:type="pagebreak" id="page_126"></span><img alt="image" src="../images/f06-07.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch6fig7"></a><em>Figura 6-7: Aquí estoy, duchándome.</em></p>
+<p class="indent">Cuando ejecutes el programa, creará agua sobre ti si estás de pie en la ducha. El agua no se detendrá hasta que salgas de la ducha y vuelvas a ejecutar el programa. ¡Diviértete!</p>
+<div class="sidebar">
+<p class="sidebart" id="ch06sb07"><strong>OBJETIVO EXTRA: AHORRAR AGUA</strong></p>
+<p class="noindent">Añade un límite de tiempo que apague la ducha después de un tiempo determinado.</p>
+</div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch06_3.html">anterior</a><a href="ch06.html">Subtema 4 de 5: (Ver todo)</a><a href="ch06_5.html">siguiente</a><br/></p>
+<br/><a href="ch06_4.docx" target="_blank"></a></footer>
+</body>
+</html>

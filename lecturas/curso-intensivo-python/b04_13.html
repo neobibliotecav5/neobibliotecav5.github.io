@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h2 id="h1-502703b04-0010">Abandonar cambios</h2>
+<p class="BodyFirst">Veamos ahora cómo abandonar un cambio y volver al estado de trabajo anterior. Primero, añade una nueva línea a <em translate="no">hello_git.py</em>:</p>
+<p class="CodeLabel" translate="no"><b>hello_git.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">print("Hello Git world!")</span>
+<span class="LiteralGray">print("Hello everyone.")</span>
+
+print("Oh no, I broke the project!")</code></pre>
+<p>Guarda y ejecuta este archivo.</p>
+<p>Comprobamos el estado y vemos que Git se da cuenta de este cambio:</p>
+<pre translate="no"><code translate="no">git_practice$ <b>git status</b>
+On branch main
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git restore &lt;file&gt;..." to discard changes in working directory)
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     modified:   hello_git.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+git_practice$</code></pre>
+<p><span epub:type="pagebreak" id="Page_489" title="489"></span>Git ve que hemos modificado <em translate="no">hello_git.py</em> <span aria-label="annotation1" class="CodeAnnotation">❶,</span> y podemos confirmar el cambio si queremos. Pero esta vez, en lugar de confirmar el cambio, volveremos a la última confirmación, cuando sabíamos que nuestro proyecto funcionaba. No haremos nada en <em translate="no">hello_git.py</em>: no borraremos la línea ni utilizaremos la función Deshacer del editor de texto. En su lugar, introduce los siguientes comandos en tu sesión de terminal:</p>
+<pre translate="no"><code translate="no">git_practice$ <b>git restore .</b>
+git_practice$ <b>git status</b>
+On branch main
+nothing to commit, working tree clean
+git_practice$</code></pre>
+<p>El comando <code translate="no">git restore </code><var>nombrearchivo</var> te permite abandonar todos los cambios desde la última confirmación en un archivo específico. El comando <code translate="no">git restore .</code> abandona todos los cambios realizados en todos los archivos desde la última confirmación; esta acción restaura el proyecto al último estado confirmado.</p>
+<p>Cuando vuelvas a tu editor de texto, verás que <em translate="no">hello_git.py</em> ha vuelto a este estado:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">print("Hello Git world!")</span>
+<span class="LiteralGray">print("Hello everyone.")</span></code></pre>
+<p>Aunque volver a un estado anterior pueda parecer trivial en este sencillo proyecto, si estuviéramos trabajando en un proyecto grande con docenas de archivos modificados, se restaurarían todos los archivos que hubieran cambiado desde el último commit. Esta función es increíblemente útil: puedes hacer tantos cambios como quieras al implementar una nueva función, y si no funcionan, puedes descartarlos sin afectar al proyecto. No tienes que recordar esos cambios y deshacerlos manualmente. Git hace todo eso por ti.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="b04_12.html">anterior</a><a href="b04.html">Subtema 13 de 16: (Ver todo)</a><a href="b04_14.html">siguiente</a><br/></p>
+<br/><a href="b04_13.docx" target="_blank"></a></footer>
+</body>
+</html>

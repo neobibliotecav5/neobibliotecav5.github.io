@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Bitwise Operators</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Bitwise Operators"><div class="titlepage"><div><div><h1 class="title"><a id="bitwise_operators"/>Bitwise Operators</h1></div></div></div><p>JavaScript has the same set of bitwise operators as Java:<a id="IDX-APP-B-0570" class="indexterm"/><a id="IDX-APP-B-0571" class="indexterm"/></p><a id="I_programlisting_d1e9143"/><pre class="programlisting">&amp;    and
+|    or
+^    xor
+˜    not
+&gt;&gt;   signed right shift
+&gt;&gt;&gt;  unsigned right shift
+&lt;&lt;   left shift</pre><p>In Java, the bitwise operators work with integers. JavaScript doesn't have
+                integers. It only has double precision floating-point numbers. So, the bitwise
+                operators convert their number operands into integers, do their business, and then
+                convert them back. In most languages, these operators are very close to the hardware
+                and very fast. In JavaScript, they are very far from the hardware and very slow.
+                JavaScript is rarely used for doing bit manipulation.</p><p>As a result, in JavaScript programs, it is more likely that <code class="literal">&amp;</code> is a mistyped <code class="literal">&amp;&amp;</code> operator. The presence of the bitwise operators reduces
+                some of the language's redundancy, making it easier for bugs to hide.</p></div></body></html>

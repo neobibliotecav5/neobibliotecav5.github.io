@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c20-0012">Requisitos adicionales para el despliegue</h3>
+<p class="BodyFirst">El servidor en vivo requiere dos paquetes adicionales. Estos paquetes se utilizan para servir el proyecto en un entorno de producción, donde muchos usuarios pueden estar haciendo peticiones al mismo tiempo.</p>
+<p>En el mismo directorio donde está guardado <em translate="no">requirements.txt</em>, crea un nuevo archivo llamado <em translate="no">requirements_remote.txt</em>. Añádele los dos paquetes siguientes:</p>
+<p class="CodeLabel" translate="no"><b>requirements_remote.txt</b></p>
+<pre translate="no"><code translate="no"># Requirements for live project.
+gunicorn
+psycopg2</code></pre>
+<p>El paquete <code translate="no">gunicorn</code> responde a las peticiones a medida que llegan al servidor remoto; éste ocupa el lugar del servidor de desarrollo que hemos estado utilizando localmente. El paquete <code translate="no">psycopg2</code> es necesario para que Django gestione la base de datos Postgres que utiliza Platform.sh. <em translate="no">Postgres</em> es una base de datos de código abierto muy adecuada para aplicaciones de producción.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c20_19.html">anterior</a><a href="c20.html">Subtema 20 de 37: (Ver todo)</a><a href="c20_21.html">siguiente</a><br/></p>
+<br/><a href="c20_20.docx" target="_blank"></a></footer>
+</body>
+</html>

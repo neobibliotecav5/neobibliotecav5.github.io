@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/><title>Invocation</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h2 class="title"><a id="the_method_invocation_pattern"></a>El patrón de invocación de métodos</h2><p>Cuando una función se almacena como una propiedad de un objeto, la llamamos una función        <span class="emphasis"><em translate="no">method</em></span>. Cuando se invoca un método, <code class="literal" translate="no">this</code> se vincula a ese objeto. Si una expresión de invocación contiene un refinamiento (es decir, una expresión <code class="literal" translate="no">.</code> punto o <code class="literal" translate="no">[</code><em class="replaceable" translate="no"><code translate="no">subscript</code></em><code class="literal" translate="no">]</code> ), se invoca como un método:<a class="indexterm" id="IDX-CHP-4-0190"></a><a class="indexterm" id="IDX-CHP-4-0191"></a></p><a id="I_programlisting4_d1e2521"></a><pre class="programlisting" translate="no">// Create myObject. It has a value and an increment
+// method. The increment method takes an optional
+// parameter. If the argument is not a number, then 1
+// is used as the default.
+
+var myObject = {
+    value: 0,
+    increment: function (inc) {
+        this.value += typeof inc === 'number' ? inc : 1;
+    }
+};
+
+myObject.increment(  );
+document.writeln(myObject.value);    // 1
+
+myObject.increment(2);
+document.writeln(myObject.value);    // 3</pre><p>Un método puede utilizar <code class="literal" translate="no">this</code> para acceder al objeto, de modo que pueda recuperar valores del objeto o modificarlo. La vinculación de <code class="literal" translate="no">this</code> al objeto se produce en el momento de la invocación. Esta vinculación tan tardía hace que las funciones que utilizan <code class="literal" translate="no">this</code> sean altamente reutilizables. Los métodos que obtienen su contexto de objeto de <code class="literal" translate="no">this</code> se llaman <span class="emphasis"><em translate="no">public
+                        methods</em></span>.</p><div class="sect2" title="The Function Invocation Pattern"><div class="titlepage"><div><div></div></div></div></div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch04s03_1.html">anterior</a><a href="ch04s03.html">Subtema 2 de 5: (Ver todo)</a><a href="ch04s03_3.html">siguiente</a><br/></p>
+<br/><a href="ch04s03_2.docx" target="_blank"></a></footer>
+</body>
+</html>

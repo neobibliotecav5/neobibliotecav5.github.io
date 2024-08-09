@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c12-0024">Borrar balas antiguas</h3>
+<p class="BodyFirst">De momento, las balas desaparecen cuando llegan arriba, pero sólo porque Pygame no puede dibujarlas por encima de la parte superior de la pantalla. En realidad, las balas siguen existiendo, sólo que sus valores de coordenadas <em translate="no">y</em> son cada vez más negativos. Esto es un problema porque siguen consumiendo memoria y capacidad de proceso.</p>
+<p><span epub:type="pagebreak" id="Page_251" title="251"></span>Tenemos que deshacernos de estas viejas balas, o el juego se ralentizará por hacer tanto trabajo innecesario. Para ello, necesitamos detectar cuándo el valor <code translate="no">bottom</code> de la <code translate="no">rect</code> de una bala tiene un valor de 0, lo que indica que la bala ha pasado de la parte superior de la pantalla:</p>
+<p class="CodeLabel" translate="no"><b>alien_invasion.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    def run_game(self):</span>
+<span class="LiteralGray">        """Start the main loop for the game."""</span>
+<span class="LiteralGray">        while True:</span>
+<span class="LiteralGray">            self._check_events()</span>
+<span class="LiteralGray">            self.ship.update()</span>
+<span class="LiteralGray">            self.bullets.update()</span>
+
+<span class="LiteralGray"> </span>           # Get rid of bullets that have disappeared.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>             for bullet in self.bullets.copy():
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>                 if bullet.rect.bottom &lt;= 0:
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>                     self.bullets.remove(bullet)
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>             print(len(self.bullets))
+
+<span class="LiteralGray">            self._update_screen()</span>
+<span class="LiteralGray">            self.clock.tick(60)</span></code></pre>
+<p>Cuando utilizas un bucle <code translate="no">for</code> con una lista (o un grupo en Pygame), Python espera que la lista mantenga la misma longitud mientras se ejecute el bucle. Eso significa que no puedes eliminar elementos de una lista o grupo dentro de un bucle <code translate="no">for</code>, así que tenemos que hacer un bucle sobre una copia del grupo. Utilizamos el método <code translate="no">copy()</code> para configurar el bucle <code translate="no">for</code> <span aria-label="annotation1" class="CodeAnnotation">❶,</span> lo que nos deja libertad para modificar el grupo original <code translate="no">bullets</code> dentro del bucle. Comprobamos cada viñeta para ver si ha desaparecido de la parte superior de la pantalla <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Si es así, la eliminamos de <code translate="no">bullets</code> <span aria-label="annotation3" class="CodeAnnotation">❸.</span> Insertamos una llamada a <code translate="no">print()</code> para mostrar cuántas balas existen actualmente en el juego y comprobamos que se eliminan cuando llegan a la parte superior de la pantalla <span aria-label="annotation4" class="CodeAnnotation">❹.</span></p>
+<p>Si este código funciona correctamente, podemos observar la salida del terminal mientras disparamos balas y ver que el número de balas disminuye a cero después de que cada serie de balas haya despejado la parte superior de la pantalla. Después de ejecutar el juego y comprobar que las balas se eliminan correctamente, elimina la llamada a <code translate="no">print()</code>. Si la dejas, el juego se ralentizará significativamente porque se tarda más tiempo en escribir la salida en el terminal que en dibujar los gráficos en la ventana del juego.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c12_38.html">anterior</a><a href="c12.html">Subtema 39 de 43: (Ver todo)</a><a href="c12_40.html">siguiente</a><br/></p>
+<br/><a href="c12_39.docx" target="_blank"></a></footer>
+</body>
+</html>

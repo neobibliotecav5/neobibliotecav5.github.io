@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c04-0015"><span epub:type="pagebreak" id="Page_63" title="63"></span>Copiar una lista</h3>
+<p class="BodyFirst">A menudo, querrás empezar con una lista existente y hacer una lista completamente nueva basada en la primera. Exploremos cómo funciona copiar una lista y examinemos una situación en la que copiar una lista resulta útil.</p>
+<p>Para copiar una lista, puedes hacer un corte que incluya toda la lista original omitiendo el primer índice y el segundo índice (<code translate="no">[:]</code>). Esto le dice a Python que haga un corte que empiece en el primer elemento y termine en el último, produciendo una copia de toda la lista.</p>
+<p>Por ejemplo, imagina que tenemos una lista de nuestras comidas favoritas y queremos hacer otra lista de las comidas que le gustan a un amigo. A este amigo le gusta todo lo que hay en nuestra lista hasta ahora, así que podemos crear su lista copiando la nuestra:</p>
+<p class="CodeLabel" translate="no"><b>foods.py</b></p>
+<pre translate="no"><code translate="no">my_foods = ['pizza', 'falafel', 'carrot cake']
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> friend_foods = my_foods[:]
+
+print("My favorite foods are:")
+print(my_foods)
+
+print("\nMy friend's favorite foods are:")
+print(friend_foods)</code></pre>
+<p>Primero, hacemos una lista de los alimentos que nos gustan llamada <code translate="no">my_foods</code>. Luego hacemos una nueva lista llamada <code translate="no">friend_foods</code>. Hacemos una copia de <code translate="no">my_foods</code> pidiendo un trozo de <code translate="no">my_foods</code> sin especificar ningún índice <span aria-label="annotation1" class="CodeAnnotation">❶,</span> y asignamos la copia a <code translate="no">friend_foods</code>. Cuando imprimimos cada lista, vemos que ambas contienen los mismos alimentos:</p>
+<pre translate="no"><code translate="no">My favorite foods are:
+['pizza', 'falafel', 'carrot cake']
+
+My friend's favorite foods are:
+['pizza', 'falafel', 'carrot cake']</code></pre>
+<p>Para demostrar que en realidad tenemos dos listas separadas, añadiremos un nuevo alimento a cada lista y demostraremos que cada lista lleva la cuenta de los alimentos favoritos de la persona correspondiente:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">my_foods = ['pizza', 'falafel', 'carrot cake']</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> <span class="LiteralGray">friend_foods = my_foods[:]</span>
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> my_foods.append('cannoli')
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> friend_foods.append('ice cream')
+
+<span class="LiteralGray">print("My favorite foods are:")</span>
+<span class="LiteralGray">print(my_foods)</span>
+
+<span class="LiteralGray">print("\nMy friend's favorite foods are:")</span>
+<span class="LiteralGray">print(friend_foods)</span></code></pre>
+<p><span epub:type="pagebreak" id="Page_64" title="64"></span>Copiamos los elementos originales de <code translate="no">my_foods</code> en la nueva lista <code translate="no">friend_foods</code>, como hicimos en el ejemplo anterior <span aria-label="annotation1" class="CodeAnnotation">❶.</span> A continuación, añadimos un nuevo alimento a cada lista: añadimos <code translate="no">'cannoli'</code> a <code translate="no">my_foods</code> <span aria-label="annotation2" class="CodeAnnotation">❷,</span> y añadimos <code translate="no">'ice cream'</code> a <code translate="no">friend_foods</code> <span aria-label="annotation3" class="CodeAnnotation">❸.</span> A continuación, imprimimos las dos listas para ver si cada uno de estos alimentos está en la lista adecuada:</p>
+<pre translate="no"><code translate="no">My favorite foods are:
+['pizza', 'falafel', 'carrot cake', 'cannoli']
+
+My friend's favorite foods are:
+['pizza', 'falafel', 'carrot cake', 'ice cream']</code></pre>
+<p>La salida muestra que <code translate="no">'cannoli'</code> aparece ahora en nuestra lista de alimentos favoritos, pero <code translate="no">'ice cream'</code> no. Podemos ver que <code translate="no">'ice cream'</code> aparece ahora en la lista de nuestro amigo pero <code translate="no">'cannoli'</code> no. Si simplemente hubiéramos establecido <code translate="no">friend_foods</code> igual a <code translate="no">my_foods</code>, no produciríamos dos listas separadas. Por ejemplo, esto es lo que ocurre cuando intentas copiar una lista sin utilizar un corte:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">my_foods = ['pizza', 'falafel', 'carrot cake']</span>
+
+# This doesn't work:
+friend_foods = my_foods
+
+<span class="LiteralGray">my_foods.append('cannoli')</span>
+<span class="LiteralGray">friend_foods.append('ice cream')</span>
+
+<span class="LiteralGray">print("My favorite foods are:")</span>
+<span class="LiteralGray">print(my_foods)</span>
+
+<span class="LiteralGray">print("\nMy friend's favorite foods are:")</span>
+<span class="LiteralGray">print(friend_foods)</span></code></pre>
+<p>En lugar de asignar una copia de <code translate="no">my_foods</code> a <code translate="no">friend_foods</code>, establecemos <code translate="no">friend_foods</code> igual a <code translate="no">my_foods</code>. Esta sintaxis en realidad le dice a Python que asocie la nueva variable <code translate="no">friend_foods</code> a la lista que ya está asociada a <code translate="no">my_foods</code>, de modo que ahora ambas variables apuntan a la misma lista. Como resultado, cuando añadamos <code translate="no">'cannoli'</code> a <code translate="no">my_foods</code>, también aparecerá en <code translate="no">friend_foods</code>. Del mismo modo, <code translate="no">'ice cream'</code> aparecerá en ambas listas, aunque parezca que sólo se ha añadido a <code translate="no">friend_foods</code>.</p>
+<p>La salida muestra que ahora ambas listas son iguales, que no es lo que queríamos:</p>
+<pre translate="no"><code translate="no">My favorite foods are:
+['pizza', 'falafel', 'carrot cake', 'cannoli', 'ice cream']
+
+My friend's favorite foods are:
+['pizza', 'falafel', 'carrot cake', 'cannoli', 'ice cream']</code></pre>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c04_23.html">anterior</a><a href="c04.html">Subtema 24 de 41: (Ver todo)</a><a href="c04_25.html">siguiente</a><br/></p>
+<br/><a href="c04_24.docx" target="_blank"></a></footer>
+</body>
+</html>

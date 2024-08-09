@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<meta charset="utf-8"/>
+<title>Capítulo 7: Resolución de problemas de cálculo</title>
+<link href="style.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="core.css" media="all" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch07lev1sec10"><strong><span class="bordera">Retos de programación</span></strong></h3>
+<p class="noindent">Los siguientes retos se basan en lo que has aprendido en este capítulo. Puedes encontrar ejemplos de soluciones en <em><a href="http://www.nostarch.com/doingmathwithpython/">http://www.nostarch.com/doingmathwithpython/</a></em>.</p>
+<h4 class="h4" id="ch07lev2sec10"><strong><em>#nº 1: Verificar la continuidad de una función en un punto</em></strong></h4>
+<p class="noindent">Una condición necesaria, pero no suficiente, para que una función sea diferenciable en un punto es que sea continua en ese punto. Es decir, la función debe estar definida en ese punto y su límite izquierdo y su límite derecho deben existir y ser iguales al valor de la función en ese punto. Si <em>f</em><em>(x</em>) es la función y <em>x</em> = <em>a</em> es el punto que nos interesa evaluar, esto se expresa matemáticamente como</p>
+<div class="image2"><img alt="image" src="images/e0205-01.jpg" translate="no"/></div>
+<p class="indent">Tu reto aquí es escribir un programa que (1) acepte una función de una sola variable y un valor de esa variable como entradas y (2) compruebe si la función de entrada es continua en el punto en el que la variable asume el valor de entrada.</p>
+<p class="indent">Aquí tienes un ejemplo de funcionamiento de la solución completada:</p>
+<p class="programs" translate="no">Enter a function in one variable: <span class="codestrong">1/x</span><br translate="no"/>Enter the variable: <span class="codestrong">x</span><br translate="no"/>Enter the point to check the continuity at: <span class="codestrong">1</span><br translate="no"/>1/x is continuous at 1.0</p>
+<p class="indent">La función <em>1/x</em> es discontinua en 0, así que vamos a comprobarlo:</p>
+<p class="programs" translate="no">Enter a function in one variable: <span class="codestrong">1/x</span><br translate="no"/>Enter the variable: <span class="codestrong">x</span><br translate="no"/>Enter the point to check the continuity at: <span class="codestrong">0</span><br translate="no"/>1/x is not continuous at 0.0</p>
+<h4 class="h4" id="ch07lev2sec11"><strong><em>#2: Implementar el descenso gradiente</em></strong></h4>
+<p class="noindent">El método de descenso gradiente se utiliza para encontrar el valor mínimo de una función. Al igual que el método de ascenso por gradiente, el método de descenso por gradiente es <a id="page_206"></a>un método iterativo: empezamos con un valor inicial de la variable y nos acercamos gradualmente al valor de la variable que corresponde al valor mínimo de la función. El paso que nos acerca es la ecuación</p>
+<div class="image2"><img alt="image" src="images/e0206-01.jpg" translate="no"/></div>
+<p class="noindent">donde <em>λ</em> es el tamaño del paso y</p>
+<div class="image2"><img alt="image" src="images/e0206-02.jpg" translate="no"/></div>
+<p class="noindent">es el resultado de diferenciar la función. Por tanto, la única diferencia con el método de ascenso gradiente es cómo obtenemos el valor de <span class="literal" translate="no">x_new</span> a partir de <span class="literal" translate="no">x_old</span>.</p>
+<p class="indent">Tu reto es implementar un programa genérico que utilice el algoritmo de descenso gradiente para encontrar el valor mínimo de una función de una sola variable especificada como entrada por el usuario. El programa también debe crear una gráfica de la función y mostrar todos los valores intermedios que encontró antes de hallar el mínimo. (Puedes consultar la <a href="ch07.html#ch7fig5">Figura 7-5</a> de la <a href="ch07.html#page_193">página 193</a>).</p>
+<h4 class="h4" id="ch07lev2sec12"><strong><em>#3: Área entre dos curvas</em></strong></h4>
+<p class="noindent">Hemos aprendido que la integral</p>
+<div class="image2"><img alt="image" src="images/e0206-03.jpg" translate="no"/></div>
+<p class="noindent">expresa el área encerrada por la función <em>f</em><em>(x</em>), con el <em>eje x</em> entre <em>x</em> = <em>a</em> y <em>x</em> = <em>b</em>. El área entre dos curvas se expresa, pues, como la integral</p>
+<div class="image2"><img alt="image" src="images/e0206-04.jpg" translate="no"/></div>
+<p class="noindent">donde <em>a</em> y <em>b</em> son los puntos de intersección de las dos curvas con <em>a</em> &lt; <em>b</em>. La función <em>f</em>(<em>x</em>) se denomina <em>función superior</em> y <em>g</em><em>(x</em>) <em>función inferior</em>. <a href="ch07.html#ch7fig9">La figura 7-9</a> lo ilustra, suponiendo que <em>f</em>(<em>x</em>) = <em>x</em> y <em>g</em><em>(x</em>) = <sup>x2</sup>, con <em>a</em> = 0 y <em>b</em> = 1.</p>
+<p class="indent">Tu reto aquí es escribir un programa que permita al usuario introducir dos funciones cualesquiera de una sola variable de <em>x</em> e imprimir el área encerrada entre ambas. El programa debe dejar claro que la primera función introducida debe ser la superior, y también debe pedir los valores de <em>x</em> entre los que hallar el área.</p>
+<div class="image"><a id="page_207"></a><img alt="image" src="images/f07-09.jpg" translate="no"/></div>
+<p class="figuret"><a id="ch7fig9"></a><em>Figura 7-9: Las funciones</em> f<em>(</em>x<em>) =</em> x <em>y</em> g<em>(</em>x<em>) =</em><em><sup>x2</sup></em> encierran<em>un</em> área comprendida entre x = <em>0 y</em> x = <em>1,0.</em></p>
+<h4 class="h4" id="ch07lev2sec13"><strong><em>#4: Hallar la longitud de una curva</em></strong></h4>
+<p class="noindent">Supongamos que acabas de recorrer en bicicleta una carretera que se parece aproximadamente a <a href="ch07.html#ch7fig10">la Figura 7-10</a>. Como no llevabas cuentakilómetros, quieres saber si hay alguna forma matemática de determinar la distancia que has recorrido en bicicleta. En primer lugar, tendremos que encontrar una ecuación -incluso una aproximación servirá- que describa este camino.</p>
+<div class="image"><img alt="image" src="images/f07-10.jpg" translate="no"/></div>
+<p class="figuret"><a id="ch7fig10"></a><em>Figura 7-10: Una aproximación de la trayectoria ciclista</em></p>
+<p class="indent"><a id="page_208"></a>¿Te das cuenta de que se parece mucho a las funciones cuadráticas de las que hemos hablado en los capítulos anteriores? De hecho, para este reto, vamos a suponer que la ecuación es <em>y</em> = <em>f</em><em>(x</em>) = <sup>2x2</sup> + <em>3x</em> + 1 y que has ido en bicicleta desde el punto <em>A</em> (-5, 36) hasta el punto <em>B</em> (10, 231). Para hallar la longitud de este arco -es decir, la distancia que has recorrido- tendremos que calcular la integral</p>
+<div class="image2"><img alt="image" src="images/e0208-01.jpg" translate="no"/></div>
+<p class="noindent">donde <em>y</em> describe la función anterior. Tu reto aquí es escribir un programa que calcule la longitud del arco, <em>AB</em>.</p>
+<p class="indent">También puedes generalizar tu solución para que te permita hallar la longitud del arco entre dos puntos cualesquiera para cualquier función arbitraria, <em>f</em><em>(x</em>).</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch07_10.html">anterior</a><a href="ch07.html">Subtema 11 de 11: (Ver todo)</a><br/></p>
+<br/><a href="ch07_11.docx" target="_blank"></a></footer>
+</body>
+</html>

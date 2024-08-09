@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch16lev1sec4">
+<span class="calibre2" id="page_249">
+</span>
+  Cómo hacer que se mueva el muñeco </h3>
+<p class="noindent">
+  La última función de la clase <span class="literal1" translate="no">
+   StickFigureSprite
+  </span>, <span class="literal1" translate="no">
+   move
+  </span>, se encarga de mover realmente a nuestro personaje del juego por la pantalla. También tiene que ser capaz de indicarnos cuándo el personaje ha chocado con algo. </p>
+<h4 class="h3" id="ch16lev2sec3">
+  Iniciar la función mover </h4>
+<p class="noindent">
+  El siguiente código es la primera parte de la función <span class="literal1" translate="no">
+   move
+  </span>. Irá después de <span class="literal1" translate="no">
+   coords
+  </span>: </p>
+<pre class="pre" translate="no">    <span class="orange">def</span> move(self):
+        self.animate()
+        <span class="orange">if</span> self.y &lt; 0:
+            self.jump_count += 1
+            <span class="orange">if</span> self.jump_count &gt; 20:
+                self.y = 4
+        <span class="orange">if</span> self.y &gt; 0:
+            self.jump_count -= 1</pre>
+<p class="indent">
+  La primera línea ( <span class="literal1" translate="no">
+   self.animate()
+  </span>) llama a la función que creamos anteriormente en este capítulo, que cambia la imagen que se muestra en ese momento si es necesario. A continuación, vemos si el valor de <span class="literal1" translate="no">
+   y
+  </span>es menor que 0. Si lo es, sabemos que la figura de palo está saltando, porque un valor negativo lo desplazará hacia arriba en la pantalla. (Recuerda que 0 está en la parte superior del lienzo, y la parte inferior del lienzo es la posición de píxel 500). </p>
+<p class="indent">
+  A continuación, añadimos 1 a <span class="literal1" translate="no">
+   jump_count
+  </span>. Queremos que nuestra figura de palo salte hacia arriba, pero no que siga flotando por la pantalla para siempre (al fin y al cabo, está saltando), así que utilizamos esa variable para contar el número de veces que hemos ejecutado la función <span class="literal1" translate="no">
+   move
+  </span>-si llega a 20, debemos cambiar <span class="literal1" translate="no">
+   y
+  </span>a 4 para que la figura de palo empiece a caer de nuevo. </p>
+<p class="indent">
+  A continuación, comprobamos si el valor de <span class="literal1" translate="no">
+   y
+  </span>es mayor que 0 (lo que significa que el personaje debe estar cayendo); si lo es, restamos 1 a <span class="literal1" translate="no">
+   jump_count
+  </span>porque una vez que hemos contado hasta 20, tenemos que volver a contar hacia abajo. (Mueve la mano lentamente hacia arriba en el aire mientras cuentas hasta 20, y luego vuelve a moverla hacia abajo mientras cuentas desde 20, y te harás una idea de cómo se supone que funciona el cálculo de la figura de palo saltando arriba y abajo). </p>
+<div class="image1">
+<span id="page_250">
+</span>
+<img alt="Image" class="calibre172" src="../images/f0250-01.jpg" translate="no"/>
+</div>
+<p class="indent">
+  En las siguientes líneas de la función <span class="literal1" translate="no">
+   move
+  </span>, llamamos a la función <span class="literal1" translate="no">
+   coords
+  </span>, que nos dice dónde está nuestro personaje en la pantalla, y almacenamos su resultado en la variable <span class="literal1" translate="no">
+   co
+  </span>. A continuación, creamos las variables <span class="literal1" translate="no">
+   left
+  </span>, <span class="literal1" translate="no">
+   right
+  </span>, <span class="literal1" translate="no">
+   top
+  </span>, <span class="literal1" translate="no">
+   bottom
+  </span>, y <span class="literal1" translate="no">
+   falling
+  </span>. Utilizaremos cada una de ellas en el resto de esta función: </p>
+<pre class="pre" translate="no">        co = self.coords()
+        left = <span class="violet">True</span>
+        right = <span class="violet">True</span>
+        top = <span class="violet">True</span>
+        bottom = <span class="violet">True</span>
+        falling = <span class="violet">True</span></pre>
+<p class="indent">
+  Observa que cada variable se ha establecido con el valor booleano <span class="literal1" translate="no">
+   True
+  </span>. Las utilizaremos como indicadores para comprobar si el personaje ha golpeado algo en la pantalla o se está cayendo. </p>
+<h4 class="h3" id="ch16lev2sec4">
+  ¿Ha golpeado el muñeco la parte inferior o superior del lienzo? </h4>
+<p class="noindent">
+  La siguiente sección de la función <span class="literal1" translate="no">
+   move
+  </span>comprueba si nuestro personaje ha golpeado la parte inferior o superior del lienzo. Añade el código siguiente: </p>
+<pre class="pre" translate="no">        <span class="orange">if</span> self.y &gt; 0 <span class="orange">and</span> co.y2 &gt;= self.game.canvas_height:
+            self.y = 0
+            bottom = <span class="violet">False</span>
+        <span class="orange">elif</span> self.y &lt; 0 <span class="orange">and</span> co.y1 &lt;= 0:
+            self.y = 0
+            top = <span class="violet">False</span></pre>
+<p class="indent">
+<span id="page_251">
+</span>
+  Si el personaje está cayendo por la pantalla, <span class="literal1" translate="no">
+   y
+  </span>será mayor que 0, por lo que debemos asegurarnos de que aún no ha tocado la parte inferior del lienzo (o desaparecerá de la parte inferior de la pantalla). Para ello, comprobamos si su posición <em class="calibre7">y2 </em>(la parte inferior de la figura de palo) es mayor o igual que la variable <span class="literal1" translate="no">
+   canvas_height
+  </span>del objeto del juego. Si lo es, ponemos el valor de <span class="literal1" translate="no">
+   y
+  </span>a 0 para que la figura de palo deje de caer, y luego ponemos la variable <span class="literal1" translate="no">
+   bottom
+  </span>a <span class="literal1" translate="no">
+   False
+  </span>, lo que indica al código restante que ya no necesitamos ver si la figura de palo ha tocado fondo. </p>
+<p class="indent">
+  El proceso para determinar si la figura de palo ha tocado la parte superior de la pantalla es muy similar a la forma en que determinamos si ha tocado la parte inferior. Para ello, primero vemos si la figura de palo está saltando ( <span class="literal1" translate="no">
+   y
+  </span>es menor que 0), y luego vemos si su posición <em class="calibre7">y1 </em>es menor o igual que 0, lo que significa que ha tocado la parte superior de la tela. Si ambas condiciones son ciertas, ponemos <span class="literal1" translate="no">
+   y
+  </span>igual a 0 para detener el movimiento. También establecemos la variable <span class="literal1" translate="no">
+   top
+  </span>en <span class="literal1" translate="no">
+   False
+  </span>para indicar al resto del código que ya no necesitamos ver si la figura de palo ha tocado la parte superior. </p>
+<h4 class="h3" id="ch16lev2sec5">
+  ¿Ha tocado la figura de palo el lateral del lienzo? </h4>
+<p class="noindent">
+  Seguimos casi exactamente el mismo proceso que en el código anterior para determinar si la figura de palito ha golpeado los lados derecho e izquierdo del lienzo, de la siguiente manera: </p>
+<pre class="pre" translate="no">        <span class="orange">if</span> self.x &gt; 0 <span class="orange">and</span> co.x2 &gt;= self.game.canvas_width:
+            self.x = 0
+            right = <span class="violet">False</span>
+        <span class="orange">elif</span> self.x &lt; 0 <span class="orange">and</span> co.x1 &lt;= 0:
+            self.x = 0
+            left = <span class="violet">False</span></pre>
+<p class="indent">
+  La sentencia <span class="literal1" translate="no">
+   if
+  </span>se basa en que sabemos que la figura de palo está corriendo hacia la derecha si <span class="literal1" translate="no">
+   x
+  </span>es mayor que 0. También sabemos si ha golpeado el lado derecho de la pantalla viendo si la posición <em class="calibre7">x2 </em>( <span class="literal1" translate="no">
+   co.x2
+  </span>) es mayor o igual que la anchura del lienzo almacenada en <span class="literal1" translate="no">
+   canvas_width
+  </span>. Si cualquiera de las dos afirmaciones es cierta, ponemos <span class="literal1" translate="no">
+   x
+  </span>igual a 0 (para que la figura de palo deje de correr) y ponemos las variables <span class="literal1" translate="no">
+   right
+  </span>o <span class="literal1" translate="no">
+   left
+  </span>a <span class="literal1" translate="no">
+   False
+  </span>. </p>
+<h4 class="h3" id="ch16lev2sec6">
+<span class="calibre2" id="page_252">
+</span>
+  Colisión con otros sprites </h4>
+<p class="noindent">
+  Una vez que hemos determinado si la figura ha chocado con los lados de la pantalla, tenemos que ver si ha chocado con algo más en la pantalla. Utilizamos el siguiente código para recorrer la lista de objetos sprite almacenada en el objeto <span class="literal1" translate="no">
+   game
+  </span>para ver si la figura de palo ha chocado con alguno de ellos: </p>
+<pre class="pre" translate="no">        <span class="orange">for</span> sprite <span class="orange">in</span> self.game.sprites:
+            <span class="orange">if</span> sprite == self:
+                <span class="orange">continue</span>
+            sprite_co = sprite.coords()
+            <span class="orange">if</span> top and self.y &lt; 0 <span class="orange">and</span> collided_top(co, sprite_co):
+                self.y = -self.y
+                top = <span class="violet">False</span></pre>
+<p class="indent">
+  En la sentencia <span class="literal1" translate="no">
+   for
+  </span>, recorremos la lista de sprites, asignando cada uno de ellos a la variable <span class="literal1" translate="no">
+   sprite
+  </span>. Entonces decimos que si el sprite es igual a <span class="literal1" translate="no">
+   self
+  </span>(que es otra forma de decir "si este sprite en concreto soy yo"), no necesitamos determinar si la figura de palo ha chocado porque sólo se habría golpeado a sí misma. Si la variable <span class="literal1" translate="no">
+   sprite
+  </span>es igual a <span class="literal1" translate="no">
+   self
+  </span>, utilizamos <span class="literal1" translate="no">
+   continue
+  </span>para saltar al siguiente sprite de la lista ( <span class="literal1" translate="no">
+   continue
+  </span>simplemente le dice a Python que ignore el resto del código del bloque y continúe el bucle). </p>
+<p class="indent">
+  A continuación, obtenemos las coordenadas del nuevo sprite llamando a su función <span class="literal1" translate="no">
+   coords
+  </span>y almacenando los resultados en la variable <span class="literal1" translate="no">
+   sprite_co
+  </span>. </p>
+<p class="indent">
+  La última sentencia <span class="literal1" translate="no">
+   if
+  </span>comprueba lo siguiente: </p>
+<ul class="calibre22">
+<li class="noindent2">
+   La figura de palo no ha tocado la parte superior del lienzo (la variable <span class="literal1" translate="no">
+    top
+   </span>sigue siendo verdadera).  </li>
+<li class="noindent2">
+   La figura de palo está saltando (el valor <span class="literal1" translate="no">
+    y
+   </span>es menor que 0).  </li>
+<li class="noindent2">
+   La parte superior de la figura de palo ha colisionado con el sprite de la lista (utilizando la función <span class="literal1" translate="no">
+    collided_top
+   </span>que creamos en la <a class="calibre6" href="ch14.xhtml#ch14lev2sec3">página 224 </a>).  </li>
+</ul>
+<div class="image1">
+<img alt="Image" class="calibre173" src="../images/f0253-01.jpg" translate="no"/>
+</div>
+<p class="indent">
+<span id="page_253">
+</span>
+  Si todas estas condiciones se cumplen, queremos que el sprite empiece a caer de nuevo, así que invertimos el valor de la variable <span class="literal1" translate="no">
+   y
+  </span>( <span class="literal1" translate="no">
+   self.y
+  </span>se convierte en <span class="literal1" translate="no">
+   -self.y
+  </span>). La variable <span class="literal1" translate="no">
+   top
+  </span>se establece en <span class="literal1" translate="no">
+   False
+  </span>porque una vez que la figura de palo ha llegado arriba, no necesitamos seguir comprobando si hay colisión. </p>
+<h4 class="h3" id="ch16lev2sec7">
+  Colisión en la parte inferior </h4>
+<p class="noindent">
+  La siguiente parte del bucle comprueba si la parte inferior de nuestro personaje ha chocado con algo: </p>
+<pre class="pre" translate="no">            <span class="orange">if</span> bottom <span class="orange">and</span> self.y &gt; 0 <span class="orange">and</span> collided_bottom(self.y,
+                    co, sprite_co):
+                self.y = sprite_co.y1 - co.y2
+                <span class="orange">if</span> self.y &lt; 0:
+                    self.y = 0
+                bottom = <span class="violet">False</span>
+                top = <span class="violet">False</span></pre>
+<p class="indent">
+  Empezamos con tres comprobaciones similares: si la variable <span class="literal1" translate="no">
+   bottom
+  </span>sigue activada, si el personaje está cayendo ( <span class="literal1" translate="no">
+   y
+  </span>es mayor que 0) y si la parte inferior de nuestro personaje ha chocado con el sprite. Si las tres comprobaciones son verdaderas, restamos el <em class="calibre7">valor y </em>inferior ( <span class="literal1" translate="no">
+   y2
+  </span>) de la figura de palo del <em class="calibre7">valor y </em>superior del sprite ( <span class="literal1" translate="no">
+   y1
+  </span>). Esto puede parecer extraño, así que vamos a explicar por qué lo hacemos. </p>
+<p class="indent">
+  Imagina que nuestro personaje se ha caído de una plataforma. Se desplaza hacia abajo en la pantalla 4 píxeles cada vez que se ejecuta la función <span class="literal1" translate="no">
+   mainloop
+  </span>, hasta que el pie de la figura de palo está 3 píxeles por encima de otra plataforma. Digamos que el pie de la figura de palo ( <span class="literal1" translate="no">
+   y2
+  </span>) está en la posición 57, y la parte superior de la plataforma ( <span class="literal1" translate="no">
+   y1
+  </span>) está en la posición 60. <span id="page_254">
+</span>En este caso, la función <span class="literal1" translate="no">
+   collided_bottom
+  </span>devolvería <span class="literal1" translate="no">
+   True
+  </span>, porque su código añadirá el valor de <span class="literal1" translate="no">
+   y
+  </span>(que es 4) a la variable <span class="literal1" translate="no">
+   y2
+  </span>de la figura de palo, dando como resultado 61. </p>
+<p class="indent">
+  Sin embargo, no queremos que el Sr. Hombre de Palo deje de caer en cuanto parezca que va a chocar con una plataforma o con el fondo de la pantalla, porque eso sería como dar un gran salto desde un escalón y detenerse en el aire, a un palmo del suelo. Puede ser un buen truco, pero no quedaría bien en nuestro juego. En lugar de eso, si restamos el valor <span class="literal1" translate="no">
+   y2
+  </span>del personaje (57) del valor <span class="literal1" translate="no">
+   y1
+  </span>de la plataforma (60), obtenemos 3, la cantidad que debe bajar la figura de palo para aterrizar correctamente encima de la plataforma. </p>
+<p class="indent">
+  Continuamos asegurándonos de que el cálculo no da como resultado un número negativo ( <span class="literal1" translate="no">
+   if self.y &lt; 0:
+  </span>); si es así, ponemos <span class="literal1" translate="no">
+   y
+  </span>igual a 0. (Si dejamos que el número sea negativo, la figura de palo volvería a volar hacia arriba, y no queremos que eso ocurra). </p>
+<p class="indent">
+  Por último, establecemos las banderas <span class="literal1" translate="no">
+   top
+  </span>y <span class="literal1" translate="no">
+   bottom
+  </span>en <span class="literal1" translate="no">
+   False
+  </span>, de modo que ya no tengamos que comprobar si la figura de palo ha colisionado por arriba o por abajo con otro sprite. </p>
+<p class="indent">
+  Seguiremos este código con una comprobación "inferior" más para ver si la figura de palo se ha salido del borde de una plataforma. Este es el código de la sentencia <span class="literal1" translate="no">
+   if
+  </span>: </p>
+<pre class="pre" translate="no">            <span class="orange">if</span> bottom <span class="orange">and</span> falling <span class="orange">and</span> self.y == 0 \
+                    <span class="orange">and</span> co.y2 &lt; self.game.canvas_height \
+                    <span class="orange">and</span> collided_bottom(1, co, sprite_co):
+                falling = <span class="violet">False</span></pre>
+<p class="indent">
+  Para que la variable <span class="literal1" translate="no">
+   falling
+  </span>se establezca en <span class="literal1" translate="no">
+   False
+  </span>, debemos comprobar que los cinco elementos siguientes son todos verdaderos: </p>
+<ul class="calibre22">
+<li class="noindent2">
+   La bandera <span class="literal1" translate="no">
+    bottom
+   </span>está en <span class="literal1" translate="no">
+    True
+   </span>. </li>
+<li class="noindent2">
+   La figura de palo debe estar cayendo (la bandera <span class="literal1" translate="no">
+    falling
+   </span>sigue fijada en <span class="literal1" translate="no">
+    True
+   </span>).  </li>
+<li class="noindent2">
+   La figura de palo no está cayendo ya ( <span class="literal1" translate="no">
+    y
+   </span>es 0).  </li>
+<li class="noindent2">
+   La parte inferior del sprite no ha tocado el fondo de la pantalla (es menor que la altura del lienzo).  </li>
+<li class="noindent2">
+   La figura de palo ha tocado la parte superior de una plataforma ( <span class="literal1" translate="no">
+    collided_bottom
+   </span>devuelve <span class="literal1" translate="no">
+    True
+   </span>).  </li>
+</ul>
+<p class="indent">
+  A continuación, establecemos la variable <span class="literal1" translate="no">
+   falling
+  </span>en <span class="literal1" translate="no">
+   False
+  </span>para impedir que la figura caiga por la pantalla. </p>
+<div class="note">
+<p class="notet">
+<span class="notes">Nota </span></p>
+<p class="notep">
+<span id="page_255">
+</span>
+<em class="calibre7">
+    Puedes comprobar si el valor de una variable booleana es Verdadero en una sentencia <span class="literal1" translate="no">
+     if
+    </span>simplemente haciendo referencia a la variable. </em>Por<em class="calibre7">ejemplo, <span class="literal1" translate="no">
+     if bottom == True
+    </span><span class="literal1" translate="no">
+     and falling == True
+    </span> puede reescribirse simplemente como <span class="literal1" translate="no">
+     if bottom and falling
+    </span>(como hicimos antes). </em></p>
+</div>
+<h4 class="h3" id="ch16lev2sec8">
+  Comprobar izquierda y derecha </h4>
+<p class="noindent">
+  Hemos comprobado si la figura de palo ha golpeado un sprite en la parte inferior o superior. Ahora tenemos que comprobar si ha golpeado el lado izquierdo o el derecho, con este código: </p>
+<pre class="pre" translate="no">            <span class="orange">if</span> left <span class="orange">and</span> self.x &lt; 0 <span class="orange">and</span> collided_left(co, sprite_co):
+                self.x = 0
+                left = <span class="violet">False</span>
+            <span class="orange">if</span> right <span class="orange">and</span> self.x &gt; 0 <span class="orange">and</span> collided_right(co, sprite_co):
+                self.x = 0
+                right = <span class="violet">False</span></pre>
+<p class="indent">
+  En primer lugar, comprobamos si debemos seguir buscando colisiones hacia la izquierda ( <span class="literal1" translate="no">
+   left
+  </span>sigue siendo igual a <span class="literal1" translate="no">
+   True
+  </span>) y si la figura de palo se mueve hacia la izquierda ( <span class="literal1" translate="no">
+   x
+  </span>es menor que 0). También comprobamos si la figura de palo ha colisionado con un sprite utilizando la función <span class="literal1" translate="no">
+   collided_left
+  </span>. Si estas tres condiciones son verdaderas, establecemos <span class="literal1" translate="no">
+   x
+  </span>igual a 0 (para que la figura de palo deje de moverse), y establecemos <span class="literal1" translate="no">
+   left
+  </span>igual a <span class="literal1" translate="no">
+   False
+  </span>, de modo que ya no comprobamos si hay colisiones a la izquierda. </p>
+<div class="image1">
+<img alt="Image" class="calibre174" src="../images/f0255-01.jpg" translate="no"/>
+</div>
+<p class="indent">
+  El código es similar para las colisiones a la derecha. Volvemos a poner <span class="literal1" translate="no">
+   x
+  </span>igual a 0, y ponemos <span class="literal1" translate="no">
+   right
+  </span>a <span class="literal1" translate="no">
+   False
+  </span>, para dejar de comprobar las colisiones a la derecha. </p>
+<p class="indent">
+  Ahora, con comprobaciones de colisiones en las cuatro direcciones, nuestro bucle <span class="literal1" translate="no">
+   for
+  </span>debería tener este aspecto: </p>
+<pre class="pre" translate="no">        <span class="orange">for</span> sprite <span class="orange">in</span> self.game.sprites:
+            <span class="orange">if</span> sprite == self:
+                <span class="orange">continue</span>
+            sprite_co = sprite.coords()
+            <span class="orange">if</span> top <span class="orange">and</span> self.y &lt; 0 <span class="orange">and</span> collided_top(co, sprite_co):
+                self.y = -self.y
+                top = <span class="violet">False</span>
+            <span class="orange">if</span> bottom <span class="orange">and</span> self.y &gt; 0 <span class="orange">and</span> collided_bottom(self.y,
+                    co, sprite_co):
+                self.y = sprite_co.y1 - co.y2
+                <span class="orange">if</span> self.y &lt; 0:
+                    self.y = 0
+                bottom = <span class="violet">False</span>
+                top = <span class="violet">False</span>
+            <span class="orange">if</span> bottom <span class="orange">and</span> falling <span class="orange">and</span> self.y == 0 \
+                    <span class="orange">and</span> co.y2 &lt; self.game.canvas_height \
+                    <span class="orange">and</span> collided_bottom(1, co, sprite_co):
+                falling = <span class="violet">False</span>
+            <span class="orange">if</span> left <span class="orange">and</span> self.x &lt; 0 <span class="orange">and</span> collided_left(co, sprite_co):
+                self.x = 0
+                left = <span class="violet">False</span>
+            <span class="orange">if</span> right <span class="orange">and</span> self.x &gt; 0 <span class="orange">and</span> collided_right(co, sprite_co):
+                self.x = 0
+                right = <span class="violet">False</span></pre>
+<p class="indent">
+<span id="page_256">
+</span>
+  Sólo tenemos que añadir unas pocas líneas más a la función <span class="literal1" translate="no">
+   move
+  </span>, como sigue: </p>
+<pre class="pre" translate="no">        <span class="orange">if</span> falling <span class="orange">and</span> bottom <span class="orange">and</span> self.y == 0 \
+                <span class="orange">and</span> co.y2 &lt; self.game.canvas_height:
+            self.y = 4
+        self.game.canvas.move(self.image, self.x, self.y)</pre>
+<p class="indent">
+  Comprobamos si las variables <span class="literal1" translate="no">
+   falling
+  </span>y <span class="literal1" translate="no">
+   bottom
+  </span>están establecidas en <span class="literal1" translate="no">
+   True
+  </span>. Si es así, hemos recorrido todos los sprites de plataforma de la lista sin colisionar en la parte inferior. </p>
+<p class="indent">
+  La última comprobación de esta línea determina si la parte inferior de nuestro personaje es menor que la altura del lienzo, es decir, si está por encima del suelo (la parte inferior del lienzo). Si el muñeco no ha chocado con nada y está por encima del suelo, está parado en el aire, por lo que debería empezar a caer (en otras palabras, ha salido corriendo por el extremo de una plataforma). Para que salga corriendo por el extremo de cualquier plataforma, fijamos <span class="literal1" translate="no">
+   y
+  </span>igual a 4. </p>
+<p class="indent">
+  Por último, movemos la imagen por la pantalla, según los valores que establezcamos en las variables <span class="literal1" translate="no">
+   x
+  </span>y <span class="literal1" translate="no">
+   y
+  </span>. El hecho de que hayamos recorrido los sprites comprobando las colisiones puede significar que hemos puesto ambas variables a 0, porque la figura de palo ha colisionado por la izquierda y con el fondo. En ese caso, la llamada a la función <span class="literal1" translate="no">
+   move
+  </span>del lienzo en realidad no hará nada. </p>
+<p class="indent">
+<span id="page_257">
+</span>
+  También puede darse el caso de que el Sr. Hombre de Palo se haya salido del borde de una plataforma. Si eso ocurre, <span class="literal1" translate="no">
+   y
+  </span>se pondrá a 4 y el Sr. Hombre de Palo caerá hacia abajo. </p>
+<p class="indent">
+  Uf, ¡qué función tan larga! </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch16_4.html">anterior</a><a href="ch16.html">Subtema 5 de 13: (Ver todo)</a><a href="ch16_6.html">siguiente</a><br/></p>
+<br/><a href="ch16_5.docx" target="_blank"></a></footer>
+</body>
+</html>

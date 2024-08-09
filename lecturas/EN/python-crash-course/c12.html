@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://www.w3.org/2002/06/xhtml2/ http://www.w3.org/MarkUp/SCHEMA/xhtml2.xsd">
+<head>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style></head>
+<body><div id="sbo-rt-content"><section>
+<header>
+<h1 class="chapter">
+<span class="ChapterNumber"><span epub:type="pagebreak" id="Page_227" title="227"></span>12</span><br/>
+<span class="ChapterTitle">A Ship That Fires Bullets</span></h1>
+</header>
+<figure class="opener">
+<img alt="" height="406" src="Images/chapterart.png" width="406"/>
+</figure>
+<p class="ChapterIntro">Let’s build a game called <em>Alien Invasion</em>! We’ll use Pygame, a collection of fun, powerful Python modules that manage graphics, animation, and even sound, making it easier for you to build sophisticated games. With Pygame handling tasks like drawing images to the screen, you can focus on the higher-level logic of game dynamics.</p>
+<p>In this chapter, you’ll set up Pygame and then create a rocket ship that moves right and left and fires bullets in response to player input. In the next two chapters, you’ll create a fleet of aliens to destroy, and then continue to refine the game by setting limits on the number of ships you can use and adding a scoreboard.</p>
+<p>While building this game, you’ll also learn how to manage large projects that span multiple files. We’ll refactor a lot of code and manage file contents to organize the project and make the code efficient.</p>
+<p><span epub:type="pagebreak" id="Page_228" title="228"></span>Making games is an ideal way to have fun while learning a language. It’s deeply satisfying to play a game you wrote, and writing a simple game will teach you a lot about how professionals develop games. As you work through this chapter, enter and run the code to identify how each code block contributes to overall gameplay. Experiment with different values and settings to better understand how to refine interactions in your games.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p> <em>Alien Invasion</em> spans a number of different files, so make a new <em>alien_invasion</em> folder on your system. Be sure to save all files for the project to this folder so your <code>import</code> statements will work correctly.</p>
+<p class="Continued">Also, if you feel comfortable using version control, you might want to use it for this project. If you haven’t used version control before, see <span class="xref" itemid="xref_target_Appendix D">Appendix D</span> for an overview.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c12-0001">Planning Your Project</h2>
+<p class="BodyFirst">When you’re building a large project, it’s important to prepare a plan before you begin to write code. Your plan will keep you focused and make it more likely that you’ll complete the project.</p>
+<p>Let’s write a description of the general gameplay. Although the following description doesn’t cover every detail of <em>Alien Invasion</em>, it provides a clear idea of how to start building the game:</p>
+<blockquote class="blockquote">
+<p class="Blockquote">In <em>Alien Invasion</em>, the player controls a rocket ship that appears at the bottom center of the screen. The player can move the ship right and left using the arrow keys and shoot bullets using the spacebar. When the game begins, a fleet of aliens fills the sky and moves across and down the screen. The player shoots and destroys the aliens. If the player destroys all the aliens, a new fleet appears that moves faster than the previous fleet. If any alien hits the player’s ship or reaches the bottom of the screen, the player loses a ship. If the player loses three ships, the game ends.</p>
+</blockquote>
+<p>For the first development phase, we’ll make a ship that can move right and left when the player presses the arrow keys and fire bullets when the player presses the spacebar. After setting up this behavior, we can create the aliens and refine the gameplay.</p>
+<h2 id="h1-502703c12-0002">Installing Pygame</h2>
+<p class="BodyFirst">Before you begin coding, install Pygame. We’ll do this the same way we installed pytest in <span class="xref" itemid="xref_target_Chapter 11">Chapter 11</span>: with pip. If you skipped <span class="xref" itemid="xref_target_Chapter 11">Chapter 11</span> or need a refresher on pip, see “<span class="xref" itemid="xref_target_Installing pytest with pip">Installing pytest with pip</span>” on <span class="xref" itemid="xref_target_page 210">page 210</span>.</p>
+<p>To install Pygame, enter the following command at a terminal prompt:</p>
+<pre><code>$ <b>python -m pip install --user pygame</b></code></pre>
+<p>If you use a command other than <code class="bold">python</code> to run programs or start a terminal session, such as <code class="bold">python3</code>, make sure you use that command instead.</p>
+<h2 id="h1-502703c12-0003"><span epub:type="pagebreak" id="Page_229" title="229"></span>Starting the Game Project</h2>
+<p class="BodyFirst">We’ll begin building the game by creating an empty Pygame window. Later, we’ll draw the game elements, such as the ship and the aliens, on this window. We’ll also make our game respond to user input, set the background color, and load a ship image.</p>
+<h3 id="h2-502703c12-0001">Creating a Pygame Window and Responding to User Input</h3>
+<p class="BodyFirst">We’ll make an empty Pygame window by creating a class to represent the game. In your text editor, create a new file and save it as <em>alien_invasion.py</em>; then enter the following:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code>import sys
+
+import pygame
+
+class AlienInvasion:
+    """Overall class to manage game assets and behavior."""
+
+    def __init__(self):
+        """Initialize the game, and create game resources."""
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         pygame.init()
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         self.screen = pygame.display.set_mode((1200, 800))
+        pygame.display.set_caption("Alien Invasion")
+
+    def run_game(self):
+        """Start the main loop for the game."""
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>         while True:
+            # Watch for keyboard and mouse events.
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>             for event in pygame.event.get():
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>                 if event.type == pygame.QUIT:
+                    sys.exit()
+
+            # Make the most recently drawn screen visible.
+<span aria-label="annotation6" class="CodeAnnotationHang">❻</span>             pygame.display.flip()
+
+if __name__ == '__main__':
+    # Make a game instance, and run the game.
+    ai = AlienInvasion()
+    ai.run_game()</code></pre>
+<p>First, we import the <code>sys</code> and <code>pygame</code> modules. The <code>pygame</code> module contains the functionality we need to make a game. We’ll use tools in the <code>sys</code> module to exit the game when the player quits.</p>
+<p><em>Alien Invasion</em> starts as a class called <code>AlienInvasion</code>. In the <code>__init__()</code> method, the <code>pygame.init()</code> function initializes the background settings that Pygame needs to work properly <span aria-label="annotation1" class="CodeAnnotation">❶</span>. Then we call <code>pygame.display.set_mode()</code> to create a display window <span aria-label="annotation2" class="CodeAnnotation">❷</span>, on which we’ll draw all the game’s graphical elements. The argument <code>(1200, 800)</code> is a tuple that defines the dimensions of the game window, which will be 1,200 pixels wide by 800 pixels high. (You can adjust these values depending on your display size.) We assign this <span epub:type="pagebreak" id="Page_230" title="230"></span>display window to the attribute <code>self.screen</code>, so it will be available in all methods in the class.</p>
+<p>The object we assigned to <code>self.screen</code> is called a surface. A <em>surface</em> in Pygame is a part of the screen where a game element can be displayed. Each element in the game, like an alien or a ship, is its own surface. The surface returned by <code>display.set_mode()</code> represents the entire game window. When we activate the game’s animation loop, this surface will be redrawn on every pass through the loop, so it can be updated with any changes triggered by user input.</p>
+<p>The game is controlled by the <code>run_game()</code> method. This method contains a <code>while</code> loop <span aria-label="annotation3" class="CodeAnnotation">❸</span> that runs continually. The <code>while</code> loop contains an event loop and code that manages screen updates. An <em>event</em> is an action that the user performs while playing the game, such as pressing a key or moving the mouse. To make our program respond to events, we write an <em>event loop</em> to <em>listen</em> for events and perform appropriate tasks depending on the kinds of events that occur. The <code>for</code> loop <span aria-label="annotation4" class="CodeAnnotation">❹</span> nested inside the <code>while</code> loop is an event loop.</p>
+<p>To access the events that Pygame detects, we’ll use the <code>pygame.event.get()</code> function. This function returns a list of events that have taken place since the last time this function was called. Any keyboard or mouse event will cause this <code>for</code> loop to run. Inside the loop, we’ll write a series of <code>if</code> statements to detect and respond to specific events. For example, when the player clicks the game window’s close button, a <code>pygame.QUIT</code> event is detected and we call <code>sys.exit()</code> to exit the game <span aria-label="annotation5" class="CodeAnnotation">❺</span>.</p>
+<p>The call to <code>pygame.display.flip()</code> <span aria-label="annotation6" class="CodeAnnotation">❻</span> tells Pygame to make the most recently drawn screen visible. In this case, it simply draws an empty screen on each pass through the <code>while</code> loop, erasing the old screen so only the new screen is visible. When we move the game elements around, <code>pygame.display.flip()</code> continually updates the display to show the new positions of game elements and hide the old ones, creating the illusion of smooth movement.</p>
+<p>At the end of the file, we create an instance of the game and then call <code>run_game()</code>. We place <code>run_game()</code> in an <code>if</code> block that only runs if the file is called directly. When you run this <em>alien_invasion.py</em> file, you should see an empty Pygame window.</p>
+<h3 id="h2-502703c12-0002">Controlling the Frame Rate</h3>
+<p class="BodyFirst">Ideally, games should run at the same speed, or <em>frame rate</em>, on all systems. Controlling the frame rate of a game that can run on multiple systems is a complex issue, but Pygame offers a relatively simple way to accomplish this goal. We’ll make a clock, and ensure the clock ticks once on each pass through the main loop. Anytime the loop processes faster than the rate we define, Pygame will calculate the correct amount of time to pause so that the game runs at a consistent rate.</p>
+<p>We’ll define the clock in the <code>__init__()</code> method:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def __init__(self):</span>
+<span class="LiteralGray">        """Initialize the game, and create game resources."""</span>
+<span class="LiteralGray">        pygame.init()</span>
+<span epub:type="pagebreak" id="Page_231" title="231"></span>        self.clock = pygame.time.Clock()
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>After initializing <code>pygame</code>, we create an instance of the class <code>Clock</code>, from the <code>pygame.time</code> module. Then we’ll make the clock tick at the end of the <code>while</code> loop in <code>run_game()</code>:</p>
+<pre><code><span class="LiteralGray">    def run_game(self):</span>
+<span class="LiteralGray">        """Start the main loop for the game."""</span>
+<span class="LiteralGray">        while True:</span>
+<span class="LiteralGray">            </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">            pygame.display.flip()</span>
+            self.clock.tick(60)</code></pre>
+<p>The <code>tick()</code> method takes one argument: the frame rate for the game. Here I’m using a value of 60, so Pygame will do its best to make the loop run exactly 60 times per second.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	Pygame’s clock should help the game run consistently on most systems. If it makes the game run less consistently on your system, you can try different values for the frame rate. If you can’t find a good frame rate on your system, you can leave the clock out entirely and adjust the game’s settings so it runs well on your system.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h3 id="h2-502703c12-0003">Setting the Background Color</h3>
+<p class="BodyFirst">Pygame creates a black screen by default, but that’s boring. Let’s set a different background color. We’ll do this at the end of the <code>__init__()</code> method.</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def __init__(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">        pygame.display.set_caption("Alien Invasion")</span>
+
+        # Set the background color.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         self.bg_color = (230, 230, 230)
+
+<span class="LiteralGray">    def run_game(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">            for event in pygame.event.get():</span>
+<span class="LiteralGray">                if event.type == pygame.QUIT:</span>
+<span class="LiteralGray">                    sys.exit()</span>
+
+            # Redraw the screen during each pass through the loop.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>             self.screen.fill(self.bg_color)
+
+<span class="LiteralGray">            # Make the most recently drawn screen visible.</span>
+<span class="LiteralGray">            pygame.display.flip()</span>
+<span class="LiteralGray">            self.clock.tick(60)</span></code></pre>
+<p>Colors in Pygame are specified as RGB colors: a mix of red, green, and blue. Each color value can range from 0 to 255. The color value <code>(255, 0, 0)</code> is red, <code>(0, 255, 0)</code> is green, and <code>(0, 0, 255)</code> is blue. You can mix different RGB values to create up to 16 million colors. The color value <code>(230, 230, 230)</code> <span epub:type="pagebreak" id="Page_232" title="232"></span>mixes equal amounts of red, blue, and green, which produces a light gray background color. We assign this color to <code>self.bg_color</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>.</p>
+<p>We fill the screen with the background color using the <code>fill()</code> method <span aria-label="annotation2" class="CodeAnnotation">❷</span>, which acts on a surface and takes only one argument: a color.</p>
+<h3 id="h2-502703c12-0004">Creating a Settings Class</h3>
+<p class="BodyFirst">Each time we introduce new functionality into the game, we’ll typically create some new settings as well. Instead of adding settings throughout the code, let’s write a module called <code>settings</code> that contains a class called <code>Settings</code> to store all these values in one place. This approach allows us to work with just one <code>settings</code> object anytime we need to access an individual setting. This also makes it easier to modify the game’s appearance and behavior as our project grows. To modify the game, we’ll change the relevant values in <em>settings.py</em>, which we’ll create next, instead of searching for different settings throughout the project.</p>
+<p>Create a new file named <em>settings.py</em> inside your <em>alien_invasion </em>folder, and add this initial <code>Settings</code> class:</p>
+<p class="CodeLabel"><b>settings.py</b></p>
+<pre><code>class Settings:
+    """A class to store all settings for Alien Invasion."""
+
+    def __init__(self):
+        """Initialize the game's settings."""
+        # Screen settings
+        self.screen_width = 1200
+        self.screen_height = 800
+        self.bg_color = (230, 230, 230)</code></pre>
+<p>To make an instance of <code>Settings</code> in the project and use it to access our settings, we need to modify <em>alien_invasion.py</em> as follows:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">import pygame</span>
+
+from settings import Settings
+
+<span class="LiteralGray">class AlienInvasion:</span>
+<span class="LiteralGray">    """Overall class to manage game assets and behavior."""</span>
+
+<span class="LiteralGray">    def __init__(self):</span>
+<span class="LiteralGray">        """Initialize the game, and create game resources."""</span>
+<span class="LiteralGray">        pygame.init()</span>
+<span class="LiteralGray">        self.clock = pygame.time.Clock()</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span><span class="LiteralGray">         </span>self.settings = Settings()
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         self.screen = pygame.display.set_mode(
+            (self.settings.screen_width, self.settings.screen_height))
+<span class="LiteralGray">        pygame.display.set_caption("Alien Invasion")</span>
+
+<span epub:type="pagebreak" id="Page_233" title="233"></span><span class="LiteralGray">    def run_game(self):</span>
+<span class="LiteralGray">            </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">            # Redraw the screen during each pass through the loop.</span>
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>             self.screen.fill(self.settings.bg_color)
+
+<span class="LiteralGray">            # Make the most recently drawn screen visible.</span>
+<span class="LiteralGray">            pygame.display.flip()</span>
+<span class="LiteralGray">            self.clock.tick(60)</span>
+<em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>We import <code>Settings</code> into the main program file. Then we create an instance of <code>Settings</code> and assign it to <code>self.settings</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>, after making the call to <code>pygame.init()</code>. When we create a screen <span aria-label="annotation2" class="CodeAnnotation">❷</span>, we use the <code>screen_width</code> and <code>screen_height</code> attributes of <code>self.settings</code>, and then we use <code>self.settings</code> to access the background color when filling the screen <span aria-label="annotation3" class="CodeAnnotation">❸</span> as well.</p>
+<p>When you run <em>alien_invasion.py</em> now you won’t yet see any changes, because all we’ve done is move the settings we were already using elsewhere. Now we’re ready to start adding new elements to the screen.</p>
+<h2 id="h1-502703c12-0004">Adding the Ship Image</h2>
+<p class="BodyFirst">Let’s add the ship to our game. To draw the player’s ship on the screen, we’ll load an image and then use the Pygame <code>blit()</code> method to draw the image.</p>
+<p>When you’re choosing artwork for your games, be sure to pay attention to licensing. The safest and cheapest way to start is to use freely licensed graphics that you can use and modify, from a website like <a class="LinkURL" href="https://opengameart.org">https://opengameart.org</a>.</p>
+<p>You can use almost any type of image file in your game, but it’s easiest when you use a bitmap (<em>.bmp</em>) file because Pygame loads bitmaps by default. Although you can configure Pygame to use other file types, some file types depend on certain image libraries that must be installed on your computer. Most images you’ll find are in <em>.jpg</em> or <em>.png</em> formats, but you can convert them to bitmaps using tools like Photoshop, GIMP, and Paint.</p>
+<p>Pay particular attention to the background color in your chosen image. Try to find a file with a transparent or solid background that you can replace with any background color, using an image editor. Your games will look best if the image’s background color matches your game’s background color. Alternatively, you can match your game’s background to the image’s background.</p>
+<p>For<em> Alien Invasion</em>, you can use the file <em>ship.bmp</em> (<a href="#figure12-1" id="figureanchor12-1">Figure 12-1</a>), which is available in this book’s resources at <a class="LinkURL" href="https://ehmatthes.github.io/pcc_3e">https://ehmatthes.github.io/pcc_3e</a>. The file’s background color matches the settings we’re using in this project. Make a folder called <em>images</em> inside your main <em>alien_invasion</em> project folder. Save the file <em>ship.bmp</em> in the <em>images</em> folder.</p>
+<span epub:type="pagebreak" id="Page_234" title="234"></span><figure>
+<img alt="" class="" height="303" src="Images/f12001.png" width="375"/>
+<figcaption><p><a id="figure12-1">Figure 12-1</a>: The ship for <em>Alien Invasion</em></p></figcaption>
+</figure>
+<h3 id="h2-502703c12-0005">Creating the Ship Class</h3>
+<p class="BodyFirst">After choosing an image for the ship, we need to display it on the screen. To use our ship, we’ll create a new <code>ship</code> module that will contain the class <code>Ship</code>. This class will manage most of the behavior of the player’s ship:</p>
+<p class="CodeLabel"><b>ship.py</b></p>
+<pre><code>import pygame
+
+class Ship:
+    """A class to manage the ship."""
+
+    def __init__(self, ai_game):
+        """Initialize the ship and set its starting position."""
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         self.screen = ai_game.screen
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         self.screen_rect = ai_game.screen.get_rect()
+
+        # Load the ship image and get its rect.
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>         self.image = pygame.image.load('images/ship.bmp')
+        self.rect = self.image.get_rect()
+
+        # Start each new ship at the bottom center of the screen.
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>         self.rect.midbottom = self.screen_rect.midbottom
+
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>     def blitme(self):
+        """Draw the ship at its current location."""
+        self.screen.blit(self.image, self.rect)</code></pre>
+<p>Pygame is efficient because it lets you treat all game elements like rectangles (<em>rects</em>), even if they’re not exactly shaped like rectangles. Treating an element as a rectangle is efficient because rectangles are simple geometric shapes. When Pygame needs to figure out whether two game elements have collided, for example, it can do this more quickly if it treats each object as a rectangle. This approach usually works well enough that no one playing the <span epub:type="pagebreak" id="Page_235" title="235"></span>game will notice that we’re not working with the exact shape of each game element. We’ll treat the ship and the screen as rectangles in this class.</p>
+<p>We import the <code>pygame</code> module before defining the class. The <code>__init__()</code> method of <code>Ship</code> takes two parameters: the <code>self</code> reference and a reference to the current instance of the <code>AlienInvasion</code> class. This will give <code>Ship</code> access to all the game resources defined in <code>AlienInvasion</code>. We then assign the screen to an attribute of <code>Ship</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>, so we can access it easily in all the methods in this class. We access the screen’s <code>rect</code> attribute using the <code>get_rect()</code> method and assign it to <code>self.screen_rect</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span>. Doing so allows us to place the ship in the correct location on the screen.</p>
+<p>To load the image, we call <code>pygame.image.load()</code> <span aria-label="annotation3" class="CodeAnnotation">❸</span> and give it the location of our ship image. This function returns a surface representing the ship, which we assign to <code>self.image</code>. When the image is loaded, we call <code>get_rect()</code> to access the ship surface’s <code>rect</code> attribute so we can later use it to place the ship.</p>
+<p>When you’re working with a <code>rect</code> object, you can use the <em>x</em>- and <em>y</em>-coordinates of the top, bottom, left, and right edges of the rectangle, as well as the center, to place the object. You can set any of these values to establish the current position of the <code>rect</code>. When you’re centering a game element, work with the <code>center</code>, <code>centerx</code>, or <code>centery</code> attributes of a <code>rect</code>. When you’re working at an edge of the screen, work with the <code>top</code>, <code>bottom</code>, <code>left</code>, or <code>right</code> attributes. There are also attributes that combine these properties, such as <code>midbottom</code>, <code>midtop</code>, <code>midleft</code>, and <code>midright</code>. When you’re adjusting the horizontal or vertical placement of the <code>rect</code>, you can just use the <code>x</code> and <code>y</code> attributes, which are the <em>x</em>- and <em>y</em>-coordinates of its top-left corner. These attributes spare you from having to do calculations that game developers formerly had to do manually, and you’ll use them often.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	In Pygame, the origin (0, 0) is at the top-left corner of the screen, and coordinates increase as you go down and to the right. On a 1200×800 screen, the origin is at the top-left corner, and the bottom-right corner has the coordinates (1200, 800). These coordinates refer to the game window, not the physical screen.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<p>We’ll position the ship at the bottom center of the screen. To do so, make the value of <code>self.rect.midbottom</code> match the <code>midbottom</code> attribute of the screen’s <code>rect</code> <span aria-label="annotation4" class="CodeAnnotation">❹</span>. Pygame uses these <code>rect</code> attributes to position the ship image so it’s centered horizontally and aligned with the bottom of the screen.</p>
+<p>Finally, we define the <code>blitme()</code> method <span aria-label="annotation5" class="CodeAnnotation">❺</span>, which draws the image to the screen at the position specified by <code>self.rect</code>.</p>
+<h3 id="h2-502703c12-0006">Drawing the Ship to the Screen</h3>
+<p class="BodyFirst">Now let’s update <em>alien_invasion.py</em> so it creates a ship and calls the ship’s <code>blitme()</code> method:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">from settings import Settings</span>
+from ship import Ship
+
+<span epub:type="pagebreak" id="Page_236" title="236"></span><span class="LiteralGray">class AlienInvasion:</span>
+<span class="LiteralGray">    """Overall class to manage game assets and behavior."""</span>
+
+<span class="LiteralGray">    def __init__(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">        pygame.display.set_caption("Alien Invasion")</span>
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         self.ship = Ship(self)
+
+<span class="LiteralGray">    def run_game(self):</span>
+<span class="LiteralGray">            </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">            # Redraw the screen during each pass through the loop.</span>
+<span class="LiteralGray">            self.screen.fill(self.settings.bg_color)</span>
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>             self.ship.blitme()
+
+<span class="LiteralGray">            # Make the most recently drawn screen visible.</span>
+<span class="LiteralGray">            pygame.display.flip()</span>
+<span class="LiteralGray">            self.clock.tick(60)</span>
+<em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>We import <code>Ship</code> and then make an instance of <code>Ship</code> after the screen has been created <span aria-label="annotation1" class="CodeAnnotation">❶</span>. The call to <code>Ship()</code> requires one argument: an instance of <code>AlienInvasion</code>. The <code>self</code> argument here refers to the current instance of <code>AlienInvasion</code>. This is the parameter that gives <code>Ship</code> access to the game’s resources, such as the <code>screen</code> object. We assign this <code>Ship</code> instance to <code>self.ship</code>.</p>
+<p>After filling the background, we draw the ship on the screen by calling <code>ship.blitme()</code>, so the ship appears on top of the background <span aria-label="annotation2" class="CodeAnnotation">❷</span>.</p>
+<p>When you run <em>alien_invasion.py</em> now, you should see an empty game screen with the rocket ship sitting at the bottom center, as shown in <a href="#figure12-2" id="figureanchor12-2">Figure 12-2</a>.</p>
+<figure>
+<img alt="" class="keyline" height="394" src="Images/f12002.png" width="571"/>
+<figcaption><p><a id="figure12-2">Figure 12-2</a>: <em>Alien Invasion</em> with the ship at the bottom center of the screen</p></figcaption>
+</figure>
+<h2 id="h1-502703c12-0005"><span epub:type="pagebreak" id="Page_237" title="237"></span>Refactoring: The _check_events() and _update_screen() Methods</h2>
+<p class="BodyFirst">In large projects, you’ll often refactor code you’ve written before adding more code. Refactoring simplifies the structure of the code you’ve already written, making it easier to build on. In this section, we’ll break the <code>run_game()</code> method, which is getting lengthy, into two helper methods. A <em>helper method</em> does work inside a class but isn’t meant to be used by code outside the class. In Python, a single leading underscore indicates a helper method.</p>
+<h3 id="h2-502703c12-0007">The _check_events() Method</h3>
+<p class="BodyFirst">We’ll move the code that manages events to a separate method called <code>_check_events()</code>. This will simplify <code>run_game()</code> and isolate the event management loop. Isolating the event loop allows you to manage events separately from other aspects of the game, such as updating the screen.</p>
+<p>Here’s the <code>AlienInvasion</code> class with the new <code>_check_events()</code> method, which only affects the code in <code>run_game()</code>:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def run_game(self):</span>
+<span class="LiteralGray">        """Start the main loop for the game."""</span>
+<span class="LiteralGray">        while True:</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span><span class="LiteralGray">             </span>self._check_events()
+
+<span class="LiteralGray">            # Redraw the screen during each pass through the loop.</span>
+<span class="LiteralGray">            </span><em class="LiteralGrayItalic">--snip--</em>
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span><span class="LiteralGray">     </span>def _check_events(self):
+        """Respond to keypresses and mouse events."""
+      <span class="LiteralGray">  for event in pygame.event.get():</span>
+<span class="LiteralGray">            if event.type == pygame.QUIT:</span>
+<span class="LiteralGray">                sys.exit()</span></code></pre>
+<p>We make a new <code>_check_events()</code> method <span aria-label="annotation2" class="CodeAnnotation">❷</span> and move the lines that check whether the player has clicked to close the window into this new method.</p>
+<p>To call a method from within a class, use dot notation with the variable <code>self</code> and the name of the method <span aria-label="annotation1" class="CodeAnnotation">❶</span>. We call the method from inside the <code>while</code> loop in <code>run_game()</code>.</p>
+<h3 id="h2-502703c12-0008">The _update_screen() Method</h3>
+<p class="BodyFirst">To further simplify <code>run_game()</code>, we’ll move the code for updating the screen to a separate method called <code>_update_screen()</code>:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def run_game(self):</span>
+<span class="LiteralGray">        """Start the main loop for the game."""</span>
+<span class="LiteralGray">        while True:</span>
+<span class="LiteralGray">            self._check_events()</span>
+<span class="LiteralGray">            </span>self._update_screen()
+<span class="LiteralGray">            self.clock.tick(60)</span>
+
+<span class="LiteralGray">    def _check_events(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+
+<span epub:type="pagebreak" id="Page_238" title="238"></span>    def _update_screen(self):
+        """Update images on the screen, and flip to the new screen."""
+       <span class="LiteralGray"> self.screen.fill(self.settings.bg_color)</span>
+<span class="LiteralGray">        self.ship.blitme()</span>
+
+<span class="LiteralGray">        pygame.display.flip()</span></code></pre>
+<p>We moved the code that draws the background and the ship and flips the screen to <code>_update_screen()</code>. Now the body of the main loop in <code>run_game()</code> is much simpler. It’s easy to see that we’re looking for new events, updating the screen, and ticking the clock on each pass through the loop.</p>
+<p>If you’ve already built a number of games, you’ll probably start out by breaking your code into methods like these. But if you’ve never tackled a project like this, you probably won’t know exactly how to structure your code at first. This approach gives you an idea of a realistic development process: you start out writing your code as simply as possible, and then refactor it as your project becomes more complex.</p>
+<p>Now that we’ve restructured the code to make it easier to add to, we can work on the dynamic aspects of the game!</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c12-09">12-1.	Blue Sky:</span> Make a Pygame window with a blue background.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c12-10">12-2.	Game Character:</span> Find a bitmap image of a game character you like or convert an image to a bitmap. Make a class that draws the character at the center of the screen, then match the background color of the image to the background color of the screen or vice versa.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c12-0006">Piloting the Ship</h2>
+<p class="BodyFirst">Next, we’ll give the player the ability to move the ship right and left. We’ll write code that responds when the player presses the right or left arrow key. We’ll focus first on movement to the right, and then we’ll apply the same principles to control movement to the left. As we add this code, you’ll learn how to control the movement of images on the screen and respond to user input.</p>
+<h3 id="h2-502703c12-0009">Responding to a Keypress</h3>
+<p class="BodyFirst">Whenever the player presses a key, that keypress is registered in Pygame as an event. Each event is picked up by the <code>pygame.event.get()</code> method. We need to specify in our <code>_check_events()</code> method what kinds of events we want the game to check for. Each keypress is registered as a <code>KEYDOWN</code> event.</p>
+<p><span epub:type="pagebreak" id="Page_239" title="239"></span>When Pygame detects a <code>KEYDOWN</code> event, we need to check whether the key that was pressed is one that triggers a certain action. For example, if the player presses the right arrow key, we want to increase the ship’s <code>rect.x</code> value to move the ship to the right:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def _check_events(self):</span>
+<span class="LiteralGray">        """Respond to keypresses and mouse events."""</span>
+<span class="LiteralGray">        for event in pygame.event.get():</span>
+<span class="LiteralGray">            if event.type == pygame.QUIT:</span>
+<span class="LiteralGray">                sys.exit()</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>             elif event.type == pygame.KEYDOWN:
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>                 if event.key == pygame.K_RIGHT:
+                    # Move the ship to the right.
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>                     self.ship.rect.x += 1</code></pre>
+<p>Inside <code>_check_events()</code> we add an <code>elif</code> block to the event loop, to respond when Pygame detects a <code>KEYDOWN</code> event <span aria-label="annotation1" class="CodeAnnotation">❶</span>. We check whether the key pressed, <code>event.key</code>, is the right arrow key <span aria-label="annotation2" class="CodeAnnotation">❷</span>. The right arrow key is represented by <code>pygame.K_RIGHT</code>. If the right arrow key was pressed, we move the ship to the right by increasing the value of <code>self.ship.rect.x</code> by 1 <span aria-label="annotation3" class="CodeAnnotation">❸</span>.</p>
+<p>When you run <em>alien_invasion.py</em> now, the ship should move to the right one pixel every time you press the right arrow key. That’s a start, but it’s not an efficient way to control the ship. Let’s improve this control by allowing continuous movement.</p>
+<h3 id="h2-502703c12-0010">Allowing Continuous Movement</h3>
+<p class="BodyFirst">When the player holds down the right arrow key, we want the ship to continue moving right until the player releases the key. We’ll have the game detect a <code>pygame.KEYUP</code> event so we’ll know when the right arrow key is released; then we’ll use the <code>KEYDOWN</code> and <code>KEYUP</code> events together with a flag called <code>moving_right</code> to implement continuous motion.</p>
+<p>When the <code>moving_right</code> flag is <code>False</code>, the ship will be motionless. When the player presses the right arrow key, we’ll set the flag to <code>True</code>, and when the player releases the key, we’ll set the flag to <code>False</code> again.</p>
+<p>The <code>Ship</code> class controls all attributes of the ship, so we’ll give it an attribute called <code>moving_right</code> and an <code>update()</code> method to check the status of the <code>moving_right</code> flag. The <code>update()</code> method will change the position of the ship if the flag is set to <code>True</code>. We’ll call this method once on each pass through the <code>while</code> loop to update the position of the ship.</p>
+<p>Here are the changes to <code>Ship</code>:</p>
+<p class="CodeLabel"><b>ship.py</b></p>
+<pre><code><span class="LiteralGray">class Ship:</span>
+<span class="LiteralGray">    """A class to manage the ship."""</span>
+
+<span class="LiteralGray">    def __init__(self, ai_game):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">        # Start each new ship at the bottom center of the screen.</span>
+<span class="LiteralGray">        self.rect.midbottom = self.screen_rect.midbottom</span>
+
+<span epub:type="pagebreak" id="Page_240" title="240"></span>        # Movement flag; start with a ship that's not moving.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         self.moving_right = False
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     def update(self):
+        """Update the ship's position based on the movement flag."""
+        if self.moving_right:
+            self.rect.x += 1
+
+<span class="LiteralGray">    def blitme(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>We add a <code>self.moving_right</code> attribute in the <code>__init__()</code> method and set it to <code>False</code> initially <span aria-label="annotation1" class="CodeAnnotation">❶</span>. Then we add <code>update()</code>, which moves the ship right if the flag is <code>True</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span>. The <code>update()</code> method will be called from outside the class, so it’s not considered a helper method.</p>
+<p>Now we need to modify <code>_check_events()</code> so that <code>moving_right</code> is set to <code>True</code> when the right arrow key is pressed and <code>False</code> when the key is released:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def _check_events(self):</span>
+<span class="LiteralGray">        """Respond to keypresses and mouse events."""</span>
+<span class="LiteralGray">        for event in pygame.event.get():</span>
+<span class="LiteralGray">            </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">            elif event.type == pygame.KEYDOWN:</span>
+<span class="LiteralGray">                if event.key == pygame.K_RIGHT:</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>                     self.ship.moving_right = True
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>             elif event.type == pygame.KEYUP:
+                if event.key == pygame.K_RIGHT:
+                    self.ship.moving_right = False</code></pre>
+<p>Here, we modify how the game responds when the player presses the right arrow key: instead of changing the ship’s position directly, we merely set <code>moving_right</code> to <code>True</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>. Then we add a new <code>elif</code> block, which responds to <code>KEYUP</code> events <span aria-label="annotation2" class="CodeAnnotation">❷</span>. When the player releases the right arrow key (<code>K_RIGHT</code>), we set <code>moving_right</code> to <code>False</code>.</p>
+<p>Next, we modify the <code>while</code> loop in <code>run_game()</code> so it calls the ship’s <code>update()</code> method on each pass through the loop:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">     def run_game(self):</span>
+<span class="LiteralGray">        """Start the main loop for the game."""</span>
+<span class="LiteralGray">        while True:</span>
+<span class="LiteralGray">            self._check_events()</span>
+<span class="LiteralGray">            </span>self.ship.update()
+<span class="LiteralGray">            self._update_screen()</span>
+<span class="LiteralGray">            self.clock.tick(60)</span></code></pre>
+<p>The ship’s position will be updated after we’ve checked for keyboard events and before we update the screen. This allows the ship’s position to be updated in response to player input and ensures the updated position will be used when drawing the ship to the screen.</p>
+<p>When you run <em>alien_invasion.py</em> and hold down the right arrow key, the ship should move continuously to the right until you release the key.</p>
+<h3 id="h2-502703c12-0011"><span epub:type="pagebreak" id="Page_241" title="241"></span>Moving Both Left and Right</h3>
+<p class="BodyFirst">Now that the ship can move continuously to the right, adding movement to the left is straightforward. Again, we’ll modify the <code>Ship</code> class and the <code>_check_events()</code> method. Here are the relevant changes to <code>__init__()</code> and <code>update()</code> in <code>Ship</code>:</p>
+<p class="CodeLabel"><b>ship.py</b></p>
+<pre><code><span class="LiteralGray">    def __init__(self, ai_game):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+    <span class="LiteralGray">    </span># Movement flags; start with a ship that's not moving.
+<span class="LiteralGray">        self.moving_right = False</span>
+    <span class="LiteralGray">    </span>self.moving_left = False
+
+<span class="LiteralGray">    def update(self):</span>
+    <span class="LiteralGray">    </span>"""Update the ship's position based on movement flags."""
+<span class="LiteralGray">        if self.moving_right:</span>
+<span class="LiteralGray">            self.rect.x += 1</span>
+    <span class="LiteralGray">    </span>if self.moving_left:
+       <span class="LiteralGray">    </span> self.rect.x -= 1</code></pre>
+<p>In <code>__init__()</code>, we add a <code>self.moving_left</code> flag. In <code>update()</code>, we use two separate <code>if</code> blocks, rather than an <code>elif</code>, to allow the ship’s <code>rect.x</code> value to be increased and then decreased when both arrow keys are held down. This results in the ship standing still. If we used <code>elif</code> for motion to the left, the right arrow key would always have priority. Using two <code>if</code> blocks makes the movements more accurate when the player might momentarily hold down both keys when changing directions.</p>
+<p>We have to make two additions to <code>_check_events()</code>:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def _check_events(self):</span>
+<span class="LiteralGray">        """Respond to keypresses and mouse events."""</span>
+<span class="LiteralGray">        for event in pygame.event.get():</span>
+<span class="LiteralGray">            </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">            elif event.type == pygame.KEYDOWN:</span>
+<span class="LiteralGray">                if event.key == pygame.K_RIGHT:</span>
+<span class="LiteralGray">                    self.ship.moving_right = True</span>
+                elif event.key == pygame.K_LEFT:
+                    self.ship.moving_left = True
+
+<span class="LiteralGray">            elif event.type == pygame.KEYUP:</span>
+<span class="LiteralGray">                if event.key == pygame.K_RIGHT:</span>
+<span class="LiteralGray">                    self.ship.moving_right = False</span>
+                elif event.key == pygame.K_LEFT:
+                    self.ship.moving_left = False</code></pre>
+<p>If a <code>KEYDOWN</code> event occurs for the <code>K_LEFT</code> key, we set <code>moving_left</code> to <code>True</code>. If a <code>KEYUP</code> event occurs for the <code>K_LEFT</code> key, we set <code>moving_left</code> to <code>False</code>. We can use <code>elif</code> blocks here because each event is connected to only one key. If the player presses both keys at once, two separate events will be detected.</p>
+<p>When you run <em>alien_invasion.py</em> now, you should be able to move the ship continuously to the right and left. If you hold down both keys, the ship should stop moving.</p>
+<p><span epub:type="pagebreak" id="Page_242" title="242"></span>Next, we’ll further refine the ship’s movement. Let’s adjust the ship’s speed and limit how far the ship can move so it can’t disappear off the sides of the screen.</p>
+<h3 id="h2-502703c12-0012">Adjusting the Ship’s Speed</h3>
+<p class="BodyFirst">Currently, the ship moves one pixel per cycle through the <code>while</code> loop, but we can take finer control of the ship’s speed by adding a <code>ship_speed</code> attribute to the <code>Settings</code> class. We’ll use this attribute to determine how far to move the ship on each pass through the loop. Here’s the new attribute in <em>settings.py</em>:</p>
+<p class="CodeLabel"><b>settings.py</b></p>
+<pre><code><span class="LiteralGray">class Settings:</span>
+<span class="LiteralGray">    """A class to store all settings for Alien Invasion."""</span>
+
+<span class="LiteralGray">    def __init__(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+
+        # Ship settings
+        self.ship_speed = 1.5</code></pre>
+<p>We set the initial value of <code>ship_speed</code> to <code>1.5</code>. When the ship moves now, its position is adjusted by 1.5 pixels (rather than 1 pixel) on each pass through the loop.</p>
+<p>We’re using a float for the speed setting to give us finer control of the ship’s speed when we increase the tempo of the game later on. However, <code>rect</code> attributes such as <code>x</code> store only integer values, so we need to make some modifications to <code>Ship</code>:</p>
+<p class="CodeLabel"><b>ship.py</b></p>
+<pre><code><span class="LiteralGray">class Ship:</span>
+<span class="LiteralGray">    """A class to manage the ship."""</span>
+
+    <span class="LiteralGray">def __init__(self, ai_game):</span>
+<span class="LiteralGray">        """Initialize the ship and set its starting position."""</span>
+<span class="LiteralGray">        self.screen = ai_game.screen</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         self.settings = ai_game.settings
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+
+<span class="LiteralGray">        # Start each new ship at the bottom center of the screen.</span>
+<span class="LiteralGray">        </span><span class="LiteralGray">self.rect.midbottom = self.screen_rect.midbottom</span>
+
+        # Store a float for the ship's exact horizontal position.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         self.x = float(self.rect.x)
+
+<span class="LiteralGray">        # Movement flags; start with a ship that's not moving.</span>
+<span class="LiteralGray">        self.moving_right = False</span>
+<span class="LiteralGray">        self.moving_left = False</span>
+
+<span class="LiteralGray">    def update(self):</span>
+<span class="LiteralGray">        """Update the ship's position based on movement flags."""</span>
+<span class="LiteralGray"> </span>       # Update the ship's x value, not the rect.
+<span class="LiteralGray">        if self.moving_right:</span>
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>             self.x += self.settings.ship_speed
+<span epub:type="pagebreak" id="Page_243" title="243"></span><span class="LiteralGray">        if self.moving_left:</span>
+            self.x -= self.settings.ship_speed
+
+        # Update rect object from self.x.
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>         self.rect.x = self.x
+
+<span class="LiteralGray">    def blitme(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>We create a <code>settings</code> attribute for <code>Ship</code>, so we can use it in <code>update()</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>. Because we’re adjusting the position of the ship by fractions of a pixel, we need to assign the position to a variable that can have a float assigned to it. You can use a float to set an attribute of a <code>rect</code>, but the <code>rect</code> will only keep the integer portion of that value. To keep track of the ship’s position accurately, we define a new <code>self.x</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span>. We use the <code>float()</code> function to convert the value of <code>self.rect.x</code> to a float and assign this value to <code>self.x</code>.</p>
+<p>Now when we change the ship’s position in <code>update()</code>, the value of <code>self.x</code> is adjusted by the amount stored in <code>settings.ship_speed</code> <span aria-label="annotation3" class="CodeAnnotation">❸</span>. After <code>self.x</code> has been updated, we use the new value to update <code>self.rect.x</code>, which controls the position of the ship <span aria-label="annotation4" class="CodeAnnotation">❹</span>. Only the integer portion of <code>self.x</code> will be assigned to <code>self.rect.x</code>, but that’s fine for displaying the ship.</p>
+<p>Now we can change the value of <code>ship_speed</code>, and any value greater than 1 will make the ship move faster. This will help make the ship respond quickly enough to shoot down aliens, and it will let us change the tempo of the game as the player progresses in gameplay.</p>
+<h3 id="h2-502703c12-0013">Limiting the Ship’s Range</h3>
+<p class="BodyFirst">At this point, the ship will disappear off either edge of the screen if you hold down an arrow key long enough. Let’s correct this so the ship stops moving when it reaches the screen’s edge. We do this by modifying the <code>update()</code> method in <code>Ship</code>:</p>
+<p class="CodeLabel"><b>ship.py</b></p>
+<pre><code><span class="LiteralGray">    def update(self):</span>
+<span class="LiteralGray">        """Update the ship's position based on movement flags."""</span>
+<span class="LiteralGray">        # Update the ship's x value, not the rect.</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     <span class="LiteralGray">    </span>if self.moving_right and self.rect.right &lt; self.screen_rect.right:
+<span class="LiteralGray">            self.x += self.settings.ship_speed</span>
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     <span class="LiteralGray">    </span>if self.moving_left and self.rect.left &gt; 0:
+<span class="LiteralGray">            self.x -= self.settings.ship_speed</span>
+
+<span class="LiteralGray">        # Update rect object from self.x.</span>
+<span class="LiteralGray">        self.rect.x = self.x</span></code></pre>
+<p>This code checks the position of the ship before changing the value of <code>self.x</code>. The code <code>self.rect.right</code> returns the <em>x</em>-coordinate of the right edge of the ship’s <code>rect</code>. If this value is less than the value returned by <code>self.screen_rect.right</code>, the ship hasn’t reached the right edge of the screen <span aria-label="annotation1" class="CodeAnnotation">❶</span>. The same goes for the left edge: if the value of the left side of the <code>rect</code> is greater than 0, the ship hasn’t reached the left edge of the screen <span aria-label="annotation2" class="CodeAnnotation">❷</span>. This ensures the ship is within these bounds before adjusting the value of <code>self.x</code>.</p>
+<p><span epub:type="pagebreak" id="Page_244" title="244"></span>When you run <em>alien_invasion.py</em> now, the ship should stop moving at either edge of the screen. This is pretty cool; all we’ve done is add a conditional test in an <code>if</code> statement, but it feels like the ship hits a wall or force field at either edge of the screen!</p>
+<h3 id="h2-502703c12-0014">Refactoring _check_events()</h3>
+<p class="BodyFirst">The <code>_check_events()</code> method will increase in length as we continue to develop the game, so let’s break <code>_check_events()</code> into two separate methods: one that handles <code>KEYDOWN</code> events and another that handles <code>KEYUP</code> events:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def _check_events(self):</span>
+<span class="LiteralGray">        """Respond to keypresses and mouse events."""</span>
+<span class="LiteralGray">        for event in pygame.event.get():</span>
+<span class="LiteralGray">            if event.type == pygame.QUIT:</span>
+<span class="LiteralGray">                sys.exit()</span>
+<span class="LiteralGray">            elif event.type == pygame.KEYDOWN:</span>
+<span class="LiteralGray">                </span>self._check_keydown_events(event)
+<span class="LiteralGray">            elif event.type == pygame.KEYUP:</span>
+<span class="LiteralGray">                </span>self._check_keyup_events(event)
+
+    def _check_keydown_events(self, event):
+        """Respond to keypresses."""
+<span class="LiteralGray">        if event.key == pygame.K_RIGHT:</span>
+<span class="LiteralGray">            self.ship.moving_right = True</span>
+<span class="LiteralGray">        elif event.key == pygame.K_LEFT:</span>
+<span class="LiteralGray">            self.ship.moving_left = True</span>
+
+    def _check_keyup_events(self, event):
+        """Respond to key releases."""
+<span class="LiteralGray">        if event.key == pygame.K_RIGHT:</span>
+<span class="LiteralGray">            self.ship.moving_right = False</span>
+<span class="LiteralGray">        elif event.key == pygame.K_LEFT:</span>
+<span class="LiteralGray">            self.ship.moving_left = False</span></code></pre>
+<p>We make two new helper methods: <code>_check_keydown_events()</code> and <code>_check_keyup_events()</code>. Each needs a <code>self</code> parameter and an <code>event</code> parameter. The bodies of these two methods are copied from <code>_check_events()</code>, and we’ve replaced the old code with calls to the new methods. The <code>_check_events()</code> method is simpler now with this cleaner code structure, which will make it easier to develop further responses to player input.</p>
+<h3 id="h2-502703c12-0015">Pressing Q to Quit</h3>
+<p class="BodyFirst">Now that we’re responding to keypresses efficiently, we can add another way to quit the game. It gets tedious to click the X at the top of the game window to end the game every time you test a new feature, so we’ll add a keyboard shortcut to end the game when the player presses Q:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def _check_keydown_events(self, event):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">        elif event.key == pygame.K_LEFT:</span>
+<span epub:type="pagebreak" id="Page_245" title="245"></span><span class="LiteralGray">            self.ship.moving_left = True</span>
+        elif event.key == pygame.K_q:
+            sys.exit()</code></pre>
+<p>In <code>_check_keydown_events()</code>, we add a new block that ends the game when the player presses Q. Now, when testing, you can press Q to close the game instead of using your cursor to close the window.</p>
+<h3 id="h2-502703c12-0016">Running the Game in Fullscreen Mode</h3>
+<p class="BodyFirst">Pygame has a fullscreen mode that you might like better than running the game in a regular window. Some games look better in fullscreen mode, and on some systems, the game may perform better overall in fullscreen mode.</p>
+<p>To run the game in fullscreen mode, make the following changes in <code>__init__()</code>:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def __init__(self):</span>
+<span class="LiteralGray">        """Initialize the game, and create game resources."""</span>
+<span class="LiteralGray">        pygame.init()</span>
+<span class="LiteralGray">        self.settings = Settings()</span>
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         self.settings.screen_width = self.screen.get_rect().width
+        self.settings.screen_height = self.screen.get_rect().height
+ <span class="LiteralGray">       pygame.display.set_caption("Alien Invasion")</span></code></pre>
+<p>When creating the screen surface, we pass a size of <code>(0, 0)</code> and the parameter <code>pygame.FULLSCREEN</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>. This tells Pygame to figure out a window size that will fill the screen. Because we don’t know the width and height of the screen ahead of time, we update these settings after the screen is created <span aria-label="annotation2" class="CodeAnnotation">❷</span>. We use the <code>width</code> and <code>height</code> attributes of the screen’s <code>rect </code>to update the <code>settings</code> object.</p>
+<p>If you like how the game looks or behaves in fullscreen mode, keep these settings. If you liked the game better in its own window, you can revert back to the original approach where we set a specific screen size for the game.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	Make sure you can quit by pressing Q before running the game in fullscreen mode; Pygame offers no default way to quit a game while in fullscreen mode.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c12-0007">A Quick Recap</h2>
+<p class="BodyFirst">In the next section, we’ll add the ability to shoot bullets, which involves adding a new file called <em>bullet.py</em> and making some modifications to some of the files we’re already using. Right now, we have three files containing a number of classes and methods. To be clear about how the project is organized, let’s review each of these files before adding more functionality.</p>
+<h3 id="h2-502703c12-0017"><span epub:type="pagebreak" id="Page_246" title="246"></span>alien_invasion.py</h3>
+<p class="BodyFirst">The main file, <em>alien_invasion.py</em>, contains the <code>AlienInvasion</code> class. This class creates a number of important attributes used throughout the game: the settings are assigned to <code>settings</code>, the main display surface is assigned to <code>screen</code>, and a <code>ship</code> instance is created in this file as well. The main loop of the game, a <code>while</code> loop, is also stored in this module. The <code>while</code> loop calls <code>_check_events()</code>, <code>ship.update()</code>, and <code>_update_screen()</code>. It also ticks the clock on each pass through the loop.</p>
+<p>The <code>_check_events()</code> method detects relevant events, such as keypresses and releases, and processes each of these types of events through the methods <code>_check_keydown_events()</code> and <code>_check_keyup_events()</code>. For now, these methods manage the ship’s movement. The <code>AlienInvasion</code> class also contains <code>_update_screen()</code>, which redraws the screen on each pass through the main loop.</p>
+<p>The <em>alien_invasion.py </em>file is the only file you need to run when you want to play<em> Alien Invasion</em>. The other files, <em>settings.py</em> and <em>ship.py</em>, contain code that is imported into this file.</p>
+<h3 id="h2-502703c12-0018">settings.py</h3>
+<p class="BodyFirst">The <em>settings.py</em> file contains the <code>Settings</code> class. This class only has an <code>__init__()</code> method, which initializes attributes controlling the game’s appearance and the ship’s speed.</p>
+<h3 id="h2-502703c12-0019">ship.py</h3>
+<p class="BodyFirst">The <em>ship.py</em> file contains the <code>Ship</code> class. The <code>Ship</code> class has an <code>__init__()</code> method, an <code>update()</code> method to manage the ship’s position, and a <code>blitme()</code> method to draw the ship to the screen. The image of the ship is stored in <em>ship.bmp</em>, which is in the <em>images</em> folder.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c12-22">12-3.	Pygame Documentation:</span> We’re far enough into the game now that you might want to look at some of the Pygame documentation. The Pygame home page is at <a class="LinkURL" href="https://pygame.org">https://pygame.org</a>, and the home page for the documentation is at <a class="LinkURL" href="https://pygame.org/docs">https://pygame.org/docs</a>. Just skim the documentation for now. You won’t need it to complete this project, but it will help if you want to modify <em>Alien Invasion</em> or make your own game afterward.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c12-23">12-4.	Rocket:</span> Make a game that begins with a rocket in the center of the screen. Allow the player to move the rocket up, down, left, or right using the four arrow keys. Make sure the rocket never moves beyond any edge of the screen.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c12-24">12-5.	Keys:</span> Make a Pygame file that creates an empty screen. In the event loop, print the <code>event.key</code> attribute whenever a <code>pygame.KEYDOWN</code> event is detected. Run the program and press various keys to see how Pygame responds.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c12-0008"><span epub:type="pagebreak" id="Page_247" title="247"></span>Shooting Bullets</h2>
+<p class="BodyFirst">Now let’s add the ability to shoot bullets. We’ll write code that fires a bullet, which is represented by a small rectangle, when the player presses the spacebar. Bullets will then travel straight up the screen until they disappear off the top of the screen.</p>
+<h3 id="h2-502703c12-0020">Adding the Bullet Settings</h3>
+<p class="BodyFirst">At the end of the <code>__init__()</code> method, we’ll update <em>settings.py</em> to include the values we’ll need for a new <code>Bullet</code> class:</p>
+<p class="CodeLabel"><b>settings.py</b></p>
+<pre><code><span class="LiteralGray">    def __init__(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+   <span class="LiteralGray">    </span> # Bullet settings
+  <span class="LiteralGray">    </span>  self.bullet_speed = 2.0
+<span class="LiteralGray">    </span>    self.bullet_width = 3
+<span class="LiteralGray">    </span>    self.bullet_height = 15
+<span class="LiteralGray">    </span>    self.bullet_color = (60, 60, 60)</code></pre>
+<p>These settings create dark gray bullets with a width of <code>3</code> pixels and a height of <code>15</code> pixels. The bullets will travel slightly faster than the ship.</p>
+<h3 id="h2-502703c12-0021">Creating the Bullet Class</h3>
+<p class="BodyFirst">Now create a <em>bullet.py </em>file to store our <code>Bullet</code> class. Here’s the first part of <em>bullet.py</em>:</p>
+<p class="CodeLabel"><b>bullet.py</b></p>
+<pre><code>import pygame
+from pygame.sprite import Sprite
+
+class Bullet(Sprite):
+    """A class to manage bullets fired from the ship."""
+
+    def __init__(self, ai_game):
+        """Create a bullet object at the ship's current position."""
+        super().__init__()
+        self.screen = ai_game.screen
+        self.settings = ai_game.settings
+        self.color = self.settings.bullet_color
+
+        # Create a bullet rect at (0, 0) and then set correct position.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         self.rect = pygame.Rect(0, 0, self.settings.bullet_width,
+            self.settings.bullet_height)
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         self.rect.midtop = ai_game.ship.rect.midtop
+
+        # Store the bullet's position as a float.
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>         self.y = float(self.rect.y)</code></pre>
+<p>The <code>Bullet</code> class inherits from <code>Sprite</code>, which we import from the <code>pygame.sprite</code> module. When you use sprites, you can group related elements in your game and act on all the grouped elements at once. To create a bullet instance, <code>__init__()</code> needs the current instance of <code>AlienInvasion</code>, and we call <code></code><span epub:type="pagebreak" id="Page_248" title="248"></span>super() to inherit properly from <code>Sprite</code>. We also set attributes for the screen and settings objects, and for the bullet’s color.</p>
+<p>Next we create the bullet’s <code>rect</code> attribute <span aria-label="annotation1" class="CodeAnnotation">❶</span>. The bullet isn’t based on an image, so we have to build a <code>rect</code> from scratch using the <code>pygame.Rect()</code> class. This class requires the <em>x</em>- and <em>y</em>-coordinates of the top-left corner of the <code>rect</code>, and the width and height of the <code>rect</code>. We initialize the <code>rect</code> at (0, 0), but we’ll move it to the correct location in the next line, because the bullet’s position depends on the ship’s position. We get the width and height of the bullet from the values stored in <code>self.settings</code>.</p>
+<p>We set the bullet’s <code>midtop</code> attribute to match the ship’s <code>midtop</code> attribute <span aria-label="annotation2" class="CodeAnnotation">❷</span>. This will make the bullet emerge from the top of the ship, making it look like the bullet is fired from the ship. We use a float for the bullet’s <em>y</em>-coordinate so we can make fine adjustments to the bullet’s speed <span aria-label="annotation3" class="CodeAnnotation">❸</span>.</p>
+<p>Here’s the second part of <em>bullet.py</em>, <code>update()</code> and <code>draw_bullet()</code>:</p>
+<p class="CodeLabel"><b>bullet.py</b></p>
+<pre><code><code>    </code>def update(self):
+    <code>    </code>"""Move the bullet up the screen."""
+    <code>    </code># Update the exact position of the bullet.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     <code>    </code>self.y -= self.settings.bullet_speed
+    <code>    </code># Update the rect position.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     <code>    </code>self.rect.y = self.y
+
+<code>    </code>def draw_bullet(self):
+    <code>    </code>"""Draw the bullet to the screen."""
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     <code>    </code>pygame.draw.rect(self.screen, self.color, self.rect)</code></pre>
+<p>The <code>update()</code> method manages the bullet’s position. When a bullet is fired, it moves up the screen, which corresponds to a decreasing <em>y</em>-coordinate value. To update the position, we subtract the amount stored in <code>settings.bullet_speed</code> from <code>self.y</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>. We then use the value of <code>self.y</code> to set the value of <code>self.rect.y</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span>.</p>
+<p>The <code>bullet_speed</code> setting allows us to increase the speed of the bullets as the game progresses or as needed to refine the game’s behavior. Once a bullet is fired, we never change the value of its <em>x</em>-coordinate, so it will travel vertically in a straight line even if the ship moves.</p>
+<p>When we want to draw a bullet, we call <code>draw_bullet()</code>. The <code>draw.rect()</code> function fills the part of the screen defined by the bullet’s <code>rect</code> with the color stored in <code>self.color</code> <span aria-label="annotation3" class="CodeAnnotation">❸</span>.</p>
+<h3 id="h2-502703c12-0022">Storing Bullets in a Group</h3>
+<p class="BodyFirst">Now that we have a <code>Bullet</code> class and the necessary settings defined, we can write code to fire a bullet each time the player presses the spacebar. We’ll create a group in <code>AlienInvasion</code> to store all the active bullets so we can manage the bullets that have already been fired. This group will be an instance of the <code>pygame.sprite.Group</code> class, which behaves like a list with some extra functionality that’s helpful when building games. We’ll use this group to draw bullets to the screen on each pass through the main loop and to update each bullet’s position.</p>
+<p><span epub:type="pagebreak" id="Page_249" title="249"></span>First, we’ll import the new <code>Bullet</code> class:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">from ship import Ship</span>
+from bullet import Bullet</code></pre>
+<p>Next we’ll create the group that holds the bullets in <code>__init__()</code>:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def __init__(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">        self.ship = Ship(self)</span>
+<span class="LiteralGray">        </span>self.bullets = pygame.sprite.Group()</code></pre>
+<p>Then we need to update the position of the bullets on each pass through the <code>while</code> loop:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def run_game(self):</span>
+<span class="LiteralGray">        """Start the main loop for the game."""</span>
+<span class="LiteralGray">        while True:</span>
+<span class="LiteralGray">            self._check_events()</span>
+<span class="LiteralGray">            self.ship.update()</span>
+<span class="LiteralGray">            </span>self.bullets.update()
+<span class="LiteralGray">            self._update_screen()</span>
+<span class="LiteralGray">            self.clock.tick(60)</span></code></pre>
+<p>When you call <code>update()</code> on a group, the group automatically calls <code>update()</code> for each sprite in the group. The line <code>self.bullets.update()</code> calls <code>bullet.update()</code> for each bullet we place in the group <code>bullets</code>.</p>
+<h3 id="h2-502703c12-0023">Firing Bullets</h3>
+<p class="BodyFirst">In <code>AlienInvasion</code>, we need to modify <code>_check_keydown_events()</code> to fire a bullet when the player presses the spacebar. We don’t need to change <code>_check_keyup_events()</code> because nothing happens when the spacebar is released. We also need to modify <code>_update_screen()</code> to make sure each bullet is drawn to the screen before we call <code>flip()</code>.</p>
+<p>There will be a bit of work to do when we fire a bullet, so let’s write a new method, <code>_fire_bullet()</code>, to handle this work:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def _check_keydown_events(self, event):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">        elif event.key == pygame.K_q:</span>
+<span class="LiteralGray">            sys.exit()</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         elif event.key == pygame.K_SPACE:
+            self._fire_bullet()
+
+<span class="LiteralGray">    def _check_keyup_events(self, event):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+
+    def _fire_bullet(self):
+        """Create a new bullet and add it to the bullets group."""
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         new_bullet = Bullet(self)
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>         self.bullets.add(new_bullet)
+
+<span epub:type="pagebreak" id="Page_250" title="250"></span><span class="LiteralGray">    def _update_screen(self):</span>
+<span class="LiteralGray">        """Update images on the screen, and flip to the new screen."""</span>
+<span class="LiteralGray">        self.screen.fill(self.settings.bg_color)</span>
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span><span class="LiteralGray">   </span>      for bullet in self.bullets.sprites():
+            bullet.draw_bullet()
+<span class="LiteralGray">        self.ship.blitme()</span>
+
+<span class="LiteralGray">        pygame.display.flip()</span>
+<em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>We call <code>_fire_bullet()</code> when the spacebar is pressed <span aria-label="annotation1" class="CodeAnnotation">❶</span>. In <code>_fire_bullet()</code>, we make an instance of <code>Bullet</code> and call it <code>new_bullet</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span>. We then add it to the group <code>bullets</code> using the <code>add()</code> method <span aria-label="annotation3" class="CodeAnnotation">❸</span>. The <code>add()</code> method is similar to <code>append()</code>, but it’s written specifically for Pygame groups.</p>
+<p>The <code>bullets.sprites()</code> method returns a list of all sprites in the group <code>bullets</code>. To draw all fired bullets to the screen, we loop through the sprites in <code>bullets</code> and call <code>draw_bullet()</code> on each one <span aria-label="annotation4" class="CodeAnnotation">❹</span>. We place this loop before the line that draws the ship, so the bullets don’t start out on top of the ship.</p>
+<p>When you run <em>alien_invasion.py</em> now, you should be able to move the ship right and left and fire as many bullets as you want. The bullets travel up the screen and disappear when they reach the top, as shown in <a href="#figure12-3" id="figureanchor12-3">Figure 12-3</a>. You can alter the size, color, and speed of the bullets in <em>settings.py</em>.</p>
+<figure>
+<img alt="" class="keyline" height="407" src="Images/f12003.png" width="590"/>
+<figcaption><p><a id="figure12-3">Figure 12-3</a>: The ship after firing a series of bullets</p></figcaption>
+</figure>
+<h3 id="h2-502703c12-0024">Deleting Old Bullets</h3>
+<p class="BodyFirst">At the moment, the bullets disappear when they reach the top, but only because Pygame can’t draw them above the top of the screen. The bullets actually continue to exist; their <em>y</em>-coordinate values just grow increasingly negative. This is a problem because they continue to consume memory and processing power.</p>
+<p><span epub:type="pagebreak" id="Page_251" title="251"></span>We need to get rid of these old bullets, or the game will slow down from doing so much unnecessary work. To do this, we need to detect when the <code>bottom</code> value of a bullet’s <code>rect</code> has a value of 0, which indicates the bullet has passed off the top of the screen:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def run_game(self):</span>
+<span class="LiteralGray">        """Start the main loop for the game."""</span>
+<span class="LiteralGray">        while True:</span>
+<span class="LiteralGray">            self._check_events()</span>
+<span class="LiteralGray">            self.ship.update()</span>
+<span class="LiteralGray">            self.bullets.update()</span>
+
+<span class="LiteralGray"> </span>           # Get rid of bullets that have disappeared.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>             for bullet in self.bullets.copy():
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>                 if bullet.rect.bottom &lt;= 0:
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>                     self.bullets.remove(bullet)
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>             print(len(self.bullets))
+
+<span class="LiteralGray">            self._update_screen()</span>
+<span class="LiteralGray">            self.clock.tick(60)</span></code></pre>
+<p>When you use a <code>for</code> loop with a list (or a group in Pygame), Python expects that the list will stay the same length as long as the loop is running. That means you can’t remove items from a list or group within a <code>for</code> loop, so we have to loop over a copy of the group. We use the <code>copy()</code> method to set up the <code>for</code> loop <span aria-label="annotation1" class="CodeAnnotation">❶</span>, which leaves us free to modify the original <code>bullets</code> group inside the loop. We check each bullet to see whether it has disappeared off the top of the screen <span aria-label="annotation2" class="CodeAnnotation">❷</span>. If it has, we remove it from <code>bullets</code> <span aria-label="annotation3" class="CodeAnnotation">❸</span>. We insert a <code>print()</code> call to show how many bullets currently exist in the game and verify they’re being deleted when they reach the top of the screen <span aria-label="annotation4" class="CodeAnnotation">❹</span>.</p>
+<p>If this code works correctly, we can watch the terminal output while firing bullets and see that the number of bullets decreases to zero after each series of bullets has cleared the top of the screen. After you run the game and verify that bullets are being deleted properly, remove the <code>print()</code> call. If you leave it in, the game will slow down significantly because it takes more time to write output to the terminal than it does to draw graphics to the game window.</p>
+<h3 id="h2-502703c12-0025">Limiting the Number of Bullets</h3>
+<p class="BodyFirst">Many shooting games limit the number of bullets a player can have on the screen at one time; doing so encourages players to shoot accurately. We’ll do the same in <em>Alien Invasion</em>.</p>
+<p>First, store the number of bullets allowed in <em>settings.py</em>:</p>
+<p class="CodeLabel"><b>settings.py</b></p>
+<pre><code><span class="LiteralGray">        # Bullet settings</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">        self.bullet_color = (60, 60, 60)</span>
+<span class="LiteralGray">        </span>self.bullets_allowed = 3</code></pre>
+<p><span epub:type="pagebreak" id="Page_252" title="252"></span>This limits the player to three bullets at a time. We’ll use this setting in <code>AlienInvasion</code> to check how many bullets exist before creating a new bullet in <code>_fire_bullet()</code>:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def _fire_bullet(self):</span>
+<span class="LiteralGray">        """Create a new bullet and add it to the bullets group."""</span>
+<span class="LiteralGray">        </span>if len(self.bullets) &lt; self.settings.bullets_allowed:
+<span class="LiteralGray">            new_bullet = Bullet(self)</span>
+<span class="LiteralGray">            self.bullets.add(new_bullet)</span></code></pre>
+<p>When the player presses the spacebar, we check the length of <code>bullets</code>. If <code>len(self.bullets)</code> is less than three, we create a new bullet. But if three bullets are already active, nothing happens when the spacebar is pressed. When you run the game now, you should only be able to fire bullets in groups of three.</p>
+<h3 id="h2-502703c12-0026">Creating the _update_bullets() Method</h3>
+<p class="BodyFirst">We want to keep the <code>AlienInvasion</code> class reasonably well organized, so now that we’ve written and checked the bullet management code, we can move it to a separate method. We’ll create a new method called <code>_update_bullets()</code> and add it just before <code>_update_screen()</code>:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code>    def _update_bullets(self):
+        """Update position of bullets and get rid of old bullets."""
+        # Update bullet positions.
+<span class="LiteralGray">        self.bullets.update()</span>
+
+<span class="LiteralGray">        # Get rid of bullets that have disappeared.</span>
+<span class="LiteralGray">        for bullet in self.bullets.copy():</span>
+<span class="LiteralGray">            if bullet.rect.bottom &lt;= 0:</span>
+<span class="LiteralGray">                 self.bullets.remove(bullet)</span></code></pre>
+<p>The code for <code>_update_bullets()</code> is cut and pasted from <code>run_game()</code>; all we’ve done here is clarify the comments.</p>
+<p>The <code>while</code> loop in <code>run_game()</code> looks simple again:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">         while True:</span>
+<span class="LiteralGray">            self._check_events()</span>
+<span class="LiteralGray">            self.ship.update()</span>
+<span class="LiteralGray">            </span>self._update_bullets()
+<span class="LiteralGray">            self._update_screen()</span>
+<span class="LiteralGray">            self.clock.tick(60)</span></code></pre>
+<p>Now our main loop contains only minimal code, so we can quickly read the method names and understand what’s happening in the game. The main loop checks for player input, and then updates the position of the ship and any bullets that have been fired. We then use the updated positions to draw a new screen and tick the clock at the end of each pass through the loop.</p>
+<p><span epub:type="pagebreak" id="Page_253" title="253"></span>Run <em>alien_invasion.py</em> one more time, and make sure you can still fire bullets without errors.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c12-32">12-6.	Sideways Shooter:</span> Write a game that places a ship on the left side of the screen and allows the player to move the ship up and down. Make the ship fire a bullet that travels right across the screen when the player presses the spacebar. Make sure bullets are deleted once they disappear off the screen.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c12-0009">Summary</h2>
+<p class="BodyFirst">In this chapter, you learned to make a plan for a game and learned the basic structure of a game written in Pygame. You learned to set a background color and store settings in a separate class where you can adjust them more easily. You saw how to draw an image to the screen and give the player control over the movement of game elements. You created elements that move on their own, like bullets flying up a screen, and you deleted objects that are no longer needed. You also learned to refactor code in a project on a regular basis to facilitate ongoing development.</p>
+<p>In <span class="xref" itemid="xref_target_Chapter 13">Chapter 13</span>, we’ll add aliens to<em> Alien Invasion</em>. By the end of the chapter, you’ll be able to shoot down aliens, hopefully before they reach your ship!</p>
+</section>
+</div></body>
+</html>

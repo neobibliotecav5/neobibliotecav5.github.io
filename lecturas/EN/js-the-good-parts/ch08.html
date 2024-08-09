@@ -1,0 +1,789 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Chapter 8. Methods</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="chapter" title="Chapter 8. Methods"><div class="titlepage"><div><div><h1 class="title"><a id="methods"/>Chapter 8. Methods</h1></div></div></div><div class="epigraph"><p>Though this be madness, yet there is method in 't.<a id="IDX-CHP-8-0475" class="indexterm"/></p><div class="attribution"><span>—<span class="attribution">William Shakespeare, <span class="emphasis"><em>The Tragedy of Hamlet, Prince of
+                    Denmark</em></span></span></span></div></div><p>JavaScript includes a small set of standard methods that are available on the standard
+            types.</p><div class="variablelist"><dl><dt><span class="term">
+                    <span class="strong"><strong>Array</strong></span>
+                </span></dt><dd><p/><div class="variablelist"><dl><dt><span class="term"><span class="emphasis"><em>array</em></span>.concat(<span class="emphasis"><em>item</em></span>...)</span></dt><dd><p>The <code class="literal">concat</code> method produces
+                                    a new array containing a shallow copy of this
+                                        <em class="replaceable"><code>array</code></em> with the
+                                        <em class="replaceable"><code>item</code></em>s appended to it. If an
+                                        <em class="replaceable"><code>item</code></em> is an array, then each of
+                                    its elements is appended individually. Also see
+                                        <em class="replaceable"><code>array</code></em><code class="literal">.push(</code><em class="replaceable"><code>item</code></em><code class="literal">...)</code> later in this chapter.</p><a id="I_programlisting8_d1e6477"/><pre class="programlisting">var a = ['a', 'b', 'c'];
+var b = ['x', 'y', 'z'];
+var c = a.concat(b, true);
+// c is ['a', 'b', 'c', 'x', 'y', 'z', true]</pre></dd><dt><span class="term"><span class="emphasis"><em>array</em></span>.join(<span class="emphasis"><em>separator</em></span>)</span></dt><dd><p>The <code class="literal">join</code> method makes a
+                                    string from an <em class="replaceable"><code>array</code></em> . It does this
+                                    by making a string of each of the
+                                        <em class="replaceable"><code>array</code></em> 's elements, and then
+                                    concatenating them all together with a
+                                        <em class="replaceable"><code>separator</code></em> between them. The
+                                    default <em class="replaceable"><code>separator</code></em> is <code class="literal">','</code>. To join without separation,
+                                    use an empty string as the
+                                    <em class="replaceable"><code>separator</code></em>.</p><p>If you are assembling a string from a large number of pieces,
+                                    it is usually faster to put the pieces into an array and
+                                        <code class="literal">join</code> them than it is to
+                                    concatenate the pieces with the <code class="literal">+</code> operator:</p><a id="I_programlisting8_d1e6520"/><pre class="programlisting">var a = ['a', 'b', 'c'];
+a.push('d');
+var c = a.join('');    // c is 'abcd';</pre></dd><dt><span class="term"><span class="emphasis"><em>array</em></span>.pop( )</span></dt><dd><p>The <code class="literal">pop</code> and <code class="literal">push</code> methods make an
+                                        <em class="replaceable"><code>array</code></em> work like a stack. The
+                                        <code class="literal">pop</code> method removes and
+                                    returns the last element in this
+                                        <em class="replaceable"><code>array</code></em> . If the
+                                        <em class="replaceable"><code>array</code></em> is <code class="literal">empty</code>, it returns <code class="literal">undefined</code>.</p><a id="I_programlisting8_d1e6555"/><pre class="programlisting">var a = ['a', 'b', 'c'];
+var c = a.pop(  );    // a is ['a', 'b'] &amp; c is 'c'</pre><p><code class="literal">pop</code> can be implemented like
+                                    this:</p><a id="I_programlisting8_d1e6561"/><pre class="programlisting">Array.method('pop', function (  ) {
+    return this.splice(this.length - 1, 1)[0];
+});</pre></dd><dt><span class="term"><span class="emphasis"><em>array</em></span>.push(<span class="emphasis"><em>item</em></span>...)</span></dt><dd><p>The <code class="literal">push</code> method appends
+                                        <em class="replaceable"><code>items</code></em> to the end of an array.
+                                    Unlike the <code class="literal">concat</code> method, it
+                                    modifies the <em class="replaceable"><code>array</code></em> and appends array
+                                    items whole. It returns the new length of the
+                                        <em class="replaceable"><code>array</code></em>:</p><a id="I_programlisting8_d1e6589"/><pre class="programlisting">var a = ['a', 'b', 'c'];
+var b = ['x', 'y', 'z'];
+var c = a.push(b, true);
+// a is ['a', 'b', 'c', ['x', 'y', 'z'], true]
+// c is 5;</pre><p><code class="literal">push</code> can be implemented
+                                    like this:</p><a id="I_programlisting8_d1e6595"/><pre class="programlisting">Array.method('push', function (  ) {
+    this.splice.apply(
+        this,
+        [this.length, 0].concat(Array.prototype.slice.apply(arguments)));
+    return this.length;
+});</pre></dd><dt><span class="term"><span class="emphasis"><em>array</em></span>.reverse( )</span></dt><dd><p>The <code class="literal">reverse</code> method modifies
+                                    the <em class="replaceable"><code>array</code></em> by reversing the order of
+                                    the elements. It returns the
+                                    <em class="replaceable"><code>array</code></em>:</p><a id="I_programlisting8_d1e6614"/><pre class="programlisting">var a = ['a', 'b', 'c'];
+var b = a.reverse(  );
+// both a and b are ['c', 'b', 'a']</pre></dd><dt><span class="term"><span class="emphasis"><em>array</em></span>.shift( )</span></dt><dd><p>The <code class="literal">shift</code> method removes
+                                    the first element from an <em class="replaceable"><code>array</code></em> and
+                                    returns it. If the <em class="replaceable"><code>array</code></em> is empty, it
+                                    returns <code class="literal">undefined</code>. <code class="literal">shift</code> is usually much slower than
+                                        <code class="literal">pop</code>:</p><a id="I_programlisting8_d1e6643"/><pre class="programlisting">var a = ['a', 'b', 'c'];
+var c = a.shift(  );    // a is ['b', 'c'] &amp; c is 'a'</pre><p><code class="literal">shift</code> can be implemented
+                                    like this:</p><a id="I_programlisting8_d1e6649"/><pre class="programlisting">Array.method('shift', function (  ) {
+    return this.splice(0, 1)[0];
+});</pre></dd><dt><span class="term"><span class="emphasis"><em>array</em></span>.slice(<span class="emphasis"><em>start</em></span>,
+                                    <span class="emphasis"><em>end</em></span> )</span></dt><dd><p>The <code class="literal">slice</code> method makes a
+                                    shallow copy of a portion of an <em class="replaceable"><code>array</code></em>
+                                    . The first element copied will be
+                                        <em class="replaceable"><code>array</code></em>
+                                    <code class="literal">[</code>
+                                    <em class="replaceable"><code>start</code></em>
+                                    <code class="literal">]</code>. It will stop before
+                                    copying <em class="replaceable"><code>array</code></em>
+                                    <code class="literal">[</code>
+                                    <em class="replaceable"><code>end</code></em>
+                                    <code class="literal">]</code>. The
+                                        <em class="replaceable"><code>end</code></em> parameter is optional, and
+                                    the default is <em class="replaceable"><code>array</code></em>
+                                    <code class="literal">.length</code>. If either parameter
+                                    is negative, <em class="replaceable"><code>array</code></em>
+                                    <code class="literal">.length</code> will be added to them
+                                    in an attempt to make them nonnegative. If
+                                        <em class="replaceable"><code>start</code></em> is greater than or equal to
+                                        <em class="replaceable"><code>array</code></em>
+                                    <code class="literal">.length</code>, the result will be a
+                                    new empty array. Do not confuse <code class="literal">slice</code> with <code class="literal">splice</code>. Also see
+                                        <em class="replaceable"><code>string</code></em>
+                                    <code class="literal">.slice</code> later in this
+                                    chapter.</p><a id="I_programlisting8_d1e6734"/><pre class="programlisting">var a = ['a', 'b', 'c'];
+var b = a.slice(0, 1);    // b is ['a']
+var c = a.slice(1);       // c is ['b', 'c']
+var d = a.slice(1, 2);    // d is ['b']</pre></dd><dt><span class="term"><span class="emphasis"><em>array</em></span>.sort(<span class="emphasis"><em>comparefn</em></span>
+                                )</span></dt><dd><p>The <code class="literal">sort</code> method sorts the
+                                    contents of an <em class="replaceable"><code>array</code></em> in place. It
+                                    sorts arrays of numbers incorrectly:</p><a id="I_programlisting8_d1e6753"/><pre class="programlisting">var n = [4, 8, 15, 16, 23, 42];
+n.sort(  );
+// n is [15, 16, 23, 4, 42, 8]</pre><p>JavaScript's default comparison function assumes that the
+                                    elements to be sorted are strings. It isn't clever enough to
+                                    test the type of the elements before comparing them, so it
+                                    converts the numbers to strings as it compares them, ensuring a
+                                    shockingly incorrect result.</p><p>Fortunately, you may replace the comparison function with your
+                                    own. Your comparison function should take two parameters and
+                                    return <code class="literal">0</code> if the two
+                                    parameters are equal, a negative number if the first parameter
+                                    should come first, and a positive number if the second parameter
+                                    should come first. (Old-timers might be reminded of the FORTRAN
+                                    II arithmetic <code class="literal">IF</code>
+                                    statement.)</p><a id="I_programlisting8_d1e6765"/><pre class="programlisting">n.sort(function (a, b) {
+    return a − b;
+});
+// n is [4, 8, 15, 16, 23, 42];</pre><p>That function will sort numbers, but it doesn't sort strings.
+                                    If we want to be able to sort any array of simple values, we
+                                    must work harder:</p><a id="I_programlisting8_d1e6769"/><pre class="programlisting">var m = ['aa', 'bb', 'a', 4, 8, 15, 16, 23, 42];
+m.sort(function (a, b) {
+    if (a === b) {
+        return 0;
+    }
+    if (typeof a === typeof b) {
+        return a &lt; b ? −1 : 1;
+    }
+    return typeof a &lt; typeof b ? −1 : 1;
+});
+// m is [4, 8, 15, 16, 23, 42, 'a', 'aa', 'bb']</pre><p>If case is not significant, your comparison function should
+                                    convert the operands to lowercase before comparing them. Also
+                                    see <em class="replaceable"><code>string</code></em>
+                                    <code class="literal">.localeCompare</code> later in this
+                                    chapter.</p><p>With a smarter comparison function, we can sort an array of
+                                    objects. To make things easier for the general case, we will
+                                    write a function that will make comparison functions:</p><a id="I_programlisting8_d1e6781"/><pre class="programlisting">// Function by takes a member name string and returns
+// a comparison function that can be used to sort an
+// array of objects that contain that member.
+
+var by = function (name) {
+    return function (o, p) {
+        var a, b;
+        if (typeof o === 'object' &amp;&amp; typeof p === 'object' &amp;&amp; o &amp;&amp; p) {
+            a = o[name];
+            b = p[name];
+            if (a === b) {
+                return 0;
+            }
+            if (typeof a === typeof b) {
+                return a &lt; b ? −1 : 1;
+            }
+            return typeof a &lt; typeof b ? −1 : 1;
+        } else {
+            throw {
+                name: 'Error',
+                message: 'Expected an object when sorting by ' + name;
+            };
+        }
+    };
+};
+
+var s = [
+    {first: 'Joe',   last: 'Besser'},
+    {first: 'Moe',   last: 'Howard'},
+    {first: 'Joe',   last: 'DeRita'},
+    {first: 'Shemp', last: 'Howard'},
+    {first: 'Larry', last: 'Fine'},
+    {first: 'Curly', last: 'Howard'}
+];
+s.sort(by('first'));    // s is [
+//    {first: 'Curly', last: 'Howard'},
+//    {first: 'Joe',   last: 'DeRita'},
+//    {first: 'Joe',   last: 'Besser'},
+//    {first: 'Larry', last: 'Fine'},
+//    {first: 'Moe',   last: 'Howard'},
+//    {first: 'Shemp', last: 'Howard'}
+// ]</pre><p>The <code class="literal">sort</code> method is not
+                                    stable, so:</p><a id="I_programlisting8_d1e6789"/><pre class="programlisting">s.sort(by('first')).sort(by('last'));</pre><p>is not guaranteed to produce the correct sequence. If you want
+                                    to sort on multiple keys, you again need to do more work. We can
+                                    modify <code class="literal">by</code> to take a second
+                                    parameter, another <code class="literal">compare</code>
+                                    method that will be called to break ties when the major key
+                                    produces a match:</p><a id="I_programlisting8_d1e6799"/><pre class="programlisting">// Function by takes a member name string and an
+// optional minor comparison function and returns
+// a comparison function that can be used to sort an
+// array of objects that contain that member. The
+// minor comparison function is used to break ties
+// when the o[name] and p[name] are equal.
+
+var by = function (name, minor) {
+    return function (o, p) {
+        var a, b;
+        if (o &amp;&amp; p &amp;&amp; typeof o === 'object' &amp;&amp; typeof p === 'object') {
+            a = o[name];
+            b = p[name];
+            if (a === b) {
+                return typeof minor === 'function' ? minor(o, p) : 0;
+            }
+            if (typeof a === typeof b) {
+                return a &lt; b ? −1 : 1;
+            }
+            return typeof a &lt; typeof b ? −1 : 1;
+        } else {
+            throw {
+                name: 'Error',
+                message: 'Expected an object when sorting by ' + name;
+            };
+        }
+    };
+};
+
+s.sort(by('last', by('first')));    // s is [
+//    {first: 'Joe',   last: 'Besser'},
+//    {first: 'Joe',   last: 'DeRita'},
+//    {first: 'Larry', last: 'Fine'},
+//    {first: 'Curly', last: 'Howard'},
+//    {first: 'Moe',   last: 'Howard'},
+//    {first: 'Shemp', last: 'Howard'}
+// ]</pre></dd><dt><span class="term"><span class="emphasis"><em>array</em></span>.splice(<span class="emphasis"><em>start</em></span>,
+                                    <span class="emphasis"><em>deleteCount</em></span>,
+                                <span class="emphasis"><em>item</em></span>...)</span></dt><dd><p>The <code class="literal">splice</code> method removes
+                                    elements from an <em class="replaceable"><code>array</code></em>, replacing
+                                    them with new <em class="replaceable"><code>item</code></em> s. The
+                                        <em class="replaceable"><code>start</code></em> parameter is the number of
+                                    a position within the <em class="replaceable"><code>array</code></em> . The
+                                        <em class="replaceable"><code>deleteCount</code></em> parameter is the
+                                    number of elements to delete starting from that position. If
+                                    there are additional parameters, those
+                                        <em class="replaceable"><code>item</code></em> s will be inserted at the
+                                    position. It returns an array containing the deleted
+                                    elements.</p><p>The most popular use of <code class="literal">splice</code> is to delete elements from an array. Do
+                                    not confuse <code class="literal">splice</code> with
+                                        <code class="literal">slice</code>:</p><a id="I_programlisting8_d1e6851"/><pre class="programlisting">var a = ['a', 'b', 'c'];
+var r = a.splice(1, 1, 'ache', 'bug');
+// a is ['a', 'ache', 'bug', 'c']
+// r is ['b']</pre><p><code class="literal">splice</code> can be implemented
+                                    like this:</p><a id="I_programlisting8_d1e6857"/><pre class="programlisting">Array.method('splice', function (start, deleteCount) {
+    var max = Math.max,
+        min = Math.min,
+        delta,
+        element,
+        insertCount = max(arguments.length - 2, 0),
+        k = 0,
+        len = this.length,
+        new_len,
+        result = [],
+        shift_count;
+
+    start = start || 0;
+    if (start &lt; 0) {
+        start += len;
+    }
+    start = max(min(start, len), 0);
+    deleteCount = max(min(typeof deleteCount === 'number' ?
+            deleteCount : len, len − start), 0);
+    delta = insertCount − deleteCount;
+    new_len = len + delta;
+    while (k &lt; deleteCount) {
+        element = this[start + k];
+        if (element !== undefined) {
+            result[k] = element;
+        }
+        k += 1;
+    }
+    shift_count = len - start - deleteCount;
+    if (delta &lt; 0) {
+        k = start + insertCount;
+        while (shift_count) {
+            this[k] = this[k − delta];
+            k += 1;
+            shift_count −= 1;
+        }
+        this.length = new_len;
+    } else if (delta &gt; 0) {
+        k = 1;
+        while (shift_count) {
+            this[new_len − k] = this[len − k];
+            k += 1;
+            shift_count −= 1;
+         }
+            this.length = new_len;
+     }
+    for (k = 0; k &lt; insertCount; k += 1) {
+        this[start + k] = arguments[k + 2];
+    }
+    return result;
+});</pre></dd><dt><span class="term"><span class="emphasis"><em>array</em></span>.unshift(<span class="emphasis"><em>item</em></span>...)</span></dt><dd><p>The <code class="literal">unshift</code> method is like
+                                    the <code class="literal">push</code> method except that
+                                    it shoves the <em class="replaceable"><code>item</code></em> s onto the front
+                                    of this <em class="replaceable"><code>array</code></em> instead of at the end.
+                                    It returns the <em class="replaceable"><code>array</code></em> 's new <code class="literal">length</code>:</p><a id="I_programlisting8_d1e6889"/><pre class="programlisting">var a = ['a', 'b', 'c'];
+var r = a.unshift('?', '@');
+// a is ['?', '@', 'a', 'b', 'c']
+// r is 5</pre><p><code class="literal">unshift</code> can be implemented
+                                    like this:</p><a id="I_programlisting8_d1e6895"/><pre class="programlisting">Array.method('unshift', function (  ) {
+    this.splice.apply(this,
+        [0, 0].concat(Array.prototype.slice.apply(arguments)));
+    return this.length;
+});</pre></dd></dl></div></dd><dt><span class="term">
+                    <span class="strong"><strong>Function</strong></span>
+                </span></dt><dd><p/><div class="variablelist"><dl><dt><span class="term"><span class="emphasis"><em>function</em></span>.apply(<span class="emphasis"><em>thisArg</em></span>,
+                                    <span class="emphasis"><em>argArray</em></span> )</span></dt><dd><p>The <code class="literal">apply</code> method invokes a
+                                        <em class="replaceable"><code>function</code></em>, passing in the object
+                                    that will be bound to <code class="literal">this</code>
+                                    and an optional array of arguments. The <code class="literal">apply</code> method is used in the apply invocation
+                                    pattern (<a class="xref" href="ch04.html" title="Chapter 4. Functions">Chapter 4</a>):</p><a id="I_programlisting8_d1e6932"/><pre class="programlisting">Function.method('bind', function (that) {
+
+// Return a function that will call this function as
+// though it is a method of that object.
+
+    var method = this,
+        slice = Array.prototype.slice,
+        args = slice.apply(arguments, [1]);
+    return function (  ) {
+        return method.apply(that,
+            args.concat(slice.apply(arguments, [0])));
+    };
+});
+
+var x = function (  ) {
+    return this.value;
+}.bind({value: 666});
+alert(x(  )); // 666</pre></dd></dl></div></dd><dt><span class="term">
+                    <span class="strong"><strong>Number</strong></span>
+                </span></dt><dd><p/><div class="variablelist"><dl><dt><span class="term"><span class="emphasis"><em>number</em></span>.toExponential(<span class="emphasis"><em>fractionDigits</em></span>
+                                )</span></dt><dd><p>The <code class="literal">toExponential</code> method
+                                    converts this <em class="replaceable"><code>number</code></em> to a string in
+                                    the exponential form. The optional
+                                        <em class="replaceable"><code>fractionDigits</code></em> parameter controls
+                                    the number of decimal places. It should be between 0 and
+                                    20:</p><a id="I_programlisting8_d1e6961"/><pre class="programlisting">document.writeln(Math.PI.toExponential(0));
+document.writeln(Math.PI.toExponential(2));
+document.writeln(Math.PI.toExponential(7));
+document.writeln(Math.PI.toExponential(16));
+document.writeln(Math.PI.toExponential(  ));
+
+// Produces
+
+3e+0
+3.14e+0
+3.1415927e+0
+3.1415926535897930e+0
+3.141592653589793e+0</pre></dd><dt><span class="term"><span class="emphasis"><em>number</em></span>.toFixed(<span class="emphasis"><em>fractionDigits</em></span>
+                                )</span></dt><dd><p>The <code class="literal">toFixed</code> method converts
+                                    this <em class="replaceable"><code>number</code></em> to a string in the
+                                    decimal form. The optional
+                                        <em class="replaceable"><code>fractionDigits</code></em> parameter controls
+                                    the number of decimal places. It should be between 0 and 20. The
+                                    default is 0:</p><a id="I_programlisting8_d1e6983"/><pre class="programlisting">document.writeln(Math.PI.toFixed(0));
+document.writeln(Math.PI.toFixed(2));
+document.writeln(Math.PI.toFixed(7));
+document.writeln(Math.PI.toFixed(16));
+document.writeln(Math.PI.toFixed(  ));
+
+// Produces
+
+3
+3.14
+3.1415927
+3.1415926535897930
+3</pre></dd><dt><span class="term"><span class="emphasis"><em>number</em></span>.toPrecision(<span class="emphasis"><em>precision</em></span>
+                                )</span></dt><dd><p>The <code class="literal">toPrecision</code> method
+                                    converts this <em class="replaceable"><code>number</code></em> to a string in
+                                    the decimal form. The optional
+                                        <em class="replaceable"><code>precision</code></em> parameter controls the
+                                    number of digits of precision. It should be between 1 and
+                                    21:</p><a id="I_programlisting8_d1e7005"/><pre class="programlisting">document.writeln(Math.PI.toPrecision(2));
+document.writeln(Math.PI.toPrecision(7));
+document.writeln(Math.PI.toPrecision(16));
+document.writeln(Math.PI.toPrecision(  ));
+
+// Produces
+
+3.1
+3.141593
+3.141592653589793
+3.141592653589793</pre></dd><dt><span class="term"><span class="emphasis"><em>number</em></span>.toString(<span class="emphasis"><em>radix</em></span>
+                                )</span></dt><dd><p>The <code class="literal">toString</code> method
+                                    converts this <em class="replaceable"><code>number</code></em> to a string. The
+                                    optional <em class="replaceable"><code>radix</code></em> parameter controls
+                                    radix, or base. It should be between 2 and 36. The default
+                                        <em class="replaceable"><code>radix</code></em> is base 10. The
+                                        <em class="replaceable"><code>radix</code></em> parameter is most commonly
+                                    used with integers, but it can be used on any number.</p><p>The most common case, <em class="replaceable"><code>number</code></em>
+                                    <code class="literal">.toString( )</code>, can be written
+                                    more simply as <code class="literal">String(</code>
+                                    <em class="replaceable"><code>number</code></em>
+                                    <code class="literal">)</code>:</p><a id="I_programlisting8_d1e7050"/><pre class="programlisting">document.writeln(Math.PI.toString(2));
+document.writeln(Math.PI.toString(8));
+document.writeln(Math.PI.toString(16));
+document.writeln(Math.PI.toString(  ));
+
+// Produces
+
+11.001001000011111101101010100010001000010110100011
+3.1103755242102643
+3.243f6a8885a3
+3.141592653589793</pre></dd></dl></div></dd><dt><span class="term">
+                    <span class="strong"><strong>Object</strong></span>
+                </span></dt><dd><p/><div class="variablelist"><dl><dt><span class="term"><span class="emphasis"><em>object</em></span>.hasOwnProperty(<span class="emphasis"><em>name</em></span>
+                                )</span></dt><dd><p>The <code class="literal">hasOwnProperty</code> method
+                                    returns <code class="literal">true</code> if the
+                                        <em class="replaceable"><code>object</code></em> contains a property having
+                                    the <em class="replaceable"><code>name</code></em> . The prototype chain is not
+                                    examined. This method is useless if the
+                                        <em class="replaceable"><code>name</code></em> is <code class="literal">hasOwnProperty</code>:</p><a id="I_programlisting8_d1e7089"/><pre class="programlisting">var a = {member: true};
+var b = Object.create(a);              // from Chapter 3
+var t = a.hasOwnProperty('member');   // t is true
+var u = b.hasOwnProperty('member');   // u is false
+var v = b.member;                     // v is true</pre></dd></dl></div></dd><dt><span class="term">
+                    <span class="strong"><strong>RegExp</strong></span>
+                </span></dt><dd><p/><div class="variablelist"><dl><dt><span class="term"><span class="emphasis"><em>regexp</em></span>.exec(<span class="emphasis"><em>string</em></span>
+                                )</span></dt><dd><p>The <code class="literal">exec</code> method is the most
+                                    powerful (and slowest) of the methods that use regular
+                                    expressions. If it successfully matches the
+                                        <em class="replaceable"><code>regexp</code></em> and the
+                                        <em class="replaceable"><code>string</code></em>, it returns an array. The
+                                    0 element of the array will contain the substring that matched
+                                    the <em class="replaceable"><code>regexp</code></em> . The 1 element is the
+                                    text captured by group 1, the 2 element is the text captured by
+                                    group 2, and so on. If the match fails, it returns <code class="literal">null</code>.</p><p>If the <em class="replaceable"><code>regexp</code></em> has a <code class="literal">g</code> flag, things are a little more
+                                    complicated. The searching begins not at position 0 of the
+                                    string, but at position <em class="replaceable"><code>regexp</code></em>
+                                    <code class="literal">.lastIndex</code> (which is
+                                    initially zero). If the match is successful, then
+                                        <em class="replaceable"><code>regexp</code></em>
+                                    <code class="literal">.lastIndex</code> will be set to the
+                                    position of the first character after the match. An unsuccessful
+                                    match resets <em class="replaceable"><code>regexp</code></em>
+                                    <code class="literal">.lastIndex</code> to 0.</p><p>This allows you to search for several occurrences of a pattern
+                                    in a string by calling <code class="literal">exec</code>
+                                    in a loop. There are a couple things to watch out for. If you
+                                    exit the loop early, you must reset
+                                        <em class="replaceable"><code>regexp</code></em>
+                                    <code class="literal">.lastIndex</code> to 0 yourself
+                                    before entering the loop again. Also, the <code class="literal">^</code> factor matches only when
+                                        <em class="replaceable"><code>regexp</code></em>
+                                    <code class="literal">.lastIndex</code> is 0:</p><a id="I_programlisting8_d1e7172"/><pre class="programlisting">// Break a simple html text into tags and texts.
+// (See string.replace for the entityify method.)
+
+// For each tag or text, produce an array containing
+// [0] The full matched tag or text
+// [1] The /, if there is one
+// [2] The tag name
+// [3] The attributes, if any
+
+var text = '&lt;html&gt;&lt;body bgcolor=linen&gt;&lt;p&gt;' +
+        'This is &lt;b&gt;bold&lt;\/b&gt;!&lt;\/p&gt;&lt;\/body&gt;&lt;\/html&gt;';
+var tags = /[^&lt;&gt;]+|&lt;(\/?)([A-Za-z]+)([^&lt;&gt;]*)&gt;/g;
+var a, i;
+
+while ((a = tags.exec(text))) {
+    for (i = 0; i &lt; a.length; i += 1) {
+        document.writeln(('// [' + i + '] ' + a[i]).entityify(  ));
+    }
+    document.writeln(  );
+}
+
+// Result:
+
+// [0] &lt;html&gt;
+// [1]
+// [2] html
+// [3]
+
+// [0] &lt;body bgcolor=linen&gt;
+// [1]
+// [2] body
+// [3]  bgcolor=linen
+
+// [0] &lt;p&gt;
+// [1]
+// [2] p
+// [3]
+
+// [0] This is
+// [1] undefined
+// [2] undefined
+// [3] undefined
+
+// [0] &lt;b&gt;
+// [1]
+// [2] b
+// [3]
+
+// [0] bold
+// [1] undefined
+// [2] undefined
+// [3] undefined
+
+// [0] &lt;/b&gt;
+// [1] /
+// [2] b
+// [3]
+
+// [0] !
+// [1] undefined
+// [2] undefined
+// [3] undefined
+
+// [0] &lt;/p&gt;
+// [1] /
+// [2] p
+// [3]
+
+// [0] &lt;/body&gt;
+// [1] /
+// [2] body
+// [3]
+
+// [0] &lt;/html&gt;
+// [1] /
+// [2] html
+// [3]</pre></dd><dt><span class="term"><span class="emphasis"><em>regexp</em></span>.test(<span class="emphasis"><em>string</em></span>
+                                )</span></dt><dd><p>The <code class="literal">test</code> method is the
+                                    simplest (and fastest) of the methods that use regular
+                                    expressions. If the <em class="replaceable"><code>regexp</code></em> matches
+                                    the <em class="replaceable"><code>string</code></em>, it returns <code class="literal">true</code> ; otherwise, it returns
+                                        <code class="literal">false</code>. Do not use the
+                                        <code class="literal">g</code> flag with this
+                                    method:</p><a id="I_programlisting8_d1e7204"/><pre class="programlisting">var b = /&amp;.+;/.test('frank &amp;amp; beans');
+// b is true</pre><p><code class="literal">test</code> could be implemented
+                                    as:</p><a id="I_programlisting8_d1e7210"/><pre class="programlisting">RegExp.method('test', function (string) {
+    return this.exec(string) !== null;
+});</pre></dd></dl></div></dd><dt><span class="term">
+                    <span class="strong"><strong>String</strong></span>
+                </span></dt><dd><p/><div class="variablelist"><dl><dt><span class="term"><span class="emphasis"><em>string</em></span>.charAt(<span class="emphasis"><em>pos</em></span>
+                                )</span></dt><dd><p>The <code class="literal">charAt</code> method returns
+                                    the character at position <em class="replaceable"><code>pos</code></em> in this
+                                        <em class="replaceable"><code>string</code></em> . If
+                                        <em class="replaceable"><code>pos</code></em> is less than zero or greater
+                                    than or equal to <em class="replaceable"><code>string</code></em>
+                                    <code class="literal">.length</code>, it returns the empty
+                                    string. JavaScript does not have a character type. The result of
+                                    this method is a string:</p><a id="I_programlisting8_d1e7249"/><pre class="programlisting">var name = 'Curly';
+var initial = name.charAt(0);    // initial is 'C'</pre><p><code class="literal">charAt</code> could be implemented
+                                    as:</p><a id="I_programlisting8_d1e7255"/><pre class="programlisting">String.method('charAt', function (pos) {
+return this.slice(pos, pos + 1);
+});</pre></dd><dt><span class="term"><span class="emphasis"><em>string</em></span>.charCodeAt(<span class="emphasis"><em>pos</em></span>
+                                )</span></dt><dd><p>The <code class="literal">charCodeAt</code> method is
+                                    the same as <code class="literal">charAt</code> except
+                                    that instead of returning a string, it returns an integer
+                                    representation of the code point value of the character at
+                                    position <em class="replaceable"><code>pos</code></em> in that
+                                        <em class="replaceable"><code>string</code></em> . If
+                                        <em class="replaceable"><code>pos</code></em> is less than zero or greater
+                                    than or equal to <em class="replaceable"><code>string</code></em>
+                                    <code class="literal">.length</code>, it returns <code class="literal">NaN</code>:</p><a id="I_programlisting8_d1e7293"/><pre class="programlisting">var name = 'Curly';
+var initial = name.charCodeAt(0);    // initial is 67</pre></dd><dt><span class="term"><span class="emphasis"><em>string</em></span>.concat(<span class="emphasis"><em>string</em></span>...)</span></dt><dd><p>The <code class="literal">concat</code> method makes a
+                                    new string by concatenating other strings together. It is rarely
+                                    used because the <code class="literal">+</code> operator
+                                    is more convenient:</p><a id="I_programlisting8_d1e7312"/><pre class="programlisting">var s = 'C'.concat('a', 't');    // s is 'Cat'</pre></dd><dt><span class="term"><span class="emphasis"><em>string</em></span>.indexOf(<span class="emphasis"><em>searchString</em></span>,
+                                    <span class="emphasis"><em>position</em></span> )</span></dt><dd><p>The <code class="literal">indexOf</code> method searches
+                                    for a <em class="replaceable"><code>searchString</code></em> within a
+                                        <em class="replaceable"><code>string</code></em>. If it is found, it
+                                    returns the position of the first matched character; otherwise,
+                                    it returns −1. The optional <em class="replaceable"><code>position</code></em>
+                                    parameter causes the search to begin at some specified position
+                                    in the <em class="replaceable"><code>string</code></em>:</p><a id="I_programlisting8_d1e7343"/><pre class="programlisting">var text = 'Mississippi';
+var p = text.indexOf('ss');    // p is 2
+p = text.indexOf('ss', 3);     // p is 5
+p = text.indexOf('ss', 6);     // p is −1</pre></dd><dt><span class="term"><span class="emphasis"><em>string</em></span>.lastIndexOf(<span class="emphasis"><em>searchString</em></span>,
+                                    <span class="emphasis"><em>position</em></span> )</span></dt><dd><p>The <code class="literal">lastIndexOf</code> method is
+                                    like the <code class="literal">indexOf</code> method,
+                                    except that it searches from the end of the string instead of
+                                    the front:</p><a id="I_programlisting8_d1e7365"/><pre class="programlisting">var text = 'Mississippi';
+var p = text.lastIndexOf('ss');    // p is 5
+p = text.lastIndexOf('ss', 3);     // p is 2
+p = text.lastIndexOf('ss', 6);     // p is 5</pre></dd><dt><span class="term"><span class="emphasis"><em>string</em></span>.localeCompare(<span class="emphasis"><em>that</em></span>
+                                )</span></dt><dd><p>The <code class="literal">localeCompare</code> method
+                                    compares two strings. The rules for how the strings are compared
+                                    are not specified. If this <em class="replaceable"><code>string</code></em> is
+                                    less than <em class="replaceable"><code>that</code></em> string, the result is
+                                    negative. If they are equal, the result is zero. This is similar
+                                    to the convention for the <em class="replaceable"><code>array</code></em>
+                                    <code class="literal">.sort</code> comparison
+                                    function:</p><a id="I_programlisting8_d1e7393"/><pre class="programlisting">var m = ['AAA', 'A', 'aa', 'a', 'Aa', 'aaa'];
+m.sort(function (a, b) {
+    return a.localeCompare(b);
+});
+// m (in some locale) is
+//      ['a', 'A', 'aa', 'Aa', 'aaa', 'AAA']</pre></dd><dt><span class="term"><span class="emphasis"><em>string</em></span>.match(<span class="emphasis"><em>regexp</em></span>
+                                )</span></dt><dd><p>The <code class="literal">match</code> method matches a
+                                    string and a regular expression. How it does this depends on the
+                                        <code class="literal">g</code> flag. If there is no
+                                        <code class="literal">g</code> flag, then the result
+                                    of calling <em class="replaceable"><code>string</code></em>
+                                    <code class="literal">.match(</code>
+                                    <em class="replaceable"><code>regexp</code></em>
+                                    <code class="literal">)</code> is the same as calling
+                                        <em class="replaceable"><code>regexp</code></em>
+                                    <code class="literal">.exec(</code>
+                                    <em class="replaceable"><code>string</code></em>
+                                    <code class="literal">)</code>. However, if the
+                                        <em class="replaceable"><code>regexp</code></em> has the <code class="literal">g</code> flag, then it produces an array
+                                    of all the matches but excludes the capturing groups:</p><a id="I_programlisting8_d1e7447"/><pre class="programlisting">var text = '&lt;html&gt;&lt;body bgcolor=linen&gt;&lt;p&gt;' +
+        'This is &lt;b&gt;bold&lt;\/b&gt;!&lt;\/p&gt;&lt;\/body&gt;&lt;\/html&gt;';
+var tags = /[^&lt;&gt;]+|&lt;(\/?)([A-Za-z]+)([^&lt;&gt;]*)&gt;/g;
+var a, i;
+
+a = text.match(tags);
+for (i = 0; i &lt; a.length; i += 1) {
+    document.writeln(('// [' + i + '] ' + a[i]).entityify(  ));
+}
+
+// The result is
+
+// [0] &lt;html&gt;
+// [1] &lt;body bgcolor=linen&gt;
+// [2] &lt;p&gt;
+// [3] This is
+// [4] &lt;b&gt;
+// [5] bold
+// [6] &lt;/b&gt;
+// [7] !
+// [8] &lt;/p&gt;
+// [9] &lt;/body&gt;
+// [10] &lt;/html&gt;</pre></dd><dt><span class="term"><span class="emphasis"><em>string</em></span>.replace(<span class="emphasis"><em>searchValue</em></span>,
+                                    <span class="emphasis"><em>replaceValue</em></span> )</span></dt><dd><p>The <code class="literal">replace</code> method does a
+                                    search and replace operation on this
+                                        <em class="replaceable"><code>string</code></em>, producing a new string.
+                                    The <em class="replaceable"><code>searchValue</code></em> argument can be a
+                                    string or a regular expression object. If it is a string,
+                                        <span class="emphasis"><em>only</em></span> the first occurrence of the
+                                        <em class="replaceable"><code>searchValue</code></em> is replaced,
+                                    so:</p><a id="I_programlisting8_d1e7478"/><pre class="programlisting">var result = "mother_in_law".replace('_', '-');</pre><p>will produce <code class="literal">"mother-in_law"</code>, which might be a
+                                    disappointment.</p><p>If <em class="replaceable"><code>searchValue</code></em> is a regular
+                                    expression and if it has the <code class="literal">g</code> flag, then it will replace all occurrences. If
+                                    it does not have the <code class="literal">g</code> flag,
+                                    then it will replace only the first occurrence.</p><p>The <em class="replaceable"><code>replaceValue</code></em> can be a string or
+                                    a function. If <em class="replaceable"><code>replaceValue</code></em> is a
+                                    string, the character <code class="literal">$</code> has
+                                    special meaning:</p><a id="I_programlisting8_d1e7507"/><pre class="programlisting">// Capture 3 digits within parens
+
+var oldareacode = /\((\d{3})\)/g;
+var p = '(555)666-1212'.replace(oldareacode, '$1-');
+// p is '555-666-1212'</pre><div class="informaltable"><table style="border-collapse: collapse;border-top: 0.5pt solid ; border-bottom: 0.5pt solid ; border-left: 0.5pt solid ; border-right: 0.5pt solid ; "><colgroup><col/><col/></colgroup><thead><tr><th style="text-align: left" valign="bottom">
+                                                  <p>Dollar sequence</p>
+                                                </th><th style="text-align: left" valign="bottom">
+                                                  <p>Replacement</p>
+                                                </th></tr></thead><tbody><tr><td style="text-align: left" valign="top">
+                                                  <p>
+                                                  <code class="literal">$$</code>
+                                                  </p>
+                                                </td><td style="text-align: left" valign="top">
+                                                  <p>
+                                                  <code class="literal">$</code>
+                                                  </p>
+                                                </td></tr><tr><td style="text-align: left" valign="top">
+                                                  <p>
+                                                  <code class="literal">$&amp;</code>
+                                                  </p>
+                                                </td><td style="text-align: left" valign="top">
+                                                  <p>The matched text</p>
+                                                </td></tr><tr><td style="text-align: left" valign="top">
+                                                  <p>
+                                                  <code class="literal">$</code>
+                                                  <em class="replaceable"><code>number</code></em>
+                                                  </p>
+                                                </td><td style="text-align: left" valign="top">
+                                                  <p>Capture group text</p>
+                                                </td></tr><tr><td style="text-align: left" valign="top">
+                                                  <p>
+                                                  <code class="literal">$`</code>
+                                                  </p>
+                                                </td><td style="text-align: left" valign="top">
+                                                  <p>The text preceding the match</p>
+                                                </td></tr><tr><td style="text-align: left" valign="top">
+                                                  <p>
+                                                  <code class="literal">$'</code>
+                                                  </p>
+                                                </td><td style="text-align: left" valign="top">
+                                                  <p>The text following the match</p>
+                                                </td></tr></tbody></table></div><p>If the <em class="replaceable"><code>replaceValue</code></em> is a function,
+                                    it will be called for each match, and the string returned by the
+                                    function will be used as the replacement text. The first
+                                    parameter passed to the function is the matched text. The second
+                                    parameter is the text of capture group 1, the next parameter is
+                                    the text of capture group 2, and so on:</p><a id="I_programlisting8_d1e7570"/><pre class="programlisting">String.method('entityify', function (  ) {
+
+    var character = {
+        '&lt;' : '&amp;lt;',
+        '&gt;' : '&amp;gt;',
+        '&amp;' : '&amp;amp;',
+        '"' : '&amp;quot;'
+    };
+
+// Return the string.entityify method, which
+// returns the result of calling the replace method.
+// Its replaceValue function returns the result of
+// looking a character up in an object. This use of
+// an object usually outperforms switch statements.
+
+    return function (  ) {
+        return this.replace(/[&lt;&gt;&amp;"]/g, function (c) {
+            return character[c];
+        });
+    };
+}(  ));
+alert("&lt;&amp;&gt;".entityify(  ));  // &amp;lt;&amp;amp;&amp;gt;</pre></dd><dt><span class="term"><span class="emphasis"><em>string</em></span>.search(<span class="emphasis"><em>regexp</em></span>
+                                )</span></dt><dd><p>The <code class="literal">search</code> method is like
+                                    the <code class="literal">indexOf</code> method, except
+                                    that it takes a regular expression object instead of a string.
+                                    It returns the position of the first character of the first
+                                    match, if there is one, or −1 if the search fails. The <code class="literal">g</code> flag is ignored. There is no
+                                        <em class="replaceable"><code>position</code></em> parameter:</p><a id="I_programlisting8_d1e7595"/><pre class="programlisting">var text = 'and in it he says "Any damn fool could';
+var pos = text.search(/["']/);    // pos is 18</pre></dd><dt><span class="term"><span class="emphasis"><em>string</em></span>.slice(<span class="emphasis"><em>start</em></span>,
+                                    <span class="emphasis"><em>end</em></span> )</span></dt><dd><p>The <code class="literal">slice</code> method makes a
+                                    new string by copying a portion of another
+                                        <em class="replaceable"><code>string</code></em>. If the
+                                        <em class="replaceable"><code>start</code></em> parameter is negative, it
+                                    adds <em class="replaceable"><code>string</code></em>
+                                    <code class="literal">.length</code> to it. The
+                                        <em class="replaceable"><code>end</code></em> parameter is optional, and
+                                    its default value is <em class="replaceable"><code>string</code></em>
+                                    <code class="literal">.length</code>. If the
+                                        <em class="replaceable"><code>end</code></em> parameter is negative, then
+                                        <em class="replaceable"><code>string</code></em>
+                                    <code class="literal">.length</code> is added to it. The
+                                        <em class="replaceable"><code>end</code></em> parameter is one greater than
+                                    the position of the last character. To get <code class="literal">n</code> characters starting at position
+                                        <code class="literal">p</code>, use
+                                        <em class="replaceable"><code>string</code></em>
+                                    <code class="literal">.slice(p, p + n)</code>. Also see
+                                        <em class="replaceable"><code>string</code></em>
+                                    <code class="literal">.substring</code> and
+                                        <em class="replaceable"><code>array</code></em>
+                                    <code class="literal">.slice</code>, later and earlier in
+                                    this chapter, respectively.</p><a id="I_programlisting8_d1e7674"/><pre class="programlisting">var text = 'and in it he says "Any damn fool could';
+var a = text.slice(18);
+// a is '"Any damn fool could'
+var b = text.slice(0, 3);
+// b is 'and'
+var c = text.slice(−5);
+// c is 'could'
+var d = text.slice(19, 32);
+// d is 'Any damn fool'</pre></dd><dt><span class="term"><span class="emphasis"><em>string</em></span>.split(<span class="emphasis"><em>separator</em></span>,
+                                    <span class="emphasis"><em>limit</em></span> )</span></dt><dd><p>The <code class="literal">split</code> method creates an
+                                    array of strings by splitting this
+                                        <em class="replaceable"><code>string</code></em> into pieces. The optional
+                                        <em class="replaceable"><code>limit</code></em> parameter can limit the
+                                    number of pieces that will be split. The
+                                        <em class="replaceable"><code>separator</code></em> parameter can be a
+                                    string or a regular expression.</p><p>If the <em class="replaceable"><code>separator</code></em> is the empty
+                                    string, an array of single characters is produced:</p><a id="I_programlisting8_d1e7707"/><pre class="programlisting">var digits = '0123456789';
+var a = digits.split('', 5);
+// a is ['0', '1', '2', '3', '4']</pre><p>Otherwise, the <em class="replaceable"><code>string</code></em> is searched
+                                    for all occurrences of the <em class="replaceable"><code>separator</code></em>.
+                                    Each unit of text between the separators is copied into the
+                                    array. The <code class="literal">g</code> flag is
+                                    ignored:</p><a id="I_programlisting8_d1e7720"/><pre class="programlisting">var ip = '192.168.1.0';
+var b = ip.split('.');
+// b is ['192', '168', '1', '0']
+
+var c = '|a|b|c|'.split('|');
+// c is ['', 'a', 'b', 'c', '']
+
+var text = 'last,  first ,middle';
+var d = text.split(/\s*,\s*/);
+// d is [
+//    'last',
+//    'first',
+//    'middle'
+// ]</pre><p>There are some special cases to watch out for. Text from
+                                    capturing groups will be included in the split:</p><a id="I_programlisting8_d1e7724"/><pre class="programlisting">var e = text.split(/\s*(,)\s*/);
+// e is [
+//    'last',
+//    ',',
+//    'first',
+//    ',',
+//    'middle'
+// ]</pre><p>Some implementations suppress empty strings in the output
+                                    array when the <em class="replaceable"><code>separator</code></em> is a regular
+                                    expression:</p><a id="I_programlisting8_d1e7731"/><pre class="programlisting">var f = '|a|b|c|'.split(/\|/);
+// f is ['a', 'b', 'c'] on some systems, and
+// f is ['', 'a', 'b', 'c', ''] on others</pre></dd><dt><span class="term"><span class="emphasis"><em>string</em></span>.substring(<span class="emphasis"><em>start</em></span>,
+                                    <span class="emphasis"><em>end</em></span> )</span></dt><dd><p>The <code class="literal">substring</code> method is the
+                                    same as the <code class="literal">slice</code> method
+                                    except that it doesn't handle the adjustment for negative
+                                    parameters. There is no reason to use the <code class="literal">substring</code> method. Use <code class="literal">slice</code> instead.</p></dd><dt><span class="term"><span class="emphasis"><em>string</em></span>.toLocaleLowerCase( )</span></dt><dd><p>The <code class="literal">toLocaleLowerCase</code>
+                                    method produces a new string that is made by converting this
+                                        <em class="replaceable"><code>string</code></em> to lowercase using the
+                                    rules for the locale. This is primarily for the benefit of
+                                    Turkish because in that language `I' converts to <code class="literal">1</code>, not `i'.</p></dd><dt><span class="term"><span class="emphasis"><em>string</em></span>.toLocaleUpperCase( )</span></dt><dd><p>The <code class="literal">toLocaleUpperCase</code>
+                                    method produces a new string that is made by converting this
+                                        <em class="replaceable"><code>string</code></em> to uppercase using the
+                                    rules for the locale. This is primarily for the benefit of
+                                    Turkish, because in that language `i' converts to
+                                        `<span class="inlinemediaobject"><a id="I_inlinemediaobject8_d1e7791"/><img src="httpatomoreillycomsourceoreillyimages238710.png" alt=""/></span>', not `I'.</p></dd><dt><span class="term"><span class="emphasis"><em>string</em></span>.toLowerCase( )</span></dt><dd><p>The <code class="literal">toLowerCase</code> method
+                                    produces a new string that is made by converting this
+                                        <em class="replaceable"><code>string</code></em> to lowercase.</p></dd><dt><span class="term"><span class="emphasis"><em>string</em></span>.toUpperCase( )</span></dt><dd><p>The <code class="literal">toUpperCase</code> method
+                                    produces a new string that is made by converting this
+                                        <em class="replaceable"><code>string</code></em> to uppercase.</p></dd><dt><span class="term">String.fromCharCode(<span class="emphasis"><em>char</em></span>...)</span></dt><dd><p>The <code class="literal">String.fromCharCode</code>
+                                    function produces a string from a series of numbers.</p><a id="I_programlisting8_d1e7837"/><pre class="programlisting">var a = String.fromCharCode(67, 97, 116);
+// a is 'Cat'</pre></dd></dl></div></dd></dl></div></div></body></html>

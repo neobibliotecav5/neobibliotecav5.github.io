@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<meta charset="utf-8"/>
+<title>Capítulo 3: Describir datos con estadísticas</title>
+<link href="style.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="core.css" media="all" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch03lev1sec06"><strong>Gráficos de dispersión</strong></h3>
+<p class="noindent">En el apartado anterior, vimos un ejemplo de cómo un diagrama de dispersión puede darnos una primera indicación de la existencia de una correlación entre dos conjuntos de números. En este apartado, veremos la importancia de analizar gráficos de dispersión observando un conjunto de cuatro conjuntos de datos. Para estos conjuntos de datos, las medidas estadísticas convencionales resultan ser todas iguales, pero los gráficos de dispersión de cada conjunto de datos revelan importantes diferencias.</p>
+<p class="indent">En primer lugar, vamos a ver cómo crear un gráfico de dispersión en Python:</p>
+<p class="programs" translate="no">   &gt;&gt;&gt; <span class="codestrong">x = [1, 2, 3, 4]</span><br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">y = [2, 4, 6, 8]</span><br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">import matplotlib.pyplot as plt</span><br translate="no"/><span class="ent">➊</span> &gt;&gt;&gt; <span class="codestrong">plt.scatter(x, y)</span><br translate="no"/>   &lt;matplotlib.collections.PathCollection object at 0x7f351825d550&gt;<br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">plt.show()</span></p>
+<p class="indent">La función <span class="literal" translate="no">scatter()</span> se utiliza para crear un gráfico de dispersión entre dos listas de números, <span class="literal" translate="no">x</span> y <span class="literal" translate="no">y</span> <span class="ent">➊.</span> La única diferencia entre este gráfico y los gráficos que creamos en <a href="ch02.html#ch02">el Capítulo 2</a> es que aquí utilizamos la función <span class="literal" translate="no">scatter()</span> en lugar de la función <span class="literal" translate="no">plot()</span>. Una vez más, tenemos que llamar a <span class="literal" translate="no">show()</span> para visualizar el gráfico.</p>
+<p class="indent"><a id="page_82"></a>Para aprender más sobre los gráficos de dispersión, veamos un importante estudio estadístico: "Los gráficos en el análisis estadístico", del estadístico Francis Anscombe<a href="footnote.html#fn01" id="fn_01"><sup>.</sup></a> 1 El estudio considera cuatro conjuntos de datos diferentes -denominados <em>el cuarteto de Anscombe- con</em>idénticas propiedades estadísticas: media, varianza y coeficiente de correlación.</p>
+<p class="indent">Los conjuntos de datos son los que se muestran en <a href="ch03.html#ch3tab4">la Tabla 3-4</a> (reproducida del estudio original).</p>
+<p class="tablet"><a id="ch3tab4"></a><strong>Tabla 3-4:</strong> Cuarteto de Anscombe: cuatro conjuntos de datos diferentes con medidas estadísticas casi idénticas</p>
+<table border="0" cellpadding="0" cellspacing="0" class="topbot" width="80%">
+<thead>
+<tr>
+<td class="table_th1" colspan="2" valign="top"><p class="tablec"><strong>A</strong></p></td>
+<td class="table_th1" colspan="2" valign="top"><p class="tablec"><strong>B</strong></p></td>
+<td class="table_th1" colspan="2" valign="top"><p class="tablec"><strong>C</strong></p></td>
+<td class="table_th" colspan="2" valign="top"><p class="tablec"><strong>D</strong></p></td>
+</tr>
+<tr>
+<td class="table_th" valign="top"><p class="tablec"><strong>X1</strong></p></td>
+<td class="table_th1" valign="top"><p class="tablec"><strong>Y1</strong></p></td>
+<td class="table_th" valign="top"><p class="tablec"><strong>X2</strong></p></td>
+<td class="table_th1" valign="top"><p class="tablec"><strong>Y2</strong></p></td>
+<td class="table_th" valign="top"><p class="tablec"><strong>X3</strong></p></td>
+<td class="table_th1" valign="top"><p class="tablec"><strong>Y3</strong></p></td>
+<td class="table_th" valign="top"><p class="tablec"><strong>X4</strong></p></td>
+<td class="table_th" valign="top"><p class="tablec"><strong>Y4</strong></p></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="table" valign="top"><p class="tabler">10.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">8.04</p></td>
+<td class="table" valign="top"><p class="tabler">10.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">9.14</p></td>
+<td class="table" valign="top"><p class="tabler">10.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">7.46</p></td>
+<td class="table" valign="top"><p class="tabler">8.0</p></td>
+<td class="table" valign="top"><p class="tabler">6.58</p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="tabler">8.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">6.95</p></td>
+<td class="table" valign="top"><p class="tabler">8.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">8.14</p></td>
+<td class="table" valign="top"><p class="tabler">8.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">6.77</p></td>
+<td class="table" valign="top"><p class="tabler">8.0</p></td>
+<td class="table" valign="top"><p class="tabler">5.76</p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="tabler">13.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">7.58</p></td>
+<td class="table" valign="top"><p class="tabler">13.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">8.74</p></td>
+<td class="table" valign="top"><p class="tabler">13.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">12.74</p></td>
+<td class="table" valign="top"><p class="tabler">8.0</p></td>
+<td class="table" valign="top"><p class="tabler">7.71</p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="tabler">9.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">8.81</p></td>
+<td class="table" valign="top"><p class="tabler">9.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">8.77</p></td>
+<td class="table" valign="top"><p class="tabler">9.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">7.11</p></td>
+<td class="table" valign="top"><p class="tabler">8.0</p></td>
+<td class="table" valign="top"><p class="tabler">8.84</p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="tabler">11.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">8.33</p></td>
+<td class="table" valign="top"><p class="tabler">11.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">9.26</p></td>
+<td class="table" valign="top"><p class="tabler">11.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">7.81</p></td>
+<td class="table" valign="top"><p class="tabler">8.0</p></td>
+<td class="table" valign="top"><p class="tabler">8.47</p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="tabler">14.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">9.96</p></td>
+<td class="table" valign="top"><p class="tabler">14.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">8.10</p></td>
+<td class="table" valign="top"><p class="tabler">14.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">8.84</p></td>
+<td class="table" valign="top"><p class="tabler">8.0</p></td>
+<td class="table" valign="top"><p class="tabler">7.04</p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="tabler">6.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">7.24</p></td>
+<td class="table" valign="top"><p class="tabler">6.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">6.13</p></td>
+<td class="table" valign="top"><p class="tabler">6.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">6.08</p></td>
+<td class="table" valign="top"><p class="tabler">8.0</p></td>
+<td class="table" valign="top"><p class="tabler">5.25</p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="tabler">4.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">4.26</p></td>
+<td class="table" valign="top"><p class="tabler">4.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">3.10</p></td>
+<td class="table" valign="top"><p class="tabler">4.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">5.39</p></td>
+<td class="table" valign="top"><p class="tabler">19.0</p></td>
+<td class="table" valign="top"><p class="tabler">12.50</p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="tabler">12.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">10.84</p></td>
+<td class="table" valign="top"><p class="tabler">12.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">9.13</p></td>
+<td class="table" valign="top"><p class="tabler">12.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">8.15</p></td>
+<td class="table" valign="top"><p class="tabler">8.0</p></td>
+<td class="table" valign="top"><p class="tabler">5.56</p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="tabler">7.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">4.82</p></td>
+<td class="table" valign="top"><p class="tabler">7.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">7.26</p></td>
+<td class="table" valign="top"><p class="tabler">7.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">6.42</p></td>
+<td class="table" valign="top"><p class="tabler">8.0</p></td>
+<td class="table" valign="top"><p class="tabler">7.91</p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="tabler">5.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">5.68</p></td>
+<td class="table" valign="top"><p class="tabler">5.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">4.74</p></td>
+<td class="table" valign="top"><p class="tabler">5.0</p></td>
+<td class="table_ro" valign="top"><p class="tabler">5.73</p></td>
+<td class="table" valign="top"><p class="tabler">8.0</p></td>
+<td class="table" valign="top"><p class="tabler">6.89</p></td>
+</tr>
+</tbody>
+</table>
+<p class="indent">Nos referiremos a los pares (X1, Y1), (X2, Y2), (X3, Y3) y (X4, Y4) como conjuntos de datos A, B, C y D, respectivamente. <a href="ch03.html#ch3tab5">La Tabla 3-5</a> presenta las medidas estadísticas de los conjuntos de datos redondeadas a dos cifras decimales.</p>
+<p class="tablet"><a id="ch3tab5"></a><strong>Tabla 3-5:</strong> Cuarteto de Anscombe-Medidas estadísticas</p>
+<table border="0" cellpadding="0" cellspacing="0" class="topbot" width="80%">
+<thead>
+<tr>
+<td class="table_th1" rowspan="2" valign="bottom"><p class="tablec"><strong>Conjunto de datos</strong></p></td>
+<td class="table_th1" colspan="2" valign="top"><p class="tablec"><strong>X</strong></p></td>
+<td class="table_th1" colspan="2" valign="top"><p class="tablec"><strong>Y</strong></p></td>
+</tr>
+<tr>
+<td class="table_th" valign="top"><p class="tablec"><strong>Media</strong></p></td>
+<td class="table_th1" valign="top"><p class="tablec"><strong>Desv. est.</strong></p></td>
+<td class="table_th" valign="top"><p class="tablec"><strong>Media</strong></p></td>
+<td class="table_th1" valign="top"><p class="tablec"><strong>Desv. est.</strong></p></td>
+<td class="table_th" valign="bottom"><p class="tablec"><strong>Correlación</strong></p></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="table_ro" valign="top"><p class="tablec">A</p></td>
+<td class="table" valign="top"><p class="tablec">9.00</p></td>
+<td class="table_ro" valign="top"><p class="tablec">3.32</p></td>
+<td class="table" valign="top"><p class="tablec">7.50</p></td>
+<td class="table_ro" valign="top"><p class="tablec">2.03</p></td>
+<td class="table" valign="top"><p class="tablec">0.82</p></td>
+</tr>
+<tr>
+<td class="table_ro" valign="top"><p class="tablec">B</p></td>
+<td class="table" valign="top"><p class="tablec">9.00</p></td>
+<td class="table_ro" valign="top"><p class="tablec">3.32</p></td>
+<td class="table" valign="top"><p class="tablec">7.50</p></td>
+<td class="table_ro" valign="top"><p class="tablec">2.03</p></td>
+<td class="table" valign="top"><p class="tablec">0.82</p></td>
+</tr>
+<tr>
+<td class="table_ro" valign="top"><p class="tablec">C</p></td>
+<td class="table" valign="top"><p class="tablec">9.00</p></td>
+<td class="table_ro" valign="top"><p class="tablec">3.32</p></td>
+<td class="table" valign="top"><p class="tablec">7.50</p></td>
+<td class="table_ro" valign="top"><p class="tablec">2.03</p></td>
+<td class="table" valign="top"><p class="tablec">0.82</p></td>
+</tr>
+<tr>
+<td class="table_ro" valign="top"><p class="tablec">D</p></td>
+<td class="table" valign="top"><p class="tablec">9.00</p></td>
+<td class="table_ro" valign="top"><p class="tablec">3.32</p></td>
+<td class="table" valign="top"><p class="tablec">7.50</p></td>
+<td class="table_ro" valign="top"><p class="tablec">2.03</p></td>
+<td class="table" valign="top"><p class="tablec">0.82</p></td>
+</tr>
+</tbody>
+</table>
+<p class="indent">Los diagramas de dispersión de cada conjunto de datos se muestran en <a href="ch03.html#ch3fig4">la Figura</a> 3-4.</p>
+<div class="image"><a id="page_83"></a><img alt="image" src="images/f03-04.jpg" translate="no"/></div>
+<p class="figuret"><a id="ch3fig4"></a><em>Figura 3-4: Diagramas de dispersión del cuarteto de Anscombe</em></p>
+<p class="indent">Si nos fijamos sólo en las medidas estadísticas tradicionales (ver <a href="ch03.html#ch3tab5">Tabla 3-5</a>) -como la media, la desviación típica y el coeficiente de correlación-, estos conjuntos de datos parecen casi idénticos. Pero los gráficos de dispersión muestran que estos conjuntos de datos son en realidad muy diferentes entre sí. Así pues, los gráficos de dispersión pueden ser una herramienta importante y deben utilizarse junto con otras medidas estadísticas antes de sacar conclusiones sobre un conjunto de datos.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch03_6.html">anterior</a><a href="ch03.html">Subtema 7 de 10: (Ver todo)</a><a href="ch03_8.html">siguiente</a><br/></p>
+<br/><a href="ch03_7.docx" target="_blank"></a></footer>
+</body>
+</html>

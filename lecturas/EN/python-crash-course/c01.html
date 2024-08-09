@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://www.w3.org/2002/06/xhtml2/ http://www.w3.org/MarkUp/SCHEMA/xhtml2.xsd">
+<head>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style></head>
+<body><div id="sbo-rt-content"><section>
+<header>
+<h1 class="chapter">
+<span class="ChapterNumber"><span epub:type="pagebreak" id="Page_3" title="3"></span>1</span><br/>
+<span class="ChapterTitle">Getting Started</span></h1>
+</header>
+<figure class="opener">
+<img alt="" height="406" src="Images/chapterart.png" width="406"/>
+</figure>
+<p class="ChapterIntro">In this chapter, you’ll run your first Python program, <em>hello_world.py</em>. First, you’ll need to check whether a recent version of Python is installed on your computer; if it isn’t, you’ll install it. You’ll also install a text editor to work with your Python programs. Text editors recognize Python code and highlight sections as you write, making it easy to understand your code’s structure.</p>
+<h2 id="h1-502703c01-0001">Setting Up Your Programming Environment</h2>
+<p class="BodyFirst">Python differs slightly on different operating systems, so you’ll need to keep a few considerations in mind. In the following sections, we’ll make sure Python is set up correctly on your system.</p>
+<h3 id="h2-502703c01-0001"><span epub:type="pagebreak" id="Page_4" title="4"></span>Python Versions</h3>
+<p class="BodyFirst">Every programming language evolves as new ideas and technologies emerge, and the developers of Python have continually made the language more versatile and powerful. As of this writing, the latest version is Python 3.11, but everything in this book should run on Python 3.9 or later. In this section, we’ll find out if Python is already installed on your system and whether you need to install a newer version. <span class="xref" itemid="xref_target_Appendix A">Appendix A</span> contains additional details about installing the latest version of Python on each major operating system as well.</p>
+<h3 id="h2-502703c01-0002">Running Snippets of Python Code</h3>
+<p class="BodyFirst">You can run Python’s interpreter in a terminal window, allowing you to try bits of Python code without having to save and run an entire program.</p>
+<p>Throughout this book, you’ll see code snippets that look like this:</p>
+<pre><code>&gt;&gt;&gt; <b>print("Hello Python interpreter!")</b>
+Hello Python interpreter!</code></pre>
+<p>The three angle brackets (<code>&gt;&gt;&gt;</code>) prompt, which we’ll refer to as a <em>Python prompt</em>, indicates that you should be using the terminal window. The bold text is the code you should type in and then execute by pressing ENTER. Most of the examples in this book are small, self-contained programs that you’ll run from your text editor rather than the terminal, because you’ll write most of your code in the text editor. But sometimes, basic concepts will be shown in a series of snippets run through a Python terminal session to demonstrate particular concepts more efficiently. When you see three angle brackets in a code listing, you’re looking at code and output from a terminal session. We’ll try coding in the interpreter on your system in a moment.</p>
+<p>We’ll also use a text editor to create a simple program called <em>Hello World!</em> that has become a staple of learning to program. There’s a long-held tradition in the programming world that printing the message <code>Hello world!</code> to the screen as your first program in a new language will bring you good luck. Such a simple program serves a very real purpose. If it runs correctly on your system, then any Python program you write should work as well.</p>
+<h3 id="h2-502703c01-0003">About the VS Code Editor</h3>
+<p class="BodyFirst"><em>VS Code</em> is a powerful, professional-quality text editor that’s free and beginner-friendly. VS Code is great for both simple and complex projects, so if you become comfortable using it while learning Python, you can continue using it as you progress to larger and more complicated projects. VS Code can be installed on all modern operating systems, and it supports most programming languages, including Python.</p>
+<p><span class="xref" itemid="xref_target_Appendix B">Appendix B</span> provides information on other text editors. If you’re curious about the other options, you might want to skim that appendix at this <span epub:type="pagebreak" id="Page_5" title="5"></span>point. If you want to begin programming quickly, you can use VS Code to start. Then you can consider other editors, once you’ve gained some experience as a programmer. In this chapter, I’ll walk you through installing VS Code on your operating system.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	If you already have a text editor installed and you know how to configure it to run Python programs, you are welcome to use that editor instead.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c01-0002">Python on Different Operating Systems</h2>
+<p class="BodyFirst">Python is a cross-platform programming language, which means it runs on all the major operating systems. Any Python program you write should run on any modern computer that has Python installed. However, the methods for setting up Python on different operating systems vary slightly.</p>
+<p>In this section, you’ll learn how to set up Python on your system. You’ll first check whether a recent version of Python is installed on your system, and install it if it’s not. Then you’ll install VS Code. These are the only two steps that are different for each operating system.</p>
+<p>In the sections that follow, you’ll run <em>hello_world.py</em> and troubleshoot anything that doesn’t work. I’ll walk you through this process for each operating system, so you’ll have a Python programming environment that you can rely on.</p>
+<h3 id="h2-502703c01-0004">Python on Windows</h3>
+<p class="BodyFirst">Windows doesn’t usually come with Python, so you’ll probably need to install it and then install VS Code.</p>
+<h4 id="h3-502703c01-0001">Installing Python</h4>
+<p class="BodyFirst">First, check whether Python is installed on your system. Open a command window by entering <code class="bold">command</code> into the Start menu and clicking the <b>Command Prompt</b> app. In the terminal window, enter <code class="bold">python</code> in lowercase. If you get a Python prompt (<code>&gt;&gt;&gt;</code>) in response, Python is installed on your system. If you see an error message telling you that <code>python</code> is not a recognized command, or if the Microsoft store opens, Python isn’t installed. Close the Microsoft store if it opens; it’s better to download an official installer than to use Microsoft’s version.</p>
+<p>If Python is not installed on your system, or if you see a version earlier than Python 3.9, you need to download a Python installer for Windows. Go to <a class="LinkURL" href="https://python.org">https://python.org</a> and hover over the<b> Downloads </b>link. You should see a button for downloading the latest version of Python. Click the button, which should automatically start downloading the correct installer for your system. After you’ve downloaded the file, run the installer. Make sure you select the option <b>Add Python to PATH</b>, which will make it easier to configure your system correctly. <a href="#figure1-1" id="figureanchor1-1">Figure 1-1</a> shows this option selected.</p>
+<span epub:type="pagebreak" id="Page_6" title="6"></span><figure>
+<img alt="" class="keyline" height="302" src="Images/f01001.png" width="491"/>
+<figcaption><p><a id="figure1-1">Figure 1-1</a>: Make sure you select the checkbox labeled <em>Add Python to PATH</em>.</p></figcaption>
+</figure>
+<h4 id="h3-502703c01-0002">Running Python in a Terminal Session</h4>
+<p class="BodyFirst">Open a new command window and enter <code class="bold">python</code> in lowercase. You should see a Python prompt (<code>&gt;&gt;&gt;</code>), which means Windows has found the version of Python you just installed.</p>
+<pre><code>C:\&gt; <b>python</b>
+Python 3.<var>x</var>.<var>x</var> (main, Jun . . . , 13:29:14) [MSC v.1932 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt;</code></pre>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	If you don’t see this output or something similar, see the more detailed setup instructions in <span class="xref" itemid="xref_target_Appendix A">Appendix A</span>.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<p>Enter the following line in your Python session:</p>
+<pre><code>&gt;&gt;&gt; <b>print("Hello Python interpreter!")</b>
+Hello Python interpreter!
+&gt;&gt;&gt;</code></pre>
+<p>You should see the output <code>Hello Python interpreter!</code> Anytime you want to run a snippet of Python code, open a command window and start a Python terminal session. To close the terminal session, press CTRL-Z and then press ENTER, or enter the command <code class="bold">exit()</code>.</p>
+<h4 id="h3-502703c01-0003">Installing VS Code</h4>
+<p class="BodyFirst">You can download an installer for VS Code at <a class="LinkURL" href="https://code.visualstudio.com">https://code.visualstudio.com</a>. Click the <b>Download for Windows</b> button and run the installer. Skip the following sections about macOS and Linux, and follow the steps in “<span class="xref" itemid="xref_target_Running a Hello World Program">Running a Hello World Program</span>” on <span class="xref" itemid="xref_target_page 9">page 9</span>.</p>
+<h3 id="h2-502703c01-0005"><span epub:type="pagebreak" id="Page_7" title="7"></span>Python on macOS</h3>
+<p class="BodyFirst">Python is not installed by default on the latest versions of macOS, so you’ll need to install it if you haven’t already done so. In this section, you’ll install the latest version of Python, and then install VS Code and make sure it’s configured correctly.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	Python 2 was included on older versions of macOS, but it’s an outdated version that you shouldn’t use.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h4 id="h3-502703c01-0004">Checking Whether Python 3 Is Installed</h4>
+<p class="BodyFirst">Open a terminal window by going to <b>Applications</b><span class="MenuArrow">▶</span><b>Utilities</b><span class="MenuArrow">▶</span><b>Terminal</b>. You can also press ⌘-spacebar, type <code class="bold">terminal</code>, and then press ENTER. To see if you have a recent enough version of Python installed, enter <code class="bold">python3</code>. You’ll most likely see a message about installing the <em>command line developer tools</em>. It’s better to install these tools after installing Python, so if this message appears, cancel the pop-up window.</p>
+<p>If the output shows you have Python 3.9 or a later version installed, you can skip the next section and go to “<span class="xref" itemid="xref_target_Running Python in a Terminal Session">Running Python in a Terminal Session</span>.” If you see any version earlier than Python 3.9, follow the instructions in the next section to install the latest version.</p>
+<p>Note that on macOS, whenever you see the <code>python</code> command in this book, you need to use the <code>python3</code> command instead to make sure you’re using Python 3. On most macOS systems, the <code>python</code> command either points to an outdated version of Python that should only be used by internal system tools, or it points to nothing and generates an error message.</p>
+<h4 id="h3-502703c01-0005">Installing the Latest Version of Python</h4>
+<p class="BodyFirst">You can find a Python installer for your system at <a class="LinkURL" href="https://python.org">https://python.org</a>. Hover over the <b>Download</b> link, and you should see a button for downloading the latest version of Python. Click the button, which should automatically start downloading the correct installer for your system. After the file downloads, run the installer.</p>
+<p>After the installer runs, a Finder window should appear. Double-click the <em>Install Certificates.command</em> file. Running this file will allow you to more easily install additional libraries that you’ll need for real-world projects, including the projects in the second half of this book.</p>
+<h4 id="h3-502703c01-0006">Running Python in a Terminal Session</h4>
+<p class="BodyFirst">You can now try running snippets of Python code by opening a new terminal window and typing <code class="bold">python3</code>:</p>
+<pre><code>$ <b>python3</b>
+Python 3.<var>x</var>.<var>x</var> (v3.11.0:eb0004c271, Jun . . . , 10:03:01)
+[Clang 13.0.0 (clang-1300.0.29.30)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt;</code></pre>
+<p><span epub:type="pagebreak" id="Page_8" title="8"></span>This command starts a Python terminal session. You should see a Python prompt (<code>&gt;&gt;&gt;</code>), which means macOS has found the version of Python you just installed.</p>
+<p>Enter the following line in the terminal session:</p>
+<pre><code>&gt;&gt;&gt; <b>print("Hello Python interpreter!")</b>
+Hello Python interpreter!
+&gt;&gt;&gt;</code></pre>
+<p>You should see the message <code>Hello Python interpreter!</code>, which should print directly in the current terminal window. You can close the Python interpreter by pressing CTRL-D or by entering the command <code class="bold">exit()</code>.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	On newer macOS systems, you’ll see a percent sign (<code>%</code>) as a terminal prompt instead of a dollar sign (<code>$</code>).</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h4 id="h3-502703c01-0007">Installing VS Code</h4>
+<p class="BodyFirst">To install the VS Code editor, you need to download the installer at <a class="LinkURL" href="https://code.visualstudio.com">https://code.visualstudio.com</a>. Click the<b> Download</b> button, and then open a <b>Finder</b> window and go to the <b>Downloads</b> folder. Drag the <b>Visual Studio Code</b> installer to your Applications folder, then double-click the installer to run it.</p>
+<p>Skip over the following section about Python on Linux, and follow the steps in “<span class="xref" itemid="xref_target_Running a Hello World Program">Running a Hello World Program</span>” on <span class="xref" itemid="xref_target_page 9">page 9</span>.</p>
+<h3 id="h2-502703c01-0006">Python on Linux</h3>
+<p class="BodyFirst">Linux systems are designed for programming, so Python is already installed on most Linux computers. The people who write and maintain Linux expect you to do your own programming at some point, and encourage you to do so. For this reason, there’s very little to install and only a few settings to change to start programming.</p>
+<h4 id="h3-502703c01-0008">Checking Your Version of Python</h4>
+<p class="BodyFirst">Open a terminal window by running the Terminal application on your system (in Ubuntu, you can press CTRL-ALT-T). To find out which version of Python is installed, enter <code class="bold">python3</code> with a lowercase <em>p</em>. When Python is installed, this command starts the Python interpreter. You should see output indicating which version of Python is installed. You should also see a Python prompt (<code>&gt;&gt;&gt;</code>) where you can start entering Python commands:</p>
+<pre><code>$ <b>python3</b>
+Python 3.10.4 (main, Apr  . . . , 09:04:19) [GCC 11.2.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt;</code></pre>
+<p>This output indicates that Python 3.10.4 is currently the default version of Python installed on this computer. When you’ve seen this output, press CTRL-D or enter <code class="bold">exit()</code> to leave the Python prompt and return to a <span epub:type="pagebreak" id="Page_9" title="9"></span>terminal prompt. Whenever you see the <code>python</code> command in this book, enter <code class="bold">python3</code> instead.</p>
+<p>You’ll need Python 3.9 or later to run the code in this book. If the Python version installed on your system is earlier than Python 3.9, or if you want to update to the latest version currently available, refer to the instructions in <span class="xref" itemid="xref_target_Appendix A">Appendix A</span>.</p>
+<h4 id="h3-502703c01-0009">Running Python in a Terminal Session</h4>
+<p class="BodyFirst">You can try running snippets of Python code by opening a terminal and entering <code class="bold">python3</code>, as you did when checking your version. Do this again, and when you have Python running, enter the following line in the terminal session:</p>
+<pre><code>&gt;&gt;&gt; <b>print("Hello Python interpreter!")</b>
+Hello Python interpreter!
+&gt;&gt;&gt;</code></pre>
+<p>The message should print directly in the current terminal window. Remember that you can close the Python interpreter by pressing CTRL-D or by entering the command <code class="bold">exit()</code>.</p>
+<h4 id="h3-502703c01-0010">Installing VS Code</h4>
+<p class="BodyFirst">On Ubuntu Linux, you can install VS Code from the Ubuntu Software Center. Click the Ubuntu Software icon in your menu and search for <em>vscode</em>. Click the app called <b>Visual Studio Code</b> (sometimes called <em>code</em>), and then click <b>Install</b>. Once it’s installed, search your system for <em>VS Code</em> and launch the app.</p>
+<h2 id="h1-502703c01-0003">Running a Hello World Program</h2>
+<p class="BodyFirst">With a recent version of Python and VS Code installed, you’re almost ready to run your first Python program written in a text editor. But before doing so, you need to install the Python extension for VS Code.</p>
+<h3 id="h2-502703c01-0007">Installing the Python Extension for VS Code</h3>
+<p class="BodyFirst">VS Code works with many different programming languages; to get the most out of it as a Python programmer, you’ll need to install the Python extension. This extension adds support for writing, editing, and running Python programs.</p>
+<p>To install the Python extension, click the Manage icon, which looks like a gear in the lower-left corner of the VS Code app. In the menu that appears, click <b>Extensions</b>. Enter <code class="bold">python</code> in the search box and click the <b>Python </b>extension. (If you see more than one extension named <em>Python</em>, choose the one supplied by Microsoft.) Click <b>Install</b> and install any additional tools that your system needs to complete the installation. If you see a message that you need to install Python, and you’ve already done so, you can ignore this message.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<span epub:type="pagebreak" id="Page_10" title="10"></span><h2><span class="NoteHead">Note</span></h2>
+<p>	If you’re using macOS and a pop-up asks you to install the <em>command line developer tools</em>, click <b>Install</b>. You may see a message that it will take an excessively long time to install, but it should only take about 10 or 20 minutes on a reasonable internet connection.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h3 id="h2-502703c01-0008">Running hello_world.py</h3>
+<p class="BodyFirst">Before you write your first program, make a folder called <em>python_work </em>on your desktop for your projects. It’s best to use lowercase letters and underscores for spaces in file and folder names, because Python uses these naming conventions. You can make this folder somewhere other than the desktop, but it will be easier to follow some later steps if you save the <em>python_work</em> folder directly on your desktop.</p>
+<p>Open VS Code, and close the <b>Get Started</b> tab if it’s still open. Make a new file by clicking <b>File</b><span class="MenuArrow">▶</span><b>New File</b> or pressing CTRL-N (⌘-N on macOS). Save the file as <em>hello_world.py</em> in your <em>python_work</em> folder. The extension <em>.py</em> tells VS Code that your file is written in Python, and tells it how to run the program and highlight the text in a helpful way.</p>
+<p>After you’ve saved your file, enter the following line in the editor:</p>
+<p class="CodeLabel"><b>hello_world.py</b></p>
+<pre><code>print("Hello Python world!")</code></pre>
+<p>To run your program, select <b>Run</b><span class="MenuArrow">▶</span><b>Run Without Debugging</b> or press CTRL-F5. A terminal screen should appear at the bottom of the VS Code window, showing your program’s output:</p>
+<pre><code>Hello Python world!</code></pre>
+<p>You’ll likely see some additional output showing the Python interpreter that was used to run your program. If you want to simplify the information that’s displayed so you only see your program’s output, see <span class="xref" itemid="xref_target_Appendix B">Appendix B</span>. You can also find helpful suggestions about how to use VS Code more efficiently in <span class="xref" itemid="xref_target_Appendix B">Appendix B</span>.</p>
+<p>If you don’t see this output, something might have gone wrong in the program. Check every character on the line you entered. Did you accidentally capitalize <code>print</code>? Did you forget one or both of the quotation marks or parentheses? Programming languages expect very specific syntax, and if you don’t provide that, you’ll get errors. If you can’t get the program to run, see the suggestions in the next section.</p>
+<h2 id="h1-502703c01-0004">Troubleshooting</h2>
+<p class="BodyFirst">If you can’t get <em>hello_world.py</em> to run, here are a few remedies you can try that are also good general solutions for any programming problem:</p>
+<ul>
+<li>When a program contains a significant error, Python displays a <em>traceback</em>, which is an error report. Python looks through the file and tries to identify the problem. Check the traceback; it might give you a clue as to what issue is preventing the program from running.</li>
+<li><span epub:type="pagebreak" id="Page_11" title="11"></span>Step away from your computer, take a short break, and then try again. Remember that syntax is very important in programming, so something as simple as mismatched quotation marks or mismatched parentheses can prevent a program from running properly. Reread the relevant parts of this chapter, look over your code, and try to find the mistake.</li>
+<li>Start over again. You probably don’t need to uninstall any software, but it might make sense to delete your <em>hello_world.py</em> file and re-create it from scratch.</li>
+<li>Ask someone else to follow the steps in this chapter, on your computer or a different one, and watch what they do carefully. You might have missed one small step that someone else happens to catch.</li>
+<li>See the additional installation instructions in <span class="xref" itemid="xref_target_Appendix A">Appendix A</span>; some of the details included in the Appendix may help you solve your issue.</li>
+<li>Find someone who knows Python and ask them to help you get set up. If you ask around, you might find that you unexpectedly know someone who uses Python.</li>
+<li>The setup instructions in this chapter are also available through this book’s companion website at <a class="LinkURL" href="https://ehmatthes.github.io/pcc_3e">https://ehmatthes.github.io/pcc_3e</a>. The online version of these instructions might work better because you can simply cut and paste code and click links to the resources you need.</li>
+<li>Ask for help online. <span class="xref" itemid="xref_target_Appendix C">Appendix C</span> provides a number of resources, such as forums and live chat sites, where you can ask for solutions from people who’ve already worked through the issue you’re currently facing.</li>
+</ul>
+<p>Never worry that you’re bothering experienced programmers. Every programmer has been stuck at some point, and most programmers are happy to help you set up your system correctly. As long as you can state clearly what you’re trying to do, what you’ve already tried, and the results you’re getting, there’s a good chance someone will be able to help you. As mentioned in the <span class="xref" itemid="xref_target_introduction">introduction</span>, the Python community is very friendly and welcoming to beginners.</p>
+<p>Python should run well on any modern computer. Early setup issues can be frustrating, but they’re well worth sorting out. Once you get <em>hello_world.py </em>running, you can start to learn Python, and your programming work will become more interesting and satisfying.</p>
+<h2 id="h1-502703c01-0005">Running Python Programs from a Terminal</h2>
+<p class="BodyFirst">You’ll run most of your programs directly in your text editor. However, sometimes it’s useful to run programs from a terminal instead. For example, you might want to run an existing program without opening it for editing.</p>
+<p>You can do this on any system with Python installed if you know how to access the directory where the program file is stored. To try this, make sure you’ve saved the <em>hello_world.py</em> file in the <em>python_work</em> folder on your desktop.</p>
+<h3 id="h2-502703c01-0009"><span epub:type="pagebreak" id="Page_12" title="12"></span>On Windows</h3>
+<p class="BodyFirst">You can use the terminal command <code>cd</code>, for <em>change directory</em>, to navigate through your filesystem in a command window. The command <code>dir</code>, for <em>directory</em>, shows you all the files that exist in the current directory.</p>
+<p>Open a new terminal window and enter the following commands to run <em>hello_world.py</em>:</p>
+<pre><code>C:\&gt; <b>cd Desktop\python_work</b>
+C:\Desktop\python_work&gt; <b>dir</b>
+hello_world.py
+C:\Desktop\python_work&gt; <b>python hello_world.py</b>
+Hello Python world!</code></pre>
+<p>First, use the <code class="bold">cd</code> command to navigate to the <em>python_work</em> folder, which is in the<em> Desktop</em> folder. Next, use the <code class="bold">dir</code> command to make sure <em>hello_world.py</em> is in this folder. Then run the file using the command <code class="bold">python hello_world.py</code>.</p>
+<p>Most of your programs will run fine directly from your editor. However, as your work becomes more complex, you’ll want to run some of your programs from a terminal.</p>
+<h3 id="h2-502703c01-0010">On macOS and Linux</h3>
+<p class="BodyFirst">Running a Python program from a terminal session is the same on Linux and macOS. You can use the terminal command <code>cd</code>, for <em>change directory</em>, to navigate through your filesystem in a terminal session. The command <code>ls</code>, for <em>list</em>, shows you all the nonhidden files that exist in the current directory.</p>
+<p>Open a new terminal window and enter the following commands to run <em>hello_world.py</em>:</p>
+<pre><code>~$ <b>cd Desktop/python_work/</b>
+~/Desktop/python_work$ <b>ls</b>
+hello_world.py
+~/Desktop/python_work$ <b>python3 hello_world.py</b>
+Hello Python world!</code></pre>
+<p>First, use the <code class="bold">cd</code> command to navigate to the <em>python_work</em> folder, which is in the <em>Desktop</em> folder. Next, use the <code class="bold">ls</code> command to make sure <em>hello_world.py</em> is in this folder. Then run the file using the command <code class="bold">python3 hello_world.py</code>.</p>
+<p>Most of your programs will run fine directly from your editor. But as your work becomes more complex, you’ll want to run some of your programs from a terminal.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2><span epub:type="pagebreak" id="Page_13" title="13"></span>Try It Yourself</h2>
+<p class="BoxBodyFirst">The exercises in this chapter are exploratory in nature. Starting in <span class="xref" itemid="xref_target_Chapter 2">Chapter 2</span>, the challenges you’ll solve will be based on what you’ve learned.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c01-11">1-1. python.org:</span> Explore the Python home page (<a class="LinkURL" href="https://python.org">https://python.org</a>) to find topics that interest you. As you become familiar with Python, different parts of the site will be more useful to you.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c01-12">1-2. Hello World Typos:</span> Open the <em>hello_world.py</em> file you just created. Make a typo somewhere in the line and run the program again. Can you make a typo that generates an error? Can you make sense of the error message? Can you make a typo that doesn’t generate an error? Why do you think it didn’t make an error?</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c01-13">1-3. Infinite Skills:</span> If you had infinite programming skills, what would you build? You’re about to learn how to program. If you have an end goal in mind, you’ll have an immediate use for your new skills; now is a great time to write brief descriptions of what you want to create. It’s a good habit to keep an “ideas” notebook that you can refer to whenever you want to start a new project. Take a few minutes now to describe three programs you want to create.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c01-0006">Summary</h2>
+<p class="BodyFirst">In this chapter, you learned a bit about Python in general, and you installed Python on your system if it wasn’t already there. You also installed a text editor to make it easier to write Python code. You ran snippets of Python code in a terminal session, and you ran your first program, <em>hello_world.py</em>. You probably learned a bit about troubleshooting as well.</p>
+<p>In the next chapter, you’ll learn about the different kinds of data you can work with in your Python programs, and you’ll start to use variables as well.</p>
+</section>
+</div></body>
+</html>

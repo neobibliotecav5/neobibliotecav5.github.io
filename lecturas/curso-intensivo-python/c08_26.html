@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h2 id="h1-502703c08-0005">Pasar un número arbitrario de argumentos</h2>
+<p class="BodyFirst">A veces no sabrás de antemano cuántos argumentos debe aceptar una función. Afortunadamente, Python permite que una función recoja un número arbitrario de argumentos de la sentencia que la llama.</p>
+<p>Por ejemplo, considera una función que construye una pizza. Necesita aceptar un número de ingredientes, pero no puedes saber de antemano cuántos ingredientes querrá una persona. La función del siguiente ejemplo tiene un parámetro, <code translate="no">*toppings</code>, pero este parámetro recoge tantos argumentos como proporcione la línea de llamada:</p>
+<p class="CodeLabel" translate="no"><b>pizza.py</b></p>
+<pre translate="no"><code translate="no">def make_pizza(*toppings):
+    """Print the list of toppings that have been requested."""
+    print(toppings)
+
+make_pizza('pepperoni')
+make_pizza('mushrooms', 'green peppers', 'extra cheese')</code></pre>
+<p>El asterisco en el nombre del parámetro <code translate="no">*toppings</code> indica a Python que cree una tupla llamada <code translate="no">toppings</code>, que contenga todos los valores que recibe esta función. La llamada <code translate="no">print()</code> en el cuerpo de la función produce una salida que muestra que Python puede manejar una llamada a la función con un valor y una llamada con tres valores. Trata las distintas llamadas de forma similar. Observa que Python empaqueta los argumentos en una tupla, aunque la función sólo reciba un valor:</p>
+<pre translate="no"><code translate="no">('pepperoni',)
+('mushrooms', 'green peppers', 'extra cheese')</code></pre>
+<p>Ahora podemos sustituir la llamada a <code translate="no">print()</code> por un bucle que recorra la lista de ingredientes y describa la pizza que se pide:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">def make_pizza(*toppings):</span>
+<span class="LiteralGray">    </span>"""Summarize the pizza we are about to make."""
+<span epub:type="pagebreak" id="Page_147" title="147"></span>    print("\nMaking a pizza with the following toppings:")
+    for topping in toppings:
+        print(f"- {topping}")
+
+<span class="LiteralGray">make_pizza('pepperoni')</span>
+<span class="LiteralGray">make_pizza('mushrooms', 'green peppers', 'extra cheese')</span></code></pre>
+<p>La función responde adecuadamente, tanto si recibe un valor como tres:</p>
+<pre translate="no"><code translate="no">Making a pizza with the following toppings:
+- pepperoni
+
+Making a pizza with the following toppings:
+- mushrooms
+- green peppers
+- extra cheese</code></pre>
+<p>Esta sintaxis funciona independientemente del número de argumentos que reciba la función.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c08_25.html">anterior</a><a href="c08.html">Subtema 26 de 40: (Ver todo)</a><a href="c08_27.html">siguiente</a><br/></p>
+<br/><a href="c08_26.docx" target="_blank"></a></footer>
+</body>
+</html>

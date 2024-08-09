@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c15-0009">Utilizar un mapa de colores</h3>
+<p class="BodyFirst">Un <em translate="no">colormap</em> es una secuencia de colores en un gradiente que se mueve de un color inicial a uno final. En las visualizaciones, los mapas de colores se utilizan para resaltar patrones en los datos. Por ejemplo, puedes hacer que los valores bajos tengan un color claro y los valores altos un color más oscuro. El uso de un mapa de colores garantiza que todos los puntos de la visualización varíen suavemente y con precisión a lo largo de una escala de colores bien diseñada.</p>
+<p>El módulo <code translate="no">pyplot</code> incluye un conjunto de mapas de color integrados. Para utilizar uno de estos mapas de colores, tienes que especificar cómo <code translate="no">pyplot</code> debe asignar un color a cada punto del conjunto de datos. A continuación se explica cómo asignar un color a cada punto, basándose en su valor <em translate="no">y</em>:</p>
+<p class="CodeLabel" translate="no"><b>scatter_squares.py</b></p>
+<pre translate="no"><code translate="no"><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">plt.style.use('seaborn')</span>
+<span class="LiteralGray">fig, ax = plt.subplots()</span>
+ax.scatter(x_values, y_values, c=y_values, cmap=plt.cm.Blues, s=10)
+
+<span class="LiteralGray"># Set chart title and label axes.</span>
+<em class="LiteralGrayItalic" translate="no">--snip--</em></code></pre>
+<p>El argumento <code translate="no">c</code> es similar a <code translate="no">color</code>, pero se utiliza para asociar una secuencia de valores a una asignación de colores. Pasamos la lista de <em translate="no">y</em>-valores a <code translate="no">c</code>, y luego <span epub:type="pagebreak" id="Page_311" title="311"></span>le dice a <code translate="no">pyplot</code> qué mapa de color utilizar con el argumento <code translate="no">cmap</code>. Este código colorea de azul claro los puntos con valores <em translate="no">y</em> más bajos y de azul oscuro los puntos con valores <em translate="no">y</em> más altos. <a href="#figure15-8" id="figureanchor15-8">La Figura 15-8</a> muestra el gráfico resultante.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c15_11.html">anterior</a><a href="c15.html">Subtema 12 de 35: (Ver todo)</a><a href="c15_13.html">siguiente</a><br/></p>
+<br/><a href="c15_12.docx" target="_blank"></a></footer>
+</body>
+</html>

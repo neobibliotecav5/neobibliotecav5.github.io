@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch08lev1sec2">
+  Hijos y padres </h3>
+<p class="noindent">
+  Si una clase forma parte de otra clase, se considera <em class="calibre7">hija </em>de esa clase, y la otra clase es su <em class="calibre7">padre . </em>Las clases pueden ser a la vez <em class="calibre7">hijas </em>y <em class="calibre7">padres de </em>otras clases. En nuestro diagrama de árbol, la clase que está encima de otra clase es su padre y la que está debajo es su hijo. Por ejemplo, <span class="literal1" translate="no">
+   Inanimate
+  </span>y <span class="literal1" translate="no">
+   Animate
+  </span>son ambas hijas de la clase <span class="literal1" translate="no">
+   Thing
+  </span>, lo que significa que <span class="literal1" translate="no">
+   Thing
+  </span>es su padre. </p>
+<p class="indent">
+  Para indicar a Python que una clase es hija de otra clase, añadimos el nombre de la clase padre entre paréntesis después del nombre de nuestra nueva clase, así </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> Inanimate(Thing):
+        <span class="orange">pass</span>
+
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> Animate(Thing):
+        <span class="orange">pass</span>
+</pre>
+<p class="indent">
+  Aquí creamos una clase llamada <span class="literal1" translate="no">
+   Inanimate
+  </span>y le decimos a Python que su clase padre es <span class="literal1" translate="no">
+   Thing
+  </span>. A continuación, creamos una clase llamada <span class="literal1" translate="no">
+   Animate
+  </span>y le decimos a Python que su clase padre es también <span class="literal1" translate="no">
+   Thing
+  </span>. </p>
+<p class="indent">
+  Vamos a crear la clase <span class="literal1" translate="no">
+   Sidewalk
+  </span>con la clase padre <span class="literal1" translate="no">
+   Inanimate
+  </span>: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> Sidewalk(Inanimate):
+        <span class="orange">pass</span>
+</pre>
+<p class="indent">
+<span id="page_98">
+</span>
+  Podemos organizar las clases <span class="literal1" translate="no">
+   Animal
+  </span>, <span class="literal1" translate="no">
+   Mammal
+  </span>, y <span class="literal1" translate="no">
+   Giraffe
+  </span>utilizando también sus clases padre: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> Animal(Animate):
+        <span class="orange">pass</span>
+
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> Mammal(Animal):
+        <span class="orange">pass</span>
+
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> Giraffe(Mammal):
+        <span class="orange">pass</span>
+</pre>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch08_2.html">anterior</a><a href="ch08.html">Subtema 3 de 14: (Ver todo)</a><a href="ch08_4.html">siguiente</a><br/></p>
+<br/><a href="ch08_3.docx" target="_blank"></a></footer>
+</body>
+</html>

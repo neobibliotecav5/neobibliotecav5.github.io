@@ -1,0 +1,989 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Unknown</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+<body class="calibre">
+<div class="calibre1" id="sbo-rt-content">
+<h2 class="h2" id="ch06">
+<span class="calibre2" id="page_69">
+</span>
+<span class="big">
+   6
+  </span>
+<br class="calibre10"/>
+  Going Loopy
+ </h2>
+<div class="image">
+<img alt="Image" class="calibre8" src="../images/common.jpg"/>
+</div>
+<p class="indent">
+  Nothing is worse than needing to do the same thing over and over. There’s a reason we’re told to count sheep when we’re having trouble falling asleep, and it has nothing to do with the amazing sleep-inducing powers of woolly mammals. It’s because endless repetition is boring, and your mind can drift off to sleep easily if you’re not focusing on something interesting.
+ </p>
+<p class="indent">
+<span id="page_70">
+</span>
+  Programmers don’t like repeating themselves either, unless they’re also trying to fall asleep. Thankfully, most programming languages have a
+  <span class="literal1">
+   for
+  </span>
+  loop, which repeats things like statements and blocks of code automatically.
+ </p>
+<p class="indent">
+  In this chapter, we’ll look at
+  <span class="literal1">
+   for
+  </span>
+  loops, as well as another type of loop that Python offers: the
+  <span class="literal1">
+   while
+  </span>
+  loop.
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre61" src="../images/f0070-01.jpg"/>
+</div>
+<h3 class="h1" id="ch06lev1sec1">
+  Using for Loops
+ </h3>
+<p class="noindent">
+  To print
+  <span class="literal1">
+   hello
+  </span>
+  five times in Python, you
+  <em class="calibre7">
+   could
+  </em>
+  do the following:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="green">'hello'</span>)
+<span class="blue1">hello</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="green">'hello'</span>)
+<span class="blue1">hello</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="green">'hello'</span>)
+<span class="blue1">hello</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="green">'hello'</span>)
+<span class="blue1">hello</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="green">'hello'</span>)
+<span class="blue1">hello</span></pre>
+<p class="indent">
+  But this is rather tedious. Instead, you can use a
+  <span class="literal1">
+   for
+  </span>
+  loop to reduce the amount of typing and repetition, like this:
+ </p>
+<pre class="pre"><span class="ent">➊</span> <span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> x <span class="orange">in</span> <span class="violet">range</span>(0, 5):
+       <span class="ent">➋</span> <span class="violet">print</span>(<span class="green">'hello'</span>)
+
+  <span class="blue1">hello
+  hello
+  hello
+  hello
+  hello</span></pre>
+<p class="indent">
+  The
+  <span class="literal1">
+   range
+  </span>
+  function
+  <span class="ent">
+   ➊
+  </span>
+  can create a list of numbers ranging from a starting number up to the number right before the ending number. This may seem a little confusing, so let’s combine the
+  <span class="literal1">
+   range
+  </span>
+  function with the
+  <span class="literal1">
+   list
+  </span>
+  function to see exactly how this works. The
+  <span class="literal1">
+   range
+  </span>
+  function doesn’t actually create a
+  <span id="page_71">
+</span>
+  list of numbers; it returns an
+  <em class="calibre7">
+   iterator
+  </em>
+  , which is a Python object designed to work with loops. However, if we combine
+  <span class="literal1">
+   range
+  </span>
+  with
+  <span class="literal1">
+   list
+  </span>
+  , we get a list of numbers:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="violet">list</span>(<span class="violet">range</span>(10, 20)))
+<span class="blue1">[10, 11, 12, 13, 14, 15, 16, 17, 18, 19]</span></pre>
+<p class="indent">
+  In our previous example,
+  <span class="literal1">
+   for x in range(0,5):
+  </span>
+  is actually telling Python to do the following:
+ </p>
+<ol class="calibre9">
+<li class="noindent1">
+   Start counting from 0 and stop before reaching 5.
+  </li>
+<li class="noindent1">
+   For each number we count, store the value in the
+   <span class="literal1">
+    x
+   </span>
+   variable.
+  </li>
+</ol>
+<p class="indent">
+  Then, Python executes the
+  <span class="literal1">
+   print(’hello’)
+  </span>
+  statement. Note the four additional spaces at the beginning of the line
+  <span class="ent">
+   ➋
+  </span>
+  (as compared to the first line
+  <span class="ent">
+   ➊
+  </span>
+  ). IDLE should have automatically indented this for you. When we hit ENTER after the second line, Python prints
+  <span class="literal1">
+   hello
+  </span>
+  five times.
+ </p>
+<p class="indent">
+  We could also use the variable
+  <span class="literal1">
+   x
+  </span>
+  in our
+  <span class="literal1">
+   print
+  </span>
+  statement to count the number of hellos:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> x <span class="orange">in</span> <span class="violet">range</span>(0, 5):
+        <span class="violet">print</span>(f<span class="green">'hello {x}'</span>)
+<span class="blue1">hello 0
+hello 1
+hello 2
+hello 3
+hello 4</span></pre>
+<p class="indent">
+  If we get rid of the
+  <span class="literal1">
+   for
+  </span>
+  loop, our code might look something like this:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> x = 0
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(f<span class="green">'hello {x}'</span>)
+<span class="blue1">hello 0</span>
+<span class="brown">&gt;&gt;&gt;</span> x = 1
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(f<span class="green">'hello {x}'</span>)
+<span class="blue1">hello 1</span>
+<span class="brown">&gt;&gt;&gt;</span> x = 2
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(f<span class="green">'hello {x}'</span>)
+<span class="blue1">hello 2</span>
+<span class="brown">&gt;&gt;&gt;</span> x = 3
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(f<span class="green">'hello {x}'</span>)
+<span id="page_72"></span><span class="blue1">hello 3</span>
+<span class="brown">&gt;&gt;&gt;</span> x = 4
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(f<span class="green">'hello {x}'</span>)
+<span class="blue1">hello 4</span></pre>
+<p class="indent">
+  Using the
+  <span class="literal1">
+   for
+  </span>
+  loop saved us from writing eight extra lines of code! It’s best practice to avoid doing things more than once, so the
+  <span class="literal1">
+   for
+  </span>
+  loop is a popular statement among programmers.
+ </p>
+<p class="indent">
+  You don’t need to stick to using the
+  <span class="literal1">
+   range
+  </span>
+  function when making
+  <span class="literal1">
+   for
+  </span>
+  loops. You could also use a list you’ve already created, such as the shopping list from
+  <a class="calibre6" href="ch03.xhtml#ch03">
+   Chapter 3
+  </a>
+  , as follows:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> wizard_list = [<span class="green">'spider legs'</span>, <span class="green">'toe of frog'</span>, <span class="green">'snail tongue'</span>, 
+                   <span class="green">'bat wing'</span>, <span class="green">'slug butter'</span>, <span class="green">'bear burp'</span>]
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> ingredient <span class="orange">in</span> wizard_list:
+        <span class="violet">print</span>(ingredient)
+<span class="blue1">spider legs
+toe of frog
+snail tongue
+bat wing
+slug butter
+bear burp</span></pre>
+<p class="indent">
+  This code tells Python, “For each item in
+  <span class="literal1">
+   wizard_list
+  </span>
+  , store the value in the
+  <span class="literal1">
+   i
+  </span>
+  variable, and then print the contents of that variable.” If we got rid of the
+  <span class="literal1">
+   for
+  </span>
+  loop, we’d need to do something like this:
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre62" src="../images/f0072-01.jpg"/>
+</div>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> wizard_list = [<span class="green">'spider legs'</span>, <span class="green">'toe of frog'</span>, <span class="green">'snail tongue'</span>, 
+                   <span class="green">'bat wing'</span>, <span class="green">'slug butter'</span>, <span class="green">'bear burp'</span>]
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(wizard_list[0])
+<span class="blue1">spider legs</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(wizard_list[1])
+<span class="blue1">toe of frog</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(wizard_list[2])
+<span class="blue1">snail tongue</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(wizard_list[3])
+<span class="blue1">bat wing</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(wizard_list[4])
+<span class="blue1">slug butter</span>
+<span id="page_73"></span><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(wizard_list[5])
+<span class="blue1">bear burp</span></pre>
+<p class="indent">
+  Once again,
+  <span class="literal1">
+   for
+  </span>
+  has saved us a lot of typing.
+ </p>
+<p class="indent">
+  Let’s create another loop. Type the following code into the Python Shell; it should automatically indent the code for you:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> hugehairypants = [<span class="green">'huge'</span>, <span class="green">'hairy'</span>, <span class="green">'pants'</span>]
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> i <span class="orange">in</span> hugehairypants:
+        <span class="violet">print</span>(i)
+        <span class="violet">print</span>(i)
+
+<span class="blue1">huge
+huge
+hairy
+hairy
+pants
+pants</span></pre>
+<p class="indent">
+  In the first line, we create a list containing
+  <span class="literal1">
+   ‘huge’
+  </span>
+  ,
+  <span class="literal1">
+   ‘hairy’
+  </span>
+  , and
+  <span class="literal1">
+   ‘pants’
+  </span>
+  . In the next line, we loop through the items in that list, and then assign each item to the
+  <span class="literal1">
+   i
+  </span>
+  variable. We then print the contents of the variable twice in the next two lines. Press ENTER on the next blank line to tell Python to end the block. It then runs the code and prints each element of the list twice.
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre63" src="../images/f0073-01.jpg"/>
+</div>
+<p class="indent">
+  Remember that if you enter the wrong number of spaces, you’ll end up with an error message. If you entered the preceding code with an extra space on the fourth line, Python would display an indentation error:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> hugehairypants = [<span class="green">'huge'</span>, <span class="green">'hairy'</span>, <span class="green">'pants'</span>]
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> i <span class="orange">in</span> hugehairypants:
+        <span class="violet">print</span>(i)
+         <span class="violet">print</span>(i)
+
+<span class="red">IndentationError: unexpected indent</span></pre>
+<p class="indent">
+<span id="page_74">
+</span>
+  As you learned in
+  <a class="calibre6" href="ch05.xhtml#ch05">
+   Chapter 5
+  </a>
+  , Python expects the number of spaces in a block to be consistent. It doesn’t matter how many spaces you insert, as long as you use the same number for each new line (this also makes the code easier for humans to read).
+ </p>
+<p class="indent">
+  Here’s a more complicated example of a
+  <span class="literal1">
+   for
+  </span>
+  loop with two blocks of code:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> hugehairypants = [<span class="green">'huge'</span>, <span class="green">'hairy'</span>, <span class="green">'pants'</span>]
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> i <span class="orange">in</span> hugehairypants:
+        <span class="violet">print</span>(i)
+        <span class="orange">for</span> j <span class="orange">in</span> hugehairypants:
+            <span class="violet">print</span>(j)</pre>
+<p class="indent">
+  Where are the blocks in this code? The first block is the first
+  <span class="literal1">
+   for
+  </span>
+  loop:
+ </p>
+<pre class="pre">hugehairypants = [<span class="green">'huge'</span>, <span class="green">'hairy'</span>, <span class="green">'pants'</span>]
+<span class="orange">for</span> i <span class="orange">in</span> hugehairypants:
+    <span class="violet">print</span>(i)                  <span class="brown">#</span>
+    <span class="orange">for</span> j <span class="orange">in</span> hugehairypants:  <span class="brown"># These lines are the FIRST block.</span>
+        <span class="violet">print</span>(j)              <span class="brown">#</span></pre>
+<p class="indent">
+  The next block is the single
+  <span class="literal1">
+   print
+  </span>
+  line in the second
+  <span class="literal1">
+   for
+  </span>
+  loop:
+ </p>
+<pre class="pre">hugehairypants = [<span class="green">'huge'</span>, <span class="green">'hairy'</span>, <span class="green">'pants'</span>]
+<span class="orange">for</span> i <span class="orange">in</span> hugehairypants:
+    <span class="violet">print</span>(i)
+    <span class="orange">for</span> j <span class="orange">in</span> hugehairypants:
+       <span class="violet">print</span>(j)              <span class="brown"># This line is also the SECOND block.</span></pre>
+<p class="indent">
+  Can you figure out what this code is going to do?
+ </p>
+<p class="indent">
+  After a list called
+  <span class="literal1">
+   hugehairypants
+  </span>
+  is created, we can tell from the next two lines that Python is going to loop through the items in the list and print out each one. However, at
+  <span class="literal1">
+   for j in hugehairypants
+  </span>
+  , it will loop over the list again, this time assigning the value to the variable
+  <span class="literal1">
+   j
+  </span>
+  , and then print each item again. These last two lines of code are still part of the first
+  <span class="literal1">
+   for
+  </span>
+  loop, which means they will be executed for each item as the
+  <span class="literal1">
+   for
+  </span>
+  loop goes through the list.
+ </p>
+<p class="indent">
+  When this code runs, we should see
+  <span class="literal1">
+   huge
+  </span>
+  followed by
+  <span class="literal1">
+   huge, hairy, pants
+  </span>
+  , and then
+  <span class="literal1">
+   hairy
+  </span>
+  followed by
+  <span class="literal1">
+   huge, hairy, pants
+  </span>
+  , and so on.
+ </p>
+<p class="indent">
+<span id="page_75">
+</span>
+  Enter the code into the Python Shell and see for yourself:
+ </p>
+<pre class="pre">   <span class="brown">&gt;&gt;&gt;</span> hugehairypants = [<span class="green">'huge'</span>, <span class="green">'hairy'</span>, <span class="green">'pants'</span>]
+   <span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> i <span class="orange">in</span> hugehairypants:
+           <span class="violet">print</span>(i)
+           <span class="orange">for</span> j <span class="orange">in</span> hugehairypants:
+               <span class="violet">print</span>(j)
+
+→ <span class="blue1">huge
+   huge
+   hairy
+   pants</span>
+→ <span class="blue1">hairy
+   huge
+   hairy
+   pants</span>
+→ <span class="blue1">pants
+   huge
+   hairy
+   pants</span>
+</pre>
+<p class="indent">
+  Python enters the first loop and prints an item from the list. Next, it enters the second loop and prints all the items in the list. After that, it prints the second item in the list with
+  <span class="literal1">
+   print(i)
+  </span>
+  , and then prints the complete list again with the
+  <span class="literal1">
+   print(j)
+  </span>
+  command in the inner loop. Lastly, it prints the third item in the list with
+  <span class="literal1">
+   print(i)
+  </span>
+  again, and then prints the complete list one more time with the inner loop. In the output, the lines marked
+  <strong class="calibre5">
+   →
+  </strong>
+  are printed by
+  <span class="literal1">
+   print(i)
+  </span>
+  , and the unmarked lines are printed by the
+  <span class="literal1">
+   print(j)
+  </span>
+  statement.
+ </p>
+<p class="indent">
+  Let’s try something more practical than printing silly words. Remember the calculation we came up with in
+  <a class="calibre6" href="ch02.xhtml#ch02">
+   Chapter 2
+  </a>
+  to figure out how many gold coins you’d have at the end of the year if you used your grandfather’s duplication machine? It looked like this:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> found_coins + magic_coins * 365 - stolen_coins * 52</pre>
+<p class="indent">
+  This represents 20 found coins plus 10 magic coins multiplied by 365 days in the year, minus the 3 coins a week stolen by the raven.
+ </p>
+<p class="indent">
+<span id="page_76">
+</span>
+  Let’s check how your pile of gold coins will increase each week. We can do this with a
+  <span class="literal1">
+   for
+  </span>
+  loop, but first we need to change the value of our
+  <span class="literal1">
+   magic_coins
+  </span>
+  variable so it represents the total number of coins per week. We get 10 magic coins per day, and there are 7 days in a week, so
+  <span class="literal1">
+   magic_coins
+  </span>
+  should be 70:
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre64" src="../images/f0076-01.jpg"/>
+</div>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> found_coins = 20
+<span class="brown">&gt;&gt;&gt;</span> magic_coins = 70
+<span class="brown">&gt;&gt;&gt;</span> stolen_coins = 3</pre>
+<p class="indent">
+  We can see our treasure increase each week by creating another variable, called
+  <span class="literal1">
+   coins
+  </span>
+  , and using a
+  <span class="literal1">
+   for
+  </span>
+  loop:
+ </p>
+<pre class="pre">   <span class="brown">&gt;&gt;&gt;</span> found_coins = 20
+   <span class="brown">&gt;&gt;&gt;</span> magic_coins = 70
+   <span class="brown">&gt;&gt;&gt;</span> stolen_coins = 3
+<span class="ent">➊</span> <span class="brown">&gt;&gt;&gt;</span> coins = found_coins
+   <span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> week <span class="orange">in</span> <span class="violet">range</span>(1, 53):
+           coins = coins + magic_coins - stolen_coins
+           <span class="violet">print</span>(f<span class="green">'Week {week} = {coins}'</span>)</pre>
+<p class="indent">
+  The
+  <span class="literal1">
+   coins
+  </span>
+  variable is loaded with the value of the
+  <span class="literal1">
+   found_coins
+  </span>
+  variable
+  <span class="ent">
+   ➊
+  </span>
+  ; this is our starting number. The next line sets up the
+  <span class="literal1">
+   for
+  </span>
+  loop, which will run the commands in the block. Each time it loops, the
+  <span class="literal1">
+   week
+  </span>
+  variable is loaded with the next number in the range of 1 through 52.
+ </p>
+<p class="indent">
+  The line containing
+  <span class="literal1">
+   coins = coins + magic_coins - stolen_coins
+  </span>
+  is a bit more complicated. Each week we want to add the number of coins we’ve magically created and subtract the number of coins the raven has stolen. Think of the
+  <span class="literal1">
+   coins
+  </span>
+  variable as a treasure chest. Every week, the new coins are piled into the chest. So this line is telling Python, “Replace the contents of
+  <span class="literal1">
+   coins
+  </span>
+  with the number of my current coins, plus what I’ve created this week.” The equal sign (
+  <span class="literal1">
+   =
+  </span>
+  ) is a bossy piece of code that says, “Work out some stuff on the right first, and then save it for later, using the name on the left.”
+ </p>
+<p class="indent">
+  The
+  <span class="literal1">
+   print
+  </span>
+  statement prints the week number and the total number of coins (so far) to the screen. (Consider rereading
+  <span id="page_77">
+</span>
+  “Embedding Values in Strings” on
+  <a class="calibre6" href="ch03.xhtml#ch03lev1sec4">
+   page 29
+  </a>
+  .) If you run this program, you’ll see something like
+  <a class="calibre6" href="ch06.xhtml#ch06fig01">
+   Figure 6-1
+  </a>
+  .
+ </p>
+<div class="image1" id="ch06fig01">
+<img alt="Image" class="calibre65" src="../images/06fig01.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 6-1: Running the loop
+  </em>
+</p>
+<h3 class="h1" id="ch06lev1sec2">
+  While We’re Talking About  Looping . . .
+ </h3>
+<p class="noindent">
+  A
+  <span class="literal1">
+   for
+  </span>
+  loop isn’t the only kind of loop you can make in Python. There’s also the
+  <span class="literal1">
+   while
+  </span>
+  loop. While a
+  <span class="literal1">
+   for
+  </span>
+  loop has a specific length, a
+  <span class="literal1">
+   while
+  </span>
+  loop doesn’t. It’s used if you don’t know when the loop needs to stop ahead of time.
+ </p>
+<p class="indent">
+  Imagine a staircase with 20 steps. The staircase is indoors, and you know you can easily climb 20 steps. A
+  <span class="literal1">
+   for
+  </span>
+  loop is like that:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> step <span class="orange">in</span> <span class="violet">range</span>(0, 20):
+        <span class="violet">print</span>(step)</pre>
+<p class="indent">
+  Now imagine a staircase going up a mountainside. The mountain is really tall, and you might run out of energy before you reach the top. Or the weather might turn bad, forcing you to stop. This is what a
+  <span class="literal1">
+   while
+  </span>
+  loop is like:
+ </p>
+<pre class="pre">step = 0
+<span class="orange">while</span> step &lt; 10000:
+    <span class="violet">print</span>(step)
+    <span class="orange">if</span> tired == <span class="violet">True</span>:
+        <span class="orange">break</span>
+<span id="page_78"></span>    <span class="orange">elif</span> badweather == <span class="violet">True</span>:
+        <span class="orange">break</span>
+    <span class="orange">else</span>:
+        step = step + 1</pre>
+<p class="indent">
+  If you try to run this code, you’ll get an error, because we haven’t created the
+  <span class="literal1">
+   tired
+  </span>
+  and
+  <span class="literal1">
+   badweather
+  </span>
+  variables. Although there isn’t enough code here to make a working program, it demonstrates a simple
+  <span class="literal1">
+   while
+  </span>
+  loop.
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre66" src="../images/f0078-01.jpg"/>
+</div>
+<p class="indent">
+  We start by creating the
+  <span class="literal1">
+   step
+  </span>
+  variable with
+  <span class="literal1">
+   step = 0
+  </span>
+  . Next, we create a
+  <span class="literal1">
+   while
+  </span>
+  loop that checks whether the value of
+  <span class="literal1">
+   step
+  </span>
+  is less than 10,000 (
+  <span class="literal1">
+   step &lt; 10000
+  </span>
+  ), which is the number of steps from the bottom of the mountain to the top. As long as
+  <span class="literal1">
+   step
+  </span>
+  is less than 10,000, Python will execute the rest of the code.
+ </p>
+<p class="indent">
+  With
+  <span class="literal1">
+   print(step)
+  </span>
+  , we print the value of
+  <span class="literal1">
+   step
+  </span>
+  and then check whether the value of the variable
+  <span class="literal1">
+   tired
+  </span>
+  is
+  <span class="literal1">
+   True
+  </span>
+  with the
+  <span class="literal1">
+   if tired == True
+  </span>
+  condition. If it is, we use
+  <span class="literal1">
+   break
+  </span>
+  to exit the loop. The
+  <span class="literal1">
+   break
+  </span>
+  keyword is a way of jumping out of (or stopping) a loop immediately, and it works with both
+  <span class="literal1">
+   while
+  </span>
+  and
+  <span class="literal1">
+   for
+  </span>
+  loops.
+ </p>
+<p class="indent">
+  In this example,
+  <span class="literal1">
+   break
+  </span>
+  causes Python to jump out of the block and move to any commands that appeared after the
+  <span class="literal1">
+   step = step + 1
+  </span>
+  line.
+ </p>
+<p class="indent">
+  The line
+  <span class="literal1">
+   elif badweather == True
+  </span>
+  checks to see if
+  <span class="literal1">
+   badweather
+  </span>
+  is set to
+  <span class="literal1">
+   True
+  </span>
+  ; if so,
+  <span class="literal1">
+   break
+  </span>
+  exits the loop. If neither
+  <span class="literal1">
+   tired
+  </span>
+  nor
+  <span class="literal1">
+   badweather
+  </span>
+  is
+  <span class="literal1">
+   True
+  </span>
+  (seen at
+  <span class="literal1">
+   else
+  </span>
+  ), we add 1 to the
+  <span class="literal1">
+   step
+  </span>
+  variable with
+  <span class="literal1">
+   step = step + 1
+  </span>
+  , and the loop continues.
+ </p>
+<p class="indent">
+  The steps of a
+  <span class="literal1">
+   while
+  </span>
+  loop are as follows:
+ </p>
+<ol class="calibre9">
+<li class="noindent1">
+   Check the condition.
+  </li>
+<li class="noindent1">
+   Execute the code in the block.
+  </li>
+<li class="noindent1">
+   Repeat.
+  </li>
+</ol>
+<p class="indent">
+  More commonly, a
+  <span class="literal1">
+   while
+  </span>
+  loop might be created with a few conditions, rather than just one, like this:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> x = 45
+<span class="brown">&gt;&gt;&gt;</span> y = 80
+<span id="page_79"></span><span class="brown">&gt;&gt;&gt;</span> <span class="orange">while</span> x &lt; 50 <span class="orange">and</span> y &lt; 100:
+        x = x + 1
+        y = y + 1
+        <span class="violet">print</span>(x, y)</pre>
+<p class="indent">
+  Here, we create an
+  <span class="literal1">
+   x
+  </span>
+  variable with the value 45 and a
+  <span class="literal1">
+   y
+  </span>
+  variable with the value 80. The loop checks for two conditions: whether
+  <span class="literal1">
+   x
+  </span>
+  is less than 50 and whether
+  <span class="literal1">
+   y
+  </span>
+  is less than 100. While both conditions are true, the lines that follow are executed, adding 1 to both variables and then printing them. The output of this code is as follows:
+ </p>
+<pre class="pre"><span class="blue1">46 81
+47 82
+48 83
+49 84
+50 85</span></pre>
+<p class="indent">
+  Can you figure out how this works?
+ </p>
+<p class="indent">
+  We start counting at 45 for
+  <span class="literal1">
+   x
+  </span>
+  and at 80 for
+  <span class="literal1">
+   y
+  </span>
+  , and then
+  <em class="calibre7">
+   increment
+  </em>
+  (add 1 to each variable) every time the code in the loop is run. The loop will run as long as
+  <span class="literal1">
+   x
+  </span>
+  is less than 50 and
+  <span class="literal1">
+   y
+  </span>
+  is less than 100. After looping five times, the value in
+  <span class="literal1">
+   x
+  </span>
+  reaches 50. Now the first condition (
+  <span class="literal1">
+   x &lt; 50
+  </span>
+  ) is no longer true, so Python stops looping.
+ </p>
+<p class="indent">
+  We can also use a
+  <span class="literal1">
+   while
+  </span>
+  loop to create a
+  <em class="calibre7">
+   semi-eternal loop
+  </em>
+  that could go on forever, but continues until something happens in the code to break out of it.
+ </p>
+<p class="indent">
+  Here’s an example:
+ </p>
+<pre class="pre"><span class="orange">while</span> <span class="violet">True</span>:
+    lots of code here
+    lots of code here
+    lots of code here
+    <span class="orange">if</span> some_value == <span class="violet">True</span>:
+        <span class="orange">break</span></pre>
+<p class="indent">
+  The condition for the
+  <span class="literal1">
+   while
+  </span>
+  loop is just
+  <span class="literal1">
+   True
+  </span>
+  , which is always true, so the code in the block will always run (thus, the loop is eternal). Python will break out of the loop only if the variable
+  <span class="literal1">
+   some_value
+  </span>
+  is true.
+ </p>
+<h3 class="h1" id="ch06lev1sec3">
+<span class="calibre2" id="page_80">
+</span>
+  What You Learned
+ </h3>
+<p class="noindent">
+  In this chapter, we used two types of loops to perform repetitive tasks:
+  <span class="literal1">
+   for
+  </span>
+  loops and
+  <span class="literal1">
+   while
+  </span>
+  loops. These are similar but can be used in different ways. We told Python what we wanted repeated by writing the tasks inside blocks of code, which we put inside loops. We also used the
+  <span class="literal1">
+   break
+  </span>
+  keyword to stop looping.
+ </p>
+<h3 class="h1" id="ch06lev1sec4">
+  Programming Puzzles
+ </h3>
+<p class="noindent">
+  Here are some examples of loops to try out. The solutions can be found at
+  <em class="calibre7">
+<a class="calibre6" href="http://python-for-kids.com">
+    http://python-for-kids.com
+   </a>
+</em>
+  .
+ </p>
+<h4 class="h3" id="ch06lev2sec1">
+  #1: The Hello Loop
+ </h4>
+<p class="noindent">
+  What do you think the following code will do? Guess what will happen, and then run the code in Python to see if you’re right.
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> x <span class="orange">in</span> <span class="violet">range</span>(0, 20):
+        <span class="violet">print</span>(f<span class="green">'hello {x}'</span>)
+        <span class="orange">if</span> x &lt; 9:
+           <span class="orange">break</span></pre>
+<h4 class="h3" id="ch06lev2sec2">
+  #2: Even Numbers
+ </h4>
+<p class="noindent">
+  Create a loop that prints even numbers until it reaches your age (if your age is an odd number, create a loop that prints out odd numbers until it reaches your age). For example, it might print out something like this:
+ </p>
+<pre class="pre"><span class="blue1">2
+4
+6
+8
+10
+12
+14</span></pre>
+<h4 class="h3" id="ch06lev2sec3">
+<span class="calibre2" id="page_81">
+</span>
+  #3: My Five Favorite Ingredients
+ </h4>
+<p class="noindent">
+  Create a list containing five different sandwich ingredients, such as the following:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> ingredients = [<span class="green">'snails'</span>, <span class="green">'leeches'</span>, <span class="green">'gorilla belly-button lint'</span>, 
+                   <span class="green">'caterpillar eyebrows'</span>, <span class="green">'centipede toes'</span>]</pre>
+<p class="indent">
+  Now create a loop that prints out the list (including the numbers):
+ </p>
+<pre class="pre"><span class="blue1">1 snails
+2 leeches
+3 gorilla belly-button lint
+4 caterpillar eyebrows
+5 centipede toes</span></pre>
+<h4 class="h3" id="ch06lev2sec4">
+  #4: Your Weight on the Moon
+ </h4>
+<p class="noindent">
+  If you were standing on the moon right now, your weight would be 16.5 percent of what it is on Earth. You can calculate that by multiplying your Earth weight by 0.165.
+ </p>
+<p class="indent">
+  If you gained two pounds every year for the next 15 years, what would your weight be when you visited the moon each year and at the end of the 15 years? Write a program using a
+  <span class="literal1">
+   for
+  </span>
+  loop that prints your moon weight for each year.
+  <span id="page_82">
+</span>
+</p>
+</div></body>
+</html>

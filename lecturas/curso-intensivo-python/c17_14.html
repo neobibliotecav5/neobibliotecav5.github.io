@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c17-0010">Añadir enlaces clicables</h3>
+<p class="BodyFirst">Como Plotly te permite utilizar HTML en elementos de texto, podemos añadir fácilmente enlaces a un gráfico. Utilicemos las etiquetas del eje <em translate="no">x</em> para que el espectador pueda visitar la página de inicio de cualquier proyecto en GitHub. Tenemos que extraer las URL de los datos y utilizarlas al generar las etiquetas del eje <em translate="no">x</em>:</p>
+<p class="CodeLabel" translate="no"><b>python_repos_visual.py</b></p>
+<pre translate="no"><code translate="no"><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray"># Process repository information.</span>
+<span class="LiteralGray">repo_dicts = response_dict['items']</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> repo_links, stars, hover_texts = [], [], []
+<span class="LiteralGray">for repo_dict in repo_dicts:</span>
+    # Turn repo names into active links.
+    repo_name = repo_dict['name']
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     repo_url = repo_dict['html_url']
+<span epub:type="pagebreak" id="Page_367" title="367"></span><span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     repo_link = f"&lt;a href='{repo_url}'&gt;{repo_name}&lt;/a&gt;"
+    repo_links.append(repo_link)
+
+<span class="LiteralGray">    stars.append(repo_dict['stargazers_count'])</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+
+<span class="LiteralGray"># Make visualization.</span>
+<span class="LiteralGray">title = "Most-Starred Python Projects on GitHub"</span>
+<span class="LiteralGray">labels = {'x': 'Repository', 'y': 'Stars'}</span>
+fig = px.bar(x=repo_links, y=stars, title=title, labels=labels,
+<span class="LiteralGray">        hover_name=hover_texts)</span>
+
+<span class="LiteralGray">fig.update_layout(title_font_size=28, xaxis_title_font_size=20,</span>
+<span class="LiteralGray">        yaxis_title_font_size=20)</span>
+
+<span class="LiteralGray">fig.show()</span></code></pre>
+<p>Actualizamos el nombre de la lista que estamos creando de <code translate="no">repo_names</code> a <code translate="no">repo_links</code> para comunicar con mayor precisión el tipo de información que estamos reuniendo para el gráfico <span aria-label="annotation1" class="CodeAnnotation">❶.</span> A continuación, extraemos la URL del proyecto de <code translate="no">repo_dict</code> y la asignamos a la variable temporal <code translate="no">repo_url</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> A continuación, generamos un enlace al proyecto <span aria-label="annotation3" class="CodeAnnotation">❸.</span> Utilizamos la etiqueta de anclaje HTML, que tiene la forma <code translate="no">link text&lt;/a&gt;</code>, para generar el enlace. A continuación, añadimos este enlace a <code translate="no">repo_links</code>.</p>
+<p>Cuando llamamos a <code translate="no">px.bar()</code>, utilizamos <code translate="no">repo_links</code> para los valores <em translate="no">x</em> del gráfico. El resultado es el mismo que antes, pero ahora el espectador puede hacer clic en cualquiera de los nombres de proyecto de la parte inferior del gráfico para visitar la página de inicio de ese proyecto en GitHub. ¡Ahora tenemos una visualización interactiva e informativa de datos obtenidos a través de una API!</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c17_13.html">anterior</a><a href="c17.html">Subtema 14 de 20: (Ver todo)</a><a href="c17_15.html">siguiente</a><br/></p>
+<br/><a href="c17_14.docx" target="_blank"></a></footer>
+</body>
+</html>

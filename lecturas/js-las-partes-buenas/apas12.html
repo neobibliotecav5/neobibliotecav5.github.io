@@ -1,0 +1,94 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Falsy Values</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="Falsy Values"><div class="titlepage"><div><div><h1 class="title"><a id="falsy_values"></a>Valores falsos</h1></div></div></div><p>JavaScript tiene un conjunto sorprendentemente amplio de valores falsos, que se muestran en la <a class="xref" href="apas12.html#the_many_falsy_values_of_javascript" title="Table A-1. The many falsy values of JavaScript">Tabla A-1</a>.<a class="indexterm" id="IDX-APP-A-0525"></a><a class="indexterm" id="IDX-APP-A-0526"></a><a class="indexterm" id="IDX-APP-A-0527"></a><a class="indexterm" id="IDX-APP-A-0528"></a><a class="indexterm" id="IDX-APP-A-0529"></a></p><div class="table"><a id="the_many_falsy_values_of_javascript"></a><p class="title">Tabla A-1. Los numerosos valores falsos de JavaScript</p><div class="table-contents"><table style="border-collapse: collapse;border-top: 0.5pt solid ; border-bottom: 0.5pt solid ; border-left: 0.5pt solid ; border-right: 0.5pt solid ; " summary="The many falsy values of JavaScript"><colgroup><col/><col/></colgroup><thead><tr><th style="text-align: left" valign="bottom">
+<p>Valor</p>
+</th><th style="text-align: left" valign="bottom">
+<p>Tipo</p>
+</th></tr></thead><tbody><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">0</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p>Número</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p><code class="literal" translate="no">NaN</code> (no es un número)</p>
+</td><td style="text-align: left" valign="top">
+<p>Número</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p><code class="literal" translate="no">''</code> (cadena vacía)</p>
+</td><td style="text-align: left" valign="top">
+<p>Cadena</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">false</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p>Booleano</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">null</code>
+<a class="indexterm" id="IDX-APP-A-0530"></a>
+</p>
+</td><td style="text-align: left" valign="top">
+<p>Objeto</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">undefined</code>
+<a class="indexterm" id="IDX-APP-A-0531"></a>
+</p>
+</td><td style="text-align: left" valign="top">
+<p>Indefinido</p>
+</td></tr></tbody></table></div></div><p>Todos estos valores son falsos, pero no son intercambiables. Por ejemplo, ésta es la forma incorrecta de determinar si a un objeto le falta un miembro:</p><a id="I_programlisting_d1e8662"></a><pre class="programlisting" translate="no">value = myObject[name];
+if (value == null) {
+   alert(name + ' not found.');
+}</pre><p><code class="literal" translate="no">undefined</code> es el valor de los miembros que faltan, pero el fragmento está comprobando <code class="literal" translate="no">null</code>. Está utilizando el operador <code class="literal" translate="no">==</code> (véase <a class="xref" href="apb.html" title="Appendix B. Bad Parts">el Apéndice B</a>), que hace coerción de tipos, en lugar del operador más fiable <code class="literal" translate="no">===</code>. A veces esos dos errores se anulan mutuamente, pero otras veces no.</p><p><code class="literal" translate="no">undefined</code> y <code class="literal" translate="no">NaN</code> no son constantes. Son variables globales, y puedes cambiar sus valores. Eso no debería ser posible, y sin embargo lo es. No lo hagas.</p></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="apas11.html">← Anterior</a><a href="apas13.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="apas12.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\apas12.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

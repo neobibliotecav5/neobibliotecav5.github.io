@@ -1,0 +1,112 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Module</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="Module"><div class="titlepage"><div><div><h1 class="title"><a id="module"></a>Módulo</h1></div></div></div><p>Podemos utilizar funciones y cierres para crear módulos. Un módulo es una función u objeto que presenta una interfaz pero que oculta su estado e implementación. Al utilizar funciones para producir módulos, podemos eliminar casi por completo el uso de variables globales, mitigando así una de las peores características de JavaScript.<a class="indexterm" id="IDX-CHP-4-0235"></a><a class="indexterm" id="IDX-CHP-4-0236"></a></p><p>Por ejemplo, supongamos que queremos aumentar <code class="literal" translate="no">String</code>con un método <code class="literal" translate="no">deentityify</code>. Su función es buscar entidades HTML en una cadena y sustituirlas por sus equivalentes. Tiene sentido guardar los nombres de las entidades y sus equivalentes en un objeto. Pero, ¿dónde debemos guardar el objeto? Podríamos ponerlo en una variable global, pero las variables globales son malvadas. Podríamos definirlo en la propia función, pero eso tiene un coste en tiempo de ejecución porque el literal debe evaluarse cada vez que se invoca la función. El enfoque ideal es ponerlo en un cierre, y quizás proporcionar un método extra que pueda añadir entidades adicionales:</p><a id="I_programlisting4_d1e3354"></a><pre class="programlisting" translate="no">String.method('deentityify', function (  ) {
+
+// The entity table. It maps entity names to
+// characters.
+
+    var entity = {
+        quot: '"',
+        lt:   '&lt;',
+        gt:   '&gt;'
+    };
+
+// Return the deentityify method.
+
+    return function (  ) {
+
+// This is the deentityify method. It calls the string
+// replace method, looking for substrings that start
+// with '&amp;' and end with ';'. If the characters in
+// between are in the entity table, then replace the
+// entity with the character from the table. It uses
+// a regular expression (Chapter 7).
+
+        return this.replace(/&amp;([^&amp;;]+);/g,
+            function (a, b) {
+                var r = entity[b];
+                return typeof r === 'string' ? r : a;
+            }
+        );
+    };
+}(  ));</pre><p>Fíjate en la última línea. Invocamos inmediatamente la función que acabamos de crear con el operador <code class="literal" translate="no">( )</code>. Esa invocación crea y devuelve la función que se convierte en el método <code class="literal" translate="no">deentityify</code>.</p><a id="I_programlisting4_d1e3364"></a><pre class="programlisting" translate="no">document.writeln(
+    '&amp;lt;&amp;quot;&amp;gt;'.deentityify(  ));  // &lt;"&gt;</pre><p>El patrón módulo aprovecha el ámbito de la función y el cierre para crear relaciones vinculantes y privadas. En este ejemplo, sólo el método <code class="literal" translate="no">deentityify</code> tiene acceso a la estructura de datos de la entidad.</p><p>El patrón general de un módulo es una función que define variables y funciones privadas; crea funciones privilegiadas que, mediante cierre, tendrán acceso a las variables y funciones privadas; y que devuelve las funciones privilegiadas o las almacena en un lugar accesible.<a class="indexterm" id="IDX-CHP-4-0237"></a><a class="indexterm" id="IDX-CHP-4-0238"></a></p><p>El uso del patrón módulo puede eliminar el uso de variables globales. Promueve la ocultación de información y otras buenas prácticas de diseño. Es muy eficaz para encapsular aplicaciones y otros singletons.</p><p>También puede utilizarse para producir objetos que sean seguros. Supongamos que queremos crear un objeto que produzca un número de serie:</p><a id="I_programlisting4_d1e3387"></a><pre class="programlisting" translate="no">var serial_maker = function (  ) {
+
+// Produce an object that produces unique strings. A
+// unique string is made up of two parts: a prefix
+// and a sequence number. The object comes with
+// methods for setting the prefix and sequence
+// number, and a gensym method that produces unique
+// strings.
+
+    var prefix = '';
+    var seq = 0;
+    return {
+        set_prefix: function (p) {
+            prefix = String(p);
+        },
+        set_seq: function (s) {
+            seq = s;
+        },
+        gensym: function ( ) {
+            var result = prefix + seq;
+            seq += 1;
+            return result;
+        }
+    };
+};
+var seqer = serial_maker( );
+seqer.set_prefix('Q');
+seqer.set_seq(1000);
+var unique = seqer.gensym( ); // unique is "Q1000"</pre><p>Los métodos no hacen uso de <code class="literal" translate="no">this</code> o <code class="literal" translate="no">that</code>. Como resultado, no hay forma de comprometer el <code class="literal" translate="no">seqer</code>. No es posible obtener o modificar el <code class="literal" translate="no">prefix</code> o el <code class="literal" translate="no">seq</code> excepto si lo permiten los métodos. El objeto <code class="literal" translate="no">seqer</code> es mutable, por lo que los métodos podrían sustituirse, pero eso seguiría sin dar acceso a sus secretos. <code class="literal" translate="no">seqer</code>
+                es simplemente una colección de funciones, y esas funciones son capacidades que otorgan poderes específicos para utilizar o modificar el estado secreto.</p><p>Si pasáramos <code class="literal" translate="no">seqer.gensym</code> a la función de un tercero, esa función podría generar cadenas únicas, pero no podría modificar las <code class="literal" translate="no">prefix</code> o <code class="literal" translate="no">seq</code>.</p></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="ch04s11.html">← Anterior</a><a href="ch04s13.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="ch04s12.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\ch04s12.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

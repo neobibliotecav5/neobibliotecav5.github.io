@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<meta charset="utf-8"/>
+<title>Capítulo 3: Describir datos con estadísticas</title>
+<link href="style.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="core.css" media="all" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch03lev1sec04"><strong>Medir la dispersión</strong></h3>
+<p class="noindent">Los siguientes cálculos estadísticos que veremos miden la <em>dispersión</em>, que nos indica la distancia que separa los números de un conjunto de datos de la media del conjunto. Aprenderemos a calcular tres medidas distintas de la dispersión: el rango, la varianza y la desviación típica.</p>
+<h4 class="h4" id="ch03lev2sec04"><strong><em>Hallar el rango de un conjunto de números</em></strong></h4>
+<p class="noindent">Una vez más, considera la lista de donaciones durante el periodo A: 100, 60, 70, 900, 100, 200, 500, 500, 503, 600, 1000 y 1200. Comprobamos que la media de donaciones por día es de 477,75. Pero sólo mirando la media, no tenemos ni idea de si todas las donaciones cayeron en un rango estrecho -digamos entre 400 y 500- o si variaron mucho más que eso -digamos entre 60 y 1200, como en este caso-. Para una lista de números, el <em>rango</em> es la diferencia entre el número más alto y el más bajo. Podrías tener dos grupos de números con exactamente la misma media pero con rangos muy diferentes, por lo que conocer el rango aporta más información sobre un conjunto de números que la que podemos obtener con sólo mirar la media, la mediana y la moda.</p>
+<p class="indent"><a id="page_72"></a>El siguiente programa halla el rango de la lista de donaciones anterior:</p>
+<p class="programs" translate="no">   '''<br translate="no"/>   Find the range<br translate="no"/>   '''<br translate="no"/><br translate="no"/>   def find_range(numbers):<br translate="no"/><br translate="no"/><span class="ent">➊</span>     lowest = min(numbers)<br translate="no"/><span class="ent">➋</span>     highest = max(numbers)<br translate="no"/>       # Find the range<br translate="no"/>       r = highest-lowest<br translate="no"/><br translate="no"/><span class="ent">➌</span>     return lowest, highest, r<br translate="no"/><br translate="no"/>   if __name__ == '__main__':<br translate="no"/>       donations = [100, 60, 70, 900, 100, 200, 500, 500, 503, 600, 1000, 1200]<br translate="no"/><span class="ent">➍</span>     lowest, highest, r = find_range(donations)<br translate="no"/>       print('Lowest: {0} Highest: {1} Range: {2}'.format(lowest, highest, r))</p>
+<p class="indent">La función <span class="literal" translate="no">find_range()</span> acepta una lista como parámetro y halla el rango. Primero, calcula los números más bajos y más altos utilizando las funciones <span class="literal" translate="no">min()</span> y <span class="literal" translate="no">max()</span> en <span class="ent">➊</span> y <span class="ent">➋.</span> Como indican los nombres de las funciones, encuentran los valores mínimo y máximo en una lista de números.</p>
+<p class="indent">A continuación, calculamos el rango tomando la diferencia entre los números mayor y menor, utilizando la etiqueta <span class="literal" translate="no">r</span> para referirnos a esta diferencia. En <span class="ent">➌,</span> devolvemos los tres números: el número más bajo, el número más alto y el rango. Es la primera vez en el libro que devolvemos varios valores de una función: en lugar de devolver sólo un valor, esta función devuelve tres. En <span class="ent">➍,</span> utilizamos tres etiquetas para <em>recibir</em> los tres valores que devuelve la función <span class="literal" translate="no">find_range()</span>. Por último, imprimimos los valores. Cuando ejecutes el programa, deberías ver la siguiente salida:</p>
+<p class="programs" translate="no">Lowest: 60 Highest: 1200 Range: 1140</p>
+<p class="indent">Esto nos indica que las donaciones totales de los días estaban bastante repartidas, con un rango de 1140, porque teníamos totales diarios tan pequeños como 60 y tan grandes como 1200.</p>
+<h4 class="h4" id="ch03lev2sec05"><strong><em>Hallar la varianza y la desviación típica</em></strong></h4>
+<p class="noindent">El rango nos indica la diferencia entre los dos extremos de un conjunto de cifras, pero ¿qué ocurre si queremos saber más sobre cómo varían todas las cifras individuales respecto a la media? ¿Eran todas similares, agrupadas cerca de la media, o eran todas diferentes, más cerca de los extremos? Hay dos medidas de dispersión relacionadas que nos dicen más sobre una lista de números en este sentido: la <em>varianza</em> y la <em>desviación típica</em>. Para calcular cualquiera de ellas, primero tenemos que hallar la diferencia de cada uno de los números respecto a la media. La varianza es la media de los cuadrados de esas diferencias. <a id="page_73"></a>Una varianza alta significa que los valores están lejos de la media; una varianza baja significa que los valores están agrupados cerca de la media. Calculamos la varianza mediante la fórmula</p>
+<div class="image2"><img alt="image" src="images/e0073-01.jpg" translate="no"/></div>
+<p class="indent">En la fórmula, <em><sub>xi</sub></em> representa los números individuales (en este caso, los donativos totales diarios), <sub>xmedia</sub> representa la media de estos números (el donativo medio diario), y <em>n</em> es el número de valores de la lista (el número de días en los que se recibieron donativos). Para cada valor de la lista, tomamos la diferencia entre ese número y la media y la elevamos al cuadrado. Luego, sumamos todas esas diferencias al cuadrado y, por último, dividimos la suma total por <em>n</em> para hallar la varianza.</p>
+<p class="indent">Si queremos calcular también la desviación típica, basta con sacar la raíz cuadrada de la varianza. Los valores que están dentro de una desviación típica de la media se pueden considerar bastante típicos, mientras que los valores que están a tres o más desviaciones típicas de la media se pueden considerar mucho más atípicos; a esos valores los llamamos <em>valores atípicos</em>.</p>
+<p class="indent">¿Por qué tenemos estas dos medidas de dispersión: la varianza y la desviación típica? En resumen, las dos medidas son útiles en situaciones diferentes. Volviendo a la fórmula que utilizamos para calcular la varianza, puedes ver que la varianza se expresa en unidades cuadradas porque es la media de la diferencia al cuadrado respecto a la media. Para algunas fórmulas matemáticas, es más agradable trabajar con esas unidades cuadradas en lugar de sacar la raíz cuadrada para hallar la desviación típica. Por otra parte, la desviación típica se expresa en las mismas unidades que los datos de la población. Por ejemplo, si calculas la varianza de nuestra lista de donaciones (como haremos dentro de un momento), el resultado se expresa en dólares al cuadrado, lo que no tiene mucho sentido. Mientras tanto, la desviación típica se expresa simplemente en dólares, la misma unidad que cada una de las donaciones.</p>
+<p class="indent">El siguiente programa halla la varianza y la desviación típica de una lista de números:</p>
+<p class="programs" translate="no">   '''<br translate="no"/>   Find the variance and standard deviation of a list of numbers<br translate="no"/>   '''<br translate="no"/><br translate="no"/>   def calculate_mean(numbers):<br translate="no"/>       s = sum(numbers)<br translate="no"/>       N = len(numbers)<br translate="no"/>       # Calculate the mean<br translate="no"/>       mean = s/N<br translate="no"/><br translate="no"/>       return mean<br translate="no"/><br translate="no"/>   def find_differences(numbers):<br translate="no"/>       # Find the mean<br translate="no"/>       mean = calculate_mean(numbers)<br translate="no"/>       # Find the differences from the mean<br translate="no"/>       diff = []<br translate="no"/>       for num in numbers:<br translate="no"/>           diff.append(num-mean)<br translate="no"/><br translate="no"/>       return diff<br translate="no"/><br translate="no"/>   def calculate_variance(numbers):<br translate="no"/><br translate="no"/>       # Find the list of differences<br translate="no"/><span class="ent">➊</span>     diff = find_differences(numbers)<br translate="no"/>       # Find the squared differences<br translate="no"/>       squared_diff = []<br translate="no"/><span class="ent">➋</span>     for d in diff:<br translate="no"/>           squared_diff.append(d**2)<br translate="no"/>       # Find the variance<br translate="no"/>       sum_squared_diff = sum(squared_diff)<br translate="no"/><span class="ent">➌</span>     variance = sum_squared_diff/len(numbers)<br translate="no"/>       return variance<br translate="no"/><br translate="no"/>   if __name__ == '__main__':<br translate="no"/>       donations = [100, 60, 70, 900, 100, 200, 500, 500, 503, 600, 1000, 1200]<br translate="no"/>       variance = calculate_variance(donations)<br translate="no"/>       print('The variance of the list of numbers is {0}'.format(variance))<br translate="no"/><br translate="no"/><span class="ent">➍</span>     std = variance**0.5<br translate="no"/>       print('The standard deviation of the list of numbers is {0}'.format(std))</p>
+<p class="indent">La función <span class="literal" translate="no">calculate_variance()</span> calcula la varianza de la lista de números que se le pasa. Primero, llama a la función <span class="literal" translate="no">find_differences()</span> en <span class="ent">➊</span> para calcular la diferencia de cada uno de los números respecto a la media. La función <span class="literal" translate="no">find_differences()</span> devuelve la diferencia de cada donación respecto al valor medio en forma de lista. En esta función, utilizamos la función <span class="literal" translate="no">calculate_mean()</span> que escribimos antes para hallar la donación media. A continuación, a partir de <span class="ent">➋,</span> se calculan los cuadrados de estas diferencias y se guardan en una lista denominada <span class="literal" translate="no">squared_diff</span>. A continuación, utilizamos la función <span class="literal" translate="no">sum()</span> para hallar la suma de las diferencias al cuadrado y, por último, calculamos la varianza en <span class="ent">➌.</span> En <span class="ent">➍,</span> calculamos la desviación típica tomando la raíz cuadrada de la varianza.</p>
+<p class="indent">Cuando ejecutes el programa anterior, deberías ver el siguiente resultado:</p>
+<p class="programs" translate="no">The variance of the list of numbers is 141047.35416666666<br translate="no"/>The standard deviation of the list of numbers is 375.5627166887931</p>
+<p class="indent">Tanto la varianza como la desviación típica son muy grandes, lo que significa que las donaciones totales diarias individuales varían mucho respecto a la media. Ahora, comparemos la varianza y la desviación típica de un conjunto diferente de donaciones que tienen la misma media: 382, 389, 377, 397, 396, 368, 369, 392, 398, 367, 393 y 396. En este caso, la varianza y la desviación típica resultan ser 135,38888888888889 y 11,63567311713804, respectivamente. Los valores más bajos de la varianza y la desviación típica nos indican que los números individuales están más cerca de la media. <a href="ch03.html#ch3fig1">La figura 3-1</a> ilustra visualmente este punto.</p>
+<div class="image"><a id="page_75"></a><img alt="image" src="images/f03-01.jpg" translate="no"/></div>
+<p class="figuret"><a id="ch3fig1"></a><em>Figura 3-1: Variación de los donativos en torno al donativo medio</em></p>
+<p class="indent">Las donaciones medias de ambas listas de donaciones son similares, por lo que las dos líneas se superponen, apareciendo como una sola línea en la figura. Sin embargo, los donativos de la primera lista varían mucho respecto a la media, mientras que los donativos de la segunda lista están muy cerca de la media, lo que confirma lo que dedujimos del valor más bajo de la varianza.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch03_4.html">anterior</a><a href="ch03.html">Subtema 5 de 10: (Ver todo)</a><a href="ch03_6.html">siguiente</a><br/></p>
+<br/><a href="ch03_5.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>NaN</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="NaN"><div class="titlepage"><div><div><h1 class="title"><a id="nan"/>NaN</h1></div></div></div><p>The value <code class="literal">NaN</code> is a special quantity defined by
+                IEEE 754. It stands for <span class="emphasis"><em>not a number</em></span>, even though:<a id="IDX-APP-A-0521" class="indexterm"/><a id="IDX-APP-A-0522" class="indexterm"/></p><a id="I_programlisting_d1e8455"/><pre class="programlisting">typeof NaN === 'number'    // true</pre><p>The value can be produced by attempting to convert a string to a number when the
+                string is not in the form of a number. For example:</p><a id="I_programlisting_d1e8459"/><pre class="programlisting">+ '0'       // 0
++ 'oops'    // NaN</pre><p>If <code class="literal">NaN</code> is an operand in an arithmetic
+                operation, then <code class="literal">NaN</code> will be the result. So, if
+                you have a chain of formulas that produce <code class="literal">NaN</code> as
+                a result, at least one of the inputs was <code class="literal">NaN</code>, or
+                    <code class="literal">NaN</code> was generated somewhere.</p><p>You can test for <code class="literal">NaN</code>. As we have seen, <code class="literal">typeof</code> does not distinguish between numbers and
+                    <code class="literal">NaN</code>, and it turns out that <code class="literal">NaN</code> is not equal to itself. So, surprisingly:</p><a id="I_programlisting_d1e8492"/><pre class="programlisting">NaN === NaN    // false
+NaN !== NaN    // true</pre><p>JavaScript provides an <code class="literal">isNaN</code> function that can
+                distinguish between numbers and <code class="literal">NaN</code>:</p><a id="I_programlisting_d1e8502"/><pre class="programlisting">isNaN(NaN)       // true
+isNaN(0)         // false
+isNaN('oops')    // true
+isNaN('0')       // false</pre><p>The <code class="literal">isFinite</code> function is the best way of
+                determining whether a value can be used as a number because it rejects <code class="literal">NaN</code> and <code class="literal">Infinity</code>.
+                Unfortunately, <code class="literal">isFinite</code> will attempt to convert
+                its operand to a number, so it is not a good test if a value is not actually a
+                number. You may want to define your own <code class="literal">isNumber</code>
+                function:</p><a id="I_programlisting_d1e8522"/><pre class="programlisting">var isNumber = function isNumber(value) {
+            return typeof value === 'number' &amp;&amp; isFinite(value);
+};</pre></div></body></html>

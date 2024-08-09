@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/><title>Elements</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h2 class="title"><a id="regexp_quantifier"></a>Cuantificador Regexp</h2><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject7_d1e6054"></a><img alt="image with no caption" src="httpatomoreillycomsourceoreillyimages238862.png" translate="no"/></div></div><p>A <span class="emphasis"><em translate="no">regexp factor</em></span> puede tener un <span class="emphasis"><em translate="no">regexp
+                        quantifier</em></span> que determina cuántas veces debe coincidir el factor. Un número entre llaves significa que el factor debe coincidir ese número de veces. Así, <code class="literal" translate="no">/www/</code> coincide igual que <code class="literal" translate="no">/w{3}/</code>. <code class="literal" translate="no">{3,6}</code> coincidirá 3, 4, 5 ó 6 veces. <code class="literal" translate="no">{3,}</code> coincidirá 3 o más veces.<a class="indexterm" id="IDX-CHP-7-0397"></a><a class="indexterm" id="IDX-CHP-7-0398"></a><a class="indexterm" id="IDX-CHP-7-0399"></a><a class="indexterm" id="IDX-CHP-7-0400"></a><a class="indexterm" id="IDX-CHP-7-0401"></a><a class="indexterm" id="IDX-CHP-7-0402"></a><a class="indexterm" id="IDX-CHP-7-0403"></a><a class="indexterm" id="IDX-CHP-7-0404"></a><a class="indexterm" id="IDX-CHP-7-0405"></a><a class="indexterm" id="IDX-CHP-7-0406"></a><a class="indexterm" id="IDX-CHP-7-0407"></a><a class="indexterm" id="IDX-CHP-7-0408"></a><a class="indexterm" id="IDX-CHP-7-0409"></a><a class="indexterm" id="IDX-CHP-7-0410"></a><a class="indexterm" id="IDX-CHP-7-0411"></a><a class="indexterm" id="IDX-CHP-7-0412"></a><a class="indexterm" id="IDX-CHP-7-0413"></a><a class="indexterm" id="IDX-CHP-7-0414"></a><a class="indexterm" id="IDX-CHP-7-0415"></a><a class="indexterm" id="IDX-CHP-7-0416"></a><a class="indexterm" id="IDX-CHP-7-0417"></a><a class="indexterm" id="IDX-CHP-7-0418"></a><a class="indexterm" id="IDX-CHP-7-0419"></a><a class="indexterm" id="IDX-CHP-7-0420"></a><a class="indexterm" id="IDX-CHP-7-0421"></a><a class="indexterm" id="IDX-CHP-7-0422"></a><a class="indexterm" id="IDX-CHP-7-0423"></a><a class="indexterm" id="IDX-CHP-7-0424"></a><a class="indexterm" id="IDX-CHP-7-0425"></a><a class="indexterm" id="IDX-CHP-7-0426"></a><a class="indexterm" id="IDX-CHP-7-0427"></a><a class="indexterm" id="IDX-CHP-7-0428"></a><a class="indexterm" id="IDX-CHP-7-0429"></a><a class="indexterm" id="IDX-CHP-7-0430"></a><a class="indexterm" id="IDX-CHP-7-0431"></a><a class="indexterm" id="IDX-CHP-7-0432"></a><a class="indexterm" id="IDX-CHP-7-0433"></a><a class="indexterm" id="IDX-CHP-7-0434"></a><a class="indexterm" id="IDX-CHP-7-0435"></a><a class="indexterm" id="IDX-CHP-7-0436"></a><a class="indexterm" id="IDX-CHP-7-0437"></a><a class="indexterm" id="IDX-CHP-7-0438"></a><a class="indexterm" id="IDX-CHP-7-0439"></a><a class="indexterm" id="IDX-CHP-7-0440"></a><a class="indexterm" id="IDX-CHP-7-0441"></a><a class="indexterm" id="IDX-CHP-7-0442"></a><a class="indexterm" id="IDX-CHP-7-0443"></a><a class="indexterm" id="IDX-CHP-7-0444"></a><a class="indexterm" id="IDX-CHP-7-0445"></a><a class="indexterm" id="IDX-CHP-7-0446"></a><a class="indexterm" id="IDX-CHP-7-0447"></a><a class="indexterm" id="IDX-CHP-7-0448"></a><a class="indexterm" id="IDX-CHP-7-0449"></a><a class="indexterm" id="IDX-CHP-7-0450"></a><a class="indexterm" id="IDX-CHP-7-0451"></a><a class="indexterm" id="IDX-CHP-7-0452"></a><a class="indexterm" id="IDX-CHP-7-0453"></a><a class="indexterm" id="IDX-CHP-7-0454"></a><a class="indexterm" id="IDX-CHP-7-0455"></a><a class="indexterm" id="IDX-CHP-7-0456"></a><a class="indexterm" id="IDX-CHP-7-0457"></a><a class="indexterm" id="IDX-CHP-7-0458"></a><a class="indexterm" id="IDX-CHP-7-0459"></a><a class="indexterm" id="IDX-CHP-7-0460"></a><a class="indexterm" id="IDX-CHP-7-0461"></a><a class="indexterm" id="IDX-CHP-7-0462"></a><a class="indexterm" id="IDX-CHP-7-0463"></a><a class="indexterm" id="IDX-CHP-7-0464"></a><a class="indexterm" id="IDX-CHP-7-0465"></a><a class="indexterm" id="IDX-CHP-7-0466"></a><a class="indexterm" id="IDX-CHP-7-0467"></a><a class="indexterm" id="IDX-CHP-7-0468"></a><a class="indexterm" id="IDX-CHP-7-0469"></a><a class="indexterm" id="IDX-CHP-7-0470"></a><a class="indexterm" id="IDX-CHP-7-0471"></a><a class="indexterm" id="IDX-CHP-7-0472"></a><a class="indexterm" id="IDX-CHP-7-0473"></a><a class="indexterm" id="IDX-CHP-7-0474"></a></p><p><code class="literal" translate="no">?</code> es igual que <code class="literal" translate="no">{0,1}</code>. <code class="literal" translate="no">*</code> es igual que <code class="literal" translate="no">{0,}</code>. <code class="literal" translate="no">+</code> es igual que <code class="literal" translate="no">{1,}</code>.</p><p>La concordancia tiende a ser avariciosa, haciendo coincidir tantas repeticiones como sea posible hasta el límite, si lo hay. Si el cuantificador tiene un sufijo extra <code class="literal" translate="no">?</code>, la concordancia tiende a ser perezosa, intentando concordar el menor número posible de repeticiones. Por lo general, es mejor seguir con la concordancia codiciosa.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch07s03_8.html">anterior</a><a href="ch07s03.html">Subtema 9 de 9: (Ver todo)</a><br/></p>
+<br/><a href="ch07s03_9.docx" target="_blank"></a></footer>
+</body>
+</html>

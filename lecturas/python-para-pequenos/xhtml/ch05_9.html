@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch05lev1sec8">
+  Diferencia entre cadenas y números </h3>
+<p class="noindent">
+
+   La entrada del<em class="calibre7">usuario </em>es lo que una persona introduce en el teclado, ya sea un carácter, una flecha pulsada o la tecla ENTER, o cualquier otra cosa. En Python, la entrada del usuario es una cadena, lo que significa que cuando escribes el número 10 en el teclado, Python guarda el número 10 como una cadena, no como un número. </p>
+<p class="indent">
+  Compara el número 10 y la cadena <span class="literal1" translate="no">
+   '10'
+  </span>. Aunque para nosotros la única diferencia entre ambos es que uno está rodeado de comillas, para un ordenador son completamente distintos. </p>
+<p class="indent">
+  Por ejemplo, comparemos el valor de la variable <span class="literal1" translate="no">
+   age
+  </span>con un número en una sentencia <span class="literal1" translate="no">
+   if
+  </span>, así </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">if</span> age == 10:
+        <span class="violet">print</span>(<span class="green">"What's the best way to speak to a monster?"</span>)
+        <span class="violet">print</span>(<span class="green">"From as far away as possible!"</span>)</pre>
+<p class="indent">
+  Si primero establecemos la variable <span class="literal1" translate="no">
+   age
+  </span>con el número <span class="literal1" translate="no">
+   10
+  </span>: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> age = 10
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">if</span> age == 10:
+        <span class="violet">print</span>(<span class="green">"What's the best way to speak to a monster?"</span>)
+        <span class="violet">print</span>(<span class="green">"From as far away as possible!"</span>)
+        
+<span id="page_65"></span><span class="blue1">What's the best way to speak to a monster?
+From as far away as possible!</span></pre>
+<p class="indent">
+  Como puedes ver, se ejecuta la sentencia <span class="literal1" translate="no">
+   print
+  </span>. </p>
+<p class="indent">
+  A continuación, establecemos <span class="literal1" translate="no">
+   age
+  </span>a la cadena <span class="literal1" translate="no">
+   ‘10’
+  </span>(con comillas), así: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> age = <span class="green">'10'</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">if</span> age == 10:
+        <span class="violet">print</span>(<span class="green">"What's the best way to speak to a monster?"</span>)
+        <span class="violet">print</span>(<span class="green">"From as far away as possible!"</span>)
+
+<span class="brown">&gt;&gt;&gt;</span></pre>
+<p class="indent">
+  Aquí, la sentencia <span class="literal1" translate="no">
+   print
+  </span>no se ejecuta porque Python no ve la cadena como un número. </p>
+<div class="image1">
+<img alt="Image" class="calibre60" src="../images/f0065-01.jpg" translate="no"/>
+</div>
+<p class="indent">
+  Afortunadamente, Python tiene funciones que pueden convertir cadenas en números y números en cadenas. Por ejemplo, puedes convertir la cadena <span class="literal1" translate="no">
+   ‘10’
+  </span>en un número con la función <span class="literal1" translate="no">
+   int
+  </span>: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> age = <span class="green">'10'</span>
+<span class="brown">&gt;&gt;&gt;</span> converted_age = <span class="violet">int</span>(age)</pre>
+<p class="indent">
+  La variable <span class="literal1" translate="no">
+   converted_age
+  </span>contiene ahora el número 10 (en lugar de una cadena). </p>
+<p class="indent">
+  Para convertir un número en una cadena, utiliza <span class="literal1" translate="no">
+   str
+  </span>del siguiente modo: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> age = 10
+<span class="brown">&gt;&gt;&gt;</span> converted_age = <span class="violet">str</span>(age)</pre>
+<p class="indent">
+  Ahora <span class="literal1" translate="no">
+   converted_age
+  </span>contiene la cadena <span class="literal1" translate="no">
+   ‘10’
+  </span>en lugar del número 10. </p>
+<p class="indent">
+  ¿Recuerdas la sentencia <span class="literal1" translate="no">
+   if age == 10
+  </span>que no imprimía nada cuando la variable se convertía en una cadena ( <span class="literal1" translate="no">
+   age = ’10’
+  </span>)? Si convertimos primero la variable, obtendremos un resultado totalmente distinto: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> age = <span class="green">'10'</span>
+<span class="brown">&gt;&gt;&gt;</span> converted_age = <span class="violet">int</span>(age)
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">if</span> converted_age == 10:
+        <span class="violet">print</span>(<span class="green">"What's the best way to speak to a monster?"</span>)
+        <span class="violet">print</span>(<span class="green">"From as far away as possible!"</span>)
+
+<span id="page_66"></span><span class="blue1">What's the best way to speak to a monster?
+From as far away as possible!</span></pre>
+<p class="indent">
+  Pero debes saber esto: si intentas convertir un número con punto decimal (también llamados <em class="calibre7">números de coma flotante </em>, porque el punto puede "moverse" en un número), obtendrás un error porque la función <span class="literal1" translate="no">
+   int
+  </span>espera un <em class="calibre7">número entero </em>(un número sin punto decimal): </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> age = <span class="green">'10.5'</span>
+<span class="brown">&gt;&gt;&gt;</span> converted_age = <span class="violet">int</span>(age)
+<span class="red">Traceback (most recent call last):
+    File "&lt;pyshell#35&gt;", line 1, in &lt;module&gt;
+    converted_age = int(age)
+ValueError: invalid literal for int() with base 10: '10.5'</span></pre>
+<p class="indent">
+  Python envía un <span class="literal1" translate="no">
+   ValueError
+  </span>para indicarte que el valor que has intentado utilizar no es apropiado. Para solucionarlo, utiliza <span class="literal1" translate="no">
+   float
+  </span>en lugar de <span class="literal1" translate="no">
+   int
+  </span>, ya que la función <span class="literal1" translate="no">
+   float
+  </span>puede manejar números que no sean enteros: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> age = <span class="green">'10.5'</span>
+<span class="brown">&gt;&gt;&gt;</span> converted_age = <span class="violet">float</span>(age)
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(converted_age)
+<span class="blue1">10.5</span></pre>
+<p class="indent">
+  También obtendrás un <span class="literal1" translate="no">
+   ValueError
+  </span>si intentas convertir una cadena que no contiene un número en dígitos: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> age = <span class="green">'ten'</span>
+<span class="brown">&gt;&gt;&gt;</span> converted_age = <span class="violet">int</span>(age)
+<span class="red">Traceback (most recent call last):
+    File "&lt;pyshell#1&gt;", line 1, in &lt;module&gt;
+    converted_age = int(age)}
+ValueError: invalid literal for int() with base 10: 'ten'</span></pre>
+<p class="indent">
+  Como hemos utilizado la palabra <span class="literal1" translate="no">
+   ten
+  </span>en lugar del número <span class="literal1" translate="no">
+   10
+  </span>, Python se echa las manos a la cabeza. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch05_8.html">anterior</a><a href="ch05.html">Subtema 9 de 11: (Ver todo)</a><a href="ch05_10.html">siguiente</a><br/></p>
+<br/><a href="ch05_9.docx" target="_blank"></a></footer>
+</body>
+</html>

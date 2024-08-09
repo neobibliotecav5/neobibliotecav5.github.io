@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="app02lev1sec24">
+  Escribir en archivos </h3>
+<p class="noindent">
+  El objeto archivo devuelto por <span class="literal1" translate="no">
+   open
+  </span>tiene otras funciones además de <span class="literal1" translate="no">
+   read
+  </span>. Podemos crear un nuevo archivo vacío utilizando un segundo parámetro -la cadena <span class="literal1" translate="no">
+   ’w’
+  </span>- cuando llamemos a <span class="literal1" translate="no">
+   open
+  </span>(este parámetro indica a Python que queremos escribir en el objeto archivo, en lugar de leer de él): </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> test_file = <span class="violet">open</span>(<span class="green">'c:\\Users\\rachel\\myfile.txt'</span>, <span class="green">'w'</span>)
+</pre>
+<p class="indent">
+  Ahora podemos añadir información a este nuevo archivo utilizando la función <span class="literal1" translate="no">
+   write
+  </span>: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> test_file = <span class="violet">open</span>(<span class="green">'c:\\Users\\rachel\\myfile.txt'</span>, <span class="green">'w'</span>)
+<span class="brown">&gt;&gt;&gt;</span> test_file.write(<span class="green">'What is green and loud? A froghorn!'</span>)
+<span class="blue1">20</span>
+</pre>
+<p class="indent">
+  Por último, tenemos que indicar a Python cuándo hemos terminado de escribir en el archivo, utilizando la función <span class="literal1" translate="no">
+   close
+  </span>: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> test_file = <span class="violet">open</span>(<span class="green">'c:\\Users\\rachel\\myfile.txt'</span>, <span class="green">'w'</span>)
+<span class="brown">&gt;&gt;&gt;</span> test_file.write(<span class="green">'What is green and loud? A froghorn!'</span>)
+<span class="brown">&gt;&gt;&gt;</span> test_file.close()
+</pre>
+<p class="indent">
+<span id="page_321">
+</span>
+  Ahora, si abres el archivo con tu editor de texto, deberías ver que contiene el texto "¿Qué es verde y ruidoso? Un cuerno de rana". O bien, puedes utilizar Python para volver a leerlo: </p>
+<div class="image1">
+<img alt="Image" class="calibre198" src="../images/f0321-01.jpg" translate="no"/>
+</div>
+<pre class="calibre32" translate="no">&gt;&gt;&gt; test_file = <span class="violet">open</span>(<span class="green">'c:\\Users\\rachel\\myfile.txt'</span>)
+&gt;&gt;&gt; <span class="violet">print</span>(test_file.read())
+<span class="blue1">What is green and loud? A froghorn!</span></pre>
+<span id="page_322">
+</span>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="app02_24.html">anterior</a><a href="app02.html">Subtema 25 de 25: (Ver todo)</a><br/></p>
+<br/><a href="app02_25.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c18-0017">Escribir una plantilla</h3>
+<p class="BodyFirst">La plantilla define el aspecto que debe tener la página, y Django rellena los datos relevantes cada vez que se solicita la página. Una plantilla te permite acceder a <span epub:type="pagebreak" id="Page_391" title="391"></span>a cualquier dato proporcionado por la vista. Como nuestra vista para la página de inicio no proporciona datos, esta plantilla es bastante sencilla.</p>
+<p>Dentro de la carpeta <em translate="no">learning_logs</em>, crea una nueva carpeta llamada <em translate="no">templates</em>. Dentro de la carpeta <em translate="no">templates</em>, crea otra carpeta llamada <em translate="no">learning_logs</em>. Esto puede parecer un poco redundante (tenemos una carpeta llamada <em translate="no">learning_logs</em> dentro de una carpeta llamada <em translate="no">templates</em> dentro de una carpeta llamada <em translate="no">learning_logs</em>), pero establece una estructura que Django puede interpretar sin ambigüedades, incluso en el contexto de un gran proyecto que contenga muchas aplicaciones individuales. Dentro de la carpeta <em translate="no">learning_logs</em>, crea un nuevo archivo llamado <em translate="no">index.html</em>. La ruta del archivo será <em translate="no">ll_project/learning_logs/templates/learning_logs/index.html</em>. Introduce el siguiente código en ese archivo:</p>
+<p class="CodeLabel" translate="no"><b>index.html</b></p>
+<pre translate="no"><code translate="no">&lt;p&gt;Learning Log&lt;/p&gt;
+
+&lt;p&gt;Learning Log helps you keep track of your learning, for any topic you're
+interested in.&lt;/p&gt;</code></pre>
+<p>Se trata de un archivo muy sencillo. Si no estás familiarizado con HTML, las etiquetas <code translate="no"></code> significan párrafos. La etiqueta <code translate="no"></code> abre un párrafo, y la etiqueta <code translate="no"></code> lo cierra. Tenemos dos párrafos: el primero actúa como título, y el segundo describe lo que los usuarios pueden hacer con Learning Log.</p>
+<p>Ahora, cuando solicites la URL base del proyecto, <em translate="no">http://localhost:8000/</em>, deberías ver la página que acabamos de construir en lugar de la página por defecto de Django. Django tomará la URL solicitada, y esa URL coincidirá con el patrón <code translate="no">''</code>; entonces Django llamará a la función <code translate="no">views.index()</code>, que renderizará la página utilizando la plantilla contenida en <em translate="no">index.html</em>. La <a href="#figure18-3" id="figureanchor18-3">Figura 18-3</a> muestra la página resultante.</p>
+<figure><img alt="" class="keyline" height="299" src="Images/f18003.png" translate="no" width="694"/>
+<figcaption><p><a id="figure18-3">Figura 18-3</a>: Página de inicio del Registro de Aprendizaje</p></figcaption></figure><p>Aunque pueda parecer un proceso complicado para crear una página, esta separación entre URL, vistas y plantillas funciona bastante bien. Te permite pensar en cada aspecto de un proyecto por separado. En proyectos más grandes, permite a las personas que trabajan en el proyecto centrarse en las áreas en las que son más fuertes. Por ejemplo, un especialista en bases de datos puede centrarse en los modelos, un programador en el código de las vistas y un especialista en frontend en las plantillas.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<span epub:type="pagebreak" id="Page_392" title="392"></span></section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c18_29.html">anterior</a><a href="c18.html">Subtema 30 de 41: (Ver todo)</a><a href="c18_31.html">siguiente</a><br/></p>
+<br/><a href="c18_30.docx" target="_blank"></a></footer>
+</body>
+</html>

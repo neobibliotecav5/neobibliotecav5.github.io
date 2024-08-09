@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/><title>Chapter 6. Arrays</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h1 class="title"><a id="array_literals"></a>Literales de matriz</h1><p>Los literales de matriz proporcionan una notación muy cómoda para crear nuevos valores de matriz. Un literal de matriz es un par de corchetes que rodean cero o más valores separados por comas. Un literal de matriz puede aparecer en cualquier lugar donde pueda aparecer una expresión. El primer valor obtendrá el nombre de propiedad <code class="literal" translate="no">'0'</code>, el segundo valor obtendrá el nombre de propiedad <code class="literal" translate="no">'1'</code>, y así sucesivamente:<a class="indexterm" id="IDX-CHP-6-0294"></a></p><a id="I_programlisting6_d1e4337"></a><pre class="programlisting" translate="no">var empty = [];
+var numbers = [
+    'zero', 'one', 'two', 'three', 'four',
+    'five', 'six', 'seven', 'eight', 'nine'
+];
+
+empty[1]          // undefined
+numbers[1]        // 'one'
+
+empty.length      // 0
+numbers.length    // 10</pre><p>El literal de objeto:</p><a id="I_programlisting6_d1e4341"></a><pre class="programlisting" translate="no">var numbers_object = {
+    '0': 'zero',  '1': 'one',   '2': 'two',
+    '3': 'three', '4': 'four',  '5': 'five',
+    '6': 'six',   '7': 'seven', '8': 'eight',
+    '9': 'nine'
+};</pre><p>produce un resultado similar. Tanto <code class="literal" translate="no">numbers</code> como <code class="literal" translate="no">numbers_object</code> son objetos que contienen 10 propiedades, y esas propiedades tienen exactamente los mismos nombres y valores. Pero también hay diferencias significativas. <code class="literal" translate="no">numbers</code>
+                hereda de <code class="literal" translate="no">Array.prototype</code>, mientras que <code class="literal" translate="no">numbers_object</code> hereda de <code class="literal" translate="no">Object.prototype</code>, por lo que <code class="literal" translate="no">numbers</code>hereda un conjunto mayor de métodos útiles. Además, <code class="literal" translate="no">numbers</code> obtiene la misteriosa propiedad <code class="literal" translate="no">length</code>, mientras que <code class="literal" translate="no">numbers_object</code> no.</p><p>En la mayoría de los lenguajes, los elementos de una matriz deben ser todos del mismo tipo. JavaScript permite que una matriz contenga cualquier mezcla de valores:<a class="indexterm" id="IDX-CHP-6-0295"></a></p><a id="I_programlisting6_d1e4383"></a><pre class="programlisting" translate="no">var misc = [
+    'string', 98.6, true, false, null, undefined,
+    ['nested', 'array'], {object: true}, NaN,
+    Infinity
+];
+misc.length    // 10</pre>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch06_1.html">anterior</a><a href="ch06.html">Subtema 2 de 2: (Ver todo)</a><br/></p>
+<br/><a href="ch06_2.docx" target="_blank"></a></footer>
+</body>
+</html>

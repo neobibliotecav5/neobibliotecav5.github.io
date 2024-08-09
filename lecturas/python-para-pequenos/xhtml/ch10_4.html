@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch10lev1sec3">
+  Crear un lienzo para dibujar </h3>
+<p class="noindent">
+  Los botones son buenas herramientas, pero no son especialmente útiles cuando queremos dibujar cosas en la pantalla. A la hora de dibujar, necesitamos un componente diferente: un objeto <span class="literal1" translate="no">
+   canvas
+  </span>, que es un objeto de la clase <span class="literal1" translate="no">
+   Canvas
+  </span>(proporcionada por el módulo <span class="literal1" translate="no">
+   tkinter
+  </span>). </p>
+<p class="indent">
+<span id="page_140">
+</span>
+  Al crear un lienzo, pasamos la anchura y la altura (en píxeles) del lienzo a Python. Por lo demás, el código es similar al del botón. Por ejemplo </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">from</span> tkinter <span class="orange">import</span> *
+<span class="brown">&gt;&gt;&gt;</span> tk = Tk()
+<span class="brown">&gt;&gt;&gt;</span> canvas = Canvas(tk, width=500, height=500)
+<span class="brown">&gt;&gt;&gt;</span> canvas.pack()
+</pre>
+<p class="indent">
+  Como en el ejemplo del botón, aparecerá una ventana cuando introduzcas <span class="literal1" translate="no">
+   tk = Tk()
+  </span>. En la última línea, empaquetamos el lienzo con <span class="literal1" translate="no">
+   canvas.pack()
+  </span>, que aplica los cambios al tamaño del lienzo (una anchura de 500 píxeles y una altura de 500 píxeles, como se especifica en la tercera línea de código). </p>
+<p class="indent">
+  También como en el ejemplo del botón, la función <span class="literal1" translate="no">
+   pack
+  </span>indica al lienzo que se muestre en la posición correcta dentro de la ventana. Si no se llama a <span class="literal1" translate="no">
+   pack
+  </span>, nada se mostrará correctamente. </p>
+<div class="image">
+<img alt="Image" class="calibre101" src="../images/f0140-01.jpg" translate="no"/>
+</div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch10_3.html">anterior</a><a href="ch10.html">Subtema 4 de 17: (Ver todo)</a><a href="ch10_5.html">siguiente</a><br/></p>
+<br/><a href="ch10_4.docx" target="_blank"></a></footer>
+</body>
+</html>

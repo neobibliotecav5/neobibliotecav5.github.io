@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c07-0012">Rellenar un diccionario con datos introducidos por el usuario</h3>
+<p class="BodyFirst">Puedes pedir tantas entradas como necesites en cada pasada por un bucle <code translate="no">while</code>. Hagamos un programa de encuestas en el que en cada paso por el bucle se pida el nombre y la respuesta del participante. Almacenaremos los datos que recopilemos en un diccionario, porque queremos relacionar cada respuesta con un usuario concreto:</p>
+<p class="CodeLabel" translate="no"><b>mountain_poll.py</b></p>
+<pre translate="no"><code translate="no">responses = {}
+# Set a flag to indicate that polling is active.
+polling_active = True
+
+<span epub:type="pagebreak" id="Page_126" title="126"></span>while polling_active:
+    # Prompt for the person's name and response.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     name = input("\nWhat is your name? ")
+    response = input("Which mountain would you like to climb someday? ")
+
+    # Store the response in the dictionary.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     responses[name] = response
+
+    # Find out if anyone else is going to take the poll.
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     repeat = input("Would you like to let another person respond? (yes/ no) ")
+    if repeat == 'no':
+        polling_active = False
+
+# Polling is complete. Show the results.
+print("\n--- Poll Results ---")
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> for name, response in responses.items():
+    print(f"{name} would like to climb {response}.")</code></pre>
+<p>El programa define primero un diccionario vacío (<code translate="no">responses</code>) y establece una bandera (<code translate="no">polling_active</code>) para indicar que el sondeo está activo. Mientras <code translate="no">polling_active</code> sea <code translate="no">True</code>, Python ejecutará el código en el bucle <code translate="no">while</code>.</p>
+<p>Dentro del bucle, se pide al usuario que introduzca su nombre y una montaña que le gustaría escalar <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Esa información se almacena en el diccionario <code translate="no">responses</code> <span aria-label="annotation2" class="CodeAnnotation">❷,</span> y se pregunta al usuario si desea o no que se siga ejecutando el sondeo <span aria-label="annotation3" class="CodeAnnotation">❸.</span> Si introducen <code translate="no">yes</code>, el programa entra de nuevo en el bucle <code translate="no">while</code>. Si introduce <code translate="no">no</code>, la bandera <code translate="no">polling_active</code> se pone a <code translate="no">False</code>, el bucle <code translate="no">while</code> deja de ejecutarse, y el bloque de código final <span aria-label="annotation4" class="CodeAnnotation">❹</span> muestra los resultados de la encuesta.</p>
+<p>Si ejecutas este programa e introduces respuestas de ejemplo, deberías ver una salida como ésta:</p>
+<pre translate="no"><code translate="no">What is your name? <b>Eric</b>
+Which mountain would you like to climb someday? <b>Denali</b>
+Would you like to let another person respond? (yes/ no) <b>yes</b>
+
+What is your name? <b>Lynn</b>
+Which mountain would you like to climb someday? <b>Devil's Thumb</b>
+Would you like to let another person respond? (yes/ no) <b>no</b>
+
+--- Poll Results ---
+Eric would like to climb Denali.
+Lynn would like to climb Devil's Thumb.</code></pre>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c07_20.html">anterior</a><a href="c07.html">Subtema 21 de 23: (Ver todo)</a><a href="c07_22.html">siguiente</a><br/></p>
+<br/><a href="c07_21.docx" target="_blank"></a></footer>
+</body>
+</html>

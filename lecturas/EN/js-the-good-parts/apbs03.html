@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>eval</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="eval"><div class="titlepage"><div><div><h1 class="title"><a id="eval"/>eval</h1></div></div></div><p>The <code class="literal">eval</code> function passes a string to the
+                JavaScript compiler and executes the result. It is the single most misused feature
+                of JavaScript. It is most commonly used by people who have an incomplete
+                understanding of the language. For example, if you know about the dot notation, but
+                are ignorant of the subscript notation, you might write:</p><a id="I_programlisting_d1e8920"/><pre class="programlisting">eval("myValue = myObject." + myKey + ";");</pre><p>instead of:</p><a id="I_programlisting_d1e8924"/><pre class="programlisting">myvalue = myObject[myKey];</pre><p>The <code class="literal">eval</code> form is much harder to read. This form
+                will be significantly slower because it needs to run the compiler just to execute a
+                trivial assignment statement. It also frustrates JSLint (see <a class="xref" href="apc.html" title="Appendix C. JSLint">Appendix C</a>), so the tool's ability to detect problems is significantly reduced.</p><p>The <code class="literal">eval</code> function also compromises the security
+                of your application because it grants too much authority to the <code class="literal">eval</code>'d text. And it compromises the performance of the
+                language as a whole in the same way that the <code class="literal">with</code>
+                statement does.</p><p>The <code class="literal">Function</code> constructor is another form of
+                    <code class="literal">eval</code>, and should similarly be avoided.</p><p>The browser provides <code class="literal">setTimeout</code> and <code class="literal">setInterval</code> functions that can take string arguments
+                or function arguments. When given string arguments, <code class="literal">setTimeout</code> and <code class="literal">setInterval</code> act as
+                    <code class="literal">eval</code>. The string argument form also should be
+                    avoided.<a id="IDX-APP-B-0547" class="indexterm"/><a id="IDX-APP-B-0548" class="indexterm"/></p></div></body></html>

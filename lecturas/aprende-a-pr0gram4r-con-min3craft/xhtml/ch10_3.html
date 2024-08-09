@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch10lev1sec02"><strong><span class="blue1">Otras funciones de lista</span></strong></h3>
+<p class="noindent">Como estamos trabajando con listas, vamos a explorar algunas otras funciones diseñadas para interactuar con listas.</p>
+<p class="indent">La función <span class="literal">invertida(</span> ) toma un argumento, la lista que quieras utilizar, y devuelve la lista invertida. El último elemento será el primero, el penúltimo será el segundo, y así sucesivamente. Vamos a invertir una lista anterior:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> backwardsList = <span class="rose">reversed</span>(aRange)<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> <span class="rose">list</span>(backwardsList)<br translate="no"/><span class="blue1">[9, 7, 5, 3]</span></p>
+<p class="indent">Los elementos de la lista se han invertido, tal y como queríamos. Este tipo de manipulación de listas resulta útil cuando escribes bucles <span class="literal">for</span>.</p>
+<p class="indent">El siguiente ejemplo genera una lista de números del 1 al 100 utilizando la función <span class="literal">range()</span>. A continuación, invierte la lista y la imprime utilizando un bucle <span class="literal">for</span>, creando de hecho una cuenta atrás del 100 al 1:</p>
+<p class="programs" translate="no">countDown = <span class="rose">range</span>(1, 101)<br translate="no"/>countDown = <span class="rose">reversed</span>(countDown)<br translate="no"/><span class="orange">for</span> item <span class="orange">in</span> countDown:<br translate="no"/> <span class="rose">print</span>(item)</p>
+<p class="indent">¡Ejecútalo para ver el resultado!</p>
+<p class="programs" translate="no"><span class="blue1">100</span><br translate="no"/><span class="blue1">99</span><br translate="no"/><span class="blue1">98</span><br translate="no"/><span class="blue1">97</span><br translate="no"/><span class="blue1">96</span><br translate="no"/>--<span class="codeitalic">snip</span>--<br translate="no"/><span class="blue1">3</span><br translate="no"/><span class="blue1">2</span><br translate="no"/><span class="blue1">1</span></p>
+<p class="indent"><span epub:type="pagebreak" id="page_206"></span>También puedes invertir la lista cuando declares el bucle <span class="literal">for</span> sin necesidad de una variable para almacenar la lista:</p>
+<p class="programs" translate="no"><span class="orange">for</span> item <span class="orange">in</span> <span class="rose">reversed</span>(<span class="rose">range</span>(0, 101)):<br translate="no"/> <span class="rose">print</span>(item)</p>
+<p class="indent">Este programa requiere menos líneas de código, pero tiene el mismo efecto. ¡Utiliza este truco para ahorrar tiempo y poder centrarte en construir!</p>
+<h4 class="h4a" id="ch10lev2sec05"><strong>Misión nº 57: Pilares</strong></h4>
+<p class="noindent">¿No sería genial construir un palacio en Minecraft? Como los palacios deben ser grandiosos, el nuestro debería tener filas de pilares altos e imponentes. Obviamente, no queremos construirlos a mano, así que utilizar un bucle para construirlos es la mejor solución.</p>
+<p class="indent">Crearemos una función que construya un pilar y luego llamaremos a la función cuando queramos construir uno. <a href="ch10.xhtml#ch10ex3">El listado 10-3</a> contiene la función para construir un pilar. Cópiala en un nuevo archivo llamado <em>pilares.py</em> y guárdalo en la carpeta <em>forLoops</em>.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>pillars.py</em></span></p>
+<p class="programs" translate="no"> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>   mc = Minecraft.create()<br translate="no"/><br translate="no"/> <span class="orange">def</span> <span class="blue1">setPillar</span>(x, y, z, height):<br translate="no"/> <span class="green">""" Creates a pillar. Args set position and height of pillar """</span><br translate="no"/>       stairBlock = 156<br translate="no"/>       block = 155<br translate="no"/><br translate="no"/> <span class="red"># Pillar top</span><br translate="no"/>       mc.setBlocks(x - 1, y + height, z - 1, x + 1, y + height, z + 1, block, 1)<br translate="no"/>       mc.setBlock(x - 1, y + height - 1, z, stairBlock, 12)<br translate="no"/>       mc.setBlock(x + 1, y + height - 1, z, stairBlock, 13)<br translate="no"/>       mc.setBlock(x, y + height - 1, z + 1, stairBlock, 15)<br translate="no"/>       mc.setBlock(x, y + height - 1, z - 1, stairBlock, 14)<br translate="no"/><br translate="no"/> <span class="red"># Pillar base</span><br translate="no"/>       mc.setBlocks(x - 1, y, z - 1, x + 1, y, z + 1, block, 1)<br translate="no"/>       mc.setBlock(x - 1, y + 1, z, stairBlock, 0)<br translate="no"/>       mc.setBlock(x + 1, y + 1, z, stairBlock, 1)<br translate="no"/>       mc.setBlock(x, y + 1, z + 1, stairBlock, 3)<br translate="no"/>       mc.setBlock(x, y + 1, z - 1, stairBlock, 2)<br translate="no"/><br translate="no"/> <span class="red"># Pillar column</span><br translate="no"/>       mc.setBlocks(x, y, z, x, y + height, z, block, 2)<br translate="no"/><br translate="no"/>   pos = mc.player.getTilePos()<br translate="no"/>   x, y, z = pos.x + 2, pos.y, pos.z<br translate="no"/><br translate="no"/><span class="ent">➊</span> <span class="red"># Add the for loop here</span><br translate="no"/><span class="ent">➋</span> <span class="red"># Call the function here</span></p>
+<p class="examplet"><span epub:type="pagebreak" id="page_207"></span><a id="ch10ex3"></a><em>Listado 10-3: Función que crea un pilar</em></p>
+<p class="indent">La función <span class="literal">setPillar(</span> ) crea un pilar. Toma cuatro argumentos: las coordenadas x, y, z y la altura del pilar.</p>
+<p class="indent">Para terminar el programa, añade un bucle <span class="literal">for</span> <span class="ent">➊</span> que llame a la función <span class="literal">setPillar</span> () <span class="ent">➋.</span> Queremos crear una fila de 20 pilares separados entre sí 5 manzanas. Para ello, utiliza una función <span class="literal">range</span> () con tres argumentos para determinar cuántos pilares se crearán y a qué distancia estarán. Añadiendo los valores almacenados en la variable del bucle <span class="literal">for</span> a la variable <span class="literal">x</span> o <span class="literal">z</span> en la llamada a la función <span class="literal">setPillar()</span>, puedes hacer que cada pilar esté a la misma distancia.</p>
+<p class="indent"><a href="ch10.xhtml#ch10fig3">La Figura 10-3</a> muestra algunos de los pilares.</p>
+<div class="image"><img alt="image" src="../images/f10-03.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch10fig3"></a><em>Figura 10-3: Una brillante fila de pilares</em></p>
+<h4 class="h4a" id="ch10lev2sec06"><strong>Misión nº 58: Pirámide</strong></h4>
+<p class="noindent">Siguiendo con el tema de construir cosas increíbles con bucles <span class="literal">for</span>, vamos a construir una pirámide. Una pirámide se compone de muchos niveles. El nivel inferior es el más ancho, y el superior -la cúspide- es el más estrecho. Cada nivel es un cuadrado de bloques. Haremos una pirámide que sea dos bloques más estrecha en cada nivel. Por ejemplo, si el nivel base tiene siete bloques de ancho, el siguiente nivel tendría cinco bloques de ancho, luego tres bloques y, por último, el nivel superior tendría un bloque de ancho.</p>
+<p class="indent"><a href="ch10.xhtml#ch10ex4">El listado 10-4</a> crea una pirámide. Cópialo en un nuevo archivo llamado <em>pirámide.py</em> y guárdalo en la carpeta <em>forLoops</em>.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>pyramid.py</em></span></p>
+<p class="programs" translate="no"> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>   mc = Minecraft.create()<br translate="no"/><br translate="no"/>   block = 24 <span class="red"># sandstone</span><br translate="no"/><span class="ent">➊</span> height = 10<br translate="no"/><span class="ent">➋</span> levels = <span class="rose">range</span>(height)<br translate="no"/><br translate="no"/>   pos = mc.player.getTilePos()<br translate="no"/><span class="ent">➌</span> x, y, z = pos.x + height, pos.y, pos.z<br translate="no"/><br translate="no"/><span class="ent">➍</span> <span class="orange">for</span> level <span class="orange">in</span> levels:<br translate="no"/><span class="ent">➎</span>     mc.setBlocks(x - level, y, z - level, x + level, y, z + level, block)<br translate="no"/>       y += 1</p>
+<p class="examplet"><span epub:type="pagebreak" id="page_208"></span><a id="ch10ex4"></a><em>Listado 10-4: Un programa pirámide al revés</em></p>
+<p class="indent">Aunque <a href="ch10.xhtml#ch10ex4">el Listado 10-4</a> crea una pirámide, ¡contiene un pequeño error que debes corregir! Almacenamos la altura de la pirámide en la variable <span class="literal">altura</span> <span class="ent">➊.</span> Puedes cambiar el valor de la variable <span class="literal">altura</span> por el que quieras. La variable <span class="literal">niveles</span> utiliza la función <span class="literal">range()</span> para crear una lista que contenga un elemento por cada nivel de la pirámide <span class="ent">➋.</span> La variable <span class="literal">altura</span> se añade a la coordenada x del jugador cuando establecemos las variables <span class="literal">x</span>, <span class="literal">y</span> y <span class="literal">z</span> <span class="ent">➌.</span> Si no hiciéramos esto, el jugador quedaría atrapado en el centro de la pirámide cuando se construyera.</p>
+<p class="indent">El bucle <span class="literal">for</span> itera por cada <span class="literal">nivel</span> de la lista de <span class="literal">niveles</span> <span class="ent">➍.</span> La línea de código que crea cada nivel de la pirámide utiliza la variable <span class="literal">nivel</span> para calcular la anchura de cada cuadrado de bloques que crea <span class="ent">➎.</span> La anchura y la longitud de cada nivel de la pirámide serán siempre el doble del tamaño de la variable de <span class="literal">nivel</span>.</p>
+<p class="indent">¿Recuerdas el error que he mencionado antes? Ejecuta el programa para ver cuál es el problema. ¡La pirámide está al revés!</p>
+<p class="indent">Para solucionar este problema y hacer que la pirámide esté al derecho, tendrás que utilizar la función <span class="literal">invertida()</span> en la variable <span class="literal">niveles</span> para hacer una lista que se haga más pequeña con el tiempo. O puedes ser astuto y llamar a la función <span class="literal">range</span> () con un valor negativo.</p>
+<p class="indent">La<a href="ch10.xhtml#ch10fig4">Figura 10-4</a> muestra la pirámide terminada.</p>
+<div class="image"><img alt="image" src="../images/f10-04.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch10fig4"></a><em>Figura 10-4: Una magnífica pirámide</em></p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch10_2.html">anterior</a><a href="ch10.html">Subtema 3 de 7: (Ver todo)</a><a href="ch10_4.html">siguiente</a><br/></p>
+<br/><a href="ch10_3.docx" target="_blank"></a></footer>
+</body>
+</html>

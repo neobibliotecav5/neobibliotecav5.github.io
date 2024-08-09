@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch12lev1sec03"><strong><span class="blue1">Entender los métodos</span></strong></h3>
+<p class="noindent">Las clases pueden contener métodos, que son funciones asociadas a la clase. Escribir métodos de clase te permite crear funciones que pueden utilizar todas las instancias de esa clase. Es una forma estupenda de ahorrar tiempo y reutilizar código, porque sólo tendrás que escribir un método.</p>
+<p class="indent">Para crear un método, escribe una función en el cuerpo de una clase utilizando la palabra clave <span class="literal">def</span>. Ya has utilizado la palabra clave <span class="literal">def</span> en capítulos anteriores para crear funciones. Los métodos también se crean con la palabra clave <span class="literal">def</span>, pero están sangrados bajo la clase a la que pertenecen. Por ejemplo, vamos a actualizar la clase <span class="literal">Gato</span> en <span epub:type="pagebreak" id="page_266"></span><em>catClass.py</em>. Queremos que el gato pueda comer, así que añadamos un método llamado <span class="literal">comer()</span> a la clase <span class="literal">Gato</span>. Introduce el código y realiza los cambios en catClass <em>.</em> py a medida que vayas avanzando:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>catClass.py</em></span></p>
+<p class="programs" translate="no"><span class="ash">class Cat(object):</span><br translate="no"/> <span class="ash">def __init__(self, name, weight):</span><br translate="no"/> <span class="ash">self.name = name</span><br translate="no"/> <span class="ash">self.weight = weight</span><br translate="no"/><br translate="no"/> <span class="orange">def</span> <span class="blue1">eat</span>(self, food):<br translate="no"/>        self.weight = self.weight + 0.05<br translate="no"/> <span class="rose">print</span>(self.name + <span class="green">" is eating "</span> + food)</p>
+<p class="indent">Observa que la definición del método y el cuerpo del método están sangrados con cuatro espacios extra para que Python sepa que pertenecen a la clase.</p>
+<p class="indent">Al igual que las funciones, los métodos pueden recibir argumentos. Aquí el método <span class="literal">comer(</span> ) toma un argumento llamado <span class="literal">comida</span> que indica lo que está comiendo el gato. El método <span class="literal">comer</span> () aumenta el atributo <span class="literal">peso</span> del gato en <span class="literal">0,05</span> y luego imprime un mensaje indicando que el gato se está comiendo la comida.</p>
+<p class="indent">Tras crear un objeto, puedes llamar a cualquiera de los métodos de su clase. Por ejemplo, puedes llamar al método <span class="literal">comer()</span> utilizando el objeto <span class="literal">pelusa</span>. Añade este código al final de <em>catClass.py</em>:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>catClass.py</em></span></p>
+<p class="programs" translate="no"><span class="ash">fluff = Cat("Fluff", 4.5)</span><br translate="no"/>fluff.eat(<span class="green">"tuna"</span>)</p>
+<p class="indent">Aquí vemos nuestro código anterior, en el que creamos un objeto llamado <span class="literal">pelusa</span> que forma parte de la clase <span class="literal">Gato</span>. Luego llamamos al método <span class="literal">comer()</span> y le damos el argumento <span class="literal">"atún"</span>. Cuando ejecutes el programa, la salida tendrá este aspecto:</p>
+<p class="programs" translate="no"><span class="blue1">Fluff is eating tuna</span></p>
+<p class="indent">Ahora Pelusa está feliz comiendo atún. Recuerda que el método <span class="literal">comer</span> () también aumenta el atributo peso. Después de llamar al método comer( <span class="literal">)</span>, añade el código para imprimir el peso de <span class="literal">Pelusa</span>.</p>
+<p class="indent">También puedes llamar a métodos desde dentro de la clase llamando a un método dentro de otro método. Vamos a crear otro método llamado comerYDormir( <span class="literal">)</span> dentro de la clase <span class="literal">Gato</span>. El método <span class="literal">comerYDormir</span> () llama al método <span class="literal">comer()</span> y luego imprime que el gato está durmiendo. Añade este código a <em>catClass.py</em>, justo después del método eat( <span class="literal">)</span> (asegúrate de que indentas el nuevo método como se muestra para que Python sepa que forma parte de la clase):</p>
+<p class="sidenote" translate="no"><span class="blue"><em>catClass.py</em></span></p>
+<p class="programs" translate="no"> <span class="orange">def</span> <span class="blue1">eatAndSleep</span>(self, food):<br translate="no"/>       self.eat(food)<br translate="no"/> <span class="rose">print</span>(self.name + <span class="green">" is now sleeping..."</span>)</p>
+<p class="indent">Para llamar a un método desde dentro de la clase a la que pertenece, añade <span class="literal">self.</span> al principio del nombre del método. Aquí se llama al método <span class="literal">comer(</span> ) utilizando self. <span class="literal">comer()</span>. Ten en cuenta que esto es diferente de llamar a un método fuera de <span epub:type="pagebreak" id="page_267"></span>una clase. Cuando haces eso, sólo tienes que introducir el nombre del objeto y el método al que llamas. Por ejemplo, el siguiente código llama al nuevo método <span class="literal">comerYDormir</span> () del objeto <span class="literal">pelusa</span>. Añádelo a tu archivo <em>catClass.py</em>. Debe ser la última línea de código de tu programa:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>catClass.py</em></span></p>
+<p class="programs" translate="no">fluff.eatAndSleep(<span class="green">"tuna"</span>)</p>
+<p class="indent">Esta es la salida que deberías obtener al ejecutar el programa:</p>
+<p class="programs" translate="no"><span class="blue1">Fluff is eating tuna</span><br translate="no"/><span class="blue1">Fluff is now sleeping...</span></p>
+<p class="indent">Aquí tienes el programa completo para que veas dónde están todas las piezas:</p>
+<p class="programs" translate="no"><span class="orange">class</span> <span class="blue1">Cat</span>(<span class="rose">object</span>):<br translate="no"/> <span class="orange">def</span> <span class="blue1">__init_</span>_(self, name, weight):<br translate="no"/>        self.name = name<br translate="no"/>        self.weight = weight<br translate="no"/><br translate="no"/> <span class="orange">def</span> <span class="blue1">eat</span>(self, food):<br translate="no"/>        self.weight = self.weight + 0.05<br translate="no"/> <span class="rose">print</span>(self.name + <span class="green">" is eating "</span> + food)<br translate="no"/><br translate="no"/> <span class="orange">def</span> <span class="blue1">eatAndSleep</span>(self, food):<br translate="no"/>        self.eat(food)<br translate="no"/> <span class="rose">print</span>(self.name + <span class="green">" is now sleeping..."</span>)<br translate="no"/><br translate="no"/>fluff = Cat(<span class="green">"Fluff"</span>, 4.5)<br translate="no"/><span class="rose">print</span>(fluff.weight)<br translate="no"/>fluff.eat(<span class="green">"tuna"</span>)<br translate="no"/>fluff.eatAndSleep(<span class="green">"tuna"</span>)</p>
+<p class="indent">¡Llevemos las nuevas habilidades que has aprendido al mundo de Minecraft!</p>
+<h4 class="h4a" id="ch12lev2sec04"><strong>Misión nº 69: Casa Fantasma</strong></h4>
+<p class="noindent">Lo mejor de programar con Python y Minecraft es que puedes empezar con una idea tonta y correr con ella. Tu idea puede empezar siendo pequeña, pero con sólo unas pocas líneas de código, puedes construir un programa divertido muy rápidamente.</p>
+<p class="indent">¿No sería divertido construir una casa fantasma que apareciera en un juego, sólo para desaparecer 30 segundos después? La casa podría reaparecer en otro lugar y volver a desaparecer si tú quisieras.</p>
+<p class="indent">Aquí tienes la primera versión del programa de la casa fantasma. Guarda <a href="ch12.xhtml#ch12ex2">el Listado 12-2</a> en un archivo llamado <em>casafantasma.py</em> en la carpeta de <em>clases</em>.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>ghostHouse.py</em></span></p>
+<p class="programs" translate="no"> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>   mc = Minecraft.create()<br translate="no"/><br translate="no"/> <span class="orange">import</span> time<br translate="no"/><span class="ent">➊</span> <span class="orange">class</span> <span class="blue1">Building</span>(<span class="rose">object</span>):<br translate="no"/><span class="ent">➋</span> <span class="orange">def</span> <span class="blue1">__init_</span>_(self, x, y, z, width, height, depth):<br translate="no"/>           self.x = x<br translate="no"/>           self.y = y<br translate="no"/>           self.z = z<br translate="no"/><br translate="no"/>           self.width = width<br translate="no"/>           self.height = height<br translate="no"/>           self.depth = depth<br translate="no"/><br translate="no"/><span class="ent">➌</span> <span class="orange">def</span> <span class="blue1">build</span>(self):<br translate="no"/>           mc.setBlocks(self.x, self.y, self.z,<br translate="no"/>                        self.x + self.width, self.y + self.height,<br translate="no"/>                        self.z + self.depth, 4)<br translate="no"/><br translate="no"/>           mc.setBlocks(self.x + 1, self.y + 1, self.z + 1,<br translate="no"/>                        self.x + self.width - 1, self.y + self.height - 1,<br translate="no"/>                        self.z + self.depth - 1, 0)<br translate="no"/><span class="ent">➍</span> <span class="red"># Call the buildDoor() and buildWindows() methods here</span><br translate="no"/><br translate="no"/><span class="ent">➎</span> <span class="orange">def</span> <span class="blue1">clear</span>(self):<br translate="no"/>           mc.setBlocks(self.x, self.y, self.z,<br translate="no"/>                        self.x + self.width, self.y + self.height,<br translate="no"/>                        self.z + self.depth, 0)<br translate="no"/><span class="ent">➏</span> <span class="red"># Remove the doors and windows here</span><br translate="no"/><br translate="no"/>   pos = mc.player.getTilePos()<br translate="no"/>   x = pos.x<br translate="no"/>   y = pos.y<br translate="no"/>   z = pos.z<br translate="no"/><br translate="no"/><span class="ent">➐</span> ghostHouse = Building(x, y, z, 10, 6, 8) ghostHouse.build()<br translate="no"/>   time.sleep(30)<br translate="no"/><br translate="no"/>   ghostHouse.clear()<br translate="no"/><span class="ent">➑</span> ghostHouse.x = 8</p>
+<p class="sidenote" translate="no"><span class="blue"><em>ghostHouse.py</em></span></p>
+<p class="examplet"><span epub:type="pagebreak" id="page_268"></span><a id="ch12ex2"></a>Listado 12-2<em>: La</em> clase <span class="literal"><span class="codeitalic">Edificio</span></span> <em>crea un edificio.</em></p>
+<p class="indent"><a href="ch12.xhtml#ch12ex2">El</a> listado 12-2 utiliza una clase llamada <span class="literal">Edificio</span> <span class="ent">➊</span> con un método <span class="literal">__init__(</span> ) para establecer la posición y el tamaño de la casa <span class="ent">➋.</span> Crea un objeto <span class="literal">Edificio</span> con el nombre <span class="literal">CasaFantasma</span> <span class="ent">➐.</span> El edificio aparece y luego desaparece misteriosamente al cabo de 30 segundos utilizando los métodos <span class="literal">build()</span> <span class="ent">➌</span> y <span class="literal">clear()</span> <span class="ent">➎</span>. El único problema es que no parece una casa. Ahora mismo parece un gran cascarón vacío hecho de adoquines.</p>
+<p class="indent">Tienes que hacer que la casa fantasma se parezca más a una casa y menos a un cascarón, porque los cascarones fantasma no dan tanto miedo como las casas fantasma. Para que el edificio parezca más una casa, tu misión es añadir un método que construya una puerta en la parte delantera de la casa y un segundo método que añada ventanas. Llama a estos dos métodos desde dentro del método <span class="literal">build(</span> ) para que se construyan al mismo tiempo <span class="ent">➍.</span></p>
+<p class="indent"><span epub:type="pagebreak" id="page_269"></span>Después de añadir los métodos para construir la puerta y las ventanas, tendrás que actualizar el método <span class="literal">clear</span> () para eliminarlos ➏; de lo contrario, se quedarán atrás cuando desaparezca la casa.</p>
+<p class="indent">Cuando hayas añadido los métodos adicionales, traslada el edificio a una nueva ubicación cambiando los atributos <span class="literal">x</span>, <span class="literal">y</span> y <span class="literal">z</span> del objeto <span class="literal">ghostHouse</span> y añadiendo más llamadas a los métodos <span class="literal">build()</span> y clear <span class="literal">(</span> ). He empezado esto por ti cambiando la posición <span class="literal">x</span> de la casa ➑.</p>
+<p class="indent">Cuando ejecutes el programa, la casa fantasma debería aparecer de repente y desaparecer 30 segundos después, para reaparecer en otro lugar. ¡Espeluznante!</p>
+<p class="indent"><a href="ch12.xhtml#ch12fig2">La Figura 12-2</a> muestra mi casa fantasma.</p>
+<div class="image"><img alt="image" src="../images/f12-02.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch12fig2"></a><em>Figura 12-2: La casa fantasma aparece y luego desaparece.</em></p>
+<div class="sidebar">
+<p class="sidebart" id="ch12sb02"><span epub:type="pagebreak" id="page_270"></span><strong>OBJETIVO EXTRA: MEJORA DE LA CASA</strong></p>
+<p class="noindent">De momento, la casa fantasma es muy básica. Utilizando las increíbles habilidades de Python que has aprendido en este libro, añade lo que quieras a la función <span class="literal">build(</span> ) para personalizar tu casa.</p>
+</div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch12_3.html">anterior</a><a href="ch12.html">Subtema 4 de 10: (Ver todo)</a><a href="ch12_5.html">siguiente</a><br/></p>
+<br/><a href="ch12_4.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c07-0009">Evitar bucles infinitos</h3>
+<p class="BodyFirst">Todo bucle <code translate="no">while</code> necesita una forma de dejar de ejecutarse para que no siga ejecutándose eternamente. Por ejemplo, este bucle de conteo debería contar de 1 a 5:</p>
+<p class="CodeLabel" translate="no"><b>counting.py</b></p>
+<pre translate="no"><code translate="no">x = 1
+while x &lt;= 5:
+    print(x)
+    x += 1</code></pre>
+<p>Sin embargo, si accidentalmente omites la línea <code translate="no">x += 1</code>, el bucle se ejecutará eternamente:</p>
+<pre translate="no"><code translate="no"># This loop runs forever!
+x = 1
+while x &lt;= 5:
+    print(x)</code></pre>
+<p><span epub:type="pagebreak" id="Page_123" title="123"></span>Ahora el valor de <code translate="no">x</code> comenzará en <code translate="no">1</code> pero nunca cambiará. Como resultado, la prueba condicional <code translate="no">x &lt;= 5</code> siempre se evaluará a <code translate="no">True</code> y el bucle <code translate="no">while</code> se ejecutará eternamente, imprimiendo una serie de 1s, como esto:</p>
+<pre translate="no"><code translate="no">1
+1
+1
+1
+<var>--snip--</var></code></pre>
+<p>Todo programador escribe accidentalmente un bucle infinito <code translate="no">while</code> de vez en cuando, especialmente cuando los bucles de un programa tienen sutiles condiciones de salida. Si tu programa se queda atascado en un bucle infinito, pulsa CTRL-C o simplemente cierra la ventana del terminal que muestra la salida de tu programa.</p>
+<p>Para evitar escribir bucles infinitos, prueba cada bucle de <code translate="no">while</code> y asegúrate de que el bucle se detiene cuando esperas que lo haga. Si quieres que tu programa termine cuando el usuario introduzca un determinado valor de entrada, ejecuta el programa e introduce ese valor. Si el programa no finaliza, examina la forma en que tu programa maneja el valor que debería provocar la salida del bucle. Asegúrate de que al menos una parte del programa puede hacer que la condición del bucle <code translate="no">False</code> o hacer que llegue a una sentencia <code translate="no">break</code>.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c07_14.html">anterior</a><a href="c07.html">Subtema 15 de 23: (Ver todo)</a><a href="c07_16.html">siguiente</a><br/></p>
+<br/><a href="c07_15.docx" target="_blank"></a></footer>
+</body>
+</html>

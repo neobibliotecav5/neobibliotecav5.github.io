@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h2 id="h1-502703c03-0004"><span epub:type="pagebreak" id="Page_46" title="46"></span>Evitar errores de índice al trabajar con listas</h2>
+<p class="BodyFirst">Hay un tipo de error que es habitual ver cuando trabajas con listas por primera vez. Supongamos que tienes una lista con tres elementos, y preguntas por el cuarto elemento:</p>
+<p class="CodeLabel" translate="no"><b>motorcycles.py</b></p>
+<pre translate="no"><code translate="no">motorcycles = ['honda', 'yamaha', 'suzuki']
+print(motorcycles[3])</code></pre>
+<p>Este ejemplo da como resultado un <em translate="no">index error</em>:</p>
+<pre translate="no"><code translate="no">Traceback (most recent call last):
+  File "motorcycles.py", line 2, in &lt;module&gt;
+    print(motorcycles[3])
+          ~~~~~~~~~~~^^^
+IndexError: list index out of range</code></pre>
+<p>Python intenta darte el elemento en el índice 3. Pero cuando busca en la lista, ningún elemento de <code translate="no">motorcycles</code> tiene el índice 3. Debido a la naturaleza de la indexación en las listas, este error es típico. La gente cree que el tercer elemento es el número 3, porque empieza a contar en 1. Pero en Python el tercer elemento es el número 2, porque empieza a indexar en 0.</p>
+<p>Un error de índice significa que Python no puede encontrar un elemento en el índice que has solicitado. Si se produce un error de índice en tu programa, intenta ajustar en uno el índice que pides. Luego vuelve a ejecutar el programa para ver si los resultados son correctos.</p>
+<p>Ten en cuenta que siempre que quieras acceder al último elemento de una lista, debes utilizar el índice <code translate="no">-1</code>. Esto siempre funcionará, aunque tu lista haya cambiado de tamaño desde la última vez que accediste a ella:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">motorcycles = ['honda', 'yamaha', 'suzuki']</span>
+print(motorcycles[-1])</code></pre>
+<p>El índice <code translate="no">-1</code> siempre devuelve el último elemento de una lista, en este caso el valor <code translate="no">'suzuki'</code>:</p>
+<pre translate="no"><code translate="no">suzuki</code></pre>
+<p>La única vez que este método provocará un error es cuando solicites el último elemento de una lista vacía:</p>
+<pre translate="no"><code translate="no">motorcycles = []
+print(motorcycles[-1])</code></pre>
+<p>No hay ningún elemento en <code translate="no">motorcycles</code>, por lo que Python devuelve otro error de índice:</p>
+<pre translate="no"><code translate="no">Traceback (most recent call last):
+  File "motorcyles.py", line 3, in &lt;module&gt;
+    print(motorcycles[-1])
+          ~~~~~~~~~~~^^^^
+IndexError: list index out of range</code></pre>
+<p><span epub:type="pagebreak" id="Page_47" title="47"></span>Si se produce un error de índice y no sabes cómo resolverlo, intenta imprimir tu lista o simplemente imprimir la longitud de tu lista. Tu lista puede tener un aspecto muy distinto del que pensabas, sobre todo si ha sido gestionada dinámicamente por tu programa. Ver la lista real, o el número exacto de elementos de tu lista, puede ayudarte a resolver esos errores lógicos.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c03_20.html">anterior</a><a href="c03.html">Subtema 21 de 23: (Ver todo)</a><a href="c03_22.html">siguiente</a><br/></p>
+<br/><a href="c03_21.docx" target="_blank"></a></footer>
+</body>
+</html>

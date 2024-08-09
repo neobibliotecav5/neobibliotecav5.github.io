@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c09-0002"><span epub:type="pagebreak" id="Page_159" title="159"></span>El método __init__()</h3>
+<p class="BodyFirst">Una función que forma parte de una clase es un <em translate="no">method</em>. Todo lo que aprendiste sobre las funciones se aplica también a los métodos; la única diferencia práctica por ahora es la forma en que llamaremos a los métodos. El método <code translate="no">__init__()</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span> es un método especial que Python ejecuta automáticamente cada vez que creamos una nueva instancia basada en la clase <code translate="no">Dog</code>. Este método tiene dos guiones bajos iniciales y dos guiones bajos finales, una convención que ayuda a evitar que los nombres de métodos por defecto de Python entren en conflicto con tus nombres de métodos. Asegúrate de utilizar dos guiones bajos a cada lado de <code translate="no">__init__()</code>. Si utilizas sólo uno a cada lado, el método no será llamado automáticamente cuando utilices tu clase, lo que puede dar lugar a errores difíciles de identificar.</p>
+<p>Definimos el método <code translate="no">__init__()</code> para que tenga tres parámetros: <code translate="no">self</code>, <code translate="no">name</code>, y <code translate="no">age</code>. El parámetro <code translate="no">self</code> es obligatorio en la definición del método, y debe ir en primer lugar, antes que los demás parámetros. Debe incluirse en la definición porque cuando Python llame a este método más adelante (para crear una instancia de <code translate="no">Dog</code>), la llamada al método pasará automáticamente el argumento <code translate="no">self</code>. Cada llamada a un método asociado a una instancia pasa automáticamente <code translate="no">self</code>, que es una referencia a la propia instancia; da acceso a la instancia individual a los atributos y métodos de la clase. Cuando hagamos una instancia de <code translate="no">Dog</code>, Python llamará al método <code translate="no">__init__()</code> de la clase <code translate="no">Dog</code>. Pasaremos a <code translate="no">Dog()</code> un nombre y una edad como argumentos; <code translate="no">self</code> se pasa automáticamente, por lo que no necesitamos pasarlo. Siempre que queramos crear una instancia a partir de la clase <code translate="no">Dog</code>, proporcionaremos valores sólo para los dos últimos parámetros, <code translate="no">name</code> y <code translate="no">age</code>.</p>
+<p>Las dos variables definidas en el cuerpo del método <code translate="no">__init__()</code> tienen cada una el prefijo <code translate="no">self</code> <span aria-label="annotation3" class="CodeAnnotation">❸.</span> Cualquier variable prefijada con <code translate="no">self</code> está disponible para todos los métodos de la clase, y también podremos acceder a estas variables a través de cualquier instancia creada a partir de la clase. La línea <code translate="no">self.name = name</code> toma el valor asociado al parámetro <code translate="no">name</code> y lo asigna a la variable <code translate="no">name</code>, que se adjunta a la instancia que se está creando. El mismo proceso ocurre con <code translate="no">self.age = age</code>. Las variables accesibles a través de instancias como ésta se denominan <em translate="no">attributes</em>.</p>
+<p>La clase <code translate="no">Dog</code> tiene otros dos métodos definidos: <code translate="no">sit()</code> y <code translate="no">roll_over()</code> <span aria-label="annotation4" class="CodeAnnotation">❹.</span> Como estos métodos no necesitan información adicional para ejecutarse, sólo los definimos para que tengan un parámetro, <code translate="no">self</code>. Las instancias que creemos más adelante tendrán acceso a estos métodos. En otras palabras, podrán sentarse y darse la vuelta. Por ahora, <code translate="no">sit()</code> y <code translate="no">roll_over()</code> no hacen gran cosa. Simplemente imprimen un mensaje diciendo que el perro se sienta o se da la vuelta. Pero el concepto puede ampliarse a situaciones realistas: si esta clase formara parte de un juego de ordenador, estos métodos contendrían código para hacer que un perro animado se sentara y se diera la vuelta. Si esta clase se escribiera para controlar un robot, estos métodos dirigirían los movimientos que hacen que un perro robótico se siente y se dé la vuelta.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c09_3.html">anterior</a><a href="c09.html">Subtema 4 de 34: (Ver todo)</a><a href="c09_5.html">siguiente</a><br/></p>
+<br/><a href="c09_4.docx" target="_blank"></a></footer>
+</body>
+</html>

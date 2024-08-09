@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c13-0006">Mover a los alienígenas hacia la derecha</h3>
+<p class="BodyFirst">Para mover a los alienígenas, utilizaremos un método <code translate="no">update()</code> en <em translate="no">alien.py</em>, que llamaremos para cada alienígena del grupo de alienígenas. En primer lugar, añade un ajuste para controlar la velocidad de cada alienígena:</p>
+<p class="CodeLabel" translate="no"><b>settings.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    def __init__(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+        # Alien settings
+        self.alien_speed = 1.0</code></pre>
+<p>A continuación, utiliza este ajuste para implementar <code translate="no">update()</code> en <em translate="no">alien.py</em>:</p>
+<p class="CodeLabel" translate="no"><b>alien.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    def __init__(self, ai_game):</span>
+<span class="LiteralGray">        """Initialize the alien and set its starting position."""</span>
+<span class="LiteralGray">        super().__init__()</span>
+<span class="LiteralGray">        self.screen = ai_game.screen</span>
+        self.settings = ai_game.settings
+        <em class="LiteralGrayItalic" translate="no">--snip--</em>
+
+<code translate="no">    </code>def update(self):
+   <code translate="no">    </code> """Move the alien to the right."""
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>    <code translate="no">    </code> self.x += self.settings.alien_speed
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>    <code translate="no">    </code> self.rect.x = self.x</code></pre>
+<p>Creamos un parámetro <code translate="no">settings</code> en <code translate="no">__init__()</code> para poder acceder a la velocidad del alienígena en <code translate="no">update()</code>. Cada vez que actualizamos la posición de un robot, lo desplazamos a la derecha de <span epub:type="pagebreak" id="Page_264" title="264"></span>la cantidad almacenada en <code translate="no">alien_speed</code>. Seguimos la posición exacta del alienígena con el atributo <code translate="no">self.x</code>, que puede contener valores flotantes <span aria-label="annotation1" class="CodeAnnotation">❶.</span> A continuación, utilizamos el valor de <code translate="no">self.x</code> para actualizar la posición de <code translate="no">rect</code> ❷ del alienígena <span aria-label="annotation2" class="CodeAnnotation">.</span></p>
+<p>En el bucle principal <code translate="no">while</code>, ya tenemos llamadas para actualizar las posiciones de la nave y de la bala. Ahora añadiremos una llamada para actualizar también la posición de cada alienígena:</p>
+<p class="CodeLabel" translate="no"><b>alien_invasion.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">        while True:</span>
+<span class="LiteralGray">            self._check_events()</span>
+<span class="LiteralGray">            self.ship.update()</span>
+<span class="LiteralGray">            self._update_bullets()</span>
+            self._update_aliens()
+<span class="LiteralGray">            self._update_screen()</span>
+<span class="LiteralGray">            self.clock.tick(60)</span></code></pre>
+<p>Vamos a escribir código para gestionar el movimiento de la flota, así que creamos un nuevo método llamado <code translate="no">_update_aliens()</code>. Actualizamos las posiciones de los alienígenas después de que se hayan actualizado las balas, porque pronto comprobaremos si alguna bala ha alcanzado a algún alienígena.</p>
+<p>El lugar donde coloques este método en el módulo no es crítico. Pero para mantener el código organizado, lo colocaré justo después de <code translate="no">_update_bullets()</code> para que coincida con el orden de las llamadas al método en el bucle <code translate="no">while</code>. Aquí tienes la primera versión de <code translate="no">_update_aliens()</code>:</p>
+<p class="CodeLabel" translate="no"><b>alien_invasion.py</b></p>
+<pre translate="no"><code translate="no">    def _update_aliens(self):
+        """Update the positions of all aliens in the fleet."""
+        self.aliens.update()</code></pre>
+<p>Utilizamos el método <code translate="no">update()</code> en el grupo <code translate="no">aliens</code>, que llama al método <code translate="no">update()</code> de cada extraterrestre. Cuando ejecutes ahora <em translate="no">Alien Invasion</em>, deberías ver que la flota se mueve hacia la derecha y desaparece por el lateral de la pantalla.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c13_12.html">anterior</a><a href="c13.html">Subtema 13 de 33: (Ver todo)</a><a href="c13_14.html">siguiente</a><br/></p>
+<br/><a href="c13_13.docx" target="_blank"></a></footer>
+</body>
+</html>

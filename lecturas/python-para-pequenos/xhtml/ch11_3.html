@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch11lev1sec2">
+  Crear el lienzo del juego </h3>
+<p class="noindent">
+  Para crear tu juego, abre primero un nuevo archivo en IDLE eligiendo <strong class="calibre5">Archivo </strong><strong class="calibre5">▸ Nuevo Archivo . </strong>A continuación, importa <span class="literal1" translate="no">
+   tkinter
+  </span>y crea un <span class="literal1" translate="no">
+   canvas
+  </span>para dibujar en él: </p>
+<pre class="pre" translate="no">   <span class="orange">from</span> tkinter <span class="orange">import</span> *
+   <span class="orange">import</span> random
+   <span class="orange">import</span> time
+   <span id="page_173"></span>tk = Tk()
+<span class="ent">➊</span> tk.title(<span class="green">'Bounce Game'</span>)
+   tk.resizable(0, 0)
+   tk.wm_attributes(<span class="green">'-topmost'</span>, 1)
+   canvas = Canvas(tk, width=500, height=400, bd=0, highlightthickness=0)
+   canvas.pack()
+   tk.update()</pre>
+<p class="indent">
+  Este código es un poco diferente de los ejemplos anteriores. En primer lugar, importamos los módulos <span class="literal1" translate="no">
+   time
+  </span>y <span class="literal1" translate="no">
+   random
+  </span>con <span class="literal1" translate="no">
+   import random
+  </span>y <span class="literal1" translate="no">
+   import time
+  </span>, para utilizarlos un poco más adelante en el código. El módulo <span class="literal1" translate="no">
+   random
+  </span>proporciona (entre otras cosas) funciones para crear números aleatorios, y <span class="literal1" translate="no">
+   time
+  </span>tiene una función útil que le dirá a Python que detenga lo que está haciendo durante un periodo de tiempo. </p>
+<p class="indent">
+  Con <span class="literal1" translate="no">
+   tk.title(’Bounce Game’)
+  </span><span class="ent">➊ </span>, utilizamos la función <span class="literal1" translate="no">
+   title
+  </span>del objeto <span class="literal1" translate="no">
+   tk
+  </span>que creamos con <span class="literal1" translate="no">
+   tk = Tk()
+  </span>para dar un título a la ventana. Luego utilizamos <span class="literal1" translate="no">
+   resizable
+  </span>para que la ventana tenga un tamaño fijo. Los parámetros ( <span class="literal1" translate="no">
+   0, 0
+  </span>) dicen: "El tamaño de la ventana no se puede cambiar ni horizontal ni verticalmente". A continuación, llamamos a los atributos <span class="literal1" translate="no">
+   wm_
+  </span>para decirle a <span class="literal1" translate="no">
+   tkinter
+  </span>que coloque la ventana que contiene nuestro lienzo delante de todas las demás ventanas ( <span class="literal1" translate="no">
+   ‘-topmost’
+  </span>). </p>
+<p class="indent">
+  Cuando creamos un objeto <span class="literal1" translate="no">
+   Canvas
+  </span>, le pasamos algunos parámetros con nombre más que en los ejemplos anteriores. Por ejemplo, tanto <span class="literal1" translate="no">
+   bd=0
+  </span>como <span class="literal1" translate="no">
+   highlightthickness=0
+  </span>se aseguran de que no haya ningún borde alrededor del exterior del lienzo, lo que hace que se vea mejor en la pantalla de nuestro juego. La línea <span class="literal1" translate="no">
+   canvas.pack()
+  </span>indica al lienzo que se ajuste a los parámetros de anchura y altura indicados en la línea anterior. Por último, <span class="literal1" translate="no">
+   tk.update()
+  </span>indica a <span class="literal1" translate="no">
+   tkinter
+  </span>que se inicialice para la animación de nuestro juego. Sin esta última línea, nada funcionaría como se espera. </p>
+<p class="indent">
+  Asegúrate de guardar tu código a medida que avanzas. Dale un nombre de archivo significativo la primera vez que lo guardes, como <em class="calibre7">paddleball.py . </em></p>
+<div class="image1">
+<img alt="Image" class="calibre120" src="../images/f0173-01.jpg" translate="no"/>
+</div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch11_2.html">anterior</a><a href="ch11.html">Subtema 3 de 7: (Ver todo)</a><a href="ch11_4.html">siguiente</a><br/></p>
+<br/><a href="ch11_3.docx" target="_blank"></a></footer>
+</body>
+</html>

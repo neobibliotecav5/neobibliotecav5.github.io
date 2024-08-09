@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<meta charset="utf-8"/>
+<title>Capítulo 6: Dibujo de formas geométricas y fractales</title>
+<link href="style.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="core.css" media="all" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch06lev1sec04"><strong><span class="bordera">Retos de programación</span></strong></h3>
+<p class="noindent">Aquí tienes algunos retos de programación que te ayudarán a aplicar mejor lo que has aprendido. Puedes encontrar ejemplos de soluciones en <em><a href="http://www.nostarch.com/doingmathwithpython/">http://www.nostarch.com/doingmathwithpython/.</a></em></p>
+<h4 class="h4" id="ch06lev2sec06"><strong><em>#1: Empaquetar círculos en un cuadrado</em></strong></h4>
+<p class="noindent">Antes he mencionado que matplotlib admite la creación de otras formas geométricas. El parche <span class="literal" translate="no">Polygon</span> es especialmente interesante, ya que te permite dibujar polígonos con diferentes números de lados. He aquí cómo podemos dibujar un cuadrado (cada lado de longitud 4):</p>
+<p class="programs" translate="no">'''<br translate="no"/>Draw a square<br translate="no"/>'''<br translate="no"/><br translate="no"/>from matplotlib import pyplot as plt<br translate="no"/><br translate="no"/>def draw_square():<br translate="no"/>    ax = plt.axes(xlim = (0, 6), ylim = (0, 6))<br translate="no"/>    square = plt.Polygon([(1, 1), (5, 1), (5, 5), (1, 5)], closed = True)<br translate="no"/>    ax.add_patch(square)<br translate="no"/>    plt.show()<br translate="no"/><br translate="no"/>if __name__ == '__main__':<br translate="no"/>    draw_square()</p>
+<p class="indent">El objeto <span class="literal" translate="no">Polygon</span> se crea pasando la lista de coordenadas de los vértices como primer argumento. Como estamos dibujando un cuadrado, pasamos las coordenadas de los cuatro vértices: (1, 1), (5, 1), (5, 5) y (1, 5). Al pasar <span class="literal" translate="no">closed=True</span> le decimos a matplotlib que queremos dibujar un polígono cerrado, en el que los vértices inicial y final sean iguales.</p>
+<p class="indent"><a id="page_169"></a>En este reto, intentarás una versión muy simplificada del problema "círculos empaquetados en un cuadrado". ¿Cuántos círculos de radio 0,5 caben en el cuadrado producido por este código? ¡Dibuja y averígualo! La <a href="ch06.html#ch6fig11">Figura 6-11</a> muestra el aspecto que tendrá la imagen final.</p>
+<div class="image"><img alt="image" src="images/f06-11.jpg" translate="no"/></div>
+<p class="figuret"><a id="ch6fig11"></a><em>Figura 6-11: Círculos empaquetados en un cuadrado</em></p>
+<p class="indent">El truco está en empezar por la esquina inferior izquierda del cuadrado -es decir, (1, 1)- y seguir añadiendo círculos hasta llenar todo el cuadrado. El siguiente fragmento muestra cómo puedes crear los círculos y añadirlos a la figura:</p>
+<p class="programs" translate="no">y = 1.5<br translate="no"/>while y &lt; 5:<br translate="no"/>    x = 1.5<br translate="no"/>    while x &lt; 5:<br translate="no"/>        c = draw_circle(x, y)<br translate="no"/>        ax.add_patch(c)<br translate="no"/><br translate="no"/>        x += 1.0<br translate="no"/>    y += 1.0</p>
+<p class="indent">Cabe señalar que ésta <em>no</em> es la forma más óptima ni, en realidad, la única de introducir círculos en un cuadrado, y que los entusiastas de las matemáticas prefieren encontrar otras formas de resolver este problema.</p>
+<h4 class="h4" id="ch06lev2sec07"><a id="page_170"></a><strong><em>#nº 2: Dibujo del triángulo de Sierpiński</em></strong></h4>
+<p class="noindent">El triángulo de Sierpiński, llamado así por el matemático polaco Wacław Sierpiński, es un fractal que consiste en un triángulo equilátero compuesto por triángulos equiláteros más pequeños incrustados en su interior. <a href="ch06.html#ch6fig12">La Figura 6-12</a> muestra un triángulo de Sierpiński compuesto por 10.000 puntos.</p>
+<div class="image"><img alt="image" src="images/f06-12.jpg" translate="no"/></div>
+<p class="figuret"><a id="ch6fig12"></a><em>Figura 6-12: Triángulo de Sierpiński con 10.000 puntos</em></p>
+<p class="indentb">Lo interesante aquí es que el mismo proceso que utilizamos para dibujar un helecho también dibujará el triángulo de Sierpiński; sólo cambiarán las reglas de transformación y su probabilidad. Así es como puedes dibujar el triángulo de Sierpiński: empieza con el punto (0, 0) y aplica una de las siguientes transformaciones:</p>
+<p class="itemlist"><strong>Transformación 1:</strong></p>
+<p class="itemlist"><sub><em>xn+1</em></sub> = 0,<em><sub>5xn</sub></em></p>
+<p class="itemlist"><sub><em>yn+1</em></sub> = 0,<em><sub>5yn</sub></em></p>
+<p class="itemlist"><strong>Transformación</strong> 2:</p>
+<p class="itemlist"><sub><em>xn+1</em></sub> = 0,<em><sub>5xn</sub></em> + 0,5</p>
+<p class="itemlist"><sub><em>yn+1</em></sub> = 0,<em><sub>5yn</sub></em> + 0,5</p>
+<p class="itemlist"><a id="page_171"></a><strong>Transformación</strong> 3:</p>
+<p class="itemlist"><sub><em>xn+1</em></sub> = 0,<em><sub>5xn</sub></em> + 1</p>
+<p class="itemlist"><sub><em>yn+1</em></sub> = 0,<em><sub>5yn</sub></em></p>
+<p class="indentt">Cada una de las transformaciones tiene la misma probabilidad de ser seleccionada-1/3. Tu reto aquí es escribir un programa que dibuje el triángulo de Sierpiński compuesto por un determinado número de puntos especificados como entrada.</p>
+<h4 class="h4" id="ch06lev2sec08"><strong><em>#3: Explorando la función de Hénon</em></strong></h4>
+<p class="noindentb">En 1976, Michel Hénon introdujo la función de Hénon, que describe una regla de transformación para un punto <em>P</em><em>(x</em>, <em>y</em>) como sigue</p>
+<p class="center"><em>P</em><em>(</em>x, <em>y</em>) → <em>Q</em><em>(y</em> + 1 - 1,<sup>4x2</sup>, 0,<em>3x</em>)</p>
+<p class="indentt">Independientemente del punto inicial (siempre que no esté muy lejos del origen), verás que a medida que creas más puntos, éstos empiezan a situarse a lo largo de líneas curvas, como se muestra en la <a href="ch06.html#ch6fig13">Figura 6</a>-13.</p>
+<div class="image"><img alt="image" src="images/f06-13.jpg" translate="no"/></div>
+<p class="figuret"><a id="ch6fig13"></a><em>Figura 6-13: Función de Hénon con 10.000 puntos</em></p>
+<p class="indent">Tu reto aquí es escribir un programa para crear una gráfica que muestre 20.000 iteraciones de esta transformación, empezando por el punto (1, 1).</p>
+<p class="indent">¡Mérito extra si escribes otro programa para crear una figura animada que muestre los puntos que empiezan a situarse a lo largo de las curvas! Consulta un ejemplo en <em><a href="https://www.youtube.com/watch?v=76ll818RlpQ">https://www.youtube.com/watch?v=76ll818RlpQ</a></em>.</p>
+<p class="indent"><a id="page_172"></a>Éste es un ejemplo de sistema dinámico, y las líneas curvas a las que parecen atraídos todos los puntos se denominan <em>atractores</em>. Para saber más sobre esta función, los sistemas dinámicos y los fractales en general, puedes consultar <em>Fractales: A Very Short Introduction</em>, de Kenneth Falconer (Oxford University Press, 2013).</p>
+<h4 class="h4" id="ch06lev2sec09"><strong><em>#4: Dibujar el Conjunto de Mandelbrot</em></strong></h4>
+<p class="noindent">Tu reto aquí es escribir un programa para dibujar el conjunto de Mandelbrot <em>, otro</em>ejemplo de aplicación de reglas sencillas que conducen a una forma de aspecto complicado (ver <a href="ch06.html#ch6fig14">Figura 6-14</a>). Sin embargo, antes de establecer los pasos para hacerlo, primero aprenderemos sobre la función <span class="literal" translate="no">imshow()</span> de matplotlib.</p>
+<div class="image"><img alt="image" src="images/f06-14.jpg" translate="no"/></div>
+<p class="figuret"><a id="ch6fig14"></a><em>Figura 6-14: Conjunto de Mandelbrot en el plano entre (-2,5, -1,0) y (1,0, 1,0)</em></p>
+<h5 class="h5" id="ch06lev3sec01"><strong>La función imshow()</strong></h5>
+<p class="noindent">La función <span class="literal" translate="no">imshow()</span> suele utilizarse para mostrar una imagen externa, como una imagen JPEG o PNG. Puedes ver un ejemplo en <em><a href="http://matplotlib.org/users/image_tutorial.html">http://matplotlib.org/users/image_tutorial.html.</a></em> Aquí, sin embargo, utilizaremos la función para dibujar una nueva imagen de nuestra propia creación mediante matplotlib.</p>
+<p class="indent">Considera la parte del plano cartesiano donde <em>x</em> e <em>y</em> van de 0 a 5. Ahora, considera seis puntos equidistantes a lo largo de cada eje: (0, 1, 2, 3, 4, 5) a lo largo del <em>eje x</em> y el mismo conjunto de puntos a lo largo del <em>eje</em> y. Si tomamos el producto cartesiano de estos puntos, obtenemos 36 puntos equidistantes en el plano <em>x-y</em> con las coordenadas (0, 0), (0, 1) ... (0, 5), (1, 0), (1, 1) ... (1, 5) ... (5, 5). Digamos ahora que queremos colorear cada uno de estos puntos de <a id="page_173"></a>con un tono de gris, es decir, algunos de estos puntos serán negros, otros blancos y otros se colorearán con un tono intermedio, elegido al azar. La <a href="ch06.html#ch6fig15">Figura 6-15</a> ilustra el escenario.</p>
+<div class="image"><img alt="image" src="images/f06-15.jpg" translate="no"/></div>
+<p class="figuret"><a id="ch6fig15"></a><em>Figura 6-15: Parte del</em> <em>plano</em> x-y <em>con</em> x <em>e</em> y <em>comprendidas entre 0 y 5. Hemos considerado 36 puntos en la región equidistantes entre sí y hemos coloreado cada uno con un tono de gris.</em></p>
+<p class="indent">Para crear esta figura, tenemos que hacer una lista de seis listas. Cada una de estas seis listas constará a su vez de seis números enteros que van de 0 a 10. Cada número corresponderá al color de cada punto, siendo 0 el negro y 10 el blanco. A continuación, pasaremos esta lista a la función <span class="literal" translate="no">imshow()</span> junto con otros argumentos necesarios.</p>
+<h5 class="h5" id="ch06lev3sec02"><strong>Crear una lista de listas</strong></h5>
+<p class="noindent">Una lista también puede contener listas como miembros:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">l1 = [1, 2, 3]</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">l2 = [4, 5, 6]</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">l = [l1, l2]</span></p>
+<p class="indent">Aquí creamos una lista, <span class="literal" translate="no">l</span>, formada por dos listas, <span class="literal" translate="no">l1</span> y <span class="literal" translate="no">l2</span>. Así, el primer elemento de la lista, <span class="literal" translate="no">l[0]</span>, es igual que la lista <span class="literal" translate="no">l1</span> y el segundo elemento de la lista, <span class="literal" translate="no">l[1]</span>, es igual que la lista <span class="literal" translate="no">l2</span>:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">l[0]</span><br translate="no"/>[1, 2, 3]<br translate="no"/><a id="page_174"></a><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">l[1]</span><br translate="no"/>[4, 5, 6]</p>
+<p class="indent">Para referirnos a un elemento individual dentro de una de las listas de miembros, tenemos que especificar dos índices:<span class="literal" translate="no">l[0][1]</span> se refiere al segundo elemento de la primera lista, <span class="literal" translate="no">l[1][2]</span> se refiere al tercer elemento de la segunda lista, y así sucesivamente.</p>
+<p class="indent">Ahora que sabemos cómo trabajar con una lista de listas, podemos escribir el programa para crear una figura similar a la de <a href="ch06.html#ch6fig15">la Figura 6-15</a>:</p>
+<p class="programs" translate="no">   import matplotlib.pyplot as plt<br translate="no"/>   import matplotlib.cm as cm<br translate="no"/>   import random<br translate="no"/><br translate="no"/><span class="ent">➊</span> def initialize_image(x_p, y_p):<br translate="no"/>       image = []<br translate="no"/>       for i in range(y_p):<br translate="no"/>          x_colors = []<br translate="no"/>           for j in range(x_p):<br translate="no"/>               x_colors.append(0)<br translate="no"/>           image.append(x_colors)<br translate="no"/>       return image<br translate="no"/><br translate="no"/>   def color_points():<br translate="no"/>       x_p = 6<br translate="no"/>       y_p = 6<br translate="no"/>       image = initialize_image(x_p, y_p)<br translate="no"/>       for i in range(y_p):<br translate="no"/>           for j in range(x_p):<br translate="no"/><span class="ent">➋</span>             image[i][j] = random.randint(0, 10)<br translate="no"/><span class="ent">➌</span>     plt.imshow(image, origin='lower', extent=(0, 5, 0, 5),<br translate="no"/>                  cmap=cm.Greys_r, interpolation='nearest')<br translate="no"/>       plt.colorbar()<br translate="no"/>       plt.show()<br translate="no"/><br translate="no"/>   if __name__ == '__main__':<br translate="no"/>       color_points()</p>
+<p class="indent">La función <span class="literal" translate="no">initialize_image()</span> en <span class="ent">➊</span> crea una lista de listas con cada uno de los elementos inicializados a 0. Acepta dos argumentos, <span class="literal" translate="no">x_p</span> y <span class="literal" translate="no">y_p</span>, que corresponden al número de puntos a lo largo del <em>eje x</em> y del <em>eje y</em>, respectivamente. Esto significa que la imagen de la lista inicializada estará formada por listas <span class="literal" translate="no">x_p</span>, cada una de las cuales contendrá <span class="literal" translate="no">y_p</span> ceros.</p>
+<p class="indent">En la función <span class="literal" translate="no">color_points()</span>, una vez recuperada la lista imagen de <span class="literal" translate="no">initialize_image()</span>, asigna un entero aleatorio entre 0 y 10 al elemento <span class="literal" translate="no">image[i][j]</span> en <span class="ent">➋.</span> Cuando asignamos este número entero aleatorio al elemento, estamos asignando un color al punto del plano cartesiano que está a <em>i</em> pasos a lo largo del <em>eje y</em> y a <em>j</em> pasos a lo largo del <em>eje x</em> desde el origen. Es importante señalar que la función <span class="literal" translate="no">imshow()</span> deduce automáticamente el color de un punto a partir de su posición en la lista <span class="literal" translate="no">image</span> y no se preocupa de sus <em>coordenadas</em> <em>x</em> e <em>y</em> concretas.</p>
+<p class="indent"><a id="page_175"></a>A continuación, llama a la función <span class="literal" translate="no">imshow()</span> en <span class="ent">➌,</span> pasando <span class="literal" translate="no">image</span> como primer argumento. El argumento de palabra clave <span class="literal" translate="no">origin='lower'</span> especifica que el número de <span class="literal" translate="no">image[0][0]</span> corresponde al color del punto (0, 0). El argumento de palabra clave <span class="literal" translate="no">extent=(0, 5, 0, 5)</span> establece las esquinas inferior izquierda y superior derecha de la imagen en (0, 0) y (5, 5), respectivamente. El argumento de palabra clave <span class="literal" translate="no">cmap=cm.Greys_r</span> especifica que vamos a crear una imagen en escala de grises.</p>
+<p class="indent">El último argumento de palabra clave, <span class="literal" translate="no">interpolation='nearest'</span>, especifica que matplotlib debe colorear un punto para el que no se haya especificado el color con el mismo color que el más cercano a él. ¿Qué significa esto? Observa que sólo consideramos y especificamos el color para 36 puntos de la región (0, 5) y (5, 5). Como hay un número infinito de puntos en esta región, le decimos a matplotlib que establezca el color de un punto no especificado en el de su punto más cercano. Esta es la razón por la que ves "recuadros" de color alrededor de cada punto en la figura.</p>
+<p class="indent">Llama a la función <span class="literal" translate="no">colorbar()</span> para mostrar una barra de color en la figura que muestre qué número entero corresponde a cada color. Por último, llama a <span class="literal" translate="no">show()</span> para mostrar la imagen. Ten en cuenta que, debido al uso de la función <span class="literal" translate="no">random.randint()</span>, tu imagen se coloreará de forma diferente a la de la <a href="ch06.html#ch6fig15">Figura 6-15</a>.</p>
+<p class="indent">Si aumentas el número de puntos a lo largo de cada eje ajustando <span class="literal" translate="no">x_p</span> y <span class="literal" translate="no">y_p</span> a, digamos, <span class="literal" translate="no">20</span> en <span class="literal" translate="no">color_points()</span>, verás una figura similar a la de la Figura <a href="ch06.html#ch6fig16">6-16</a>. Observa que los cuadros de color se hacen más pequeños. Si aumentas aún más el número de puntos, verás que el tamaño de los recuadros se reduce aún más, dando la ilusión de que cada punto tiene un color diferente.</p>
+<div class="image"><img alt="image" src="images/f06-16.jpg" translate="no"/></div>
+<p class="figuret"><a id="ch6fig16"></a><em>Figura 6-16: Parte del</em> <em>plano</em> x-y <em>con</em> x <em>e</em> y <em>comprendidas entre 0 y 5. Hemos considerado 400 puntos en la región equidistantes entre sí y hemos coloreado cada uno con un tono de gris.</em></p>
+<h5 class="h5" id="ch06lev3sec03"><a id="page_176"></a><strong>Dibujar el Conjunto de Mandelbrot</strong></h5>
+<p class="noindent">Consideraremos el área del plano <em>x-y</em> comprendida entre (-2,5, -1,0) y (1,0, 1,0) y dividiremos cada eje en 400 puntos equidistantes. El producto cartesiano de estos puntos nos dará 1.600 puntos igualmente espaciados en esta región. Nos referiremos a estos puntos como<em>(</em><sub>x1</sub>, <sub>y1</sub>),<em>(</em><sub>x1</sub>, <sub>y2</sub>) ...<em>(</em><sub>x400</sub>, <sub>y400</sub>).</p>
+<p class="indentb">Crea una lista, <span class="literal" translate="no">image</span>, llamando a la función <span class="literal" translate="no">initialize_image()</span> que vimos antes con <span class="literal" translate="no">x_p</span> y <span class="literal" translate="no">y_p</span> fijados en 400. A continuación, sigue estos pasos para <em>cada uno</em> de los puntos generados<em>(<sub>xi</sub></em>, <em><sub>yk</sub></em>):</p>
+<p class="order">1. En primer lugar, crea dos números complejos, <sub>z1</sub> = 0 + <em>0j</em> y <em>c</em> = <em><sub>xi</sub></em> + <em><sub>yk</sub> j</em>. (Recuerda que utilizamos <em>j</em> para <img alt="image" src="images/e0176-01.jpg" translate="no"/>.)</p>
+<p class="order">2. Crea una iteración de etiqueta y ponla a 0, es decir, <span class="literal" translate="no">iteration=0</span>.</p>
+<p class="order">3. Crea un número complejo, <img alt="image" src="images/e0176-02.jpg" translate="no"/>.</p>
+<p class="order">4. Incrementa el valor almacenado en <span class="literal" translate="no">iteration</span> en 1, es decir, <span class="literal" translate="no">iteration = iteration + 1</span>.</p>
+<p class="order">5. Si <span class="literal" translate="no">abs(z1) &lt; 2</span> y <span class="literal" translate="no">iteration &lt; max_iteration</span>, entonces vuelve al paso 3; si no, ve al paso 6. Cuanto mayor sea el valor de <span class="literal" translate="no">max_iteration</span>, más detallada será la imagen, pero más tiempo tardará en crearse. Ajusta aquí <span class="literal" translate="no">max_iteration</span> a 1.000.</p>
+<p class="order">6. Ajusta el color del punto<em>(<sub>xi</sub></em>, <em><sub>yk</sub></em>) al valor de <span class="literal" translate="no">iteration</span>-es decir, <span class="literal" translate="no">image[k][i] = iteration</span>.</p>
+<p class="indentt">Una vez que tengas la lista <span class="literal" translate="no">image</span> completa, llama a la función <span class="literal" translate="no">imshow()</span> con el argumento de la palabra clave <span class="literal" translate="no">extent</span> cambiado para indicar la región delimitada por (-2,5, -1,0) y (1,0, 1,0).</p>
+<p class="indent">Este algoritmo suele denominarse <em>algoritmo del tiempo de escape</em>. Cuando se alcanza el número máximo de iteraciones antes de que la magnitud de un punto supere 2, ese punto pertenece al conjunto de Mandelbrot y se colorea de blanco. Los puntos que superan la magnitud en menos iteraciones se dice que "escapan"; no pertenecen al conjunto de Mandelbrot y se colorean de negro. Puedes experimentar disminuyendo y aumentando el número de puntos a lo largo de cada eje. Disminuyendo el número de puntos obtendrás una imagen granulada, mientras que aumentándolos obtendrás una imagen más detallada.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch06_4.html">anterior</a><a href="ch06.html">Subtema 5 de 5: (Ver todo)</a><br/></p>
+<br/><a href="ch06_5.docx" target="_blank"></a></footer>
+</body>
+</html>

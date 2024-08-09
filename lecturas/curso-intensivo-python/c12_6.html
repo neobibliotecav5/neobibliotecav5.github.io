@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c12-0001">Crear una ventana Pygame y responder a las entradas del usuario</h3>
+<p class="BodyFirst">Crearemos una ventana Pygame vacía creando una clase que represente el juego. En tu editor de texto, crea un nuevo archivo y guárdalo como <em translate="no">alien_invasion.py</em>; luego introduce lo siguiente:</p>
+<p class="CodeLabel" translate="no"><b>alien_invasion.py</b></p>
+<pre translate="no"><code translate="no">import sys
+
+import pygame
+
+class AlienInvasion:
+    """Overall class to manage game assets and behavior."""
+
+    def __init__(self):
+        """Initialize the game, and create game resources."""
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         pygame.init()
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         self.screen = pygame.display.set_mode((1200, 800))
+        pygame.display.set_caption("Alien Invasion")
+
+    def run_game(self):
+        """Start the main loop for the game."""
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>         while True:
+            # Watch for keyboard and mouse events.
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>             for event in pygame.event.get():
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>                 if event.type == pygame.QUIT:
+                    sys.exit()
+
+            # Make the most recently drawn screen visible.
+<span aria-label="annotation6" class="CodeAnnotationHang">❻</span>             pygame.display.flip()
+
+if __name__ == '__main__':
+    # Make a game instance, and run the game.
+    ai = AlienInvasion()
+    ai.run_game()</code></pre>
+<p>En primer lugar, importamos los módulos <code translate="no">sys</code> y <code translate="no">pygame</code>. El módulo <code translate="no">pygame</code> contiene la funcionalidad que necesitamos para hacer un juego. Utilizaremos las herramientas del módulo <code translate="no">sys</code> para salir del juego cuando el jugador lo abandone.</p>
+<p><em translate="no">Alien Invasion</em> comienza como una clase llamada <code translate="no">AlienInvasion</code>. En el método <code translate="no">__init__()</code>, la función <code translate="no">pygame.init()</code> inicializa los ajustes de fondo que Pygame necesita para funcionar correctamente <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Luego llamamos a <code translate="no">pygame.display.set_mode()</code> para crear una ventana de visualización <span aria-label="annotation2" class="CodeAnnotation">❷,</span> en la que dibujaremos todos los elementos gráficos del juego. El argumento <code translate="no">(1200, 800)</code> es una tupla que define las dimensiones de la ventana del juego, que será de 1.200 píxeles de ancho por 800 píxeles de alto. (Puedes ajustar estos valores en función del tamaño de tu pantalla.) Asignamos esta ventana de visualización <span epub:type="pagebreak" id="Page_230" title="230"></span>al atributo <code translate="no">self.screen</code>, para que esté disponible en todos los métodos de la clase.</p>
+<p>El objeto que asignamos a <code translate="no">self.screen</code> se llama superficie. Una <em translate="no">surface</em> en Pygame es una parte de la pantalla donde se puede mostrar un elemento del juego. Cada elemento del juego, como un alienígena o una nave, es su propia superficie. La superficie devuelta por <code translate="no">display.set_mode()</code> representa toda la ventana del juego. Cuando activemos el bucle de animación del juego, esta superficie se redibujará en cada pasada por el bucle, para que pueda actualizarse con cualquier cambio provocado por la entrada del usuario.</p>
+<p>El juego se controla mediante el método <code translate="no">run_game()</code>. Este método contiene un bucle <code translate="no">while</code> <span aria-label="annotation3" class="CodeAnnotation">❸</span> que se ejecuta continuamente. El bucle <code translate="no">while</code> contiene un bucle de eventos y código que gestiona las actualizaciones de la pantalla. Un <em translate="no">event</em> es una acción que el usuario realiza mientras juega, como pulsar una tecla o mover el ratón. Para que nuestro programa responda a los eventos, escribimos un bucle <em translate="no">event loop</em> a <em translate="no">listen</em> para los eventos y realizar las tareas adecuadas en función del tipo de eventos que se produzcan. El bucle <code translate="no">for</code> <span aria-label="annotation4" class="CodeAnnotation">❹</span> anidado dentro del bucle <code translate="no">while</code> es un bucle de eventos.</p>
+<p>Para acceder a los eventos que Pygame detecta, utilizaremos la función <code translate="no">pygame.event.get()</code>. Esta función devuelve una lista de eventos que han tenido lugar desde la última vez que se llamó a esta función. Cualquier evento de teclado o ratón hará que se ejecute este bucle <code translate="no">for</code>. Dentro del bucle, escribiremos una serie de sentencias <code translate="no">if</code> para detectar y responder a eventos específicos. Por ejemplo, cuando el jugador haga clic en el botón de cierre de la ventana del juego, se detectará un evento <code translate="no">pygame.QUIT</code> y llamaremos a <code translate="no">sys.exit()</code> para salir del juego <span aria-label="annotation5" class="CodeAnnotation">❺.</span></p>
+<p>La llamada a <code translate="no">pygame.display.flip()</code> <span aria-label="annotation6" class="CodeAnnotation">❻</span> indica a Pygame que haga visible la pantalla dibujada más recientemente. En este caso, simplemente dibuja una pantalla vacía en cada pasada por el bucle <code translate="no">while</code>, borrando la pantalla anterior para que sólo sea visible la nueva. Cuando movemos los elementos del juego, <code translate="no">pygame.display.flip()</code> actualiza continuamente la pantalla para mostrar las nuevas posiciones de los elementos del juego y ocultar las antiguas, creando la ilusión de un movimiento suave.</p>
+<p>Al final del archivo, creamos una instancia del juego y llamamos a <code translate="no">run_game()</code>. Colocamos <code translate="no">run_game()</code> en un bloque <code translate="no">if</code> que sólo se ejecuta si se llama directamente al archivo. Cuando ejecutes este archivo <em translate="no">alien_invasion.py</em>, deberías ver una ventana vacía de Pygame.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c12_5.html">anterior</a><a href="c12.html">Subtema 6 de 43: (Ver todo)</a><a href="c12_7.html">siguiente</a><br/></p>
+<br/><a href="c12_6.docx" target="_blank"></a></footer>
+</body>
+</html>

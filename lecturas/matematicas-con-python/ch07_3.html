@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<meta charset="utf-8"/>
+<title>Capítulo 7: Resolución de problemas de cálculo</title>
+<link href="style.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="core.css" media="all" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch07lev1sec02"><strong>Suposiciones en SymPy</strong></h3>
+<p class="noindent">En todos nuestros programas, hemos creado un objeto <span class="literal" translate="no">Symbol</span> en SymPy, definiendo la variable así: <span class="literal" translate="no">x = Symbol('x')</span>. Supongamos que, como resultado de una operación que le has pedido a SymPy que realice, SymPy necesita comprobar si la expresión <em>x</em> + 5 es mayor que 0. Veamos qué ocurriría:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">from sympy import Symbol</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">x = Symbol('x')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">if (x+5) &gt; 0:</span><br translate="no"/> <span class="codestrong">print('Do Something')</span><br translate="no"/><span class="codestrong">else:</span><br translate="no"/> <span class="codestrong">print('Do Something else')</span><br translate="no"/><br translate="no"/>Traceback (most recent call last):<br translate="no"/>  File "&lt;pyshell#45&gt;", line 1, in <br translate="no"/>    if (x + 5) &gt; 0:<br translate="no"/>  File "/usr/lib/python3.4/site-packages/sympy/core/relational.py", line 103,<br translate="no"/>in __nonzero__<br translate="no"/>    raise TypeError("cannot determine truth value of\n%s" % self)<br translate="no"/>TypeError: cannot determine truth value of<br translate="no"/>x + 5 &gt; 0</p>
+<p class="indent">Como SymPy no sabe nada sobre el signo de <em>x</em>, no puede deducir si <em>x</em> + 5 es mayor que 0, por lo que muestra un error. Pero las matemáticas básicas nos dicen que si <em>x</em> es positivo, <em>x</em> + 5 siempre será positivo, y si <em>x</em> es negativo, sólo será positivo en determinados casos.</p>
+<p class="indent"><a id="page_181"></a>Así que si creamos un objeto <span class="literal" translate="no">Symbol</span> especificando <span class="literal" translate="no">positive=True</span>, le decimos a SymPy que asuma sólo valores positivos. Ahora sabe con seguridad que <em>x</em> + 5 es definitivamente mayor que 0:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">x = Symbol('x', positive=True)</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">if (x+5) &gt; 0:</span><br translate="no"/> <span class="codestrong">print('Do Something')</span><br translate="no"/><span class="codestrong">else:</span><br translate="no"/> <span class="codestrong">print('Do Something else')</span><br translate="no"/><br translate="no"/>Do Something</p>
+<p class="indent">Ten en cuenta que si en su lugar hubiéramos especificado <span class="literal" translate="no">negative=True</span>, podríamos obtener el mismo error que en el primer caso. Igual que podemos declarar un símbolo como <span class="literal" translate="no">positive</span> y <span class="literal" translate="no">negative</span>, también es posible especificarlo como <span class="literal" translate="no">real</span>, <span class="literal" translate="no">integer</span>, <span class="literal" translate="no">complex</span>, <span class="literal" translate="no">imaginary</span>, etc. Estas declaraciones se denominan <em>supuestos</em> en SymPy.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch07_2.html">anterior</a><a href="ch07.html">Subtema 3 de 11: (Ver todo)</a><a href="ch07_4.html">siguiente</a><br/></p>
+<br/><a href="ch07_3.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c20-0007">Estilizar las entradas de la página de temas</h3>
+<p class="BodyFirst">En la página de temas, utilizaremos el componente de tarjeta de Bootstrap para hacer que cada entrada destaque. Un <em translate="no">card</em> es un conjunto anidable de divs con estilos flexibles y predefinidos que son perfectos para mostrar las entradas de un tema:</p>
+<p class="CodeLabel" translate="no"><b>topic.html</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">{% extends 'learning_logs/base.html' %}</span>
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> {% block page_header %}
+  &lt;h1&gt;{{ topic.text }}&lt;/h1&gt;
+{% endblock page_header %}
+
+<span epub:type="pagebreak" id="Page_444" title="444"></span><span class="LiteralGray">{% block content %}</span>
+<span class="LiteralGray">  &lt;p&gt;</span>
+<span class="LiteralGray">    &lt;a href="{% url 'learning_logs:new_entry' topic.id %}"&gt;Add new entry&lt;/a&gt;</span>
+<span class="LiteralGray">  &lt;/p&gt;</span>
+
+<span class="LiteralGray">  {% for entry in entries %}</span>
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     &lt;div class="card mb-3"&gt;
+      &lt;!-- Card header with timestamp and edit link --&gt;
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>       &lt;h4 class="card-header"&gt;
+        {{ entry.date_added|date:'M d, Y H:i' }}
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>         &lt;small&gt;&lt;a href="{% url 'learning_logs:edit_entry' entry.id %}"&gt;
+          edit entry&lt;/a&gt;&lt;/small&gt;
+      &lt;/h4&gt;
+      &lt;!-- Card body with entry text --&gt;
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>       &lt;div class="card-body"&gt;{{ entry.text|linebreaks }}&lt;/div&gt;
+    &lt;/div&gt;
+<span class="LiteralGray">  {% empty %}</span>
+<span aria-label="annotation6" class="CodeAnnotationHang">❻</span>     &lt;p&gt;There are no entries for this topic yet.&lt;/p&gt;
+<span class="LiteralGray">  {% endfor %}</span>
+
+<span class="LiteralGray">{% endblock content %}</span></code></pre>
+<p>Primero colocamos el tema en el bloque <code translate="no">page_header</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> A continuación, eliminamos la estructura de lista desordenada utilizada anteriormente en esta plantilla. En lugar de hacer de cada entrada un elemento de lista, abrimos un elemento div con el selector <code translate="no">card</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Esta ficha tiene dos elementos anidados: uno para contener la marca de tiempo y el enlace para editar la entrada, y otro para contener el cuerpo de la entrada. El selector <code translate="no">card</code> se encarga de la mayor parte del estilo que necesitamos para este div; personalizamos la tarjeta añadiendo un pequeño margen en la parte inferior de cada tarjeta (<code translate="no">mb-3</code>).</p>
+<p>El primer elemento de la tarjeta es una cabecera, que es un elemento <code translate="no"></code> con el selector <code translate="no">card-header</code> <span aria-label="annotation3" class="CodeAnnotation">❸.</span> Esta cabecera contiene la fecha en que se hizo la entrada y un enlace para editarla. La etiqueta <code translate="no"></code> alrededor del enlace <code translate="no">edit_entry</code> hace que aparezca un poco más pequeño que la marca de tiempo <span aria-label="annotation4" class="CodeAnnotation">❹.</span> El segundo elemento es un div con el selector <code translate="no">card-body</code> <span aria-label="annotation5" class="CodeAnnotation">❺,</span> que coloca el texto de la entrada en una simple caja en la tarjeta. Observa que el código Django para incluir la información en la página no ha cambiado; sólo lo han hecho los elementos que afectan a la apariencia de la página. Como ya no tenemos una lista desordenada, hemos sustituido las etiquetas de elemento de lista alrededor del mensaje de lista vacía por simples etiquetas de párrafo <span aria-label="annotation6" class="CodeAnnotation">❻.</span></p>
+<p>La<a href="#figure20-3" id="figureanchor20-3">Figura 20-3</a> muestra la página de temas con su nuevo aspecto. La funcionalidad de Learning Log no ha cambiado, pero tiene un aspecto mucho más profesional y atractivo para los usuarios.</p>
+<p>Si quieres utilizar una plantilla Bootstrap diferente para un proyecto, sigue un proceso similar al que hemos hecho hasta ahora en este capítulo. Copia la plantilla que quieras utilizar en <em translate="no">base.html</em>, y modifica los elementos que contienen contenido real para que la plantilla muestre la información de tu proyecto. A continuación, utiliza las herramientas de estilo individuales de Bootstrap para dar estilo al contenido de cada página.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c20_8.html">anterior</a><a href="c20.html">Subtema 9 de 37: (Ver todo)</a><a href="c20_10.html">siguiente</a><br/></p>
+<br/><a href="c20_9.docx" target="_blank"></a></footer>
+</body>
+</html>

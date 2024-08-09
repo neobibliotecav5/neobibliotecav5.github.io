@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<meta charset="utf-8"/>
+<title>Capítulo 7: Resolución de problemas de cálculo</title>
+<link href="style.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="core.css" media="all" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch07lev1sec04"><strong>Encontrar la derivada de funciones</strong></h3>
+<p class="noindent">La derivada de una función <em>y</em> = <em>f</em><em>(x</em>) expresa la tasa de cambio de la variable dependiente, <em>y</em>, con respecto a la variable independiente, <em>x</em>. Se denota como <em>f′</em><em>(x</em>) o <em>dy/dx</em>. Podemos hallar la derivada de una función creando un objeto de la clase <span class="literal" translate="no">Derivative</span>. Utilicemos como ejemplo la función anterior que representa el movimiento de un coche:</p>
+<p class="programs" translate="no"><span class="ent">➊</span> &gt;&gt;&gt; <span class="codestrong">from sympy import Symbol, Derivative</span><br translate="no"/><br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">t = Symbol('t')</span><br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">St = 5*t**2 + 2*t + 8</span><br translate="no"/><br translate="no"/><span class="ent">➋</span> &gt;&gt;&gt; <span class="codestrong">Derivative(St, t)</span><br translate="no"/>   Derivative(5*t**2 + 2*t + 8, t)</p>
+<p class="indent">Importamos la clase <span class="literal" translate="no">Derivative</span> en <span class="ent">➊.</span> En <span class="ent">➋,</span> creamos un objeto de la clase <span class="literal" translate="no">Derivative</span>. Los dos argumentos que se pasan al crear el objeto son la función <span class="literal" translate="no">St</span> y el símbolo <span class="literal" translate="no">t</span>, que corresponde a la variable <em>t</em>. Al igual que con la clase <span class="literal" translate="no">Limit</span>, se devuelve un objeto de la clase <span class="literal" translate="no">Derivative</span>, y en realidad no se calcula la derivada. Llamamos al método <span class="literal" translate="no">doit()</span> sobre el objeto no evaluado <span class="literal" translate="no">Derivative</span> para hallar la derivada:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">d = Derivative(St, t)</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">d.doit()</span><br translate="no"/>10*t + 2</p>
+<p class="indent">La expresión para la derivada resulta ser <span class="literal" translate="no">10*t + 2</span>. Ahora, si queremos calcular el valor de la derivada en un valor concreto de <em>t -digamos</em>, <em>t</em> = <sub>t1</sub> o <em>t</em> = 1- podemos utilizar el método <span class="literal" translate="no">subs()</span>:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">d.doit().subs({t:t1})</span><br translate="no"/>10*t1 + 2<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">d.doit().subs({t:1})</span><br translate="no"/>12</p>
+<p class="indent"><a id="page_186"></a>Probemos con una función arbitraria complicada con <em>x</em> como única variable:<em>(</em><sup>x3</sup> + <sup>x2</sup> + <em>x</em>) ×<em>(</em><sup>x2</sup> + <em>x</em>).</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">from sympy import Derivative, Symbol</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">x = Symbol('x')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">f = (x**3 + x**2 + x)*(x**2+x)</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">Derivative(f, x).doit()</span><br translate="no"/>(2*x + 1)*(x**3 + x**2 + x) + (x**2 + x)*(3*x**2 + 2*x + 1)</p>
+<p class="indent">Puedes considerar esta función como el producto de dos funciones independientes, lo que significa que, a mano, tendríamos que hacer uso de la <em>regla del producto</em> de la diferenciación para hallar la derivada. Pero aquí no tenemos que preocuparnos de eso, porque podemos crear un objeto de la clase <span class="literal" translate="no">Derivative</span> para que lo haga por nosotros.</p>
+<p class="indent">Prueba con otras expresiones complicadas, como las que implican funciones trigonométricas.</p>
+<h4 class="h4" id="ch07lev2sec05"><strong><em>Una calculadora de derivadas</em></strong></h4>
+<p class="noindent">Ahora vamos a escribir un programa calculadora de derivadas, que tomará una función como entrada y luego imprimirá el resultado de diferenciarla respecto a la variable especificada:</p>
+<p class="programs" translate="no">   '''<br translate="no"/>   Derivative calculator<br translate="no"/>   '''<br translate="no"/><br translate="no"/>   from sympy import Symbol, Derivative, sympify, pprint<br translate="no"/>   from sympy.core.sympify import SympifyError<br translate="no"/><br translate="no"/>   def derivative(f, var):<br translate="no"/>       var = Symbol(var)<br translate="no"/>       d = Derivative(f, var).doit()<br translate="no"/>       pprint(d)<br translate="no"/><br translate="no"/>   if __name__=='__main__':<br translate="no"/><br translate="no"/><span class="ent">➊</span>     f = input('Enter a function: ')<br translate="no"/>       var = input('Enter the variable to differentiate with respect to: ')<br translate="no"/>       try:<br translate="no"/><span class="ent">➋</span>         f = sympify(f)<br translate="no"/>       except SympifyError:<br translate="no"/>           print('Invalid input')<br translate="no"/>       else:<br translate="no"/><span class="ent">➌</span>         derivative(f, var)</p>
+<p class="indent">En <span class="ent">➊,</span> pedimos al usuario que introduzca una función para la que se debe hallar la derivada y, a continuación, le pedimos la variable con respecto a la cual se debe diferenciar la función. En <span class="ent">➋,</span> convertimos la función de entrada en un objeto SymPy utilizando la función <span class="literal" translate="no">sympify()</span>. Llamamos a esta función en un bloque <span class="literal" translate="no">try...except</span> para poder mostrar un mensaje de error en caso de que el usuario <a id="page_187"></a>introduzca una entrada no válida. Si la expresión de entrada es una expresión válida, llamamos a la función derivada en <span class="ent">➌,</span> pasando como argumentos la expresión convertida y la variable con respecto a la cual se va a diferenciar la función.</p>
+<p class="indent">En la función <span class="literal" translate="no">derivative()</span>, creamos primero un objeto <span class="literal" translate="no">Symbol</span> que corresponde a la variable con respecto a la cual se va a diferenciar la función. Utilizamos la etiqueta <span class="literal" translate="no">var</span> para referirnos a esta variable. A continuación, creamos un objeto <span class="literal" translate="no">Derivative</span> que pasa tanto la función a diferenciar como el objeto símbolo <span class="literal" translate="no">var</span>. Inmediatamente llamamos al método <span class="literal" translate="no">doit()</span> para evaluar la derivada, y a continuación utilizamos la función <span class="literal" translate="no">pprint()</span> para imprimir el resultado de forma que se parezca a su homólogo matemático. A continuación se muestra un ejemplo de ejecución del programa:</p>
+<p class="programs" translate="no">Enter a function: <span class="codestrong">2*x**2 + 3*x + 1</span><br translate="no"/>Enter the variable to differentiate with respect to: <span class="codestrong">x</span><br translate="no"/>4·x + 3</p>
+<p class="indent">Aquí tienes un ejemplo de ejecución cuando se utiliza con una función de dos variables:</p>
+<p class="programs" translate="no">Enter a function: <span class="codestrong">2*x**2 + y**2</span><br translate="no"/>Enter the variable to differentiate with respect to: <span class="codestrong">x</span><br translate="no"/>4·x</p>
+<h4 class="h4" id="ch07lev2sec06"><strong><em>Cálculo de derivadas parciales</em></strong></h4>
+<p class="noindent">En el programa anterior vimos que es posible calcular la derivada de una función multivariable respecto a cualquier variable utilizando la clase <span class="literal" translate="no">Derivative</span>. Este cálculo suele denominarse <em>diferenciación</em> parcial, indicando <em>parcial</em> que suponemos que sólo varía una variable, mientras que las demás son fijas.</p>
+<p class="indent">Consideremos la función <em>f</em><em>(x</em>, <em>y</em>) = <em>2xy</em> + <sup>xy2</sup>. La diferenciación parcial de <em>f</em>(<em>x</em>, <em>y</em>) respecto a <em>x</em> es</p>
+<div class="image2"><img alt="image" src="images/e0187-01.jpg" translate="no"/></div>
+<p class="indent">El programa anterior es capaz de hallar la derivada parcial porque sólo es cuestión de especificar la variable correcta:</p>
+<p class="programs" translate="no">Enter a function: <span class="codestrong">2*x*y + x*y**2</span><br translate="no"/>Enter the variable to differentiate with respect to: <span class="codestrong">x</span><br translate="no"/>y<sup>2</sup> + 2·y</p>
+<div class="note">
+<p class="notet"><strong><span class="bordera">NOTA</span></strong></p>
+<p class="noindent"><em>Una suposición clave que he hecho en este capítulo es que todas las funciones de las que estamos calculando la derivada son diferenciables en sus respectivos dominios.</em></p>
+</div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch07_4.html">anterior</a><a href="ch07.html">Subtema 5 de 11: (Ver todo)</a><a href="ch07_6.html">siguiente</a><br/></p>
+<br/><a href="ch07_5.docx" target="_blank"></a></footer>
+</body>
+</html>

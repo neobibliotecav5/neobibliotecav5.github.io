@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Reflection</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="Reflection"><div class="titlepage"><div><div><h1 class="title"><a id="reflection"></a>Reflexión</h1></div></div></div><p>Es fácil inspeccionar un objeto para determinar qué propiedades tiene intentando recuperar las propiedades y examinando los valores obtenidos. El operador <code class="literal" translate="no">typeof</code> puede ser muy útil para determinar el tipo de una propiedad:<a class="indexterm" id="IDX-CHP-3-0171"></a><a class="indexterm" id="IDX-CHP-3-0172"></a><a class="indexterm" id="IDX-CHP-3-0173"></a><a class="indexterm" id="IDX-CHP-3-0169"></a><a class="indexterm" id="IDX-CHP-3-0170"></a></p><a id="I_programlisting3_d1e2232"></a><pre class="programlisting" translate="no">typeof flight.number      // 'number'
+typeof flight.status      // 'string'
+typeof flight.arrival     // 'object'
+typeof flight.manifest    // 'undefined'</pre><p>Hay que tener cierto cuidado porque cualquier propiedad de la cadena de prototipos puede producir un valor:</p><a id="I_programlisting3_d1e2236"></a><pre class="programlisting" translate="no">typeof flight.toString    // 'function'
+typeof flight.constructor // 'function'</pre><p>Hay dos enfoques para tratar estas propiedades no deseadas. El primero es hacer que tu programa busque y rechace valores de función. Generalmente, cuando reflexionas, te interesan los datos, por lo que debes ser consciente de que algunos valores podrían ser funciones.</p><p>El otro enfoque es utilizar el método <code class="literal" translate="no">hasOwnProperty</code>, que devuelve <code class="literal" translate="no">true</code> si el objeto tiene una propiedad determinada. El método <code class="literal" translate="no">hasOwnProperty</code> no mira la cadena de prototipos:</p><a id="I_programlisting3_d1e2251"></a><pre class="programlisting" translate="no">flight.hasOwnProperty('number')         // true
+flight.hasOwnProperty('constructor')    // false</pre></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="ch03s05.html">← Anterior</a><a href="ch03s07.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="ch03s06.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\ch03s06.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

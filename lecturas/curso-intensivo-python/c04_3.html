@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c04-0001">Un vistazo más de cerca a los bucles</h3>
+<p class="BodyFirst">Los bucles son importantes porque son una de las formas más comunes que tiene un ordenador de automatizar tareas repetitivas. Por ejemplo, en un bucle simple como el que utilizamos en <em translate="no">magicians.py</em>, Python lee inicialmente la primera línea del bucle:</p>
+<pre translate="no"><code translate="no">for magician in magicians:</code></pre>
+<p>Esta línea le dice a Python que recupere el primer valor de la lista <code translate="no">magicians</code> y lo asocie a la variable <code translate="no">magician</code>. Este primer valor es <code translate="no">'alice'</code>. A continuación, Python lee la siguiente línea:</p>
+<pre translate="no"><code translate="no">    print(magician)</code></pre>
+<p>Python imprime el valor actual de <code translate="no">magician</code>, que sigue siendo <code translate="no">'alice'</code>. Como la lista contiene más valores, Python vuelve a la primera línea del bucle:</p>
+<pre translate="no"><code translate="no">for magician in magicians:</code></pre>
+<p>Python recupera el siguiente nombre de la lista, <code translate="no">'david'</code>, y asocia ese valor a la variable <code translate="no">magician</code>. A continuación, Python ejecuta la línea:</p>
+<pre translate="no"><code translate="no">    print(magician)</code></pre>
+<p><span epub:type="pagebreak" id="Page_51" title="51"></span>Python vuelve a imprimir el valor actual de <code translate="no">magician</code>, que ahora es <code translate="no">'david'</code>. Python repite todo el bucle una vez más con el último valor de la lista, <code translate="no">'carolina'</code>. Como no hay más valores en la lista, Python pasa a la siguiente línea del programa. En este caso no viene nada después del bucle <code translate="no">for</code>, por lo que el programa termina.</p>
+<p>Cuando utilices bucles por primera vez, ten en cuenta que el conjunto de pasos se repite una vez para cada elemento de la lista, sin importar cuántos elementos haya en ella. Si tienes un millón de elementos en tu lista, Python repite estos pasos un millón de veces, y normalmente muy rápido.</p>
+<p>Ten en cuenta también al escribir tus propios bucles <code translate="no">for</code> que puedes elegir el nombre que quieras para la variable temporal que se asociará a cada valor de la lista. Sin embargo, es útil elegir un nombre significativo que represente un único elemento de la lista. Por ejemplo, ésta es una buena forma de iniciar un bucle <code translate="no">for</code> para una lista de gatos, una lista de perros y una lista general de elementos:</p>
+<pre translate="no"><code translate="no">for cat in cats:
+for dog in dogs:
+for item in list_of_items:</code></pre>
+<p>Estas convenciones de nomenclatura pueden ayudarte a seguir la acción que se realiza en cada elemento dentro de un bucle <code translate="no">for</code>. Utilizar nombres en singular y plural puede ayudarte a identificar si una sección de código está trabajando con un único elemento de la lista o con toda la lista.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c04_2.html">anterior</a><a href="c04.html">Subtema 3 de 41: (Ver todo)</a><a href="c04_4.html">siguiente</a><br/></p>
+<br/><a href="c04_3.docx" target="_blank"></a></footer>
+</body>
+</html>

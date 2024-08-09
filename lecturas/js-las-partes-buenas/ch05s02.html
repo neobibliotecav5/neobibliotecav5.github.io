@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Object Specifiers</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="Object Specifiers"><div class="titlepage"><div><div><h1 class="title"><a id="object_specifiers"></a>Especificadores de objetos</h1></div></div></div><p>A veces ocurre que un constructor recibe un número muy elevado de parámetros. Esto puede ser problemático porque puede resultar muy difícil recordar el orden de los argumentos. En estos casos, puede ser mucho más fácil si escribimos el constructor para que acepte un único especificador de objeto. Ese objeto contiene la especificación del objeto que se va a construir. Así, en lugar de<a class="indexterm" id="IDX-CHP-5-0271"></a><a class="indexterm" id="IDX-CHP-5-0272"></a><a class="indexterm" id="IDX-CHP-5-0273"></a></p><a id="I_programlisting5_d1e3867"></a><pre class="programlisting" translate="no">var myObject = maker(f, l, m, c, s);</pre><p>podemos escribir:</p><a id="I_programlisting5_d1e3871"></a><pre class="programlisting" translate="no">var myObject = maker({
+    first: f,
+    last: l,
+    middle: m
+    state: s,
+    city: c
+});</pre><p>Ahora los argumentos pueden enumerarse en cualquier orden, los argumentos pueden omitirse si el constructor es inteligente con los valores por defecto, y el código es mucho más fácil de leer.</p><p>Esto puede tener un beneficio secundario cuando se trabaja con JSON (véase <a class="xref" href="ape.html" title="Appendix E. JSON">el Apéndice E</a>). El texto JSON sólo puede describir datos, pero a veces los datos representan un objeto, y sería útil asociar los datos a sus métodos. Esto puede hacerse trivialmente si el constructor toma un especificador de objeto, porque podemos simplemente pasar el objeto JSON al constructor y éste devolverá un objeto totalmente constituido.</p></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="ch05.html">← Anterior</a><a href="ch05s03.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="ch05s02.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\ch05s02.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

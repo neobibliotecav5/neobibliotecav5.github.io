@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Construction</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Construction"><div class="titlepage"><div><div><h1 class="title"><a id="construction"/>Construction</h1></div></div></div><p>There are two ways to make a <code class="literal">RegExp</code> object. The
+                preferred way, as we saw in the examples, is to use a regular expression
+                    literal.<a id="IDX-CHP-7-0355" class="indexterm"/><a id="IDX-CHP-7-0356" class="indexterm"/><a id="IDX-CHP-7-0354" class="indexterm"/></p><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject7_d1e5305"/><img src="httpatomoreillycomsourceoreillyimages238776.png" alt="image with no caption"/></div></div><p>Regular expression literals are enclosed in slashes. This can be a little tricky
+                because slash is also used as the division operator and in comments.</p><p>There are three flags that can be set on a <code class="literal">RegExp</code>. They are indicated by the letters <code class="literal">g</code>, <code class="literal">i</code>, and <code class="literal">m</code>, as listed in <a class="xref" href="ch07s02.html#flags_for_regular_expressions" title="Table 7-1. Flags for regular expressions">Table 7-1</a>. The
+                flags are appended directly to the end of the <code class="literal">RegExp</code> literal:<a id="IDX-CHP-7-0357" class="indexterm"/></p><a id="I_programlisting7_d1e5337"/><pre class="programlisting">// Make a regular expression object that matches
+// a JavaScript string.
+
+var my_regexp = /"(?:\\.|[^\\\"])*"/g;</pre><div class="table"><a id="flags_for_regular_expressions"/><p class="title">Table 7-1. Flags for regular expressions</p><div class="table-contents"><table summary="Flags for regular expressions" style="border-collapse: collapse;border-top: 0.5pt solid ; border-bottom: 0.5pt solid ; border-left: 0.5pt solid ; border-right: 0.5pt solid ; "><colgroup><col/><col/></colgroup><thead><tr><th style="text-align: left" valign="bottom">
+                                <p>Flag</p>
+                            </th><th style="text-align: left" valign="bottom">
+                                <p>Meaning</p>
+                            </th></tr></thead><tbody><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">g</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p>Global (match multiple times; the precise meaning of this
+                                    varies with the method)</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">i</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p>Insensitive (ignore character case)</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">m</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p>Multiline (^ and $ can match line-ending characters)</p>
+                            </td></tr></tbody></table></div></div><p>The other way to make a regular expression is to use the <code class="literal">RegExp</code> constructor. The constructor takes a string and compiles it
+                into a <code class="literal">RegExp</code> object. Some care must be taken in
+                building the string because backslashes have a somewhat different meaning in regular
+                expressions than in string literals. It is usually necessary to double the
+                backslashes and escape the quotes:</p><a id="I_programlisting7_d1e5386"/><pre class="programlisting">// Make a regular expression object that matches
+// a JavaScript string.
+
+var my_regexp = new RegExp("\"(?:\\\\.|[^\\\\\\\"])*\"", 'g');</pre><p>The second parameter is a string specifying the flags. The <code class="literal">RegExp</code> constructor is useful when a regular expression
+                must be generated at runtime using material that is not available to the
+                programmer.</p><p><code class="literal">RegExp</code> objects contain the properties listed in
+                    <a class="xref" href="ch07s02.html#properties_of_regexp_objects" title="Table 7-2. Properties of RegExp objects">Table 7-2</a>.</p><div class="table"><a id="properties_of_regexp_objects"/><p class="title">Table 7-2. Properties of RegExp objects</p><div class="table-contents"><table summary="Properties of RegExp objects" style="border-collapse: collapse;border-top: 0.5pt solid ; border-bottom: 0.5pt solid ; border-left: 0.5pt solid ; border-right: 0.5pt solid ; "><colgroup><col/><col/></colgroup><thead><tr><th style="text-align: left" valign="bottom">
+                                <p>Property</p>
+                            </th><th style="text-align: left" valign="bottom">
+                                <p>Use</p>
+                            </th></tr></thead><tbody><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">global</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p><code class="literal">true</code> if the <code class="literal">g</code> flag was used.</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">ignoreCase</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p><code class="literal">true</code> if the <code class="literal">i</code> flag was used.</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">lastIndex</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p>The index at which to start the next <code class="literal">exec</code> match. Initially it is zero.</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">multiline</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p><code class="literal">true</code> if the <code class="literal">m</code> flag was used.</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">source</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p>The source text of the regular expression.</p>
+                            </td></tr></tbody></table></div></div><p><code class="literal">RegExp</code> objects made by regular expression
+                literals share a single instance:</p><a id="I_programlisting7_d1e5477"/><pre class="programlisting">function make_a_matcher(  ) {
+    return /a/gi;
+}
+
+var x = make_a_matcher(  );
+var y = make_a_matcher(  );
+
+// Beware: x and y are the same object!
+
+x.lastIndex = 10;
+
+document.writeln(y.lastIndex);    // 10</pre></div></body></html>

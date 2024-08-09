@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c02-0002">Evitar errores de nombre al utilizar variables</h3>
+<p class="BodyFirst">Todo programador comete errores, y la mayoría los comete todos los días. Aunque los buenos programadores pueden cometer errores, también saben responder a esos errores con eficacia. Veamos un error que es probable que cometas al principio y aprendamos a solucionarlo.</p>
+<p>Escribiremos un código que genere un error a propósito. Introduce el siguiente código, incluyendo la palabra mal escrita <code translate="no">mesage</code><em translate="no">,</em> que se muestra en negrita:</p>
+<pre translate="no"><code translate="no">message = "Hello Python Crash Course reader!"
+print(<b>mesage</b>)</code></pre>
+<p>Cuando se produce un error en tu programa, el intérprete de Python hace todo lo posible para ayudarte a averiguar dónde está el problema. El intérprete proporciona un rastreo cuando un programa no puede ejecutarse correctamente. Un <em translate="no">traceback</em> es un registro de dónde tuvo problemas el intérprete al intentar ejecutar tu código. <span epub:type="pagebreak" id="Page_18" title="18"></span>He aquí un ejemplo del rastreo que proporciona Python después de que accidentalmente hayas escrito mal el nombre de una variable:</p>
+<pre translate="no"><code translate="no">Traceback (most recent call last):
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>   File "hello_world.py", line 2, in &lt;module&gt;
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     print(mesage)
+          ^^^^^^
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> NameError: name 'mesage' is not defined. Did you mean: 'message'?</code></pre>
+<p>La salida informa de que se produce un error en la línea 2 del archivo <em translate="no">hello_world.py</em> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> El intérprete muestra esta línea <span aria-label="annotation2" class="CodeAnnotation">❷</span> para ayudarnos a detectar el error rápidamente y nos dice qué tipo de error ha encontrado <span aria-label="annotation3" class="CodeAnnotation">❸.</span> En este caso ha encontrado un <em translate="no">name error</em> e informa de que la variable que se está imprimiendo, <code translate="no">mesage</code>, no está definida. Python no puede identificar el nombre de la variable proporcionada. Un error de nombre suele significar que hemos olvidado definir el valor de una variable antes de utilizarla, o que hemos cometido un error ortográfico al introducir el nombre de la variable. Si Python encuentra un nombre de variable similar al que no reconoce, te preguntará si ese es el nombre que querías utilizar.</p>
+<p>En este ejemplo hemos omitido la letra <em translate="no">s</em> en el nombre de la variable <code translate="no">message</code> en la segunda línea. El intérprete de Python no revisa la ortografía de tu código, pero sí se asegura de que los nombres de las variables se escriban de forma coherente. Por ejemplo, observa lo que ocurre cuando escribimos <em translate="no">message</em> incorrectamente en la línea que define la variable:</p>
+<pre translate="no"><code translate="no">mesage = "Hello Python Crash Course reader!"
+<span class="LiteralGray">print(mesage)</span></code></pre>
+<p>En este caso, ¡el programa se ejecuta correctamente!</p>
+<pre translate="no"><code translate="no">Hello Python Crash Course reader!</code></pre>
+<p>Los nombres de las variables coinciden, así que Python no ve ningún problema. Los lenguajes de programación son estrictos, pero no tienen en cuenta la buena y la mala ortografía. En consecuencia, no necesitas tener en cuenta las reglas ortográficas y gramaticales del inglés cuando intentes crear nombres de variables y escribir código.</p>
+<p>Muchos errores de programación son simples erratas de un solo carácter en una línea de un programa. Si te encuentras pasando mucho tiempo buscando uno de estos errores, debes saber que estás en buena compañía. Muchos programadores experimentados y con talento pasan horas buscando este tipo de errores minúsculos. Intenta reírte de ello y sigue adelante, sabiendo que ocurrirá con frecuencia a lo largo de tu vida de programador.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c02_5.html">anterior</a><a href="c02.html">Subtema 6 de 33: (Ver todo)</a><a href="c02_7.html">siguiente</a><br/></p>
+<br/><a href="c02_6.docx" target="_blank"></a></footer>
+</body>
+</html>

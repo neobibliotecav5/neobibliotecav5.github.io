@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>HTML</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="HTML"><div class="titlepage"><div><div><h1 class="title"><a id="html"/>HTML</h1></div></div></div><p>JSLint is able to handle HTML text. It can inspect the JavaScript content
+                contained within <code class="literal">&lt;script&gt;...&lt;/script&gt;</code>
+                tags and event handlers. It also inspects the HTML content, looking for problems
+                that are known to interfere with JavaScript:<a id="IDX-APP-C-0682" class="indexterm"/><a id="IDX-APP-C-0683" class="indexterm"/><a id="IDX-APP-C-0684" class="indexterm"/></p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>All tag names must be in lowercase.</p></li><li class="listitem"><p>All tags that can take a close tag (such as <code class="literal">&lt;/p&gt;</code>) must have a close tag.</p></li><li class="listitem"><p>All tags are correctly nested.</p></li><li class="listitem"><p>The entity <code class="literal">&amp;lt;</code> must be used for
+                        literal <code class="literal">&lt;</code>.</p></li></ul></div><p>JSLint is less anal than the sycophantic conformity demanded by XHTML, but more
+                strict than the popular browsers.</p><p>JSLint also checks for the occurrence of <code class="literal">&lt;/</code>
+                in string literals. You should always write <code class="literal">&lt;\/</code> instead. The extra backslash is ignored by the JavaScript
+                compiler, but not by the HTML parser. Tricks like this should not be necessary, and
+                yet they are.</p><p>There is an option that allows use of uppercase tag names. There is also an option
+                that allows the use of inline HTML event handlers.</p></div></body></html>

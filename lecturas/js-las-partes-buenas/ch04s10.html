@@ -1,0 +1,128 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Closure</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="Closure"><div class="titlepage"><div><div><h1 class="title"><a id="closure"></a>Cierre</h1></div></div></div><p>La buena noticia sobre el ámbito es que las funciones internas tienen acceso a los parámetros y variables de las funciones dentro de las que están definidas (con la excepción de <code class="literal" translate="no">this</code> y <code class="literal" translate="no">arguments</code>). Esto es algo muy bueno.<a class="indexterm" id="IDX-CHP-4-0229"></a><a class="indexterm" id="IDX-CHP-4-0230"></a></p><p>Nuestra función <code class="literal" translate="no">getElementsByAttribute</code> funcionaba porque declaraba una variable <code class="literal" translate="no">results</code>, y la función interna que pasaba a <code class="literal" translate="no">walk_the_DOM</code>también tenía acceso a la variable <code class="literal" translate="no">results</code>.</p><p>Un caso más interesante es cuando la función interna tiene una vida más larga que su función externa.</p><p>Antes hicimos un <code class="literal" translate="no">myObject</code> que tenía un método <code class="literal" translate="no">value</code> y otro <code class="literal" translate="no">increment</code>. Supongamos que queremos proteger el valor de cambios no autorizados.</p><p>En lugar de inicializar <code class="literal" translate="no">myObject</code> con un literal de objeto, inicializaremos <code class="literal" translate="no">myObject</code> llamando a una función que devuelve un literal de objeto. Esa función define una variable <code class="literal" translate="no">value</code>. Esa variable está siempre disponible para los métodos <code class="literal" translate="no">increment</code> y <code class="literal" translate="no">getValue</code>, pero el ámbito de la función la mantiene oculta al resto del programa:</p><a id="I_programlisting4_d1e3109"></a><pre class="programlisting" translate="no">var myObject = (function () {
+    var value = 0;
+
+    return {
+        increment: function (inc) {
+            value += typeof inc === 'number' ? inc : 1;
+        },
+        getValue: function (  ) {
+            return value;
+        }
+    };
+}());</pre><p>No estamos asignando una función a <code class="literal" translate="no">myObject</code>. Estamos asignando el resultado de invocar esa función. Fíjate en el <code class="literal" translate="no">( )</code> de la última línea. La función devuelve un objeto que contiene dos métodos, y esos métodos siguen gozando del privilegio de acceso a la variable <code class="literal" translate="no">value</code>.</p><p>El constructor <code class="literal" translate="no">Quo</code> de antes produjo un objeto con una propiedad <code class="literal" translate="no">status</code> y un método <code class="literal" translate="no">get_status</code>. Pero eso no parece muy interesante. ¿Por qué llamarías a un método getter de una propiedad a la que puedes acceder directamente? Sería más útil que la propiedad <code class="literal" translate="no">status</code>fuera privada. Así que definamos otro tipo de función <code class="literal" translate="no">quo</code> para hacer eso:</p><a id="I_programlisting4_d1e3136"></a><pre class="programlisting" translate="no">// Create a maker function called quo. It makes an
+// object with a get_status method and a private
+// status property.
+
+var quo = function (status) {
+    return {
+        get_status: function (  ) {
+            return status;
+        }
+    };
+};
+
+// Make an instance of quo.
+
+var myQuo = quo("amazed");
+
+document.writeln(myQuo.get_status(  ));</pre><p>Esta función <code class="literal" translate="no">quo</code> está diseñada para ser utilizada sin el prefijo <code class="literal" translate="no">new</code>, por lo que su nombre no se escribe en mayúsculas. Cuando llamamos a <code class="literal" translate="no">quo</code>, devuelve un nuevo objeto que contiene un método <code class="literal" translate="no">get_status</code>. Una referencia a ese objeto se almacena en <code class="literal" translate="no">myQuo</code>. El método <code class="literal" translate="no">get_status</code> sigue teniendo acceso privilegiado a la propiedad <code class="literal" translate="no">status</code> de <code class="literal" translate="no">quo</code>, aunque <code class="literal" translate="no">quo</code>ya haya retornado. <code class="literal" translate="no">get_status</code> no tiene acceso a una copia del parámetro; tiene acceso al propio parámetro. Esto es posible porque la función tiene acceso al contexto en el que se creó, lo que se denomina <span class="emphasis"><em translate="no">closure</em></span>.</p><p>Veamos un ejemplo más útil:</p><a id="I_programlisting4_d1e3177"></a><pre class="programlisting" translate="no">// Define a function that sets a DOM node's color
+// to yellow and then fades it to white.
+
+var fade = function (node) {
+    var level = 1;
+    var step = function (  ) {
+        var hex = level.toString(16);
+        node.style.backgroundColor = '#FFFF' + hex + hex;
+        if (level &lt; 15) {
+            level += 1;
+            setTimeout(step, 100);
+        }
+    };
+    setTimeout(step, 100);
+};
+
+fade(document.body);</pre><p>Llamamos a <code class="literal" translate="no">fade</code>, pasándole <code class="literal" translate="no">document.body</code> (el nodo creado por la etiqueta HTML <code class="literal" translate="no">&lt;body&gt;</code> ). <code class="literal" translate="no">fade</code> pone <code class="literal" translate="no">level</code> a 1. Define una función <code class="literal" translate="no">step</code>. Llama a <code class="literal" translate="no">setTimeout</code>, pasándole la función <code class="literal" translate="no">step</code> y un tiempo (100 milisegundos). A continuación, vuelve -<code class="literal" translate="no">fade</code> ha terminado.</p><p>De repente, aproximadamente una décima de segundo después, se invoca a la función <code class="literal" translate="no">step</code>. Crea un carácter de base 16 a partir de <code class="literal" translate="no">fade</code>'s <code class="literal" translate="no">level</code>. A continuación, modifica el color de fondo del nodo <code class="literal" translate="no">fade</code>. Después mira en <code class="literal" translate="no">fade</code>'s <code class="literal" translate="no">level</code>. Si aún no ha llegado al blanco, incrementa <code class="literal" translate="no">fade</code>'s <code class="literal" translate="no">level</code> y utiliza <code class="literal" translate="no">setTimeout</code> para programarse para ejecutarse de nuevo.</p><p>De repente, se invoca de nuevo a la función <code class="literal" translate="no">step</code>. Pero esta vez, <code class="literal" translate="no">fade</code> 's <code class="literal" translate="no">level</code> es 2. <code class="literal" translate="no">fade</code> regresó hace un rato, pero sus variables siguen vivas mientras las necesiten una o más de las funciones internas de <code class="literal" translate="no">fade</code>'s.</p><p>Es importante entender que la función interna tiene acceso a las variables reales de las funciones externas y no a copias, para evitar el siguiente problema.</p><a id="I_programlisting4_d1e3258"></a><pre class="programlisting" translate="no"><span class="strong"><strong>// BAD EXAMPLE</strong></span>
+
+// Make a function that assigns event handler functions to an array
+ of nodes the wrong way.
+// When you click on a node, an alert box is supposed to display the ordinal
+of the node.
+// But it always displays the number of nodes instead.
+
+var add_the_handlers = function (nodes) {
+    var i;
+    for (i = 0; i &lt; nodes.length; i += 1) {
+        nodes[i].onclick = function (e) {
+            alert(i);
+        };
+    }
+};
+
+<span class="strong"><strong>// END BAD EXAMPLE</strong></span></pre><p>La función <code class="literal" translate="no">add_the_handlers</code> pretendía dar a cada manejador un número único <code class="literal" translate="no">i</code>. Falla porque las funciones manejadoras están vinculadas a la variable <code class="literal" translate="no">i</code>, no al valor de la variable <code class="literal" translate="no">i</code>en el momento en que se hizo la función.</p><a id="I_programlisting4_d1e3278"></a><pre class="programlisting" translate="no">// BETTER EXAMPLE
+
+// Make a function that assigns event handler functions to an array of nodes.
+// When you click on a node, an alert box will display the ordinal of the node.
+
+var add_the_handlers = function (nodes) {
+    var helper = function (i) {
+       return function (e) {
+          alert(i);
+       };
+    };
+    var i;
+    for (i = 0; i &lt; nodes.length; i += 1) {
+        modes[i].onclick = helper(i);
+    }
+};</pre><p>Evita crear funciones dentro de un bucle. Puede ser un derroche computacional, y puede causar confusión, como vimos con el mal ejemplo. Evitamos la confusión creando una función de ayuda fuera del bucle que entregará una función que se vincula al valor actual de <code class="literal" translate="no">i</code>.</p></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="ch04s09.html">← Anterior</a><a href="ch04s11.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="ch04s10.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\ch04s10.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

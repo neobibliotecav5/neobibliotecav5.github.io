@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch05lev1sec3">
+  Las condiciones nos ayudan a comparar cosas </h3>
+<p class="noindent">
+  Una <em class="calibre7">condición </em>es una expresión de programación que compara cosas y nos dice si los criterios establecidos por la comparación son <span class="literal1" translate="no">
+   True
+  </span>(sí) o <span class="literal1" translate="no">
+   False
+  </span>(no). Por ejemplo, <span class="literal1" translate="no">
+   age &gt; 10
+  </span>es una condición que pregunta: "¿Es el valor de la variable <span class="literal1" translate="no">
+   age
+  </span>mayor que 10?". Otra condición podría ser <span class="literal1" translate="no">
+   hair_color == ’mauve’
+  </span>, o, "¿Es el valor de la variable <span class="literal1" translate="no">
+   hair_color
+  </span>malva?". </p>
+<p class="indent">
+  En Python utilizamos símbolos -llamados <em class="calibre7">operadores- </em>para crear nuestras condiciones, como <em class="calibre7">igual a </em>, <em class="calibre7">mayor que </em>y <em class="calibre7">menor que </em>. En <a class="calibre6" href="ch05.xhtml#ch05tab01">la </a>Tabla 5-1 se enumeran los operadores más comunes. </p>
+<p class="tabcap" id="ch05tab01">
+<strong class="calibre5">Tabla 5-1: </strong>Símbolos para condiciones </p>
+<table class="all">
+<colgroup class="calibre23">
+<col class="calibre54"/>
+<col class="calibre55"/>
+</colgroup>
+<thead class="calibre25">
+<tr class="calibre26">
+<th class="table-h">
+<p class="taba">
+<strong class="calibre5">Símbolo </strong></p>
+</th>
+<th class="table-h">
+<p class="taba">
+<strong class="calibre5">Definición </strong></p>
+</th>
+</tr>
+</thead>
+<tbody class="calibre27">
+<tr class="calibre26">
+<td class="calibre28">
+<p class="taba">
+<span class="literal1" translate="no">
+       ==
+      </span>
+</p>
+</td>
+<td class="calibre28">
+<p class="taba">
+      Igual a </p>
+</td>
+</tr>
+<tr class="calibre26">
+<td class="calibre28">
+<p class="taba">
+<span class="literal1" translate="no">
+       !=
+      </span>
+</p>
+</td>
+<td class="calibre28">
+<p class="taba">
+      No igual a </p>
+</td>
+</tr>
+<tr class="calibre26">
+<td class="calibre28">
+<p class="taba">
+<span class="literal1" translate="no">
+       &gt;
+      </span>
+</p>
+</td>
+<td class="calibre28">
+<p class="taba">
+      Mayor que   </p>
+</td>
+</tr>
+<tr class="calibre26">
+<td class="calibre28">
+<p class="taba">
+<span class="literal1" translate="no">
+       &lt;
+      </span>
+</p>
+</td>
+<td class="calibre28">
+<p class="taba">
+      Menor que   </p>
+</td>
+</tr>
+<tr class="calibre26">
+<td class="calibre28">
+<p class="taba">
+<span class="literal1" translate="no">
+       &gt;=
+      </span>
+</p>
+</td>
+<td class="calibre28">
+<p class="taba">
+      Mayor o igual que   </p>
+</td>
+</tr>
+<tr class="calibre26">
+<td class="table-1bw_bot">
+<p class="taba">
+<span class="literal1" translate="no">
+       &lt;=
+      </span>
+</p>
+</td>
+<td class="table-1bw_bot">
+<p class="taba">
+      Menor o igual que   </p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="indent">
+  Por ejemplo, si tienes 10 años, la condición <span class="literal1" translate="no">
+   your_age == 10
+  </span>devolvería <span class="literal1" translate="no">
+   True
+  </span>; en caso contrario, devolvería <span class="literal1" translate="no">
+   False
+  </span>. Si tienes 12 años, la condición <span class="literal1" translate="no">
+   your_age &gt; 10
+  </span>devolvería <span class="literal1" translate="no">
+   True
+  </span>. </p>
+<div class="note">
+<p class="notet">
+<strong class="calibre3"><span class="notes">NOTA </span></strong></p>
+<p class="notep">
+<em class="calibre7">Asegúrate de utilizar un doble signo igual ( <span class="literal1" translate="no">
+     ==
+    </span>) al definir una condición de igual a. </em></p>
+</div>
+<p class="indent">
+  Probemos algunos ejemplos. Aquí, establecemos nuestra edad como igual a 10 y, a continuación, escribimos una sentencia condicional que imprimirá "¡Eres demasiado mayor para mis chistes!" si <span class="literal1" translate="no">
+   age
+  </span>es mayor que 10: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> age = 10
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">if</span> age &gt; 10:
+        <span class="violet">print</span>(<span class="green">'You are too old for my jokes!'</span>)</pre>
+<p class="indent">
+<span id="page_60">
+</span>
+  ¿Qué ocurre cuando escribimos esto en el intérprete de comandos de Python y pulsamos ENTER? </p>
+<p class="indent">
+  Nada. </p>
+<p class="indent">
+  Como el valor devuelto por <span class="literal1" translate="no">
+   age
+  </span>no es mayor que 10, Python no ejecuta el bloque <span class="literal1" translate="no">
+   print
+  </span>. Sin embargo, si hubiéramos puesto <span class="literal1" translate="no">
+   age
+  </span>a 20, se imprimiría el mensaje. </p>
+<p class="indent">
+  Ahora cambiemos el ejemplo anterior para utilizar una condición mayor que o igual a ( <span class="literal1" translate="no">
+   &gt;=
+  </span>): </p>
+<div class="image1">
+<img alt="Image" class="calibre56" src="../images/f0060-01.jpg" translate="no"/>
+</div>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> age = 10
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">if</span> age &gt;= 10:
+        <span class="violet">print</span>(<span class="green">'You are too old for my jokes!'</span>)</pre>
+<p class="indent">
+  Deberías ver impreso en pantalla "¡Eres demasiado viejo para mis chistes!" porque el valor de <span class="literal1" translate="no">
+   age
+  </span>es igual a 10. </p>
+<p class="indent">
+  A continuación, probemos a utilizar una condición igual a ( <span class="literal1" translate="no">
+   ==
+  </span>): </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> age = 10
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">if</span> age == 10:
+        <span class="violet">print</span>(<span class="green">"What's brown and sticky? A stick!!"</span>)</pre>
+<p class="indent">
+  Deberías ver el mensaje "¿Qué es marrón y pegajoso? Un palo!" impreso en la pantalla. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch05_3.html">anterior</a><a href="ch05.html">Subtema 4 de 11: (Ver todo)</a><a href="ch05_5.html">siguiente</a><br/></p>
+<br/><a href="ch05_4.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Expressions</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Expressions"><div class="titlepage"><div><div><h1 class="title"><a id="expressions"/>Expressions</h1></div></div></div><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject2_d1e1500"/><img src="httpatomoreillycomsourceoreillyimages238846.png" alt="image with no caption"/></div></div><p>The simplest expressions are a literal value (such as a string or number), a
+                variable, a built-in value (<code class="literal">true</code>, <code class="literal">false</code>, <code class="literal">null</code>,
+                    <code class="literal">undefined</code>, <code class="literal">NaN</code>, or <code class="literal">Infinity</code>), an invocation
+                expression preceded by <code class="literal">new</code>, a refinement
+                expression preceded by <code class="literal">delete</code>, an expression
+                wrapped in parentheses, an expression preceded by a prefix operator, or an
+                expression followed by:<a id="IDX-CHP-2-0111" class="indexterm"/><a id="IDX-CHP-2-0112" class="indexterm"/><a id="IDX-CHP-2-0113" class="indexterm"/><a id="IDX-CHP-2-0114" class="indexterm"/><a id="IDX-CHP-2-0115" class="indexterm"/><a id="IDX-CHP-2-0116" class="indexterm"/><a id="IDX-CHP-2-0117" class="indexterm"/><a id="IDX-CHP-2-0118" class="indexterm"/><a id="IDX-CHP-2-0119" class="indexterm"/><a id="IDX-CHP-2-0120" class="indexterm"/><a id="IDX-CHP-2-0121" class="indexterm"/><a id="IDX-CHP-2-0122" class="indexterm"/><a id="IDX-CHP-2-0123" class="indexterm"/><a id="IDX-CHP-2-0110" class="indexterm"/><a id="IDX-CHP-2-0124" class="indexterm"/><a id="IDX-CHP-2-0125" class="indexterm"/><a id="IDX-CHP-2-0126" class="indexterm"/><a id="IDX-CHP-2-0127" class="indexterm"/><a id="IDX-CHP-2-0128" class="indexterm"/><a id="IDX-CHP-2-0129" class="indexterm"/><a id="IDX-CHP-2-0130" class="indexterm"/><a id="IDX-CHP-2-0131" class="indexterm"/><a id="IDX-CHP-2-0132" class="indexterm"/></p><div class="itemizedlist"><ul class="itemizedlist"><li class="listitem"><p>An infix operator and another expression<a id="IDX-CHP-2-0133" class="indexterm"/></p></li><li class="listitem"><p>The <code class="literal">?</code> ternary operator followed by
+                        another expression, then by <code class="literal">:</code>, and then
+                        by yet another expression</p></li><li class="listitem"><p>An invocation</p></li><li class="listitem"><p>A refinement</p></li></ul></div><p>The <code class="literal">?</code> ternary operator takes three operands. If
+                the first operand is truthy, it produces the value of the second operand. But if the
+                first operand is falsy, it produces the value of the third operand.</p><p>The operators at the top of the operator precedence list in <a class="xref" href="ch02s06.html#operator_precedence" title="Table 2-1. Operator precedence">Table 2-1</a> have higher precedence. They bind the tightest.
+                The operators at the bottom have the lowest precedence. Parentheses can be used to
+                alter the normal precedence, so:<a id="IDX-CHP-2-0134" class="indexterm"/><a id="IDX-CHP-2-0135" class="indexterm"/></p><a id="I_programlisting2_d1e1660"/><pre class="programlisting">2 + 3 * 5 === 17
+(2 + 3) * 5 === 25</pre><div class="table"><a id="operator_precedence"/><p class="title">Table 2-1. Operator precedence</p><div class="table-contents"><table summary="Operator precedence" style="border-collapse: collapse;border-top: 0.5pt solid ; border-bottom: 0.5pt solid ; border-left: 0.5pt solid ; border-right: 0.5pt solid ; "><colgroup><col/><col/></colgroup><tbody><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">. [] ( )</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p>Refinement and invocation</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">delete new typeof + - !</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p>Unary operators</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">* / %</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p>Multiplication, division, remainder</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">+ -</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p>Addition/concatenation, subtraction</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">&gt;= &lt;= &gt; &lt;</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p>Inequality</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">=== !==</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p>Equality</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">&amp;&amp;</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p>Logical and</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">||</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p>Logical or</p>
+                            </td></tr><tr><td style="text-align: left" valign="top">
+                                <p>
+                                    <code class="literal">?:</code>
+                                </p>
+                            </td><td style="text-align: left" valign="top">
+                                <p>Ternary</p>
+                            </td></tr></tbody></table></div></div><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject2_d1e1742"/><img src="httpatomoreillycomsourceoreillyimages238864.png" alt="image with no caption"/></div></div><p>The values produced by <code class="literal">typeof</code> are <code class="literal">'number'</code>, <code class="literal">'string'</code>,
+                    <code class="literal">'boolean'</code>, <code class="literal">'undefined'</code>, <code class="literal">'function'</code>, and
+                    <code class="literal">'object'</code>. If the operand is an array or
+                    <code class="literal">null</code>, then the result is <code class="literal">'object'</code>, which is wrong. There will be more about
+                    <code class="literal">typeof</code> in <a class="xref" href="ch06.html" title="Chapter 6. Arrays">Chapter 6</a> and <a class="xref" href="apa.html" title="Appendix A. Awful Parts">Appendix A</a>.</p><p>If the operand of <code class="literal">!</code> is truthy, it produces
+                    <code class="literal">false</code>. Otherwise, it produces <code class="literal">true</code>.</p><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject2_d1e1798"/><img src="httpatomoreillycomsourceoreillyimages238798.png" alt="image with no caption"/></div></div><p>The <code class="literal">+</code> operator adds or concatenates. If you
+                want it to add, make sure both operands are numbers.</p><p>The <code class="literal">/</code> operator can produce a noninteger result
+                even if both operands are integers.</p><p>The <code class="literal">&amp;&amp;</code> operator produces the value of
+                its first operand if the first operand is falsy. Otherwise, it produces the value of
+                the second operand.</p><p>The <code class="literal">||</code> operator produces the value of its first
+                operand if the first operand is truthy. Otherwise, it produces the value of the
+                second operand.</p><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject2_d1e1824"/><img src="httpatomoreillycomsourceoreillyimages238720.png" alt="image with no caption"/></div></div><p>Invocation causes the execution of a function value. The invocation operator is a
+                pair of parentheses that follow the function value. The parentheses can contain
+                arguments that will be delivered to the function. There will be much more about
+                functions in <a class="xref" href="ch04.html" title="Chapter 4. Functions">Chapter 4</a>.<a id="IDX-CHP-2-0136" class="indexterm"/></p><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject2_d1e1837"/><img src="httpatomoreillycomsourceoreillyimages238832.png" alt="image with no caption"/></div></div><p>A refinement is used to specify a property or element of an object or array. This
+                will be described in detail in the next chapter.</p></div></body></html>

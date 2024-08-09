@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c09-0015">Importar un módulo entero</h3>
+<p class="BodyFirst">También puedes importar un módulo entero y luego acceder a las clases que necesites utilizando la notación de puntos. Este método es sencillo y da como resultado un código fácil de leer. Como cada llamada que crea una instancia de una clase incluye el nombre del módulo, no tendrás conflictos de nombres con los nombres utilizados en el archivo actual.</p>
+<p><span epub:type="pagebreak" id="Page_177" title="177"></span>Este es el aspecto que tiene importar todo el módulo <code translate="no">car</code> y luego crear un coche normal y un coche eléctrico:</p>
+<p class="CodeLabel" translate="no"><b>my_cars.py</b></p>
+<pre translate="no"><code translate="no"><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> import car
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> my_mustang = car.Car('ford', 'mustang', 2024)
+<span class="LiteralGray">print(my_mustang.get_descriptive_name())</span>
+
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> my_leaf = car.ElectricCar('nissan', 'leaf', 2024)
+<span class="LiteralGray">print(my_leaf.get_descriptive_name())</span></code></pre>
+<p>Primero importamos todo el módulo <code translate="no">car</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> A continuación, accedemos a las clases que necesitamos mediante la sintaxis <var>nombre_módulo</var><var>.Nombre_clase</var>. Creamos de nuevo un Ford Mustang <span aria-label="annotation2" class="CodeAnnotation">❷,</span> y un Nissan Leaf <span aria-label="annotation3" class="CodeAnnotation">❸.</span></p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c09_23.html">anterior</a><a href="c09.html">Subtema 24 de 34: (Ver todo)</a><a href="c09_25.html">siguiente</a><br/></p>
+<br/><a href="c09_24.docx" target="_blank"></a></footer>
+</body>
+</html>

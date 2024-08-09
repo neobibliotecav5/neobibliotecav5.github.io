@@ -1,0 +1,2095 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Unknown</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+<body class="calibre">
+<div class="calibre1" id="sbo-rt-content">
+<h2 class="h2" id="ch16">
+<span class="calibre2" id="page_243">
+</span>
+<span class="big">
+   16
+  </span>
+<br class="calibre10"/>
+  Completing the Mr. Stick Man Game
+ </h2>
+<div class="image">
+<img alt="Image" class="calibre8" src="../images/common.jpg"/>
+</div>
+<p class="indent">
+  In the previous three chapters, we’ve been developing our game:
+  <em class="calibre7">
+   Mr. Stick Man Races for the Exit
+  </em>
+  . We created the graphics, and then wrote code to add the background image, platforms, and stick figure. In this chapter, we’ll fill in the missing pieces to animate the stick figure and add the door. You’ll find the full listing for the complete game at the end of this chapter. If you get lost or become confused when writing some of this code, compare your code with that listing to see where you might have gone wrong.
+ </p>
+<h3 class="h1" id="ch16lev1sec1">
+<span class="calibre2" id="page_244">
+</span>
+  Animating the Stick Figure
+ </h3>
+<p class="indent">
+  So far, we’ve created a basic class for our stick figure, loading the images we’ll be using and binding keys to some functions. But none of our code will do anything particularly interesting if you run the game at this point.
+ </p>
+<p class="indent">
+  Now we’ll add the remaining functions to the
+  <span class="literal1">
+   StickFigureSprite
+  </span>
+  class we created in
+  <a class="calibre6" href="ch15.xhtml#ch15">
+   Chapter 15
+  </a>
+  :
+  <span class="literal1">
+   animate
+  </span>
+  ,
+  <span class="literal1">
+   move
+  </span>
+  , and
+  <span class="literal1">
+   coords
+  </span>
+  . The
+  <span class="literal1">
+   animate
+  </span>
+  function will draw the different stick figure images;
+  <span class="literal1">
+   move
+  </span>
+  will determine where the character needs to move to; and
+  <span class="literal1">
+   coords
+  </span>
+  will return the stick figure’s current position. (Unlike with the platform sprites, we need to recalculate the position of the stick figure as he moves around the screen.)
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre164" src="../images/f0244-01.jpg"/>
+</div>
+<h3 class="h1" id="ch16lev1sec2">
+  Creating the Animate Function
+ </h3>
+<p class="noindent">
+  First, we’ll add the
+  <span class="literal1">
+   animate
+  </span>
+  function, which will need to check for movement and change the image accordingly.
+ </p>
+<h4 class="h3" id="ch16lev2sec1">
+  Checking for Movement
+ </h4>
+<p class="noindent">
+  We don’t want to change the stick figure image too quickly in our animation, or its movement won’t look realistic. Think about a flip animation, drawn in the corner of a notepad—if you flip the pages too quickly, you may not get the full effect of what you’ve drawn.
+ </p>
+<p class="indent">
+  The first half of the
+  <span class="literal1">
+   animate
+  </span>
+  function checks to see if the stick figure is running to the left or right, and then uses the
+  <span class="literal1">
+   last_time
+  </span>
+  variable to decide whether to change the current image. This variable will help us control the speed of our animation. The function will go after the
+  <span class="literal1">
+   jump
+  </span>
+  function, which we added to our
+  <span class="literal1">
+   StickFigureSprite
+  </span>
+  class in
+  <a class="calibre6" href="ch15.xhtml#ch15">
+   Chapter 15
+  </a>
+  (
+  <a class="calibre6" href="ch15.xhtml#ch15lev1sec6">
+   page 238
+  </a>
+  ):
+ </p>
+<pre class="pre">    <span class="orange">def</span> animate(self):
+        <span class="orange">if</span> self.x != 0 <span class="orange">and</span> self.y == 0:
+            <span class="orange">if</span> time.time() - self.last_time &gt; 0.1:
+                self.last_time = time.time()
+                self.current_image += self.current_image_add
+                <span class="orange">if</span> self.current_image &gt;= 2:
+                    self.current_image_add = -1
+                <span class="orange">if</span> self.current_image &lt;= 0:
+                    self.current_image_add = 1</pre>
+<p class="indent">
+<span id="page_245">
+</span>
+  In the first
+  <span class="literal1">
+   if
+  </span>
+  statement, we check to see if
+  <span class="literal1">
+   x
+  </span>
+  is not 0 to determine whether the stick figure is moving (either left or right), and we check to see if
+  <span class="literal1">
+   y
+  </span>
+  is 0 to determine that the stick figure is not jumping. If this
+  <span class="literal1">
+   if
+  </span>
+  statement is
+  <span class="literal1">
+   True
+  </span>
+  , we need to animate our stick figure; if not, he’s standing still, so there’s no need to keep drawing. If the stick figure isn’t moving, we drop out of the function, and the rest of the code in this listing is ignored.
+ </p>
+<p class="indent">
+  We then calculate the amount of time since the
+  <span class="literal1">
+   animate
+  </span>
+  function was last called, by subtracting the value of the
+  <span class="literal1">
+   last_time
+  </span>
+  variable from the current time, using
+  <span class="literal1">
+   time.time()
+  </span>
+  . This calculation is used to decide whether to draw the next image in the sequence. If the result is greater than a tenth of a second (0.1), we continue with the block of code. We set the
+  <span class="literal1">
+   last_time
+  </span>
+  variable to the current time, basically resetting the stopwatch to start timing again for the next image change.
+ </p>
+<p class="indent">
+  Next, we add the value of the object variable
+  <span class="literal1">
+   current_image_add
+  </span>
+  to the variable
+  <span class="literal1">
+   current_image
+  </span>
+  , which stores the index position of the currently displayed image. Remember that we created the
+  <span class="literal1">
+   current_image_add
+  </span>
+  variable in the stick figure’s
+  <span class="literal1">
+   __init__
+  </span>
+  function in
+  <a class="calibre6" href="ch15.xhtml#ch15">
+   Chapter 15
+  </a>
+  (see
+  <a class="calibre6" href="ch15.xhtml#ch15lev1sec3">
+   page 235
+  </a>
+  ), so when the
+  <span class="literal1">
+   animate
+  </span>
+  function is first called, the value of the variable has already been set to 1.
+ </p>
+<p class="indent">
+  Then, we check to see if the value of the index position in
+  <span class="literal1">
+   current_image
+  </span>
+  is greater than or equal to 2; if so, we change the value of
+  <span class="literal1">
+   current_image_add
+  </span>
+  to –1. The process is similar for the last two lines; once we reach 0, we need to start counting up again.
+ </p>
+<div class="note">
+<p class="notet">
+<span class="notes">
+    Note
+   </span>
+</p>
+<p class="notep">
+<em class="calibre7">
+    If you’re having trouble figuring out how to indent this code, here’s a hint: there are 8 spaces at the line beginning
+    <span class="literal1">
+     if self.x
+    </span>
+    and 20 spaces at the last line.
+   </em>
+</p>
+</div>
+<p class="indent">
+  To help you understand what’s going on in the function so far, imagine that you have a sequence of colored blocks in a line on the floor. You move your finger from one block to the next, and each block that your finger points to has a number (1, 2, 3, 4, and so on)—this is the
+  <span class="literal1">
+   current_image
+  </span>
+  variable. The
+  <span id="page_246">
+</span>
+  number of the block your finger moves to (it points at one block at a time) is the number stored in the
+  <span class="literal1">
+   current_image_add
+  </span>
+  variable. When your finger moves one way up the line of blocks, you’re adding 1 each time, and when it hits the end of the line and moves back down, you’re subtracting 1 (adding –1).
+ </p>
+<p class="indent">
+  The code we’ve added to our
+  <span class="literal1">
+   animate
+  </span>
+  function performs this process, but instead of colored blocks, we have the three stick figure images for each direction stored in a list. The index positions of these images are 0, 1, and 2. As we animate the stick figure, once we reach the last image, we start counting down, and once we reach the first image, we need to start counting up again. As a result, we create the effect of a running figure.
+ </p>
+<p class="indent">
+<a class="calibre6" href="ch16.xhtml#ch16tab01">
+   Table 16-1
+  </a>
+  shows how we move through the list of images, using the index positions we calculate in the
+  <span class="literal1">
+   animate
+  </span>
+  function.
+ </p>
+<p class="tabcap" id="ch16tab01">
+<strong class="calibre5">
+   Table 16-1:
+  </strong>
+  Image Positions in Animation
+ </p>
+<table class="all">
+<colgroup class="calibre23">
+<col class="calibre165"/>
+<col class="calibre166"/>
+<col class="calibre165"/>
+<col class="calibre166"/>
+<col class="calibre165"/>
+<col class="calibre167"/>
+</colgroup>
+<thead class="calibre25">
+<tr class="calibre26">
+<th class="table-h">
+<p class="taba">
+      Position 0
+     </p>
+</th>
+<th class="table-h">
+<p class="taba">
+      Position 1
+     </p>
+</th>
+<th class="table-h">
+<p class="taba">
+      Position 2
+     </p>
+</th>
+<th class="table-h">
+<p class="taba">
+      Position 1
+     </p>
+</th>
+<th class="table-h">
+<p class="taba">
+      Position 0
+     </p>
+</th>
+<th class="table-h">
+<p class="taba">
+      Position 1
+     </p>
+</th>
+</tr>
+</thead>
+<tbody class="calibre27">
+<tr class="calibre26">
+<td class="table-1bw_bot">
+<p class="taba">
+      Counting up
+     </p>
+</td>
+<td class="table-1bw_bot">
+<p class="taba">
+      Counting up
+     </p>
+</td>
+<td class="table-1bw_bot">
+<p class="taba">
+      Counting up
+     </p>
+</td>
+<td class="table-1bw_bot">
+<p class="taba">
+      Counting down
+     </p>
+</td>
+<td class="table-1bw_bot">
+<p class="taba">
+      Counting down
+     </p>
+</td>
+<td class="table-1bw_bot">
+<p class="taba">
+      Counting up
+     </p>
+</td>
+</tr>
+<tr class="calibre26">
+<td class="table-1bw_bot">
+<div class="imagec" id="ch246fig01">
+<img alt="Image" class="calibre168" src="../images/246fig01.jpg"/>
+</div>
+</td>
+<td class="table-1bw_bot">
+<div class="imagec" id="ch246fig02">
+<img alt="Image" class="calibre169" src="../images/246fig02.jpg"/>
+</div>
+</td>
+<td class="table-1bw_bot">
+<div class="imagec" id="ch246fig03">
+<img alt="Image" class="calibre170" src="../images/246fig03.jpg"/>
+</div>
+</td>
+<td class="table-1bw_bot">
+<div class="imagec" id="ch246fig04">
+<img alt="Image" class="calibre169" src="../images/246fig04.jpg"/>
+</div>
+</td>
+<td class="table-1bw_bot">
+<div class="imagec" id="ch246fig05">
+<img alt="Image" class="calibre168" src="../images/246fig05.jpg"/>
+</div>
+</td>
+<td class="table-1bw_bot">
+<div class="imagec" id="ch246fig06">
+<img alt="Image" class="calibre169" src="../images/246fig06.jpg"/>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<h4 class="h3" id="ch16lev2sec2">
+  Changing the Image
+ </h4>
+<p class="noindent">
+  In the next half of the
+  <span class="literal1">
+   animate
+  </span>
+  function, we change the currently displayed image, using the calculated index position:
+ </p>
+<pre class="pre">    <span class="orange">def</span> animate(self):
+    ...
+        <span class="orange">if</span> self.x &lt; 0:
+            <span class="orange">if</span> self.y != 0:
+                self.game.canvas.itemconfig(self.image, 
+                        image=self.images_left[2])
+         <span class="ent">➊</span> <span class="orange">else</span>:
+                self.game.canvas.itemconfig(self.image, 
+                        image=self.images_left[self.current_image])
+        <span class="orange">elif</span> self.x &gt; 0:
+            <span class="orange">if</span> self.y != 0:
+                self.game.canvas.itemconfig(self.image, 
+                        image=self.images_right[2])
+            <span class="orange">else</span>:
+                self.game.canvas.itemconfig(self.image, 
+                        image=self.images_right[self.current_image])</pre>
+<p class="indent">
+<span id="page_247">
+</span>
+  Firstly, if
+  <span class="literal1">
+   x
+  </span>
+  is less than 0, the stick figure is moving left, so Python moves into the block of code, which checks whether
+  <span class="literal1">
+   y
+  </span>
+  is not equal to 0 (meaning the stick figure is jumping). If
+  <span class="literal1">
+   y
+  </span>
+  is not equal to 0 (the stick figure is jumping), we use the canvas’s
+  <span class="literal1">
+   itemconfig
+  </span>
+  function to change the displayed image to the last image in our list of left-facing images at
+  <span class="literal1">
+   images_left[2]
+  </span>
+  . Because the stick figure is jumping, we’ll use the image showing him in full stride to make the animation look a bit more realistic, as you can see in
+  <a class="calibre6" href="ch16.xhtml#ch16fig01">
+   Figure 16-1
+  </a>
+  .
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre171" id="ch16fig01" src="../images/16fig01.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 16-1: Jumping images
+  </em>
+</p>
+<p class="indent">
+  If the stick figure is not jumping (that is,
+  <span class="literal1">
+   y
+  </span>
+  is equal to 0), the
+  <span class="literal1">
+   else
+  </span>
+  block
+  <span class="ent">
+   ➊
+  </span>
+  uses
+  <span class="literal1">
+   itemconfig
+  </span>
+  to change the displayed image to whatever index position is in the variable
+  <span class="literal1">
+   current_image
+  </span>
+  .
+ </p>
+<p class="indent">
+  At the
+  <span class="literal1">
+   elif
+  </span>
+  statement, we see if the stick figure is running right (
+  <span class="literal1">
+   x
+  </span>
+  is greater than 0), and Python moves into the code block. This code is very similar to the first block, again checking whether the stick figure is jumping and drawing the correct image if so, except that it uses the
+  <span class="literal1">
+   images_right
+  </span>
+  list.
+ </p>
+<h3 class="h1" id="ch16lev1sec3">
+  Getting the Stick Figure’s Position
+ </h3>
+<p class="noindent">
+  Because we’ll need to determine where the stick figure is on the screen (since he’s moving around), the
+  <span class="literal1">
+   coords
+  </span>
+  function will differ from the other
+  <span class="literal1">
+   Sprite
+  </span>
+  class functions. We’ll use the
+  <span class="literal1">
+   coords
+  </span>
+  function of the canvas to determine where the stick figure is, and then use those values to set the
+  <span class="literal1">
+   x1
+  </span>
+  ,
+  <span class="literal1">
+   y1
+  </span>
+  and
+  <span class="literal1">
+   x2
+  </span>
+  ,
+  <span class="literal1">
+   y2
+  </span>
+  values of the
+  <span class="literal1">
+   coordinates
+  </span>
+  variable we created in the
+  <span class="literal1">
+   __init__
+  </span>
+  function at
+  <span id="page_248">
+</span>
+  the beginning of
+  <a class="calibre6" href="ch15.xhtml#ch15">
+   Chapter 15
+  </a>
+  . Add the following code after the
+  <span class="literal1">
+   animate
+  </span>
+  function:
+ </p>
+<pre class="pre">    <span class="orange">def</span> coords(self):
+        xy = self.game.canvas.coords(self.image)
+        self.coordinates.x1 = xy[0]
+        self.coordinates.y1 = xy[1]
+        self.coordinates.x2 = xy[0] + 27
+        self.coordinates.y2 = xy[1] + 30
+        <span class="orange">return</span> self.coordinates</pre>
+<p class="indent">
+  When we created the
+  <span class="literal1">
+   Game
+  </span>
+  class in
+  <a class="calibre6" href="ch14.xhtml#ch14">
+   Chapter 14
+  </a>
+  , one of the object variables was the
+  <span class="literal1">
+   canvas
+  </span>
+  . We use the
+  <span class="literal1">
+   coords
+  </span>
+  function of this
+  <span class="literal1">
+   canvas
+  </span>
+  variable (with
+  <span class="literal1">
+   self.game.canvas.coords
+  </span>
+  ), which takes the identifier of something drawn on the canvas, and returns the
+  <em class="calibre7">
+   x
+  </em>
+  and
+  <em class="calibre7">
+   y
+  </em>
+  positions as a list of two numbers. In this case, we use the identifier stored in the variable
+  <span class="literal1">
+   current_image
+  </span>
+  and store the returned list in the variable
+  <span class="literal1">
+   xy
+  </span>
+  . We then use the two values to set the coordinates for our stick figure. The value
+  <span class="literal1">
+   xy[0]
+  </span>
+  (that’s the first number in the list) becomes our
+  <span class="literal1">
+   x1
+  </span>
+  coordinate, and the value
+  <span class="literal1">
+   xy[1]
+  </span>
+  (the second number in the list) becomes our
+  <span class="literal1">
+   y1
+  </span>
+  coordinate. So that’s the top-left position of the figure.
+ </p>
+<p class="indent">
+  Because all of the stick figure images we created are 27 pixels wide by 30 pixels high, we can determine what the
+  <span class="literal1">
+   x2
+  </span>
+  and
+  <span class="literal1">
+   y2
+  </span>
+  variables should be (that’s the bottom-right position of the figure) by adding the width and the height to the
+  <span class="literal1">
+   xy[0]
+  </span>
+  and
+  <span class="literal1">
+   xy[1]
+  </span>
+  values, respectively.
+ </p>
+<p class="indent">
+  So, if
+  <span class="literal1">
+   self.game.canvas.coords(self.image)
+  </span>
+  returns
+  <span class="literal1">
+   [270, 350]
+  </span>
+  we will end up with the following values:
+ </p>
+<ul class="calibre22">
+<li class="noindent2">
+<span class="literal1">
+    self.coordinates.x1
+   </span>
+   will be 270
+  </li>
+<li class="noindent2">
+<span class="literal1">
+    self.coordinates.y1
+   </span>
+   will be 350
+  </li>
+<li class="noindent2">
+<span class="literal1">
+    self.coordinates.x2
+   </span>
+   will be 297
+  </li>
+<li class="noindent2">
+<span class="literal1">
+    self.coordinates.y2
+   </span>
+   will be 380
+  </li>
+</ul>
+<p class="indent">
+  Finally, on the last line of the function, we return the object variable
+  <span class="literal1">
+   coordinates
+  </span>
+  that we just updated.
+ </p>
+<p class="indent">
+</p>
+<h3 class="h1" id="ch16lev1sec4">
+<span class="calibre2" id="page_249">
+</span>
+  Making the Stick Figure Move
+ </h3>
+<p class="noindent">
+  The final function of the
+  <span class="literal1">
+   StickFigureSprite
+  </span>
+  class,
+  <span class="literal1">
+   move
+  </span>
+  , is in charge of actually moving our game character around the screen. It also needs to be able to tell us when the character has bumped into something.
+ </p>
+<h4 class="h3" id="ch16lev2sec3">
+  Starting the move Function
+ </h4>
+<p class="noindent">
+  The following code is for the first part of the
+  <span class="literal1">
+   move
+  </span>
+  function. This will go after
+  <span class="literal1">
+   coords
+  </span>
+  :
+ </p>
+<pre class="pre">    <span class="orange">def</span> move(self):
+        self.animate()
+        <span class="orange">if</span> self.y &lt; 0:
+            self.jump_count += 1
+            <span class="orange">if</span> self.jump_count &gt; 20:
+                self.y = 4
+        <span class="orange">if</span> self.y &gt; 0:
+            self.jump_count -= 1</pre>
+<p class="indent">
+  The first line (
+  <span class="literal1">
+   self.animate()
+  </span>
+  ) calls the function we created earlier in this chapter, which changes the currently displayed image if necessary. Then, we see whether the value of
+  <span class="literal1">
+   y
+  </span>
+  is less than 0. If it is, we know that the stick figure is jumping because a negative value will move him up the screen. (Remember that 0 is at the top of the canvas, and the bottom of the canvas is pixel position 500.)
+ </p>
+<p class="indent">
+  Next, we add 1 to
+  <span class="literal1">
+   jump_count
+  </span>
+  . We want our stick figure to jump up, but not to keep floating up the screen forever (it’s jumping, after all), so we use that variable to count the number of times we have executed the
+  <span class="literal1">
+   move
+  </span>
+  function—if it reaches 20, we should change
+  <span class="literal1">
+   y
+  </span>
+  to 4 to start the stick figure falling again.
+ </p>
+<p class="indent">
+  We then see if the value of
+  <span class="literal1">
+   y
+  </span>
+  is greater than 0 (meaning the character must be falling); if it is, we subtract 1 from
+  <span class="literal1">
+   jump_count
+  </span>
+  because once we’ve counted up to 20, we need to count back down again. (Move your hand slowly up in the air while counting to 20, and then move it back down again while counting down from 20, and you’ll get a sense of how calculating the stick figure jumping up and down is supposed to work.)
+ </p>
+<div class="image1">
+<span id="page_250">
+</span>
+<img alt="Image" class="calibre172" src="../images/f0250-01.jpg"/>
+</div>
+<p class="indent">
+  In the next few lines of the
+  <span class="literal1">
+   move
+  </span>
+  function, we call the
+  <span class="literal1">
+   coords
+  </span>
+  function, which tells us where our character is on the screen, and then store its result in the
+  <span class="literal1">
+   co
+  </span>
+  variable. We then create the variables
+  <span class="literal1">
+   left
+  </span>
+  ,
+  <span class="literal1">
+   right
+  </span>
+  ,
+  <span class="literal1">
+   top
+  </span>
+  ,
+  <span class="literal1">
+   bottom
+  </span>
+  , and
+  <span class="literal1">
+   falling
+  </span>
+  . We’ll use each in the remainder of this function:
+ </p>
+<pre class="pre">        co = self.coords()
+        left = <span class="violet">True</span>
+        right = <span class="violet">True</span>
+        top = <span class="violet">True</span>
+        bottom = <span class="violet">True</span>
+        falling = <span class="violet">True</span></pre>
+<p class="indent">
+  Notice that each variable has been set to the Boolean value
+  <span class="literal1">
+   True
+  </span>
+  . We’ll use these as indicators to check whether the character has hit something on the screen or is falling.
+ </p>
+<h4 class="h3" id="ch16lev2sec4">
+  Has the Stick Figure Hit the Bottom or Top of the Canvas?
+ </h4>
+<p class="noindent">
+  The next section of the
+  <span class="literal1">
+   move
+  </span>
+  function checks whether our character has hit the bottom or top of the canvas. Add the following code:
+ </p>
+<pre class="pre">        <span class="orange">if</span> self.y &gt; 0 <span class="orange">and</span> co.y2 &gt;= self.game.canvas_height:
+            self.y = 0
+            bottom = <span class="violet">False</span>
+        <span class="orange">elif</span> self.y &lt; 0 <span class="orange">and</span> co.y1 &lt;= 0:
+            self.y = 0
+            top = <span class="violet">False</span></pre>
+<p class="indent">
+<span id="page_251">
+</span>
+  If the character is falling down the screen,
+  <span class="literal1">
+   y
+  </span>
+  will be greater than 0, so we need to make sure it hasn’t yet hit the bottom of the canvas (or it will vanish off the bottom of the screen). To do so, we see if its
+  <em class="calibre7">
+   y2
+  </em>
+  position (the bottom of the stick figure) is greater than or equal to the
+  <span class="literal1">
+   canvas_height
+  </span>
+  variable of the game object. If it is, we set the value of
+  <span class="literal1">
+   y
+  </span>
+  to 0 to stop the stick figure from falling, and then set the
+  <span class="literal1">
+   bottom
+  </span>
+  variable to
+  <span class="literal1">
+   False
+  </span>
+  , which tells the remaining code that we no longer need to see if the stick figure has hit the bottom.
+ </p>
+<p class="indent">
+  The process of determining whether the stick figure has hit the top of the screen is very similar to the way we determine whether he has hit the bottom. To do so, we first see if the stick figure is jumping (
+  <span class="literal1">
+   y
+  </span>
+  is less than 0), and then we see if his
+  <em class="calibre7">
+   y1
+  </em>
+  position is less than or equal to 0, meaning he has hit the top of the canvas. If both conditions are true, we set
+  <span class="literal1">
+   y
+  </span>
+  equal to 0 to stop the movement. We also set the
+  <span class="literal1">
+   top
+  </span>
+  variable to
+  <span class="literal1">
+   False
+  </span>
+  to tell the remaining code that we no longer need to see if the stick figure has hit the top.
+ </p>
+<h4 class="h3" id="ch16lev2sec5">
+  Has the Stick Figure Hit the Side of the Canvas?
+ </h4>
+<p class="noindent">
+  We follow almost exactly the same process as in the preceding code to determine whether the stick figure has hit the right and left sides of the canvas, as follows:
+ </p>
+<pre class="pre">        <span class="orange">if</span> self.x &gt; 0 <span class="orange">and</span> co.x2 &gt;= self.game.canvas_width:
+            self.x = 0
+            right = <span class="violet">False</span>
+        <span class="orange">elif</span> self.x &lt; 0 <span class="orange">and</span> co.x1 &lt;= 0:
+            self.x = 0
+            left = <span class="violet">False</span></pre>
+<p class="indent">
+  The
+  <span class="literal1">
+   if
+  </span>
+  statement is based on the fact that we know the stick figure is running to the right if
+  <span class="literal1">
+   x
+  </span>
+  is greater than 0. We also know whether he has hit the right-hand side of the screen by seeing if the
+  <em class="calibre7">
+   x2
+  </em>
+  position (
+  <span class="literal1">
+   co.x2
+  </span>
+  ) is greater than or equal to the width of the canvas stored in
+  <span class="literal1">
+   canvas_width
+  </span>
+  . If either statement is true, we set
+  <span class="literal1">
+   x
+  </span>
+  equal to 0 (to stop the stick figure from running) and set the
+  <span class="literal1">
+   right
+  </span>
+  or
+  <span class="literal1">
+   left
+  </span>
+  variables to
+  <span class="literal1">
+   False
+  </span>
+  .
+ </p>
+<h4 class="h3" id="ch16lev2sec6">
+<span class="calibre2" id="page_252">
+</span>
+  Colliding with Other Sprites
+ </h4>
+<p class="noindent">
+  Once we’ve determined whether the figure has hit the sides of the screen, we need to see if he has hit anything else on the screen. We use the following code to loop through the list of sprite objects stored in the
+  <span class="literal1">
+   game
+  </span>
+  object to see if the stick figure has hit any of them:
+ </p>
+<pre class="pre">        <span class="orange">for</span> sprite <span class="orange">in</span> self.game.sprites:
+            <span class="orange">if</span> sprite == self:
+                <span class="orange">continue</span>
+            sprite_co = sprite.coords()
+            <span class="orange">if</span> top and self.y &lt; 0 <span class="orange">and</span> collided_top(co, sprite_co):
+                self.y = -self.y
+                top = <span class="violet">False</span></pre>
+<p class="indent">
+  At the
+  <span class="literal1">
+   for
+  </span>
+  statement, we loop through the list of sprites, assigning each one in turn to the variable
+  <span class="literal1">
+   sprite
+  </span>
+  . Then we say that if the sprite is equal to
+  <span class="literal1">
+   self
+  </span>
+  (that’s another way of saying, “if this particular sprite is actually me”), we don’t need to determine whether the stick figure has collided because he would have only hit himself. If the
+  <span class="literal1">
+   sprite
+  </span>
+  variable is equal to
+  <span class="literal1">
+   self
+  </span>
+  , we use
+  <span class="literal1">
+   continue
+  </span>
+  to jump to the next sprite in the list (
+  <span class="literal1">
+   continue
+  </span>
+  simply tells Python to ignore the rest of the code in the block and continue the loop).
+ </p>
+<p class="indent">
+  Next, we get the coordinates of the new sprite by calling its
+  <span class="literal1">
+   coords
+  </span>
+  function and storing the results in the
+  <span class="literal1">
+   sprite_co
+  </span>
+  variable.
+ </p>
+<p class="indent">
+  The final
+  <span class="literal1">
+   if
+  </span>
+  statement checks for the following:
+ </p>
+<ul class="calibre22">
+<li class="noindent2">
+   The stick figure has not hit the top of the canvas (the
+   <span class="literal1">
+    top
+   </span>
+   variable is still true).
+  </li>
+<li class="noindent2">
+   The stick figure is jumping (the
+   <span class="literal1">
+    y
+   </span>
+   value is less than 0).
+  </li>
+<li class="noindent2">
+   The top of the stick figure has collided with the sprite from the list (using the
+   <span class="literal1">
+    collided_top
+   </span>
+   function we created on
+   <a class="calibre6" href="ch14.xhtml#ch14lev2sec3">
+    page 224
+   </a>
+   ).
+  </li>
+</ul>
+<div class="image1">
+<img alt="Image" class="calibre173" src="../images/f0253-01.jpg"/>
+</div>
+<p class="indent">
+<span id="page_253">
+</span>
+  If all of these conditions are true, we want the sprite to start falling back down again, so we reverse the value of the
+  <span class="literal1">
+   y
+  </span>
+  variable (
+  <span class="literal1">
+   self.y
+  </span>
+  becomes
+  <span class="literal1">
+   -self.y
+  </span>
+  ). The
+  <span class="literal1">
+   top
+  </span>
+  variable is set to
+  <span class="literal1">
+   False
+  </span>
+  because once the stick figure has hit the top, we don’t need to keep checking for a collision.
+ </p>
+<h4 class="h3" id="ch16lev2sec7">
+  Colliding at the Bottom
+ </h4>
+<p class="noindent">
+  The next part of the loop checks to see if the bottom of our character has hit something:
+ </p>
+<pre class="pre">            <span class="orange">if</span> bottom <span class="orange">and</span> self.y &gt; 0 <span class="orange">and</span> collided_bottom(self.y,
+                    co, sprite_co):
+                self.y = sprite_co.y1 - co.y2
+                <span class="orange">if</span> self.y &lt; 0:
+                    self.y = 0
+                bottom = <span class="violet">False</span>
+                top = <span class="violet">False</span></pre>
+<p class="indent">
+  We start with three similar checks: whether the
+  <span class="literal1">
+   bottom
+  </span>
+  variable is still set, whether the character is falling (
+  <span class="literal1">
+   y
+  </span>
+  is greater than 0), and whether the bottom of our character has hit the sprite. If all three checks are true, we subtract the bottom
+  <em class="calibre7">
+   y
+  </em>
+  value (
+  <span class="literal1">
+   y2
+  </span>
+  ) of the stick figure from the top
+  <em class="calibre7">
+   y
+  </em>
+  value of the sprite (
+  <span class="literal1">
+   y1
+  </span>
+  ). This might seem strange, so let’s discuss why we do this.
+ </p>
+<p class="indent">
+  Imagine that our game character has fallen off a platform. He moves down the screen 4 pixels each time the
+  <span class="literal1">
+   mainloop
+  </span>
+  function runs, until the foot of the stick figure is 3 pixels above another platform. Let’s say the stick figure’s bottom (
+  <span class="literal1">
+   y2
+  </span>
+  ) is at position 57, and the top of the platform (
+  <span class="literal1">
+   y1
+  </span>
+  ) is at position 60.
+  <span id="page_254">
+</span>
+  In this case, the
+  <span class="literal1">
+   collided_bottom
+  </span>
+  function would return
+  <span class="literal1">
+   True
+  </span>
+  , because its code will add the value of
+  <span class="literal1">
+   y
+  </span>
+  (which is 4) to the stick figure’s
+  <span class="literal1">
+   y2
+  </span>
+  variable, resulting in 61.
+ </p>
+<p class="indent">
+  However, we don’t want Mr. Stick Man to stop falling as soon as it looks like he’ll hit a platform or the bottom of the screen, because that would be like taking a huge jump off a step and stopping in midair, an inch above the ground. That may be a neat trick, but it won’t look right in our game. Instead, if we subtract the character’s
+  <span class="literal1">
+   y2
+  </span>
+  value (57) from the platform’s
+  <span class="literal1">
+   y1
+  </span>
+  value (60), we get 3, the amount the stick figure should drop in order to land properly on top of the platform.
+ </p>
+<p class="indent">
+  We continue by making sure the calculation doesn’t result in a negative number (
+  <span class="literal1">
+   if self.y &lt; 0:
+  </span>
+  ); if it does, we set
+  <span class="literal1">
+   y
+  </span>
+  equal to 0. (If we let the number be negative, the stick figure would fly back up again, and we don’t want that to happen.)
+ </p>
+<p class="indent">
+  Finally, we set the
+  <span class="literal1">
+   top
+  </span>
+  and
+  <span class="literal1">
+   bottom
+  </span>
+  flags to
+  <span class="literal1">
+   False
+  </span>
+  , so we no longer need to check whether the stick figure has collided at the top or bottom with another sprite.
+ </p>
+<p class="indent">
+  We’ll follow this code with one more “bottom” check to see whether the stick figure has run off the edge of a platform. Here’s the code for this
+  <span class="literal1">
+   if
+  </span>
+  statement:
+ </p>
+<pre class="pre">            <span class="orange">if</span> bottom <span class="orange">and</span> falling <span class="orange">and</span> self.y == 0 \
+                    <span class="orange">and</span> co.y2 &lt; self.game.canvas_height \
+                    <span class="orange">and</span> collided_bottom(1, co, sprite_co):
+                falling = <span class="violet">False</span></pre>
+<p class="indent">
+  For the
+  <span class="literal1">
+   falling
+  </span>
+  variable to be set to
+  <span class="literal1">
+   False
+  </span>
+  , we must check that the following five elements are all true:
+ </p>
+<ul class="calibre22">
+<li class="noindent2">
+   The
+   <span class="literal1">
+    bottom
+   </span>
+   flag is set to
+   <span class="literal1">
+    True
+   </span>
+   .
+  </li>
+<li class="noindent2">
+   The stick figure should be falling (the
+   <span class="literal1">
+    falling
+   </span>
+   flag is still set to
+   <span class="literal1">
+    True
+   </span>
+   ).
+  </li>
+<li class="noindent2">
+   The stick figure isn’t already falling (
+   <span class="literal1">
+    y
+   </span>
+   is 0).
+  </li>
+<li class="noindent2">
+   The bottom of the sprite hasn’t hit the bottom of the screen (it’s less than the canvas height).
+  </li>
+<li class="noindent2">
+   The stick figure has hit the top of a platform (
+   <span class="literal1">
+    collided_bottom
+   </span>
+   returns
+   <span class="literal1">
+    True
+   </span>
+   ).
+  </li>
+</ul>
+<p class="indent">
+  Then we set the
+  <span class="literal1">
+   falling
+  </span>
+  variable to
+  <span class="literal1">
+   False
+  </span>
+  to stop the figure from dropping down the screen.
+ </p>
+<div class="note">
+<p class="notet">
+<span class="notes">
+    Note
+   </span>
+</p>
+<p class="notep">
+<span id="page_255">
+</span>
+<em class="calibre7">
+    You can check whether the value of a Boolean variable is True in an
+    <span class="literal1">
+     if
+    </span>
+    statement by simply referencing the variable. For example,
+    <span class="literal1">
+     if bottom == True
+    </span>
+<span class="literal1">
+     and falling == True
+    </span>
+    can be rewritten simply as
+    <span class="literal1">
+     if bottom and falling
+    </span>
+    (as we did above).
+   </em>
+</p>
+</div>
+<h4 class="h3" id="ch16lev2sec8">
+  Checking Left and Right
+ </h4>
+<p class="noindent">
+  We’ve checked whether the stick figure has hit a sprite at the bottom or the top. Now we need to check whether he has hit the left or right side, with this code:
+ </p>
+<pre class="pre">            <span class="orange">if</span> left <span class="orange">and</span> self.x &lt; 0 <span class="orange">and</span> collided_left(co, sprite_co):
+                self.x = 0
+                left = <span class="violet">False</span>
+            <span class="orange">if</span> right <span class="orange">and</span> self.x &gt; 0 <span class="orange">and</span> collided_right(co, sprite_co):
+                self.x = 0
+                right = <span class="violet">False</span></pre>
+<p class="indent">
+  First, we see if we should still be looking for collisions to the left (
+  <span class="literal1">
+   left
+  </span>
+  is still set to
+  <span class="literal1">
+   True
+  </span>
+  ) and whether the stick figure is moving to the left (
+  <span class="literal1">
+   x
+  </span>
+  is less than 0). We also check to see if the stick figure has collided with a sprite by using the
+  <span class="literal1">
+   collided_left
+  </span>
+  function. If these three conditions are true, we set
+  <span class="literal1">
+   x
+  </span>
+  equal to 0 (to make the stick figure stop running), and set
+  <span class="literal1">
+   left
+  </span>
+  to
+  <span class="literal1">
+   False
+  </span>
+  , so that we no longer check for collisions on the left.
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre174" src="../images/f0255-01.jpg"/>
+</div>
+<p class="indent">
+  The code is similar for collisions to the right. We set
+  <span class="literal1">
+   x
+  </span>
+  equal to 0 again, and set
+  <span class="literal1">
+   right
+  </span>
+  to
+  <span class="literal1">
+   False
+  </span>
+  , to stop checking for right-hand collisions.
+ </p>
+<p class="indent">
+  Now, with checks for collisions in all four directions, our
+  <span class="literal1">
+   for
+  </span>
+  loop should look like this:
+ </p>
+<pre class="pre">        <span class="orange">for</span> sprite <span class="orange">in</span> self.game.sprites:
+            <span class="orange">if</span> sprite == self:
+                <span class="orange">continue</span>
+            sprite_co = sprite.coords()
+            <span class="orange">if</span> top <span class="orange">and</span> self.y &lt; 0 <span class="orange">and</span> collided_top(co, sprite_co):
+                self.y = -self.y
+                top = <span class="violet">False</span>
+            <span class="orange">if</span> bottom <span class="orange">and</span> self.y &gt; 0 <span class="orange">and</span> collided_bottom(self.y,
+                    co, sprite_co):
+                self.y = sprite_co.y1 - co.y2
+                <span class="orange">if</span> self.y &lt; 0:
+                    self.y = 0
+                bottom = <span class="violet">False</span>
+                top = <span class="violet">False</span>
+            <span class="orange">if</span> bottom <span class="orange">and</span> falling <span class="orange">and</span> self.y == 0 \
+                    <span class="orange">and</span> co.y2 &lt; self.game.canvas_height \
+                    <span class="orange">and</span> collided_bottom(1, co, sprite_co):
+                falling = <span class="violet">False</span>
+            <span class="orange">if</span> left <span class="orange">and</span> self.x &lt; 0 <span class="orange">and</span> collided_left(co, sprite_co):
+                self.x = 0
+                left = <span class="violet">False</span>
+            <span class="orange">if</span> right <span class="orange">and</span> self.x &gt; 0 <span class="orange">and</span> collided_right(co, sprite_co):
+                self.x = 0
+                right = <span class="violet">False</span></pre>
+<p class="indent">
+<span id="page_256">
+</span>
+  We need to add only a few more lines to the
+  <span class="literal1">
+   move
+  </span>
+  function, as follows:
+ </p>
+<pre class="pre">        <span class="orange">if</span> falling <span class="orange">and</span> bottom <span class="orange">and</span> self.y == 0 \
+                <span class="orange">and</span> co.y2 &lt; self.game.canvas_height:
+            self.y = 4
+        self.game.canvas.move(self.image, self.x, self.y)</pre>
+<p class="indent">
+  We check whether both the
+  <span class="literal1">
+   falling
+  </span>
+  and
+  <span class="literal1">
+   bottom
+  </span>
+  variables are set to
+  <span class="literal1">
+   True
+  </span>
+  . If so, we’ve looped through every platform sprite in the list without colliding at the bottom.
+ </p>
+<p class="indent">
+  The final check in this line determines whether the bottom of our character is less than the canvas height—that is, above the ground (the bottom of the canvas). If the stick figure hasn’t collided with anything and is above the ground, he is standing in midair, so he should start falling (in other words, he has run off the end of a platform). To make him run off the end of any platform, we set
+  <span class="literal1">
+   y
+  </span>
+  equal to 4.
+ </p>
+<p class="indent">
+  Lastly, we move the image across the screen, according to the values we set in the variables
+  <span class="literal1">
+   x
+  </span>
+  and
+  <span class="literal1">
+   y
+  </span>
+  . The fact that we’ve looped through the sprites checking for collisions may mean that we’ve set both variables to 0, because the stick figure has collided on the left and with the bottom. In that case, the call to the
+  <span class="literal1">
+   move
+  </span>
+  function of the canvas will actually do nothing.
+ </p>
+<p class="indent">
+<span id="page_257">
+</span>
+  It may also be the case that Mr. Stick Man has walked off the edge of a platform. If that happens,
+  <span class="literal1">
+   y
+  </span>
+  will be set to 4 and Mr. Stick Man will fall downward.
+ </p>
+<p class="indent">
+  Phew, that was a long function!
+ </p>
+<h3 class="h1" id="ch16lev1sec5">
+  Testing Our Stick Figure Sprite
+ </h3>
+<p class="noindent">
+  Having created the
+  <span class="literal1">
+   StickFigureSprite
+  </span>
+  class, let’s try it out by adding the following two lines just before the call to the
+  <span class="literal1">
+   mainloop
+  </span>
+  function:
+ </p>
+<pre class="pre">sf = StickFigureSprite(g)
+g.sprites.append(sf)</pre>
+<p class="indent">
+  We create a
+  <span class="literal1">
+   StickFigureSprite
+  </span>
+  object and label it with the
+  <span class="literal1">
+   sf
+  </span>
+  variable. As we did with the platforms, we add this new variable to the list of sprites stored in the game object.
+ </p>
+<p class="indent">
+  Now run the program. You should find that Mr. Stick Man can run, jump from platform to platform, and fall!
+ </p>
+<h3 class="h1" id="ch16lev1sec6">
+  The Exit!
+ </h3>
+<p class="noindent">
+  The only thing missing from our game is the exit. We’ll finish up by creating a sprite for the door, adding code to detect the door, and giving our program a door object.
+ </p>
+<h3 class="h1" id="ch16lev1sec7">
+  Creating the DoorSprite Class
+ </h3>
+<p class="noindent">
+  We need to create one more class:
+  <span class="literal1">
+   DoorSprite
+  </span>
+  . The start of the code is as follows:
+ </p>
+<pre class="pre"><span class="orange">class</span> DoorSprite(Sprite):
+    <span class="orange">def</span> __init__(self, game, photo_image, x, y, width, height):
+        Sprite.__init__(self, game)
+        self.photo_image = photo_image
+        self.image = game.canvas.create_image(x, y, 
+                image=self.photo_image, anchor=<span class="green">'nw'</span>)
+        self.coordinates = Coords(x, y, x + (width / 2), y + height)
+        self.endgame = <span class="violet">True</span></pre>
+<p class="indent">
+<span id="page_258">
+</span>
+  The
+  <span class="literal1">
+   __init__
+  </span>
+  function of the
+  <span class="literal1">
+   DoorSprite
+  </span>
+  class has parameters for
+  <span class="literal1">
+   self
+  </span>
+  , a
+  <span class="literal1">
+   game
+  </span>
+  object, a
+  <span class="literal1">
+   photo_image
+  </span>
+  object, the
+  <span class="literal1">
+   x
+  </span>
+  and
+  <span class="literal1">
+   y
+  </span>
+  coordinates, and the
+  <span class="literal1">
+   width
+  </span>
+  and
+  <span class="literal1">
+   height
+  </span>
+  of the image. We call
+  <span class="literal1">
+   Sprite.__init__
+  </span>
+  as with our other sprite classes.
+ </p>
+<div class="image">
+<img alt="Image" class="calibre175" src="../images/f0258-01.jpg"/>
+</div>
+<p class="indent">
+  We then save the parameter
+  <span class="literal1">
+   photo_image
+  </span>
+  using an object variable with the same name, as we did with
+  <span class="literal1">
+   PlatformSprite
+  </span>
+  . We create a display image using the canvas
+  <span class="literal1">
+   create_image
+  </span>
+  function and save the identifying number returned by that function using the object variable
+  <span class="literal1">
+   image
+  </span>
+  .
+ </p>
+<p class="indent">
+  Next, we set the coordinates of
+  <span class="literal1">
+   DoorSprite
+  </span>
+  to the
+  <span class="literal1">
+   x
+  </span>
+  and
+  <span class="literal1">
+   y
+  </span>
+  parameters (which become the
+  <em class="calibre7">
+   x1
+  </em>
+  and
+  <em class="calibre7">
+   y1
+  </em>
+  positions of the door), and then calculate the
+  <em class="calibre7">
+   x2
+  </em>
+  and
+  <em class="calibre7">
+   y2
+  </em>
+  positions. We calculate the
+  <em class="calibre7">
+   x2
+  </em>
+  position by adding half of the width (the
+  <span class="literal1">
+   width
+  </span>
+  variable divided by 2) to the
+  <span class="literal1">
+   x
+  </span>
+  parameter. For example, if
+  <span class="literal1">
+   x
+  </span>
+  is 10 (the
+  <span class="literal1">
+   x1
+  </span>
+  coordinate is also 10) and the
+  <span class="literal1">
+   width
+  </span>
+  is 40, the
+  <span class="literal1">
+   x2
+  </span>
+  coordinate would be 30 (10 plus half of 40).
+ </p>
+<p class="indent">
+  Why use this confusing little calculation? Because, unlike with the platforms, where we want Mr. Stick Man to stop running as soon as he collides with the side of the platform, we want him to stop in front of the door. You’ll see this in action when you play the game and make it to the door.
+ </p>
+<p class="indent">
+  Unlike the
+  <em class="calibre7">
+   x1
+  </em>
+  position, the
+  <em class="calibre7">
+   y1
+  </em>
+  position is simple to calculate. We just add the value of the
+  <span class="literal1">
+   height
+  </span>
+  variable to the
+  <span class="literal1">
+   y
+  </span>
+  parameter, and that’s it.
+ </p>
+<p class="indent">
+  Finally, we set the
+  <span class="literal1">
+   endgame
+  </span>
+  object variable to
+  <span class="literal1">
+   True
+  </span>
+  . This says that when the stick figure reaches the door, the game ends.
+ </p>
+<h3 class="h1" id="ch16lev1sec8">
+  Detecting the Door
+ </h3>
+<p class="noindent">
+  Now we need to change the code in the
+  <span class="literal1">
+   StickFigureSprite
+  </span>
+  class of the
+  <span class="literal1">
+   move
+  </span>
+  function that determines when the stick figure has collided with a sprite on the left or the right. Here’s the first change:
+ </p>
+<pre class="pre"><span id="page_259"></span>            <span class="gray">if left and self.x &lt; 0 and collided_left(co, sprite_co):
+                self.x = 0
+                left = False</span>
+                <span class="orange">if</span> sprite.endgame:
+                    self.game.running = <span class="violet">False</span></pre>
+<p class="indent">
+  We check to see if the stick figure has collided with a sprite that has an
+  <span class="literal1">
+   endgame
+  </span>
+  variable set to
+  <span class="literal1">
+   True
+  </span>
+  . If it does, we set the
+  <span class="literal1">
+   running
+  </span>
+  variable to
+  <span class="literal1">
+   False
+  </span>
+  , and everything stops—we’ve reached the end of the game.
+ </p>
+<p class="indent">
+  We’ll add these same lines to the code that checks for a collision on the right. Here’s the code:
+ </p>
+<pre class="pre">            <span class="gray">if right and self.x &gt; 0 and collided_right(co, sprite_co):
+                self.x = 0
+                right = False</span>
+                <span class="orange">if</span> sprite.endgame:
+                    self.game.running = <span class="violet">False</span></pre>
+<h3 class="h1" id="ch16lev1sec9">
+  Adding the Door Object
+ </h3>
+<p class="noindent">
+  Our final addition to the game code is an object for the door. We’ll add this before the main loop. Just before creating the stick figure object, we’ll create a door object and then add it to the list of sprites. Here’s the code:
+ </p>
+<pre class="pre"><span class="gray">g.sprites.append(platform7)
+g.sprites.append(platform8)
+g.sprites.append(platform9)
+g.sprites.append(platform10)</span>
+door = DoorSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'door1.gif'</span>), 45, 30, 40, 35)
+g.sprites.append(door)
+<span class="gray">sf = StickFigureSprite(g)
+g.sprites.append(sf)
+g.mainloop()</span></pre>
+<p class="indent">
+  We create a door object using the variable for our game object,
+  <span class="literal1">
+   g
+  </span>
+  , followed by a
+  <span class="literal1">
+   PhotoImage
+  </span>
+  (the door image we created in
+  <a class="calibre6" href="ch13.xhtml#ch13">
+   Chapter 13
+  </a>
+  ). We set the
+  <span class="literal1">
+   x
+  </span>
+  and
+  <span class="literal1">
+   y
+  </span>
+  parameters to 45 and 30 to put the door on a platform near the top of the screen, and set the
+  <span id="page_260">
+</span>
+  width and height to 40 and 35. We add the door object to the list of sprites, as with all the other sprites in the game.
+ </p>
+<p class="indent">
+  You can see the result when Mr. Stick Man reaches the door. He stops running in front of the door, rather than next to it, as shown in
+  <a class="calibre6" href="ch16.xhtml#ch16fig02">
+   Figure 16-2
+  </a>
+  .
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre176" id="ch16fig02" src="../images/16fig02.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 16-2: Reaching the door
+  </em>
+</p>
+<h3 class="h1" id="ch16lev1sec10">
+  The Final Game
+ </h3>
+<p class="noindent">
+  The full listing of our game is now a bit more than 200 lines of code. The following is the complete code for the game. If you have trouble getting your game to work, compare each function (and each class) to this listing:
+ </p>
+<pre class="pre"><span class="orange">from</span> tkinter <span class="orange">import</span> *
+<span class="orange">import</span> random
+<span class="orange">import</span> time
+
+<span class="orange">class</span> Coords:
+    <span class="orange">def</span> __init__(self, x1=0, y1=0, x2=0, y2=0):
+        self.x1 = x1
+        self.y1 = y1
+        self.x2 = x2
+        self.y2 = y2
+
+<span id="page_261"></span><span class="orange">def</span> within_x(co1, co2):
+    <span class="orange">if</span> (co1.x1 &gt; co2.x1 <span class="orange">and</span> co1.x1 &lt; co2.x2) \
+            <span class="orange">or</span> (co1.x2 &gt; co2.x1 <span class="orange">and</span> co1.x2 &lt; co2.x2) \
+            <span class="orange">or</span> (co2.x1 &gt; co1.x1 <span class="orange">and</span> co2.x1 &lt; co1.x2) \
+            <span class="orange">or</span> (co2.x2 &gt; co1.x1 <span class="orange">and</span> co2.x2 &lt; co1.x2):
+        <span class="orange">return</span> <span class="violet">True</span>
+    <span class="orange">else</span>:
+        <span class="orange">return</span> <span class="violet">False</span>
+
+<span class="orange">def</span> within_y(co1, co2):
+    <span class="orange">if</span> (co1.y1 &gt; co2.y1 <span class="orange">and</span> co1.y1 &lt; co2.y2) \
+            <span class="orange">or</span> (co1.y2 &gt; co2.y1 <span class="orange">and</span> co1.y2 &lt; co2.y2) \
+            <span class="orange">or</span> (co2.y1 &gt; co1.y1 <span class="orange">and</span> co2.y1 &lt; co1.y2) \
+            <span class="orange">or</span> (co2.y2 &gt; co1.y1 <span class="orange">and</span> co2.y2 &lt; co1.y2):
+        <span class="orange">return</span> <span class="violet">True</span>
+    <span class="orange">else</span>:
+        <span class="orange">return</span> <span class="violet">False</span>
+
+<span class="orange">def</span> collided_left(co1, co2):
+    <span class="orange">if</span> within_y(co1, co2):
+        <span class="orange">if</span> co1.x1 &gt;= co2.x1 <span class="orange">and</span> co1.x1 &lt;= co2.x2:
+            <span class="orange">return</span> <span class="violet">True</span>
+    <span class="orange">return</span> <span class="violet">False</span>
+
+<span class="orange">def</span> collided_right(co1, co2):
+    <span class="orange">if</span> within_y(co1, co2):
+        <span class="orange">if</span> co1.x2 &gt;= co2.x1 <span class="orange">and</span> co1.x2 &lt;= co2.x2:
+            <span class="orange">return</span> <span class="violet">True</span>
+    <span class="orange">return</span> <span class="violet">False</span>
+
+<span class="orange">def</span> collided_top(co1, co2):
+    <span class="orange">if</span> within_x(co1, co2):
+        <span class="orange">if</span> co1.y1 &gt;= co2.y1 <span class="orange">and</span> co1.y1 &lt;= co2.y2:
+            <span class="orange">return</span> <span class="violet">True</span>
+    <span class="orange">return</span> <span class="violet">False</span>
+
+<span class="orange">def</span> collided_bottom(y, co1, co2):
+    <span class="orange">if</span> within_x(co1, co2):
+        y_calc = co1.y2 + y
+        <span class="orange">if</span> y_calc &gt;= co2.y1 <span class="orange">and</span> y_calc &lt;= co2.y2:
+            <span class="orange">return</span> <span class="violet">True</span>
+    <span class="orange">return</span> <span class="violet">False</span>
+
+<span class="orange">class</span> Sprite:
+    <span class="orange">def</span> __init__(self, game):
+        self.game = game
+        self.endgame = <span class="violet">False</span>
+        self.coordinates = <span class="violet">None</span>
+    <span class="orange">def</span> move(self):
+        <span class="orange">pass</span>
+    <span id="page_262"></span><span class="orange">def</span> coords(self):
+        <span class="orange">return</span> self.coordinates
+
+<span class="orange">class</span> PlatformSprite(Sprite):
+    <span class="orange">def</span> __init__(self, game, photo_image, x, y, width, height):
+        Sprite.__init__(self, game)
+        self.photo_image = photo_image
+        self.image = game.canvas.create_image(x, y, 
+                image=self.photo_image, anchor=<span class="green">'nw'</span>)
+        self.coordinates = Coords(x, y, x + width, y + height)
+
+<span class="orange">class</span> StickFigureSprite(Sprite):
+    <span class="orange">def</span> __init__(self, game):
+        Sprite.__init__(self, game)
+        self.images_left = [
+            PhotoImage(<span class="orange">file</span>=<span class="green">'figure-L1.gif'</span>),
+            PhotoImage(<span class="orange">file</span>=<span class="green">'figure-L2.gif'</span>),
+            PhotoImage(<span class="orange">file</span>=<span class="green">'figure-L3.gif'</span>)
+        ]
+        self.images_right = [
+            PhotoImage(<span class="orange">file</span>=<span class="green">'figure-R1.gif'</span>),
+            PhotoImage(<span class="orange">file</span>=<span class="green">'figure-R2.gif'</span>),
+            PhotoImage(<span class="orange">file</span>=<span class="green">'figure-R3.gif'</span>)
+        ]
+        self.image = game.canvas.create_image(200, 470, 
+                image=self.images_left[0], anchor=<span class="green">'nw'</span>)
+        self.x = -2
+        self.y = 0
+        self.current_image = 0
+        self.current_image_add = 1
+        self.jump_count = 0
+        self.last_time = time.time()
+        self.coordinates = Coords()
+        game.canvas.bind_all(<span class="green">'&lt;KeyPress-Left&gt;'</span>, self.turn_left)
+        game.canvas.bind_all(<span class="green">'&lt;KeyPress-Right&gt;'</span>, self.turn_right)
+        game.canvas.bind_all(<span class="green">'&lt;space&gt;'</span>, self.jump)
+
+    <span class="orange">def</span> turn_left(self, evt):
+        <span class="orange">if</span> self.y == 0:
+            self.x = -2
+
+    <span id="page_263"></span><span class="orange">def</span> turn_right(self, evt):
+        <span class="orange">if</span> self.y == 0:
+            self.x = 2
+
+    <span class="orange">def</span> jump(self, evt):
+        <span class="orange">if</span> self.y == 0:
+            self.y = -4
+            self.jump_count = 0
+
+    <span class="orange">def</span> animate(self):
+        <span class="orange">if</span> self.x != 0 <span class="orange">and</span> self.y == 0:
+            <span class="orange">if</span> time.time() - self.last_time &gt; 0.1:
+                self.last_time = time.time()
+                self.current_image += self.current_image_add
+                <span class="orange">if</span> self.current_image &gt;= 2:
+                    self.current_image_add = -1
+                <span class="orange">if</span> self.current_image &lt;= 0:
+                    self.current_image_add = 1
+        <span class="orange">if</span> self.x &lt; 0:
+            <span class="orange">if</span> self.y != 0:
+                self.game.canvas.itemconfig(self.image, 
+                        image=self.images_left[2])
+            <span class="orange">else</span>:
+                self.game.canvas.itemconfig(self.image, 
+                        image=self.images_left[self.current_image])
+        <span class="orange">elif</span> self.x &gt; 0:
+            <span class="orange">if</span> self.y != 0:
+                self.game.canvas.itemconfig(self.image, 
+                        image=self.images_right[2])
+            <span class="orange">else</span>:
+                self.game.canvas.itemconfig(self.image, 
+                        image=self.images_right[self.current_image])
+
+    <span class="orange">def</span> coords(self):
+        xy = self.game.canvas.coords(self.image)
+        self.coordinates.x1 = xy[0]
+        self.coordinates.y1 = xy[1]
+        self.coordinates.x2 = xy[0] + 27
+        self.coordinates.y2 = xy[1] + 30
+        <span class="orange">return</span> self.coordinates
+
+    <span id="page_264"></span><span class="orange">def</span> move(self):
+        self.animate()
+        <span class="orange">if</span> self.y &lt; 0:
+            self.jump_count += 1
+            <span class="orange">if</span> self.jump_count &gt; 20:
+                self.y = 4
+        <span class="orange">if</span> self.y &gt; 0:
+            self.jump_count -= 1
+        co = self.coords()
+        left = <span class="violet">True</span>
+        right = <span class="violet">True</span>
+        top = <span class="violet">True</span>
+        bottom = <span class="violet">True</span>
+        falling = <span class="violet">True</span>
+        <span class="orange">if</span> self.y &gt; 0 <span class="orange">and</span> co.y2 &gt;= self.game.canvas_height:
+            self.y = 0
+            bottom = <span class="violet">False</span>
+        <span class="orange">elif</span> self.y &lt; 0 <span class="orange">and</span> co.y1 &lt;= 0:
+            self.y = 0
+            top = <span class="violet">False</span>
+        <span class="orange">if</span> self.x &gt; 0 <span class="orange">and</span> co.x2 &gt;= self.game.canvas_width:
+            self.x = 0
+            right = <span class="violet">False</span>
+        <span class="orange">elif</span> self.x &lt; 0 <span class="orange">and</span> co.x1 &lt;= 0:
+            self.x = 0
+            left = <span class="violet">False</span>
+
+        <span class="orange">for</span> sprite <span class="orange">in</span> self.game.sprites:
+            <span class="orange">if</span> sprite == self:
+                <span class="orange">continue</span>
+            sprite_co = sprite.coords()
+            <span class="orange">if</span> top <span class="orange">and</span> self.y &lt; 0 <span class="orange">and</span> collided_top(co, sprite_co):
+                self.y = -self.y
+                top = <span class="violet">False</span>
+            <span class="orange">if</span> bottom <span class="orange">and</span> self.y &gt; 0 <span class="orange">and</span> collided_bottom(self.y, 
+                    co, sprite_co):
+                self.y = sprite_co.y1 - co.y2
+                <span class="orange">if</span> self.y &lt; 0:
+                    self.y = 0
+                bottom = <span class="violet">False</span>
+                top = <span class="violet">False</span>
+            <span id="page_265"></span><span class="orange">if</span> bottom <span class="orange">and</span> falling <span class="orange">and</span> self.y == 0 \
+                    <span class="orange">and</span> co.y2 &lt; self.game.canvas_height \
+                    <span class="orange">and</span> collided_bottom(1, co, sprite_co):
+                falling = <span class="violet">False</span>
+            <span class="orange">if</span> left <span class="orange">and</span> self.x &lt; 0 <span class="orange">and</span> collided_left(co, sprite_co):
+                self.x = 0
+                left = <span class="violet">False</span>
+                <span class="orange">if</span> sprite.endgame:
+                    self.game.running = <span class="violet">False</span>
+            <span class="orange">if</span> right <span class="orange">and</span> self.x &gt; 0 <span class="orange">and</span> collided_right(co, sprite_co):
+                self.x = 0
+                right = <span class="violet">False</span>
+                <span class="orange">if</span> sprite.endgame:
+                    self.game.running = <span class="violet">False</span>
+
+        <span class="orange">if</span> falling <span class="orange">and</span> bottom <span class="orange">and</span> self.y == 0 \
+                <span class="orange">and</span> co.y2 &lt; self.game.canvas_height:
+            self.y = 4
+        self.game.canvas.move(self.image, self.x, self.y)
+
+<span class="orange">class</span> DoorSprite(Sprite):
+    <span class="orange">def</span> __init__(self, game, photo_image, x, y, width, height):
+        Sprite.__init__(self, game)
+        self.photo_image = photo_image
+        self.image = game.canvas.create_image(x, y, 
+                image=self.photo_image, anchor=<span class="green">'nw'</span>)
+        self.coordinates = Coords(x, y, x + (width / 2), y + height)
+        self.endgame = <span class="violet">True</span>
+
+<span class="orange">class</span> Game:
+    <span class="orange">def</span> __init__(self):
+        self.tk = Tk()
+        self.tk.title(<span class="green">'Mr. Stick Man Races for the Exit'</span>)
+        self.tk.resizable(0, 0)
+        self.tk.wm_attributes(<span class="green">'-topmost'</span>, 1)
+        self.canvas = Canvas(self.tk, width=500, height=500, 
+                             highlightthickness=0)
+        self.canvas.pack()
+        self.tk.update()
+        self.canvas_height = self.canvas.winfo_height()
+        self.canvas_width = self.canvas.winfo_width()
+        <span id="page_266"></span>self.bg = PhotoImage(<span class="orange">file</span>=<span class="green">'background.gif'</span>)
+        w = self.bg.width()
+        h = self.bg.height()
+        <span class="orange">for</span> x <span class="orange">in</span> <span class="violet">range</span>(0, 5):
+            <span class="orange">for</span> y <span class="orange">in</span> <span class="violet">range</span>(0, 5):
+                self.canvas.create_image(x * w, y * h, 
+                        image=self.bg, anchor=<span class="green">'nw'</span>)
+        self.sprites = []
+        self.running = <span class="violet">True</span>
+
+    <span class="orange">def</span> mainloop(self):
+        <span class="orange">while</span> <span class="violet">True</span>:
+            <span class="orange">if</span> self.running == <span class="violet">True</span>:
+                <span class="orange">for</span> sprite <span class="orange">in</span> self.sprites:
+                    sprite.move()
+            self.tk.update_idletasks()
+            self.tk.update()
+            time.sleep(0.01)
+
+g = Game()
+platform1 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform1.gif'</span>), 
+                           0, 480, 100, 10)
+platform2 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform1.gif'</span>), 
+                           150, 440, 100, 10)
+platform3 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform1.gif'</span>), 
+                           300, 400, 100, 10)
+platform4 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform1.gif'</span>), 
+                           300, 160, 100, 10)
+platform5 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform2.gif'</span>), 
+                           175, 350, 66, 10)
+platform6 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform2.gif'</span>), 
+                           50, 300, 66, 10)
+platform7 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform2.gif'</span>), 
+                           170, 120, 66, 10)
+platform8 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform2.gif'</span>), 
+                           45, 60, 66, 10)
+platform9 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform3.gif'</span>), 
+                           170, 250, 32, 10)
+platform10 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform3.gif'</span>), 
+                            230, 200, 32, 10)
+g.sprites.append(platform1)
+<span id="page_267"></span>g.sprites.append(platform2)
+g.sprites.append(platform3)
+g.sprites.append(platform4)
+g.sprites.append(platform5)
+g.sprites.append(platform6)
+g.sprites.append(platform7)
+g.sprites.append(platform8)
+g.sprites.append(platform9)
+g.sprites.append(platform10)
+door = DoorSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'door1.gif'</span>), 45, 30, 40, 35)
+g.sprites.append(door)
+sf = StickFigureSprite(g)
+g.sprites.append(sf)
+g.mainloop()</pre>
+<h3 class="h1" id="ch16lev1sec11">
+  What You Learned
+ </h3>
+<p class="noindent">
+  In this chapter, we completed our game,
+  <em class="calibre7">
+   Mr. Stick Man Races for the Exit
+  </em>
+  . We created a class for our animated stick figure and wrote functions to move him around the screen and animate him as he moves (changing from one image to the next to give the illusion of running). We’ve used basic collision detection to tell when he has hit the left or right sides of the canvas, and when he has hit another sprite, such as a platform or a door. We’ve also added collision code to tell when he hits the top of the screen or the bottom, and to make sure that when he runs off the edge of a platform, he tumbles down accordingly. We added code to tell when Mr. Stick Man has reached the door, so the game comes to an end.
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre177" src="../images/f0267-01.jpg"/>
+</div>
+<h3 class="h1" id="ch16lev1sec12">
+<span class="calibre2" id="page_268">
+</span>
+  Programming Puzzles
+ </h3>
+<p class="noindent">
+  There’s a lot more we can do to improve the game. We can add code to make it more professional looking and more interesting to play. Try adding the following features and then compare your code with the solutions at
+  <em class="calibre7">
+<a class="calibre6" href="http://python-for-kids.com">
+    http://python-for-kids.com
+   </a>
+</em>
+  .
+ </p>
+<h4 class="h3" id="ch16lev2sec9">
+  #1: “You Win!”
+ </h4>
+<p class="noindent">
+  Like the “Game Over” text in the
+  <em class="calibre7">
+   Bounce!
+  </em>
+  game we completed in
+  <a class="calibre6" href="ch12.xhtml#ch12">
+   Chapter 12
+  </a>
+  , add “You Win!” text when the stick figure reaches the door.
+ </p>
+<h4 class="h3" id="ch16lev2sec10">
+  #2: Animating the Door
+ </h4>
+<p class="noindent">
+  In
+  <a class="calibre6" href="ch13.xhtml#ch13">
+   Chapter 13
+  </a>
+  , we created two images for the door: one open and one closed. When Mr. Stick Man reaches the door, the door image should change to the open door, Mr. Stick Man should vanish, and the door image should revert to the closed door. This will give the illusion that Mr. Stick Man is exiting and closing the door as he leaves. You can do this by changing the
+  <span class="literal1">
+   DoorSprite
+  </span>
+  class and the
+  <span class="literal1">
+   StickFigureSprite
+  </span>
+  class.
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre178" src="../images/f0268-01.jpg"/>
+</div>
+<h4 class="h3" id="ch16lev2sec11">
+  #3: Moving Platforms
+ </h4>
+<p class="noindent">
+  Try adding a new class called
+  <span class="literal1">
+   MovingPlatformSprite
+  </span>
+  . This platform should move from side to side, making it more difficult for Mr. Stick Man to reach the door at the top. You can pick some platforms to be moving, and leave some platforms to be static, depending on how hard you want your game to be.
+ </p>
+<h4 class="h3" id="ch16lev2sec12">
+  #4: Lamp as a Sprite
+ </h4>
+<p class="noindent">
+  Instead of the bookshelf and lamp we added as background images in
+  <a class="calibre6" href="ch14.xhtml#ch14">
+   Chapter 14
+  </a>
+  ’s third programming puzzle, try adding a lamp that the stick man has to jump over. Rather than being a part of the game’s background, it will be a sprite similar to the platforms or the door.
+ </p>
+<span id="page_269">
+</span>
+<div class="image1">
+<img alt="Image" class="calibre179" src="../images/f0269-01.jpg"/>
+</div>
+<span id="page_270">
+</span>
+</div></body>
+</html>

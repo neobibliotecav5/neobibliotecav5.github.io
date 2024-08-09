@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch09lev1sec4">
+  Colorear cosas </h3>
+<p class="noindent">
+  La función <span class="literal1" translate="no">
+   color
+  </span>toma tres parámetros. El primero especifica la cantidad de rojo, el segundo la cantidad de verde y el tercero la cantidad de azul. Por ejemplo, para obtener el rojo brillante del coche, utilizamos <span class="literal1" translate="no">
+   color(1,0,0)
+  </span>, que le dice a la tortuga que utilice un rojo del 100%. </p>
+<p class="indent">
+<span id="page_124">
+</span>
+  Esta receta de colores rojo, verde y azul se denomina <em class="calibre7">RGB </em>y es la forma en que se representan los colores en el monitor de tu ordenador. La mezcla de estos colores primarios produce otros colores, igual que cuando mezclas pintura azul y roja para hacer morado, o amarillo y rojo para hacer naranja. Los colores rojo, verde y azul se llaman <em class="calibre7">colores primarios </em>porque no puedes mezclar otros tonos para producirlos. </p>
+<div class="image">
+<img alt="Image" class="calibre91" src="../images/f0124-01.jpg" translate="no"/>
+</div>
+<p class="indent">
+  Aunque no estamos utilizando pintura para crear colores en un monitor de ordenador (estamos utilizando luz), puede ayudarte a entender el RGB imaginar que tienes tres botes de pintura: uno rojo, uno verde y uno azul. Cada bote está lleno, y a cada bote lleno le damos un valor de 1 (o 100%). A continuación, mezclamos toda la pintura roja y toda la pintura verde en una cuba para producir amarillo (es decir, 1 y 1 de cada, o el 100 por 100 de cada color). </p>
+<p class="indent">
+  Ahora volvamos al mundo del código. Para dibujar un círculo amarillo con la tortuga, utilizaríamos el 100 por cien de la pintura roja y verde, pero nada de azul, así </p>
+<pre class="pre" translate="no">   <span class="brown">&gt;&gt;&gt;</span> t.color(1,1,0)
+   <span class="brown">&gt;&gt;&gt;</span> t.begin_fill()
+<span class="ent">➊</span> <span class="brown">&gt;&gt;&gt;</span> t.circle(50)
+   <span class="brown">&gt;&gt;&gt;</span> t.end_fill()
+</pre>
+<p class="indent">
+  El <span class="literal1" translate="no">
+   1,1,0
+  </span>de la primera línea representa el 100 por 100 de rojo, el 100 por 100 de verde y el 0 por 100 de azul. En la línea siguiente, le decimos a la tortuga que rellene las formas que dibuje con este color RGB, y luego le decimos que dibuje un círculo <span class="ent">➊ </span>. La última línea le dice a la tortuga que rellene el círculo con el color RGB. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch09_4.html">anterior</a><a href="ch09.html">Subtema 5 de 12: (Ver todo)</a><a href="ch09_6.html">siguiente</a><br/></p>
+<br/><a href="ch09_5.docx" target="_blank"></a></footer>
+</body>
+</html>

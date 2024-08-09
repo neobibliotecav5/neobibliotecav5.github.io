@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="app02lev1sec15">
+  La función int </h3>
+<p class="noindent">
+  La función <span class="literal1" translate="no">
+   int
+  </span>convierte una cadena o un número en un número entero (o <em class="calibre7">integer </em>), lo que básicamente significa que se elimina todo lo que hay después del punto decimal. Por ejemplo, así es como se convierte un número de coma flotante en un número entero: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">int</span>(123.456)
+123
+</pre>
+<p class="indent">
+  Este ejemplo convierte una cadena en un número entero: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">int</span>(<span class="green">'123'</span>)
+<span class="blue1">123</span>
+</pre>
+<p class="indent">
+  Pero si intentas convertir una cadena que contiene un número en coma flotante en un número entero, obtendrás un mensaje de error. Para el ejemplo <span id="page_313">
+</span>, aquí intentamos convertir una cadena que contiene un número en coma flotante utilizando la función <span class="literal1" translate="no">
+   int
+  </span>: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">int</span>(<span class="green">'123.456'</span>)
+<span class="red">Traceback (most recent call last):
+  File "&lt;pyshell&gt;", line 1, in &lt;module&gt;
+    int('123.456')
+ValueError: invalid literal for int() with base 10: '123.456'</span>
+</pre>
+<p class="indent">
+  Como puedes ver, el resultado es un mensaje <span class="literal1" translate="no">
+   ValueError
+  </span>. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="app02_15.html">anterior</a><a href="app02.html">Subtema 16 de 25: (Ver todo)</a><a href="app02_17.html">siguiente</a><br/></p>
+<br/><a href="app02_16.docx" target="_blank"></a></footer>
+</body>
+</html>

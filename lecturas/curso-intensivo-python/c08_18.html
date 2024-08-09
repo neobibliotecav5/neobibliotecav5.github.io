@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c08-0009">Convertir un argumento en opcional</h3>
+<p class="BodyFirst">A veces tiene sentido hacer que un argumento sea opcional, para que las personas que utilicen la función puedan elegir proporcionar información extra sólo si lo desean. Puedes utilizar valores por defecto para hacer que un argumento sea opcional.</p>
+<p>Por ejemplo, supongamos que queremos ampliar <code translate="no">get_formatted_name()</code> para que también incluya los segundos nombres. Un primer intento de incluir los segundos nombres podría tener este aspecto:</p>
+<pre translate="no"><code translate="no">def get_formatted_name(first_name, middle_name, last_name):
+    """Return a full name, neatly formatted."""
+    full_name = f"{first_name} {middle_name} {last_name}"
+    return full_name.title()
+
+musician = get_formatted_name('john', 'lee', 'hooker')
+print(musician)</code></pre>
+<p>Esta función funciona cuando se le da un nombre, un segundo nombre y un apellido. La función toma las tres partes del nombre y construye una cadena a partir de ellas. La función añade espacios donde corresponda y convierte el nombre completo a mayúsculas y minúsculas:</p>
+<pre translate="no"><code translate="no">John Lee Hooker</code></pre>
+<p>Pero los segundos nombres no siempre son necesarios, y esta función, tal como está escrita, no funcionaría si intentaras llamarla sólo con un nombre y un apellido. Para que el segundo nombre sea opcional, podemos dar al argumento <code translate="no">middle_name</code> un valor por defecto vacío e ignorar el argumento a menos que el usuario proporcione un valor. Para que <code translate="no">get_formatted_name()</code> funcione sin segundo nombre, establecemos el valor por defecto de <code translate="no">middle_name</code> en una cadena vacía y lo movemos al final de la lista de parámetros:</p>
+<pre translate="no"><code translate="no">def get_formatted_name(first_name, last_name, middle_name=''):
+    <span class="LiteralGray">"""Return a full name, neatly formatted."""</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     if middle_name:
+        full_name = f"{first_name} {middle_name} {last_name}"
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     else:
+        full_name = f"{first_name} {last_name}"
+    <span class="LiteralGray">return full_name.title()</span>
+
+musician = get_formatted_name('jimi', 'hendrix')
+print(musician)
+
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> musician = get_formatted_name('john', 'hooker', 'lee')
+<span class="LiteralGray">print(musician)</span></code></pre>
+<p><span epub:type="pagebreak" id="Page_139" title="139"></span>En este ejemplo, el nombre se construye a partir de tres partes posibles. Como siempre hay un nombre y un apellido, estos parámetros aparecen primero en la definición de la función. El segundo nombre es opcional, por lo que aparece el último en la definición, y su valor por defecto es una cadena vacía.</p>
+<p>En el cuerpo de la función, comprobamos si se ha proporcionado un segundo nombre. Python interpreta las cadenas no vacías como <code translate="no">True</code>, por lo que la prueba condicional <code translate="no">if middle_name</code> se evalúa como <code translate="no">True</code> si hay un argumento de segundo nombre en la llamada a la función <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Si se proporciona un segundo nombre, el nombre, el segundo nombre y los apellidos se combinan para formar un nombre completo. Este nombre se cambia a mayúsculas y se devuelve a la línea de llamada a la función, donde se asigna a la variable <code translate="no">musician</code> y se imprime. Si no se proporciona el segundo nombre, la cadena vacía falla la prueba <code translate="no">if</code> y el bloque <code translate="no">else</code> se ejecuta <span aria-label="annotation2" class="CodeAnnotation">❷.</span> El nombre completo se hace sólo con el nombre y los apellidos, y el nombre formateado se devuelve a la línea de llamada, donde se asigna a <code translate="no">musician</code> y se imprime.</p>
+<p>Llamar a esta función con un nombre y apellidos es sencillo. Sin embargo, si utilizamos un segundo nombre, tenemos que asegurarnos de que el segundo nombre es el último argumento pasado para que Python haga coincidir correctamente los argumentos posicionales <span aria-label="annotation3" class="CodeAnnotation">❸.</span></p>
+<p>Esta versión modificada de nuestra función funciona para las personas que sólo tienen nombre y apellidos, y también para las que tienen segundo nombre:</p>
+<pre translate="no"><code translate="no">Jimi Hendrix
+John Lee Hooker</code></pre>
+<p>Los valores opcionales permiten a las funciones manejar una amplia gama de casos de uso, al tiempo que permiten que las llamadas a la función sigan siendo lo más sencillas posible.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c08_17.html">anterior</a><a href="c08.html">Subtema 18 de 40: (Ver todo)</a><a href="c08_19.html">siguiente</a><br/></p>
+<br/><a href="c08_18.docx" target="_blank"></a></footer>
+</body>
+</html>

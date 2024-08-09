@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c20-0004">Estilizar la página de inicio con una jumbotrona</h3>
+<p class="BodyFirst">Para actualizar la página de inicio, utilizaremos un elemento de Bootstrap llamado <em translate="no">jumbotron</em>, una gran caja que destaca del resto de la página. Normalmente, se utiliza en las páginas de inicio para contener una breve descripción del proyecto general y una llamada a la acción que invite al espectador a participar.</p>
+<p>Aquí tienes el archivo <em translate="no">index.html</em> revisado:</p>
+<p class="CodeLabel" translate="no"><b>index.html</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">{% extends "learning_logs/base.html" %}</span>
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> {% block page_header %}
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>   &lt;div class="p-3 mb-4 bg-light border rounded-3"&gt;
+    &lt;div class="container-fluid py-4"&gt;
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>       &lt;h1 class="display-3"&gt;Track your learning.&lt;/h1&gt;
+
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>       &lt;p class="lead"&gt;Make your own Learning Log, and keep a list of the
+      topics you're learning about. Whenever you learn something new
+      about a topic, make an entry summarizing what you've learned.&lt;/p&gt;
+
+<span epub:type="pagebreak" id="Page_441" title="441"></span><span aria-label="annotation5" class="CodeAnnotationHang">❺</span>       &lt;a class="btn btn-primary btn-lg mt-1"
+        href="{% url 'accounts:register' %}"&gt;Register &amp;raquo;&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+{% endblock page_header %}</code></pre>
+<p>Primero le decimos a Django que vamos a definir lo que va en el bloque <code translate="no">page_header</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Un jumbotrón se implementa como un par de elementos div a los que se aplica un conjunto de directivas de estilo <span aria-label="annotation2" class="CodeAnnotation">❷.</span> El div exterior tiene ajustes de relleno y margen, un color de fondo claro y esquinas redondeadas. El div interior es un contenedor que cambia con el tamaño de la ventana y también tiene algo de relleno. El selector <code translate="no">py-4</code> añade relleno a la parte superior e inferior del elemento div. Siéntete libre de ajustar los números de estas opciones y observa cómo cambia la página de inicio.</p>
+<p>Dentro del jumbotrón hay tres elementos. El primero es un mensaje breve, <code translate="no">Track your learning</code>, que da a los nuevos visitantes una idea de lo que hace Learning Log <span aria-label="annotation3" class="CodeAnnotation">❸.</span> El elemento <code translate="no"></code> es un encabezado de primer nivel, y el selector <code translate="no">display-3</code> añade un aspecto más fino y alto a este encabezado en particular. También incluimos un mensaje más largo que proporciona más información sobre lo que el usuario puede hacer con su Registro de aprendizaje <span aria-label="annotation4" class="CodeAnnotation">❹.</span> Está formateado como un párrafo <code translate="no">lead</code>, que pretende destacarse de los párrafos normales.</p>
+<p>En lugar de utilizar sólo un enlace de texto, creamos un botón que invita a los usuarios a registrar una cuenta en Learning Log <span aria-label="annotation5" class="CodeAnnotation">❺.</span> Se trata del mismo enlace que en la cabecera, pero el botón destaca en la página y muestra al espectador lo que tiene que hacer para empezar a utilizar el proyecto. Los selectores que ves aquí estilizan esto como un botón grande que representa una llamada a la acción. El código <code translate="no">&amp;raquo;</code> es un <em translate="no">HTML entity</em> que se parece a dos corchetes combinados (&gt;&gt;). Por último, proporcionamos etiquetas div de cierre y cerramos el bloque <code translate="no">page_header</code>. Con sólo dos elementos div en este archivo, no es especialmente útil etiquetar las etiquetas div de cierre. No vamos a añadir nada más a esta página, así que no necesitamos definir el bloque <code translate="no">content</code> en esta plantilla.</p>
+<p>La página de inicio tiene ahora el aspecto de <a href="#figure20-1">la Figura 20-1</a>. ¡Se trata de una mejora significativa con respecto a la versión sin estilo del proyecto!</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c20_5.html">anterior</a><a href="c20.html">Subtema 6 de 37: (Ver todo)</a><a href="c20_7.html">siguiente</a><br/></p>
+<br/><a href="c20_6.docx" target="_blank"></a></footer>
+</body>
+</html>

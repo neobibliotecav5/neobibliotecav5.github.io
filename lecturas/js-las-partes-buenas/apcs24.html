@@ -1,0 +1,54 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Constructors and new</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="Constructors and new"><div class="titlepage"><div><div><h1 class="title"><a id="constructors_and_new"></a>Constructores y nuevo</h1></div></div></div><p>Los constructores son funciones diseñadas para ser utilizadas con el prefijo <code class="literal" translate="no">new</code>. El prefijo <code class="literal" translate="no">new</code>crea un nuevo objeto basado en el prototipo de la función, y vincula ese objeto al parámetro <code class="literal" translate="no">this</code> implícito de la función. Si te olvidas de utilizar el prefijo <code class="literal" translate="no">new</code>, no se creará ningún objeto nuevo, y <code class="literal" translate="no">this</code> se vinculará al objeto global. Esto es un grave error.</p><p>JSLint aplica la convención de que las funciones constructoras deben tener nombres con mayúsculas iniciales. JSLint no espera ver una invocación a una función con un nombre inicial en mayúsculas a menos que tenga el prefijo <code class="literal" translate="no">new</code>. JSLint no espera ver el prefijo <code class="literal" translate="no">new</code>utilizado con funciones cuyos nombres no empiecen por mayúscula inicial.<a class="indexterm" id="IDX-APP-C-0680"></a><a class="indexterm" id="IDX-APP-C-0681"></a></p><p>JSLint no espera ver las formas envolventes <code class="literal" translate="no">new
+                    Number</code>, <code class="literal" translate="no">new String</code>, o <code class="literal" translate="no">new Boolean</code>.</p><p>JSLint no espera ver <code class="literal" translate="no">new Object</code> (utiliza <code class="literal" translate="no">{}</code> en su lugar).</p><p>JSLint no espera ver <code class="literal" translate="no">new Array</code> (utiliza <code class="literal" translate="no">[]</code> en su lugar).</p></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="apcs23.html">← Anterior</a><a href="apcs25.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="apcs24.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\apcs24.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

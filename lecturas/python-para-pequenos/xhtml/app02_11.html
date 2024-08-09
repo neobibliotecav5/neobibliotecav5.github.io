@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="app02lev1sec10">
+  La función divmod </h3>
+<p class="noindent">
+  La función auxiliar <span class="literal1" translate="no">
+   divmod
+  </span>toma dos parámetros (dos números que representan un dividendo y un divisor) y devuelve el resultado de dividir los dos números, junto con el resultado de realizar la operación de módulo en los dos números. La división es la operación matemática que consiste en calcular cuántas veces se puede dividir un número entre partes de un segundo número. Por ejemplo, ¿cuántas veces podemos dividir un conjunto de seis bolas en conjuntos de dos bolas? </p>
+<div class="image1">
+<img alt="Image" class="calibre189" src="../images/f0308-01.jpg" translate="no"/>
+</div>
+<p class="indent">
+  La respuesta: podemos dividirlo tres veces. </p>
+<div class="image1">
+<img alt="Image" class="calibre190" src="../images/f0308-02.jpg" translate="no"/>
+</div>
+<p class="indent">
+  La operación <span class="literal1" translate="no">
+   modulo
+  </span>es casi lo mismo, salvo que el módulo devuelve el número que sobra después de hacer la división. Así que el resultado del módulo para las seis bolas divididas por dos de arriba es cero (porque no sobra nada). ¿Y si añadimos una bola más? Si dividimos siete bolas en conjuntos de dos, el resultado de la división sigue siendo tres, pero sobrará una bola. </p>
+<div class="image1">
+<img alt="Image" class="calibre191" src="../images/f0308-03.jpg" translate="no"/>
+</div>
+<p class="indent">
+  Y eso es lo que <span class="literal1" translate="no">
+   divmod
+  </span>devolverá como una tupla de dos números: el resultado de la división y el resultado de la operación módulo. Probemos primero con 6 y 2: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">divmod</span>(6, 2)
+<span class="blue1">(3, 0)</span>
+</pre>
+<p class="indent">
+<span id="page_309">
+</span>
+  Y luego con 7 y 2: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">divmod</span>(7, 2)
+<span class="blue1">(3, 1)</span>
+</pre>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="app02_10.html">anterior</a><a href="app02.html">Subtema 11 de 25: (Ver todo)</a><a href="app02_12.html">siguiente</a><br/></p>
+<br/><a href="app02_11.docx" target="_blank"></a></footer>
+</body>
+</html>

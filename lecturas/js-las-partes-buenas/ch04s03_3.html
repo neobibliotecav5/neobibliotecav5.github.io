@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/><title>Invocation</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h2 class="title"><a id="the_function_invocation_pattern"></a>El patrón de invocación de funciones</h2><p>Cuando una función no es propiedad de un objeto, se invoca como una función:<a class="indexterm" id="IDX-CHP-4-0192"></a><a class="indexterm" id="IDX-CHP-4-0193"></a></p><a id="I_programlisting4_d1e2555"></a><pre class="programlisting" translate="no">var sum = add(3, 4);    // sum is 7</pre><p>Cuando se invoca una función con este patrón, <code class="literal" translate="no">this</code> se vincula al objeto global. Esto fue un error en el diseño del lenguaje. Si el lenguaje se hubiera diseñado correctamente, al invocar la función interna, <code class="literal" translate="no">this</code> seguiría estando ligada a la variable <code class="literal" translate="no">this</code> de la función externa. Una consecuencia de este error es que un método no puede emplear una función interna para que le ayude a hacer su trabajo, porque la función interna no comparte el acceso del método al objeto, ya que su <code class="literal" translate="no">this</code> está ligado al valor incorrecto. Afortunadamente, existe una solución fácil. Si el método define una variable y le asigna el valor de <code class="literal" translate="no">this</code>, la función interna tendrá acceso a <code class="literal" translate="no">this</code> a través de esa variable. Por convención, el nombre de esa variable es <code class="literal" translate="no">that</code>:</p><a id="I_programlisting4_d1e2581"></a><pre class="programlisting" translate="no">// Augment myObject with a double method.
+
+myObject.double = function (  ) {
+    var that = this;    // Workaround.
+
+    var helper = function (  ) {
+        that.value = add(that.value, that.value);
+    };
+
+    helper(  );    // Invoke helper as a function.
+};
+
+// Invoke double as a method.
+
+myObject.double(  );
+document.writeln(myObject.value);     // 6 </pre><div class="sect2" title="The Constructor Invocation Pattern"><div class="titlepage"><div><div></div></div></div></div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch04s03_2.html">anterior</a><a href="ch04s03.html">Subtema 3 de 5: (Ver todo)</a><a href="ch04s03_4.html">siguiente</a><br/></p>
+<br/><a href="ch04s03_3.docx" target="_blank"></a></footer>
+</body>
+</html>

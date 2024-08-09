@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch11lev1sec4">
+  Añadir alguna acción </h3>
+<p class="noindent">
+  Ahora que tenemos configurada la clase <span class="literal1" translate="no">
+   Ball
+  </span>, es hora de animar la pelota. Haremos que se mueva, rebote y cambie de dirección. </p>
+<div class="image1">
+<img alt="Image" class="calibre123" src="../images/f0176-01.jpg" translate="no"/>
+</div>
+<h4 class="h3" id="ch11lev2sec1">
+  Mover la pelota </h4>
+<p class="noindent">
+  Para mover la pelota, modifica la función <span class="literal1" translate="no">
+   draw
+  </span>como se indica a continuación: </p>
+<pre class="pre" translate="no"><span class="orange">class</span> Ball:
+    <span class="orange">def</span> __init__(self, canvas, color):
+<span id="page_177"></span>        self.canvas = canvas
+        self.id = canvas.create_oval(10, 10, 25, 25, fill=color)
+        self.canvas.move(self.id, 245, 100)
+
+    <span class="orange">def</span> draw(self):
+        self.canvas.move(self.id, 0, -1)</pre>
+<p class="noindent">
+  Como <span class="literal1" translate="no">
+   __init__
+  </span>guardó el parámetro <span class="literal1" translate="no">
+   canvas
+  </span>como variable del objeto <span class="literal1" translate="no">
+   canvas
+  </span>, utilizamos esa variable con <span class="literal1" translate="no">
+   self.canvas
+  </span>y llamamos a la función <span class="literal1" translate="no">
+   move
+  </span>en el lienzo. </p>
+<p class="indent">
+  Pasamos tres parámetros a <span class="literal1" translate="no">
+   move
+  </span>: el <span class="literal1" translate="no">
+   id
+  </span>del óvalo, y los números <span class="literal1" translate="no">
+   0
+  </span>y <span class="literal1" translate="no">
+   -1
+  </span>. El <span class="literal1" translate="no">
+   0
+  </span>indica a la bola que no se mueva horizontalmente, y el <span class="literal1" translate="no">
+   -1
+  </span>indica a la bola que se mueva 1 píxel hacia arriba en la pantalla. </p>
+<p class="indent">
+  Hacemos este pequeño cambio porque es beneficioso ir probando cosas sobre la marcha. Imagina que escribimos todo el código de nuestro juego de una vez y luego descubrimos que no funciona. ¿Por dónde empezaríamos a buscar para averiguar qué falló? </p>
+<p class="indent">
+  También cambiaremos el bucle principal al final de nuestro programa. En el bloque del bucle <span class="literal1" translate="no">
+   while
+  </span>(nuestro bucle principal), añadimos una llamada a la función <span class="literal1" translate="no">
+   draw
+  </span>del objeto <span class="literal1" translate="no">
+   ball
+  </span>, de esta forma: </p>
+<pre class="pre" translate="no"><span class="gray">while True:</span>
+    ball.draw()
+    <span class="gray">tk.update_idletasks()
+    tk.update()
+    time.sleep(0.01)</span></pre>
+<p class="indent">
+  Si ejecutas este código ahora, la pelota debería moverse por el lienzo y desaparecer de la parte superior de la pantalla: los comandos <span class="literal1" translate="no">
+   update _idletasks
+  </span>y <span class="literal1" translate="no">
+   update
+  </span>indican a <span class="literal1" translate="no">
+   tkinter
+  </span>que se dé prisa en dibujar lo que hay en el lienzo. </p>
+<p class="indent">
+  El comando <span class="literal1" translate="no">
+   time.sleep
+  </span>es una llamada a la función <span class="literal1" translate="no">
+   sleep
+  </span>del módulo <span class="literal1" translate="no">
+   time
+  </span>, que le dice a Python que duerma durante una centésima de segundo ( <span class="literal1" translate="no">
+   0.01
+  </span>). Esto garantiza que nuestro programa no se ejecute tan rápido que la bola desaparezca antes incluso de que la veas. </p>
+<p class="indent">
+  Este bucle está diciendo básicamente: "Mueve la bola un poco, vuelve a dibujar la pantalla con la nueva posición, duerme un momento y vuelve a empezar". </p>
+<div class="note">
+<p class="notet">
+<span class="calibre2" id="page_178">
+</span>
+<strong class="calibre3"><span class="notes">NOTA </span></strong></p>
+<p class="notep">
+<em class="calibre7">
+    Puede que veas mensajes de error escritos en la Shell de Python cuando cierres la ventana del juego. Esto se debe a que al cerrar la ventana se interrumpe lo que <span class="literal1" translate="no">
+     tkinter
+    </span>está haciendo, y Python se está quejando de ello. Podemos ignorar con seguridad este tipo de errores. </em></p>
+</div>
+<p class="indent">
+  Ahora tu código de juego debería tener este aspecto: </p>
+<pre class="pre" translate="no"><span class="orange">from</span> tkinter <span class="orange">import</span> *
+<span class="orange">import</span> random
+<span class="orange">import</span> time
+
+<span class="orange">class</span> Ball:
+    <span class="orange">def</span> __init__(self, canvas, color):
+        self.canvas = canvas
+        self.id = canvas.create_oval(10, 10, 25, 25, fill=color)
+        self.canvas.move(self.id, 245, 100)
+        
+    <span class="orange">def</span> draw(self):
+        self.canvas.move(self.id, 0, -1)
+
+tk = Tk()
+tk.title(<span class="green">'Bounce Game'</span>)
+tk.resizable(0, 0)
+tk.wm_attributes(<span class="green">'-topmost'</span>, 1)
+canvas = Canvas(tk, width=500, height=400, bd=0, highlightthickness=0)
+canvas.pack()
+tk.update()
+
+ball = Ball(canvas, <span class="green">'red'</span>)
+
+<span class="orange">while</span> <span class="violet">True</span>:
+    ball.draw()
+    tk.update_idletasks()
+    tk.update()
+    time.sleep(0.01)</pre>
+<p class="indent">
+  Si ejecutas este código, la pelota empezará a moverse hacia arriba y saldrá por la parte superior de la ventana. </p>
+<h4 class="h3" id="ch11lev2sec2">
+<span class="calibre2" id="page_179">
+</span>
+  Hacer que la pelota rebote </h4>
+<p class="noindent">
+  Una pelota que desaparece de la parte superior de la pantalla no es especialmente útil para nuestro juego, así que hagamos que rebote. En primer lugar, guardaremos unas cuantas variables de objeto adicionales en la función de inicialización de la clase <span class="literal1" translate="no">
+   Ball
+  </span>, como se indica a continuación: </p>
+<pre class="pre" translate="no">    <span class="gray">def __init__(self, canvas, color):
+        self.canvas = canvas
+        self.id = canvas.create_oval(10, 10, 25, 25, fill=color)
+        self.canvas.move(self.id, 245, 100)</span>
+        self.x = 0
+        self.y = -1
+        self.canvas_height = self.canvas.winfo_height()</pre>
+<p class="indent">
+  Hemos añadido tres líneas más a nuestro programa. Con <span class="literal1" translate="no">
+   self.x = 0
+  </span>, establecemos la variable de objeto <span class="literal1" translate="no">
+   x
+  </span>en 0; con <span class="literal1" translate="no">
+   self.y = -1
+  </span>, establecemos la variable <span class="literal1" translate="no">
+   y
+  </span>en -1. Por último, fijamos la variable de objeto <span class="literal1" translate="no">
+   canvas_height
+  </span>llamando a la función de lienzo <span class="literal1" translate="no">
+   winfo_height
+  </span>. Esta función devuelve la altura actual del lienzo. </p>
+<p class="indent">
+  A continuación, volvemos a cambiar la función <span class="literal1" translate="no">
+   draw
+  </span>: </p>
+<pre class="pre" translate="no">    <span class="orange">def</span> draw(self):
+        self.canvas.move(self.id, self.x, self.y)
+        pos = self.canvas.coords(self.id)
+        <span class="orange">if</span> pos[1] &lt;= 0:
+            self.y = 1 
+        <span class="orange">if</span> pos[3] &gt;= self.canvas_height:
+            self.y = -1</pre>
+<p class="indent">
+  Primero cambiamos la llamada a la función <span class="literal1" translate="no">
+   move
+  </span>del lienzo pasando las variables de objeto <span class="literal1" translate="no">
+   x
+  </span>y <span class="literal1" translate="no">
+   y
+  </span>. A continuación, creamos una variable llamada <span class="literal1" translate="no">
+   pos
+  </span>llamando a la función <span class="literal1" translate="no">
+   coords
+  </span>del lienzo. Esta función devuelve las <em class="calibre7">coordenadas </em> <em class="calibre7">x e </em> <em class="calibre7">y </em>actuales de cualquier cosa dibujada en el lienzo, siempre que conozcas su número identificativo. En este caso, pasamos a <span class="literal1" translate="no">
+   coords
+  </span>la variable objeto <span class="literal1" translate="no">
+   id
+  </span>, que contiene el identificador del óvalo. </p>
+<p class="indent">
+<span id="page_180">
+</span>
+  La función <span class="literal1" translate="no">
+   coords
+  </span>devuelve las coordenadas como una lista de cuatro números. Si imprimimos los resultados de llamar a esta función, veremos algo como esto </p>
+<pre class="pre" translate="no"><span class="violet">print</span>(self.canvas.coords(self.id))
+<span class="blue1">[255.0, 29.0, 270.0, 44.0]</span></pre>
+<p class="indent">
+  Los dos primeros números de la lista ( <span class="literal1" translate="no">
+   255.0
+  </span>y <span class="literal1" translate="no">
+   29.0
+  </span>) contienen las coordenadas superiores izquierdas del óvalo ( <em class="calibre7">x1 </em>e <em class="calibre7">y1 </em>), y el segundo par ( <span class="literal1" translate="no">
+   270.0
+  </span>y <span class="literal1" translate="no">
+   44.0
+  </span>) son las coordenadas inferiores derechas <em class="calibre7">x2 </em>e <em class="calibre7">y2 </em>. Utilizaremos estos valores en las siguientes líneas de código. </p>
+<p class="indent">
+  Continuamos nuestro código viendo si la coordenada <em class="calibre7">y1 </em>(¡esa es la parte superior de la bola!) es menor o igual que 0. Si es así, establecemos la variable de objeto <span class="literal1" translate="no">
+   y
+  </span>en <span class="literal1" translate="no">
+   1
+  </span>. En efecto, estamos diciendo que si golpeas la parte superior de la pantalla, <span class="literal1" translate="no">
+   tkinter
+  </span>dejará de restar 1 a la posición vertical, y la bola dejará de moverse hacia arriba (es una versión simple de la <em class="calibre7">detección de colisiones </em>). </p>
+<div class="image1">
+<img alt="Image" class="calibre124" src="../images/f0180-01.jpg" translate="no"/>
+</div>
+<p class="indent">
+  A continuación, vemos si la coordenada <em class="calibre7">y2 </em>(¡esa es la parte inferior de la bola!) es mayor o igual que la variable <span class="literal1" translate="no">
+   canvas_height
+  </span>. Si lo es, volvemos a poner la variable de objeto <span class="literal1" translate="no">
+   y
+  </span>en <span class="literal1" translate="no">
+   -1
+  </span>. Ahora la bola dejará de moverse hacia abajo y volverá a subir. </p>
+<p class="indent">
+  Ejecuta ahora este código y la pelota debería rebotar arriba y abajo por el lienzo hasta que cierres la ventana. </p>
+<h4 class="h3" id="ch11lev2sec3">
+  Cambiar la dirección inicial de la bola </h4>
+<p class="noindent">
+  Hacer que una pelota rebote lentamente hacia arriba y hacia abajo no es un gran juego, así que mejoremos un poco las cosas cambiando la dirección inicial de la pelota, es decir, el ángulo en que se mueve cuando empieza el juego. </p>
+<div class="image1">
+<img alt="Image" class="calibre125" src="../images/f0180-02.jpg" translate="no"/>
+</div>
+<p class="indent">
+  En la función <span class="literal1" translate="no">
+   __init__
+  </span>, cambia estas dos líneas </p>
+<pre class="pre" translate="no">    self.x = 0
+    self.y = -1</pre>
+<p class="indent">
+  por el código siguiente (asegúrate de que tienes el número correcto de espacios -hay ocho- al principio de cada línea): </p>
+<pre class="pre" translate="no"><span id="page_181"></span>    starts = [-3, -2, -1, 1, 2, 3]
+    self.x = random.choice(starts)
+    self.y = 3</pre>
+<p class="indent">
+  Comenzamos creando la variable <span class="literal1" translate="no">
+   starts
+  </span>con una lista de seis números. A continuación, establecemos el valor de la variable <span class="literal1" translate="no">
+   x
+  </span>, utilizando la función <span class="literal1" translate="no">
+   random.choice
+  </span>, que devuelve un elemento aleatorio de una lista. Al utilizar esa función, <span class="literal1" translate="no">
+   x
+  </span>puede ser cualquier número de la lista, de -3 a 3. </p>
+<p class="indent">
+  Por último, cambiamos <span class="literal1" translate="no">
+   y
+  </span>a -3 (para que la bola empiece el juego moviéndose hacia arriba). Ahora nuestra bola puede moverse en cualquier dirección, pero tenemos que hacer algunos añadidos más para asegurarnos de que no se desvanecerá por el lateral de la pantalla. Añade la siguiente línea al final de la función <span class="literal1" translate="no">
+   __init__
+  </span>para guardar la anchura del lienzo en una nueva variable de objeto <span class="literal1" translate="no">
+   canvas_width
+  </span>: </p>
+<pre class="pre" translate="no">    self.canvas_width = self.canvas.winfo_width()</pre>
+<p class="indent">
+  Utilizaremos esta nueva variable de objeto en la función <span class="literal1" translate="no">
+   draw
+  </span>para ver si la bola ha golpeado el lado izquierdo o derecho del lienzo: </p>
+<pre class="pre" translate="no">    <span class="orange">if</span> pos[0] &lt;= 0 <span class="orange">or</span> pos[2] &gt;= self.canvas_width:
+        self.x = self.x * -1</pre>
+<p class="indent">
+  Si la posición más a la izquierda de la bola es menor o igual que 0, o la posición más a la derecha de la bola es mayor o igual que la anchura del lienzo, hacemos este pequeño y extraño cálculo <span class="literal1" translate="no">
+   self.x = self.x * -1
+  </span>. La variable <span class="literal1" translate="no">
+   x
+  </span>se establece en el valor actual de <span class="literal1" translate="no">
+   x
+  </span>multiplicado por -1. Así, si el valor de <span class="literal1" translate="no">
+   x
+  </span>es 2, el nuevo valor será -2. Si el valor de <span class="literal1" translate="no">
+   x
+  </span>es -3, el nuevo valor será 3. Por tanto, cuando la pelota golpee un lado, rebotará en la dirección opuesta. Podemos hacer una comprobación similar para la parte superior e inferior del lienzo, utilizando la altura del lienzo y multiplicando la variable <span class="literal1" translate="no">
+   y
+  </span>por -1. Tu función <span class="literal1" translate="no">
+   draw
+  </span>debería tener ahora este aspecto: </p>
+<pre class="pre" translate="no">    <span class="orange">def</span> draw(self):
+        self.canvas.move(self.id, self.x, self.y)
+        pos = self.canvas.coords(self.id)
+        <span class="orange">if</span> pos[0] &lt;= 0 <span class="orange">or</span> pos[2] &gt;= self.canvas_width:
+            self.x = self.x * -1
+        <span class="orange">if</span> pos[1] &lt;= 0 <span class="orange">or</span> pos[3] &gt;= self.canvas_height:
+            self.y = self.y * -1</pre>
+<p class="indent">
+<span id="page_182">
+</span>
+  El programa completo debería tener este aspecto: </p>
+<pre class="pre" translate="no"><span class="orange">from</span> tkinter <span class="orange">import</span> *
+<span class="orange">import</span> random
+<span class="orange">import</span> time
+
+<span class="orange">class</span> Ball:
+    <span class="orange">def</span> __init__(self, canvas, color):
+        self.canvas = canvas
+        self.id = canvas.create_oval(10, 10, 25, 25, fill=color)
+        self.canvas.move(self.id, 245, 100)
+        starts = [-3, -2, -1, 1, 2, 3]
+        self.x = random.choice(starts)
+        self.y = -3
+        self.canvas_height = self.canvas.winfo_height()
+        self.canvas_width = self.canvas.winfo_width()
+        
+    <span class="orange">def</span> draw(self):
+        self.canvas.move(self.id, self.x, self.y)
+        pos = self.canvas.coords(self.id)
+        <span class="orange">if</span> pos[0] &lt;= 0 <span class="orange">or</span> pos[2] &gt;= self.canvas_width:
+            self.x = self.x * -1
+        <span class="orange">if</span> pos[1] &lt;= 0 <span class="orange">or</span> pos[3] &gt;= self.canvas_height:
+            self.y = self.y * -1
+
+tk = Tk()
+tk.title(<span class="green">'Bounce Game'</span>)
+tk.resizable(0, 0)
+tk.wm_attributes(<span class="green">'-topmost'</span>, 1)
+canvas = Canvas(tk, width=500, height=400, bd=0, highlightthickness=0)
+canvas.pack()
+tk.update()
+
+ball = Ball(canvas, <span class="green">'red'</span>)
+
+<span class="orange">while</span> <span class="violet">True</span>:
+    ball.draw()
+    tk.update_idletasks()
+    tk.update()
+    time.sleep(0.01)</pre>
+<p class="indent">
+<span id="page_183">
+</span>
+  Guarda y ejecuta el código, y la pelota debería rebotar por la pantalla sin desaparecer. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch11_4.html">anterior</a><a href="ch11.html">Subtema 5 de 7: (Ver todo)</a><a href="ch11_6.html">siguiente</a><br/></p>
+<br/><a href="ch11_5.docx" target="_blank"></a></footer>
+</body>
+</html>

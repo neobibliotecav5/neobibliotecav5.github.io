@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c18-0018">Herencia de plantillas</h3>
+<p class="BodyFirst">Al construir un sitio web, algunos elementos tendrán que repetirse en cada página. En lugar de escribir estos elementos directamente en cada página, puedes escribir una plantilla base que contenga los elementos repetidos y luego hacer que cada página herede de la base. Este enfoque te permite centrarte en desarrollar los aspectos únicos de cada página, y hace que sea mucho más fácil cambiar el aspecto general del proyecto.</p>
+<h4 id="h3-502703c18-0004">La plantilla padre</h4>
+<p class="BodyFirst">Crearemos una plantilla llamada <em translate="no">base.html</em> en el mismo directorio que <em translate="no">index.html</em>. Este archivo contendrá elementos comunes a todas las páginas; todas las demás plantillas heredarán de <em translate="no">base.html</em>. El único elemento que queremos repetir en cada página en este momento es el título de la parte superior. Como incluiremos esta plantilla en todas las páginas, hagamos que el título sea un enlace a la página de inicio:</p>
+<p class="CodeLabel" translate="no"><b>base.html</b></p>
+<pre translate="no"><code translate="no">&lt;p&gt;
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>   &lt;a href="{% url 'learning_logs:index' %}"&gt;Learning Log&lt;/a&gt;
+<span epub:type="pagebreak" id="Page_393" title="393"></span>&lt;/p&gt;
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> {% block content %}{% endblock content %}</code></pre>
+<p>La primera parte de este archivo crea un párrafo que contiene el nombre del proyecto, que también actúa como enlace a la página de inicio. Para generar un enlace, utilizamos una etiqueta <em translate="no">template tag</em>, que se indica mediante llaves y signos de porcentaje (<code translate="no">{% %}</code>). Una etiqueta de plantilla genera información que se mostrará en una página. La etiqueta de plantilla <code translate="no">{% url 'learning_logs:index' %}</code> que se muestra aquí genera una URL que coincide con el patrón de URL definido en <em translate="no">learning_logs/urls.py</em> con el nombre <code translate="no">'index'</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> En este ejemplo, <code translate="no">learning_logs</code> es el <em translate="no">namespace</em> y <code translate="no">index</code> es un patrón de URL con nombre único en ese espacio de nombres. El espacio de nombres procede del valor que asignamos a <code translate="no">app_name</code> en el archivo <em translate="no">learning_logs/urls.py</em>.</p>
+<p>En una página HTML sencilla, un enlace está rodeado por el <em translate="no">anchor</em> <em translate="no">tag</em> <code translate="no"></code> :</p>
+<pre translate="no"><code translate="no">&lt;a href="<var>link_url</var>"&gt;<var>link text</var>&lt;/a&gt;</code></pre>
+<p>Hacer que la etiqueta de plantilla genere la URL por nosotros hace que sea mucho más fácil mantener nuestros enlaces actualizados. Sólo tenemos que cambiar el patrón de URL en <em translate="no">urls.py</em>, y Django insertará automáticamente la URL actualizada la próxima vez que se solicite la página. Todas las páginas de nuestro proyecto heredarán de <em translate="no">base.html</em>, por lo que, a partir de ahora, todas las páginas tendrán un enlace a la página de inicio.</p>
+<p>En la última línea, insertamos un par de etiquetas <code translate="no">block</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Este bloque, llamado <code translate="no">content</code>, es un marcador de posición; la plantilla hija definirá el tipo de información que va en el bloque <code translate="no">content</code>.</p>
+<p>Una plantilla hija no tiene por qué definir todos los bloques de su padre, así que puedes reservar espacio en las plantillas padre para tantos bloques como quieras; la plantilla hija sólo utilizará los que necesite.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c18_33.html">anterior</a><a href="c18.html">Subtema 34 de 41: (Ver todo)</a><a href="c18_35.html">siguiente</a><br/></p>
+<br/><a href="c18_34.docx" target="_blank"></a></footer>
+</body>
+</html>

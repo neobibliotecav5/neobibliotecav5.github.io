@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c10-0002"><span epub:type="pagebreak" id="Page_186" title="186"></span>Rutas de archivos relativas y absolutas</h3>
+<p class="BodyFirst">Cuando pasas un nombre de archivo simple como <em translate="no">pi_digits.txt</em> a <code translate="no">Path</code>, Python busca en el directorio donde está almacenado el archivo que se está ejecutando en ese momento (es decir, tu archivo de programa <em translate="no">.py</em> ).</p>
+<p>A veces, dependiendo de cómo organices tu trabajo, el archivo que quieres abrir no estará en el mismo directorio que tu archivo de programa. Por ejemplo, podrías almacenar tus archivos de programa en una carpeta llamada <em translate="no">python_work</em>; dentro de <em translate="no">python_work</em>, podrías tener otra carpeta llamada <em translate="no">text_files</em> para distinguir tus archivos de programa de los archivos de texto que manipulan. Aunque <em translate="no">text_files</em> esté en <em translate="no">python_work</em>, pasar a <code translate="no">Path</code> el nombre de un archivo en <em translate="no">text_files</em> no funcionará, porque Python sólo buscará en <em translate="no">python_work </em>y se detendrá ahí; no seguirá y buscará en <em translate="no">text_files.</em>. Para conseguir que Python abra archivos de un directorio distinto de aquel en el que está almacenado tu archivo de programa, necesitas proporcionar la ruta correcta.</p>
+<p>Hay dos formas principales de especificar rutas en programación. Un <em translate="no">relative file path</em> le dice a Python que busque una ubicación determinada relativa al directorio donde está almacenado el archivo de programa que se está ejecutando en ese momento. Como <em translate="no">text_files</em> está dentro de <em translate="no">python_work</em>, necesitamos construir una ruta que empiece por el directorio <em translate="no">text_files</em>, y termine por el nombre del archivo. He aquí cómo construir esta ruta:</p>
+<pre translate="no"><code translate="no">path = Path('text_files/<var>filename</var>.txt')</code></pre>
+<p>También puedes decirle a Python exactamente dónde está el archivo en tu ordenador, independientemente de dónde esté almacenado el programa que se está ejecutando. Esto se llama <em translate="no">absolute file path</em>. Puedes utilizar una ruta absoluta si una relativa no funciona. Por ejemplo, si has puesto <em translate="no">text_files</em> en alguna carpeta distinta de <em translate="no">python_work</em>, entonces pasar a <code translate="no">Path</code> la ruta <code translate="no">'text_files/</code><var>nombrearchivo</var><code translate="no">.txt'</code> no funcionará porque Python sólo buscará esa ubicación dentro de <em translate="no">python_work</em>. Tendrás que escribir una ruta absoluta para aclarar dónde quieres que Python busque.</p>
+<p>Las rutas absolutas suelen ser más largas que las relativas, porque empiezan en la carpeta raíz de tu sistema:</p>
+<pre translate="no"><code translate="no">path = Path('/home/eric/data_files/text_files/<var>filename</var>.txt')</code></pre>
+<p>Utilizando rutas absolutas, puedes leer archivos desde cualquier ubicación de tu sistema. Por ahora, lo más fácil es almacenar los archivos en el mismo directorio que los archivos de tu programa, o en una carpeta como <em translate="no">text_files</em> dentro del directorio que almacena los archivos de tu programa.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c10_4.html">anterior</a><a href="c10.html">Subtema 5 de 37: (Ver todo)</a><a href="c10_6.html">siguiente</a><br/></p>
+<br/><a href="c10_5.docx" target="_blank"></a></footer>
+</body>
+</html>

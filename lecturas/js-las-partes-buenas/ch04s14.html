@@ -1,0 +1,67 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Curry</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="Curry"><div class="titlepage"><div><div><h1 class="title"><a id="curry"></a>Curry</h1></div></div></div><p>Las funciones son valores, y podemos manipular los valores de las funciones de formas interesantes.             <span class="emphasis"><em translate="no">Currying</em></span> nos permite producir una nueva función combinando una función y un argumento:<a class="indexterm" id="IDX-CHP-4-0242"></a><a class="indexterm" id="IDX-CHP-4-0243"></a></p><a id="I_programlisting4_d1e3478"></a><pre class="programlisting" translate="no">var add1 = add.curry(1);
+document.writeln(add1(6));    // 7</pre><p><code class="literal" translate="no">add1</code> es una función que se creó pasando 1 al método <code class="literal" translate="no">curry</code> de <code class="literal" translate="no">add</code>. La función <code class="literal" translate="no">add1</code> añade 1 a su argumento. JavaScript no tiene un método <code class="literal" translate="no">curry</code>, pero podemos arreglarlo aumentando <code class="literal" translate="no">Function.prototype</code>:</p><a id="I_programlisting4_d1e3499"></a><pre class="programlisting" translate="no">Function.method('curry', function (  ) {
+    var args = arguments, that = this;
+    return function (  ) {
+        return that.apply(null, args.concat(arguments));
+    };
+});    // Something isn't right...</pre><p>El método <code class="literal" translate="no">curry</code> funciona creando un cierre que contiene esa función original y los argumentos al curry. Devuelve una función que, al ser invocada, devuelve el resultado de llamar a esa función original, pasándole todos los argumentos de la invocación de <code class="literal" translate="no">curry</code>y de la invocación actual. Utiliza el método <code class="literal" translate="no">Array
+                    concat</code> para concatenar las dos matrices de argumentos.</p><p>Por desgracia, como hemos visto antes, la matriz <code class="literal" translate="no">arguments</code>no es una matriz, por lo que no tiene el método <code class="literal" translate="no">concat</code>. Para evitarlo, aplicaremos el método <code class="literal" translate="no">slice</code> a las dos matrices <code class="literal" translate="no">arguments</code>. Esto produce matrices que se comportan correctamente con el método <code class="literal" translate="no">concat</code>:</p><a id="I_programlisting4_d1e3529"></a><pre class="programlisting" translate="no">Function.method('curry', function (  ) {
+    var slice = Array.prototype.slice,
+        args = slice.apply(arguments),
+        that = this;
+    return function (  ) {
+        return that.apply(null, args.concat(slice.apply(arguments)));
+    };
+});</pre></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="ch04s13.html">← Anterior</a><a href="ch04s15.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="ch04s14.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\ch04s14.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

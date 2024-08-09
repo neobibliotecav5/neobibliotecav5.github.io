@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>typeof</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="typeof"><div class="titlepage"><div><div><h1 class="title"><a id="typeof"></a>tipode</h1></div></div></div><p>El operador <code class="literal" translate="no">typeof</code> devuelve una cadena que identifica el tipo de su operando. Por tanto:</p><a id="I_programlisting_d1e8306"></a><pre class="programlisting" translate="no">typeof 98.6</pre><p>produce <code class="literal" translate="no">'number'</code>. Desgraciadamente:</p><a id="I_programlisting_d1e8313"></a><pre class="programlisting" translate="no">typeof null</pre><p>devuelve <code class="literal" translate="no">'object'</code> en lugar de <code class="literal" translate="no">'null'</code>. Uy. Una prueba mejor para <code class="literal" translate="no">null</code> es simplemente</p><a id="I_programlisting_d1e8326"></a><pre class="programlisting" translate="no">my_value === null</pre><p><code class="literal" translate="no">typeof</code> no puede distinguir entre <code class="literal" translate="no">null</code> y los objetos, pero tú sí puedes porque <code class="literal" translate="no">null</code> es falso y todos los objetos son verdaderos:</p><a id="I_programlisting_d1e8339"></a><pre class="programlisting" translate="no">if (my_value &amp;&amp; typeof my_value === 'object') {
+    // my_value is an object or an array!
+}</pre><p>Consulta también las secciones posteriores<a class="xref" href="apas10.html" title="NaN">"NaN</a>" y<a class="xref" href="apas11.html" title="Phony Arrays">"Matrices falsas</a>".</p><p>Las implementaciones no se ponen de acuerdo sobre el tipo de objetos de expresión regular. Algunas implementaciones informan de que:</p><a id="I_programlisting_d1e8350"></a><pre class="programlisting" translate="no">typeof /a/</pre><p>es <code class="literal" translate="no">'object'</code>, y otras dicen que es <code class="literal" translate="no">'function'</code>. Podría haber sido más útil informar de <code class="literal" translate="no">'regexp'</code>, pero la norma no lo permite.</p></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="apas05.html">← Anterior</a><a href="apas07.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="apas06.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\apas06.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

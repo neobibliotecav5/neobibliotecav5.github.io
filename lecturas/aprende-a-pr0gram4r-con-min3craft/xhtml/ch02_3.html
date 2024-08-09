@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch02lev1sec02"><strong><span class="blue1">Almacenamiento de datos con variables</span></strong></h3>
+<p class="noindent">Empecemos por aprender a almacenar datos con variables. <em>Las</em> variables te permiten almacenar datos para utilizarlos posteriormente en un programa. Los <em>datos</em> son cualquier información que quieras registrar, como números, nombres, cualquier tipo de texto, listas de elementos, etc. Por ejemplo, aquí tienes una variable llamada <span class="literal">picos</span> que almacena el valor numérico <span class="literal">12</span>:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> pickaxes = 12</p>
+<p class="indent">Las variables pueden almacenar números, palabras e incluso frases completas, como "¡Fuera de aquí, Enredadera!". También puedes cambiar las variables, lo que te permite hacer cosas muy interesantes en Minecraft. De hecho, ¡en breve utilizarás variables para aprovechar el poder del teletransporte!</p>
+<p class="indent">Para crear una variable en Python, utilizarás un nombre de variable, un signo igual<span class="literal">(=</span>) y un valor. Digamos que estás a punto de emprender una gran aventura a través de muchos biomas de Minecraft; querrás llevar mucha comida contigo. Puedes representar la comida como una variable. Por ejemplo, en el siguiente shell de Python, <span class="literal">pan</span> es el nombre de la variable y <span class="literal">145</span> es el valor:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> bread = 145</p>
+<p class="indent">El nombre de la variable siempre está a la izquierda del signo igual, y el valor que quieres almacenar siempre está a la derecha, como se muestra en la <a href="ch02.xhtml#ch2fig1">Figura 2-1</a>. Esta línea de código Python <em>declara</em> la variable <span class="literal">pan</span> y le <em>asigna</em> el valor <span class="literal">145</span>.</p>
+<div class="image"><img alt="image" src="../images/f02-01.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch2fig1"></a><em>Figura 2-1: Partes de una declaración de variable. Debes tener mucha hambre si tienes 145 barras de pan.</em></p>
+<p class="indent">Después de declarar una variable y asignarle un valor, puedes introducir el nombre de la variable en el intérprete de comandos de Python para comprobar lo que contiene:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> bread<br translate="no"/><span class="blue1">145</span></p>
+<p class="indent">Puedes utilizar casi cualquier nombre para una variable, pero es mejor utilizar un nombre que describa la finalidad de la variable para que entiendas lo que ocurre en tu programa. Aunque no es una regla, debes empezar los nombres de las variables con una letra minúscula en lugar de mayúscula. Este es un estilo que siguen los programadores de Python, y es una buena práctica que tú también sigas, para que otros puedan leer fácilmente tu código si alguna vez quieres compartirlo.</p>
+<div class="note">
+<p class="notet"><span epub:type="pagebreak" id="page_33"></span><strong><span class="notes">NOTA</span></strong></p>
+<p class="notep"><em>Aunque el</em> valor de una variable se almacena<em>, no</em> se guarda<em>. El valor de una variable se almacena en la memoria temporal del ordenador, lo que significa que cuando el ordenador se apaga o el programa deja de ejecutarse, el valor de la variable deja de almacenarse. Prueba a cerrar IDLE y a abrirlo de nuevo. Cuando intentes obtener el valor de</em> <span class="literal"><span class="codeitalic">pan</span></span><em>, ¿qué ocurre?</em></p>
+</div>
+<h4 class="h4" id="ch02lev2sec01"><strong><span class="blue1">La estructura de los lenguajes de programación</span></strong></h4>
+<p class="noindent"><em>La sintaxis</em> es el conjunto de reglas que describen la gramática y la puntuación de un lenguaje de programación, de forma similar a la gramática y la puntuación de un lenguaje humano. Una vez que comprendas la sintaxis de Python, serás más capaz de escribir programas que un ordenador pueda seguir; sin embargo, si no utilizas la sintaxis correcta, el ordenador no entenderá lo que le estás diciendo que haga.</p>
+<p class="indent">Piensa en una sola instrucción de tu código como si fuera una frase. Para terminar una frase en inglés, se utiliza un punto (llamado punto y aparte en el Reino Unido). En lugar de un punto, Python utiliza una nueva línea para indicar el final de una instrucción y el comienzo de la siguiente. Cada instrucción en una nueva línea se denomina <em>sentencia</em>.</p>
+<p class="indent">Por ejemplo, supongamos que quieres llevar la cuenta de cuántos picos, bloques de mineral de hierro y bloques de adoquines tienes. En el shell de Python, lo escribirías así:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> pickaxes = 12<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> iron = 30<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> cobblestone = 25</p>
+<p class="indent"><a href="ch02.xhtml#ch2fig2">La Figura 2-2</a> muestra el aspecto de esto en el intérprete de comandos de Python.</p>
+<div class="image"><img alt="image" src="../images/f02-02.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch2fig2"></a><em>Figura 2-2: Introducción de código en el intérprete de comandos Python</em></p>
+<p class="indent"><span epub:type="pagebreak" id="page_34"></span>Observa que cada sentencia está en su propia línea. Debido a las nuevas líneas, Python entenderá que quieres hacer un seguimiento de tres elementos diferentes. Pero si no pones cada sentencia en una nueva línea, Python se confunde y te da un error de sintaxis:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> pickaxes = 12 iron = 30 cobblestone = 25<br translate="no"/><span class="red">SyntaxError: invalid syntax</span></p>
+<p class="indent">Un <em>error de sin</em> taxis es la forma que tiene Python de decirte que no lo entiende. Python no podrá seguir estas instrucciones porque no sabe dónde acaba una sentencia y empieza otra.</p>
+<p class="indent">Python tampoco sabrá qué hacer si empiezas las líneas con un espacio:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span>   iron = 30<br translate="no"/><span class="red">SyntaxError: unexpected indent</span></p>
+<p class="indent">Si te fijas bien, verás que el código tiene espacios al principio de la línea. Cuando obtengas un error sintáctico de sangría inesperada, como el que aparece aquí, sabrás que tu línea de código empieza con espacios cuando no debería.</p>
+<p class="indent">Python es muy exigente con la forma en que escribes el código. Si obtienes un error de sintaxis al introducir los ejemplos de este libro, revisa cuidadosamente tu trabajo. Lo más probable es que encuentres un pequeño error.</p>
+<h4 class="h4" id="ch02lev2sec02"><strong><span class="blue1">Reglas sintácticas para las variables</span></strong></h4>
+<p class="noindentb">Necesitas conocer algunas reglas sintácticas para nombrar variables, de modo que Python pueda entenderlas:</p>
+<p class="bull">- No incluyas símbolos en los nombres de las variables, excepto guiones bajos<span class="literal">(_</span>), o recibirás un error de sintaxis.</p>
+<p class="bull">- No empieces el nombre de una variable con un número, como en <span class="literal">9pan</span>. Utilizar números en otras partes del nombre de una variable está bien, como en <span class="literal">pan9</span>.</p>
+<p class="bull">- No es necesario que añadas espacios a ambos lados del signo igual: tu programa funcionará bien sin ellos. Pero facilitan la lectura del código, por lo que es una buena idea añadirlos.</p>
+<p class="indentt">Las variables son muy útiles. A continuación, aprenderás a cambiar el valor de las variables, ¡y luego estarás listo para teletransportar a tu jugador!</p>
+<h4 class="h4" id="ch02lev2sec03"><strong><span class="blue1">Cambiar el valor de las variables</span></strong></h4>
+<p class="noindent">Puedes cambiar el valor de una variable en cualquier momento del mismo modo que declararías una variable. Por ejemplo, supongamos que te encuentras con cinco gatos Minecraft y quieres guardar este valor como variable. Primero declaras una variable, <span class="literal">gatos</span>, y le asignas el valor <span class="literal">5</span>, que tendría este aspecto en una shell de Python:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> cats = 5<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> cats<br translate="no"/><span class="blue1">5</span></p>
+<p class="indent"><span epub:type="pagebreak" id="page_35"></span>Más tarde te encuentras con cinco gatos más y decides que quieres actualizar este valor. ¿Qué ocurre si cambias el valor de <span class="literal">gatos</span> a 10?</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> cats = 10<br translate="no"/><span class="mer">&gt;&gt;&gt;</span> cats<br translate="no"/><span class="blue1">10</span></p>
+<p class="indent">Cuando pides a Python el nuevo valor de <span class="literal">gatos</span>, ¡ya no es <span class="literal">5</span>! Ahora, cuando utilices la variable <span class="literal">gatos</span> en un programa, utilizará el nuevo valor de <span class="literal">10</span>.</p>
+<p class="indent">Hay muchos tipos de datos que puedes almacenar en variables. Los <em>tipos</em> de datos indican al ordenador cómo trabajar con un dato concreto. Empezaré hablando de uno de los tipos que utilizarás más a menudo: los números enteros. Más adelante, también presentaré el tipo de datos flotantes.</p>
+<h4 class="h4" id="ch02lev2sec04"><strong><span class="blue1">Enteros</span></strong></h4>
+<p class="noindent">Los números<em>enteros</em> son números enteros positivos o negativos. Valores como 10, 32, -6, 194689 y -5 son números enteros, pero 3,14 y 6,025 no lo son.</p>
+<p class="indent">Probablemente utilices números enteros todos los días sin pensar en ello, ¡incluso en Minecraft! Por ejemplo, puedes ver 12 vacas en una ladera mientras vas de camino a extraer 5 diamantes con 2 manzanas frescas en tu inventario. Todos esos números son enteros.</p>
+<p class="indent">Supongamos que tienes 5 cerdos en tu mundo de Minecraft y quieres escribir un programa que utilice el número de cerdos de alguna manera. En Python, declararías una variable entera para representar el número de cerdos:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> pigs = 5</p>
+<p class="indent">También puedes almacenar valores negativos en variables. Por ejemplo, para decir que la temperatura es de cinco grados negativos, establecerías una variable como ésta:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> temperature = -5</p>
+<p class="indent">Para utilizar variables y enteros de Python con Minecraft, completa la primera misión.</p>
+<h4 class="h4a" id="ch02lev2sec05"><strong>Misión nº 1: Teletransportar al Jugador</strong></h4>
+<p class="noindent">En esta misión, explorarás cómo funcionan las variables teletransportando a tu jugador a una nueva ubicación utilizando números enteros.</p>
+<p class="indent">Como se muestra en la <a href="ch02.xhtml#ch2fig3">Figura 2-3</a>, tu jugador tiene una <em>posición</em> en el mundo de Minecraft que está representada por tres <em>coordenadas</em>: <span class="literal">x</span>, <span class="literal">y</span> y <span class="literal">z</span>. La letra <span class="literal">y</span> representa la altura, y <span class="literal">x</span> y <span class="literal">z</span> representan posiciones horizontales en un plano llano.</p>
+<div class="image"><span epub:type="pagebreak" id="page_36"></span><img alt="image" src="../images/f02-03.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch2fig3"></a><em>Figura 2-3: Coordenadas 3D</em></p>
+<p class="indent">Si estás utilizando la versión Raspberry Pi del juego, la posición del jugador viene dada por tres números en la esquina superior izquierda de la ventana del juego, que puedes ver en la <a href="ch02.xhtml#ch2fig4">Figura 2-4</a>. Si utilizas la edición de escritorio del juego, puedes ver las coordenadas del jugador pulsando F3 y encontrando la primera línea en el segundo bloque de texto de la izquierda, etiquetado <em>XYZ</em>, como se muestra en la Figura <a href="ch02.xhtml#ch2fig5">2-5</a>.</p>
+<p class="indent">Mueve a tu jugador por el juego y observa cómo cambian los números de posición; las coordenadas deberían actualizarse en tiempo real a medida que el jugador camina. Genial, ¿verdad? Pero caminar largas distancias lleva mucho tiempo. ¿Por qué perder tanto tiempo caminando cuando puedes cambiar de posición instantáneamente utilizando Python? Veamos cómo hacerlo.</p>
+<div class="image"><img alt="image" src="../images/f02-04.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch2fig4"></a><em>Figura 2-4: Posición del jugador mostrada en Minecraft: Edición Pi</em></p>
+<div class="image"><span epub:type="pagebreak" id="page_37"></span><img alt="image" src="../images/f02-05.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch2fig5"></a><em>Figura 2-5: La posición del jugador mostrada en la edición de escritorio de Minecraft</em></p>
+<p class="indent">Enciende tu ordenador o tu Raspberry Pi y sigue estos pasos:</p>
+<ol>
+<li class="noindent"><p class="list">Abre IDLE y haz clic en <strong>Archivo</strong> <img alt="image" src="../images/arrow.jpg" translate="no"/> <strong>Nuevo Archivo</strong> (o <strong>Nueva Ventana</strong> en algunos ordenadores). Puedes ver la ventana vacía del editor de texto en la <a href="ch02.xhtml#ch2fig6">Figura 2-6</a>. Si utilizas una Raspberry Pi o tienes más de una versión de Python instalada en tu ordenador, asegúrate de que utilizas Python 3, no Python 2.7.</p>
+<div class="image"><img alt="image" src="../images/f02-06.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch2fig6"></a><em>Figura 2-6: Una nueva ventana de editor de texto en IDLE</em></p></li>
+<li class="noindent"><p class="list"><span epub:type="pagebreak" id="page_38"></span>Cuando aparezca la nueva ventana, haz clic en <strong>Archivo</strong> <img alt="image" src="../images/arrow.jpg" translate="no"/> <strong>Guardar como</strong>.</p></li>
+<li class="noindent"><p class="list">Crea una nueva carpeta llamada <em>variables</em> dentro de la carpeta <em>Minecraft Python</em> que creaste en el <a href="ch01.xhtml#ch01">Capítulo 1</a>.</p></li>
+<li class="noindent"><p class="list">Abre la carpeta <em>variables</em>, nombra tu archivo <em>teleport.py</em>, y haz clic en <strong>Guardar</strong>.</p></li>
+</ol>
+<p class="indent">Ahora que estás trabajando en el editor de texto de IDLE, añade las siguientes dos líneas de código en la parte superior de tu programa:</p>
+<p class="programs" translate="no"><span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>mc = Minecraft.create()</p>
+<p class="indent">Estas líneas conectan tu programa con Minecraft; las utilizarás en todos los programas que interactúen con Minecraft. A continuación, crea tres variables enteras llamadas <span class="literal">x</span>, <span class="literal">y</span> y <span class="literal">z</span>.</p>
+<p class="programs" translate="no">x = 10<br translate="no"/>y = 110<br translate="no"/>z = 12</p>
+<p class="indent">Estas variables representan la posición a la que quieres teletransportar a tu jugador. Por ahora, establece estas variables en 10, 110 y 12, como se muestra aquí.</p>
+<p class="indent">A continuación, introduce la siguiente línea de código, que transportará al jugador:</p>
+<p class="programs" translate="no">mc.player.setTilePos(x, y, z)</p>
+<p class="indent">La parte del programa <span class="literal">setTilePos(</span> ) es una <em>función</em>, que es un trozo de código preescrito y reutilizable. La función <span class="literal">setTilePos(x, y, z)</span> le dice a Minecraft que cambie la posición del jugador utilizando las tres variables que acabas de establecer. Los valores dentro de los paréntesis se llaman <em>argumentos</em>. Has <em>pasado</em> las variables que acabas de crear a la función como argumentos para que la función pueda utilizar los valores de <span class="literal">x</span>, <span class="literal">y</span> y <span class="literal">z</span> cuando se ejecute.</p>
+<div class="note">
+<p class="notet"><strong><span class="warnings">ADVERTENCIA</span></strong></p>
+<p class="notep"><em>Si utilizas una Raspberry Pi, no utilices valores superiores a 127 ni inferiores a -127 para las</em> variables <span class="literal"><span class="codeitalic">x</span></span> <em>y</em> <span class="literal"><span class="codeitalic">z</span></span> <em>. El mundo de Minecraft Pi es pequeño, y los números fuera de este rango bloquearán el juego.</em></p>
+</div>
+<p class="indent"><a href="ch02.xhtml#ch2ex1">El Listado 2-1</a> contiene el código completo para teletransportar a tu jugador, que también puedes ver en la <a href="ch02.xhtml#ch2fig7">Figura 2-7</a>:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>teleport.py</em></span></p>
+<p class="programs" translate="no"><span class="ent">➊</span> <span class="red"># Connect to Minecraft</span><br translate="no"/> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>   mc = Minecraft.create()<br translate="no"/><br translate="no"/> <span class="red"># Set x, y, and z variables to represent coordinates</span><br translate="no"/>   x = 10<br translate="no"/>   y = 110<br translate="no"/>   z = 12<br translate="no"/><br translate="no"/> <span class="red"># Change the player's position</span><br translate="no"/>   mc.player.setTilePos(x, y, z)</p>
+<p class="examplet"><span epub:type="pagebreak" id="page_39"></span><a id="ch2ex1"></a><em>Listado 2-1: El código de teletransporte terminado</em></p>
+<p class="indent">Para que este programa sea más fácil de entender, he incluido algunos <em>comentarios</em> <span class="ent">➊.</span> Los comentarios son declaraciones útiles en el código que describen lo que éste hace, pero que Python ignora. En otras palabras, cuando ejecutas el programa, Python pasa las líneas comentadas sin hacer nada. Un comentario de una sola línea comienza con una almohadilla<span class="literal">(#</span>). Mis comentarios describen lo que hace cada parte de <em>teleport.py</em>. Es una buena costumbre escribir comentarios en tu código para que puedas recordar lo que hacen las partes de tu programa cuando vuelvas a ellas más tarde.</p>
+<p class="indent"><a href="ch02.xhtml#ch2fig7">La Figura 2-7</a> muestra el programa completo escrito en el editor de texto de IDLE.</p>
+<div class="image"><img alt="image" src="../images/f02-07.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch2fig7"></a><em>Figura 2-7: Programa completo en el editor de texto de IDLE</em></p>
+<p class="indent">Ahora, ¡a ejecutar el programa! Sigue estos pasos:</p>
+<ol>
+<li class="noindent"><p class="list">Abre Minecraft haciendo clic en el icono del escritorio.</p></li>
+<li class="noindent"><p class="list">Si utilizas una Raspberry Pi, haz clic en <strong>Iniciar Juego</strong> y en <strong>Crear un Nuevo Mundo</strong>. Si utilizas la edición de escritorio de Minecraft, abre el mundo del juego siguiendo las instrucciones de "<a href="ch01.xhtml#ch01lev2sec05">Ejecutar Spigot y crear un perfil de juego</a>" en la <a href="ch01.xhtml#page_7">página 7</a> para Windows y en <a href="ch01.xhtml#page_18">la página 18</a> para Mac.</p></li>
+<li class="noindent"><p class="list">Una vez generado el mundo, pulsa la tecla <small>ESC</small> (o <small>TAB</small> si utilizas una Raspberry Pi) para soltar el ratón. Ahora puedes mover el ratón fuera de la ventana de Minecraft o hacer doble clic en la ventana de Minecraft para volver a seleccionar el juego. <a href="ch02.xhtml#ch2fig8">La Figura 2-8</a> muestra las ventanas IDLE y Minecraft en mi ordenador.</p>
+<div class="image"><span epub:type="pagebreak" id="page_40"></span><img alt="image" src="../images/f02-08.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch2fig8"></a><em>Figura 2-8: Así es como me gusta organizar mis ventanas de Minecraft y del editor de texto IDLE.</em></p></li>
+<li class="noindent"><p class="list">Haz clic en la ventana del editor de texto IDLE que tiene tu programa <em>teleport.py</em>.</p></li>
+<li class="noindent"><p class="list">Haz clic en <strong>Ejecutar</strong> <img alt="image" src="../images/arrow.jpg" translate="no"/> <strong>Ejecutar módulo</strong> o pulsa F5. Si no has guardado el programa, IDLE siempre te preguntará si quieres guardarlo antes de ejecutarlo. Pulsa <strong>Aceptar</strong> para guardar el programa. Si haces clic en Cancelar, el programa no se ejecutará.</p></li>
+</ol>
+<div class="note">
+<p class="notet"><strong><span class="notes">NOTA</span></strong></p>
+<p class="notep"><em>Cuando ejecutes programas desde IDLE en una Raspberry Pi, es posible que aparezca un cuadro de diálogo pidiéndote que guardes el programa y se oculte tras la ventana de Minecraft. Si crees que IDLE se ha congelado, puede ser que el diálogo se esté ocultando. Sólo tienes que minimizar la ventana de Minecraft y hacer clic en Aceptar en el diálogo de IDLE. Tras hacer clic en Aceptar, maximiza la ventana de Minecraft.</em></p>
+</div>
+<p class="indent">¡Ya está! Tu programa debería ejecutarse ahora, y tras unos segundos, tu jugador debería ser teletransportado a las coordenadas (10, 110, 12), como se muestra en la <a href="ch02.xhtml#ch2fig9">Figura 2-9</a>. Tu mundo no es igual al mío, así que verás algunas diferencias cuando lo ejecutes en tu ordenador.</p>
+<div class="sidebar">
+<p class="sidebart" id="ch02sb01"><strong>OBJETIVO EXTRA: SALTA</strong></p>
+<p class="noindent">¿Crees que ya le has pillado el truco al teletransporte? ¡Prueba a sustituir <span class="literal">x</span>, <span class="literal">y</span> y <span class="literal">z</span> por otros números enteros para ver dónde acaba tu jugador! ¡Prueba también con valores negativos!</p>
+</div>
+<div class="image"><span epub:type="pagebreak" id="page_41"></span><img alt="image" src="../images/f02-09.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch2fig9"></a><em>Figura 2-9: Me he teletransportado desde mi casa hasta la posición (10, 110, 12), que está encima de un pantano. ¡Cuidado abajo!</em></p>
+<h4 class="h4" id="ch02lev2sec06"><strong><span class="blue1">Flotantes</span></strong></h4>
+<p class="noindent">No todos los números son enteros. Los decimales se utilizan para representar valores que no pueden describirse con números enteros. Por ejemplo, puedes tener la mitad (0,5) de una manzana. Los números que utilizan puntos decimales se llaman <em>números de coma flotante</em>, o <em>flotantes</em>. Éste es otro tipo de datos que utiliza Python. Los números de coma flotante se utilizan en lugar de los enteros cuando quieres ser más preciso. Los flotantes también pueden representar números enteros (como en <span class="literal">3.0</span>), pero los enteros no pueden representar números con decimales.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_42"></span>Te habrás dado cuenta de que las coordenadas de posición de tu jugador (como se muestra en <a href="ch02.xhtml#ch2fig4">las Figuras 2-4</a> y <a href="ch02.xhtml#ch2fig5">2-5</a>) incluyen decimales, ¡lo que significa que son flotantes!</p>
+<p class="indent">En Python, declaras una variable flotante del mismo modo que declaras una variable entera. Por ejemplo, para establecer la variable <span class="literal">x</span> en <span class="literal">1,34</span>, escribirías esto:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> x = 1.34</p>
+<p class="indent">Para crear una variable flotante negativa, pon un signo menos<span class="literal">(-</span>) delante del valor:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> x = -1.34</p>
+<p class="indent">En la siguiente misión, controlarás aún más tus poderes de teletransporte utilizando variables flotantes para teletransportar al jugador a lugares precisos.</p>
+<h4 class="h4a" id="ch02lev2sec07"><strong>Misión nº 2: Ve exactamente donde quieras</strong></h4>
+<p class="noindent">Aprendiste a fijar la posición del jugador utilizando números enteros, pero puedes fijar la posición del jugador con más precisión si utilizas flotadores. En esta misión, revisaremos el programa de la Misión nº 1 para teletransportar al jugador utilizando un valor flotante:</p>
+<ol>
+<li class="noindent"><p class="list">En IDLE, abre el programa <em>teleport.py</em><a href="ch02.xhtml#page_38">(página 38</a>) haciendo clic en <strong>Archivo</strong> <img alt="image" src="../images/arrow.jpg" translate="no"/> <strong>Abrir</strong> y seleccionando el archivo de tu carpeta <em>de variables</em>.</p></li>
+<li class="noindent"><p class="list">Guarda una copia del programa como teleportPrecise <em>.</em> py en tu carpeta <em>de</em> variables.</p></li>
+<li class="noindent"><p class="list">En el archivo <em>teleportPrecise</em>.py, cambia las variables <span class="literal">x</span>, <span class="literal">y</span> y <span class="literal">z</span> para que utilicen valores flotantes en lugar de enteros. Es decir, cambia los valores de <span class="literal">x</span>, <span class="literal">y</span> y <span class="literal">z</span> de 10, 110 y 12 a 10,0, 110,0 y 12,0.</p></li>
+<li class="noindent"><p class="list">Cambia la última línea de código a <span class="literal">mc.player.setPos(x, y, z)</span> eliminando la palabra <span class="literal">Mosaico</span>.</p></li>
+<li class="noindent"><p class="list">Guarda el programa.</p></li>
+<li class="noindent"><p class="list">Abre un mundo Minecraft y ejecuta el código.</p></li>
+</ol>
+<p class="indent">El resultado final debería ser así:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>teleportPrecise.py</em></span></p>
+<p class="programs" translate="no"><span class="red"># Connect to Minecraft</span><br translate="no"/> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>   mc = Minecraft.create()<br translate="no"/><br translate="no"/> <span class="red"># Set x, y, and z variables to represent coordinates</span><br translate="no"/>   x = 10.0<br translate="no"/>   y = 110.0<br translate="no"/>   z = 12.0<br translate="no"/><br translate="no"/> <span class="red"># Change the player's position</span><br translate="no"/>   mc.player.setPos(x, y, z)</p>
+<p class="indent"><span epub:type="pagebreak" id="page_43"></span>Observa la diferencia entre mc. <span class="literal">player.setPos(x, y, z)</span>, utilizado aquí, y <span class="literal">mc.player.setTilePos(x, y, z)</span>, utilizado en <a href="ch02.xhtml#ch2ex1">el Listado 2-1</a>. La función <span class="literal">setTilePos</span> () utiliza números enteros para indicar al juego la posición del bloque al que quieres teletransportarte. La función <span class="literal">setPos</span> () es un poco diferente: utiliza valores flotantes para indicar al juego la posición del bloque, así como la posición exacta <em>en</em> ese bloque a la que quieres teletransportarte. Utilizando mi programa, me teletransporté a la parte superior de mi torre, como se muestra en la <a href="ch02.xhtml#ch2fig10">Figura 2-10</a>.</p>
+<div class="image"><img alt="image" src="../images/f02-10.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch2fig10"></a><em>Figura 2-10: Me he teletransportado a la parte superior de mi torre, utilizando flotadores para ser muy preciso.</em></p>
+<div class="sidebar">
+<p class="sidebart" id="ch02sb02"><strong>OBJETIVO EXTRA: TELETRANSPORTARSE CON PRECISIÓN</strong></p>
+<p class="noindent">Cambia los valores de las variables <span class="literal">x</span>, <span class="literal">y</span> y <span class="literal">z</span> utilizando una mezcla de flotantes positivos y negativos y ejecuta el programa. Después, cambia ligeramente los valores decimales de tus nuevos valores. ¿Qué ocurre?</p>
+</div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch02_2.html">anterior</a><a href="ch02.html">Subtema 3 de 6: (Ver todo)</a><a href="ch02_4.html">siguiente</a><br/></p>
+<br/><a href="ch02_3.docx" target="_blank"></a></footer>
+</body>
+</html>

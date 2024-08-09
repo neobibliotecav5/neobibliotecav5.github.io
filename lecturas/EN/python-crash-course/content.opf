@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="bookid" version="2.0" >
+<metadata xmlns:dc="http://purl.org/dc/elements/1.1/"  xmlns:opf="http://www.idpf.org/2007/opf">
+<dc:title>Python Crash Course, 3rd Edition</dc:title>
+<dc:creator opf:file-as="Eric Matthes" opf:role="aut">Eric Matthes</dc:creator>
+<dc:description>&lt;span&gt;&lt;div&gt;&lt;p&gt;&lt;i&gt;Python Crash Course&lt;/i&gt; is the worldâ??s best-selling guide to the Python guide programming language, with over 1,500,000 copies sold to date!&lt;/p&gt;&lt;p&gt;This fast-paced, thorough introduction to programming with Python will have you writing code, solving problems, and making cool projects that work in no time.&lt;/p&gt;&lt;p&gt;In the first half of the book, youâ??ll learn basic programming concepts, such as variables, lists, loops, and classes, and practice writing clean code with exercises for each topic. Youâ??ll also learn how to make your programs interactive and test your code safely before adding it to a project. In the second half, youâ??ll put your new knowledge into practice with three substantial projects: a Space Invadersâ??inspired arcade game, a set of data visualizations with Pythonâ??s handy libraries, and a simple web app you can deploy online.&lt;/p&gt;&lt;p&gt;As you work through the book, youâ??ll learn how to:&lt;/p&gt;&lt;p&gt;â?¢Use powerful Python libraries and tools, including Pygame, Matplotlib, Plotly, and Django&lt;br/&gt;&lt;br/&gt;â?¢Make 2D games that respond to keypresses and mouse clicks&lt;br/&gt;&lt;br/&gt;â?¢Use data to generate interactive visualizations&lt;br/&gt;&lt;br/&gt;â?¢Create and customize web apps and deploy them safely online&lt;br/&gt;&lt;br/&gt;â?¢Deal with mistakes and errors so you can solve your own programming problems&lt;/p&gt;&lt;p&gt;This updated third edition has been thoroughly revised to reflect the latest in Python code and practices. The first half of the book includes improved coverage of topics like variables, handling errors, and object-oriented programming. In the second half, the code for the projects has been updated with current example data, better app deployment, and up-to-date libraries and tools, like Plotly, the Tailwind CSS framework, and the latest version of Django.&lt;/p&gt;&lt;p&gt;If youâ??ve been thinking about digging into programming, &lt;i&gt;Python Crash Course&lt;/i&gt; will get you writing real programs fast. Why wait any longer? Start your engines and code!&lt;/p&gt;&lt;/div&gt;&lt;/span&gt;</dc:description>
+<dc:publisher>No Starch Press</dc:publisher>
+<dc:rights></dc:rights>
+<dc:language>en-US</dc:language>
+<dc:date>2023-01-10</dc:date>
+<dc:identifier id="bookid">9781718502703</dc:identifier>
+<meta name="cover" content="Images/cover.png"/>
+</metadata>
+<manifest>
+<item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml" />
+<item id="cover" href="cover.xhtml" media-type="application/xhtml+xml" />
+<item id="toc" href="toc.xhtml" media-type="application/xhtml+xml" />
+<item id="f01" href="f01.xhtml" media-type="application/xhtml+xml" />
+<item id="f02" href="f02.xhtml" media-type="application/xhtml+xml" />
+<item id="f03" href="f03.xhtml" media-type="application/xhtml+xml" />
+<item id="f04" href="f04.xhtml" media-type="application/xhtml+xml" />
+<item id="f05" href="f05.xhtml" media-type="application/xhtml+xml" />
+<item id="f06" href="f06.xhtml" media-type="application/xhtml+xml" />
+<item id="f07" href="f07.xhtml" media-type="application/xhtml+xml" />
+<item id="f08" href="f08.xhtml" media-type="application/xhtml+xml" />
+<item id="p01" href="p01.xhtml" media-type="application/xhtml+xml" />
+<item id="c01" href="c01.xhtml" media-type="application/xhtml+xml" />
+<item id="c02" href="c02.xhtml" media-type="application/xhtml+xml" />
+<item id="c03" href="c03.xhtml" media-type="application/xhtml+xml" />
+<item id="c04" href="c04.xhtml" media-type="application/xhtml+xml" />
+<item id="c05" href="c05.xhtml" media-type="application/xhtml+xml" />
+<item id="c06" href="c06.xhtml" media-type="application/xhtml+xml" />
+<item id="c07" href="c07.xhtml" media-type="application/xhtml+xml" />
+<item id="c08" href="c08.xhtml" media-type="application/xhtml+xml" />
+<item id="c09" href="c09.xhtml" media-type="application/xhtml+xml" />
+<item id="c10" href="c10.xhtml" media-type="application/xhtml+xml" />
+<item id="c11" href="c11.xhtml" media-type="application/xhtml+xml" />
+<item id="p02" href="p02.xhtml" media-type="application/xhtml+xml" />
+<item id="c12" href="c12.xhtml" media-type="application/xhtml+xml" />
+<item id="c13" href="c13.xhtml" media-type="application/xhtml+xml" />
+<item id="c14" href="c14.xhtml" media-type="application/xhtml+xml" />
+<item id="c15" href="c15.xhtml" media-type="application/xhtml+xml" />
+<item id="c16" href="c16.xhtml" media-type="application/xhtml+xml" />
+<item id="c17" href="c17.xhtml" media-type="application/xhtml+xml" />
+<item id="c18" href="c18.xhtml" media-type="application/xhtml+xml" />
+<item id="c19" href="c19.xhtml" media-type="application/xhtml+xml" />
+<item id="c20" href="c20.xhtml" media-type="application/xhtml+xml" />
+<item id="b01" href="b01.xhtml" media-type="application/xhtml+xml" />
+<item id="b02" href="b02.xhtml" media-type="application/xhtml+xml" />
+<item id="b03" href="b03.xhtml" media-type="application/xhtml+xml" />
+<item id="b04" href="b04.xhtml" media-type="application/xhtml+xml" />
+<item id="b05" href="b05.xhtml" media-type="application/xhtml+xml" />
+<item id="b06" href="b06.xhtml" media-type="application/xhtml+xml" />
+<item id="img_f18005" href="Images/f18005.png" media-type="image/png" />
+<item id="img_f14002" href="Images/f14002.png" media-type="image/png" />
+<item id="img_f15010" href="Images/f15010.png" media-type="image/png" />
+<item id="img_f15014" href="Images/f15014.png" media-type="image/png" />
+<item id="img_f15008" href="Images/f15008.png" media-type="image/png" />
+<item id="img_f16002" href="Images/f16002.png" media-type="image/png" />
+<item id="img_f15002" href="Images/f15002.png" media-type="image/png" />
+<item id="img_f13006" href="Images/f13006.png" media-type="image/png" />
+<item id="img_f13002" href="Images/f13002.png" media-type="image/png" />
+<item id="img_f15009" href="Images/f15009.png" media-type="image/png" />
+<item id="img_f13003" href="Images/f13003.png" media-type="image/png" />
+<item id="img_f16007" href="Images/f16007.png" media-type="image/png" />
+<item id="img_f16006" href="Images/f16006.png" media-type="image/png" />
+<item id="img_f14003" href="Images/f14003.png" media-type="image/png" />
+<item id="img_f13005" href="Images/f13005.png" media-type="image/png" />
+<item id="img_f15012" href="Images/f15012.png" media-type="image/png" />
+<item id="img_f16009" href="Images/f16009.png" media-type="image/png" />
+<item id="img_chapterart" href="Images/chapterart.png" media-type="image/png" />
+<item id="img_f19001" href="Images/f19001.png" media-type="image/png" />
+<item id="img_f16004" href="Images/f16004.png" media-type="image/png" />
+<item id="img_f12001" href="Images/f12001.png" media-type="image/png" />
+<item id="img_nsp_logo_black_rk" href="Images/nsp_logo_black_rk.png" media-type="image/png" />
+<item id="img_f14004" href="Images/f14004.png" media-type="image/png" />
+<item id="img_f19002" href="Images/f19002.png" media-type="image/png" />
+<item id="img_f18001" href="Images/f18001.png" media-type="image/png" />
+<item id="img_f14006" href="Images/f14006.png" media-type="image/png" />
+<item id="img_f20003" href="Images/f20003.png" media-type="image/png" />
+<item id="img_f12002" href="Images/f12002.png" media-type="image/png" />
+<item id="img_f15003" href="Images/f15003.png" media-type="image/png" />
+<item id="img_f16010" href="Images/f16010.png" media-type="image/png" />
+<item id="img_f12003" href="Images/f12003.png" media-type="image/png" />
+<item id="img_f19003" href="Images/f19003.png" media-type="image/png" />
+<item id="img_f20002" href="Images/f20002.png" media-type="image/png" />
+<item id="img_f16001" href="Images/f16001.png" media-type="image/png" />
+<item id="img_f01001" href="Images/f01001.png" media-type="image/png" />
+<item id="img_cover" href="Images/cover.png" media-type="image/png" />
+<item id="img_f16008" href="Images/f16008.png" media-type="image/png" />
+<item id="img_f18004" href="Images/f18004.png" media-type="image/png" />
+<item id="img_f15004" href="Images/f15004.png" media-type="image/png" />
+<item id="img_f16005" href="Images/f16005.png" media-type="image/png" />
+<item id="img_f15001" href="Images/f15001.png" media-type="image/png" />
+<item id="img_f14005" href="Images/f14005.png" media-type="image/png" />
+<item id="img_f15006" href="Images/f15006.png" media-type="image/png" />
+<item id="img_f15011" href="Images/f15011.png" media-type="image/png" />
+<item id="img_f15013" href="Images/f15013.png" media-type="image/png" />
+<item id="img_f16003" href="Images/f16003.png" media-type="image/png" />
+<item id="img_f18003" href="Images/f18003.png" media-type="image/png" />
+<item id="img_f20001" href="Images/f20001.png" media-type="image/png" />
+<item id="img_f17003" href="Images/f17003.png" media-type="image/png" />
+<item id="img_f15015" href="Images/f15015.png" media-type="image/png" />
+<item id="img_f18002" href="Images/f18002.png" media-type="image/png" />
+<item id="img_f14001" href="Images/f14001.png" media-type="image/png" />
+<item id="img_f15007" href="Images/f15007.png" media-type="image/png" />
+<item id="img_f13001" href="Images/f13001.png" media-type="image/png" />
+<item id="img_f17002" href="Images/f17002.png" media-type="image/png" />
+<item id="img_f19004" href="Images/f19004.png" media-type="image/png" />
+<item id="img_f15005" href="Images/f15005.png" media-type="image/png" />
+<item id="img_f13004" href="Images/f13004.png" media-type="image/png" />
+<item id="img_f17001" href="Images/f17001.png" media-type="image/png" />
+<item id="style_00" href="Styles/Style00.css" media-type="text/css" />
+</manifest>
+<spine toc="ncx">
+<itemref idref="cover"/>
+<itemref idref="toc"/>
+<itemref idref="f01"/>
+<itemref idref="f02"/>
+<itemref idref="f03"/>
+<itemref idref="f04"/>
+<itemref idref="f05"/>
+<itemref idref="f06"/>
+<itemref idref="f07"/>
+<itemref idref="f08"/>
+<itemref idref="p01"/>
+<itemref idref="c01"/>
+<itemref idref="c02"/>
+<itemref idref="c03"/>
+<itemref idref="c04"/>
+<itemref idref="c05"/>
+<itemref idref="c06"/>
+<itemref idref="c07"/>
+<itemref idref="c08"/>
+<itemref idref="c09"/>
+<itemref idref="c10"/>
+<itemref idref="c11"/>
+<itemref idref="p02"/>
+<itemref idref="c12"/>
+<itemref idref="c13"/>
+<itemref idref="c14"/>
+<itemref idref="c15"/>
+<itemref idref="c16"/>
+<itemref idref="c17"/>
+<itemref idref="c18"/>
+<itemref idref="c19"/>
+<itemref idref="c20"/>
+<itemref idref="b01"/>
+<itemref idref="b02"/>
+<itemref idref="b03"/>
+<itemref idref="b04"/>
+<itemref idref="b05"/>
+<itemref idref="b06"/></spine>
+<guide><reference href="cover.xhtml" title="Cover" type="cover" /></guide>
+</package>

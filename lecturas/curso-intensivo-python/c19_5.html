@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c19-0003"><span epub:type="pagebreak" id="Page_412" title="412"></span>Editar entradas</h3>
+<p class="BodyFirst">Ahora crearemos una página para que los usuarios puedan editar las entradas que han añadido.</p>
+<h4 id="h3-502703c19-0012">La URL editar_entrada</h4>
+<p class="BodyFirst">La URL de la página tiene que pasar el ID de la entrada que se va a editar. Aquí tienes <em translate="no">learning_logs/urls.py</em>:</p>
+<p class="CodeLabel" translate="no"><b>urls.py</b></p>
+<pre translate="no"><code translate="no"><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">urlpatterns = [</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+    # Page for editing an entry.
+    path('edit_entry/&lt;int:entry_id&gt;/', views.edit_entry, name='edit_entry'),
+<span class="LiteralGray">]</span></code></pre>
+<p>Este patrón de URL coincide con URL como <em translate="no">http://localhost:8000/edit_entry/id/</em>. Aquí el valor de <var>id</var> se asigna al parámetro <code translate="no">entry_id</code>. Django envía las solicitudes que coinciden con este formato a la función de vista <code translate="no">edit_entry()</code>.</p>
+<h4 id="h3-502703c19-0013">La función de vista edit_entry()</h4>
+<p class="BodyFirst">Cuando la página <code translate="no">edit_entry</code> recibe una solicitud GET, la función <code translate="no">edit_entry()</code> devuelve un formulario para editar la entrada. Cuando la página recibe una petición POST con el texto de la entrada revisado, guarda el texto modificado en la base de datos:</p>
+<p class="CodeLabel" translate="no"><b>views.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">from django.shortcuts import render, redirect</span>
+
+from .models import Topic, Entry
+<span class="LiteralGray">from .forms import TopicForm, EntryForm</span>
+<em class="LiteralGrayItalic" translate="no">--snip--</em>
+
+def edit_entry(request, entry_id):
+    """Edit an existing entry."""
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     entry = Entry.objects.get(id=entry_id)
+    topic = entry.topic
+
+    if request.method != 'POST':
+        # Initial request; pre-fill form with the current entry.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         form = EntryForm(instance=entry)
+    else:
+        # POST data submitted; process data.
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>         form = EntryForm(instance=entry, data=request.POST)
+        if form.is_valid():
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>             form.save()
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>             return redirect('learning_logs:topic', topic_id=topic.id)
+
+    context = {'entry': entry, 'topic': topic, 'form': form}
+    return render(request, 'learning_logs/edit_entry.html', context)</code></pre>
+<p>Primero importamos el modelo <code translate="no">Entry</code>. A continuación, obtenemos el objeto entrada que el usuario quiere editar <span aria-label="annotation1" class="CodeAnnotation">❶</span> y el tema asociado a esta entrada. En el bloque <code translate="no">if</code> <span epub:type="pagebreak" id="Page_413" title="413"></span> , que se ejecuta para una solicitud GET, creamos una instancia de <code translate="no">EntryForm</code> con el argumento <code translate="no">instance=entry</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Este argumento indica a Django que cree el formulario, rellenado previamente con la información del objeto de entrada existente. El usuario verá sus datos existentes y podrá editarlos.</p>
+<p>Al procesar una solicitud POST, pasamos los argumentos <code translate="no">instance=entry</code> y <code translate="no">data=request.POST</code> <span aria-label="annotation3" class="CodeAnnotation">❸.</span> Estos argumentos indican a Django que cree una instancia de formulario basada en la información asociada al objeto de entrada existente, actualizada con cualquier dato relevante de <code translate="no">request.POST</code>. A continuación, comprobamos si el formulario es válido; si lo es, llamamos a <code translate="no">save()</code> sin argumentos porque la entrada ya está asociada al tema ❹ correcto <span aria-label="annotation4" class="CodeAnnotation">.</span> A continuación, redirigimos a la página <code translate="no">topic</code>, donde el usuario debería ver la versión actualizada de la entrada que editó <span aria-label="annotation5" class="CodeAnnotation">❺.</span></p>
+<p>Si mostramos un formulario inicial para editar la entrada o si el formulario enviado no es válido, creamos el diccionario <code translate="no">context</code> y renderizamos la página utilizando la plantilla <em translate="no">edit_entry.html</em>.</p>
+<h4 id="h3-502703c19-0014">La plantilla edit_entry</h4>
+<p class="BodyFirst">A continuación, creamos una plantilla <em translate="no">edit_entry.html </em>, que es similar a <em translate="no">new_entry.html</em>:</p>
+<p class="CodeLabel" translate="no"><b>edit_entry.html</b></p>
+<pre translate="no"><code translate="no">{% extends "learning_logs/base.html" %}
+
+{% block content %}
+
+  &lt;p&gt;&lt;a href="{% url 'learning_logs:topic' topic.id %}"&gt;{{ topic }}&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;Edit entry:&lt;/p&gt;
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>   &lt;form action="{% url 'learning_logs:edit_entry' entry.id %}" method='post'&gt;
+    {% csrf_token %}
+    {{ form.as_div }}
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     &lt;button name="submit"&gt;Save changes&lt;/button&gt;
+  &lt;/form&gt;
+
+{% endblock content %}</code></pre>
+<p>El argumento <code translate="no">action</code> devuelve el formulario a la función <code translate="no">edit_entry()</code> para su procesamiento <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Incluimos el <code translate="no">entry.id</code> como argumento en la etiqueta <code translate="no">{% url %}</code>, para que la función vista pueda modificar el objeto de entrada correcto. Etiquetamos el botón de envío como <code translate="no">Save changes</code> para recordar al usuario que está guardando ediciones, no creando una nueva entrada <span aria-label="annotation2" class="CodeAnnotation">❷.</span></p>
+<h4 id="h3-502703c19-0015">Enlace a la página edit_entry</h4>
+<p class="BodyFirst">Ahora tenemos que incluir un enlace a la página <code translate="no">edit_entry</code> para cada entrada de la página de temas:</p>
+<p class="CodeLabel" translate="no"><b>topic.html</b></p>
+<pre translate="no"><code translate="no"><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">    {% for entry in entries %}</span>
+<span class="LiteralGray">      &lt;li&gt;</span>
+<span epub:type="pagebreak" id="Page_414" title="414"></span><span class="LiteralGray">        &lt;p&gt;{{ entry.date_added|date:'M d, Y H:i' }}&lt;/p&gt;</span>
+<span class="LiteralGray">        &lt;p&gt;{{ entry.text|linebreaks }}&lt;/p&gt;</span>
+<span class="LiteralGray">        </span>&lt;p&gt;
+          &lt;a href="{% url 'learning_logs:edit_entry' entry.id %}"&gt;
+           Edit entry&lt;/a&gt;&lt;/p&gt;
+<span class="LiteralGray">      &lt;/li&gt;</span>
+<em class="LiteralGrayItalic" translate="no">--snip--</em></code></pre>
+<p>Incluimos el enlace de edición después de mostrar la fecha y el texto de cada entrada. Utilizamos la etiqueta de plantilla <code translate="no">{% url %}</code> para determinar la URL del patrón de URL con nombre <code translate="no">edit_entry</code>, junto con el atributo ID de la entrada actual en el bucle (<code translate="no">entry.id</code>). El texto del enlace <code translate="no">Edit entry</code> aparece después de cada entrada de la página. <a href="#figure19-3" id="figureanchor19-3">La Figura 19-3</a> muestra el aspecto de la página del tema con estos enlaces.</p>
+<figure><img alt="" class="keyline" height="522" src="Images/f19003.png" translate="no" width="694"/>
+<figcaption><p><a id="figure19-3">Figura 19-3</a>: Cada entrada tiene ahora un enlace para editarla.</p></figcaption></figure><p>El Registro de Aprendizaje tiene ahora la mayor parte de la funcionalidad que necesita. Los usuarios pueden añadir temas y entradas, y pueden leer cualquier conjunto de entradas que deseen. En la próxima sección, implementaremos un sistema de registro de usuarios para que cualquiera pueda crear una cuenta en Learning Log y crear su propio conjunto de temas y entradas.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c19_4.html">anterior</a><a href="c19.html">Subtema 5 de 23: (Ver todo)</a><a href="c19_6.html">siguiente</a><br/></p>
+<br/><a href="c19_5.docx" target="_blank"></a></footer>
+</body>
+</html>

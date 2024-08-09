@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c12-0011"><span epub:type="pagebreak" id="Page_241" title="241"></span>Moverse tanto a la izquierda como a la derecha</h3>
+<p class="BodyFirst">Ahora que la nave puede moverse continuamente hacia la derecha, añadir el movimiento hacia la izquierda es sencillo. De nuevo, modificaremos la clase <code translate="no">Ship</code> y el método <code translate="no">_check_events()</code>. Aquí tienes los cambios pertinentes en <code translate="no">__init__()</code> y <code translate="no">update()</code> en <code translate="no">Ship</code>:</p>
+<p class="CodeLabel" translate="no"><b>ship.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    def __init__(self, ai_game):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+    <span class="LiteralGray">    </span># Movement flags; start with a ship that's not moving.
+<span class="LiteralGray">        self.moving_right = False</span>
+    <span class="LiteralGray">    </span>self.moving_left = False
+
+<span class="LiteralGray">    def update(self):</span>
+    <span class="LiteralGray">    </span>"""Update the ship's position based on movement flags."""
+<span class="LiteralGray">        if self.moving_right:</span>
+<span class="LiteralGray">            self.rect.x += 1</span>
+    <span class="LiteralGray">    </span>if self.moving_left:
+       <span class="LiteralGray">    </span> self.rect.x -= 1</code></pre>
+<p>En <code translate="no">__init__()</code>, añadimos una bandera <code translate="no">self.moving_left</code>. En <code translate="no">update()</code>, utilizamos dos bloques <code translate="no">if</code> separados, en lugar de un <code translate="no">elif</code>, para permitir que el valor <code translate="no">rect.x</code> de la nave aumente y luego disminuya cuando se mantienen pulsadas ambas teclas de flecha. El resultado es que la nave se queda quieta. Si utilizáramos <code translate="no">elif</code> para el movimiento hacia la izquierda, la tecla de flecha derecha siempre tendría prioridad. Utilizar dos bloques <code translate="no">if</code> hace que los movimientos sean más precisos cuando el jugador puede mantener pulsadas momentáneamente ambas teclas al cambiar de dirección.</p>
+<p>Tenemos que hacer dos añadidos a <code translate="no">_check_events()</code>:</p>
+<p class="CodeLabel" translate="no"><b>alien_invasion.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    def _check_events(self):</span>
+<span class="LiteralGray">        """Respond to keypresses and mouse events."""</span>
+<span class="LiteralGray">        for event in pygame.event.get():</span>
+<span class="LiteralGray">            </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">            elif event.type == pygame.KEYDOWN:</span>
+<span class="LiteralGray">                if event.key == pygame.K_RIGHT:</span>
+<span class="LiteralGray">                    self.ship.moving_right = True</span>
+                elif event.key == pygame.K_LEFT:
+                    self.ship.moving_left = True
+
+<span class="LiteralGray">            elif event.type == pygame.KEYUP:</span>
+<span class="LiteralGray">                if event.key == pygame.K_RIGHT:</span>
+<span class="LiteralGray">                    self.ship.moving_right = False</span>
+                elif event.key == pygame.K_LEFT:
+                    self.ship.moving_left = False</code></pre>
+<p>Si se produce un evento <code translate="no">KEYDOWN</code> para la tecla <code translate="no">K_LEFT</code>, establecemos <code translate="no">moving_left</code> en <code translate="no">True</code>. Si se produce un evento <code translate="no">KEYUP</code> para la tecla <code translate="no">K_LEFT</code>, establecemos <code translate="no">moving_left</code> en <code translate="no">False</code>. Aquí podemos utilizar bloques <code translate="no">elif</code> porque cada evento está conectado a una sola tecla. Si el jugador pulsa ambas teclas a la vez, se detectarán dos eventos distintos.</p>
+<p>Cuando ejecutes ahora <em translate="no">alien_invasion.py</em>, deberías poder mover la nave continuamente a derecha e izquierda. Si mantienes pulsadas ambas teclas, la nave debería dejar de moverse.</p>
+<p><span epub:type="pagebreak" id="Page_242" title="242"></span>A continuación, perfeccionaremos aún más el movimiento de la nave. Vamos a ajustar la velocidad de la nave y a limitar la distancia a la que puede moverse para que no desaparezca por los lados de la pantalla.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c12_21.html">anterior</a><a href="c12.html">Subtema 22 de 43: (Ver todo)</a><a href="c12_23.html">siguiente</a><br/></p>
+<br/><a href="c12_22.docx" target="_blank"></a></footer>
+</body>
+</html>

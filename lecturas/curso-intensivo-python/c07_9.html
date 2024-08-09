@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c07-0004">El bucle while en acción</h3>
+<p class="BodyFirst">Puedes utilizar un bucle <code translate="no">while</code> para contar hacia arriba a través de una serie de números. Por ejemplo, el siguiente bucle <code translate="no">while</code> cuenta del 1 al 5:</p>
+<p class="CodeLabel" translate="no"><b>counting.py</b></p>
+<pre translate="no"><code translate="no">current_number = 1
+while current_number &lt;= 5:
+<span epub:type="pagebreak" id="Page_118" title="118"></span>    print(current_number)
+    current_number += 1</code></pre>
+<p>En la primera línea, empezamos a contar desde 1 asignando a <code translate="no">current_number</code> el valor 1. A continuación, se establece el bucle <code translate="no">while</code> para que siga ejecutándose mientras el valor de <code translate="no">current_number</code> sea menor o igual que 5. El código dentro del bucle imprime el valor de <code translate="no">current_number</code> y luego añade 1 a ese valor con <code translate="no">current_number += 1</code>. (El operador <code translate="no">+=</code> es una abreviatura de <code translate="no">current_number = current_number + 1</code>.)</p>
+<p>Python repite el bucle mientras la condición <code translate="no">current_number &lt;= 5</code> sea cierta. Como 1 es menor que 5, Python imprime <code translate="no">1</code> y luego añade 1, convirtiendo el número actual en <code translate="no">2</code>. Como 2 es menor que 5, Python imprime <code translate="no">2</code> y vuelve a añadir 1, convirtiendo el número actual en <code translate="no">3</code>, y así sucesivamente. Una vez que el valor de <code translate="no">current_number</code> es mayor que 5, el bucle deja de ejecutarse y el programa termina:</p>
+<pre translate="no"><code translate="no">1
+2
+3
+4
+5</code></pre>
+<p>Lo más probable es que los programas que utilizas a diario contengan bucles <code translate="no">while</code>. Por ejemplo, un juego necesita un bucle <code translate="no">while</code> para seguir ejecutándose todo el tiempo que quieras seguir jugando, y así puede dejar de ejecutarse en cuanto le pidas que salga. Los programas no serían divertidos de usar si dejaran de ejecutarse antes de que se lo pidiéramos o siguieran ejecutándose incluso después de que quisiéramos salir, por eso los bucles <code translate="no">while</code> son bastante útiles.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c07_8.html">anterior</a><a href="c07.html">Subtema 9 de 23: (Ver todo)</a><a href="c07_10.html">siguiente</a><br/></p>
+<br/><a href="c07_9.docx" target="_blank"></a></footer>
+</body>
+</html>

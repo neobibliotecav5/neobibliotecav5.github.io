@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://www.idpf.org/2007/opf"
+         version="3.0"
+         unique-identifier="BookId"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:dcterms="http://purl.org/dc/terms/"
+         xml:lang="en"
+         xmlns:media="http://www.idpf.org/epub/vocab/overlays/#"
+         prefix="ibooks: http://vocabulary.itunes.apple.com/rdf/ibooks/vocabulary-extensions-1.0/">
+
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/"
+              xmlns:opf="http://www.idpf.org/2007/opf">
+
+        <dc:identifier id="BookId">9781457189999</dc:identifier>
+        <meta refines="#BookId" property="identifier-type" scheme="onix:codelist5">22</meta>
+        <meta property="dcterms:identifier" id="meta-identifier">BookId</meta>
+        <dc:title>Doing Math with Python</dc:title>
+        <meta property="dcterms:title" id="meta-title">Doing Math with Python</meta>
+        <dc:language>en</dc:language>
+        <meta property="dcterms:language" id="meta-language">en</meta>
+        <meta property="dcterms:modified">2018-09-27T02:42:39Z</meta>
+        <dc:creator id="creator">Amit Saha</dc:creator>
+        <meta refines="#creator" property="file-as">Amit Saha</meta>
+        <meta property="dcterms:publisher">No Starch Press</meta>
+        <dc:publisher>No Starch Press</dc:publisher>
+        
+        <meta property="dcterms:date">2018-9-26</meta>
+        <dc:date>2018-9-26</dc:date>
+        <meta property="dcterms:rights">All rights reserved</meta>
+        <dc:rights>Copyright &#x00A9; 2018 by No Starch Press</dc:rights>
+        <meta name="cover" content="image_cover"/>
+        <meta name="generator" content="epub-nicohaenggi" />
+        <meta property="ibooks:specified-fonts">true</meta>
+
+    </metadata>
+
+    <manifest>
+        <item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml" />
+        <item id="css" href="style.css" media-type="text/css" />
+        
+        <item id="css" href="core.css" media-type="text/css" />
+        
+
+        <item id="image_cover" href="images/cover.jpg" media-type="image/jpg" />
+
+        
+        <item id="image_0" href="images/9781593276409.jpg" media-type="image/jpeg" />
+        <item id="image_1" href="images/f0iii-01.jpg" media-type="image/jpeg" />
+        <item id="image_2" href="images/common-01.jpg" media-type="image/jpeg" />
+        <item id="image_3" href="images/common-01.jpg" media-type="image/jpeg" />
+        <item id="image_4" href="images/f01-01.jpg" media-type="image/jpeg" />
+        <item id="image_5" href="images/e0007-01.jpg" media-type="image/jpeg" />
+        <item id="image_6" href="images/e0018-01.jpg" media-type="image/jpeg" />
+        <item id="image_7" href="images/e0018-02.jpg" media-type="image/jpeg" />
+        <item id="image_8" href="images/e0020-01.jpg" media-type="image/jpeg" />
+        <item id="image_9" href="images/e0021-01.jpg" media-type="image/jpeg" />
+        <item id="image_10" href="images/common-01.jpg" media-type="image/jpeg" />
+        <item id="image_11" href="images/f02-01.jpg" media-type="image/jpeg" />
+        <item id="image_12" href="images/f02-02.jpg" media-type="image/jpeg" />
+        <item id="image_13" href="images/f02-03.jpg" media-type="image/jpeg" />
+        <item id="image_14" href="images/f02-04.jpg" media-type="image/jpeg" />
+        <item id="image_15" href="images/f02-05.jpg" media-type="image/jpeg" />
+        <item id="image_16" href="images/f02-06.jpg" media-type="image/jpeg" />
+        <item id="image_17" href="images/f02-07.jpg" media-type="image/jpeg" />
+        <item id="image_18" href="images/f02-08.jpg" media-type="image/jpeg" />
+        <item id="image_19" href="images/f02-09.jpg" media-type="image/jpeg" />
+        <item id="image_20" href="images/f02-10.jpg" media-type="image/jpeg" />
+        <item id="image_21" href="images/f02-11.jpg" media-type="image/jpeg" />
+        <item id="image_22" href="images/e0046-01.jpg" media-type="image/jpeg" />
+        <item id="image_23" href="images/f02-12.jpg" media-type="image/jpeg" />
+        <item id="image_24" href="images/f02-13.jpg" media-type="image/jpeg" />
+        <item id="image_25" href="images/e0049-01.jpg" media-type="image/jpeg" />
+        <item id="image_26" href="images/e0049-02.jpg" media-type="image/jpeg" />
+        <item id="image_27" href="images/e0050-01.jpg" media-type="image/jpeg" />
+        <item id="image_28" href="images/e0050-02.jpg" media-type="image/jpeg" />
+        <item id="image_29" href="images/f02-14.jpg" media-type="image/jpeg" />
+        <item id="image_30" href="images/f02-15.jpg" media-type="image/jpeg" />
+        <item id="image_31" href="images/f02-16.jpg" media-type="image/jpeg" />
+        <item id="image_32" href="images/f02-17.jpg" media-type="image/jpeg" />
+        <item id="image_33" href="images/f02-18.jpg" media-type="image/jpeg" />
+        <item id="image_34" href="images/common-01.jpg" media-type="image/jpeg" />
+        <item id="image_35" href="images/e0073-01.jpg" media-type="image/jpeg" />
+        <item id="image_36" href="images/f03-01.jpg" media-type="image/jpeg" />
+        <item id="image_37" href="images/e0076-01.jpg" media-type="image/jpeg" />
+        <item id="image_38" href="images/f03-02.jpg" media-type="image/jpeg" />
+        <item id="image_39" href="images/f03-03.jpg" media-type="image/jpeg" />
+        <item id="image_40" href="images/f03-04.jpg" media-type="image/jpeg" />
+        <item id="image_41" href="images/e0090-01.jpg" media-type="image/jpeg" />
+        <item id="image_42" href="images/common-01.jpg" media-type="image/jpeg" />
+        <item id="image_43" href="images/e0099-01.jpg" media-type="image/jpeg" />
+        <item id="image_44" href="images/e0099-02.jpg" media-type="image/jpeg" />
+        <item id="image_45" href="images/e0107-01.jpg" media-type="image/jpeg" />
+        <item id="image_46" href="images/f0107-01.jpg" media-type="image/jpeg" />
+        <item id="image_47" href="images/f04-01.jpg" media-type="image/jpeg" />
+        <item id="image_48" href="images/f04-02.jpg" media-type="image/jpeg" />
+        <item id="image_49" href="images/f04-03.jpg" media-type="image/jpeg" />
+        <item id="image_50" href="images/f04-04.jpg" media-type="image/jpeg" />
+        <item id="image_51" href="images/f04-05.jpg" media-type="image/jpeg" />
+        <item id="image_52" href="images/e0117-01.jpg" media-type="image/jpeg" />
+        <item id="image_53" href="images/common-01.jpg" media-type="image/jpeg" />
+        <item id="image_54" href="images/e0129-01.jpg" media-type="image/jpeg" />
+        <item id="image_55" href="images/e0131-01.jpg" media-type="image/jpeg" />
+        <item id="image_56" href="images/e0132-01.jpg" media-type="image/jpeg" />
+        <item id="image_57" href="images/e0133-01.jpg" media-type="image/jpeg" />
+        <item id="image_58" href="images/f05-01.jpg" media-type="image/jpeg" />
+        <item id="image_59" href="images/f05-02.jpg" media-type="image/jpeg" />
+        <item id="image_60" href="images/f05-03.jpg" media-type="image/jpeg" />
+        <item id="image_61" href="images/f05-04.jpg" media-type="image/jpeg" />
+        <item id="image_62" href="images/f05-05.jpg" media-type="image/jpeg" />
+        <item id="image_63" href="images/e0145-01.jpg" media-type="image/jpeg" />
+        <item id="image_64" href="images/f05-06.jpg" media-type="image/jpeg" />
+        <item id="image_65" href="images/e0147-01.jpg" media-type="image/jpeg" />
+        <item id="image_66" href="images/e0147-02.jpg" media-type="image/jpeg" />
+        <item id="image_67" href="images/common-01.jpg" media-type="image/jpeg" />
+        <item id="image_68" href="images/f06-01.jpg" media-type="image/jpeg" />
+        <item id="image_69" href="images/f06-02.jpg" media-type="image/jpeg" />
+        <item id="image_70" href="images/f06-03.jpg" media-type="image/jpeg" />
+        <item id="image_71" href="images/e0157-01.jpg" media-type="image/jpeg" />
+        <item id="image_72" href="images/f06-04.jpg" media-type="image/jpeg" />
+        <item id="image_73" href="images/f06-05.jpg" media-type="image/jpeg" />
+        <item id="image_74" href="images/f06-06.jpg" media-type="image/jpeg" />
+        <item id="image_75" href="images/f06-07.jpg" media-type="image/jpeg" />
+        <item id="image_76" href="images/f06-08.jpg" media-type="image/jpeg" />
+        <item id="image_77" href="images/f06-09.jpg" media-type="image/jpeg" />
+        <item id="image_78" href="images/f06-10.jpg" media-type="image/jpeg" />
+        <item id="image_79" href="images/f06-11.jpg" media-type="image/jpeg" />
+        <item id="image_80" href="images/f06-12.jpg" media-type="image/jpeg" />
+        <item id="image_81" href="images/f06-13.jpg" media-type="image/jpeg" />
+        <item id="image_82" href="images/f06-14.jpg" media-type="image/jpeg" />
+        <item id="image_83" href="images/f06-15.jpg" media-type="image/jpeg" />
+        <item id="image_84" href="images/f06-16.jpg" media-type="image/jpeg" />
+        <item id="image_85" href="images/e0176-01.jpg" media-type="image/jpeg" />
+        <item id="image_86" href="images/e0176-02.jpg" media-type="image/jpeg" />
+        <item id="image_87" href="images/common-01.jpg" media-type="image/jpeg" />
+        <item id="image_88" href="images/f07-01.jpg" media-type="image/jpeg" />
+        <item id="image_89" href="images/e0181-01.jpg" media-type="image/jpeg" />
+        <item id="image_90" href="images/f07-02.jpg" media-type="image/jpeg" />
+        <item id="image_91" href="images/e0182-01.jpg" media-type="image/jpeg" />
+        <item id="image_92" href="images/e0182-02.jpg" media-type="image/jpeg" />
+        <item id="image_93" href="images/e0183-01.jpg" media-type="image/jpeg" />
+        <item id="image_94" href="images/e0183-02.jpg" media-type="image/jpeg" />
+        <item id="image_95" href="images/e0184-01.jpg" media-type="image/jpeg" />
+        <item id="image_96" href="images/e0184-02.jpg" media-type="image/jpeg" />
+        <item id="image_97" href="images/e0184-03.jpg" media-type="image/jpeg" />
+        <item id="image_98" href="images/e0187-01.jpg" media-type="image/jpeg" />
+        <item id="image_99" href="images/f07-03.jpg" media-type="image/jpeg" />
+        <item id="image_100" href="images/e0191-01.jpg" media-type="image/jpeg" />
+        <item id="image_101" href="images/e0191-02.jpg" media-type="image/jpeg" />
+        <item id="image_102" href="images/f07-04.jpg" media-type="image/jpeg" />
+        <item id="image_103" href="images/e0192-01.jpg" media-type="image/jpeg" />
+        <item id="image_104" href="images/e0192-02.jpg" media-type="image/jpeg" />
+        <item id="image_105" href="images/f07-05.jpg" media-type="image/jpeg" />
+        <item id="image_106" href="images/f07-06.jpg" media-type="image/jpeg" />
+        <item id="image_107" href="images/e0197-01.jpg" media-type="image/jpeg" />
+        <item id="image_108" href="images/e0200-01.jpg" media-type="image/jpeg" />
+        <item id="image_109" href="images/e0200-02.jpg" media-type="image/jpeg" />
+        <item id="image_110" href="images/f07-07.jpg" media-type="image/jpeg" />
+        <item id="image_111" href="images/e0201-01.jpg" media-type="image/jpeg" />
+        <item id="image_112" href="images/e0202-01.jpg" media-type="image/jpeg" />
+        <item id="image_113" href="images/f07-08.jpg" media-type="image/jpeg" />
+        <item id="image_114" href="images/e0203-01.jpg" media-type="image/jpeg" />
+        <item id="image_115" href="images/e0203-02.jpg" media-type="image/jpeg" />
+        <item id="image_116" href="images/e0203-03.jpg" media-type="image/jpeg" />
+        <item id="image_117" href="images/e0204-01.jpg" media-type="image/jpeg" />
+        <item id="image_118" href="images/e0204-02.jpg" media-type="image/jpeg" />
+        <item id="image_119" href="images/e0204-03.jpg" media-type="image/jpeg" />
+        <item id="image_120" href="images/e0205-01.jpg" media-type="image/jpeg" />
+        <item id="image_121" href="images/e0206-01.jpg" media-type="image/jpeg" />
+        <item id="image_122" href="images/e0206-02.jpg" media-type="image/jpeg" />
+        <item id="image_123" href="images/e0206-03.jpg" media-type="image/jpeg" />
+        <item id="image_124" href="images/e0206-04.jpg" media-type="image/jpeg" />
+        <item id="image_125" href="images/f07-09.jpg" media-type="image/jpeg" />
+        <item id="image_126" href="images/f07-10.jpg" media-type="image/jpeg" />
+        <item id="image_127" href="images/e0208-01.jpg" media-type="image/jpeg" />
+        <item id="image_128" href="images/common-01.jpg" media-type="image/jpeg" />
+        <item id="image_129" href="images/common-01.jpg" media-type="image/jpeg" />
+        <item id="image_130" href="images/f0214-01.jpg" media-type="image/jpeg" />
+        <item id="image_131" href="images/f0215-01.jpg" media-type="image/jpeg" />
+        <item id="image_132" href="images/f0217-01.jpg" media-type="image/jpeg" />
+        <item id="image_133" href="images/f0218-01.jpg" media-type="image/jpeg" />
+        <item id="image_134" href="images/f0218-02.jpg" media-type="image/jpeg" />
+        <item id="image_135" href="images/f0219-01.jpg" media-type="image/jpeg" />
+        <item id="image_136" href="images/f0219-02.jpg" media-type="image/jpeg" />
+        <item id="image_137" href="images/common-01.jpg" media-type="image/jpeg" />
+        <item id="image_138" href="images/logo.jpg" media-type="image/jpeg" />
+        <item id="image_139" href="images/f0245-01.jpg" media-type="image/jpeg" />
+        <item id="image_140" href="images/f0245-02.jpg" media-type="image/jpeg" />
+        <item id="image_141" href="images/f0245-03.jpg" media-type="image/jpeg" />
+        <item id="image_142" href="images/f0245-04.jpg" media-type="image/jpeg" />
+        <item id="image_143" href="images/f0245-05.jpg" media-type="image/jpeg" />
+        <item id="image_144" href="images/f0245-06.jpg" media-type="image/jpeg" />
+
+        
+        <item id="cover" href="cover.html" media-type="application/xhtml+xml" />
+        <item id="title" href="title.html" media-type="application/xhtml+xml" />
+        <item id="copy" href="copy.html" media-type="application/xhtml+xml" />
+        <item id="ded01" href="ded01.html" media-type="application/xhtml+xml" />
+        <item id="toc" href="toc.html" media-type="application/xhtml+xml" />
+        <item id="toc01" href="toc01.html" media-type="application/xhtml+xml" />
+        <item id="pref01" href="pref01.html" media-type="application/xhtml+xml" />
+        <item id="ch00" href="ch00.html" media-type="application/xhtml+xml" />
+        <item id="ch01" href="ch01.html" media-type="application/xhtml+xml" />
+        <item id="ch02" href="ch02.html" media-type="application/xhtml+xml" />
+        <item id="ch03" href="ch03.html" media-type="application/xhtml+xml" />
+        <item id="ch04" href="ch04.html" media-type="application/xhtml+xml" />
+        <item id="ch05" href="ch05.html" media-type="application/xhtml+xml" />
+        <item id="ch06" href="ch06.html" media-type="application/xhtml+xml" />
+        <item id="ch07" href="ch07.html" media-type="application/xhtml+xml" />
+        <item id="app00" href="app00.html" media-type="application/xhtml+xml" />
+        <item id="app01" href="app01.html" media-type="application/xhtml+xml" />
+        <item id="app02" href="app02.html" media-type="application/xhtml+xml" />
+        <item id="index" href="index.html" media-type="application/xhtml+xml" />
+        <item id="back01" href="back01.html" media-type="application/xhtml+xml" />
+        <item id="back02" href="back02.html" media-type="application/xhtml+xml" />
+        <item id="footnote" href="footnote.html" media-type="application/xhtml+xml" />
+
+    </manifest>
+
+    <spine toc="ncx">
+      
+      <itemref idref="cover"/>
+      <itemref idref="title"/>
+      <itemref idref="copy"/>
+      <itemref idref="ded01"/>
+      <itemref idref="toc"/>
+      <itemref idref="toc01"/>
+      <itemref idref="pref01"/>
+      <itemref idref="ch00"/>
+      <itemref idref="ch01"/>
+      <itemref idref="ch02"/>
+      <itemref idref="ch03"/>
+      <itemref idref="ch04"/>
+      <itemref idref="ch05"/>
+      <itemref idref="ch06"/>
+      <itemref idref="ch07"/>
+      <itemref idref="app00"/>
+      <itemref idref="app01"/>
+      <itemref idref="app02"/>
+      <itemref idref="index"/>
+      <itemref idref="back01"/>
+      <itemref idref="back02"/>
+      <itemref idref="footnote"/>
+
+    </spine>
+    <guide>
+      
+      <reference type="text" title="Table of Content" href="cover.html"/>
+      
+    </guide>
+</package>

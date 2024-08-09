@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch07lev1sec2">
+  Partes de una función </h3>
+<p class="noindent">
+  Una función tiene tres partes: un nombre, parámetros y un cuerpo. Aquí tienes un ejemplo de función simple: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">def</span> testfunc(myname):
+        <span class="violet">print</span>(f<span class="green">'hello {myname}'</span>)</pre>
+<p class="indent">
+  El nombre de esta función es <span class="literal1" translate="no">
+   testfunc
+  </span>. Tiene un único parámetro, <span class="literal1" translate="no">
+   myname
+  </span>, y su cuerpo es el bloque de código que sigue inmediatamente a la línea que empieza por <span class="literal1" translate="no">
+   def
+  </span>(abreviatura de <em class="calibre7">definir </em>). Un <em class="calibre7">parámetro </em>es una variable que sólo existe mientras se utiliza una función. </p>
+<p class="indent">
+  Puedes ejecutar la función llamándola por su nombre, utilizando paréntesis alrededor del valor del parámetro: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> testfunc(<span class="green">'Mary'</span>)
+<span class="blue1">hello Mary</span></pre>
+<p class="indent">
+  Las funciones pueden tomar cualquier número de parámetros: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">def</span> testfunc(fname, lname):
+        <span class="violet">print</span>(f<span class="green">'Hello {fname} {lname}'</span>)</pre>
+<p class="indent">
+  Cuando utilices varios parámetros, asegúrate de separar los valores con una coma: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> testfunc(<span class="green">'Mary', 'Smith'</span>)
+<span class="blue1">Hello Mary Smith</span></pre>
+<p class="indent">
+  También podemos crear variables primero y luego llamar a la función con ellas: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> firstname = <span class="green">'Joe'</span>
+<span class="brown">&gt;&gt;&gt;</span> lastname = <span class="green">'Robertson'</span>
+<span id="page_86"></span><span class="brown">&gt;&gt;&gt;</span> testfunc(firstname, lastname)
+<span class="blue1">Hello Joe Robertson</span></pre>
+<p class="indent">
+  Una función puede devolver un valor con una sentencia <span class="literal1" translate="no">
+   return
+  </span>. Por ejemplo, puedes escribir una función para calcular cuánto dinero estás ahorrando: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">def</span> savings(pocket_money, paper_route, spending):
+        <span class="orange">return</span> pocket_money + paper_route - spending</pre>
+<p class="indent">
+  Esta función toma tres parámetros. Suma los dos primeros ( <span class="literal1" translate="no">
+   pocket_money
+  </span>y <span class="literal1" translate="no">
+   paper_route)
+  </span>y resta el último ( <span class="literal1" translate="no">
+   spending
+  </span>). El resultado se devuelve y puede asignarse a una variable (de la misma forma que asignamos otros valores a variables) o imprimirse: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(savings(10, 10, 5))
+<span class="blue1">15</span></pre>
+<p class="indent">
+  Pasamos los parámetros <span class="literal1" translate="no">
+   10
+  </span>, <span class="literal1" translate="no">
+   10
+  </span>, y <span class="literal1" translate="no">
+   5
+  </span>, y la función <span class="literal1" translate="no">
+   savings
+  </span>calcula <span class="literal1" translate="no">
+   15
+  </span>como resultado y luego devuelve el valor. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch07_2.html">anterior</a><a href="ch07.html">Subtema 3 de 8: (Ver todo)</a><a href="ch07_4.html">siguiente</a><br/></p>
+<br/><a href="ch07_3.docx" target="_blank"></a></footer>
+</body>
+</html>

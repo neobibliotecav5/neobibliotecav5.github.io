@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c09-0006">Modificar los valores de los atributos</h3>
+<p class="BodyFirst">Puedes cambiar el valor de un atributo de tres formas: puedes cambiar el valor directamente a través de una instancia, establecer el valor a través de un método o incrementar el valor (añadirle una determinada cantidad) a través de un método. Veamos cada uno de estos enfoques.</p>
+<h4 id="h3-502703c09-0004">Modificar directamente el valor de un atributo</h4>
+<p class="BodyFirst">La forma más sencilla de modificar el valor de un atributo es acceder a él directamente a través de una instancia. Aquí fijamos directamente la lectura del cuentakilómetros en 23:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">class Car:</span>
+<em class="LiteralGrayItalic" translate="no">    --snip--</em>
+
+<span class="LiteralGray">my_new_car = Car('audi', 'a4', 2024)</span>
+<span class="LiteralGray">print(my_new_car.get_descriptive_name())</span>
+
+my_new_car.odometer_reading = 23
+<span class="LiteralGray">my_new_car.read_odometer()</span></code></pre>
+<p>Utilizamos la notación con puntos para acceder al atributo <code translate="no">odometer_reading</code> del coche, y establecemos su valor directamente. Esta línea le dice a Python que tome la instancia <code translate="no">my_new_car</code>, busque el atributo <code translate="no">odometer_reading</code> asociado a ella y establezca el valor de ese atributo en 23:</p>
+<pre translate="no"><code translate="no">2024 Audi A4
+This car has 23 miles on it.</code></pre>
+<p>A veces querrás acceder directamente a los atributos de esta forma, pero otras veces querrás escribir un método que actualice el valor por ti.</p>
+<h4 id="h3-502703c09-0005">Modificar el valor de un atributo mediante un método</h4>
+<p class="BodyFirst">Puede ser útil disponer de métodos que actualicen determinados atributos por ti. En lugar de acceder directamente al atributo, pasas el nuevo valor a un método que se encarga internamente de la actualización.</p>
+<p><span epub:type="pagebreak" id="Page_165" title="165"></span>Aquí tienes un ejemplo de un método llamado <code translate="no">update_odometer()</code>:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">class Car:</span>
+<em class="LiteralGrayItalic" translate="no">    --snip--</em>
+
+    def update_odometer(self, mileage):
+        """Set the odometer reading to the given value."""
+        self.odometer_reading = mileage
+
+<span class="LiteralGray">my_new_car = Car('audi', 'a4', 2024)</span>
+<span class="LiteralGray">print(my_new_car.get_descriptive_name())</span>
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> my_new_car.update_odometer(23)
+<span class="LiteralGray">my_new_car.read_odometer()</span></code></pre>
+<p>La única modificación de <code translate="no">Car</code> es la adición de <code translate="no">update_odometer()</code>. Este método toma un valor de kilometraje y lo asigna a <code translate="no">self.odometer_reading</code>. Utilizando la instancia <code translate="no">my_new_car</code>, llamamos a <code translate="no">update_odometer()</code> con <code translate="no">23</code> como argumento <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Esto establece la lectura del cuentakilómetros en 23, y <code translate="no">read_odometer()</code> imprime la lectura:</p>
+<pre translate="no"><code translate="no">2024 Audi A4
+This car has 23 miles on it.</code></pre>
+<p>Podemos ampliar el método <code translate="no">update_odometer()</code> para que realice un trabajo adicional cada vez que se modifique la lectura del cuentakilómetros. Añadamos un poco de lógica para asegurarnos de que nadie intenta hacer retroceder la lectura del cuentakilómetros:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">class Car:</span>
+<em class="LiteralGrayItalic" translate="no">    --snip--</em>
+
+<span class="LiteralGray">    def update_odometer(self, mileage):</span>
+        """
+        Set the odometer reading to the given value.
+        Reject the change if it attempts to roll the odometer back.
+        """
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         if mileage &gt;= self.odometer_reading:
+<span class="LiteralGray">            self.odometer_reading = mileage</span>
+        else:
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>             print("You can't roll back an odometer!")</code></pre>
+<p>Ahora <code translate="no">update_odometer()</code> comprueba que la nueva lectura tiene sentido antes de modificar el atributo. Si el valor proporcionado para <code translate="no">mileage</code> es mayor o igual que el kilometraje existente, <code translate="no">self.odometer_reading</code>, puedes actualizar la lectura del cuentakilómetros al nuevo kilometraje <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Si el nuevo kilometraje es menor que el kilometraje existente, recibirás un aviso de que no puedes retroceder un cuentakilómetros <span aria-label="annotation2" class="CodeAnnotation">❷.</span></p>
+<h4 id="h3-502703c09-0006">Incrementar el valor de un atributo mediante un método</h4>
+<p class="BodyFirst">A veces querrás incrementar el valor de un atributo en una cantidad determinada, en lugar de establecer un valor completamente nuevo. Supongamos que compramos un coche usado y le hacemos 160 km <span epub:type="pagebreak" id="Page_166" title="166"></span>entre el momento en que lo compramos y el momento en que lo matriculamos. Aquí tenemos un método que nos permite pasar esta cantidad incremental y añadir ese valor a la lectura del cuentakilómetros:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">class Car:</span>
+    <em class="LiteralGrayItalic" translate="no">--snip--</em>
+
+<span class="LiteralGray">    def update_odometer(self, mileage):</span>
+<em class="LiteralGrayItalic" translate="no">        --snip--</em>
+
+    def increment_odometer(self, miles):
+        """Add the given amount to the odometer reading."""
+        self.odometer_reading += miles
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> my_used_car = Car('subaru', 'outback', 2019)
+print(my_used_car.get_descriptive_name())
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> my_used_car.update_odometer(23_500)
+my_used_car.read_odometer()
+
+my_used_car.increment_odometer(100)
+my_used_car.read_odometer()</code></pre>
+<p>El nuevo método <code translate="no">increment_odometer()</code> toma un número de kilómetros, y añade este valor a <code translate="no">self.odometer_reading</code>. Primero, creamos un coche usado, <code translate="no">my_used_car</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Ponemos su cuentakilómetros en 23.500 llamando a <code translate="no">update_odometer()</code> y pasándole <code translate="no">23_500</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Por último, llamamos a <code translate="no">increment_odometer()</code> y le pasamos <code translate="no">100</code> para añadir los 160 km que recorrimos entre la compra del coche y su matriculación:</p>
+<pre translate="no"><code translate="no">2019 Subaru Outback
+This car has 23500 miles on it.
+This car has 23600 miles on it.</code></pre>
+<p>Puedes modificar este método para que rechace incrementos negativos, de modo que nadie utilice también esta función para hacer retroceder un cuentakilómetros.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c09_9.html">anterior</a><a href="c09.html">Subtema 10 de 34: (Ver todo)</a><a href="c09_11.html">siguiente</a><br/></p>
+<br/><a href="c09_10.docx" target="_blank"></a></footer>
+</body>
+</html>

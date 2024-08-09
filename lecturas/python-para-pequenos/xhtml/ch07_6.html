@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch07lev1sec5">
+<span class="calibre2" id="page_92">
+</span>
+  La función de entrada </h3>
+<p class="noindent">
+  La función <span class="literal1" translate="no">
+   sys.stdin.readline
+  </span>no es la única forma de leer la entrada desde el teclado. Una opción mucho más sencilla es la función incorporada <span class="literal1" translate="no">
+   input
+  </span>. La función <span class="literal1" translate="no">
+   input
+  </span>toma un parámetro opcional <span class="literal1" translate="no">
+   prompt
+  </span>(una cadena con el mensaje que quieres mostrar), y luego devuelve lo que se escriba hasta que se pulse la tecla ENTER. <a class="calibre6" href="ch07.xhtml#ch07fig01">La Figura 7-1 </a>muestra lo que ocurre cuando ejecutas este código: </p>
+<pre class="pre" translate="no">i = <span class="violet">input</span>(<span class="green">'??? '</span>)
+<span class="violet">print</span>(i)</pre>
+<div class="image1" id="ch07fig01">
+<img alt="Image" class="calibre71" src="../images/07fig01.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">Figura 7-1: Uso de la función </em>de<em class="calibre7"> <span class="literal">entrada </span> </em></p>
+<p class="indent">
+  Reescribamos la función <span class="literal1" translate="no">
+   silly_age_joke
+  </span>para utilizar en su lugar <span class="literal1" translate="no">
+   input
+  </span>: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">def</span> silly_age_joke():
+        age = <span class="violet">int</span>(<span class="violet">input</span>(<span class="green">'How old are you?\n'</span>))
+        <span class="orange">if</span> age &gt;= 10 <span class="orange">and</span> age &lt;= 13:
+            <span class="violet">print</span>(<span class="green">'What is 13 + 49 + 84 + 155 + 97? A headache!'</span>)
+        <span class="orange">else</span>:
+            <span class="violet">print</span>(<span class="green">'Huh?'</span>)</pre>
+<p class="indent">
+  Aparte de tener ligeramente menos líneas, otra diferencia entre el código anterior y esta versión es que añadimos un carácter <em class="calibre7">de nueva línea </em>(∖ <span class="literal1" translate="no">
+   n
+  </span>) al final de nuestra cadena ( <span class="literal1" translate="no">
+   ‘How old are you?
+  </span>∖ <span class="literal1" translate="no">
+   n’
+  </span>). Una nueva línea simplemente desplaza el cursor de una línea de la pantalla a la siguiente. Esto ocurre automáticamente con <span class="literal1" translate="no">
+   print
+  </span>, pero no con la función <span class="literal1" translate="no">
+   input
+  </span>. </p>
+<p class="indent">
+  En cualquier caso, este código funciona exactamente igual que antes. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch07_5.html">anterior</a><a href="ch07.html">Subtema 6 de 8: (Ver todo)</a><a href="ch07_7.html">siguiente</a><br/></p>
+<br/><a href="ch07_6.docx" target="_blank"></a></footer>
+</body>
+</html>

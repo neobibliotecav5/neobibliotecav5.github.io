@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c20-0022"><span epub:type="pagebreak" id="Page_461" title="461"></span>Eliminar un proyecto en Plataforma.sh</h3>
+<p class="BodyFirst">Es una buena práctica realizar el proceso de despliegue varias veces con el mismo proyecto o con una serie de proyectos pequeños, para cogerle el truco al despliegue. Pero necesitarás saber cómo eliminar un proyecto que se ha desplegado. Platform.sh también limita el número de proyectos que puedes alojar gratuitamente, y no querrás saturar tu cuenta con proyectos de práctica.</p>
+<p>Puedes eliminar un proyecto utilizando la CLI:</p>
+<pre translate="no"><code translate="no">(ll_env)learning_log$ <b>platform project:delete</b></code></pre>
+<p>Se te pedirá que confirmes que deseas realizar esta acción destructiva. Responde a las indicaciones y tu proyecto será eliminado.</p>
+<p>El comando <code translate="no">platform create</code> también dio al repositorio Git local una referencia al repositorio remoto en los servidores de Platform.sh. También puedes eliminar este remoto desde la línea de comandos:</p>
+<pre translate="no"><code translate="no">(ll_env)learning_log$ <b>git remote</b>
+platform
+(ll_env)learning_log$ <b>git remote remove platform</b></code></pre>
+<p>El comando <code translate="no">git remote</code> lista los nombres de todas las URL remotas asociadas al repositorio actual. El comando <code translate="no">git remote remove</code><code class="bold" translate="no"> </code><var>nombre_remoto</var> elimina estas URL remotas del repositorio local.</p>
+<p>También puedes eliminar los recursos de un proyecto iniciando sesión en el sitio web Platform.sh y visitando tu panel de control en <a class="LinkURL" href="https://console.platform.sh">https://console.platform.sh.</a> Esta página enumera todos tus proyectos activos. Haz clic en los tres puntos de la casilla de un proyecto, y haz clic en <b>Editar Plan</b>. Esta es una página de precios para el proyecto; haz clic en el botón <b>Eliminar proyecto</b> en la parte inferior de la página, y se te mostrará una página de confirmación donde podrás seguir adelante con la eliminación. Aunque hayas eliminado tu proyecto utilizando la CLI, es una buena idea que te familiarices con el panel de control de cualquier proveedor de alojamiento en el que te despliegues.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c20_33.html">anterior</a><a href="c20.html">Subtema 34 de 37: (Ver todo)</a><a href="c20_35.html">siguiente</a><br/></p>
+<br/><a href="c20_34.docx" target="_blank"></a></footer>
+</body>
+</html>

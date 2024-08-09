@@ -1,0 +1,1183 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Unknown</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+<body class="calibre">
+<div class="calibre1" id="sbo-rt-content">
+<h2 class="h2" id="app01">
+<span class="calibre2" id="page_283">
+</span>
+<span class="big">
+   A
+  </span>
+<br class="calibre10"/>
+  Python Keywords
+ </h2>
+<div class="image">
+<img alt="Image" class="calibre8" src="../images/common.jpg"/>
+</div>
+<p class="indent">
+<em class="calibre7">
+   Keywords
+  </em>
+  in Python (and most programming languages) are words that have special meaning. They are used as part of the programming language itself, and therefore must not be used for anything else. For example, if you try to use keywords as variables, or use them in the wrong way, you’ll get strange error messages from the Python console. This appendix describes each of the Python keywords. You should find this to be a handy reference as you continue to program.
+ </p>
+<h3 class="h1" id="app01lev1sec1">
+<span class="calibre2" id="page_284">
+</span>
+  and
+ </h3>
+<p class="noindent">
+  The keyword
+  <span class="literal1">
+   and
+  </span>
+  is used to join two expressions together in a statement (like an
+  <span class="literal1">
+   if
+  </span>
+  statement) to say that both expressions must be true. Here’s an example:
+ </p>
+<pre class="pre"><span class="orange">if</span> age &gt; 12 <span class="orange">and</span> age &lt; 20:
+    <span class="violet">print</span>(<span class="green">'Beware the teenager!!!!'</span>)
+</pre>
+<p class="indent">
+  This code means that the value of the variable
+  <span class="literal1">
+   age
+  </span>
+  must be greater than
+  <span class="literal1">
+   12
+  </span>
+  and less than
+  <span class="literal1">
+   20
+  </span>
+  before the message will be printed.
+ </p>
+<h3 class="h1" id="app01lev1sec2">
+  as
+ </h3>
+<p class="noindent">
+  The keyword
+  <span class="literal1">
+   as
+  </span>
+  can be used to give another name to an imported module. For example, suppose you had a module with a very long name:
+ </p>
+<p class="indent">
+<span class="literal1">
+   i_am_a_python_module_that_is_not_very_useful
+  </span>
+  .
+ </p>
+<p class="indent">
+  It would be enormously annoying to need to type this module name every time you wanted to use it:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">import</span> i_am_a_python_module_that_is_not_very_useful
+<span class="brown">&gt;&gt;&gt;</span> i_am_a_python_module_that_is_not_very_useful.do_something()
+
+<span class="blue1">I have done something that is not useful.</span>
+<span class="brown">&gt;&gt;&gt;</span> i_am_a_python_module_that_is_not_very_useful.do_something_else()
+
+<span class="blue1">I have done something else that is not useful!!</span>
+</pre>
+<p class="indent">
+  Instead, you can give the module a new, shorter name when you import it, and then simply use that new name (like a nickname), as follows:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">import</span> i_am_a_python_module_that_is_not_very_useful as notuseful
+<span class="brown">&gt;&gt;&gt;</span> notuseful.do_something()
+
+<span class="blue1">I have done something that is not useful.</span>
+<span class="brown">&gt;&gt;&gt;</span> notuseful.do_something_else()
+
+<span class="blue1">I have done something else that is not useful!!</span>
+</pre>
+<h3 class="h1" id="app01lev1sec3">
+<span class="calibre2" id="page_285">
+</span>
+  Assert
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   assert
+  </span>
+  keyword is used to say that a value must be true. It’s another way of catching errors and problems in code, usually in more advanced programs (which is why we don’t use
+  <span class="literal1">
+   assert
+  </span>
+  in
+  <em class="calibre7">
+   Python for Kids
+  </em>
+  ). Here’s a simple
+  <span class="literal1">
+   assert
+  </span>
+  statement:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> mynumber = 10
+<span class="brown">&gt;&gt;&gt;</span> assert mynumber &lt; 5
+<span class="red">Traceback (most recent call last):
+  File "&lt;pyshell#1&gt;", line 1, in &lt;module&gt;
+    assert mynumber &lt; 5
+AssertionError</span>
+</pre>
+<p class="indent">
+  In this example, we assert that the value of the variable
+  <span class="literal1">
+   mynumber
+  </span>
+  is less than 5. It isn’t, so Python displays an error (called an
+  <span class="literal1">
+   AssertionError
+  </span>
+  ).
+ </p>
+<h3 class="h1" id="app01lev1sec4">
+  ASYNC
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   async
+  </span>
+  keyword is used to define something called a
+  <em class="calibre7">
+   native coroutine
+  </em>
+  . This is an advanced concept used in asynchronous programming (which is doing multiple things in parallel, or doing things after some time).
+ </p>
+<h3 class="h1" id="app01lev1sec5">
+  Await
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   await
+  </span>
+  keyword is also used for asynchronous programming (similar to
+  <span class="literal1">
+   async
+  </span>
+  ).
+ </p>
+<h3 class="h1" id="app01lev1sec6">
+  Break
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   break
+  </span>
+  keyword is used to stop some code from running. You might use
+  <span class="literal1">
+   break
+  </span>
+  inside a
+  <span class="literal1">
+   for
+  </span>
+  loop, like this:
+ </p>
+<pre class="pre">age = 10
+<span class="orange">for</span> x <span class="orange">in</span> <span class="violet">range</span>(1, 100):
+    <span class="violet">print</span>(f<span class="green">'counting {x}'</span>)
+    <span class="orange">if</span> x == age:
+        <span class="violet">print</span>(<span class="green">'end counting'</span>)
+        <span class="orange">break</span>
+</pre>
+<p class="indent">
+<span id="page_286">
+</span>
+  Since the variable
+  <span class="literal1">
+   age
+  </span>
+  is set to 10 here, this code will print out the following:
+ </p>
+<pre class="pre"><span class="blue1">counting 1
+counting 2
+counting 3
+counting 4
+counting 5
+counting 6
+counting 7
+counting 8
+counting 9
+counting 10
+end counting</span>
+</pre>
+<p class="indent">
+  Once the value of the variable
+  <span class="literal1">
+   x
+  </span>
+  reaches 10, the code prints the text “end counting” and then breaks out of the loop.
+ </p>
+<h3 class="h1" id="app01lev1sec7">
+  Class
+ </h3>
+<p class="noindent">
+  The keyword
+  <span class="literal1">
+   class
+  </span>
+  is used to define a type of object, like a vehicle, animal, or person. Classes can have a function called
+  <span class="literal1">
+   __init__
+  </span>
+  , which is used to perform all the tasks an object of the class needs when it is created. For example, an object of the
+  <span class="literal1">
+   Car
+  </span>
+  class might need a
+  <span class="literal1">
+   color
+  </span>
+  variable when it’s created:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> Car:
+        <span class="orange">def</span> __init__(self, color):
+            self.color = color
+
+<span class="brown">&gt;&gt;&gt;</span> car1 = Car(<span class="green">'red'</span>)
+<span class="brown">&gt;&gt;&gt;</span> car2 = Car(<span class="green">'blue'</span>)
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(car1.color)
+<span class="blue1">red</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(car2.color)
+<span class="blue1">blue</span>
+</pre>
+<h3 class="h1" id="app01lev1sec8">
+<span class="calibre2" id="page_287">
+</span>
+  Continue
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   continue
+  </span>
+  keyword is a way to “jump” to the next item in a loop so the remaining code in the loop block is not executed. Unlike
+  <span class="literal1">
+   break
+  </span>
+  , we don’t jump out of the loop—we just carry on with the next item. For example, if we had a list of items and wanted to skip items starting with
+  <em class="calibre7">
+   b
+  </em>
+  , we could use the following code:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> my_items = [<span class="green">'apple'</span>, <span class="green">'aardvark'</span>, <span class="green">'banana'</span>, <span class="green">'badger'</span>,
+        <span class="green">'clementine'</span>, <span class="green">'camel'</span>]
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> item <span class="orange">in</span> my_items:
+        <span class="orange">if</span> item.startswith(<span class="green">'b'</span>):
+            <span class="orange">continue</span>
+        <span class="violet">print</span>(item)
+
+<span class="blue1">apple
+aardvark
+clementine
+camel</span>
+</pre>
+<p class="indent">
+  We first create our list of items, and then use a
+  <span class="literal1">
+   for
+  </span>
+  loop to loop over the items and run a block of code for each. If the item starts with the letter
+  <em class="calibre7">
+   b
+  </em>
+  , we continue to the next item. Otherwise, we print out the item.
+ </p>
+<h3 class="h1" id="app01lev1sec9">
+  DEF
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   def
+  </span>
+  keyword is used to define a function. For example, we can create a function to convert a number of years into the equivalent number of minutes:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">def</span> minutes(years):
+        <span class="orange">return</span> years * 365 * 24 * 60
+<span class="brown">&gt;&gt;&gt;</span> minutes(10)
+<span class="blue1">5256000</span>
+</pre>
+<h3 class="h1" id="app01lev1sec10">
+<span class="calibre2" id="page_288">
+</span>
+  DEL
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   del
+  </span>
+  keyword is used to delete something. For example, if you had a list of things you wanted for your birthday in your diary, but then changed your mind about one of them, you might cross it off the list and add something new:
+ </p>
+<div class="image1" id="ch288fig01">
+<img alt="Image" class="calibre185" src="../images/288fig01.jpg"/>
+</div>
+<p class="indent">
+  In Python, the original list would look like this:
+ </p>
+<pre class="pre">what_i_want = [<span class="green">'remote controlled car'</span>, <span class="green">'new bike'</span>, <span class="green">'computer game'</span>]
+</pre>
+<p class="indent">
+  You could remove the computer game by using
+  <span class="literal1">
+   del
+  </span>
+  and the index of the item you want to delete. You could then add the new item with the
+  <span class="literal1">
+   append
+  </span>
+  function:
+ </p>
+<pre class="pre"><span class="violet">del</span> what_i_want[2]
+what_i_want.append(<span class="green">'roboreptile'</span>)
+</pre>
+<p class="indent">
+  And then print the new list:
+ </p>
+<pre class="pre"><span class="violet">print</span>(what_i_want)
+<span class="blue1">['remote controlled car', 'new bike', 'roboreptile']</span>
+</pre>
+<h3 class="h1" id="app01lev1sec11">
+  Elif
+ </h3>
+<p class="noindent">
+  The keyword
+  <span class="literal1">
+   elif
+  </span>
+  is used as part of an
+  <span class="literal1">
+   if
+  </span>
+  statement. See the description of the
+  <span class="literal1">
+   if
+  </span>
+  keyword for an example.
+ </p>
+<h3 class="h1" id="app01lev1sec12">
+  Else
+ </h3>
+<p class="noindent">
+  The keyword
+  <span class="literal1">
+   else
+  </span>
+  is used as part of an
+  <span class="literal1">
+   if
+  </span>
+  statement. See the description of the
+  <span class="literal1">
+   if
+  </span>
+  keyword for an example.
+ </p>
+<h3 class="h1" id="app01lev1sec13">
+  Except
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   except
+  </span>
+  keyword is used for catching problems in fairly complicated code.
+ </p>
+<h3 class="h1" id="app01lev1sec14">
+<span class="calibre2" id="page_289">
+</span>
+  Finally
+ </h3>
+<p class="noindent">
+  The keyword
+  <span class="literal1">
+   finally
+  </span>
+  is used to make sure that if an error occurs, certain code runs (usually to tidy up any mess that a piece of code has left behind). This keyword is for more advanced programming.
+ </p>
+<h3 class="h1" id="app01lev1sec15">
+  For
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   for
+  </span>
+  keyword is used to create a loop of code that runs a certain number of times. Here’s an example:
+ </p>
+<pre class="pre"><span class="orange">for</span> x <span class="orange">in</span> <span class="violet">range</span>(0, 5):
+    <span class="violet">print</span>(f<span class="green">'x is {x}'</span>)
+</pre>
+<p class="indent">
+  This
+  <span class="literal1">
+   for
+  </span>
+  loop executes the block of code (the
+  <span class="literal1">
+   print
+  </span>
+  statement) five times, resulting in the following output:
+ </p>
+<pre class="pre"><span class="blue1">x is 0
+x is 1
+x is 2
+x is 3
+x is 4</span>
+</pre>
+<h3 class="h1" id="app01lev1sec16">
+  From
+ </h3>
+<p class="noindent">
+  When importing a module, you can import just the part you need using the
+  <span class="literal1">
+   from
+  </span>
+  keyword. For example, the
+  <span class="literal1">
+   turtle
+  </span>
+  module introduced in
+  <a class="calibre6" href="ch04.xhtml#ch04">
+   Chapter 4
+  </a>
+  has a class called
+  <span class="literal1">
+   Turtle
+  </span>
+  , which we use to create a
+  <span class="literal1">
+   Turtle
+  </span>
+  object (which includes the canvas on which the turtle moves). Here’s how we import the entire
+  <span class="literal1">
+   turtle
+  </span>
+  module and then use the
+  <span class="literal1">
+   Turtle
+  </span>
+  class:
+ </p>
+<pre class="pre"><span class="orange">import</span> turtle
+t = turtle.Turtle()
+</pre>
+<p class="indent">
+  You could also import the
+  <span class="literal1">
+   Turtle
+  </span>
+  class on its own, and then use it directly (without referring to the
+  <span class="literal1">
+   turtle
+  </span>
+  module at all):
+ </p>
+<pre class="pre"><span class="orange">from</span> turtle <span class="orange">import</span> Turtle
+t = Turtle()
+</pre>
+<p class="indent">
+<span id="page_290">
+</span>
+  You might do this so the next time you look at the top of that program, you can see all the functions and classes you’re using (which is particularly useful in larger programs that import a lot of modules). However, if you choose to do this, you won’t be able to use the parts of the module you haven’t imported. For example, the
+  <span class="literal1">
+   time
+  </span>
+  module has functions called
+  <span class="literal1">
+   localtime
+  </span>
+  and
+  <span class="literal1">
+   gmtime
+  </span>
+  , but if you import only
+  <span class="literal1">
+   localtime
+  </span>
+  and then try to use
+  <span class="literal1">
+   gmtime
+  </span>
+  , you’ll get an error:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">from</span> time <span class="orange">import</span> localtime
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(localtime())
+<span class="blue1">(2019, 1, 30, 20, 53, 42, 1, 30, 0)</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(gmtime())
+<span class="red">Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+NameError: name 'gmtime' is not defined</span>
+</pre>
+<p class="indent">
+  The error message
+  <span class="literal1">
+   name ’gmtime’ is not defined
+  </span>
+  means that Python doesn’t know anything about the function
+  <span class="literal1">
+   gmtime
+  </span>
+  , which is because you haven’t imported it.
+ </p>
+<p class="indent">
+  If a particular module has multiple functions that you want to use, and you don’t want to refer to them by using module names (for example,
+  <span class="literal1">
+   time.localtime
+  </span>
+  , or
+  <span class="literal1">
+   time.gmtime
+  </span>
+  ), you can import everything in the module by using an asterisk (
+  <span class="literal1">
+   *
+  </span>
+  ), like this:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">from</span> time <span class="orange">import</span> *
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(localtime())
+<span class="blue1">(2021, 1, 30, 20, 57, 7, 1, 30, 0)</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(gmtime())
+<span class="blue1">(2021, 1, 30, 13, 57, 9, 1, 30, 0)</span>
+</pre>
+<p class="indent">
+  This form imports everything from the
+  <span class="literal1">
+   time
+  </span>
+  module, and you can now refer to the individual functions by name.
+ </p>
+<h3 class="h1" id="app01lev1sec17">
+  Global
+ </h3>
+<p class="noindent">
+  The idea of
+  <em class="calibre7">
+   scope
+  </em>
+  in programs is introduced in
+  <a class="calibre6" href="ch07.xhtml#ch07">
+   Chapter 7
+  </a>
+  . Scope refers to the visibility of a variable. If a variable is defined outside a function, it can usually be seen (it’s visible) inside the function. On the other hand, if the variable is defined inside a function, usually it can’t be seen outside that function.
+  <span id="page_291">
+</span>
+  The
+  <span class="literal1">
+   global
+  </span>
+  keyword is one exception to this rule. A variable defined as global can be seen everywhere. Here’s an example:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">def</span> test():
+        <span class="orange">global</span> a
+        a = 1
+        b = 2
+</pre>
+<p class="indent">
+  What do you think happens when you call
+  <span class="literal1">
+   print(a)
+  </span>
+  and then
+  <span class="literal1">
+   print(b)
+  </span>
+  after running the function test? The first will work, but the second will display an error message:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> test()
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(a)
+<span class="blue1">1</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(b)
+<span class="red">Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+NameError: name 'b' is not defined</span>
+</pre>
+<p class="indent">
+  The variable
+  <span class="literal1">
+   a
+  </span>
+  has been changed to have global scope inside the function, so it’s visible, even once the function has completed; but
+  <span class="literal1">
+   b
+  </span>
+  is still visible only inside the function. (You must use the
+  <span class="literal1">
+   global
+  </span>
+  keyword before setting the value of your variable.)
+ </p>
+<h3 class="h1" id="app01lev1sec18">
+  If
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   if
+  </span>
+  keyword is used to make a decision about something. It can also be used with the keywords
+  <span class="literal1">
+   else
+  </span>
+  and
+  <span class="literal1">
+   elif
+  </span>
+  (else if). An
+  <span class="literal1">
+   if
+  </span>
+  statement is a way of saying, “If something is true, then perform an action of some kind.” Here’s an example:
+ </p>
+<pre class="pre"><span class="orange">if</span> toy_price &gt; 1000:
+    <span class="violet">print</span>(<span class="green">'That toy is overpriced'</span>)
+<span class="orange">elif</span> toy_price &gt; 100:
+    <span class="violet">print</span>(<span class="green">'That toy is expensive'</span>)
+<span class="orange">else</span>:
+    <span class="violet">print</span>(<span class="green">'I can afford that toy'</span>)
+</pre>
+<p class="indent">
+  This
+  <span class="literal1">
+   if
+  </span>
+  statement says that if a toy price is over $1,000, display a message that it is overpriced; otherwise, if the toy price is over $100, display a message that it’s expensive. If
+  <span id="page_292">
+</span>
+  neither of those conditions is true, it should display the message, “I can afford that toy.”
+ </p>
+<h3 class="h1" id="app01lev1sec19">
+  Import
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   import
+  </span>
+  keyword tells Python to load a module so it can be used. For example, the following code tells Python to use the
+  <span class="literal1">
+   sys
+  </span>
+  module:
+ </p>
+<pre class="pre"><span class="orange">import</span> sys
+</pre>
+<h3 class="h1" id="app01lev1sec20">
+  In
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   in
+  </span>
+  keyword is used in expressions to see if an item is within a collection of items. For example, can the number 1 be found in a list (a collection) of numbers?
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">if</span> 1 <span class="orange">in</span> [1,2,3,4]:
+        <span class="violet">print</span>(<span class="green">'number is in the list'</span>)
+<span class="blue1">number is in the list</span>
+</pre>
+<p class="indent">
+  Here’s how to find out if the string
+  <span class="literal1">
+   ’pants’
+  </span>
+  is in a list of clothing items:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> clothing_list = [<span class="green">'shorts'</span>, <span class="green">'undies'</span>, <span class="green">'boxers'</span>, <span class="green">'long johns'</span>,
+                 <span class="green">'knickers'</span>]
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">if</span> <span class="green">'pants'</span> <span class="orange">in</span> clothing_list:
+        <span class="violet">print</span>(<span class="green">'pants is in the list'</span>)
+    <span class="orange">else</span>:
+        <span class="violet">print</span>(<span class="green">'where are my pants?'</span>)
+<span class="blue1">where are my pants?</span>
+</pre>
+<h3 class="h1" id="app01lev1sec21">
+  Is
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   is
+  </span>
+  keyword is a bit like the
+  <em class="calibre7">
+   equal to
+  </em>
+  operator (
+  <span class="literal1">
+   ==
+  </span>
+  ), which is used to tell if two things are equal (for example,
+  <span class="literal1">
+   10 == 10
+  </span>
+  is true, and
+  <span class="literal1">
+   10 == 11
+  </span>
+  is false). However, there is a fundamental difference between
+  <span class="literal1">
+   is
+  </span>
+  and
+  <span class="literal1">
+   ==
+  </span>
+  . If you are comparing two objects (such as lists),
+  <span class="literal1">
+   ==
+  </span>
+  may return
+  <span class="literal1">
+   true
+  </span>
+  , while
+  <span class="literal1">
+   is
+  </span>
+  may not (even if you think the objects are the same). This is an advanced programming concept.
+ </p>
+<h3 class="h1" id="app01lev1sec22">
+<span class="calibre2" id="page_293">
+</span>
+  Lambda
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   lambda
+  </span>
+  keyword is used to create anonymous, or inline, functions. This keyword is used in more advanced programs.
+ </p>
+<h3 class="h1" id="app01lev1sec23">
+  Nonlocal
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   nonlocal
+  </span>
+  keyword is used to include a variable in the scope of a function when it’s declared outside the function. This keyword is used in more advanced programs.
+ </p>
+<h3 class="h1" id="app01lev1sec24">
+  Not
+ </h3>
+<p class="noindent">
+  If something is true, the
+  <span class="literal1">
+   not
+  </span>
+  keyword makes it false. For example, if we create a variable
+  <span class="literal1">
+   a
+  </span>
+  and set it to the value
+  <span class="literal1">
+   True
+  </span>
+  , and then print the value of this variable using
+  <span class="literal1">
+   not
+  </span>
+  , we get the following result:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> a = <span class="violet">True</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="orange">not</span> a)
+<span class="blue1">False</span>
+</pre>
+<p class="indent">
+  And similarly for a
+  <span class="literal1">
+   False
+  </span>
+  value, we get
+  <span class="literal1">
+   True
+  </span>
+  :
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> b = <span class="violet">False</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="orange">not</span> b)
+<span class="blue1">True</span>
+</pre>
+<p class="indent">
+  This doesn’t seem very useful until you start using the keyword in
+  <span class="literal1">
+   if
+  </span>
+  statements. For example, to find out whether an item is not in a list, we could write something like this:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> clothing_list = [<span class="green">'shorts'</span>, <span class="green">'undies'</span>, <span class="green">'boxers'</span>, <span class="green">'long johns'</span>,
+                 <span class="green">'knickers'</span>]
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">if</span> <span class="green">'pants'</span> <span class="orange">not in</span> clothing_list:
+        <span class="violet">print</span>(<span class="green">'You really need to buy some pants'</span>)
+<span class="blue1">You really need to buy some pants</span>
+</pre>
+<h3 class="h1" id="app01lev1sec25">
+  Or
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   or
+  </span>
+  keyword joins two conditions in a statement (such as an
+  <span class="literal1">
+   if
+  </span>
+  statement) to say that at least one of the conditions should be true. Here’s an example:
+ </p>
+<pre class="pre"><span class="orange">if</span> dino == <span class="green">'Tyrannosaurus'</span> <span class="orange">or</span> dino == <span class="green">'Allosaurus'</span>:
+    <span class="violet">print</span>(<span class="green">'Carnivores'</span>)
+<span class="orange">elif</span> dino == <span class="green">'Ankylosaurus'</span> <span class="orange">or</span> dino == <span class="green">'Apatosaurus'</span>:
+    <span class="violet">print</span>(<span class="green">'Herbivores'</span>)
+</pre>
+<p class="indent">
+<span id="page_294">
+</span>
+  In this case, if the value of the variable
+  <span class="literal1">
+   dino
+  </span>
+  is
+  <span class="literal1">
+   Tyrannosaurus
+  </span>
+  or
+  <span class="literal1">
+   Allosaurus
+  </span>
+  , the program prints
+  <span class="literal1">
+   Carnivores
+  </span>
+  . If it is
+  <span class="literal1">
+   Ankylosaurus
+  </span>
+  or
+  <span class="literal1">
+   Apatosaurus
+  </span>
+  , the program prints
+  <span class="literal1">
+   Herbivores
+  </span>
+  .
+ </p>
+<h3 class="h1" id="app01lev1sec26">
+  Pass
+ </h3>
+<p class="noindent">
+  Sometimes when you’re developing a program, you want to write only small pieces of it to try things out. The problem with doing this is that you can’t have an
+  <span class="literal1">
+   if
+  </span>
+  statement without the block of code that should be run if the condition in the
+  <span class="literal1">
+   if
+  </span>
+  statement is true. You also cannot have a
+  <span class="literal1">
+   for
+  </span>
+  loop without the block of code that should be run in the loop. For example, the following code works just fine:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> age = 15
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">if</span> age &gt; 10:
+        <span class="violet">print</span>(<span class="green">'older than 10'</span>)
+<span class="blue1">older than 10</span>
+</pre>
+<p class="indent">
+  But if you don’t fill in the block of code (the body) for the
+  <span class="literal1">
+   if
+  </span>
+  statement, you’ll get an error message:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> age = 15
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">if</span> age &gt; 10:
+<span class="red">File "&lt;stdin&gt;", line 2
+    ^
+IndentationError: expected an indented block after 'if' statement on line 1</span></pre>
+<p class="indent">
+  This is the error message Python displays when you should have a block of code after a statement of some kind (it won’t even let you type this kind of code if you’re using IDLE). In cases like these, you can use the
+  <span class="literal1">
+   pass
+  </span>
+  keyword to write a statement but not provide the block of code that goes with it.
+ </p>
+<p class="indent">
+  For example, say you want to create a
+  <span class="literal1">
+   for
+  </span>
+  loop with an
+  <span class="literal1">
+   if
+  </span>
+  statement inside it. Perhaps you haven’t decided what to put in the
+  <span class="literal1">
+   if
+  </span>
+  statement yet—maybe you’ll use the
+  <span class="literal1">
+   print
+  </span>
+  function, or put in a break, or something else. For now, you can use
+  <span class="literal1">
+   pass
+  </span>
+  ,
+  <span id="page_295">
+</span>
+  and the code will still work (even if it doesn’t do exactly what you want yet). Here’s our
+  <span class="literal1">
+   if
+  </span>
+  statement again, this time using the
+  <span class="literal1">
+   pass
+  </span>
+  keyword:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> age = 15
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">if</span> age &gt; 10:
+        <span class="orange">pass</span>
+</pre>
+<p class="indent">
+  The following code shows another use of the
+  <span class="literal1">
+   pass
+  </span>
+  keyword:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> x <span class="orange">in</span> <span class="violet">range</span>(0, 7):
+<span class="brown">&gt;&gt;&gt;</span>     <span class="violet">print</span>(f<span class="green">'x is {x}'</span>)
+<span class="brown">&gt;&gt;&gt;</span>     <span class="orange">if</span> x == 4:
+            <span class="orange">pass</span>
+
+<span class="blue1">x is 0
+x is 1
+x is 2
+x is 3
+x is 4
+x is 5
+x is 6</span>
+</pre>
+<p class="indent">
+  Python still checks whether the
+  <span class="literal1">
+   x
+  </span>
+  variable contains the value
+  <span class="literal1">
+   4
+  </span>
+  every time it executes the block of code in the loop, but it will do nothing as a consequence, so it will print every number in the range 0 to 7. Later, you could add the code in the block for the
+  <span class="literal1">
+   if
+  </span>
+  statement, replacing the
+  <span class="literal1">
+   pass
+  </span>
+  keyword with something else, such as
+  <span class="literal1">
+   break
+  </span>
+  :
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> x <span class="orange">in</span> <span class="violet">range</span>(0, 7):
+        <span class="violet">print</span>(f<span class="green">'x is {x}'</span>)
+        <span class="orange">if</span> x == 4:
+            <span class="orange">break</span>
+
+<span class="blue1">x is 1
+x is 2
+x is 3
+x is 4</span>
+</pre>
+<p class="indent">
+  The
+  <span class="literal1">
+   pass
+  </span>
+  keyword is most commonly used when you’re creating a function but don’t want to write the code for it yet.
+ </p>
+<h3 class="h1" id="app01lev1sec27">
+<span class="calibre2" id="page_296">
+</span>
+  Raise
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   raise
+  </span>
+  keyword can be used to cause an error to happen. That might sound like a strange thing to do, but in advanced programming, it can actually be quite useful.
+ </p>
+<h3 class="h1" id="app01lev1sec28">
+  Return
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   return
+  </span>
+  keyword is used to return a value from a function. For example, you might create a function to calculate the number of seconds you’ve been alive up till your last birthday:
+ </p>
+<pre class="pre"><span class="orange">def</span> age_in_seconds(age_in_years):
+    <span class="orange">return</span> age_in_years * 365 * 24 * 60 * 60
+</pre>
+<p class="indent">
+  When you call this function, the returned value can be assigned to another variable or it can be printed:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> seconds = age_in_seconds(9)
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(seconds)
+<span class="blue1">283824000</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(age_in_seconds(12))
+<span class="blue1">378432000</span>
+</pre>
+<h3 class="h1" id="app01lev1sec29">
+  Try
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   try
+  </span>
+  keyword begins a block of code that ends with the
+  <span class="literal1">
+   except
+  </span>
+  and
+  <span class="literal1">
+   finally
+  </span>
+  keywords. Together, these
+  <span class="literal1">
+   try
+  </span>
+  /
+  <span class="literal1">
+   except
+  </span>
+  /
+  <span class="literal1">
+   finally
+  </span>
+  blocks of code are used to handle errors in a program, such as making sure that the program displays a useful message to the user rather than an unfriendly Python error. They’re very useful in advanced programs.
+ </p>
+<h3 class="h1" id="app01lev1sec30">
+  While
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   while
+  </span>
+  keyword is a bit like
+  <span class="literal1">
+   for
+  </span>
+  , except that a
+  <span class="literal1">
+   for
+  </span>
+  loop counts through a range (of numbers), but a
+  <span class="literal1">
+   while
+  </span>
+  loop keeps on running while an expression is true. Be careful with
+  <span class="literal1">
+   while
+  </span>
+  loops—if the expression is always true, the loop will never end (this is called an
+  <em class="calibre7">
+   infinite loop
+  </em>
+  ). Here’s an example:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> x = 1
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">while</span> x == 1:
+        <span class="violet">print</span>(<span class="green">'hello'</span>)
+</pre>
+<p class="indent">
+<span id="page_297">
+</span>
+  If you run this code, it will loop forever, or at least until you close the Python Shell or press CTRL-C to interrupt it. However, the following code will print “hello” nine times (each time adding 1 to the variable
+  <span class="literal1">
+   x
+  </span>
+  , until
+  <span class="literal1">
+   x
+  </span>
+  is no longer less than 10):
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> x = 1
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">while</span> x &lt; 10:
+        <span class="violet">print</span>(<span class="green">'hello'</span>)
+        x = x + 1
+</pre>
+<h3 class="h1" id="app01lev1sec31">
+  With
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   with
+  </span>
+  keyword is used with a special kind of object to create a block of code, in a similar way to the
+  <span class="literal1">
+   try
+  </span>
+  and
+  <span class="literal1">
+   finally
+  </span>
+  keywords, and then manages resources for that object. This keyword is used in advanced programs.
+ </p>
+<h3 class="h1" id="app01lev1sec32">
+  Yield
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   yield
+  </span>
+  keyword is a little bit like
+  <span class="literal1">
+   return
+  </span>
+  , except that it is used with a specific class of object called a
+  <em class="calibre7">
+   generator
+  </em>
+  . Generators create values on request, so in that respect, the
+  <span class="literal1">
+   range
+  </span>
+  function behaves like a generator.
+  <span id="page_298">
+</span>
+</p>
+</div></body>
+</html>

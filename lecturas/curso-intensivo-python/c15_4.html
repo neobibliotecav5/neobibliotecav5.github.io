@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c15-0001">Cambiar el tipo de etiqueta y el grosor de la línea</h3>
+<p class="BodyFirst">Aunque el gráfico de <a href="#figure15-1">la Figura 15-1</a> muestra que los números están aumentando, el tipo de etiqueta es demasiado pequeño y la línea es un poco fina para leerla fácilmente. Afortunadamente, Matplotlib te permite ajustar todas las características de una visualización.</p>
+<p><span epub:type="pagebreak" id="Page_304" title="304"></span>Utilizaremos algunas de las personalizaciones disponibles para mejorar la legibilidad de este gráfico. Empecemos por añadir un título y etiquetar los ejes:</p>
+<p class="CodeLabel" translate="no"><b>mpl_squares.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">import matplotlib.pyplot as plt</span>
+
+<span class="LiteralGray">squares = [1, 4, 9, 16, 25]</span>
+
+<span class="LiteralGray">fig, ax = plt.subplots()</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> ax.plot(squares, linewidth=3)
+
+# Set chart title and label axes.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> ax.set_title("Square Numbers", fontsize=24)
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> ax.set_xlabel("Value", fontsize=14)
+ax.set_ylabel("Square of Value", fontsize=14)
+
+# Set size of tick labels.
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> ax.tick_params(labelsize=14)
+
+<span class="LiteralGray">plt.show()</span></code></pre>
+<p>El parámetro <code translate="no">linewidth</code> controla el grosor de la línea que genera <code translate="no">plot()</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Una vez generado el gráfico, hay muchos métodos disponibles para modificarlo antes de presentarlo. El método <code translate="no">set_title()</code> establece un título general para el gráfico <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Los parámetros <code translate="no">fontsize</code>, que aparecen repetidamente a lo largo del código, controlan el tamaño del texto en varios elementos del gráfico.</p>
+<p>Los métodos <code translate="no">set_xlabel()</code> y <code translate="no">set_ylabel()</code> te permiten establecer un título para cada uno de los ejes <span aria-label="annotation3" class="CodeAnnotation">❸,</span> y el método <code translate="no">tick_params()</code> da estilo a las marcas de graduación <span aria-label="annotation4" class="CodeAnnotation">❹.</span> Aquí <code translate="no">tick_params()</code> establece el tamaño de fuente de las etiquetas de las marcas de graduación en 14 en ambos ejes.</p>
+<p>Como puedes ver en <a href="#figure15-2" id="figureanchor15-2">la Figura 15-2</a>, el gráfico resultante es mucho más fácil de leer. El tipo de etiqueta es más grande, y el gráfico de líneas es más grueso. A menudo merece la pena experimentar con estos valores para ver qué funciona mejor en el gráfico resultante.</p>
+<figure><img alt="" class="keyline" height="402" src="Images/f15002.png" translate="no" width="675"/>
+<figcaption><p><a id="figure15-2">Figura 15-2</a>: Ahora el gráfico es mucho más fácil de leer.</p></figcaption></figure>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c15_3.html">anterior</a><a href="c15.html">Subtema 4 de 35: (Ver todo)</a><a href="c15_5.html">siguiente</a><br/></p>
+<br/><a href="c15_4.docx" target="_blank"></a></footer>
+</body>
+</html>

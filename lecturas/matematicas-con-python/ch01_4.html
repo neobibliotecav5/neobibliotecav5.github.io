@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<meta charset="utf-8"/>
+<title>Capítulo 1: Trabajar con números</title>
+<link href="style.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="core.css" media="all" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch01lev1sec03"><strong>Diferentes tipos de números</strong></h3>
+<p class="noindent">Te habrás dado cuenta de que he utilizado dos tipos de números para demostrar las operaciones matemáticas: números sin punto decimal, que ya conoces como <em>números enteros</em>, y números con punto decimal, que los programadores llaman <em>números de coma flotante</em>. A los humanos no nos cuesta reconocer y trabajar con números, ya estén escritos como números enteros, decimales con coma flotante, fracciones o números romanos. Pero en algunos de los programas que escribimos en este libro, sólo tendrá sentido realizar una tarea con un tipo concreto de número, por lo que a menudo tendremos que escribir un poco de código para que los programas comprueben si los números que introducimos son del tipo correcto.</p>
+<p class="indent">Python considera que los números enteros y los de coma flotante son <em>tipos</em> diferentes. Si utilizas la función <span class="literal" translate="no">type()</span>, Python te dirá qué tipo de número acabas de introducir. Por ejemplo:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">type(3)</span><br translate="no"/><br translate="no"/><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">type(3.5)</span><br translate="no"/><br translate="no"/><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">type(3.0)</span><br translate="no"/></p>
+<p class="indent"><a id="page_5"></a>Aquí puedes ver que Python clasifica el número 3 como un número entero (tipo <span class="literal" translate="no">'int'</span>), pero clasifica 3,0 como un número de coma flotante (tipo <span class="literal" translate="no">'float'</span>). Todos sabemos que 3 y 3,0 son matemáticamente equivalentes, pero en muchas situaciones, Python tratará estos dos números de forma diferente porque son dos tipos distintos.</p>
+<p class="indent">Algunos de los programas que escribimos en este capítulo sólo funcionarán correctamente con un número entero como entrada. Como acabamos de ver, Python no reconocerá un número como 1,0 o 4,0 como un entero, así que si queremos aceptar números como esos como entrada válida en estos programas, tendremos que convertirlos de números de coma flotante a enteros. Por suerte, hay una función integrada en Python que hace precisamente eso:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">int(3.8)</span><br translate="no"/>3<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">int(3.0)</span><br translate="no"/>3</p>
+<p class="indent">La función <span class="literal" translate="no">int()</span> toma el número de coma flotante de entrada, elimina todo lo que venga después del punto decimal y devuelve el número entero resultante. La función <span class="literal" translate="no">float()</span> funciona de forma similar para realizar la conversión inversa:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">float(3)</span><br translate="no"/>3.0</p>
+<p class="indent"><span class="literal" translate="no">float()</span> toma el número entero de entrada y le añade un punto decimal para convertirlo en un número de coma flotante.</p>
+<h4 class="h4" id="ch01lev2sec01"><strong><em>Trabajar con fracciones</em></strong></h4>
+<p class="noindent">Python también puede manejar fracciones, pero para ello necesitaremos utilizar el módulo <span class="literal" translate="no">fractions</span> de Python. Puedes considerar un <em>módulo</em> como un programa escrito por otra persona que puedes utilizar en tus propios programas. Un módulo puede incluir clases, funciones e incluso definiciones de etiquetas. Puede formar parte de la biblioteca estándar de Python o distribuirse desde una ubicación de terceros. En este último caso, tendrías que instalar el módulo antes de poder utilizarlo.</p>
+<p class="indent">El módulo <span class="literal" translate="no">fractions</span> forma parte de la biblioteca estándar, lo que significa que ya está instalado. Define una clase <span class="literal" translate="no">Fraction</span>, que es la que utilizaremos para introducir fracciones en nuestros programas. Antes de poder utilizarla, tendremos que <em>importarla</em>, que es una forma de decirle a Python que queremos utilizar la clase de este módulo. Veamos un ejemplo rápido: crearemos una nueva etiqueta, <span class="literal" translate="no">f</span>, que hace referencia a la fracción 3/4:</p>
+<p class="programs" translate="no"><span class="ent">➊</span> &gt;&gt;&gt; <span class="codestrong">from fractions import Fraction</span><br translate="no"/><span class="ent">➋</span> &gt;&gt;&gt; <span class="codestrong">f = Fraction(3, 4)</span><br translate="no"/><span class="ent">➌</span> &gt;&gt;&gt; <span class="codestrong">f</span><br translate="no"/>   Fraction(3, 4)</p>
+<p class="indent">Primero importamos la clase <span class="literal" translate="no">Fraction</span> del módulo <span class="literal" translate="no">fractions</span> <span class="ent">➊.</span> A continuación, creamos un objeto de esta clase pasando como parámetros el numerador y el denominador <a id="page_6"></a><span class="ent">➋.</span> Esto crea un objeto <span class="literal" translate="no">Fraction</span> para la fracción 3/4. Cuando imprimimos el objeto <span class="ent">➌,</span> Python muestra la fracción de la forma <span class="literal" translate="no">Fraction(<span class="codeitalic">numerator</span>, <span class="codeitalic">denominator</span>)</span>.</p>
+<p class="indent">Las operaciones matemáticas básicas, incluidas las operaciones de comparación, son todas válidas para las fracciones. También puedes combinar una fracción, un número entero y un número de coma flotante en una misma expresión:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">Fraction(3, 4) + 1 + 1.5</span><br translate="no"/>3.25</p>
+<p class="indent">Cuando tienes un número de coma flotante en una expresión, el resultado de la expresión se devuelve como un número de coma flotante.</p>
+<p class="indent">En cambio, cuando sólo tienes una fracción y un número entero en la expresión, el resultado es una fracción, aunque el resultado tenga un denominador de 1.</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">Fraction(3, 4) + 1 + Fraction(1/4)</span><br translate="no"/>Fraction(2, 1)</p>
+<p class="indent">Ahora ya conoces lo básico para trabajar con fracciones en Python. Pasemos a otro tipo de números.</p>
+<h4 class="h4" id="ch01lev2sec02"><strong><em>Números complejos</em></strong></h4>
+<p class="noindent">Los números que hemos visto hasta ahora son los llamados <em>números reales</em>. Python también admite números <em>complejos</em> con la parte imaginaria identificada por la letra <em>j</em> o <em>J</em> (a diferencia de la letra <em>i</em> utilizada en notación matemática). Por ejemplo, el número complejo 2 + <em>3i</em> se escribiría en Python como 2 + <em>3j</em>:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">a = 2 + 3j</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">type(a)</span><br translate="no"/></p>
+<p class="indent">Como puedes ver, cuando utilizamos la función <span class="literal" translate="no">type()</span> sobre un número complejo, Python nos dice que se trata de un objeto del tipo <span class="literal" translate="no">complex</span>.</p>
+<p class="indent">También puedes definir números complejos utilizando la función <span class="literal" translate="no">complex()</span>:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">a = complex(2, 3)</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">a</span><br translate="no"/>(2 + 3j)</p>
+<p class="indent">Aquí pasamos las partes real e imaginaria del número complejo como dos argumentos a la función <span class="literal" translate="no">complex()</span>, y ésta devuelve un número complejo.</p>
+<p class="indent">Puedes sumar y restar números complejos del mismo modo que los números reales:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">b = 3 + 3j</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">a + b</span><br translate="no"/>(5 + 6j)<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">a - b</span><br translate="no"/>(-1 + 0j)</p>
+<p class="indent"><a id="page_7"></a>La multiplicación y la división de números complejos también se realizan de forma similar:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">a * b</span><br translate="no"/>(-3 + 15j)<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">a / b</span><br translate="no"/>(0.8333333333333334 + 0.16666666666666666j)</p>
+<p class="indent">Las operaciones de módulo (<span class="literal" translate="no">%</span>) y división por el suelo (<span class="literal" translate="no">//</span>) no son válidas para los números complejos.</p>
+<p class="indent">Las partes real e imaginaria de un número complejo pueden obtenerse utilizando sus atributos <span class="literal" translate="no">real</span> y <span class="literal" translate="no">imag</span>, como se indica a continuación:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">z = 2 + 3j</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">z.real</span><br translate="no"/>2.0<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">z.imag</span><br translate="no"/>3.0</p>
+<p class="indent">El <em>conjugado</em> de un número complejo tiene la misma parte real pero una parte imaginaria de igual magnitud y signo contrario. Se puede obtener utilizando el método <span class="literal" translate="no">conjugate()</span>:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">z.conjugate()</span><br translate="no"/>(2 - 3j)</p>
+<p class="indent">Tanto la parte real como la imaginaria son números en coma flotante. Utilizando las partes real e imaginaria, puedes calcular la <em>magnitud</em> de un número complejo con la siguiente fórmula, donde <em>x</em> e <em>y</em> son las partes real e imaginaria del número, respectivamente: <img alt="image" src="images/e0007-01.jpg" translate="no"/>. En Python, sería como sigue:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">(z.real ** 2 + z.imag ** 2) ** 0.5</span><br translate="no"/>3.605551275463989</p>
+<p class="indent">Una forma más sencilla de hallar la magnitud de un número complejo es con la función <span class="literal" translate="no">abs()</span>. La función <span class="literal" translate="no">abs()</span> devuelve el valor absoluto cuando se invoca con un número real como argumento. Por ejemplo, tanto <span class="literal" translate="no">abs(5)</span> como <span class="literal" translate="no">abs(-5)</span> devuelven 5. Sin embargo, para los números complejos, devuelve la magnitud:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">abs(z)</span><br translate="no"/>3.605551275463989</p>
+<p class="indent">El módulo <span class="literal" translate="no">cmath</span> de la biblioteca estándar (<span class="literal" translate="no">cmath</span> para <em>matemáticas complejas</em>) proporciona acceso a otras funciones especializadas para trabajar con números complejos.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch01_3.html">anterior</a><a href="ch01.html">Subtema 4 de 8: (Ver todo)</a><a href="ch01_5.html">siguiente</a><br/></p>
+<br/><a href="ch01_4.docx" target="_blank"></a></footer>
+</body>
+</html>

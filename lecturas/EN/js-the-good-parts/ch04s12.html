@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Module</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Module"><div class="titlepage"><div><div><h1 class="title"><a id="module"/>Module</h1></div></div></div><p>We can use functions and closure to make modules. A module is a function or object
+                that presents an interface but that hides its state and implementation. By using
+                functions to produce modules, we can almost completely eliminate our use of global
+                variables, thereby mitigating one of JavaScript's worst features.<a id="IDX-CHP-4-0235" class="indexterm"/><a id="IDX-CHP-4-0236" class="indexterm"/></p><p>For example, suppose we want to augment <code class="literal">String</code>
+                with a <code class="literal">deentityify</code> method. Its job is to look for
+                HTML entities in a string and replace them with their equivalents. It makes sense to
+                keep the names of the entities and their equivalents in an object. But where should
+                we keep the object? We could put it in a global variable, but global variables are
+                evil. We could define it in the function itself, but that has a runtime cost because
+                the literal must be evaluated every time the function is invoked. The ideal approach
+                is to put it in a closure, and perhaps provide an extra method that can add
+                additional entities:</p><a id="I_programlisting4_d1e3354"/><pre class="programlisting">String.method('deentityify', function (  ) {
+
+// The entity table. It maps entity names to
+// characters.
+
+    var entity = {
+        quot: '"',
+        lt:   '&lt;',
+        gt:   '&gt;'
+    };
+
+// Return the deentityify method.
+
+    return function (  ) {
+
+// This is the deentityify method. It calls the string
+// replace method, looking for substrings that start
+// with '&amp;' and end with ';'. If the characters in
+// between are in the entity table, then replace the
+// entity with the character from the table. It uses
+// a regular expression (Chapter 7).
+
+        return this.replace(/&amp;([^&amp;;]+);/g,
+            function (a, b) {
+                var r = entity[b];
+                return typeof r === 'string' ? r : a;
+            }
+        );
+    };
+}(  ));</pre><p>Notice the last line. We immediately invoke the function we just made with the
+                    <code class="literal">( )</code> operator. That invocation creates and
+                returns the function that becomes the <code class="literal">deentityify</code>
+                method.</p><a id="I_programlisting4_d1e3364"/><pre class="programlisting">document.writeln(
+    '&amp;lt;&amp;quot;&amp;gt;'.deentityify(  ));  // &lt;"&gt;</pre><p>The module pattern takes advantage of function scope and closure to create
+                relationships that are binding and private. In this example, only the <code class="literal">deentityify</code> method has access to the entity data
+                structure.</p><p>The general pattern of a module is a function that defines private variables and
+                functions; creates privileged functions which, through closure, will have access to
+                the private variables and functions; and that returns the privileged functions or
+                stores them in an accessible place.<a id="IDX-CHP-4-0237" class="indexterm"/><a id="IDX-CHP-4-0238" class="indexterm"/></p><p>Use of the module pattern can eliminate the use of global variables. It promotes
+                information hiding and other good design practices. It is very effective in
+                encapsulating applications and other singletons.</p><p>It can also be used to produce objects that are secure. Let's suppose we want to
+                make an object that produces a serial number:</p><a id="I_programlisting4_d1e3387"/><pre class="programlisting">var serial_maker = function (  ) {
+
+// Produce an object that produces unique strings. A
+// unique string is made up of two parts: a prefix
+// and a sequence number. The object comes with
+// methods for setting the prefix and sequence
+// number, and a gensym method that produces unique
+// strings.
+
+    var prefix = '';
+    var seq = 0;
+    return {
+        set_prefix: function (p) {
+            prefix = String(p);
+        },
+        set_seq: function (s) {
+            seq = s;
+        },
+        gensym: function ( ) {
+            var result = prefix + seq;
+            seq += 1;
+            return result;
+        }
+    };
+};
+var seqer = serial_maker( );
+seqer.set_prefix('Q');
+seqer.set_seq(1000);
+var unique = seqer.gensym( ); // unique is "Q1000"</pre><p>The methods do not make use of <code class="literal">this</code> or <code class="literal">that</code>. As a result, there is no way to compromise the
+                    <code class="literal">seqer</code>. It isn't possible to get or change the
+                    <code class="literal">prefix</code> or <code class="literal">seq</code> except as permitted by the methods. The <code class="literal">seqer</code> object is mutable, so the methods could be replaced, but that
+                still does not give access to its secrets. <code class="literal">seqer</code>
+                is simply a collection of functions, and those functions are capabilities that grant
+                specific powers to use or modify the secret state.</p><p>If we passed <code class="literal">seqer.gensym</code> to a third party's
+                function, that function would be able to generate unique strings, but would be
+                unable to change the <code class="literal">prefix</code> or <code class="literal">seq</code>.</p></div></body></html>

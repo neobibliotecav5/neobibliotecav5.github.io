@@ -1,0 +1,700 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Unknown</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+<body class="calibre">
+<div class="calibre1" id="sbo-rt-content">
+<h2 class="h2" id="ch15">
+<span class="calibre2" id="page_233">
+</span>
+<span class="big">
+   15
+  </span>
+<br class="calibre10"/>
+  Creating Mr. Stick Man
+ </h2>
+<div class="image">
+<img alt="Image" class="calibre8" src="../images/common.jpg"/>
+</div>
+<p class="indent">
+  In this chapter, we’ll create the main character of
+  <em class="calibre7">
+   Mr. Stick Man Races for the Exit
+  </em>
+  . This will require the most complicated coding we’ve done so far, because Mr. Stick Man needs to run left and right, jump, stop when he runs into a platform, and fall when he runs off the edge of a platform. We’ll use event bindings for the left and right arrow keys to make the stick figure run left and right, and we’ll have him jump when the player presses the spacebar.
+ </p>
+<h3 class="h1" id="ch15lev1sec1">
+<span class="calibre2" id="page_234">
+</span>
+  Initializing the Stick Figure
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   __init__
+  </span>
+  function for our new stick figure class will look a lot like those in the other classes in our game. We start by giving our new class a name—
+  <span class="literal1">
+   StickFigureSprite
+  </span>
+  —and assign this class to a parent class,
+  <span class="literal1">
+   Sprite
+  </span>
+  :
+ </p>
+<pre class="pre"><span class="orange">class</span> StickFigureSprite(Sprite):
+    <span class="orange">def</span> __init__(self, game):
+        Sprite.__init__(self, game)</pre>
+<p class="indent">
+  This code looks similar to the
+  <span class="literal1">
+   PlatformSprite
+  </span>
+  class in
+  <a class="calibre6" href="ch14.xhtml#ch14">
+   Chapter 14
+  </a>
+  , except we’re not using any additional parameters (other than
+  <span class="literal1">
+   self
+  </span>
+  and
+  <span class="literal1">
+   game
+  </span>
+  ). This is because, unlike the
+  <span class="literal1">
+   PlatformSprite
+  </span>
+  class, only one
+  <span class="literal1">
+   StickFigureSprite
+  </span>
+  object will be used in the game.
+ </p>
+<h3 class="h1" id="ch15lev1sec2">
+  Loading the Stick Figure Images
+ </h3>
+<p class="indent">
+  Because we have a lot of platform objects on the screen, we pass the platform image as a parameter of the
+  <span class="literal1">
+   PlatformSprite
+  </span>
+  ’s
+  <span class="literal1">
+   __init__
+  </span>
+  function (kind of like saying, “Here, PlatformSprite, use this image when you draw yourself on the screen.”). But since there’s only one stick figure object, it doesn’t make sense to load the image outside the sprite and then pass it in as a parameter. The
+  <span class="literal1">
+   StickFigureSprite
+  </span>
+  class will know how to load its own images.
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre161" src="../images/f0234-01.jpg"/>
+</div>
+<p class="indent">
+  The next few lines of the
+  <span class="literal1">
+   __init__
+  </span>
+  function load the three left images (which we’ll use to animate the stick figure running left) and the three right images (used to animate the stick figure running right). We need to load these images now, because we don’t want to load them every time we display the stick figure on the screen (doing so would take too long and make our game run slowly):
+ </p>
+<pre class="pre"><span class="orange">class</span> StickFigureSprite(Sprite):
+    <span class="orange">def</span> __init__(self, game):
+        Sprite.__init__(self, game)
+     <span class="ent">➊</span> self.images_left = [
+            PhotoImage(<span class="orange">file</span>=<span class="green">'figure-L1.gif'</span>),
+            PhotoImage(<span class="orange">file</span>=<span class="green">'figure-L2.gif'</span>),
+            PhotoImage(<span class="orange">file</span>=<span class="green">'figure-L3.gif'</span>)
+        ]
+     <span class="ent">➋</span> self.images_right = [
+            PhotoImage(<span class="orange">file</span>=<span class="green">'figure-R1.gif'</span>),
+            PhotoImage(<span class="orange">file</span>=<span class="green">'figure-R2.gif'</span>),
+            PhotoImage(<span class="orange">file</span>=<span class="green">'figure-R3.gif'</span>)
+        ]
+     <span class="ent">➌</span> self.image = game.canvas.create_image(200, 470,
+                image=self.images_left[0], anchor=<span class="green">'nw'</span>)</pre>
+<p class="indent">
+<span id="page_235">
+</span>
+  This code loads the three left images, which we’ll use to animate the stick figure running left, and the three right images, which we’ll use to animate the stick figure running right.
+ </p>
+<p class="indent">
+  We create the object variables
+  <span class="literal1">
+   images_left
+  </span>
+<span class="ent">
+   ➊
+  </span>
+  and
+  <span class="literal1">
+   images
+  </span>
+<span class="literal1">
+   _right
+  </span>
+<span class="ent">
+   ➋
+  </span>
+  . Each contains a list of the
+  <span class="literal1">
+   PhotoImage
+  </span>
+  objects we created in
+  <a class="calibre6" href="ch10.xhtml#ch10">
+   Chapter 10
+  </a>
+  , showing the stick figure facing left and right.
+ </p>
+<p class="indent">
+  We draw the first image
+  <span class="ent">
+   ➌
+  </span>
+  with
+  <span class="literal1">
+   images_left[0]
+  </span>
+  using the canvas’s
+  <span class="literal1">
+   create_image
+  </span>
+  function at position (
+  <span class="literal1">
+   200, 470
+  </span>
+  ), which puts the stick figure in the middle of the game screen, at the bottom of the canvas. The
+  <span class="literal1">
+   create_image
+  </span>
+  function returns a number that identifies the image on the canvas. We store this identifier in the object variable
+  <span class="literal1">
+   image
+  </span>
+  for later use.
+ </p>
+<h3 class="h1" id="ch15lev1sec3">
+  Setting Up Variables
+ </h3>
+<p class="noindent">
+  The next part of the
+  <span class="literal1">
+   __init__
+  </span>
+  function sets up more variables we’ll use later in this code:
+ </p>
+<pre class="pre">        <span class="gray">self.image = game.canvas.create_image(200, 470, 
+                image=self.images_left[0], anchor='nw')</span>
+     <span class="ent">➊</span> self.x = -2
+     <span class="ent">➋</span> self.y = 0
+        self.current_image = 0
+        self.current_image_add = 1
+        self.jump_count = 0 
+        self.last_time = time.time()
+        self.coordinates = Coords()</pre>
+<p class="indent">
+<span id="page_236">
+</span>
+  The object variables
+  <span class="literal1">
+   x
+  </span>
+<span class="ent">
+   ➊
+  </span>
+  and
+  <span class="literal1">
+   y
+  </span>
+<span class="ent">
+   ➋
+  </span>
+  will store the amount we’ll be adding to the stick figure’s horizontal (
+  <em class="calibre7">
+   x1
+  </em>
+  and
+  <em class="calibre7">
+   x2
+  </em>
+  ) or vertical (
+  <em class="calibre7">
+   y1
+  </em>
+  and
+  <em class="calibre7">
+   y2
+  </em>
+  ) coordinates when he is moving around the screen.
+ </p>
+<p class="indent">
+  As you learned in
+  <a class="calibre6" href="ch11.xhtml#ch11">
+   Chapter 11
+  </a>
+  , to animate something with the
+  <span class="literal1">
+   tkinter
+  </span>
+  module, we add values to the object’s
+  <span class="literal1">
+   x
+  </span>
+  or
+  <span class="literal1">
+   y
+  </span>
+  position to move it around the canvas. By setting
+  <span class="literal1">
+   x
+  </span>
+  to –2 and
+  <span class="literal1">
+   y
+  </span>
+  to 0, we subtract 2 from the
+  <span class="literal1">
+   x
+  </span>
+  position later in the code and add nothing to the vertical position, to make the stick figure run to the left.
+ </p>
+<div class="note">
+<p class="notet">
+<span class="notes">
+    Note
+   </span>
+</p>
+<p class="notep">
+<em class="calibre7">
+    Remember that a negative
+    <span class="literal1">
+     x
+    </span>
+    number means move left on the canvas, and a positive
+    <span class="literal1">
+     x
+    </span>
+    number means move right. A negative
+    <span class="literal1">
+     y
+    </span>
+    number means move up, and a positive
+    <span class="literal1">
+     y
+    </span>
+    number means move down.
+   </em>
+</p>
+</div>
+<p class="indent">
+  Next, we create the object variable
+  <span class="literal1">
+   current_image
+  </span>
+  to store the image’s index position as currently displayed on the screen. Our list of left-facing images,
+  <span class="literal1">
+   images_left
+  </span>
+  , contains
+  <em class="calibre7">
+   figure-L1.gif
+  </em>
+  ,
+  <em class="calibre7">
+   figure-L2.gif
+  </em>
+  , and
+  <em class="calibre7">
+   figure-L3.gif
+  </em>
+  . Those are index positions 0, 1, and 2.
+ </p>
+<p class="indent">
+  The
+  <span class="literal1">
+   current_image_add
+  </span>
+  variable will contain the number we’ll add to that index position stored in
+  <span class="literal1">
+   current_image
+  </span>
+  to get the next index position. For example, if the image at index position 0 is displayed, we add 1 to get the next image at index position 1, and then add 1 again to get the final image in the list at index position 2. (You’ll see how we use this variable for animation in the next chapter.)
+ </p>
+<p class="indent">
+  The
+  <span class="literal1">
+   jump_count
+  </span>
+  variable is a counter we’ll use while the stick figure is jumping. The
+  <span class="literal1">
+   last_time
+  </span>
+  variable will record the last time we changed the image when animating our stick figure. We store the current time using the
+  <span class="literal1">
+   time
+  </span>
+  function of the
+  <span class="literal1">
+   time
+  </span>
+  module.
+ </p>
+<p class="indent">
+  Finally, we set the
+  <span class="literal1">
+   coordinates
+  </span>
+  object variable to an object of the
+  <span class="literal1">
+   Coords
+  </span>
+  class, with no initialization parameters set (
+  <span class="literal1">
+   x1
+  </span>
+  ,
+  <span class="literal1">
+   y1
+  </span>
+  ,
+  <span class="literal1">
+   x2
+  </span>
+  , and
+  <span class="literal1">
+   y2
+  </span>
+  are all 0). Unlike with the platforms, the stick figure’s coordinates will change, so we’ll set these values later.
+ </p>
+<h3 class="h1" id="ch15lev1sec4">
+<span class="calibre2" id="page_237">
+</span>
+  Binding to Keys
+ </h3>
+<p class="noindent">
+  In the final part of the
+  <span class="literal1">
+   __init__
+  </span>
+  function, the
+  <span class="literal1">
+   bind
+  </span>
+  functions bind a key to something in our code that needs to be run when the key is pressed:
+ </p>
+<pre class="pre">        <span class="gray">self.jump_count = 0 
+        self.last_time = time.time()
+        self.coordinates = Coords()</span>
+        game.canvas.bind_all(<span class="green">'&lt;KeyPress-Left&gt;'</span>, self.turn_left)
+        game.canvas.bind_all(<span class="green">'&lt;KeyPress-Right&gt;'</span>, self.turn_right)
+        game.canvas.bind_all(<span class="green">'&lt;space&gt;'</span>, self.jump)</pre>
+<p class="indent">
+  We bind
+  <span class="literal1">
+   &lt;KeyPress-Left&gt;
+  </span>
+  to the
+  <span class="literal1">
+   turn_left
+  </span>
+  function,
+  <span class="literal1">
+   &lt;KeyPress-Right&gt;
+  </span>
+  to the
+  <span class="literal1">
+   turn_right
+  </span>
+  function, and
+  <span class="literal1">
+   &lt;space&gt;
+  </span>
+  to the
+  <span class="literal1">
+   jump
+  </span>
+  function. Now we need to create those functions to make the stick figure move.
+ </p>
+<h3 class="h1" id="ch15lev1sec5">
+  Turning the Stick Figure Left and Right
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   turn_left
+  </span>
+  and
+  <span class="literal1">
+   turn_right
+  </span>
+  functions ensure the stick figure is not jumping, and then set the value of the object variable
+  <span class="literal1">
+   x
+  </span>
+  to move him left and right. (Our game doesn’t allow us to change his direction in midair.)
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre162" src="../images/f0237-01.jpg"/>
+</div>
+<pre class="pre">        <span class="gray">game.canvas.bind_all('&lt;KeyPress-Left&gt;', self.turn_left)
+        game.canvas.bind_all('&lt;KeyPress-Right&gt;', self.turn_right)
+        game.canvas.bind_all('&lt;space&gt;', self.jump)</span>
+
+    <span class="orange">def</span> turn_left(self, evt):
+        <span class="orange">if</span> self.y == 0:
+         <span class="ent">➊</span> self.x = -2
+
+    <span class="orange">def</span> turn_right(self, evt):
+        <span class="orange">if</span> self.y == 0:
+         <span class="ent">➋</span> self.x = 2</pre>
+<p class="indent">
+<span id="page_238">
+</span>
+  Python calls the
+  <span class="literal1">
+   turn_left
+  </span>
+  function when the player presses the left arrow key, and it passes an object with information about what the player did as a parameter. This object is called an
+  <em class="calibre7">
+   event object
+  </em>
+  , and we give it the parameter name
+  <span class="literal1">
+   evt
+  </span>
+  .
+ </p>
+<div class="note">
+<p class="notet">
+<span class="notes">
+    Note
+   </span>
+</p>
+<p class="notep">
+<em class="calibre7">
+    The event object isn’t important for our purposes, but we need to include it as a parameter of our functions or we’ll get an error, because Python is expecting it to be there. The event object contains things like the
+   </em>
+   x
+   <em class="calibre7">
+    and
+   </em>
+   y
+   <em class="calibre7">
+    positions of the mouse (for a mouse event), a code identifying a particular key that has been pressed (for keyboard events), and other information. For this game, none of that information is useful, so we can safely ignore it.
+   </em>
+</p>
+</div>
+<p class="indent">
+  To see if the stick figure is jumping, we check the value of the
+  <span class="literal1">
+   y
+  </span>
+  object variable. If the value is not 0, the stick figure is jumping. In this code, if the value of
+  <span class="literal1">
+   y
+  </span>
+  is 0, we set
+  <span class="literal1">
+   x
+  </span>
+  to –2 to run left
+  <span class="ent">
+   ➊
+  </span>
+  or we set it to 2 to run right
+  <span class="ent">
+   ➋
+  </span>
+  . We use –2 and 2, because setting the value to –1 or 1 wouldn’t make the stick figure move across the screen fast enough.
+ </p>
+<p class="indent">
+  Once you have the animation working for your stick figure, try changing this value to see what difference it makes.
+ </p>
+<h3 class="h1" id="ch15lev1sec6">
+  Making the Stick Figure Jump
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   jump
+  </span>
+  function is very similar to the
+  <span class="literal1">
+   turn_left
+  </span>
+  and
+  <span class="literal1">
+   turn_right
+  </span>
+  functions:
+ </p>
+<pre class="pre">    <span class="gray">def turn_right(self, evt):
+        if self.y == 0:
+            self.x = 2</span>
+
+    <span class="orange">def</span> jump(self, evt):
+        <span class="orange">if</span> self.y == 0:
+            self.y = -4
+            self.jump_count = 0</pre>
+<p class="noindent">
+  This function again takes an
+  <span class="literal1">
+   evt
+  </span>
+  parameter (the event object), which we can ignore because we don’t need any more information about the event (same as before). If this function is called, we know the spacebar was pressed.
+ </p>
+<p class="indent">
+<span id="page_239">
+</span>
+  Because we want our stick figure to jump only if he is not already jumping, we check to see if
+  <span class="literal1">
+   y
+  </span>
+  is equal to 0. If the stick figure is not jumping, we set
+  <span class="literal1">
+   y
+  </span>
+  to –4 (to move him vertically up the screen), and set
+  <span class="literal1">
+   jump_count
+  </span>
+  to 0. We’ll use
+  <span class="literal1">
+   jump_count
+  </span>
+  to make sure the stick figure doesn’t keep jumping forever. Instead, we’ll let him jump for a specific count and then have him come back down again, as if gravity were pulling him. We’ll add this code in the next chapter.
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre163" src="../images/f0239-01.jpg"/>
+</div>
+<h3 class="h1" id="ch15lev1sec7">
+  What We Have So Far
+ </h3>
+<p class="noindent">
+  Let’s review the definitions of the classes and functions in our game thus far, and where they should be in your file.
+ </p>
+<p class="indent">
+  At the top of your program, you should have your
+  <span class="literal1">
+   import
+  </span>
+  statements, followed by the
+  <span class="literal1">
+   Game
+  </span>
+  and
+  <span class="literal1">
+   Coords
+  </span>
+  classes. The
+  <span class="literal1">
+   Game
+  </span>
+  class will be used to create an object that will be the main controller for our game, and objects of the
+  <span class="literal1">
+   Coords
+  </span>
+  class are used to hold the positions of things in our game (like the platforms and Mr. Stick Man):
+ </p>
+<pre class="pre"><span class="orange">from</span> tkinter <span class="orange">import</span> *
+<span class="orange">import</span> random
+<span class="orange">import</span> time
+
+<span class="orange">class</span> Game:
+    --<span class="codeitalic">snip</span>--
+<span class="orange">class</span> Coords:
+    --<span class="codeitalic">snip</span>--</pre>
+<p class="indent">
+  Next, you should have the
+  <span class="literal1">
+   within
+  </span>
+  functions (which tell whether the coordinates of one sprite are within the same area of another sprite), the
+  <span class="literal1">
+   Sprite
+  </span>
+  parent class (which is the parent class of all the sprites in our game), the
+  <span class="literal1">
+   PlatformSprite
+  </span>
+  class, and the beginning of the
+  <span class="literal1">
+   StickFigureSprite
+  </span>
+  class. We used the
+  <span class="literal1">
+   PlatformSprite
+  </span>
+  class to create platform objects, which our stick figure will jump across. We also created one object of the
+  <span class="literal1">
+   StickFigureSprite
+  </span>
+  class, to represent the main character in our game:
+ </p>
+<pre class="pre"><span class="orange">def</span> within_x(co1, co2):
+     --<span class="codeitalic">snip</span>--
+<span class="orange">def</span> within_y(co1, co2):
+     --<span class="codeitalic">snip</span>--
+<span class="orange">def</span> collided_left(co1, co2):
+     --<span class="codeitalic">snip</span>--
+<span class="orange">def</span> collided_right(co1, co2):
+     --<span class="codeitalic">snip</span>--
+<span class="orange">def</span> collided_top(co1, co2):
+     --<span class="codeitalic">snip</span>--
+<span class="orange">def</span> collided_bottom(y, co1, co2):
+     --<span class="codeitalic">snip</span>--
+<span class="orange">class</span> Sprite:
+     --<span class="codeitalic">snip</span>--
+<span class="orange">class</span> PlatformSprite(Sprite):
+     --<span class="codeitalic">snip</span>--
+<span class="orange">class</span> StickFigureSprite(Sprite):
+     --<span class="codeitalic">snip</span>--</pre>
+<p class="indent">
+<span id="page_240">
+</span>
+  Finally, at the end of your program, you should have code that creates all the objects in our game so far: the game object itself and the platforms. The final line is where we call the
+  <span class="literal1">
+   mainloop
+  </span>
+  function:
+ </p>
+<pre class="pre">g = Game()
+platform1 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform1.gif'</span>),
+                           0, 480, 100, 10)
+...
+g.sprites.append(platform1)
+...
+g.mainloop()</pre>
+<p class="indent">
+  If your code looks a bit different, or you’re having trouble getting it working, you can always skip ahead to the end of
+  <a class="calibre6" href="ch16.xhtml#ch16">
+   Chapter 16
+  </a>
+  for the full listing of the entire game.
+ </p>
+<h3 class="h1" id="ch15lev1sec8">
+<span class="calibre2" id="page_241">
+</span>
+  What You Learned
+ </h3>
+<p class="noindent">
+  In this chapter, we began working on the class for our stick figure. At the moment, if we created an object of this class, it wouldn’t really do much besides load the images it needs for animating the stick figure and set up a few object variables to be used later in the code. This class contains a couple of functions for changing the values in those object variables based on keyboard events (when the player presses the left or right arrow or the spacebar).
+ </p>
+<p class="indent">
+  In the next chapter, we’ll finish our game. We’ll write the functions for the
+  <span class="literal1">
+   StickFigureSprite
+  </span>
+  class to display and animate the stick figure and move him around the screen. We’ll also add the exit (the door) that Mr. Stick Man is trying to reach.
+  <span id="page_242">
+</span>
+</p>
+</div></body>
+</html>

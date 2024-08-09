@@ -1,0 +1,165 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Options</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="Options"><div class="titlepage"><div><div><h1 class="title"><a id="options"></a>Opciones</h1></div></div></div><p>La implementación de JSLint acepta un objeto opción que te permite determinar el subconjunto de JavaScript que es aceptable para ti. También es posible establecer esas opciones dentro del código fuente de un script.<a class="indexterm" id="IDX-APP-C-0594"></a><a class="indexterm" id="IDX-APP-C-0595"></a><a class="indexterm" id="IDX-APP-C-0596"></a><a class="indexterm" id="IDX-APP-C-0597"></a><a class="indexterm" id="IDX-APP-C-0598"></a><a class="indexterm" id="IDX-APP-C-0599"></a><a class="indexterm" id="IDX-APP-C-0600"></a><a class="indexterm" id="IDX-APP-C-0601"></a><a class="indexterm" id="IDX-APP-C-0602"></a><a class="indexterm" id="IDX-APP-C-0603"></a><a class="indexterm" id="IDX-APP-C-0604"></a><a class="indexterm" id="IDX-APP-C-0605"></a><a class="indexterm" id="IDX-APP-C-0606"></a><a class="indexterm" id="IDX-APP-C-0607"></a><a class="indexterm" id="IDX-APP-C-0608"></a><a class="indexterm" id="IDX-APP-C-0609"></a><a class="indexterm" id="IDX-APP-C-0610"></a><a class="indexterm" id="IDX-APP-C-0611"></a><a class="indexterm" id="IDX-APP-C-0612"></a><a class="indexterm" id="IDX-APP-C-0593"></a></p><p>Una especificación de opciones puede tener este aspecto</p><a id="I_programlisting_d1e9573"></a><pre class="programlisting" translate="no">/*jslint nomen: true, evil: false */</pre><p>Una especificación de opción comienza con <code class="literal" translate="no">/*jslint</code>. Observa que no hay espacio antes de <code class="literal" translate="no">j</code>. La especificación contiene una secuencia de pares nombre/valor, donde los nombres son opciones de JSLint y los valores son <code class="literal" translate="no">true</code> o <code class="literal" translate="no">false</code>. Una especificación de opción tiene prioridad sobre el objeto de opción. Todas las opciones son por defecto <code class="literal" translate="no">false</code>. <a class="xref" href="apcs03.html#jslint_options" title="Table C-1. JSLint options">La Tabla C-1</a> enumera las opciones disponibles al utilizar JSLint.</p><div class="table"><a id="jslint_options"></a><p class="title">Tabla C-1. Opciones de JSLint</p><div class="table-contents"><table style="border-collapse: collapse;border-top: 0.5pt solid ; border-bottom: 0.5pt solid ; border-left: 0.5pt solid ; border-right: 0.5pt solid ; " summary="JSLint options"><colgroup><col/><col/></colgroup><thead><tr><th style="text-align: left" valign="bottom">
+<p>Opción</p>
+</th><th style="text-align: left" valign="bottom">
+<p>Significado</p>
+</th></tr></thead><tbody><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">adsafe</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p><code class="literal" translate="no">true</code> si se deben aplicar las normas de ADsafe.org</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">bitwise</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p><code class="literal" translate="no">true</code> si no deben permitirse los operadores bit a bit</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">browser</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p><code class="literal" translate="no">true</code> si deben predefinirse los globales estándar del navegador</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">cap</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p><code class="literal" translate="no">true</code> si debe permitirse HTML en mayúsculas</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">debug</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p><code class="literal" translate="no">true</code> si deben permitirse las declaraciones <code class="literal" translate="no">debugger</code> </p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">eqeqeq</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p><code class="literal" translate="no">true</code> si debe exigirse <code class="literal" translate="no">===</code> </p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">evil</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p><code class="literal" translate="no">true</code> si debe permitirse <code class="literal" translate="no">eval</code> </p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">for in</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p><code class="literal" translate="no">true</code> si deben permitirse las declaraciones <code class="literal" translate="no">for in</code> sin filtrar</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">fragment</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p><code class="literal" translate="no">true</code> si deben permitirse los fragmentos HTML</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">laxbreak</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p><code class="literal" translate="no">true</code> si no deben comprobarse las pausas en las frases</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">nomen</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p><code class="literal" translate="no">true</code> si deben comprobarse los nombres</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">on</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p><code class="literal" translate="no">true</code> si deben permitirse los manejadores de eventos HTML</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">passfail</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p><code class="literal" translate="no">true</code> si el análisis debe detenerse al primer error</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">plusplus</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p><code class="literal" translate="no">true</code> si no deben permitirse <code class="literal" translate="no">++</code> y <code class="literal" translate="no">--</code> </p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">rhino</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p><code class="literal" translate="no">true</code> si las variables globales del entorno de Rhino deben estar predefinidas</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">undef</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p><code class="literal" translate="no">true</code> si las variables globales no definidas son errores</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">white</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p><code class="literal" translate="no">true</code> si se aplican reglas estrictas de espacios en blanco</p>
+</td></tr><tr><td style="text-align: left" valign="top">
+<p>
+<code class="literal" translate="no">widget</code>
+</p>
+</td><td style="text-align: left" valign="top">
+<p><code class="literal" translate="no">true</code> si las variables globales de Yahoo! Widgets deben estar predefinidas</p>
+</td></tr></tbody></table></div></div><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject_d1e9823"></a><img alt="image with no caption" src="httpatomoreillycomsourceoreillyimages238866.png" translate="no"/></div></div><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject_d1e9829"></a><img alt="image with no caption" src="httpatomoreillycomsourceoreillyimages238734.png" translate="no"/></div></div></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="apcs02.html">← Anterior</a><a href="apcs04.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="apcs03.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\apcs03.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

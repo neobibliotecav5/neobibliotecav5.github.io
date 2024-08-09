@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>for in Statement</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="for in Statement"><div class="titlepage"><div><div><h1 class="title"><a id="for_in_statement"/>for in Statement</h1></div></div></div><p>The <code class="literal">for in</code> statement allows for looping through
+                the names of all of the properties of an object. Unfortunately, it also loops
+                through all of the members that were inherited through the prototype chain. This has
+                the bad side effect of serving up method functions when the interest is in the data
+                members.</p><p>The body of every <code class="literal">for in</code> statement should be
+                wrapped in an <code class="literal">if</code> statement that does filtering.
+                    <code class="literal">if</code> can select for a particular type or range
+                of values, it can exclude functions, or it can exclude properties from the
+                prototype. For example:</p><a id="I_programlisting_d1e10087"/><pre class="programlisting">for (name in object) {
+    if (object.hasOwnProperty(name)) {
+        ....
+    }
+}</pre></div></body></html>

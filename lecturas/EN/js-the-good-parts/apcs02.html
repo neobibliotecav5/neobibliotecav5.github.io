@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Members</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Members"><div class="titlepage"><div><div><h1 class="title"><a id="members"/>Members</h1></div></div></div><p>Since JavaScript is a loosely typed dynamic-object language, it is not possible to
+                determine at compile time if property names are spelled correctly. JSLint provides
+                some assistance with this.<a id="IDX-APP-C-0592" class="indexterm"/></p><p>At the bottom of its report, JSLint displays a <code class="literal">/*members*/</code> comment. It contains all of the names and string literals
+                that were used with dot notation, subscript notation, and object literals to name
+                the members of objects. You can look through the list for misspellings. Member names
+                that were used only once are shown in italics. This is to make misspellings easier
+                to spot.</p><p>You can copy the <code class="literal">/*members*/</code> comment into your
+                script file. JSLint will check the spelling of all property names against the list.
+                That way, you can have JSLint look for misspellings for you:</p><a id="I_programlisting_d1e9500"/><pre class="programlisting">/*members doTell, iDoDeclare, mercySakes,
+    myGoodness, ohGoOn, wellShutMyMouth */</pre></div></body></html>

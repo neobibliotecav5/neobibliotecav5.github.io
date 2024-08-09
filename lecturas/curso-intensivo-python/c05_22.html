@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c05-0015">Comprobación de elementos especiales</h3>
+<p class="BodyFirst">Este capítulo comenzó con un ejemplo sencillo que mostraba cómo tratar un valor especial como <code translate="no">'bmw'</code>, que debía imprimirse en un formato diferente al de otros valores de la lista. Ahora que tienes unos conocimientos básicos sobre las pruebas condicionales y las sentencias <code translate="no">if</code>, vamos a ver más detenidamente cómo puedes comprobar si hay valores especiales en una lista y manejarlos adecuadamente.</p>
+<p>Sigamos con el ejemplo de la pizzería. La pizzería muestra un mensaje cada vez que se añade un ingrediente a la pizza, mientras se está haciendo. El código para esta acción puede escribirse de forma muy eficiente haciendo una lista de los ingredientes que el cliente ha solicitado y utilizando un bucle para anunciar cada ingrediente a medida que se añade a la pizza:</p>
+<p class="CodeLabel" translate="no"><b>toppings.py</b></p>
+<pre translate="no"><code translate="no">requested_toppings = ['mushrooms', 'green peppers', 'extra cheese']
+
+for requested_topping in requested_toppings:
+    print(f"Adding {requested_topping}.")
+
+print("\nFinished making your pizza!")</code></pre>
+<p>La salida es sencilla porque este código es un simple bucle <code translate="no">for</code>:</p>
+<pre translate="no"><code translate="no">Adding mushrooms.
+Adding green peppers.
+Adding extra cheese.
+
+Finished making your pizza!</code></pre>
+<p><span epub:type="pagebreak" id="Page_86" title="86"></span>¿Pero qué pasa si la pizzería se queda sin pimientos verdes? Una sentencia <code translate="no">if</code> dentro del bucle <code translate="no">for</code> puede manejar esta situación adecuadamente:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">requested_toppings = ['mushrooms', 'green peppers', 'extra cheese']</span>
+
+<span class="LiteralGray">for requested_topping in requested_toppings:</span>
+    if requested_topping == 'green peppers':
+        print("Sorry, we are out of green peppers right now.")
+    else:
+       <span class="LiteralGray"> print(f"Adding {requested_topping}.")</span>
+
+<span class="LiteralGray">print("\nFinished making your pizza!")</span></code></pre>
+<p>Esta vez, comprobamos cada elemento solicitado antes de añadirlo a la pizza. La sentencia <code translate="no">if</code> comprueba si la persona ha solicitado pimientos verdes. Si es así, mostramos un mensaje informándole de por qué no puede tener pimientos verdes. El bloque <code translate="no">else</code> garantiza que todos los demás ingredientes se añadan a la pizza.</p>
+<p>La salida muestra que cada aderezo solicitado se gestiona adecuadamente.</p>
+<pre translate="no"><code translate="no">Adding mushrooms.
+Sorry, we are out of green peppers right now.
+Adding extra cheese.
+
+Finished making your pizza!</code></pre>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c05_21.html">anterior</a><a href="c05.html">Subtema 22 de 28: (Ver todo)</a><a href="c05_23.html">siguiente</a><br/></p>
+<br/><a href="c05_22.docx" target="_blank"></a></footer>
+</body>
+</html>

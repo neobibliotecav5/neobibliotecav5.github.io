@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://www.w3.org/2002/06/xhtml2/ http://www.w3.org/MarkUp/SCHEMA/xhtml2.xsd">
+<head>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style></head>
+<body><div id="sbo-rt-content"><section>
+<header>
+<h1 class="chapter">
+<span class="ChapterNumber"><span epub:type="pagebreak" id="Page_277" title="277"></span>14</span><br/>
+<span class="ChapterTitle">Scoring</span></h1>
+</header>
+<figure class="opener">
+<img alt="" height="406" src="Images/chapterart.png" width="406"/>
+</figure>
+<p class="ChapterIntro">In this chapter, we’ll finish building <em>Alien Invasion</em>. We’ll add a Play button to start the game on demand and to restart the game once it ends. We’ll also change the game so it speeds up when the player moves up a level, and we’ll implement a scoring system. By the end of the chapter, you’ll know enough to start writing games that increase in difficulty as a player progresses and that feature complete scoring systems.</p>
+<h2 id="h1-502703c14-0001"><span epub:type="pagebreak" id="Page_278" title="278"></span>Adding the Play Button</h2>
+<p class="BodyFirst">In this section, we’ll add a Play button that appears before a game begins and reappears when the game ends so the player can play again.</p>
+<p>Right now, the game begins as soon as you run <em>alien_invasion.py</em>. Let’s start the game in an inactive state and then prompt the player to click a Play button to begin. To do this, modify the <code>__init__()</code> method of <code>AlienInvasion</code>:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def __init__(self):</span>
+<span class="LiteralGray">        """Initialize the game, and create game resources."""</span>
+<span class="LiteralGray">        pygame.init()</span>
+<em class="LiteralGrayItalic">        --snip--</em>
+
+        # Start Alien Invasion in an inactive state.
+        self.game_active = False</code></pre>
+<p>Now the game should start in an inactive state, with no way for the player to start it until we make a Play button.</p>
+<h3 id="h2-502703c14-0001">Creating a Button Class</h3>
+<p class="BodyFirst">Because Pygame doesn’t have a built-in method for making buttons, we’ll write a <code>Button</code> class to create a filled rectangle with a label. You can use this code to make any button in a game. Here’s the first part of the <code>Button</code> class; save it as <em>button.py</em>:</p>
+<p class="CodeLabel"><b>button.py</b></p>
+<pre><code>import pygame.font
+
+class Button:
+    """A class to build buttons for the game."""
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     def __init__(self, ai_game, msg):
+        """Initialize button attributes."""
+        self.screen = ai_game.screen
+        self.screen_rect = self.screen.get_rect()
+
+        # Set the dimensions and properties of the button.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         self.width, self.height = 200, 50
+        self.button_color = (0, 135, 0)
+        self.text_color = (255, 255, 255)
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>         self.font = pygame.font.SysFont(None, 48)
+
+        # Build the button's rect object and center it.
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>         self.rect = pygame.Rect(0, 0, self.width, self.height)
+        self.rect.center = self.screen_rect.center
+
+        # The button message needs to be prepped only once.
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>         self._prep_msg(msg)</code></pre>
+<p>First, we import the <code>pygame.font</code> module, which lets Pygame render text to the screen. The <code>__init__()</code> method takes the parameters <code>self</code>, the <code>ai_game</code> object, and <code>msg</code>, which contains the button’s text <span aria-label="annotation1" class="CodeAnnotation">❶</span>. We set the button dimensions <span aria-label="annotation2" class="CodeAnnotation">❷</span>, set <code>button_color</code> to color the button’s <code>rect</code> object dark green, and set <code>text_color</code> to render the text in white.</p>
+<p><span epub:type="pagebreak" id="Page_279" title="279"></span>Next, we prepare a <code>font</code> attribute for rendering text <span aria-label="annotation3" class="CodeAnnotation">❸</span>. The <code>None</code> argument tells Pygame to use the default font, and <code>48</code> specifies the size of the text. To center the button on the screen, we create a <code>rect</code> for the button <span aria-label="annotation4" class="CodeAnnotation">❹</span> and set its <code>center</code> attribute to match that of the screen.</p>
+<p>Pygame works with text by rendering the string you want to display as an image. Finally, we call <code>_prep_msg()</code> to handle this rendering <span aria-label="annotation5" class="CodeAnnotation">❺</span>.</p>
+<p>Here’s the code for <code>_prep_msg()</code>:</p>
+<p class="CodeLabel"><b>button.py</b></p>
+<pre><code><code>    </code>def _prep_msg(self, msg):
+        """Turn msg into a rendered image and center text on the button."""
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         self.msg_image = self.font.render(msg, True, self.text_color,
+                self.button_color)
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         self.msg_image_rect = self.msg_image.get_rect()
+        self.msg_image_rect.center = self.rect.center</code></pre>
+<p>The <code>_prep_msg()</code> method needs a <code>self</code> parameter and the text to be rendered as an image (<code>msg</code>). The call to <code>font.render()</code> turns the text stored in <code>msg</code> into an image, which we then store in <code>self.msg_image</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>. The <code>font.render()</code> method also takes a Boolean value to turn antialiasing on or off (<em>antialiasing</em> makes the edges of the text smoother). The remaining arguments are the specified font color and background color. We set antialiasing to <code>True</code> and set the text background to the same color as the button. (If you don’t include a background color, Pygame will try to render the font with a transparent background.)</p>
+<p>We center the text image on the button by creating a <code>rect</code> from the image and setting its <code>center</code> attribute to match that of the button <span aria-label="annotation2" class="CodeAnnotation">❷</span>.</p>
+<p>Finally, we create a <code>draw_button()</code> method that we can call to display the button onscreen:</p>
+<p class="CodeLabel"><b>button.py</b></p>
+<pre><code><code>    </code>def draw_button(self):
+        """Draw blank button and then draw message."""
+        self.screen.fill(self.button_color, self.rect)
+        self.screen.blit(self.msg_image, self.msg_image_rect)</code></pre>
+<p>We call <code>screen.fill()</code> to draw the rectangular portion of the button. Then we call <code>screen.blit()</code> to draw the text image to the screen, passing it an image and the <code>rect</code> object associated with the image. This completes the <code>Button</code> class.</p>
+<h3 id="h2-502703c14-0002">Drawing the Button to the Screen</h3>
+<p class="BodyFirst">We’ll use the <code>Button</code> class to create a Play button in <code>AlienInvasion</code>. First, we’ll update the <code>import</code> statements:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">from game_stats import GameStats</span>
+from button import Button</code></pre>
+<p><span epub:type="pagebreak" id="Page_280" title="280"></span>Because we need only one Play button, we’ll create the button in the <code>__init__()</code> method of <code>AlienInvasion</code>. We can place this code at the very end of <code>__init__()</code>:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def __init__(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">        self.game_active = False</span>
+
+        # Make the Play button.
+        self.play_button = Button(self, "Play")</code></pre>
+<p>This code creates an instance of <code>Button</code> with the label <code>Play</code>, but it doesn’t draw the button to the screen. To do this, we’ll call the button’s <code>draw_button()</code> method in <code>_update_screen()</code>:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def _update_screen(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">        self.aliens.draw(self.screen)</span>
+
+        # Draw the play button if the game is inactive.
+        if not self.game_active:
+            self.play_button.draw_button()
+
+<span class="LiteralGray">        pygame.display.flip()</span></code></pre>
+<p>To make the Play button visible above all other elements on the screen, we draw it after all the other elements have been drawn but before flipping to a new screen. We include it in an <code>if</code> block, so the button only appears when the game is inactive.</p>
+<p>Now when you run <em>Alien Invasion</em>, you should see a Play button in the center of the screen, as shown in <a href="#figure14-1" id="figureanchor14-1">Figure 14-1</a>.</p>
+<figure>
+<img alt="" class="keyline" height="442" src="Images/f14001.png" width="641"/>
+<figcaption><p><a id="figure14-1">Figure 14-1</a>: A Play button appears when the game is inactive.</p></figcaption>
+</figure>
+<h3 id="h2-502703c14-0003"><span epub:type="pagebreak" id="Page_281" title="281"></span>Starting the Game</h3>
+<p class="BodyFirst">To start a new game when the player clicks Play, add the following <code>elif</code> block to the end of <code>_check_events()</code> to monitor mouse events over the button:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def _check_events(self):</span>
+<span class="LiteralGray">        """Respond to keypresses and mouse events."""</span>
+<span class="LiteralGray">        for event in pygame.event.get():</span>
+<span class="LiteralGray">            if event.type == pygame.QUIT:</span>
+<span class="LiteralGray">                </span><em class="LiteralGrayItalic">--snip--</em>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>             elif event.type == pygame.MOUSEBUTTONDOWN:
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>                 mouse_pos = pygame.mouse.get_pos()
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>                 self._check_play_button(mouse_pos)</code></pre>
+<p>Pygame detects a <code>MOUSEBUTTONDOWN</code> event when the player clicks anywhere on the screen <span aria-label="annotation1" class="CodeAnnotation">❶</span>, but we want to restrict our game to respond to mouse clicks only on the Play button. To accomplish this, we use <code>pygame.mouse.get_pos()</code>, which returns a tuple containing the mouse cursor’s <em>x</em>- and <em>y</em>-coordinates when the mouse button is clicked <span aria-label="annotation2" class="CodeAnnotation">❷</span>. We send these values to the new method <code>_check_play_button()</code> <span aria-label="annotation3" class="CodeAnnotation">❸</span>.</p>
+<p>Here’s <code>_check_play_button()</code>, which I chose to place after <code>_check_events()</code>:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code>    def _check_play_button(self, mouse_pos):
+        """Start a new game when the player clicks Play."""
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         if self.play_button.rect.collidepoint(mouse_pos):
+            self.game_active = True</code></pre>
+<p>We use the <code>rect</code> method <code>collidepoint()</code> to check whether the point of the mouse click overlaps the region defined by the Play button’s <code>rect</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>. If so, we set <code>game_active</code> to <code>True</code>, and the game begins!</p>
+<p>At this point, you should be able to start and play a full game. When the game ends, the value of <code>game_active</code> should become <code>False</code> and the Play button should reappear.</p>
+<h3 id="h2-502703c14-0004">Resetting the Game</h3>
+<p class="BodyFirst">The Play button code we just wrote works the first time the player clicks Play. But it doesn’t work after the first game ends, because the conditions that caused the game to end haven’t been reset.</p>
+<p>To reset the game each time the player clicks Play, we need to reset the game statistics, clear out the old aliens and bullets, build a new fleet, and center the ship, as shown here:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def _check_play_button(self, mouse_pos):</span>
+<span class="LiteralGray">        """Start a new game when the player clicks Play."""</span>
+<span class="LiteralGray">        if self.play_button.rect.collidepoint(mouse_pos):</span>
+            # Reset the game statistics.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>             self.stats.reset_stats()
+<span class="LiteralGray">            self.game_active = True</span>
+
+<span epub:type="pagebreak" id="Page_282" title="282"></span>            # Get rid of any remaining bullets and aliens.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>             self.bullets.empty()
+            self.aliens.empty()
+
+            # Create a new fleet and center the ship.
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>             self._create_fleet()
+            self.ship.center_ship()</code></pre>
+<p>We reset the game statistics <span aria-label="annotation1" class="CodeAnnotation">❶</span>, which gives the player three new ships. Then we set <code>game_active</code> to <code>True</code> so the game will begin as soon as the code in this function finishes running. We empty the <code>aliens</code> and <code>bullets</code> groups <span aria-label="annotation2" class="CodeAnnotation">❷</span>, and then we create a new fleet and center the ship <span aria-label="annotation3" class="CodeAnnotation">❸</span>.</p>
+<p>Now the game will reset properly each time you click Play, allowing you to play it as many times as you want!</p>
+<h3 id="h2-502703c14-0005">Deactivating the Play Button</h3>
+<p class="BodyFirst">One issue with our Play button is that the button region on the screen will continue to respond to clicks even when the Play button isn’t visible. If you click the Play button area by accident after a game begins, the game will restart!</p>
+<p>To fix this, set the game to start only when <code>game_active</code> is <code>False</code>:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def _check_play_button(self, mouse_pos):</span>
+<span class="LiteralGray">        """Start a new game when the player clicks Play."""</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         button_clicked = self.play_button.rect.collidepoint(mouse_pos)
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         if button_clicked and not self.game_active:
+<span class="LiteralGray">            # Reset the game statistics.</span>
+<span class="LiteralGray">            self.stats.reset_stats()</span>
+<span class="LiteralGray">            </span><em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>The flag <code>button_clicked</code> stores a <code>True</code> or <code>False</code> value <span aria-label="annotation1" class="CodeAnnotation">❶</span>, and the game will restart only if Play is clicked <em>and</em> the game is not currently active <span aria-label="annotation2" class="CodeAnnotation">❷</span>. To test this behavior, start a new game and repeatedly click where the Play button should be. If everything works as expected, clicking the Play button area should have no effect on the gameplay.</p>
+<h3 id="h2-502703c14-0006">Hiding the Mouse Cursor</h3>
+<p class="BodyFirst">We want the mouse cursor to be visible when the game is inactive, but once play begins, it just gets in the way. To fix this, we’ll make it invisible when the game becomes active. We can do this at the end of the <code>if</code> block in <code>_check_play_button()</code>:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def _check_play_button(self, mouse_pos):</span>
+<span class="LiteralGray">        """Start a new game when the player clicks Play."""</span>
+<span class="LiteralGray">        button_clicked = self.play_button.rect.collidepoint(mouse_pos)</span>
+<span class="LiteralGray">        if button_clicked and not self.game_active:</span>
+<span class="LiteralGray">            </span><em class="LiteralGrayItalic">--snip--</em>
+            # Hide the mouse cursor.
+            pygame.mouse.set_visible(False)</code></pre>
+<p><span epub:type="pagebreak" id="Page_283" title="283"></span>Passing <code>False</code> to <code>set_visible()</code> tells Pygame to hide the cursor when the mouse is over the game window.</p>
+<p>We’ll make the cursor reappear once the game ends so the player can click Play again to begin a new game. Here’s the code to do that:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def _ship_hit(self):</span>
+<span class="LiteralGray">        """Respond to ship being hit by alien."""</span>
+<span class="LiteralGray">        if self.stats.ships_left &gt; 0:</span>
+<span class="LiteralGray">            </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">        else:</span>
+<span class="LiteralGray">            self.game_active = False</span>
+<span class="LiteralGray">            </span>pygame.mouse.set_visible(True)</code></pre>
+<p>We make the cursor visible again as soon as the game becomes inactive, which happens in <code>_ship_hit()</code>. Attention to details like this makes your game more professional looking and allows the player to focus on playing, rather than figuring out the user interface.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c14-07">14-1.	Press P to Play:</span> Because <em>Alien Invasion</em> uses keyboard input to control the ship, it would be useful to start the game with a keypress. Add code that lets the player press P to start. It might help to move some code from <code>_check_play_button()</code> to a <code>_start_game()</code> method that can be called from <code>_check_play_button()</code> <em>and</em> <code>_check_keydown_events()</code>.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c14-08">14-2.	Target Practice:</span> Create a rectangle at the right edge of the screen that moves up and down at a steady rate. Then on the left side of the screen, create a ship that the player can move up and down while firing bullets at the rectangular target. Add a Play button that starts the game, and when the player misses the target three times, end the game and make the Play button reappear. Let the player restart the game with this Play button.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c14-0002">Leveling Up</h2>
+<p class="BodyFirst">In our current game, once a player shoots down the entire alien fleet, the player reaches a new level, but the game difficulty doesn’t change. Let’s liven things up a bit and make the game more challenging by increasing the game’s speed each time a player clears the screen.</p>
+<h3 id="h2-502703c14-0007">Modifying the Speed Settings</h3>
+<p class="BodyFirst">We’ll first reorganize the <code>Settings</code> class to group the game settings into static and dynamic ones. We’ll also make sure any settings that change <span epub:type="pagebreak" id="Page_284" title="284"></span>during the game reset when we start a new game. Here’s the <code>__init__()</code> method for <em>settings.py</em>:</p>
+<p class="CodeLabel"><b>settings.py</b></p>
+<pre><code><code>    </code><span class="LiteralGray">def __init__(self):</span>
+    <code>    </code>"""Initialize the game's static settings."""
+<code>    </code><span class="LiteralGray">    # Screen settings</span>
+<span class="LiteralGray">        self.screen_width = 1200</span>
+<span class="LiteralGray">        self.screen_height = 800</span>
+<span class="LiteralGray">        self.bg_color = (230, 230, 230)</span>
+
+<span class="LiteralGray">        # Ship settings</span>
+<span class="LiteralGray">        self.ship_limit = 3</span>
+
+<span class="LiteralGray">        # Bullet settings</span>
+<span class="LiteralGray">        self.bullet_width = 3</span>
+<span class="LiteralGray">        self.bullet_height = 15</span>
+<span class="LiteralGray">        self.bullet_color = 60, 60, 60</span>
+<span class="LiteralGray">        self.bullets_allowed = 3</span>
+
+<span class="LiteralGray">        # Alien settings</span>
+<span class="LiteralGray">        self.fleet_drop_speed = 10</span>
+
+    <code>    </code># How quickly the game speeds up
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     <code>    </code>self.speedup_scale = 1.1
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     <code>    </code>self.initialize_dynamic_settings()</code></pre>
+<p>We continue to initialize settings that stay constant in the <code>__init__()</code> method. We add a <code>speedup_scale</code> setting <span aria-label="annotation1" class="CodeAnnotation">❶</span> to control how quickly the game speeds up: a value of 2 will double the game speed every time the player reaches a new level; a value of 1 will keep the speed constant. A value like <code>1.1</code> should increase the speed enough to make the game challenging but not impossible. Finally, we call the <code>initialize_dynamic_settings()</code> method to initialize the values for attributes that need to change throughout the game <span aria-label="annotation2" class="CodeAnnotation">❷</span>.</p>
+<p>Here’s the code for <code>initialize_dynamic_settings()</code>:</p>
+<p class="CodeLabel"><b>settings.py</b></p>
+<pre><code><span class="LiteralGray">    </span>def initialize_dynamic_settings(self):
+    <span class="LiteralGray">    </span>"""Initialize settings that change throughout the game."""
+<span class="LiteralGray">    </span>    self.ship_speed = 1.5
+    <span class="LiteralGray">    </span>self.bullet_speed = 2.5
+    <span class="LiteralGray">    </span>self.alien_speed = 1.0
+
+<span class="LiteralGray">    </span>    # fleet_direction of 1 represents right; -1 represents left.
+    <span class="LiteralGray">    </span>self.fleet_direction = 1</code></pre>
+<p>This method sets the initial values for the ship, bullet, and alien speeds. We’ll increase these speeds as the player progresses in the game and reset them each time the player starts a new game. We include <code>fleet_direction</code> in this method so the aliens always move right at the beginning of a new game. We don’t need to increase the value of <code>fleet_drop_speed</code>, <span epub:type="pagebreak" id="Page_285" title="285"></span>because when the aliens move faster across the screen, they’ll also come down the screen faster.</p>
+<p>To increase the speeds of the ship, bullets, and aliens each time the player reaches a new level, we’ll write a new method called <code>increase_speed()</code>:</p>
+<p class="CodeLabel"><b>settings.py</b></p>
+<pre><code><span class="LiteralGray">    </span>def increase_speed(self):
+    <span class="LiteralGray">    </span>"""Increase speed settings."""
+<span class="LiteralGray">    </span>    self.ship_speed *= self.speedup_scale
+    <span class="LiteralGray">    </span>self.bullet_speed *= self.speedup_scale
+<span class="LiteralGray">    </span>    self.alien_speed *= self.speedup_scale</code></pre>
+<p>To increase the speed of these game elements, we multiply each speed setting by the value of <code>speedup_scale</code>.</p>
+<p>We increase the game’s tempo by calling <code>increase_speed()</code> in <code>_check_bullet_alien_collisions()</code> when the last alien in a fleet has been shot down:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def _check_bullet_alien_collisions(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">        if not self.aliens:</span>
+<span class="LiteralGray">            # Destroy existing bullets and create new fleet.</span>
+<span class="LiteralGray">            self.bullets.empty()</span>
+<span class="LiteralGray">            self._create_fleet()</span>
+<span class="LiteralGray">            </span>self.settings.increase_speed()</code></pre>
+<p>Changing the values of the speed settings <code>ship_speed</code>, <code>alien_speed</code>, and <code>bullet_speed</code> is enough to speed up the entire game!</p>
+<h3 id="h2-502703c14-0008">Resetting the Speed</h3>
+<p class="BodyFirst">Now we need to return any changed settings to their initial values each time the player starts a new game; otherwise, each new game would start with the increased speed settings of the previous game:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def _check_play_button(self, mouse_pos):</span>
+<span class="LiteralGray">        """Start a new game when the player clicks Play."""</span>
+<span class="LiteralGray">        button_clicked = self.play_button.rect.collidepoint(mouse_pos)</span>
+<span class="LiteralGray">        if button_clicked and not self.game_active:</span>
+<span class="LiteralGray">            </span># Reset the game settings.
+            self.settings.initialize_dynamic_settings()
+<span class="LiteralGray">            </span><em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>Playing <em>Alien Invasion</em> should be more fun and challenging now. Each time you clear the screen, the game should speed up and become slightly more difficult. If the game becomes too difficult too quickly, decrease the value of <code>settings.speedup_scale</code>. Or if the game isn’t challenging enough, increase the value slightly. Find a sweet spot by ramping up the difficulty in a reasonable amount of time. The first couple of screens should be easy, the next few should be challenging but doable, and subsequent screens should be almost impossibly difficult.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2><span epub:type="pagebreak" id="Page_286" title="286"></span>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c14-11">14-3.	Challenging Target Practice:</span> Start with your work from Exercise 14-2 (<span class="xref" itemid="xref_target_page 283">page 283</span>). Make the target move faster as the game progresses, and restart the target at the original speed when the player clicks Play.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c14-12">14-4.	Difficulty Levels:</span> Make a set of buttons for <em>Alien Invasion</em> that allows the player to select an appropriate starting difficulty level for the game. Each button should assign the appropriate values for the attributes in <code>Settings</code> needed to create different difficulty levels.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c14-0003">Scoring</h2>
+<p class="BodyFirst">Let’s implement a scoring system to track the game’s score in real time and display the high score, level, and number of ships remaining.</p>
+<p>The score is a game statistic, so we’ll add a <code>score</code> attribute to <code>GameStats</code>:</p>
+<p class="CodeLabel"><b>game_stats.py</b></p>
+<pre><code><span class="LiteralGray">class GameStats:</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">    def reset_stats(self):</span>
+<span class="LiteralGray">        """Initialize statistics that can change during the game."""</span>
+<span class="LiteralGray">        self.ships_left = self.ai_settings.ship_limit</span>
+        self.score = 0</code></pre>
+<p>To reset the score each time a new game starts, we initialize <code>score</code> in <code>reset_stats()</code> rather than <code>__init__()</code>.</p>
+<h3 id="h2-502703c14-0009">Displaying the Score</h3>
+<p class="BodyFirst">To display the score on the screen, we first create a new class, <code>Scoreboard</code>. For now, this class will just display the current score. Eventually, we’ll use it to report the high score, level, and number of ships remaining as well. Here’s the first part of the class; save it as <em>scoreboard.py</em>:</p>
+<p class="CodeLabel"><b>scoreboard.py</b></p>
+<pre><code>import pygame.font
+
+class Scoreboard:
+    """A class to report scoring information."""
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     def __init__(self, ai_game):
+        """Initialize scorekeeping attributes."""
+        self.screen = ai_game.screen
+        self.screen_rect = self.screen.get_rect()
+        self.settings = ai_game.settings
+        self.stats = ai_game.stats
+
+        # Font settings for scoring information.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         self.text_color = (30, 30, 30)
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>         self.font = pygame.font.SysFont(None, 48)
+
+<span epub:type="pagebreak" id="Page_287" title="287"></span>        # Prepare the initial score image.
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>         self.prep_score()</code></pre>
+<p>Because <code>Scoreboard</code> writes text to the screen, we begin by importing the <code>pygame.font</code> module. Next, we give <code>__init__()</code> the <code>ai_game</code> parameter so it can access the <code>settings</code>, <code>screen</code>, and <code>stats</code> objects, which it will need to report the values we’re tracking <span aria-label="annotation1" class="CodeAnnotation">❶</span>. Then we set a text color <span aria-label="annotation2" class="CodeAnnotation">❷</span> and instantiate a font object <span aria-label="annotation3" class="CodeAnnotation">❸</span>.</p>
+<p>To turn the text to be displayed into an image, we call <code>prep_score()</code> <span aria-label="annotation4" class="CodeAnnotation">❹</span>, which we define here:</p>
+<p class="CodeLabel"><b>scoreboard.py</b></p>
+<pre><code><code>    </code>def prep_score(self):
+    <code>    </code>"""Turn the score into a rendered image."""
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     <code>    </code>score_str = str(self.stats.score)
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         self.score_image = self.font.render(score_str, True,
+                self.text_color, self.settings.bg_color)
+
+   <code>    </code> # Display the score at the top right of the screen.
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     <code>    </code>self.score_rect = self.score_image.get_rect()
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>     <code>    </code>self.score_rect.right = self.screen_rect.right - 20
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>     <code>    </code>self.score_rect.top = 20</code></pre>
+<p>In <code>prep_score()</code>, we turn the numerical value <code>stats.score</code> into a string <span aria-label="annotation1" class="CodeAnnotation">❶</span> and then pass this string to <code>render()</code>, which creates the image <span aria-label="annotation2" class="CodeAnnotation">❷</span>. To display the score clearly onscreen, we pass the screen’s background color and the text color to <code>render()</code>.</p>
+<p>We’ll position the score in the upper-right corner of the screen and have it expand to the left as the score increases and the width of the number grows. To make sure the score always lines up with the right side of the screen, we create a <code>rect</code> called <code>score_rect</code> <span aria-label="annotation3" class="CodeAnnotation">❸</span> and set its right edge 20 pixels from the right edge of the screen <span aria-label="annotation4" class="CodeAnnotation">❹</span>. We then place the top edge 20 pixels down from the top of the screen <span aria-label="annotation5" class="CodeAnnotation">❺</span>.</p>
+<p>Then we create a <code>show_score()</code> method to display the rendered score image:</p>
+<p class="CodeLabel"><b>scoreboard.py</b></p>
+<pre><code><code>    </code>def show_score(self):
+        """Draw score to the screen."""
+        self.screen.blit(self.score_image, self.score_rect)</code></pre>
+<p>This method draws the score image onscreen at the location <code>score_rect</code> specifies.</p>
+<h3 id="h2-502703c14-0010">Making a Scoreboard</h3>
+<p class="BodyFirst">To display the score, we’ll create a <code>Scoreboard</code> instance in <code>AlienInvasion</code>. First, let’s update the <code>import</code> statements:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">from game_stats import GameStats</span>
+from scoreboard import Scoreboard
+<em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p><span epub:type="pagebreak" id="Page_288" title="288"></span>Next, we make an instance of <code>Scoreboard</code> in <code>__init__()</code>:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def __init__(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">        pygame.display.set_caption("Alien Invasion")</span>
+
+        # Create an instance to store game statistics,
+        #   and create a scoreboard.
+      <span class="LiteralGray">  self.stats = GameStats(self)</span>
+        self.sb = Scoreboard(self)
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>Then we draw the scoreboard onscreen in <code>_update_screen()</code>:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def _update_screen(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">        self.aliens.draw(self.screen)</span>
+
+        # Draw the score information.
+        self.sb.show_score()
+
+<span class="LiteralGray">        # Draw the play button if the game is inactive.</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>We call <code>show_score()</code> just before we draw the Play button.</p>
+<p>When you run <em>Alien Invasion</em> now, a 0 should appear at the top right of the screen. (At this point, we just want to make sure the score appears in the right place before developing the scoring system further.) <a href="#figure14-2" id="figureanchor14-2">Figure 14-2</a> shows the score as it appears before the game starts.</p>
+<p>Next, we’ll assign point values to each alien!</p>
+<figure>
+<img alt="" class="keyline" height="442" src="Images/f14002.png" width="641"/>
+<figcaption><p><a id="figure14-2">Figure 14-2</a>: The score appears at the top-right corner of the screen.</p></figcaption>
+</figure>
+<h3 id="h2-502703c14-0011"><span epub:type="pagebreak" id="Page_289" title="289"></span>Updating the Score as Aliens Are Shot Down</h3>
+<p class="BodyFirst">To write a live score onscreen, we update the value of <code>stats.score</code> whenever an alien is hit, and then call <code>prep_score()</code> to update the score image. But first, let’s determine how many points a player gets each time they shoot down an alien:</p>
+<p class="CodeLabel"><b>settings.py</b></p>
+<pre><code><span class="LiteralGray">    def initialize_dynamic_settings(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+
+   <span class="LiteralGray">    </span> # Scoring settings
+<span class="LiteralGray">    </span>    self.alien_points = 50</code></pre>
+<p>We’ll increase each alien’s point value as the game progresses. To make sure this point value is reset each time a new game starts, we set the value in <code>initialize_dynamic_settings()</code>.</p>
+<p>Let’s update the score in <code>_check_bullet_alien_collisions()</code> each time an alien is shot down:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def _check_bullet_alien_collisions(self):</span>
+<span class="LiteralGray">        """Respond to bullet-alien collisions."""</span>
+<span class="LiteralGray">        # Remove any bullets and aliens that have collided.</span>
+<span class="LiteralGray">        collisions = pygame.sprite.groupcollide(</span>
+<span class="LiteralGray">                self.bullets, self.aliens, True, True)</span>
+
+        if collisions:
+            self.stats.score += self.settings.alien_points
+            self.sb.prep_score()
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>When a bullet hits an alien, Pygame returns a <code>collisions</code> dictionary. We check whether the dictionary exists, and if it does, the alien’s value is added to the score. We then call <code>prep_score()</code> to create a new image for the updated score.</p>
+<p>Now when you play <em>Alien Invasion</em>, you should be able to rack up points!</p>
+<h3 id="h2-502703c14-0012">Resetting the Score</h3>
+<p class="BodyFirst">Right now, we’re only prepping a new score <em>after</em> an alien has been hit, which works for most of the game. But when we start a new game, we’ll still see our score from the old game until the first alien is hit.</p>
+<p>We can fix this by prepping the score when starting a new game:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def _check_play_button(self, mouse_pos):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">        if button_clicked and not self.game_active:</span>
+<span class="LiteralGray">            </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">            # Reset the game statistics.</span>
+<span class="LiteralGray">            self.stats.reset_stats()</span>
+            self.sb.prep_score()
+<span class="LiteralGray">            </span><em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p><span epub:type="pagebreak" id="Page_290" title="290"></span>We call <code>prep_score()</code> after resetting the game stats when starting a new game. This preps the scoreboard with a score of 0.</p>
+<h3 id="h2-502703c14-0013">Making Sure to Score All Hits</h3>
+<p class="BodyFirst">As currently written, our code could miss scoring for some aliens. For example, if two bullets collide with aliens during the same pass through the loop or if we make an extra-wide bullet to hit multiple aliens, the player will only receive points for hitting one of the aliens. To fix this, let’s refine the way that bullet-alien collisions are detected.</p>
+<p>In <code>_check_bullet_alien_collisions()</code>, any bullet that collides with an alien becomes a key in the <code>collisions</code> dictionary. The value associated with each bullet is a list of aliens it has collided with. We loop through the values in the <code>collisions</code> dictionary to make sure we award points for each alien hit:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def _check_bullet_alien_collisions(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">        if collisions:</span>
+            for aliens in collisions.values():
+                self.stats.score += self.settings.alien_points * len(aliens)
+<span class="LiteralGray">            self.sb.prep_score()</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>If the <code>collisions</code> dictionary has been defined, we loop through all values in the dictionary. Remember that each value is a list of aliens hit by a single bullet. We multiply the value of each alien by the number of aliens in each list and add this amount to the current score. To test this, change the width of a bullet to 300 pixels and verify that you receive points for each alien you hit with your extra-wide bullets; then return the bullet width to its normal value.</p>
+<h3 id="h2-502703c14-0014">Increasing Point Values</h3>
+<p class="BodyFirst">Because the game gets more difficult each time a player reaches a new level, aliens in later levels should be worth more points. To implement this functionality, we’ll add code to increase the point value when the game’s speed increases:</p>
+<p class="CodeLabel"><b>settings.py</b></p>
+<pre><code><span class="LiteralGray">class Settings:</span>
+<span class="LiteralGray">    """A class to store all settings for Alien Invasion."""</span>
+
+<span class="LiteralGray">    def __init__(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+        <span class="LiteralGray"># How quickly the game speeds up</span>
+<span class="LiteralGray">        self.speedup_scale = 1.1</span>
+<span class="LiteralGray">        </span># How quickly the alien point values increase
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         self.score_scale = 1.5
+
+<span class="LiteralGray">        self.initialize_dynamic_settings()</span>
+
+<span class="LiteralGray">    def initialize_dynamic_settings(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+
+<span epub:type="pagebreak" id="Page_291" title="291"></span><span class="LiteralGray">    def increase_speed(self):</span>
+        """Increase speed settings and alien point values."""
+<span class="LiteralGray">        self.ship_speed *= self.speedup_scale</span>
+<span class="LiteralGray">        self.bullet_speed *= self.speedup_scale</span>
+<span class="LiteralGray">        self.alien_speed *= self.speedup_scale</span>
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         self.alien_points = int(self.alien_points * self.score_scale)</code></pre>
+<p>We define a rate at which points increase, which we call <code>score_scale</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>. A small increase in speed (<code>1.1</code>) makes the game more challenging quickly. But to see a more notable difference in scoring, we need to change the alien point value by a larger amount (<code>1.5</code>). Now when we increase the game’s speed, we also increase the point value of each hit <span aria-label="annotation2" class="CodeAnnotation">❷</span>. We use the <code>int()</code> function to increase the point value by whole integers.</p>
+<p>To see the value of each alien, add a <code>print()</code> call to the <code>increase_speed()</code> method in <code>Settings</code>:</p>
+<p class="CodeLabel"><b>settings.py</b></p>
+<pre><code><span class="LiteralGray">    def increase_speed(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">        self.alien_points = int(self.alien_points * self.score_scale)</span>
+<span class="LiteralGray">        </span>print(self.alien_points)</code></pre>
+<p>The new point value should appear in the terminal every time you reach a new level.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	Be sure to remove the <code>print()</code> call after verifying that the point value is increasing, or it might affect your game’s performance and distract the player.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h3 id="h2-502703c14-0015">Rounding the Score</h3>
+<p class="BodyFirst">Most arcade-style shooting games report scores as multiples of 10, so let’s follow that lead with our scores. Also, let’s format the score to include comma separators in large numbers. We’ll make this change in <code>Scoreboard</code>:</p>
+<p class="CodeLabel"><b>scoreboard.py</b></p>
+<pre><code><span class="LiteralGray">    def prep_score(self):</span>
+<span class="LiteralGray">        """Turn the score into a rendered image."""</span>
+        rounded_score = round(self.stats.score, -1)
+   <span class="LiteralGray">    </span> score_str = f"{rounded_score:,}"
+<span class="LiteralGray">        self.score_image = self.font.render(score_str, True,</span>
+<span class="LiteralGray">                self.text_color, self.settings.bg_color)</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>The <code>round()</code> function normally rounds a float to a set number of decimal places given as the second argument. However, when you pass a negative number as the second argument, <code>round()</code> will round the value to the nearest 10, 100, 1,000, and so on. This code tells Python to round the value of <code>stats.score</code> to the nearest 10 and assign it to <code>rounded_score</code>.</p>
+<p>We then use a format specifier in the f-string for the score. A <em>format specifier</em> is a special sequence of characters that modifies the way a variable’s value is presented. In this case the sequence <code>:,</code> tells Python to insert <span epub:type="pagebreak" id="Page_292" title="292"></span>commas at appropriate places in the numerical value that’s provided. This results in strings like <code>1,000,000</code> instead of <code>1000000</code>.</p>
+<p>Now when you run the game, you should see a neatly formatted, rounded score even when you rack up lots of points, as shown in <a href="#figure14-3" id="figureanchor14-3">Figure 14-3</a>.</p>
+<figure>
+<img alt="" class="keyline" height="442" src="Images/f14003.png" width="641"/>
+<figcaption><p><a id="figure14-3">Figure 14-3</a>: A rounded score with comma separators</p></figcaption>
+</figure>
+<h3 id="h2-502703c14-0016">High Scores</h3>
+<p class="BodyFirst">Every player wants to beat a game’s high score, so let’s track and report high scores to give players something to work toward. We’ll store high scores in <code>GameStats</code>:</p>
+<p class="CodeLabel"><b>game_stats.py</b></p>
+<pre><code><span class="LiteralGray">    def __init__(self, ai_game):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">    </span>    # High score should never be reset.
+    <span class="LiteralGray">    </span>self.high_score = 0</code></pre>
+<p>Because the high score should never be reset, we initialize <code>high_score</code> in <code>__init__()</code> rather than in <code>reset_stats()</code>.</p>
+<p>Next, we’ll modify <code>Scoreboard</code> to display the high score. Let’s start with the <code>__init__()</code> method:</p>
+<p class="CodeLabel"><b>scoreboard.py</b></p>
+<pre><code><span class="LiteralGray">    def __init__(self, ai_game):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">    </span>    # Prepare the initial score images.
+<span class="LiteralGray">        self.prep_score()</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     <span class="LiteralGray">    </span>self.prep_high_score()</code></pre>
+<p>The high score will be displayed separately from the score, so we need a new method, <code>prep_high_score()</code>, to prepare the high-score image <span aria-label="annotation1" class="CodeAnnotation">❶</span>.</p>
+<p><span epub:type="pagebreak" id="Page_293" title="293"></span>Here’s the <code>prep_high_score()</code> method:</p>
+<p class="CodeLabel"><b>scoreboard.py</b></p>
+<pre><code><span class="LiteralGray">    </span>def prep_high_score(self):
+    <span class="LiteralGray">    </span>"""Turn the high score into a rendered image."""
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     <span class="LiteralGray">    </span>high_score = round(self.stats.high_score, -1)
+    <span class="LiteralGray">    </span>high_score_str = f"{high_score:,}"
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     <span class="LiteralGray">    </span>self.high_score_image = self.font.render(high_score_str, True,
+        <span class="LiteralGray">        </span>self.text_color, self.settings.bg_color)
+
+<span class="LiteralGray">    </span>    # Center the high score at the top of the screen.
+    <span class="LiteralGray">    </span>self.high_score_rect = self.high_score_image.get_rect()
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> <span class="LiteralGray">    </span>    self.high_score_rect.centerx = self.screen_rect.centerx
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>     <span class="LiteralGray">    </span>self.high_score_rect.top = self.score_rect.top</code></pre>
+<p>We round the high score to the nearest 10 and format it with commas <span aria-label="annotation1" class="CodeAnnotation">❶</span>. We then generate an image from the high score <span aria-label="annotation2" class="CodeAnnotation">❷</span>, center the high score <code>rect</code> horizontally <span aria-label="annotation3" class="CodeAnnotation">❸</span>, and set its <code>top</code> attribute to match the top of the score image <span aria-label="annotation4" class="CodeAnnotation">❹</span>.</p>
+<p>The <code>show_score()</code> method now draws the current score at the top right and the high score at the top center of the screen:</p>
+<p class="CodeLabel"><b>scoreboard.py</b></p>
+<pre><code><span class="LiteralGray">    def show_score(self):</span>
+<span class="LiteralGray">        """Draw score to the screen."""</span>
+<span class="LiteralGray">        self.screen.blit(self.score_image, self.score_rect)</span>
+    <span class="LiteralGray">    </span>self.screen.blit(self.high_score_image, self.high_score_rect)</code></pre>
+<p>To check for high scores, we’ll write a new method, <code>check_high_score()</code>, in <code>Scoreboard</code>:</p>
+<p class="CodeLabel"><b>scoreboard.py</b></p>
+<pre><code>    def check_high_score(self):
+<code>        </code>"""Check to see if there's a new high score."""
+        if self.stats.score &gt; self.stats.high_score:
+            self.stats.high_score = self.stats.score
+            self.prep_high_score()</code></pre>
+<p>The method <code>check_high_score()</code> checks the current score against the high score. If the current score is greater, we update the value of <code>high_score</code> and call <code>prep_high_score()</code> to update the high score’s image.</p>
+<p>We need to call <code>check_high_score()</code> each time an alien is hit after updating the score in <code>_check_bullet_alien_collisions()</code>:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def _check_bullet_alien_collisions(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">        if collisions:</span>
+<span class="LiteralGray">            for aliens in collisions.values():</span>
+<span class="LiteralGray">                self.stats.score += self.settings.alien_points * len(aliens)</span>
+<span class="LiteralGray">            self.sb.prep_score()</span>
+<span class="LiteralGray">        </span>    self.sb.check_high_score()
+        <em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>We call <code>check_high_score()</code> when the <code>collisions</code> dictionary is present, and we do so after updating the score for all the aliens that have been hit.</p>
+<p><span epub:type="pagebreak" id="Page_294" title="294"></span>The first time you play <em>Alien Invasion</em>, your score will be the high score, so it will be displayed as the current score and the high score. But when you start a second game, your high score should appear in the middle and your current score should appear at the right, as shown in <a href="#figure14-4" id="figureanchor14-4">Figure 14-4</a>.</p>
+<figure>
+<img alt="" class="keyline" height="442" src="Images/f14004.png" width="641"/>
+<figcaption><p><a id="figure14-4">Figure 14-4</a>: The high score is shown at the top center of the screen.</p></figcaption>
+</figure>
+<h3 id="h2-502703c14-0017">Displaying the Level</h3>
+<p class="BodyFirst">To display the player’s level in the game, we first need an attribute in <code>GameStats</code> representing the current level. To reset the level at the start of each new game, initialize it in <code>reset_stats()</code>:</p>
+<p class="CodeLabel"><b>game_stats.py</b></p>
+<pre><code><span class="LiteralGray">    def reset_stats(self):</span>
+<span class="LiteralGray">        """Initialize statistics that can change during the game."""</span>
+<span class="LiteralGray">        self.ships_left = self.settings.ship_limit</span>
+<span class="LiteralGray">        self.score = 0</span>
+<span class="LiteralGray">    </span>    self.level = 1</code></pre>
+<p>To have <code>Scoreboard</code> display the current level, we call a new method, <code>prep_level()</code>, from <code>__init__()</code>:</p>
+<p class="CodeLabel"><b>scoreboard.py</b></p>
+<pre><code><span class="LiteralGray">    def __init__(self, ai_game):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">        self.prep_high_score()</span>
+    <span class="LiteralGray">    </span>self.prep_level()</code></pre>
+<p>Here’s <code>prep_level()</code>:</p>
+<p class="CodeLabel"><b>scoreboard.py</b></p>
+<pre><code><code>    </code>def prep_level(self):
+        """Turn the level into a rendered image."""
+        level_str = str(self.stats.level)
+<span epub:type="pagebreak" id="Page_295" title="295"></span><span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         self.level_image = self.font.render(level_str, True,
+                self.text_color, self.settings.bg_color)
+
+        # Position the level below the score.
+        self.level_rect = self.level_image.get_rect()
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         self.level_rect.right = self.score_rect.right
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>         self.level_rect.top = self.score_rect.bottom + 10</code></pre>
+<p>The <code>prep_level()</code> method creates an image from the value stored in <code>stats.level</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span> and sets the image’s <code>right</code> attribute to match the score’s <code>right</code> attribute <span aria-label="annotation2" class="CodeAnnotation">❷</span>. It then sets the <code>top</code> attribute 10 pixels beneath the bottom of the score image to leave space between the score and the level <span aria-label="annotation3" class="CodeAnnotation">❸</span>.</p>
+<p>We also need to update <code>show_score()</code>:</p>
+<p class="CodeLabel"><b>scoreboard.py</b></p>
+<pre><code><span class="LiteralGray">    def show_score(self):</span>
+        """Draw scores and level to the screen."""
+<span class="LiteralGray">        self.screen.blit(self.score_image, self.score_rect)</span>
+<span class="LiteralGray">        self.screen.blit(self.high_score_image, self.high_score_rect)</span>
+<span class="LiteralGray">    </span>    self.screen.blit(self.level_image, self.level_rect)</code></pre>
+<p>This new line draws the level image to the screen.</p>
+<p>We’ll increment <code>stats.level</code> and update the level image in <code>_check_bullet_alien_collisions()</code>:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def _check_bullet_alien_collisions(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">        if not self.aliens:</span>
+<span class="LiteralGray">          </span>  <span class="LiteralGray"># Destroy existing bullets and create new fleet.</span>
+<span class="LiteralGray">            self.bullets.empty()</span>
+<span class="LiteralGray">            self._create_fleet()</span>
+<span class="LiteralGray">            self.settings.increase_speed()</span>
+
+            # Increase level.
+            self.stats.level += 1
+            self.sb.prep_level()</code></pre>
+<p>If a fleet is destroyed, we increment the value of <code>stats.level</code> and call <code>prep_level()</code> to make sure the new level displays correctly.</p>
+<p>To ensure the level image updates properly at the start of a new game, we also call <code>prep_level()</code> when the player clicks the Play button:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def _check_play_button(self, mouse_pos):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">        if button_clicked and not self.game_active:</span>
+<span class="LiteralGray">            </span><em class="LiteralGrayItalic">--snip--</em>
+            <span class="LiteralGray">self.sb.prep_score()</span>
+            self.sb.prep_level()
+            <em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>We call <code>prep_level()</code> right after calling <code>prep_score()</code>.</p>
+<p>Now you’ll see how many levels you’ve completed, as shown in <a href="#figure14-5" id="figureanchor14-5">Figure 14-5</a>.</p>
+<span epub:type="pagebreak" id="Page_296" title="296"></span><figure>
+<img alt="" class="keyline" height="442" src="Images/f14005.png" width="641"/>
+<figcaption><p><a id="figure14-5">Figure 14-5</a>: The current level appears just below the current score.</p></figcaption>
+</figure>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	In some classic games, the scores have labels, such as Score, High Score, and Level. We’ve omitted these labels because the meaning of each number becomes clear once you’ve played the game. To include these labels, add them to the score strings just before the calls to <code>font.render()</code> in <code>Scoreboard</code>.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h3 id="h2-502703c14-0018">Displaying the Number of Ships</h3>
+<p class="BodyFirst">Finally, let’s display the number of ships the player has left, but this time, let’s use a graphic. To do so, we’ll draw ships in the upper-left corner of the screen to represent how many ships are left, just as many classic arcade games do.</p>
+<p>First, we need to make <code>Ship</code> inherit from <code>Sprite</code> so we can create a group of ships:</p>
+<p class="CodeLabel"><b>ship.py</b></p>
+<pre><code><span class="LiteralGray">import pygame</span>
+from pygame.sprite import Sprite
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> class Ship(Sprite):
+<span class="LiteralGray">    """A class to manage the ship."""</span>
+
+<span class="LiteralGray">    def __init__(self, ai_game):</span>
+<span class="LiteralGray">        """Initialize the ship and set its starting position."""</span>
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         super().__init__()
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>Here we import <code>Sprite</code>, make sure <code>Ship</code> inherits from <code>Sprite</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>, and call <code>super()</code> at the beginning of <code>__init__()</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span>.</p>
+<p><span epub:type="pagebreak" id="Page_297" title="297"></span>Next, we need to modify <code>Scoreboard</code> to create a group of ships we can display. Here are the <code>import</code> statements for <code>Scoreboard</code>:</p>
+<p class="CodeLabel"><b>scoreboard.py</b></p>
+<pre><code><span class="LiteralGray">import pygame.font</span>
+from pygame.sprite import Group
+
+from ship import Ship</code></pre>
+<p>Because we’re making a group of ships, we import the <code>Group</code> and <code>Ship</code> classes.</p>
+<p>Here’s <code>__init__()</code>:</p>
+<p class="CodeLabel"><b>scoreboard.py</b></p>
+<pre><code><span class="LiteralGray">    def __init__(self, ai_game):</span>
+<span class="LiteralGray">        """Initialize scorekeeping attributes."""</span>
+<span class="LiteralGray">        </span>self.ai_game = ai_game
+<span class="LiteralGray">        self.screen = ai_game.screen</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">        self.prep_level()</span>
+        self.prep_ships()</code></pre>
+<p>We assign the game instance to an attribute, because we’ll need it to create some ships. We call <code>prep_ships()</code> after the call to <code>prep_level()</code>.</p>
+<p>Here’s <code>prep_ships()</code>:</p>
+<p class="CodeLabel"><b>scoreboard.py</b></p>
+<pre><code><code>    </code>def prep_ships(self):
+        """Show how many ships are left."""
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         self.ships = Group()
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         for ship_number in range(self.stats.ships_left):
+            ship = Ship(self.ai_game)
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>             ship.rect.x = 10 + ship_number * ship.rect.width
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>             ship.rect.y = 10
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>             self.ships.add(ship)</code></pre>
+<p>The <code>prep_ships()</code> method creates an empty group, <code>self.ships</code>, to hold the ship instances <span aria-label="annotation1" class="CodeAnnotation">❶</span>. To fill this group, a loop runs once for every ship the player has left <span aria-label="annotation2" class="CodeAnnotation">❷</span>. Inside the loop, we create a new ship and set each ship’s <em>x</em>-coordinate value so the ships appear next to each other with a 10-pixel margin on the left side of the group of ships <span aria-label="annotation3" class="CodeAnnotation">❸</span>. We set the <em>y</em>-coordinate value 10 pixels down from the top of the screen so the ships appear in the upper-left corner of the screen <span aria-label="annotation4" class="CodeAnnotation">❹</span>. Then we add each new ship to the group <code>ships</code> <span aria-label="annotation5" class="CodeAnnotation">❺</span>.</p>
+<p>Now we need to draw the ships to the screen:</p>
+<p class="CodeLabel"><b>scoreboard.py</b></p>
+<pre><code><span class="LiteralGray">    def show_score(self):</span>
+        """Draw scores, level, and ships to the screen."""
+<span class="LiteralGray">        self.screen.blit(self.score_image, self.score_rect)</span>
+<span class="LiteralGray">        self.screen.blit(self.high_score_image, self.high_score_rect)</span>
+<span class="LiteralGray">        self.screen.blit(self.level_image, self.level_rect)</span>
+    <span class="LiteralGray">    </span>self.ships.draw(self.screen)</code></pre>
+<p><span epub:type="pagebreak" id="Page_298" title="298"></span>To display the ships on the screen, we call <code>draw()</code> on the group, and Pygame draws each ship.</p>
+<p>To show the player how many ships they have to start with, we call <code>prep_ships()</code> when a new game starts. We do this in <code>_check_play_button()</code> in <code>AlienInvasion</code>:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def _check_play_button(self, mouse_pos):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">        if button_clicked and not self.game_active:</span>
+<span class="LiteralGray">            </span><em class="LiteralGrayItalic">--snip--</em>
+            <span class="LiteralGray">self.sb.prep_level()</span>
+            self.sb.prep_ships()
+            <em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>We also call <code>prep_ships()</code> when a ship is hit, to update the display of ship images when the player loses a ship:</p>
+<p class="CodeLabel"><b>alien_invasion.py</b></p>
+<pre><code><span class="LiteralGray">    def _ship_hit(self):</span>
+<span class="LiteralGray">        """Respond to ship being hit by alien."""</span>
+<span class="LiteralGray">        if self.stats.ships_left &gt; 0:</span>
+            # Decrement ships_left, and update scoreboard.
+<span class="LiteralGray">            self.stats.ships_left -= 1</span>
+            self.sb.prep_ships()
+            <var>--snip--</var></code></pre>
+<p>We call <code>prep_ships()</code> after decreasing the value of <code>ships_left</code>, so the correct number of remaining ships displays each time a ship is destroyed.</p>
+<p><a href="#figure14-6" id="figureanchor14-6">Figure 14-6</a> shows the complete scoring system, with the remaining ships displayed at the top left of the screen.</p>
+<figure>
+<img alt="" class="keyline" height="442" src="Images/f14006.png" width="641"/>
+<figcaption><p><a id="figure14-6">Figure 14-6</a>: The complete scoring system for <em>Alien Invasion</em></p></figcaption>
+</figure>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2><span epub:type="pagebreak" id="Page_299" title="299"></span>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c14-23">14-5.	All-Time High Score:</span> The high score is reset every time a player closes and restarts <em>Alien Invasion</em>. Fix this by writing the high score to a file before calling <code>sys.exit()</code> and reading in the high score when initializing its value in <code>GameStats</code>.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c14-24">14-6.	Refactoring:</span> Look for methods that are doing more than one task, and refactor them to organize your code and make it efficient. For example, move some of the code in <code>_check_bullet_alien_collisions()</code>, which starts a new level when the fleet of aliens has been destroyed, to a function called <code>start_new_level()</code>. Also, move the four separate method calls in the <code>__init__()</code> method in <code>Scoreboard</code> to a method called <code>prep_images()</code> to shorten <code>__init__()</code>. The <code>prep_images()</code> method could also help simplify <code>_check_play_button()</code> or <code>start_game()</code> if you’ve already refactored <code>_check_play_button()</code>.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2 style="text-align: left;margin-bottom:0;"><span class="NoteHead">note</span></h2>
+<p>Before attempting to refactor the project, see <span class="xref" itemid="xref_target_Appendix D">Appendix D</span> to learn how to restore the project to a working state if you introduce bugs while refactoring.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c14-25">14-7. Expanding the Game:</span> Think of a way to expand <em>Alien Invasion</em>. For example, you could program the aliens to shoot bullets down at your ship. You can also add shields for your ship to hide behind, which can be destroyed by bullets from either side. Or you can use something like the <code>pygame.mixer</code> module to add sound effects, such as explosions and shooting sounds.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c14-26">14-8. Sideways Shooter, Final Version:</span> Continue developing <em>Sideways Shooter</em>, using everything we’ve done in this project. Add a Play button, make the game speed up at appropriate points, and develop a scoring system. Be sure to refactor your code as you work, and look for opportunities to customize the game beyond what has been shown in this chapter.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c14-0004">Summary</h2>
+<p class="BodyFirst">In this chapter, you learned how to implement a Play button to start a new game. You also learned how to detect mouse events and hide the cursor in active games. You can use what you’ve learned to create other buttons, like a Help button to display instructions on how to play your games. You also learned how to modify the speed of a game as it progresses, implement a progressive scoring system, and display information in textual and nontextual ways.</p>
+</section>
+</div></body>
+</html>

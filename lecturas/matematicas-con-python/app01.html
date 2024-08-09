@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:pls="http://www.w3.org/2005/01/pronunciation-lexicon" xmlns:ssml="http://www.w3.org/2001/10/synthesis" xmlns:svg="http://www.w3.org/2000/svg">
+<head>
+<meta charset="utf-8"/>
+<title>Apéndice A: Instalación del software</title>
+<link href="style.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="core.css" media="all" rel="stylesheet" type="text/css"/>
+<style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<div id="sbo-rt-content"><h2 class="h2" id="app01"><a id="page_213"></a><strong><span class="big">A</span></strong><br translate="no"/> Instalación del software</h2>
+<div class="image1"><img alt="image" src="images/common-01.jpg" translate="no"/></div>
+<p class="noindent">Los programas y soluciones de este libro se han probado para que funcionen con Python 3.4, matplotlib 1.4.2, matplotlib-venn 0.11 y SymPy 0.7.6. Estas versiones son sólo los requisitos mínimos, y los programas deberían funcionar también con versiones posteriores del software. Los cambios y actualizaciones se indicarán en el sitio web del libro, <em><a href="http://www.nostarch.com/doingmathwithpython/">http://www.nostarch.com/doingmathwithpython/.</a></em></p>
+<p class="indent">Aunque hay muchas formas de conseguir Python y las bibliotecas que necesitas, una de las más fáciles es utilizar la distribución de software Anaconda Python 3, que está disponible gratuitamente para Microsoft Windows, Linux y Mac OS X. En el momento de escribir esto, la última versión de Anaconda es la 2.1.0 con Python 3.4. Anaconda<em><a href="https://store.continuum.io/cshop/anaconda/">(https://store.continuum.io/cshop/anaconda/)</a></em> es una forma rápida y fácil de instalar Python 3 y muchos de los paquetes matemáticos y de análisis de datos, todo en un sencillo instalador. Si quieres añadir nuevas bibliotecas matemáticas de Python, Anaconda también te permite añadirlas rápidamente mediante los comandos <span class="literal" translate="no">conda</span> y <span class="literal" translate="no">pip</span>. Anaconda tiene un número <a id="page_214"></a>de otras características que lo hacen útil para el desarrollo en Python. Viene con el gestor de paquetes conda incorporado, que permite instalar fácilmente paquetes de terceros, como pronto veremos. Admite la creación de entornos Python aislados, lo que significa que puedes tener varias instalaciones de Python -por ejemplo, Python 2, Python 3.3 y Python 3.4- utilizando la misma instalación de Anaconda. Puedes obtener más información en el sitio web de Anaconda y en la documentación de conda<em><a href="http://conda.pydata.org/docs/intro.html">(http://conda.pydata.org/docs/intro.html)</a></em>.</p>
+<p class="indent">Las siguientes secciones describirán brevemente la instalación de Anaconda en Microsoft Windows, Linux y Mac OS X, así que salta a la sección que te corresponda. Necesitarás una conexión a Internet para seguir adelante, pero eso es todo.</p>
+<p class="indent">Si te encuentras con algún problema, también hay información disponible sobre la resolución de problemas en <em><a href="http://continuum.io/">http://continuum.io/.</a></em></p>
+<h3 class="h3" id="app01lev1sec01"><strong>Microsoft Windows</strong></h3>
+<p class="noindentb">Descarga el instalador de Anaconda GUI para Python 3 de <em><a href="http://continuum.io/downloads">http://continuum.io/downloads.</a></em> Haz doble clic en el instalador y sigue estos pasos:</p>
+<p class="order">1. Haz clic en <strong>Siguiente</strong> y acepta el Acuerdo de Licencia:</p>
+<div class="image2"><img alt="image" src="images/f0214-01.jpg" translate="no"/></div>
+<p class="order">2. Puedes elegir instalar la distribución sólo para tu nombre de usuario o para todos los usuarios que utilicen este ordenador.</p>
+<p class="order">3. Elige la carpeta donde quieres que Anaconda instale los programas. Los valores por defecto deberían funcionar bien.</p>
+<p class="order">4. Asegúrate de marcar las dos casillas del cuadro de diálogo <strong>Opciones Avanzadas</strong> para que puedas invocar el intérprete de comandos Python y otros programas, como <span class="literal" translate="no">conda</span>, <a id="page_215"></a><span class="literal" translate="no">pip</span> , y <span class="literal" translate="no">idle</span>, desde cualquier lugar del símbolo del sistema. Además, cualquier otro programa Python que busque una instalación de Python 3.4 apuntará a la instalada por Anaconda:</p>
+<div class="image2"><img alt="image" src="images/f0215-01.jpg" translate="no"/></div>
+<p class="order">5. Haz clic en <strong>Instalar</strong> para iniciar la instalación. Cuando la instalación haya terminado, haz clic en <strong>Siguiente</strong> y luego en <strong>Finalizar</strong> para completar la instalación. Deberías poder encontrar Python en tu Menú Inicio.</p>
+<p class="order">6. Abre un símbolo del sistema de Windows y realiza los siguientes pasos.</p>
+<h4 class="h4" id="app01lev2sec01"><strong><em>Actualizar SymPy</em></strong></h4>
+<p class="noindent">La instalación puede venir con SymPy ya instalado, pero queremos asegurarnos de que tenemos al menos la versión 0.7.6, así que la instalaremos utilizando este comando:</p>
+<p class="programs" translate="no">$ <span class="codestrong">conda install sympy=0.7.6</span></p>
+<p class="indent">Esto instalará o actualizará a SymPy 0.7.6.</p>
+<h4 class="h4" id="app01lev2sec02"><strong><em>Instalar matplotlib-venn</em></strong></h4>
+<p class="noindent">Para instalar matplotlib-venn, utiliza este comando:</p>
+<p class="programs" translate="no">$ <span class="codestrong">pip install matplotlib-venn</span></p>
+<p class="indent">Ahora tu ordenador está preparado para ejecutar todos los programas.</p>
+<h4 class="h4" id="app01lev2sec03"><strong><em>Iniciar el intérprete de comandos de Python</em></strong></h4>
+<p class="noindent">Abre un símbolo del sistema de Windows e introduce <span class="literal" translate="no">idle</span> para iniciar el intérprete de comandos IDLE o <span class="literal" translate="no">python</span> para iniciar el intérprete de comandos por defecto de Python 3.</p>
+<h3 class="h3" id="app01lev1sec02"><a id="page_216"></a><strong>Linux</strong></h3>
+<p class="noindent">El instalador de Linux se distribuye como un instalador de shell script, por lo que deberás descargar el instalador de Anaconda Python desde <em><a href="http://continuum.io/downloads">http://continuum.io/downloads.</a></em> A continuación, inicia el instalador ejecutando lo siguiente:</p>
+<p class="programs" translate="no">$ <span class="codestrong">bash Anaconda3-2.1.0-Linux-x86_64.sh</span><br translate="no"/><br translate="no"/>Welcome to Anaconda3 2.1.0 (by Continuum Analytics, Inc.)<br translate="no"/><br translate="no"/>In order to continue the installation process, please review the license<br translate="no"/>agreement.<br translate="no"/>Please, press ENTER to continue<br translate="no"/>&gt;&gt;&gt;</p>
+<p class="indent">Aparecerá el "ACUERDO DE LICENCIA DE USUARIO FINAL de Anaconda". Cuando lo hayas leído, introduce <span class="literal" translate="no"><span class="codestrong">yes</span></span> para continuar la instalación:</p>
+<p class="programs" translate="no">Do you approve the license terms? [yes|no]<br translate="no"/>[no] &gt;&gt;&gt; <span class="codestrong">yes</span><br translate="no"/><br translate="no"/>Anaconda3 will now be installed into this location:<br translate="no"/>/home/testuser/anaconda3<br translate="no"/><br translate="no"/>  - Press ENTER to confirm the location<br translate="no"/>  - Press CTRL-C to abort the installation<br translate="no"/>  - Or specify a different location below</p>
+<p class="indent">Pulsa <small>INTRO</small> en el indicador y se iniciará la instalación:</p>
+<p class="programs" translate="no">[/home/testuser/anaconda3] &gt;&gt;&gt;<br translate="no"/>PREFIX=/home/testuser/anaconda3<br translate="no"/>installing: python-3.4.1-4 ...<br translate="no"/>installing: conda-3.7.0-py34_0<br translate="no"/>..<br translate="no"/><br translate="no"/>creating default environment...<br translate="no"/>installation finished.<br translate="no"/>Do you wish the installer to prepend the Anaconda3 install location<br translate="no"/>to PATH in your /home/testuser/.bashrc ? [yes|no]</p>
+<p class="indent">Cuando se te pida que confirmes la ubicación de la instalación, introduce <span class="literal" translate="no"><span class="codestrong">yes</span></span> para que siempre se invoque al intérprete Python 3.4 instalado por Anaconda cuando invoques al programa Python desde tu terminal:</p>
+<p class="programs" translate="no">[no] &gt;&gt;&gt; <span class="codestrong">yes</span><br translate="no"/><br translate="no"/>Prepending PATH=/home/testuser/anaconda3/bin to PATH in /home/testuser/.bashrc<br translate="no"/>A backup will be made to: /home/testuser/.bashrc-anaconda3.bak<br translate="no"/><a id="page_217"></a><br translate="no"/>For this change to become active, you have to open a new terminal.<br translate="no"/><br translate="no"/>Thank you for installing Anaconda3!</p>
+<p class="indent">Abre un nuevo terminal para los siguientes pasos.</p>
+<h4 class="h4" id="app01lev2sec04"><strong><em>Actualizar SymPy</em></strong></h4>
+<p class="noindent">En primer lugar, asegúrate de que SymPy 0.7.6 está instalado:</p>
+<p class="programs" translate="no">$ <span class="codestrong">conda install sympy=0.7.6</span></p>
+<h4 class="h4" id="app01lev2sec05"><strong><em>Instalar matplotlib-venn</em></strong></h4>
+<p class="noindent">Utiliza el siguiente comando para instalar matplotlib-venn:</p>
+<p class="programs" translate="no">$ <span class="codestrong">pip install matplotlib-venn</span></p>
+<h4 class="h4" id="app01lev2sec06"><strong><em>Iniciar el intérprete de comandos de Python</em></strong></h4>
+<p class="noindent">Ya estás preparado. Abre un nuevo terminal e introduce <span class="literal" translate="no">idle3</span> para iniciar el editor IDLE o <span class="literal" translate="no">python</span> para iniciar la shell de Python 3.4. Ahora deberías poder ejecutar todos los programas y probar otros nuevos.</p>
+<h3 class="h3" id="app01lev1sec03"><strong>Mac OS X</strong></h3>
+<p class="noindentb">Descarga el instalador gráfico de <em><a href="http://continuum.io/downloads">http://continuum.io/downloads.</a></em> A continuación, haz doble clic en el archivo <em>.pkg</em> y sigue las instrucciones:</p>
+<p class="order">1. Haz clic en <strong>Continuar</strong> en cada ventana informativa:</p>
+<div class="image"><img alt="image" src="images/f0217-01.jpg" translate="no"/></div>
+<div class="image"><a id="page_218"></a><img alt="image" src="images/f0218-01.jpg" translate="no"/></div>
+<p class="order">2. Haz clic en <strong>Aceptar</strong> para aceptar el "ACUERDO DE LICENCIA DE USUARIO FINAL de Anaconda":</p>
+<div class="image"><img alt="image" src="images/f0218-02.jpg" translate="no"/></div>
+<p class="order">3. En el siguiente cuadro de diálogo, elige la opción "Instalar sólo para mí". El mensaje de error que ves es un fallo del programa de instalación. Haz clic en él y desaparecerá. Haz clic en <strong>Continuar</strong> para proseguir.</p>
+<div class="image"><a id="page_219"></a><img alt="image" src="images/f0219-01.jpg" translate="no"/></div>
+<p class="order">4. Selecciona <strong>Instalar</strong>:</p>
+<div class="image"><img alt="image" src="images/f0219-02.jpg" translate="no"/></div>
+<p class="order">5. Una vez finalizada la instalación, abre la aplicación Terminal y sigue los siguientes pasos para actualizar SymPy e instalar matplotlib-venn.</p>
+<h4 class="h4" id="app01lev2sec07"><a id="page_220"></a><strong><em>Actualizar SymPy</em></strong></h4>
+<p class="noindent">En primer lugar, asegúrate de que SymPy 0.7.6 está instalado:</p>
+<p class="programs" translate="no">$ <span class="codestrong">conda install sympy=0.7.6</span></p>
+<h4 class="h4" id="app01lev2sec08"><strong><em>Instalar matplotlib-venn</em></strong></h4>
+<p class="noindent">Utiliza el siguiente comando para instalar matplotlib-venn:</p>
+<p class="programs" translate="no">$ <span class="codestrong">pip install matplotlib-venn</span></p>
+<h4 class="h4" id="app01lev2sec09"><strong><em>Iniciar el intérprete de comandos de Python</em></strong></h4>
+<p class="noindent">Ya está todo listo. Cierra la ventana Terminal, abre una nueva e introduce <span class="literal" translate="no">idle3</span> para iniciar el editor IDLE o <span class="literal" translate="no">python</span> para iniciar la shell de Python 3.4. Ahora deberías poder ejecutar todos los programas y probar otros nuevos.</p>
+</div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="app00.html">← Anterior</a><a href="app02.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="app01.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\doing-math-with-python\app01.html" target="_blank">&gt; Lectura en inglés</a></footer></body>
+</html>

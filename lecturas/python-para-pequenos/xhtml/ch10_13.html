@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch10lev1sec12">
+  Crear una animación básica </h3>
+<p class="noindent">
+  Ya hemos visto cómo crear imágenes estáticas que no se mueven. Ahora nos centraremos en la creación de animaciones. </p>
+<p class="indent">
+  La animación no es necesariamente una especialidad del módulo <span class="literal1" translate="no">
+   tkinter
+  </span>, pero puede manejar lo básico. Por ejemplo, podemos crear un triángulo relleno y hacer que se mueva por la pantalla utilizando este código: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">import</span> time
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">from</span> tkinter <span class="orange">import</span> *
+<span class="brown">&gt;&gt;&gt;</span> tk = Tk()
+<span class="brown">&gt;&gt;&gt;</span> canvas = Canvas(tk, width=400, height=200)
+<span class="brown">&gt;&gt;&gt;</span> canvas.pack()
+<span class="brown">&gt;&gt;&gt;</span> canvas.create_polygon(10, 10, 10, 60, 50, 35)
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> x <span class="orange">in</span> <span class="violet">range</span>(1, 61):
+        canvas.move(1, 5, 0)
+        tk.update()
+        time.sleep(0.05)
+</pre>
+<p class="indent">
+<span id="page_160">
+</span>
+  Cuando ejecutes este código, el triángulo empezará a moverse por la pantalla hasta el final de su recorrido, como en la <a class="calibre6" href="ch10.xhtml#ch10fig18">Figura 10-18 . </a></p>
+<div class="image" id="ch10fig18">
+<img alt="Image" class="calibre115" src="../images/10fig18.jpg" translate="no"/>
+</div>
+<p class="figcap">
+
+   Figura 10-18<em class="calibre7">: Triángulo en </em>movimiento</p>
+<p class="indent">
+  Como antes, hemos utilizado las tres primeras líneas después de importar <span class="literal1" translate="no">
+   tkinter
+  </span>para realizar la configuración básica para visualizar un lienzo. Creamos el triángulo con la llamada a la función <span class="literal1" translate="no">
+   canvas.create_polygon(10, 10, 10, 60, 50, 35)
+  </span>. </p>
+<div class="note">
+<p class="notet">
+<strong class="calibre3"><span class="notes">NOTA </span></strong></p>
+<p class="notep">
+<em class="calibre7">
+    Cuando introduzcas esta línea, se imprimirá un número en la pantalla. Se trata de un identificador para el polígono. Podemos utilizarlo para referirnos a la forma más adelante, como se describe en el siguiente ejemplo. </em></p>
+</div>
+<p class="indent">
+  A continuación, creamos un sencillo bucle <span class="literal1" translate="no">
+   for
+  </span>para contar de 1 a 61, comenzando por <span class="literal1" translate="no">
+   for x
+  </span><span class="literal1" translate="no">
+   in range(1, 61)
+  </span> . </p>
+<p class="indent">
+  El bloque de código dentro del bucle mueve el triángulo por la pantalla. La función <span class="literal1" translate="no">
+   canvas.move
+  </span>moverá cualquier objeto dibujado añadiendo valores a sus coordenadas <span class="literal1" translate="no">
+   x
+  </span>y <span class="literal1" translate="no">
+   y
+  </span>. Por ejemplo, con <span class="literal1" translate="no">
+   canvas.move(1, 5, 0)
+  </span>, movemos el objeto con ID 1 (el identificador del triángulo -ver la Nota anterior) 5 píxeles a lo ancho y 0 píxeles a lo bajo. Para volver a moverlo, podríamos utilizar la llamada a la función <span class="literal1" translate="no">
+   canvas.move(1, -5,
+  </span><span class="literal1" translate="no">
+   0)
+  </span> . </p>
+<div class="image">
+<img alt="Image" class="calibre116" src="../images/f0160-01.jpg" translate="no"/>
+</div>
+<p class="indent">
+<span id="page_161">
+</span>
+  La función <span class="literal1" translate="no">
+   tk.update()
+  </span>obliga a <span class="literal1" translate="no">
+   tkinter
+  </span>a actualizar la pantalla (redibujarla). Si no utilizáramos <span class="literal1" translate="no">
+   update
+  </span>, <span class="literal1" translate="no">
+   tkinter
+  </span>esperaría a que terminara el bucle antes de mover el triángulo, lo que significa que lo verías saltar a la última posición, en lugar de moverse suavemente por el lienzo. La última línea del bucle, <span class="literal1" translate="no">
+   time.sleep(0.05)
+  </span>, indica a Python que espere una vigésima de segundo (0,05 segundos) antes de continuar. </p>
+<p class="indent">
+  Para hacer que el triángulo se mueva en diagonal por la pantalla, podemos modificar este código llamando a <span class="literal1" translate="no">
+   move(1, 5, 5)
+  </span>. Cierra el lienzo y crea un nuevo archivo ( <strong class="calibre5">Archivo ▸ Nuevo Archivo </strong>) para el siguiente código: </p>
+<pre class="pre" translate="no"><span class="orange">import</span> time
+<span class="orange">from</span> tkinter <span class="orange">import</span> *
+tk = Tk()
+canvas = Canvas(tk, width=400, height=400)
+canvas.pack()
+canvas.create_polygon(10, 10, 10, 60, 50, 35)
+<span class="orange">for</span> x <span class="orange">in</span> <span class="violet">range</span>(0, 60):
+    canvas.move(1, 5, 5)
+    tk.update()
+    time.sleep(0.05)
+</pre>
+<p class="indent">
+  Este código difiere del original en dos aspectos: </p>
+<ul class="calibre22">
+<li class="noindent2">
+   Hicimos la altura del lienzo 400, en lugar de 200, con <span class="literal1" translate="no">
+    canvas = Canvas(tk, width=400, height=400)
+   </span>. </li>
+<li class="noindent2">
+   Añadimos 5 a las <em class="calibre7">coordenadas </em> <em class="calibre7">x </em>e <em class="calibre7">y </em>del triángulo con <span class="literal1" translate="no">
+    canvas.move(1, 5, 5)
+   </span>. </li>
+</ul>
+<p class="indent">
+<a class="calibre6" href="ch10.xhtml#ch10fig19">La Figura 10-19 </a>muestra la posición del triángulo al final del bucle, después de guardar el código y ejecutarlo. </p>
+<div class="image" id="ch10fig19">
+<span id="page_162">
+</span>
+<img alt="Image" class="calibre109" src="../images/10fig19.jpg" translate="no"/>
+</div>
+<p class="figcap">
+
+   Figura 10-19<em class="calibre7">: El triángulo se ha desplazado a la parte inferior de la pantalla. </em></p>
+<p class="indent">
+  Para mover el triángulo diagonalmente hacia arriba en la pantalla hasta su posición inicial, utiliza (-5, -5). Añade este código al final del archivo: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> x <span class="orange">in</span> <span class="violet">range</span>(0, 60):
+        canvas.move(1, -5, -5)
+        tk.update()
+        time.sleep(0.05)
+</pre>
+<p class="indent">
+  Después de ejecutar este código, el triángulo se moverá hacia atrás hasta donde empezó. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch10_12.html">anterior</a><a href="ch10.html">Subtema 13 de 17: (Ver todo)</a><a href="ch10_14.html">siguiente</a><br/></p>
+<br/><a href="ch10_13.docx" target="_blank"></a></footer>
+</body>
+</html>

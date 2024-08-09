@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch10lev1sec4">
+  Dibujar líneas </h3>
+<p class="noindent">
+  Para dibujar una línea en el lienzo, utilizamos coordenadas de píxel. <em class="calibre7">Las coordenadas </em>determinan las posiciones de los píxeles en una superficie. En un lienzo <span class="literal1" translate="no">
+   tkinter
+  </span>, las coordenadas describen a qué distancia del lienzo (de izquierda a derecha) y a qué distancia del lienzo (de arriba abajo) hay que colocar el píxel. </p>
+<p class="indent">
+  Por ejemplo, como nuestro lienzo tiene 500 píxeles de ancho por 500 de alto, las coordenadas de la esquina inferior derecha de la pantalla son (500, 500). Para dibujar la línea que se muestra en <a class="calibre6" href="ch10.xhtml#ch10fig03">la Figura 10-3 </a>, utilizaríamos las coordenadas inicial (0, 0) y final (500, 500). </p>
+<div class="image" id="ch10fig03">
+<span id="page_141">
+</span>
+<img alt="Image" class="calibre102" src="../images/10fig03.jpg" translate="no"/>
+</div>
+<p class="figcap">
+
+   Figura<em class="calibre7">10-3: Dibujar una línea diagonal con <span class="literal">tkinter </span></em></p>
+<p class="indent">
+  Especificamos las coordenadas utilizando la función <span class="literal1" translate="no">
+   create_line
+  </span>, como se muestra aquí: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">from</span> tkinter <span class="orange">import</span> *
+<span class="brown">&gt;&gt;&gt;</span> tk = Tk()
+<span class="brown">&gt;&gt;&gt;</span> canvas = Canvas(tk, width=500, height=500)
+<span class="brown">&gt;&gt;&gt;</span> canvas.pack()
+<span class="brown">&gt;&gt;&gt;</span> canvas.create_line(0, 0, 500, 500)
+<span class="blue1">1</span>
+</pre>
+<p class="indent">
+  La función <span class="literal1" translate="no">
+   create_line
+  </span>devuelve 1, que es un identificador; aprenderemos más sobre ello más adelante. Si hubiéramos hecho lo mismo con el módulo <span class="literal1" translate="no">
+   turtle
+  </span>, habríamos necesitado el siguiente código: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">import</span> turtle
+<span class="brown">&gt;&gt;&gt;</span> turtle.setup(width=500, height=500)
+<span class="brown">&gt;&gt;&gt;</span> t = turtle.Turtle()
+<span id="page_142"></span><span class="brown">&gt;&gt;&gt;</span> t.up()
+<span class="brown">&gt;&gt;&gt;</span> t.goto(-250, 250)
+<span class="brown">&gt;&gt;&gt;</span> t.down()
+<span class="brown">&gt;&gt;&gt;</span> t.goto(500, -500)
+</pre>
+<p class="indent">
+  En este código, el lienzo tiene 500 píxeles de ancho y 500 de alto, por lo que la tortuga aparece en la posición <span class="literal1" translate="no">
+   250, 250
+  </span>(en el centro del lienzo). Si utilizamos la función <span class="literal1" translate="no">
+   t.goto(-250, 250)
+  </span>, nos estamos moviendo hacia la izquierda 250 y hacia arriba 250 píxeles hacia la parte superior izquierda de la pantalla. Si llamamos a <span class="literal1" translate="no">
+   t.goto(500, -500)
+  </span>, nos estamos moviendo hacia la derecha 500 píxeles y hacia abajo 500 píxeles hasta la esquina inferior derecha. </p>
+<p class="indent">
+  Así que podemos ver que el código de <span class="literal1" translate="no">
+   tkinter
+  </span>ya es una mejora. Es ligeramente más corto y más sencillo. Veamos ahora algunas de las funciones disponibles en el objeto <span class="literal1" translate="no">
+   canvas
+  </span>que podemos utilizar para crear dibujos más interesantes. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch10_4.html">anterior</a><a href="ch10.html">Subtema 5 de 17: (Ver todo)</a><a href="ch10_6.html">siguiente</a><br/></p>
+<br/><a href="ch10_5.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch09lev1sec9">
+  Dibujar estrellas rellenas </h3>
+<p class="noindent">
+  Para nuestro ejemplo final, añadiremos color a la estrella que hemos dibujado antes. El código original tenía este aspecto </p>
+<pre class="pre" translate="no"><span class="orange">for</span> x <span class="orange">in</span> <span class="violet">range</span>(1, 19):
+    t.forward(100)
+    <span class="orange">if</span> x % 2 == 0:
+        t.left(175)
+    <span class="orange">else</span>:
+        t.left(225)
+</pre>
+<p class="indent">
+<span id="page_131">
+</span>
+  Ahora haremos una función <span class="literal1" translate="no">
+   mystar
+  </span>. Utilizaremos las sentencias <span class="literal1" translate="no">
+   if
+  </span>de la función <span class="literal1" translate="no">
+   mysquare
+  </span>y añadiremos el parámetro <span class="literal1" translate="no">
+   size
+  </span>: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">def</span> mystar(size, filled):
+        <span class="orange">if</span> filled == <span class="violet">True</span>:
+            t.begin_fill()
+        <span class="orange">for</span> x <span class="orange">in</span> <span class="violet">range</span>(1, 19):
+            t.forward(size)
+            <span class="orange">if</span> x % 2 == 0:
+                t.left(175)
+            <span class="orange">else</span>:
+                t.left(225)
+        <span class="orange">if</span> filled == <span class="violet">True</span>:
+            t.end_fill()
+</pre>
+<p class="indent">
+  En las dos primeras líneas de esta función, comprobamos si <span class="literal1" translate="no">
+   filled
+  </span>es <span class="literal1" translate="no">
+   True
+  </span>; si lo es, comenzamos el llenado. Volvemos a comprobarlo en las dos últimas líneas, y si relleno es <span class="literal1" translate="no">
+   True
+  </span>, dejamos de rellenar. Además, como en la función <span class="literal1" translate="no">
+   mysquare
+  </span>, pasamos el tamaño de la estrella en el parámetro <span class="literal1" translate="no">
+   size
+  </span>, y utilizamos ese valor cuando llamamos a <span class="literal1" translate="no">
+   t.forward
+  </span>. </p>
+<p class="indent">
+  Ahora pongamos el color en dorado (90 por ciento rojo, 75 por ciento verde y 0 por ciento azul), y volvamos a llamar a la función: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> t.color(0.9, 0.75, 0)
+<span class="brown">&gt;&gt;&gt;</span> mystar(120, <span class="violet">True</span>)
+</pre>
+<p class="indent">
+  La tortuga dibujará la estrella rellena de la <a class="calibre6" href="ch09.xhtml#ch09fig13">Figura 9-13 . </a></p>
+<div class="image" id="ch09fig13">
+<img alt="Image" class="calibre94" src="../images/09fig13.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figura 9-13: Dibujo de una estrella dorada </em></p>
+<p class="indent">
+<span id="page_132">
+</span>
+  Para añadir un contorno a la estrella, cambia el color a negro y vuelve a dibujar la estrella sin relleno: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> t.color(0,0,0)
+<span class="brown">&gt;&gt;&gt;</span> mystar(120, <span class="violet">False</span>)
+</pre>
+<p class="indent">
+  Ahora la estrella es dorada con un contorno negro, como en <a class="calibre6" href="ch09.xhtml#ch09fig14">la Figura 9-14 . </a></p>
+<div class="image" id="ch09fig14">
+<img alt="Image" class="calibre95" src="../images/09fig14.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figura 9-14: Dibujo de una </em>estrella dorada con contorno</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch09_9.html">anterior</a><a href="ch09.html">Subtema 10 de 12: (Ver todo)</a><a href="ch09_11.html">siguiente</a><br/></p>
+<br/><a href="ch09_10.docx" target="_blank"></a></footer>
+</body>
+</html>

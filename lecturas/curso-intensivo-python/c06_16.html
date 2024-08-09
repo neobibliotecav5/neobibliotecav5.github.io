@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c06-0008">Recorrer todos los pares clave-valor</h3>
+<p class="BodyFirst">Antes de explorar los distintos enfoques del bucle, consideremos un nuevo diccionario diseñado para almacenar información sobre un usuario en un sitio web. El siguiente diccionario almacenaría el nombre de usuario, el nombre y los apellidos de una persona:</p>
+<p class="CodeLabel" translate="no"><b>user.py</b></p>
+<pre translate="no"><code translate="no">user_0 = {
+    'username': 'efermi',
+    'first': 'enrico',
+    'last': 'fermi',
+    }</code></pre>
+<p>Puedes acceder a cualquier dato de <code translate="no">user_0</code> basándote en lo que ya has aprendido en este capítulo. Pero, ¿y si quisieras ver todo lo almacenado en el diccionario de este usuario? Para ello, podrías recorrer el diccionario utilizando un bucle <code translate="no">for</code>:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">user_0 = {</span>
+<span class="LiteralGray">    'username': 'efermi',</span>
+<span class="LiteralGray">    'first': 'enrico',</span>
+<span class="LiteralGray">    'last': 'fermi',</span>
+<span class="LiteralGray">    }</span>
+
+<span epub:type="pagebreak" id="Page_100" title="100"></span>for key, value in user_0.items():
+    print(f"\nKey: {key}")
+    print(f"Value: {value}")</code></pre>
+<p>Para escribir un bucle <code translate="no">for</code> para un diccionario, crea nombres para las dos variables que contendrán la clave y el valor de cada par clave-valor. Puedes elegir los nombres que quieras para estas dos variables. Este código funcionaría igual de bien si hubieras utilizado abreviaturas para los nombres de las variables, como ésta:</p>
+<pre translate="no"><code translate="no">for k, v in user_0.items()</code></pre>
+<p>La segunda mitad de la sentencia <code translate="no">for</code> incluye el nombre del diccionario seguido del método <code translate="no">items()</code>, que devuelve una secuencia de pares clave-valor. A continuación, el bucle <code translate="no">for</code> asigna cada uno de estos pares a las dos variables proporcionadas. En el ejemplo anterior, utilizamos las variables para imprimir cada <code translate="no">key</code>, seguido del <code translate="no">value</code> asociado. El <code translate="no">"\n"</code> de la primera llamada a <code translate="no">print()</code> garantiza que se inserte una línea en blanco antes de cada par clave-valor en la salida:</p>
+<pre translate="no"><code translate="no">Key: username
+Value: efermi
+
+Key: first
+Value: enrico
+
+Key: last
+Value: fermi</code></pre>
+<p>El bucle a través de todos los pares clave-valor funciona especialmente bien para diccionarios como el ejemplo <em translate="no">favorite_languages.py</em> de <span class="xref" itemid="xref_target_page 96">la página 96</span>, que almacena el mismo tipo de información para muchas claves diferentes. Si recorres el diccionario <code translate="no">favorite_languages</code>, obtendrás el nombre de cada persona del diccionario y su lenguaje de programación favorito. Como las claves siempre se refieren al nombre de una persona y el valor siempre es un lenguaje, utilizaremos las variables <code translate="no">name</code> y <code translate="no">language</code> en el bucle en lugar de <code translate="no">key</code> y <code translate="no">value</code>. Así será más fácil seguir lo que ocurre dentro del bucle:</p>
+<p class="CodeLabel" translate="no"><b>favorite_languages.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">favorite_languages = {</span>
+<span class="LiteralGray">    'jen': 'python',</span>
+<span class="LiteralGray">    'sarah': 'c',</span>
+<span class="LiteralGray">    'edward': 'rust',</span>
+<span class="LiteralGray">    'phil': 'python',</span>
+<span class="LiteralGray">    }</span>
+
+for name, language in favorite_languages.items():
+    print(f"{name.title()}'s favorite language is {language.title()}.")</code></pre>
+<p>Este código le dice a Python que recorra cada par clave-valor del diccionario. A medida que recorre cada par, la clave se asigna a la variable <code translate="no">name</code>, y el valor se asigna a la variable <code translate="no">language</code>. Estos nombres descriptivos hacen que sea mucho más fácil ver lo que hace la llamada a <code translate="no">print()</code>.</p>
+<p><span epub:type="pagebreak" id="Page_101" title="101"></span>Ahora, en unas pocas líneas de código, podemos mostrar toda la información del sondeo:</p>
+<pre translate="no"><code translate="no">Jen's favorite language is Python.
+Sarah's favorite language is C.
+Edward's favorite language is Rust.
+Phil's favorite language is Python.</code></pre>
+<p>Este tipo de bucle funcionaría igual de bien si nuestro diccionario almacenara los resultados de encuestar a mil o incluso a un millón de personas.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c06_15.html">anterior</a><a href="c06.html">Subtema 16 de 28: (Ver todo)</a><a href="c06_17.html">siguiente</a><br/></p>
+<br/><a href="c06_16.docx" target="_blank"></a></footer>
+</body>
+</html>

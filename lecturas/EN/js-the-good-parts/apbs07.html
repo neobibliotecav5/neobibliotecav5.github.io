@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>++ −−</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="++ −−"><div class="titlepage"><div><div><h1 class="title"><a id="plusplus"/>++ −−</h1></div></div></div><p>The increment and decrement operators make it possible to write in an extremely
+                terse style. In languages such as C, they made it possible to write one-liners that
+                could do string copies:<a id="IDX-APP-B-0560" class="indexterm"/><a id="IDX-APP-B-0561" class="indexterm"/><a id="IDX-APP-B-0562" class="indexterm"/><a id="IDX-APP-B-0563" class="indexterm"/><a id="IDX-APP-B-0564" class="indexterm"/><a id="IDX-APP-B-0565" class="indexterm"/><a id="IDX-APP-B-0566" class="indexterm"/><a id="IDX-APP-B-0567" class="indexterm"/><a id="IDX-APP-B-0568" class="indexterm"/><a id="IDX-APP-B-0569" class="indexterm"/></p><a id="I_programlisting_d1e9118"/><pre class="programlisting">for (p = src, q = dest; !*p; p++, q++) *q = *p;</pre><p>They also encourage a programming style that, as it turns out, is reckless. Most
+                of the buffer overrun bugs that created terrible security vulnerabilities were due
+                to code like this.</p><p>In my own practice, I observed that when I used <code class="literal">++</code> and <code class="literal">--</code>, my code tended to be
+                too tight, too tricky, too cryptic. So, as a matter of discipline, I don't use them
+                any more. I think that as a result, my coding style has become cleaner.</p></div></body></html>

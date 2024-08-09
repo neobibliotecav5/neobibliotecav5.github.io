@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch14lev1sec3">
+  Finalizando la función __init__ </h3>
+<p class="noindent">
+  Ahora introduce el resto de la función <span class="literal1" translate="no">
+   __init__
+  </span>en el archivo <em class="calibre7">stickman game. </em>py que acabas de crear. Este código cargará la imagen de fondo y luego la mostrará en el lienzo: </p>
+<pre class="pre" translate="no">        <span class="gray">self.tk.update()
+        self.canvas_height = self.canvas.winfo_height()
+        self.canvas_width = self.canvas.winfo_width()</span>
+        self.bg = PhotoImage(<span class="orange">file</span>=<span class="green">'background.gif'</span>)
+        w = self.bg.width()
+        h = self.bg.height()
+     <span class="ent">➊</span> <span class="orange">for</span> x <span class="orange">in</span> <span class="violet">range</span>(0, 5):
+         <span class="ent">➋</span> <span class="orange">for</span> y <span class="orange">in</span> <span class="violet">range</span>(0, 5):
+                self.canvas.create_image(x * w, y * h, 
+                        image=self.bg, anchor=<span class="green">'nw'</span>)
+        self.sprites = []
+        self.running = <span class="violet">True</span>
+</pre>
+<p class="indent">
+  En la línea que comienza <span class="literal1" translate="no">
+   self.bg
+  </span>, creamos la variable <span class="literal1" translate="no">
+   bg
+  </span>, que contiene un objeto <span class="literal1" translate="no">
+   PhotoImage
+  </span>-el archivo de imagen de fondo llamado <em class="calibre7">background.gif </em>que creamos en el <a class="calibre6" href="ch13.xhtml#ch13">Capítulo 13 </a>en la <a class="calibre6" href="ch13.xhtml#ch13lev1sec8">página 210 . </a>A continuación, almacenamos la anchura y la altura de la imagen en las variables <span class="literal1" translate="no">
+   w
+  </span>y <span class="literal1" translate="no">
+   h
+  </span>. Las funciones de clase <span class="literal1" translate="no">
+   PhotoImage
+  </span> <span class="literal1" translate="no">
+   width
+  </span> y <span class="literal1" translate="no">
+   height
+  </span>devuelven el tamaño de la imagen una vez cargada. </p>
+<p class="indent">
+  A continuación vienen dos bucles dentro de esta función. Para entender lo que hacen, imagina que tienes un pequeño sello de caucho cuadrado, una almohadilla de tinta y un gran trozo de papel. ¿Cómo puedes utilizar el sello para llenar el papel de cuadrados de colores? Bueno, podrías cubrir la página con sellos al azar hasta llenarla. El resultado sería un desastre, y tardaría un rato en completarse, <span id="page_216">
+</span>pero llenaría la página. O podrías empezar a estampar hacia abajo en una columna y luego volver a la parte superior y empezar a estampar hacia abajo en la página de la siguiente columna, como se muestra en la <a class="calibre6" href="ch14.xhtml#ch14fig01">Figura 14-1 . </a></p>
+<div class="image1">
+<img alt="Image" class="calibre147" id="ch14fig01" src="../images/14fig01.jpg" translate="no"/>
+</div>
+<p class="figcap">
+
+   Figura<em class="calibre7">14-1 </em>: Estampar hacia abajo en la página</p>
+<p class="indent">
+  La imagen de fondo que creamos en el capítulo anterior es nuestro sello. Sabemos que el lienzo mide 500 píxeles de ancho y 500 píxeles de ancho, y que hemos creado una imagen de fondo de 100 píxeles cuadrados. Esto nos dice que necesitamos cinco columnas a lo ancho y cinco filas hacia abajo para llenar la pantalla de imágenes. Utilizamos un bucle <span class="literal1" translate="no">
+   for
+  </span><span class="ent">➊ </span>para calcular las columnas a lo ancho, y otro bucle <span class="literal1" translate="no">
+   for
+  </span><span class="ent">➋ </span>para calcular las filas hacia abajo. </p>
+<p class="indent">
+  A continuación, multiplicamos la primera variable del bucle <span class="literal1" translate="no">
+   x
+  </span>por la anchura de la imagen ( <span class="literal1" translate="no">
+   x *
+  </span><span class="literal1" translate="no">
+   w
+  </span> ) para determinar hasta dónde vamos a dibujar a lo ancho, y luego multiplicamos la segunda variable del bucle <span class="literal1" translate="no">
+   y
+  </span>por la altura de la imagen ( <span class="literal1" translate="no">
+   y * h
+  </span>) para calcular hasta dónde vamos a dibujar hacia abajo. Utilizamos la función <span class="literal1" translate="no">
+   create_image
+  </span>del objeto canvas ( <span class="literal1" translate="no">
+   self.canvas.create
+  </span><span class="literal1" translate="no">
+   _image
+  </span> ) para dibujar la imagen en la pantalla utilizando esas coordenadas. </p>
+<p class="indent">
+  Por último, creamos las variables <span class="literal1" translate="no">
+   sprites
+  </span>, que contiene una lista vacía, y <span class="literal1" translate="no">
+   running
+  </span>, que contiene el valor booleano <span class="literal1" translate="no">
+   True
+  </span>. Utilizaremos estas variables más adelante en el código de nuestro juego. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch14_3.html">anterior</a><a href="ch14.html">Subtema 4 de 16: (Ver todo)</a><a href="ch14_5.html">siguiente</a><br/></p>
+<br/><a href="ch14_4.docx" target="_blank"></a></footer>
+</body>
+</html>

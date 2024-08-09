@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/><title>Elements</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h2 class="title"><a id="regexp_escape"></a>Escape Regexp</h2><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject7_d1e5702"></a><img alt="image with no caption" src="httpatomoreillycomsourceoreillyimages238782.png" translate="no"/></div></div><p>El carácter barra invertida indica escape tanto en los factores regexp como en las cadenas, pero en los factores regexp funciona de forma un poco diferente.<a class="indexterm" id="IDX-CHP-7-0378"></a></p><p>Como en las cadenas, <code class="literal" translate="no">\f</code> es el carácter de salto de línea, <code class="literal" translate="no">\n</code> es el carácter de nueva línea, <code class="literal" translate="no">\r</code> es el carácter de retorno de carro, <code class="literal" translate="no">\t</code> es el carácter de tabulación y <code class="literal" translate="no">\u</code> permite especificar un carácter Unicode como una constante hexadecimal de 16 bits. En los factores regexp, <code class="literal" translate="no">\b</code><span class="emphasis"><em translate="no">is not</em></span> es el carácter de retroceso.<a class="indexterm" id="IDX-CHP-7-0379"></a><a class="indexterm" id="IDX-CHP-7-0380"></a><a class="indexterm" id="IDX-CHP-7-0381"></a><a class="indexterm" id="IDX-CHP-7-0382"></a></p><p><code class="literal" translate="no">\d</code> es igual que <code class="literal" translate="no">[0-9]</code>. Coincide con un dígito. <code class="literal" translate="no">\D</code>
+                    es lo contrario: <code class="literal" translate="no">[^0-9]</code>.</p><p><code class="literal" translate="no">\s</code> es lo mismo que <code class="literal" translate="no">[\f\n\r\t\u000B\u0020\u00A0\u2028\u2029]</code>. Es un conjunto parcial de caracteres Unicode de espacio en blanco. <code class="literal" translate="no">\S</code> es lo contrario: <code class="literal" translate="no">[^\f\n\r\t\u000B\u0020\u00A0\u2028\u2029]</code>.</p><p><code class="literal" translate="no">\w</code> es lo mismo que <code class="literal" translate="no">[0-9A-Z_a-z]</code>. <code class="literal" translate="no">\W</code> es lo contrario: <code class="literal" translate="no">[^0-9A-Z_a-z]</code>. Se supone que representa los caracteres que aparecen en las palabras. Por desgracia, la clase que define es inútil para trabajar con prácticamente cualquier lenguaje real. Si necesitas emparejar una clase de letras, debes especificar tu propia clase.</p><p>Una clase de letra sencilla es <code class="literal" translate="no">[A-Za-z\u00C0-\u1FFF\u2800-\uFFFD]</code>. Incluye todas las letras de Unicode, pero también miles de caracteres que no son letras. Unicode es grande y complejo. Una clase de letras exacta del Plano Básico Multilingüe es posible, pero sería enorme e ineficaz. Las expresiones regulares de JavaScript proporcionan un soporte extremadamente pobre para la internacionalización.<a class="indexterm" id="IDX-CHP-7-0383"></a></p><p><code class="literal" translate="no">\b</code> pretendía ser un anclaje de límites de palabras que facilitara la búsqueda de coincidencias de texto en los límites de las palabras. Por desgracia, utiliza <code class="literal" translate="no">\w</code> para encontrar los límites de las palabras, por lo que es completamente inútil para las aplicaciones multilingües. Esta parte no es buena.</p><p><code class="literal" translate="no">\1</code> es una referencia al texto que fue capturado por el grupo 1, de modo que se pueda cotejar de nuevo. Por ejemplo, podrías buscar palabras duplicadas en el texto con:</p><a id="I_programlisting7_d1e5816"></a><pre class="programlisting" translate="no">var doubled_words = /([A-Za-z\u00C0-\u1FFF\u2800-\uFFFD]+)\s+\1/gi;</pre><p><code class="literal" translate="no">doubled_words</code> busca apariciones de palabras (cadenas que contienen 1 o más letras) seguidas de espacios en blanco seguidos de la misma palabra.</p><p><code class="literal" translate="no">\2</code> es una referencia al grupo 2, <code class="literal" translate="no">\3</code> es una referencia al grupo 3, y así sucesivamente.</p><div class="sect2" title="Regexp Group"><div class="titlepage"><div><div></div></div></div></div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch07s03_4.html">anterior</a><a href="ch07s03.html">Subtema 5 de 9: (Ver todo)</a><a href="ch07s03_6.html">siguiente</a><br/></p>
+<br/><a href="ch07s03_5.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Chapter 6. Arrays</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="chapter" title="Chapter 6. Arrays"><div class="titlepage"><div><div><h1 class="title"><a id="arrays"/>Chapter 6. Arrays</h1></div></div></div><div class="epigraph"><p>Thee I'll chase hence, thou wolf in sheep's array.<a id="IDX-CHP-6-0293" class="indexterm"/></p><div class="attribution"><span>—<span class="attribution">William Shakespeare, <span class="emphasis"><em>The First Part of Henry the
+                Sixth</em></span></span></span></div></div><p>An <span class="emphasis"><em>array</em></span> is a linear allocation of memory in which elements are
+            accessed by integers that are used to compute offsets. Arrays can be very fast data
+            structures. Unfortunately, JavaScript does not have anything like this kind of
+            array.</p><p>Instead, JavaScript provides an object that has some array-like characteristics. It
+            converts array subscripts into strings that are used to make properties. It is
+            significantly slower than a real array, but it can be more convenient to use. Retrieval
+            and updating of properties work the same as with objects, except that there is a special
+            trick with integer property names. Arrays have their own literal format. Arrays also
+            have a much more useful set of built-in methods, described in <a class="xref" href="ch08.html" title="Chapter 8. Methods">Chapter 8</a>.</p><div class="sect1" title="Array Literals"><div class="titlepage"><div><div><h1 class="title"><a id="array_literals"/>Array Literals</h1></div></div></div><p>Array literals provide a very convenient notation for creating new array values.
+                An array literal is a pair of square brackets surrounding zero or more values
+                separated by commas. An array literal can appear anywhere an expression can appear.
+                The first value will get the property name <code class="literal">'0'</code>,
+                the second value will get the property name <code class="literal">'1'</code>,
+                and so on:<a id="IDX-CHP-6-0294" class="indexterm"/></p><a id="I_programlisting6_d1e4337"/><pre class="programlisting">var empty = [];
+var numbers = [
+    'zero', 'one', 'two', 'three', 'four',
+    'five', 'six', 'seven', 'eight', 'nine'
+];
+
+empty[1]          // undefined
+numbers[1]        // 'one'
+
+empty.length      // 0
+numbers.length    // 10</pre><p>The object literal:</p><a id="I_programlisting6_d1e4341"/><pre class="programlisting">var numbers_object = {
+    '0': 'zero',  '1': 'one',   '2': 'two',
+    '3': 'three', '4': 'four',  '5': 'five',
+    '6': 'six',   '7': 'seven', '8': 'eight',
+    '9': 'nine'
+};</pre><p>produces a similar result. Both <code class="literal">numbers</code> and
+                    <code class="literal">numbers_object</code> are objects containing 10
+                properties, and those properties have exactly the same names and values. But there
+                are also significant differences. <code class="literal">numbers</code>
+                inherits from <code class="literal">Array.prototype</code>, whereas <code class="literal">numbers_object</code> inherits from <code class="literal">Object.prototype</code>, so <code class="literal">numbers</code>
+                inherits a larger set of useful methods. Also, <code class="literal">numbers</code> gets the mysterious <code class="literal">length</code>
+                property, while <code class="literal">numbers_object</code> does not.</p><p>In most languages, the elements of an array are all required to be of the same
+                type. JavaScript allows an array to contain any mixture of values:<a id="IDX-CHP-6-0295" class="indexterm"/></p><a id="I_programlisting6_d1e4383"/><pre class="programlisting">var misc = [
+    'string', 98.6, true, false, null, undefined,
+    ['nested', 'array'], {object: true}, NaN,
+    Infinity
+];
+misc.length    // 10</pre></div></div></body></html>

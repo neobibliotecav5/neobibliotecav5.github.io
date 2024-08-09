@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c05-0011">La cadena if-elif-else</h3>
+<p class="BodyFirst">A menudo, necesitarás probar más de dos situaciones posibles, y para evaluarlas puedes utilizar la sintaxis <code translate="no">if</code>-<code translate="no">elif</code>-<code translate="no">else</code> de Python. Python sólo ejecuta un bloque en una cadena <code translate="no">if</code>-<code translate="no">elif</code>-<code translate="no">else</code>. Ejecuta cada prueba condicional en orden, hasta que una pasa. Cuando una prueba pasa, se ejecuta el código que sigue a esa prueba y Python se salta el resto de las pruebas.</p>
+<p>Muchas situaciones del mundo real implican más de dos condiciones posibles. Por ejemplo, piensa en un parque de atracciones que cobra tarifas diferentes según la edad:</p>
+<ul>
+<li>Los menores de 4 años entran gratis.</li>
+<li>La entrada para las personas de entre 4 y 18 años cuesta 25 $.</li>
+<li>La entrada para mayores de 18 años cuesta 40 $.</li>
+</ul>
+<p>¿Cómo podemos utilizar una sentencia <code translate="no">if</code> para determinar la tarifa de admisión de una persona? El siguiente código comprueba el grupo de edad de una persona y luego imprime un mensaje de precio de admisión:</p>
+<p class="CodeLabel" translate="no"><b>amusement_park.py</b></p>
+<pre translate="no"><code translate="no">age = 12
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> if age &lt; 4:
+    print("Your admission cost is $0.")
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> elif age &lt; 18:
+    print("Your admission cost is $25.")
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> else:
+    print("Your admission cost is $40.")</code></pre>
+<p>La prueba <code translate="no">if</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span> comprueba si una persona tiene menos de 4 años. Cuando se supera la prueba, se imprime un mensaje apropiado y Python se salta el resto de las pruebas. La línea <code translate="no">elif</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span> es en realidad otra prueba <code translate="no">if</code>, que se ejecuta sólo si falla la prueba anterior. En este punto de la cadena, sabemos que la persona tiene al menos 4 años porque la primera prueba falló. Si la persona es menor de 18 años, se imprime un mensaje apropiado y Python se salta el bloque <code translate="no">else</code>. Si fallan las pruebas <code translate="no">if</code> y <code translate="no">elif</code>, Python ejecuta el código del bloque <code translate="no">else</code> <span aria-label="annotation3" class="CodeAnnotation">❸.</span></p>
+<p>En este ejemplo, la prueba <code translate="no">if</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span> evalúa a <code translate="no">False</code>, por lo que su bloque de código no se ejecuta. Sin embargo, la prueba <code translate="no">elif</code> se evalúa como <code translate="no">True</code> (12 es menor que 18), por lo que su código se ejecuta. La salida es una frase, que informa al usuario del coste de la entrada:</p>
+<pre translate="no"><code translate="no">Your admission cost is $25.</code></pre>
+<p>Cualquier edad superior a 17 años provocaría el fallo de las dos primeras pruebas. En estas situaciones, se ejecutaría el bloque <code translate="no">else</code> y el precio de la entrada sería de 40$.</p>
+<p>En lugar de imprimir el precio de la entrada dentro del bloque <code translate="no">if</code>-<code translate="no">elif</code>-<code translate="no">else</code>, sería más conciso establecer sólo el precio dentro de la cadena <code translate="no">if</code>-<code translate="no">elif</code>-<code translate="no">else</code> <span epub:type="pagebreak" id="Page_81" title="81"></span> y luego tener una única llamada a <code translate="no">print()</code> que se ejecute después de que se haya evaluado la cadena:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">age = 12</span>
+
+<span class="LiteralGray">if age &lt; 4:</span>
+    price = 0
+<span class="LiteralGray">elif age &lt; 18:</span>
+    price = 25
+<span class="LiteralGray">else:</span>
+    price = 40
+
+print(f"Your admission cost is ${price}.")</code></pre>
+<p>Las líneas sangradas fijan el valor de <code translate="no">price</code> en función de la edad de la persona, como en el ejemplo anterior. Después de que la cadena <code translate="no">if</code>-<code translate="no">elif</code>-<code translate="no">else</code> establezca el precio, una llamada independiente sin sangría a <code translate="no">print()</code> utiliza este valor para mostrar un mensaje informando del precio de admisión de la persona.</p>
+<p>Este código produce la misma salida que el ejemplo anterior, pero el propósito de la cadena <code translate="no">if</code>-<code translate="no">elif</code>-<code translate="no">else</code> es más limitado. En lugar de determinar un precio y mostrar un mensaje, simplemente determina el precio de la entrada. Además de ser más eficaz, este código revisado es más fácil de modificar que el planteamiento original. Para cambiar el texto del mensaje de salida, sólo tendrías que cambiar una llamada a <code translate="no">print()</code> en lugar de tres llamadas separadas a <code translate="no">print()</code>.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c05_15.html">anterior</a><a href="c05.html">Subtema 16 de 28: (Ver todo)</a><a href="c05_17.html">siguiente</a><br/></p>
+<br/><a href="c05_16.docx" target="_blank"></a></footer>
+</body>
+</html>

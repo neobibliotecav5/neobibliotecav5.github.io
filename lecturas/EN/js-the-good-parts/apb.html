@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Appendix B. Bad Parts</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="appendix" title="Appendix B. Bad Parts"><div class="titlepage"><div><div><h1 class="title"><a id="bad_parts"/>Appendix B. Bad Parts</h1></div></div></div><div class="epigraph"><p>And, I pray thee now, tell me for which of my bad parts didst thou first fall in
+                love with me?</p><div class="attribution"><span>—<span class="attribution">William Shakespeare, <span class="emphasis"><em>Much Ado About
+                Nothing</em></span></span></span></div></div><p>In this appendix, I present some of the problematic features of JavaScript that are
+            easily avoided. By simply avoiding these features, you make JavaScript a better
+            language, and yourself a better programmer.</p><div class="sect1" title="=="><div class="titlepage"><div><div><h1 class="title"><a id="equalsequals"/>==</h1></div></div></div><p>JavaScript has two sets of equality operators: <code class="literal">===</code> and <code class="literal">!==</code>, and their evil twins
+                    <code class="literal">==</code> and <code class="literal">!=</code>.
+                The good ones work the way you would expect. If the two operands are of the same
+                type and have the same value, then <code class="literal">===</code> produces
+                    <code class="literal">true</code> and <code class="literal">!==</code> produces <code class="literal">false</code>. The evil twins
+                do the right thing when the operands are of the same type, but if they are of
+                different types, they attempt to coerce the values. The rules by which they do that
+                are complicated and unmemorable. These are some of the interesting cases:<a id="IDX-APP-B-0537" class="indexterm"/><a id="IDX-APP-B-0538" class="indexterm"/><a id="IDX-APP-B-0539" class="indexterm"/><a id="IDX-APP-B-0540" class="indexterm"/><a id="IDX-APP-B-0541" class="indexterm"/><a id="IDX-APP-B-0542" class="indexterm"/></p><a id="I_programlisting_d1e8853"/><pre class="programlisting">'' == '0'          // false
+0 == ''            // true
+0 == '0'           // true
+
+false == 'false'   // false
+false == '0'       // true
+
+false == undefined // false
+false == null      // false
+null == undefined  // true
+
+' \t\r\n ' == 0    // true</pre><p>The lack of transitivity is alarming. My advice is to never use the evil twins.
+                Instead, always use <code class="literal">===</code> and <code class="literal">!==</code>. All of the comparisons just shown produce
+                    <code class="literal">false</code> with the <code class="literal">===</code> operator.</p></div></div></body></html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch03lev1sec2">
+  Crear cadenas </h3>
+<p class="indent">
+  En Python, creamos una cadena entrecomillando el texto porque los lenguajes de programación necesitan distinguir entre distintos tipos de valores. (Tenemos que decirle al ordenador si un valor es un número, una cadena u otra cosa). Por ejemplo, podríamos tomar nuestra variable <span class="literal1" translate="no">
+   fred
+  </span>del <a class="calibre6" href="ch02.xhtml#ch02">Capítulo 2 </a>y utilizarla para etiquetar una cadena: </p>
+<div class="image1">
+<img alt="Image" class="calibre31" src="../images/f0026-01.jpg" translate="no"/>
+</div>
+<pre class="pre" translate="no">fred = "Why do gorillas have big nostrils? Big fingers!!"</pre>
+<p class="indent">
+  Entonces, para ver lo que hay "dentro" de <span class="literal1" translate="no">
+   fred
+  </span>, podríamos introducir <span class="literal1" translate="no">
+   print(fred)
+  </span>: </p>
+<pre class="calibre32" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(fred)
+<span class="blue1">Why do gorillas have big nostrils? Big fingers!!</span></pre>
+<p class="indent">
+  También puedes utilizar comillas simples para crear una cadena, como ésta: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> fred = <span class="green">'What is pink and fluffy? Pink fluff!!'</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(fred)
+<span class="blue1">What is pink and fluffy? Pink fluff!!</span></pre>
+<p class="indent">
+  Sin embargo, si intentas introducir más de una línea de texto para tu cadena utilizando sólo una comilla simple ( <span class="literal1" translate="no">
+   ′
+  </span>) o doble ( <span class="literal1" translate="no">
+   "
+  </span>) o si empiezas con un tipo de comilla y terminas con otro, recibirás un mensaje de error en la Shell de Python. Por ejemplo, introduce la siguiente línea: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> fred = "How do dinosaurs pay their bills?</pre>
+<p class="indent">
+  Verás este resultado: </p>
+<pre class="pre" translate="no"><span class="red">SyntaxError: EOL while scanning string literal</span></pre>
+<p class="indent">
+<span id="page_27">
+</span>
+  Este es un mensaje de error que se queja de la sintaxis porque no has seguido las reglas para terminar una cadena con comillas simples o dobles. </p>
+<p class="indent">
+<em class="calibre7">Sintaxis </em>significa la disposición y el orden de las palabras en una frase o, en este caso, la disposición y el orden de las palabras y los símbolos en un programa. Por lo tanto, <em class="calibre7">SyntaxError </em>significa que has hecho algo en un orden que Python no esperaba, o que Python esperaba algo que tú has pasado por alto. <em class="calibre7">EOL </em>significa <em class="calibre7">final de línea </em>, por lo que el resto del mensaje de error te dice que Python ha llegado al final de la línea y no ha encontrado una comilla doble para cerrar (o terminar) la cadena. </p>
+<p class="indent">
+  Para utilizar más de una línea de texto en tu cadena (lo que se llama una <em class="calibre7">cadena multilínea </em>), utiliza tres comillas simples ( <span class="literal1" translate="no">
+   ’’’
+  </span>), y luego pulsa ENTER entre línea y línea, así: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> fred = <span class="green">'''How do dinosaurs pay their bills?</span>
+    <span class="green">With tyrannosaurus checks!'''</span></pre>
+<p class="indent">
+  Imprimamos el contenido de <span class="literal1" translate="no">
+   fred
+  </span>para ver si ha funcionado: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(fred)
+<span class="blue1">How do dinosaurs pay their bills?</span>
+<span class="blue1">With tyrannosaurus checks!</span></pre>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch03_2.html">anterior</a><a href="ch03.html">Subtema 3 de 14: (Ver todo)</a><a href="ch03_4.html">siguiente</a><br/></p>
+<br/><a href="ch03_3.docx" target="_blank"></a></footer>
+</body>
+</html>

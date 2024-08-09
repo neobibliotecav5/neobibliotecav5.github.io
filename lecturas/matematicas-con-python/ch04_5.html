@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<meta charset="utf-8"/>
+<title>Capítulo 4: Álgebra y matemáticas simbólicas con SymPy</title>
+<link href="style.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="core.css" media="all" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch04lev1sec04"><strong>Trazar con SymPy</strong></h3>
+<p class="noindent">En <a href="ch02.html#ch02">el Capítulo 2</a> aprendimos a hacer gráficas en las que especificábamos explícitamente los números que queríamos representar. Por ejemplo, para trazar el gráfico de la fuerza gravitatoria frente a la distancia entre dos cuerpos, tenías que calcular <a id="page_109"></a>la fuerza gravitatoria para cada valor de distancia y proporcionar las listas de distancias y fuerzas a matplotlib. Con SymPy, en cambio, sólo tienes que decirle la ecuación de la recta que quieres trazar y el gráfico se creará por ti. Vamos a trazar una recta cuya ecuación viene dada por <em>y</em> =<em>2x</em> + 3:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">from sympy.plotting import plot</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">from sympy import Symbol</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">x = Symbol('x')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">plot(2*x+3)</span></p>
+<p class="indent">Todo lo que tuvimos que hacer fue importar <span class="literal" translate="no">plot</span> y <span class="literal" translate="no">Symbol</span> de <span class="literal" translate="no">sympy.plotting</span>, crear un símbolo, <span class="literal" translate="no">x</span>, y llamar a la función <span class="literal" translate="no">plot()</span> con la expresión <span class="literal" translate="no">2*x+3</span>. SymPy se encarga de todo lo demás y traza la gráfica de la función, como se muestra en la <a href="ch04.html#ch4fig1">Figura 4-1</a>.</p>
+<div class="image"><img alt="image" src="images/f04-01.jpg" translate="no"/></div>
+<p class="figuret"><a id="ch4fig1"></a>Figura 4-1<em>: Gráfico de la recta</em> y = <em>2x</em>+ <em>3</em></p>
+<p class="indent">La gráfica muestra que se ha elegido automáticamente un intervalo predeterminado de valores de <em>x</em>: de -10 a 10. Puede que notes que la ventana de la gráfica tiene un aspecto muy similar a las que viste en <a href="ch02.html#ch02">los Capítulos 2</a> y <a href="ch03.html#ch03">3</a>. Esto se debe a que SymPy utiliza un lenguaje de programación muy sencillo. Esto se debe a que SymPy utiliza matplotlib entre bastidores para dibujar los gráficos. Observa también que no hemos tenido que llamar a la función <span class="literal" translate="no">show()</span> para mostrar las gráficas, porque SymPy lo hace automáticamente.</p>
+<p class="indent"><a id="page_110"></a>Ahora, supongamos que quieres limitar los valores de <span class="literal" translate="no">'x'</span> en el gráfico anterior para que se encuentren en el intervalo de -5 a 5 (en lugar de -10 a 10). Lo harías de la siguiente manera</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">plot((2*x + 3), (x, -5, 5))</span></p>
+<p class="indent">Aquí, una tupla formada por el símbolo, el límite inferior y el límite superior del intervalo -<span class="literal" translate="no">(x, -5, 5)</span>- se especifica como segundo argumento de la función <span class="literal" translate="no">plot()</span>. Ahora, el gráfico sólo muestra los valores de <em>y</em> correspondientes a los valores de <em>x</em> comprendidos entre -5 y 5 (ver <a href="ch04.html#ch4fig2">Figura 4-2</a>).</p>
+<div class="image"><img alt="image" src="images/f04-02.jpg" translate="no"/></div>
+<p class="figuret"><a id="ch4fig2"></a><em>Figura 4-2: Gráfico de la recta</em> y = <em>2x</em>+ <em>3 con los valores de</em> x <em>restringidos al intervalo de -5 a</em> 5</p>
+<p class="indent">Puedes utilizar otros argumentos de palabra clave en la función <span class="literal" translate="no">plot()</span>, como <span class="literal" translate="no">title</span> para introducir un título o <span class="literal" translate="no">xlabel</span> y <span class="literal" translate="no">ylabel</span> para etiquetar el eje <em>x</em> y el <em>eje y</em>, respectivamente. La siguiente función <span class="literal" translate="no">plot()</span> especifica los tres argumentos de palabra clave anteriores (véase el gráfico correspondiente en la <a href="ch04.html#ch4fig3">Figura 4-3</a>):</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">plot(2*x + 3, (x, -5, 5), title='A Line', xlabel='x', ylabel='2x+3')</span></p>
+<div class="image"><a id="page_111"></a><img alt="image" src="images/f04-03.jpg" translate="no"/></div>
+<p class="figuret"><a id="ch4fig3"></a><em>Figura 4-3: Gráfico de la recta</em> y = <em>2x</em>+ <em>3 con el rango de</em> x <em>y otros atributos especificados</em></p>
+<p class="indent">El gráfico de la Figura <a href="ch04.html#ch4fig3">4-3</a> tiene ahora un título y etiquetas en el eje <em>x</em> y en el <em>eje y</em>. Puedes especificar otros argumentos de palabra clave a la función <span class="literal" translate="no">plot()</span> para personalizar el comportamiento de la función y del propio gráfico. El argumento de palabra clave <span class="literal" translate="no">show</span> nos permite especificar si queremos que se muestre la gráfica. Si pasas <span class="literal" translate="no">show=False</span>, el gráfico no se mostrará cuando llames a la función <span class="literal" translate="no">plot()</span>:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">p = plot(2*x + 3, (x, -5, 5), title='A Line', xlabel='x', ylabel='2x+3', show=False)</span></p>
+<p class="indent">Verás que no se muestra ninguna gráfica. La etiqueta <span class="literal" translate="no">p</span> hace referencia a la gráfica que se crea, por lo que ahora puedes llamar a <span class="literal" translate="no">p.show()</span> para mostrar la gráfica. También puedes guardar la gráfica como un archivo de imagen utilizando el método <span class="literal" translate="no">save()</span>, como se indica a continuación:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">p.save('line.png')</span></p>
+<p class="indent">Esto guardará el gráfico en un archivo <em>line.png</em> en el directorio actual.</p>
+<h4 class="h4" id="ch04lev2sec08"><strong><em>Trazado de expresiones introducidas por el usuario</em></strong></h4>
+<p class="noindent">La expresión que pases a la función <span class="literal" translate="no">plot()</span> debe expresarse sólo en términos de <em>x</em>. Por ejemplo, antes hemos trazado <em>y</em> =<em>2x</em> + 3, que hemos introducido en la función trazar como simplemente<em>2x</em> + 3. Si la expresión no estuviera originalmente en esta forma, tendríamos que reescribirla. Por supuesto, podríamos hacerlo manualmente, <a id="page_112"></a>fuera del programa. Pero, ¿y si quieres escribir un programa que permita a sus usuarios representar gráficamente cualquier expresión? Si el usuario introduce una expresión en forma de<em>2x</em> + <em>3y</em> - 6, digamos, primero tenemos que convertirla. La función <span class="literal" translate="no">solve()</span> nos ayudará en este caso. Veamos un ejemplo:</p>
+<p class="programs" translate="no">   &gt;&gt;&gt; <span class="codestrong">expr = input('Enter an expression: ')</span><br translate="no"/>   Enter an expression: <span class="codestrong">2*x + 3*y - 6</span><br translate="no"/><span class="ent">➊</span> &gt;&gt;&gt; <span class="codestrong">expr = sympify(expr)</span><br translate="no"/><span class="ent">➋</span> &gt;&gt;&gt; <span class="codestrong">y = Symbol('y')</span><br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">solve(expr, y)</span><br translate="no"/><span class="ent">➌</span> [-2*x/3 + 2]</p>
+<p class="indent">En <span class="ent">➊,</span> utilizamos la función <span class="literal" translate="no">sympify()</span> para convertir la expresión de entrada en un objeto SymPy. En <span class="ent">➋,</span> creamos un objeto <span class="literal" translate="no">Symbol</span> para representar <span class="literal" translate="no">'y'</span>, de modo que podamos decirle a SymPy para qué variable queremos resolver la ecuación. A continuación, resolvemos la expresión para encontrar <span class="literal" translate="no">y</span> en términos de <span class="literal" translate="no">x</span> especificando <span class="literal" translate="no">y</span> como segundo argumento de la función <span class="literal" translate="no">solve()</span>. En <span class="ent">➌,</span> esto devuelve la ecuación en términos de <span class="literal" translate="no">x</span>, que es lo que necesitamos para el trazado.</p>
+<p class="indent">Observa que esta expresión final está almacenada en una lista, así que antes de poder utilizarla, tendremos que extraerla de la lista:</p>
+<p class="programs" translate="no">   &gt;&gt;&gt; <span class="codestrong">solutions = solve(expr, 'y')</span><br translate="no"/><span class="ent">➍</span> &gt;&gt;&gt; <span class="codestrong">expr_y = solutions[0]</span><br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">expr_y</span><br translate="no"/>   -2*x/3 + 2</p>
+<p class="indent">Creamos una etiqueta, <span class="literal" translate="no">solutions</span>, para referirnos al resultado devuelto por la función <span class="literal" translate="no">solve()</span>, que es una lista con un solo elemento. Luego, extraemos ese elemento en <span class="ent">➍.</span> Ahora podemos llamar a la función <span class="literal" translate="no">plot()</span> para representar gráficamente la expresión. El siguiente listado muestra un programa completo de trazado de gráficos:</p>
+<p class="programs" translate="no">'''<br translate="no"/>Plot the graph of an input expression<br translate="no"/>'''<br translate="no"/><br translate="no"/>from sympy import Symbol, sympify, solve<br translate="no"/>from sympy.plotting import plot<br translate="no"/><br translate="no"/>def plot_expression(expr):<br translate="no"/><br translate="no"/>    y = Symbol('y')<br translate="no"/>    solutions = solve(expr, y)<br translate="no"/>    expr_y = solutions[0]<br translate="no"/>    plot(expr_y)<br translate="no"/><br translate="no"/>if __name__=='__main__':<br translate="no"/><br translate="no"/>    expr = input('Enter your expression in terms of x and y: ')<br translate="no"/><a id="page_113"></a><br translate="no"/>    try:<br translate="no"/>        expr = sympify(expr)<br translate="no"/>    except SympifyError:<br translate="no"/>        print('Invalid input')<br translate="no"/>    else:<br translate="no"/>        plot_expression(expr)</p>
+<p class="indent">Observa que el programa anterior incluye un bloque <span class="literal" translate="no">try...except</span> para comprobar si la entrada no es válida, como hemos hecho antes con <span class="literal" translate="no">sympify()</span>. Cuando ejecutes el programa, te pedirá que introduzcas una expresión y creará el gráfico correspondiente.</p>
+<h4 class="h4" id="ch04lev2sec09"><strong><em>Trazar múltiples funciones</em></strong></h4>
+<p class="noindent">Puedes introducir varias expresiones al llamar a la función SymPy <span class="literal" translate="no">plot</span> para trazar más de una expresión en el mismo gráfico. Por ejemplo, el siguiente código traza dos líneas a la vez (ver <a href="ch04.html#ch4fig4">Figura 4-4</a>):</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">from sympy.plotting import plot</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">from sympy import Symbol</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">x = Symbol('x')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">plot(2*x+3, 3*x+1)</span></p>
+<div class="image"><img alt="image" src="images/f04-04.jpg" translate="no"/></div>
+<p class="figuret"><a id="ch4fig4"></a><em>Figura 4-4: Trazado de dos líneas en el mismo gráfico</em></p>
+<p class="indent"><a id="page_114"></a>Este ejemplo pone de manifiesto otra diferencia entre el trazado en matplotlib y en SymPy. Aquí, con SymPy, las dos líneas tienen el mismo color, mientras que matplotlib las habría hecho automáticamente de colores diferentes. Para establecer colores diferentes para cada línea con SymPy, tendremos que realizar algunos pasos adicionales, como se muestra en el código siguiente, que también añade una leyenda al gráfico:</p>
+<p class="programs" translate="no">   &gt;&gt;&gt; <span class="codestrong">from sympy.plotting import plot</span><br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">from sympy import Symbol</span><br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">x = Symbol('x')</span><br translate="no"/><span class="ent">➊</span> &gt;&gt;&gt; <span class="codestrong">p = plot(2*x+3, 3*x+1, legend=True, show=False)</span><br translate="no"/><span class="ent">➋</span> &gt;&gt;&gt; <span class="codestrong">p[0].line_color = 'b'</span><br translate="no"/><span class="ent">➌</span> &gt;&gt;&gt; <span class="codestrong">p[1].line_color = 'r'</span><br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">p.show()</span></p>
+<p class="indent">En <span class="ent">➊,</span> llamamos a la función <span class="literal" translate="no">plot()</span> con las ecuaciones de las dos líneas, pero le pasamos dos argumentos clave adicionales:<span class="literal" translate="no">legend</span> y <span class="literal" translate="no">show</span>. Si establecemos el argumento leyenda en <span class="literal" translate="no">True</span>, añadiremos una leyenda al gráfico, como vimos en el <a href="ch02.html#ch02">Capítulo 2</a>. Ten en cuenta, sin embargo, que el texto que aparezca en la leyenda coincidirá con las expresiones que hayas trazado; no puedes especificar ningún otro texto. También establecemos <span class="literal" translate="no">show=False</span> porque queremos establecer el color de las líneas antes de dibujar el gráfico. La expresión en <span class="ent">➋,</span> <span class="literal" translate="no">p[0]</span>, se refiere a la primera línea,<em>2x</em> + 3, y fijamos su atributo <span class="literal" translate="no">line_color</span> en <span class="literal" translate="no">'b'</span>, lo que significa que queremos que esta línea sea azul. Del mismo modo, establecemos el color del segundo trazado en rojo utilizando la cadena <span class="literal" translate="no">'r'</span> <span class="ent">➌.</span> Por último, llamamos a <span class="literal" translate="no">show()</span> para que muestre el gráfico (véase <a href="ch04.html#ch4fig5">la Figura 4-5</a>).</p>
+<div class="image"><img alt="image" src="images/f04-05.jpg" translate="no"/></div>
+<p class="figuret"><a id="ch4fig5"></a><em>Figura 4-5: Gráfico de las dos líneas con cada línea dibujada en un color diferente</em></p>
+<p class="indent"><a id="page_115"></a>Además de rojo y azul, puedes trazar las líneas en verde, cian, magenta, amarillo, negro y blanco (utilizando la primera letra del color en cada caso).</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch04_4.html">anterior</a><a href="ch04.html">Subtema 5 de 7: (Ver todo)</a><a href="ch04_6.html">siguiente</a><br/></p>
+<br/><a href="ch04_5.docx" target="_blank"></a></footer>
+</body>
+</html>

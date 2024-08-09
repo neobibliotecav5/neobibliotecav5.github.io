@@ -1,0 +1,1903 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Unknown</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+<body class="calibre">
+<div class="calibre1" id="sbo-rt-content">
+<h2 class="h2" id="ch14">
+<span class="calibre2" id="page_213">
+</span>
+<span class="big">
+   14
+  </span>
+<br class="calibre10"/>
+  Developing the Mr. Stick Man Game
+ </h2>
+<div class="image">
+<img alt="Image" class="calibre8" src="../images/common.jpg"/>
+</div>
+<p class="indent">
+  Now that we’ve created the images for
+  <em class="calibre7">
+   Mr. Stick Man Races for the Exit
+  </em>
+  , we can begin developing the code. The description of the game in the previous chapter gives us an idea what we’ll need: a stick figure that can run and jump and platforms he must jump to. We’ll write code to display the stick figure and move it across the screen, as well as to display the platforms. But before we write this code, we need to create the canvas to display our background image.
+ </p>
+<h3 class="h1" id="ch14lev1sec1">
+<span class="calibre2" id="page_214">
+</span>
+  Creating the Game Class
+ </h3>
+<p class="noindent">
+  First, we’ll create a class called
+  <span class="literal1">
+   Game
+  </span>
+  that will be our program’s main controller. The
+  <span class="literal1">
+   Game
+  </span>
+  class will have an
+  <span class="literal1">
+   __init__
+  </span>
+  function for initializing the game and a
+  <span class="literal1">
+   mainloop
+  </span>
+  function for doing the animation.
+ </p>
+<h3 class="h1" id="ch14lev1sec2">
+  Setting the Window Title and Creating the Canvas
+ </h3>
+<p class="noindent">
+  In the first part of the
+  <span class="literal1">
+   __init__
+  </span>
+  function, we’ll set the window title and create the canvas. As you’ll see, this part of the code is similar to the code we wrote for
+  <em class="calibre7">
+   Bounce!
+  </em>
+  in
+  <a class="calibre6" href="ch11.xhtml#ch11">
+   Chapter 11
+  </a>
+  . Open a new file in IDLE and enter the following code, and then save your file as
+  <em class="calibre7">
+   stickmangame.py
+  </em>
+  . Make sure you save it in the
+  <em class="calibre7">
+   stickman
+  </em>
+  folder we created in
+  <a class="calibre6" href="ch13.xhtml#ch13">
+   Chapter 13
+  </a>
+  :
+ </p>
+<pre class="pre"><span class="orange">from</span> tkinter <span class="orange">import</span> *
+<span class="orange">import</span> random
+<span class="orange">import</span> time  
+
+<span class="orange">class</span> Game:
+    <span class="orange">def</span> __init__(self):
+        self.tk = Tk()
+        self.tk.title(<span class="green">'Mr. Stick Man Races for the Exit'</span>)
+        self.tk.resizable(0, 0)
+        self.tk.wm_attributes(<span class="green">'-topmost'</span>, 1)
+        self.canvas = Canvas(self.tk, width=500, height=500,
+                             highlightthickness=0)
+        self.canvas.pack()
+        self.tk.update()
+        self.canvas_height = self.canvas.winfo_height()
+        self.canvas_width = self.canvas.winfo_width()
+</pre>
+<p class="indent">
+  In the first half of this program (the lines from
+  <span class="literal1">
+   tkinter import *
+  </span>
+  to
+  <span class="literal1">
+   self.tk.wm_attributes
+  </span>
+  ), we create the
+  <span class="literal1">
+   tk
+  </span>
+  object and then set the window title with
+  <span class="literal1">
+   self.tk.title
+  </span>
+  to (“Mr. Stick Man Races for the Exit”). We make the window
+  <em class="calibre7">
+   fixed
+  </em>
+  (so it can’t be resized) by calling the
+  <span class="literal1">
+   resizable
+  </span>
+  function, and then we move the window in front of all other windows with the
+  <span class="literal1">
+   wm_attributes
+  </span>
+  function.
+ </p>
+<p class="indent">
+<span id="page_215">
+</span>
+  Next, we create the canvas with the
+  <span class="literal1">
+   self.canvas = Canvas
+  </span>
+  line, and call the
+  <span class="literal1">
+   pack
+  </span>
+  and
+  <span class="literal1">
+   update
+  </span>
+  functions of the
+  <span class="literal1">
+   tk
+  </span>
+  object. Finally, we create two variables for our
+  <span class="literal1">
+   Game
+  </span>
+  class,
+  <span class="literal1">
+   height
+  </span>
+  and
+  <span class="literal1">
+   width
+  </span>
+  , to store the height and width (we use the
+  <span class="literal1">
+   winfo_height
+  </span>
+  and
+  <span class="literal1">
+   winfo_width
+  </span>
+  functions to get the size of the canvas).
+ </p>
+<div class="note">
+<p class="notet">
+<span class="notes">
+    Note
+   </span>
+</p>
+<p class="notep">
+<em class="calibre7">
+    The backslash (\) in the line
+    <span class="literal1">
+     self.canvas = Canvas
+    </span>
+    is used only to separate a long line of code. It’s not required in this case, but I’ve included it here for readability as the entire line won’t fit on the page.
+   </em>
+</p>
+</div>
+<h3 class="h1" id="ch14lev1sec3">
+  Finishing the __init__ Function
+ </h3>
+<p class="noindent">
+  Now enter the rest of the
+  <span class="literal1">
+   __init__
+  </span>
+  function into the
+  <em class="calibre7">
+   stickman game.py
+  </em>
+  file you just created. This code will load the background image and then display it on the canvas:
+ </p>
+<pre class="pre">        <span class="gray">self.tk.update()
+        self.canvas_height = self.canvas.winfo_height()
+        self.canvas_width = self.canvas.winfo_width()</span>
+        self.bg = PhotoImage(<span class="orange">file</span>=<span class="green">'background.gif'</span>)
+        w = self.bg.width()
+        h = self.bg.height()
+     <span class="ent">➊</span> <span class="orange">for</span> x <span class="orange">in</span> <span class="violet">range</span>(0, 5):
+         <span class="ent">➋</span> <span class="orange">for</span> y <span class="orange">in</span> <span class="violet">range</span>(0, 5):
+                self.canvas.create_image(x * w, y * h, 
+                        image=self.bg, anchor=<span class="green">'nw'</span>)
+        self.sprites = []
+        self.running = <span class="violet">True</span>
+</pre>
+<p class="indent">
+  At the line beginning
+  <span class="literal1">
+   self.bg
+  </span>
+  , we create the variable
+  <span class="literal1">
+   bg
+  </span>
+  , which contains a
+  <span class="literal1">
+   PhotoImage
+  </span>
+  object—the background image file called
+  <em class="calibre7">
+   background.gif
+  </em>
+  that we created in
+  <a class="calibre6" href="ch13.xhtml#ch13">
+   Chapter 13
+  </a>
+  on
+  <a class="calibre6" href="ch13.xhtml#ch13lev1sec8">
+   page 210
+  </a>
+  . Next, we store the width and height of the image in the
+  <span class="literal1">
+   w
+  </span>
+  and
+  <span class="literal1">
+   h
+  </span>
+  variables. The
+  <span class="literal1">
+   PhotoImage
+  </span>
+  class functions
+  <span class="literal1">
+   width
+  </span>
+  and
+  <span class="literal1">
+   height
+  </span>
+  return the size of the image once it’s been loaded.
+ </p>
+<p class="indent">
+  Next come two loops inside this function. To understand what they do, imagine you have a small square rubber stamp, an ink pad, and a large piece of paper. How can you use the stamp to fill the paper with colored squares? Well, you could just randomly cover the page with stamps until it’s filled. The result would be a mess, and it would take a while to complete,
+  <span id="page_216">
+</span>
+  but it would fill the page. Or you could start stamping down in a column and then move back to the top and start stamping down the page in the next column, as shown in
+  <a class="calibre6" href="ch14.xhtml#ch14fig01">
+   Figure 14-1
+  </a>
+  .
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre147" id="ch14fig01" src="../images/14fig01.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 14-1: Stamping down the page
+  </em>
+</p>
+<p class="indent">
+  The background image we created in the previous chapter is our stamp. We know that the canvas is 500 pixels across and 500 pixels down, and that we created a background image of 100 pixels square. This tells us that we need five columns across and five rows down to fill the screen with images. We use a
+  <span class="literal1">
+   for
+  </span>
+  loop
+  <span class="ent">
+   ➊
+  </span>
+  to calculate the columns across, and another
+  <span class="literal1">
+   for
+  </span>
+  loop
+  <span class="ent">
+   ➋
+  </span>
+  to calculate rows going down.
+ </p>
+<p class="indent">
+  After this, we multiply the first loop variable
+  <span class="literal1">
+   x
+  </span>
+  by the width of the image (
+  <span class="literal1">
+   x *
+  </span>
+<span class="literal1">
+   w
+  </span>
+  ) to determine how far across we’re drawing, and then multiply the second loop variable
+  <span class="literal1">
+   y
+  </span>
+  by the height of the image (
+  <span class="literal1">
+   y * h
+  </span>
+  ) to calculate how far down to draw. We use the
+  <span class="literal1">
+   create_image
+  </span>
+  function of the canvas object (
+  <span class="literal1">
+   self.canvas.create
+  </span>
+<span class="literal1">
+   _image
+  </span>
+  ) to draw the image on the screen using those coordinates.
+ </p>
+<p class="indent">
+  Finally, we create the variables
+  <span class="literal1">
+   sprites
+  </span>
+  , which holds an empty list, and
+  <span class="literal1">
+   running
+  </span>
+  , which contains the
+  <span class="literal1">
+   True
+  </span>
+  Boolean value. We’ll use these variables later in our game code.
+ </p>
+<h3 class="h1" id="ch14lev1sec4">
+  Creating the mainloop Function
+ </h3>
+<p class="noindent">
+  We’ll use the
+  <span class="literal1">
+   mainloop
+  </span>
+  function in the
+  <span class="literal1">
+   Game
+  </span>
+  class to animate our game. This function looks a lot like the main loop (or animation loop) we created for the
+  <em class="calibre7">
+   Bounce!
+  </em>
+  game in
+  <a class="calibre6" href="ch11.xhtml#ch11">
+   Chapter 11
+  </a>
+  .
+ </p>
+<p class="indent">
+<span id="page_217">
+</span>
+  Our function is as follows:
+ </p>
+<pre class="pre">        <span class="gray">for x in range(0, 5):
+            for y in range(0, 5):
+                self.canvas.create_image(x * w, y * h, 
+                        image=self.bg, anchor='nw')
+        self.sprites = []
+        self.running = True</span>
+        
+    <span class="orange">def</span> mainloop(self):
+        <span class="orange">while</span> <span class="violet">True</span>:
+           <span class="orange">if</span> self.running == <span class="violet">True</span>:
+               <span class="orange">for</span> sprite <span class="orange">in</span> self.sprites:
+                   sprite.move()
+            self.tk.update_idletasks()
+            self.tk.update()
+            time.sleep(0.01)
+</pre>
+<p class="indent">
+  We create a
+  <span class="literal1">
+   while
+  </span>
+  loop that will run until the game window is closed (
+  <span class="literal1">
+   while True
+  </span>
+  is an infinite loop, which we first saw back on
+  <a class="calibre6" href="ch11.xhtml#para95">
+   page 175
+  </a>
+  ). Next, we check to see if the
+  <span class="literal1">
+   running
+  </span>
+  variable is equal to
+  <span class="literal1">
+   True
+  </span>
+  . If it is, we loop through any sprites in the list of sprites (
+  <span class="literal1">
+   self.sprites
+  </span>
+  ), calling the
+  <span class="literal1">
+   move
+  </span>
+  function for each one. (We have yet to create any sprites, so this code won’t do anything if we run the program now, but it will be useful later.)
+ </p>
+<p class="indent">
+  The last three lines of the function force the
+  <span class="literal1">
+   tk
+  </span>
+  object to redraw the screen and sleep for a fraction of a second, as we did with the
+  <em class="calibre7">
+   Bounce!
+  </em>
+  game.
+ </p>
+<p class="indent">
+  So you can run this code, add the following two lines (note that there’s no indentation) and save the file:
+ </p>
+<div class="image">
+<img alt="Image" class="calibre148" src="../images/f0217-01.jpg"/>
+</div>
+<pre class="calibre32">g = Game()
+g.mainloop()</pre>
+<div class="note">
+<p class="notet">
+<span class="notes">
+    Note
+   </span>
+</p>
+<p class="notep">
+<em class="calibre7">
+    Be sure to add this code to the bottom of your game file. Also, make sure that your images and Python file are all in the
+   </em>
+   stickman
+   <em class="calibre7">
+    folder you created in
+    <a class="calibre6" href="ch13.xhtml#ch13">
+     Chapter 13
+    </a>
+    .
+   </em>
+</p>
+</div>
+<p class="indent">
+<span id="page_218">
+</span>
+  This code creates an object of the
+  <span class="literal1">
+   Game
+  </span>
+  class and saves it as the
+  <span class="literal1">
+   g
+  </span>
+  variable. We then call the
+  <span class="literal1">
+   mainloop
+  </span>
+  function on the new object to draw the screen.
+ </p>
+<p class="indent">
+  Once you’ve saved the program, run it in IDLE with
+  <strong class="calibre5">
+   Run
+  </strong>
+  ▸
+  <strong class="calibre5">
+   Run Module
+  </strong>
+  . A window should appear with the background image filling the canvas, as in
+  <a class="calibre6" href="ch14.xhtml#ch14fig02">
+   Figure 14-2
+  </a>
+  .
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre149" id="ch14fig02" src="../images/14fig02.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 14-2: Game background
+  </em>
+</p>
+<p class="indent">
+  With this, we’ve added a nice background for our game and created an animation loop that will draw sprites for us (once we’ve created them).
+ </p>
+<h3 class="h1" id="ch14lev1sec5">
+  Creating the Coords Class
+ </h3>
+<p class="noindent">
+  Now we’ll create the class that we’ll use to specify the position of sprites on our game screen. This class will store the top-left (
+  <em class="calibre7">
+   x1
+  </em>
+  and
+  <em class="calibre7">
+   y1
+  </em>
+  ) and bottom-right (
+  <em class="calibre7">
+   x2
+  </em>
+  and
+  <em class="calibre7">
+   y2
+  </em>
+  ) coordinates of any component of our game.
+ </p>
+<p class="indent">
+<span id="page_219">
+</span>
+<a class="calibre6" href="ch14.xhtml#ch14fig03">
+   Figure 14-3
+  </a>
+  shows how you might record the position of the stick figure image using these coordinates.
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre150" id="ch14fig03" src="../images/14fig03.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 14-3: Where the x and y coordinates can be found on the stick figure
+  </em>
+</p>
+<p class="indent">
+  Our new class,
+  <span class="literal1">
+   Coords
+  </span>
+  , will contain only an
+  <span class="literal1">
+   __init__
+  </span>
+  function, to which we pass the four parameters (
+  <span class="literal1">
+   x1
+  </span>
+  ,
+  <span class="literal1">
+   y1
+  </span>
+  ,
+  <span class="literal1">
+   x2
+  </span>
+  , and
+  <span class="literal1">
+   y2
+  </span>
+  ). Put this code at the beginning of the
+  <em class="calibre7">
+   stickmangame.py
+  </em>
+  file:
+ </p>
+<pre class="pre"><span class="orange">class</span> Coords:
+    <span class="orange">def</span> __init__(self, x1=0, y1=0, x2=0, y2=0):
+        self.x1 = x1
+        self.y1 = y1
+        self.x2 = x2
+        self.y2 = y2
+</pre>
+<p class="indent">
+  Notice that each parameter is saved as an object variable of the same name (
+  <span class="literal1">
+   x1
+  </span>
+  ,
+  <span class="literal1">
+   y1
+  </span>
+  ,
+  <span class="literal1">
+   x2
+  </span>
+  , and
+  <span class="literal1">
+   y2
+  </span>
+  ). We’ll be using objects of this class shortly.
+ </p>
+<h3 class="h1" id="ch14lev1sec6">
+  Checking for Collisions
+ </h3>
+<p class="noindent">
+  Once we know how to store the position of our game sprites, we need a way to tell if one sprite has collided with another, like when Mr. Stick Man jumps around the screen and runs into one of the platforms. To make this problem easier to solve, we can break it into two smaller problems: checking if sprites are colliding vertically, and checking if sprites are colliding horizontally. We can then combine our solutions to see if two sprites are colliding in any direction!
+ </p>
+<h3 class="h1" id="ch14lev1sec7">
+<span class="calibre2" id="page_220">
+</span>
+  Sprites Colliding Horizontally
+ </h3>
+<p class="noindent">
+  First, we’ll create the
+  <span class="literal1">
+   within_x
+  </span>
+  function to determine if one set of
+  <em class="calibre7">
+   x
+  </em>
+  coordinates (
+  <em class="calibre7">
+   x1
+  </em>
+  and
+  <em class="calibre7">
+   x2
+  </em>
+  ) has crossed over another set of
+  <em class="calibre7">
+   x
+  </em>
+  coordinates (again,
+  <em class="calibre7">
+   x1
+  </em>
+  and
+  <em class="calibre7">
+   x2
+  </em>
+  ). Add the following directly below the
+  <span class="literal1">
+   Coords
+  </span>
+  class:
+ </p>
+<pre class="pre"><span class="gray">class Coords:
+    def __init__(self, x1=0, y1=0, x2=0, y2=0):
+        self.x1 = x1
+        self.y1 = y1
+        self.x2 = x2
+        self.y2 = y2</span>
+
+<span class="orange">def</span> within_x(co1, co2):
+ <span class="ent">➊</span> <span class="orange">if</span> co1.x1 &gt; co2.x1 <span class="orange">and</span> co1.x1 &lt; co2.x2:
+        <span class="orange">return</span> <span class="violet">True</span>
+ <span class="ent">➋</span> <span class="orange">elif</span> co1.x2 &gt; co2.x1 <span class="orange">and</span> co1.x2 &lt; co2.x2:
+        <span class="orange">return</span> <span class="violet">True</span>
+    <span class="orange">elif</span> co2.x1 &gt; co1.x1 <span class="orange">and</span> co2.x1 &lt; co1.x2:
+        <span class="orange">return</span> <span class="violet">True</span>
+    <span class="orange">elif</span> co2.x2 &gt; co1.x1 <span class="orange">and</span> co2.x2 &lt; co1.x2:
+        <span class="orange">return</span> <span class="violet">True</span>
+    <span class="orange">else</span>:
+        <span class="orange">return</span> <span class="violet">False</span>
+</pre>
+<p class="indent">
+  The
+  <span class="literal1">
+   within_x
+  </span>
+  function takes the parameters
+  <span class="literal1">
+   co1
+  </span>
+  and
+  <span class="literal1">
+   co2
+  </span>
+  , both
+  <span class="literal1">
+   Coords
+  </span>
+  objects. We first check to see if the leftmost position of the first coordinate object (
+  <span class="literal1">
+   co1.x1
+  </span>
+  ) is between the leftmost position (
+  <span class="literal1">
+   co2.x1
+  </span>
+  ) and the rightmost position (
+  <span class="literal1">
+   co2.x2
+  </span>
+  ) of the second coordinate object
+  <span class="ent">
+   ➊
+  </span>
+  . We return
+  <span class="literal1">
+   True
+  </span>
+  if it is.
+ </p>
+<div class="image">
+<img alt="Image" class="calibre151" src="../images/f0220-01.jpg"/>
+</div>
+<p class="indent">
+  Let’s take a look at two lines with overlapping
+  <em class="calibre7">
+   x
+  </em>
+  coordinates to understand how this works. Each line in
+  <a class="calibre6" href="ch14.xhtml#ch14fig04">
+   Figure 14-4
+  </a>
+  starts at
+  <span class="literal1">
+   x1
+  </span>
+  and finishes at
+  <span class="literal1">
+   x2
+  </span>
+  .
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre152" id="ch14fig04" src="../images/14fig04.jpg"/>
+</div>
+<p class="figcap">
+<span id="page_221">
+</span>
+<em class="calibre7">
+   Figure 14-4: Overlapping horizontal (x) coordinates
+  </em>
+</p>
+<p class="indent">
+  The first line in this diagram (
+  <span class="literal1">
+   co1
+  </span>
+  ) starts at pixel position 50 (
+  <span class="literal1">
+   x1
+  </span>
+  ) and finishes at 100 (
+  <span class="literal1">
+   x2
+  </span>
+  ). The second line (
+  <span class="literal1">
+   co2
+  </span>
+  ) starts at position 40 and finishes at 150. In this case, because the
+  <span class="literal1">
+   x1
+  </span>
+  position of the first line is between the
+  <span class="literal1">
+   x1
+  </span>
+  and
+  <span class="literal1">
+   x2
+  </span>
+  positions of the second line, the
+  <span class="literal1">
+   if
+  </span>
+  statement in the function would be true for these two sets of coordinates.
+ </p>
+<p class="indent">
+  With the first
+  <span class="literal1">
+   elif
+  </span>
+  statement
+  <span class="ent">
+   ➋
+  </span>
+  , we see whether the rightmost position of the first line (
+  <span class="literal1">
+   co1.x2
+  </span>
+  ) is between the leftmost position (
+  <span class="literal1">
+   co2.x1
+  </span>
+  ) and rightmost position (
+  <span class="literal1">
+   co2.x2
+  </span>
+  ) of the second. If it is, we return
+  <span class="literal1">
+   True
+  </span>
+  . The next two
+  <span class="literal1">
+   elif
+  </span>
+  statements do almost the same thing: they check the leftmost and rightmost positions of the second line (
+  <span class="literal1">
+   co2
+  </span>
+  ) against the first (
+  <span class="literal1">
+   co1
+  </span>
+  ).
+ </p>
+<p class="indent">
+  If none of the
+  <span class="literal1">
+   if
+  </span>
+  statements match, we reach
+  <span class="literal1">
+   else
+  </span>
+  and return
+  <span class="literal1">
+   False
+  </span>
+  . This is effectively saying, “No, the two coordinate objects do not cross over each other horizontally.”
+ </p>
+<p class="indent">
+  To see an example of the function working, look back at
+  <a class="calibre6" href="ch14.xhtml#ch14fig04">
+   Figure 14-4
+  </a>
+  . The
+  <span class="literal1">
+   x1
+  </span>
+  and
+  <span class="literal1">
+   x2
+  </span>
+  positions of the first coordinate object are 50 and 100, and the
+  <span class="literal1">
+   x1
+  </span>
+  and
+  <span class="literal1">
+   x2
+  </span>
+  positions of the second coordinate object are 40 and 150. Here’s what happens when we call the
+  <span class="literal1">
+   within_x
+  </span>
+  function we’ve created:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> c1 = Coords(50, 50, 100, 100)
+<span class="brown">&gt;&gt;&gt;</span> c2 = Coords(40, 40, 150, 150)
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(within_x(c1, c2))
+<span class="blue1">True</span>
+</pre>
+<p class="indent">
+  The function returns
+  <span class="literal1">
+   True
+  </span>
+  . This is the first step in determining whether one sprite has bumped into another. For example, when we create a class for Mr. Stick Man and for the platforms, we’ll be able to tell if their
+  <em class="calibre7">
+   x
+  </em>
+  coordinates have crossed one another.
+ </p>
+<p class="indent">
+  It’s not best practice to have lots of
+  <span class="literal1">
+   if
+  </span>
+  or
+  <span class="literal1">
+   elif
+  </span>
+  statements that return the same value. To solve this problem, we can shorten the
+  <span class="literal1">
+   within_x
+  </span>
+  function by surrounding each of its conditions with parentheses, separated by the
+  <span class="literal1">
+   or
+  </span>
+  keyword. For a slightly neater function with fewer lines of code, you can change the
+  <span id="page_222">
+</span>
+  function so it looks like this:
+ </p>
+<pre class="pre"><span class="orange">def</span> within_x(co1, co2):
+    <span class="orange">if</span> (co1.x1 &gt; co2.x1 <span class="orange">and</span> co1.x1 &lt; co2.x2) \
+            <span class="orange">or</span> (co1.x2 &gt; co2.x1 <span class="orange">and</span> co1.x2 &lt; co2.x2) \
+            <span class="orange">or</span> (co2.x1 &gt; co1.x1 <span class="orange">and</span> co2.x1 &lt; co1.x2) \
+            <span class="orange">or</span> (co2.x2 &gt; co1.x1 <span class="orange">and</span> co2.x2 &lt; co1.x2):
+        <span class="orange">return</span> <span class="violet">True</span>
+    <span class="orange">else</span>:
+        <span class="orange">return</span> <span class="violet">False</span>
+</pre>
+<p class="indent">
+  To extend the
+  <span class="literal1">
+   if
+  </span>
+  statement across multiple lines so that we don’t end up with one really long line containing all the conditions, we use a backslash (\), as shown above.
+ </p>
+<h3 class="h1" id="ch14lev1sec8">
+  Sprites Colliding Vertically
+ </h3>
+<p class="indent">
+  We also need to know if sprites collide vertically. The
+  <span class="literal1">
+   within_y
+  </span>
+  function is very similar to the
+  <span class="literal1">
+   within_x
+  </span>
+  function. To create it, we check whether the
+  <em class="calibre7">
+   y1
+  </em>
+  position of the first coordinate has crossed over the
+  <em class="calibre7">
+   y1
+  </em>
+  and
+  <em class="calibre7">
+   y2
+  </em>
+  positions of the second, and then vice versa.
+ </p>
+<p class="indent">
+  Add the following function below the
+  <span class="literal1">
+   within_x
+  </span>
+  function. This time, we’ll use the shorter version of the code (rather than lots of
+  <span class="literal1">
+   if
+  </span>
+  statements):
+ </p>
+<div class="image">
+<img alt="Image" class="calibre153" src="../images/f0222-01.jpg"/>
+</div>
+<pre class="pre"><span class="orange">def</span> within_y(co1, co2):
+    <span class="orange">if</span> (co1.y1 &gt; co2.y1 <span class="orange">and</span> co1.y1 &lt; co2.y2) \
+            <span class="orange">or</span> (co1.y2 &gt; co2.y1 <span class="orange">and</span> co1.y2 &lt; co2.y2) \
+            <span class="orange">or</span> (co2.y1 &gt; co1.y1 <span class="orange">and</span> co2.y1 &lt; co1.y2) \
+            <span class="orange">or</span> (co2.y2 &gt; co1.y1 <span class="orange">and</span> co2.y2 &lt; co1.y2):
+        <span class="orange">return</span> <span class="violet">True</span>
+    <span class="orange">else</span>:
+        <span class="orange">return</span> <span class="violet">False</span>
+</pre>
+<p class="indent">
+  Our
+  <span class="literal1">
+   within_x
+  </span>
+  and
+  <span class="literal1">
+   within_y
+  </span>
+  functions look quite similar because, in the end, they are doing similar things.
+ </p>
+<h3 class="h1" id="ch14lev1sec9">
+<span class="calibre2" id="page_223">
+</span>
+  Putting It All Together: Our Final Collision-Detection Code
+ </h3>
+<p class="noindent">
+  Once we’ve determined whether one set of
+  <em class="calibre7">
+   x
+  </em>
+  coordinates has crossed over another, and done the same for
+  <em class="calibre7">
+   y
+  </em>
+  coordinates, we can write functions to see whether a sprite has hit another sprite and on which side. We’ll do this with the
+  <span class="literal1">
+   collided_left
+  </span>
+  ,
+  <span class="literal1">
+   collided_right
+  </span>
+  ,
+  <span class="literal1">
+   collided_top
+  </span>
+  , and
+  <span class="literal1">
+   collided_bottom
+  </span>
+  functions.
+ </p>
+<h4 class="h3" id="ch14lev2sec1">
+  The collided_left Function
+ </h4>
+<p class="noindent">
+  Add the following code for the
+  <span class="literal1">
+   collided_left
+  </span>
+  function below the two
+  <span class="literal1">
+   within
+  </span>
+  functions we just created:
+ </p>
+<pre class="pre"><span class="orange">def</span> collided_left(co1, co2):
+    <span class="orange">if</span> within_y(co1, co2):
+        <span class="orange">if</span> co1.x1 &gt;= co2.x1 <span class="orange">and</span> co1.x1 &lt;= co2.x2:
+            <span class="orange">return</span> <span class="violet">True</span>
+    <span class="orange">return</span> <span class="violet">False</span>
+</pre>
+<p class="indent">
+  This function tells us whether the left-hand side (the
+  <span class="literal1">
+   x1
+  </span>
+  value) of a first coordinate object has hit another coordinate object.
+ </p>
+<p class="indent">
+  The function takes two parameters:
+  <span class="literal1">
+   co1
+  </span>
+  (the first coordinate object) and
+  <span class="literal1">
+   co2
+  </span>
+  (the second coordinate object). We check whether the two coordinate objects have crossed over vertically, using the
+  <span class="literal1">
+   within_y
+  </span>
+  function. After all, there’s no point in checking whether Mr. Stick Man has hit a platform if he is floating way above it (like
+  <a class="calibre6" href="ch14.xhtml#ch14fig05">
+   Figure 14-5
+  </a>
+  ).
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre154" id="ch14fig05" src="../images/14fig05.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 14-5: Mr. Stick Man above the platform
+  </em>
+</p>
+<p class="indent">
+<span id="page_224">
+</span>
+  Then, we see if the value of the leftmost position of the first coordinate object (
+  <span class="literal1">
+   co1.x1
+  </span>
+  ) has hit the
+  <span class="literal1">
+   x2
+  </span>
+  position of the second coordinate object (
+  <span class="literal1">
+   co2.x2
+  </span>
+  ). If so, it should be less than or equal to the
+  <span class="literal1">
+   x2
+  </span>
+  position. We also check to make sure that it hasn’t gone past the
+  <span class="literal1">
+   x1
+  </span>
+  position. If it has hit the side, we return
+  <span class="literal1">
+   True
+  </span>
+  . If none of the
+  <span class="literal1">
+   if
+  </span>
+  statements are true, we return
+  <span class="literal1">
+   False
+  </span>
+  .
+ </p>
+<div class="image">
+<img alt="Image" class="calibre155" src="../images/f0224-01.jpg"/>
+</div>
+<h4 class="h3" id="ch14lev2sec2">
+  The collided_right Function
+ </h4>
+<p class="noindent">
+  The
+  <span class="literal1">
+   collided_right
+  </span>
+  function looks a lot like
+  <span class="literal1">
+   collided_left
+  </span>
+  :
+ </p>
+<pre class="pre"><span class="orange">def</span> collided_right(co1, co2):
+    <span class="orange">if</span> within_y(co1, co2):
+        <span class="orange">if</span> co1.x2 &gt;= co2.x1 <span class="orange">and</span> co1.x2 &lt;= co2.x2:
+            <span class="orange">return</span> <span class="violet">True</span>
+    <span class="orange">return</span> <span class="violet">False</span>
+</pre>
+<p class="indent">
+  As with
+  <span class="literal1">
+   collided_left
+  </span>
+  , we check to see if the
+  <em class="calibre7">
+   y
+  </em>
+  coordinates have crossed over each other, using the
+  <span class="literal1">
+   within_y
+  </span>
+  function. We then check to see if the
+  <span class="literal1">
+   x2
+  </span>
+  value of the first coordinate object is between the
+  <span class="literal1">
+   x1
+  </span>
+  and
+  <span class="literal1">
+   x2
+  </span>
+  positions of the second coordinate object, and return
+  <span class="literal1">
+   True
+  </span>
+  if it is. Otherwise, we return
+  <span class="literal1">
+   False
+  </span>
+  .
+ </p>
+<h4 class="h3" id="ch14lev2sec3">
+  The collided_top Function
+ </h4>
+<p class="noindent">
+  The
+  <span class="literal1">
+   collided_top
+  </span>
+  function is very similar to the two functions we just added:
+ </p>
+<pre class="pre"><span class="orange">def</span> collided_top(co1, co2):
+    <span class="orange">if</span> within_x(co1, co2):
+        <span class="orange">if</span> co1.y1 &gt;= co2.y1 <span class="orange">and</span> co1.y1 &lt;= co2.y2:
+            <span class="orange">return</span> <span class="violet">True</span>
+    <span class="orange">return</span> <span class="violet">False</span>
+</pre>
+<p class="indent">
+  This time, we check to see if the coordinates have crossed over horizontally, using the
+  <span class="literal1">
+   within_x
+  </span>
+  function. Next, we see if the topmost position of the first coordinate (
+  <span class="literal1">
+   co1.y1
+  </span>
+  ) has crossed over the
+  <span class="literal1">
+   y2
+  </span>
+  position of the second coordinate, but not its
+  <span class="literal1">
+   y1
+  </span>
+<span id="page_225">
+</span>
+  position. If so, we return
+  <span class="literal1">
+   True
+  </span>
+  (the top of the first coordinate has hit the second coordinate).
+ </p>
+<h4 class="h3" id="ch14lev2sec4">
+  The collided_bottom Function
+ </h4>
+<p class="noindent">
+  Our last function,
+  <span class="literal1">
+   collided_bottom
+  </span>
+  , is just a bit different:
+ </p>
+<pre class="pre"><span class="orange">def</span> collided_bottom(y, co1, co2):
+    <span class="orange">if</span> within_x(co1, co2):
+        y_calc = co1.y2 + y
+     <span class="ent">➊</span> <span class="orange">if</span> y_calc &gt;= co2.y1 <span class="orange">and</span> y_calc &lt;= co2.y2:
+            <span class="orange">return</span> <span class="violet">True</span>
+     <span class="orange">return</span> <span class="violet">False</span>
+</pre>
+<p class="indent">
+  This function takes an additional parameter,
+  <span class="literal1">
+   y
+  </span>
+  , a value that we add to the
+  <span class="literal1">
+   y
+  </span>
+  position of the first coordinate. Our
+  <span class="literal1">
+   if
+  </span>
+  statement checks if the coordinates have crossed over horizontally (as we did with
+  <span class="literal1">
+   collided_top
+  </span>
+  ). Next, we add the value of the
+  <span class="literal1">
+   y
+  </span>
+  parameter to the first coordinate’s
+  <span class="literal1">
+   y2
+  </span>
+  position, and store the result in the
+  <span class="literal1">
+   y_calc
+  </span>
+  variable. If the newly calculated value is between the
+  <span class="literal1">
+   y1
+  </span>
+  and
+  <span class="literal1">
+   y2
+  </span>
+  values of the second coordinate
+  <span class="ent">
+   ➊
+  </span>
+  , we return
+  <span class="literal1">
+   True
+  </span>
+  because the bottom of coordinate
+  <span class="literal1">
+   co1
+  </span>
+  has hit the top of coordinate
+  <span class="literal1">
+   co2
+  </span>
+  . However, if none of the
+  <span class="literal1">
+   if
+  </span>
+  statements are true, we return
+  <span class="literal1">
+   False
+  </span>
+  .
+ </p>
+<p class="indent">
+  We need the additional
+  <span class="literal1">
+   y
+  </span>
+  parameter because Mr. Stick Man could fall off a platform. Unlike the other
+  <span class="literal1">
+   collided
+  </span>
+  functions, we need to be able to test if he
+  <em class="calibre7">
+   would
+  </em>
+  collide at the bottom, rather than whether he already has. If he walks off a platform and keeps floating in midair, our game won’t be very realistic; so as he walks, we check to see if he has collided with something on the left or right. When we check below him, we see if he would collide with the platform; if not, he needs to go crashing down!
+ </p>
+<h3 class="h1" id="ch14lev1sec10">
+  Creating the Sprite Class
+ </h3>
+<p class="noindent">
+  The parent class for our game items,
+  <span class="literal1">
+   Sprite
+  </span>
+  , will provide two functions:
+  <span class="literal1">
+   move
+  </span>
+  to move the sprite, and
+  <span class="literal1">
+   coords
+  </span>
+  to return the sprite’s current position on the screen. We add the code for the
+  <span class="literal1">
+   Sprite
+  </span>
+  class below the
+  <span class="literal1">
+   collided_bottom
+  </span>
+  function, as follows:
+ </p>
+<pre class="pre"><span class="orange">class</span> Sprite:
+    <span class="orange">def</span> __init__(self, game):
+<span id="page_226"></span>        self.game = game
+        self.endgame = <span class="violet">False</span>
+        self.coordinates = <span class="violet">None</span>
+
+    <span class="orange">def</span> move(self):
+        <span class="orange">pass</span>
+
+    <span class="orange">def</span> coords(self):
+        <span class="orange">return</span> self.coordinates
+</pre>
+<p class="indent">
+  The Sprite class’s
+  <span class="literal1">
+   __init__
+  </span>
+  function takes a single parameter,
+  <span class="literal1">
+   game
+  </span>
+  , which will be the game object. We need it so that any sprite we create will be able to access the list of other sprites in the game. We store the game parameter as an object variable.
+ </p>
+<p class="indent">
+  Then, we store the object variable
+  <span class="literal1">
+   endgame
+  </span>
+  , which we’ll use to indicate the end of the game. (At the moment, it’s set to
+  <span class="literal1">
+   False
+  </span>
+  .) The final object variable,
+  <span class="literal1">
+   coordinates
+  </span>
+  , is set to nothing (
+  <span class="literal1">
+   None
+  </span>
+  ).
+ </p>
+<p class="indent">
+  The
+  <span class="literal1">
+   move
+  </span>
+  function does nothing in this parent class, so we use the
+  <span class="literal1">
+   pass
+  </span>
+  keyword in the body of this function. The
+  <span class="literal1">
+   coords
+  </span>
+  function simply returns the object variable
+  <span class="literal1">
+   coordinates
+  </span>
+  .
+ </p>
+<p class="indent">
+  So our
+  <span class="literal1">
+   Sprite
+  </span>
+  class has a
+  <span class="literal1">
+   move
+  </span>
+  function that does nothing and a
+  <span class="literal1">
+   coords
+  </span>
+  function that returns no coordinates. That doesn’t sound very useful, does it? However, any classes that have
+  <span class="literal1">
+   Sprite
+  </span>
+  as their parent will always have the
+  <span class="literal1">
+   move
+  </span>
+  and
+  <span class="literal1">
+   coords
+  </span>
+  functions. So, in the main loop of the game, when we loop through a list of sprites, calling the
+  <span class="literal1">
+   move
+  </span>
+  function won’t cause any errors because each sprite has that function.
+ </p>
+<div class="image">
+<img alt="Image" class="calibre156" src="../images/f0226-01.jpg"/>
+</div>
+<div class="note">
+<p class="notet">
+<span class="notes">
+    Note
+   </span>
+</p>
+<p class="notep">
+<em class="calibre7">
+    Classes with functions that don’t do very much are quite common in programming. In a way, they’re an agreement that ensures all the children of a class provide the same sort of functionality, even if in some cases the functions in the child classes do nothing.
+   </em>
+</p>
+</div>
+<h3 class="h1" id="ch14lev1sec11">
+<span class="calibre2" id="page_227">
+</span>
+  Adding the Platforms
+ </h3>
+<p class="noindent">
+  Now we’ll add the platforms. Our class for platform objects,
+  <span class="literal1">
+   PlatformSprite
+  </span>
+  , will be a child class of
+  <span class="literal1">
+   Sprite
+  </span>
+  . The
+  <span class="literal1">
+   __init__
+  </span>
+  function for this class will take a
+  <span class="literal1">
+   game
+  </span>
+  parameter (as the
+  <span class="literal1">
+   Sprite
+  </span>
+  parent class does), as well as an image,
+  <span class="literal1">
+   x
+  </span>
+  and
+  <span class="literal1">
+   y
+  </span>
+  positions, and the image
+  <span class="literal1">
+   width
+  </span>
+  and
+  <span class="literal1">
+   height
+  </span>
+  . Here’s the code for the
+  <span class="literal1">
+   PlatformSprite
+  </span>
+  class, which goes directly below the
+  <span class="literal1">
+   Sprite
+  </span>
+  class:
+ </p>
+<pre class="pre"><span class="orange">class</span> PlatformSprite(Sprite):
+    <span class="orange">def</span> __init__(self, game, photo_image, x, y, width, height):
+        Sprite.__init__(self, game)
+        self.photo_image = photo_image
+        self.image = game.canvas.create_image(x, y, 
+                image=self.photo_image, anchor=<span class="green">'nw'</span>)
+        self.coordinates = Coords(x, y, x + width, y + height)
+</pre>
+<p class="indent">
+  When we define the
+  <span class="literal1">
+   PlatformSprite
+  </span>
+  class, we give it a single parameter: the name of the parent class (
+  <span class="literal1">
+   Sprite
+  </span>
+  ). The
+  <span class="literal1">
+   __init__
+  </span>
+  function has seven parameters:
+  <span class="literal1">
+   self
+  </span>
+  ,
+  <span class="literal1">
+   game
+  </span>
+  ,
+  <span class="literal1">
+   photo_image
+  </span>
+  ,
+  <span class="literal1">
+   x
+  </span>
+  ,
+  <span class="literal1">
+   y
+  </span>
+  ,
+  <span class="literal1">
+   width
+  </span>
+  , and
+  <span class="literal1">
+   height
+  </span>
+  .
+ </p>
+<p class="indent">
+  We call the
+  <span class="literal1">
+   __init__
+  </span>
+  function of the parent class,
+  <span class="literal1">
+   Sprite
+  </span>
+  , using
+  <span class="literal1">
+   self
+  </span>
+  and
+  <span class="literal1">
+   game
+  </span>
+  as the parameter values, because other than the
+  <span class="literal1">
+   self
+  </span>
+  parameter, the Sprite class’s
+  <span class="literal1">
+   __init__
+  </span>
+  function takes only one parameter:
+  <span class="literal1">
+   game
+  </span>
+  .
+ </p>
+<p class="indent">
+  At this point, if we were to create a
+  <span class="literal1">
+   PlatformSprite
+  </span>
+  object, it would have all the object variables from its parent class (
+  <span class="literal1">
+   game
+  </span>
+  ,
+  <span class="literal1">
+   endgame
+  </span>
+  , and
+  <span class="literal1">
+   coordinates
+  </span>
+  ), simply because we’ve called the
+  <span class="literal1">
+   __init__
+  </span>
+  function in
+  <span class="literal1">
+   Sprite
+  </span>
+  .
+ </p>
+<div class="image">
+<img alt="Image" class="calibre157" src="../images/f0227-01.jpg"/>
+</div>
+<p class="indent">
+  Next, we save the
+  <span class="literal1">
+   photo_image
+  </span>
+  parameter as an object variable, and we use the
+  <span class="literal1">
+   canvas
+  </span>
+  variable of the game object to draw the image onscreen with
+  <span class="literal1">
+   create_image
+  </span>
+  .
+ </p>
+<p class="indent">
+  Finally, we create a
+  <span class="literal1">
+   Coords
+  </span>
+  object with the
+  <span class="literal1">
+   x
+  </span>
+  and
+  <span class="literal1">
+   y
+  </span>
+  parameters as the first two arguments. We then add the
+  <span class="literal1">
+   width
+  </span>
+  and
+  <span class="literal1">
+   height
+  </span>
+  parameters to these parameters for the second two arguments.
+ </p>
+<p class="indent">
+  Even though the
+  <span class="literal1">
+   coordinates
+  </span>
+  variable is set to
+  <span class="literal1">
+   None
+  </span>
+  in the
+  <span class="literal1">
+   Sprite
+  </span>
+  parent class, we’ve changed it in our
+  <span class="literal1">
+   PlatformSprite
+  </span>
+  child class to an actual
+  <span class="literal1">
+   Coords
+  </span>
+  object, containing the live location of the platform image on the screen.
+ </p>
+<h3 class="h1" id="ch14lev1sec12">
+<span class="calibre2" id="page_228">
+</span>
+  Adding a Platform Object
+ </h3>
+<p class="noindent">
+  Let’s add a platform to the game to see how it looks. Change the last two lines of the game file (
+  <em class="calibre7">
+   stickmangame.py
+  </em>
+  ):
+ </p>
+<pre class="pre">   g = Game()
+<span class="ent">➊</span> platform1 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform1.gif'</span>), 
+                              0, 480, 100, 10)
+<span class="ent">➋</span> g.sprites.append(platform1)
+   g.mainloop()
+</pre>
+<p class="indent">
+  We create an object of the
+  <span class="literal1">
+   PlatformSprite
+  </span>
+  class, passing it the variable for our game (
+  <span class="literal1">
+   g
+  </span>
+  ), along with a
+  <span class="literal1">
+   PhotoImage
+  </span>
+  object (which uses the first of our platform images,
+  <em class="calibre7">
+   platform1.gif
+  </em>
+  )
+  <span class="ent">
+   ➊
+  </span>
+  . We also pass it the position where we want to draw the platform (0 pixels across and 480 pixels down, near the bottom of the canvas), along with the height and width of our image (100 pixels across and 10 pixels high). We add this sprite to the list of sprites in our game object
+  <span class="ent">
+   ➋
+  </span>
+  .
+ </p>
+<p class="indent">
+  If you run the game now, you should see a platform at the bottom-left side of the screen, like
+  <a class="calibre6" href="ch14.xhtml#ch14fig06">
+   Figure 14-6
+  </a>
+  .
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre158" id="ch14fig06" src="../images/14fig06.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 14-6: Displaying a platform
+  </em>
+</p>
+<h3 class="h1" id="ch14lev1sec13">
+<span class="calibre2" id="page_229">
+</span>
+  Adding a Bunch of Platforms
+ </h3>
+<p class="noindent">
+  Let’s add a whole bunch of platforms. Each platform will have different
+  <em class="calibre7">
+   x
+  </em>
+  and
+  <em class="calibre7">
+   y
+  </em>
+  positions, so they’ll be scattered around the screen. Use the following code:
+ </p>
+<pre class="pre">g = Game()
+platform1 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform1.gif'</span>), 
+                           0, 480, 100, 10)
+platform2 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform1.gif'</span>), 
+                           150, 440, 100, 10)
+platform3 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform1.gif'</span>), 
+                           300, 400, 100, 10)
+platform4 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform1.gif'</span>), 
+                           300, 160, 100, 10)
+platform5 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform2.gif'</span>), 
+                           175, 350, 66, 10)
+platform6 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform2.gif'</span>), 
+                           50, 300, 66, 10)
+platform7 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform2.gif'</span>), 
+                           170, 120, 66, 10)
+platform8 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform2.gif'</span>), 
+                           45, 60, 66, 10)
+platform9 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform3.gif'</span>), 
+                           170, 250, 32, 10)
+platform10 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform3.gif'</span>), 
+                            230, 200, 32, 10)
+g.sprites.append(platform1)
+g.sprites.append(platform2)
+g.sprites.append(platform3)
+g.sprites.append(platform4)
+g.sprites.append(platform5)
+g.sprites.append(platform6)
+g.sprites.append(platform7)
+g.sprites.append(platform8)
+g.sprites.append(platform9)
+g.sprites.append(platform10)
+g.mainloop()
+</pre>
+<p class="indent">
+  We first create a ton of
+  <span class="literal1">
+   PlatformSprite
+  </span>
+  objects, saving them as variables
+  <span class="literal1">
+   platform1
+  </span>
+  ,
+  <span class="literal1">
+   platform2
+  </span>
+  ,
+  <span class="literal1">
+   platform3
+  </span>
+  , and so on, up to
+  <span class="literal1">
+   platform10
+  </span>
+  . We then add each platform to the
+  <span class="literal1">
+   sprites
+  </span>
+  variable, which we
+  <span id="page_230">
+</span>
+  created in our
+  <span class="literal1">
+   Game
+  </span>
+  class. If you run the game now, it should look like
+  <a class="calibre6" href="ch14.xhtml#ch14fig07">
+   Figure 14-7
+  </a>
+  .
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre159" id="ch14fig07" src="../images/14fig07.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 14-7: Displaying all the platforms
+  </em>
+</p>
+<p class="indent">
+  We’ve created the basics of our game! Now we’re ready to add our main character, Mr. Stick Man.
+ </p>
+<h3 class="h1" id="ch14lev1sec14">
+  What You Learned
+ </h3>
+<p class="noindent">
+  In this chapter, you created the
+  <span class="literal1">
+   Game
+  </span>
+  class and drew the background image onto the screen. You learned how to determine whether a horizontal or vertical position is within the bounds of two other horizontal or vertical positions by creating the
+  <span class="literal1">
+   within_x
+  </span>
+  and
+  <span class="literal1">
+   within_y
+  </span>
+  functions. You then used these functions to create new functions that determine whether one coordinate object had collided with another. We’ll use these functions in the next chapters when we animate Mr. Stick Man and need to detect whether he has collided with a platform as he moves around the canvas.
+ </p>
+<p class="indent">
+  We also created a parent class
+  <span class="literal1">
+   Sprite
+  </span>
+  and its first child class,
+  <span class="literal1">
+   PlatformSprite
+  </span>
+  , which we used to draw the platforms onto the canvas.
+ </p>
+<h3 class="h1" id="ch14lev1sec15">
+<span class="calibre2" id="page_231">
+</span>
+  Programming Puzzles
+ </h3>
+<p class="noindent">
+  The following coding puzzles are some ways to experiment with the game’s background image. Check your answers at
+  <em class="calibre7">
+<a class="calibre6" href="http://python-for-kids.com">
+    http://python-for-kids.com
+   </a>
+</em>
+  .
+ </p>
+<h4 class="h3" id="ch14lev2sec5">
+  #1: Checkerboard
+ </h4>
+<p class="noindent">
+  Try changing the
+  <span class="literal1">
+   Game
+  </span>
+  class so that the background image is drawn like a checkerboard, as in
+  <a class="calibre6" href="ch14.xhtml#ch14fig08">
+   Figure 14-8
+  </a>
+  .
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre160" id="ch14fig08" src="../images/14fig08.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 14-8: Background as a checkerboard
+  </em>
+</p>
+<h4 class="h3" id="ch14lev2sec6">
+  #2: Two-Image Checkerboard
+ </h4>
+<p class="noindent">
+  Once you’ve figured out how to create a checkerboard effect, try using two alternating images. Come up with another wallpaper image (using your graphics program), and then change the
+  <span class="literal1">
+   Game
+  </span>
+  class so it displays a checkerboard with two alternating images instead of one image and the blank background.
+ </p>
+<h4 class="h3" id="ch14lev2sec7">
+  #3: Bookshelf and Lamp
+ </h4>
+<p class="noindent">
+  You can create different wallpaper images to make the game’s background more interesting. Create a copy of the background image; then draw a simple bookshelf, a table with a lamp, or a window. Dot these images around the screen by changing the
+  <span class="literal1">
+   Game
+  </span>
+  class so that it displays a few different wallpaper images.
+ </p>
+<h4 class="h3" id="ch14lev2sec8">
+<span class="calibre2" id="page_232">
+</span>
+  #4: Random Background
+ </h4>
+<p class="noindent">
+  As an alternative to the two-image checkerboard, try creating five different background images. You can either draw them as a repeating pattern of background images (1, 2, 3, 4, 5, 1, 2, 3, 4, 5, and so on), or you can draw them randomly.
+ </p>
+<p class="indent">
+  Hint: If you import the
+  <span class="literal1">
+   random
+  </span>
+  module and put your images in a list, try using
+  <span class="literal1">
+   random.choice()
+  </span>
+  to pick one randomly.
+ </p>
+</div></body>
+</html>

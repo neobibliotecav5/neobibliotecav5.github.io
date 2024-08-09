@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c18-0014">El caparazón de Django</h3>
+<p class="BodyFirst">Ahora que hemos introducido algunos datos, podemos examinarlos programáticamente a través de una sesión de terminal interactiva. Este entorno interactivo se llama Django <em translate="no">shell</em>, y es un entorno estupendo para probar y solucionar problemas de tu proyecto. Aquí tienes un ejemplo de sesión de terminal interactiva:</p>
+<pre translate="no"><code translate="no">(ll_env)learning_log$ <b>python manage.py shell</b>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> &gt;&gt;&gt; <b>from learning_logs.models import Topic</b>
+&gt;&gt;&gt; <b>Topic.objects.all()</b>
+&lt;QuerySet [&lt;Topic: Chess&gt;, &lt;Topic: Rock Climbing&gt;]&gt;</code></pre>
+<p>El comando <code translate="no">python manage.py shell</code>, ejecutado en un entorno virtual activo, lanza un intérprete de Python que puedes utilizar para explorar los datos almacenados en la base de datos de tu proyecto. Aquí, importamos el modelo <code translate="no">Topic</code> del módulo <code translate="no">learning_logs.models</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> A continuación, utilizamos el método <code translate="no">Topic.objects.all()</code> para obtener todas las instancias del modelo <code translate="no">Topic</code>; la lista que se devuelve se denomina <em translate="no">queryset</em>.</p>
+<p>Podemos hacer un bucle sobre un conjunto de consultas igual que lo haríamos sobre una lista. Así puedes ver el ID que se ha asignado a cada objeto tema:</p>
+<pre translate="no"><code translate="no">&gt;&gt;&gt; <b>topics = Topic.objects.all()</b>
+&gt;&gt;&gt; <b>for topic in topics:</b>
+...     <b>print(topic.id, topic)</b>
+...
+1 Chess
+2 Rock Climbing</code></pre>
+<p>Asignamos el conjunto de consultas a <code translate="no">topics</code> y, a continuación, imprimimos el atributo <code translate="no">id</code> de cada tema y la representación de cadena de cada tema. Podemos ver que <code translate="no">Chess</code> tiene un ID de <code translate="no">1</code> y <code translate="no">Rock Climbing</code> tiene un ID de <code translate="no">2</code>.</p>
+<p><span epub:type="pagebreak" id="Page_387" title="387"></span>Si conoces el ID de un objeto concreto, puedes utilizar el método <code translate="no">Topic.objects.get()</code> para recuperar ese objeto y examinar cualquier atributo que tenga. Veamos los valores <code translate="no">text</code> y <code translate="no">date_added</code> de <code translate="no">Chess</code>:</p>
+<pre translate="no"><code translate="no">&gt;&gt;&gt; <b>t = Topic.objects.get(id=1)</b>
+&gt;&gt;&gt; <b>t.text</b>
+'Chess'
+&gt;&gt;&gt; <b>t.date_added</b>
+datetime.datetime(2022, 5, 20, 3, 33, 36, 928759,
+    tzinfo=datetime.timezone.utc)</code></pre>
+<p>También podemos mirar las entradas relacionadas con un tema determinado. Anteriormente, definimos el atributo <code translate="no">topic</code> para el modelo <code translate="no">Entry</code>. Se trataba de un <code translate="no">ForeignKey</code>, una conexión entre cada entrada y un tema. Django puede utilizar esta conexión para obtener cada entrada relacionada con un tema determinado, de la siguiente manera:</p>
+<pre translate="no"><code translate="no"><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> &gt;&gt;&gt; <b>t.entry_set.all()</b>
+&lt;QuerySet [&lt;Entry: The opening is the first part of the game, roughly...&gt;, &lt;Entry:
+In the opening phase of the game, it's important t...&gt;]&gt;</code></pre>
+<p>Para obtener datos a través de una relación de clave foránea, utiliza el nombre en minúsculas del modelo relacionado seguido de un guión bajo y la palabra <code translate="no">set</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Por ejemplo, supongamos que tienes los modelos <code translate="no">Pizza</code> y <code translate="no">Topping</code>, y que <code translate="no">Topping</code> está relacionado con <code translate="no">Pizza</code> a través de una clave ajena. Si tu objeto se llama <code translate="no">my_pizza</code>, y representa una única pizza, puedes obtener todos los ingredientes de la pizza utilizando el código <code translate="no">my_pizza.topping_set.all()</code>.</p>
+<p>Utilizaremos esta sintaxis cuando empecemos a codificar las páginas que pueden solicitar los usuarios. El intérprete de comandos es realmente útil para asegurarte de que tu código recupera los datos que deseas. Si tu código funciona como esperas en el intérprete de comandos, también debería funcionar correctamente en los archivos de tu proyecto. Si tu código genera errores o no recupera los datos que esperas, es mucho más fácil solucionar los problemas de tu código en el sencillo entorno del shell que dentro de los archivos que generan las páginas web. No nos referiremos mucho al shell, pero deberías seguir utilizándolo para practicar el trabajo con la sintaxis de Django para acceder a los datos almacenados en el proyecto.</p>
+<p>Cada vez que modifiques tus modelos, tendrás que reiniciar la shell para ver los efectos de esos cambios. Para salir de una sesión de shell, pulsa CTRL-D; en Windows, pulsa CTRL-Z y luego ENTER.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c18_24.html">anterior</a><a href="c18.html">Subtema 25 de 41: (Ver todo)</a><a href="c18_26.html">siguiente</a><br/></p>
+<br/><a href="c18_25.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,523 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Unknown</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+<body class="calibre">
+<div class="calibre1" id="sbo-rt-content">
+<h2 class="h2" id="ch04">
+<span class="calibre2" id="page_43">
+</span>
+<span class="big">
+   4
+  </span>
+<br class="calibre10"/>
+  Drawing with Turtles
+ </h2>
+<div class="image">
+<img alt="Image" class="calibre8" src="../images/common.jpg"/>
+</div>
+<p class="indent">
+  A turtle in Python is not quite like a turtle in the real world. We know a turtle as a reptile that moves around very slowly and carries its house on its back. In the world of Python, a
+  <em class="calibre7">
+   turtle
+  </em>
+  is a small, black arrow that moves slowly around the screen. Actually, considering that a Python turtle leaves a trail as it moves around the screen, it’s less like a turtle and more like a snail or slug.
+ </p>
+<p class="indent">
+  In this chapter, we’ll use a Python turtle to learn the basics of computer graphics by drawing some simple shapes and lines.
+ </p>
+<h3 class="h1" id="ch04lev1sec1">
+<span class="calibre2" id="page_44">
+</span>
+  Using Python’s Turtle Module
+ </h3>
+<p class="noindent">
+  A
+  <em class="calibre7">
+   module
+  </em>
+  in Python is a way for programmers to make useful code available for other programmers to use. (Among other things, a module can contain
+  <em class="calibre7">
+   functions
+  </em>
+  we can use.) We’ll learn more about modules and functions in
+  <a class="calibre6" href="ch07.xhtml#ch07">
+   Chapter 7
+  </a>
+  .
+ </p>
+<p class="indent">
+  The turtle is a special module in Python that we can use to learn how computers draw pictures on a screen. The
+  <span class="literal1">
+   turtle
+  </span>
+  module is a way of programming vector graphics, which is basically just drawing with simple lines, dots, and curves.
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre40" src="../images/f0044-01.jpg"/>
+</div>
+<p class="indent">
+  Let’s see how the turtle works. First, start the Python Shell. Next, tell Python to use the turtle by importing the
+  <span class="literal1">
+   turtle
+  </span>
+  module, as follows:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">import</span> turtle</pre>
+<p class="noindent">
+  Importing a module tells Python that you want to use it.
+ </p>
+<h3 class="h1" id="ch04lev1sec2">
+  Creating a Canvas
+ </h3>
+<p class="noindent">
+  Now that we’ve imported the
+  <span class="literal1">
+   turtle
+  </span>
+  module, we need to create a
+  <em class="calibre7">
+   canvas
+  </em>
+  —a blank space to draw on, like an artist’s canvas. To do so, we call the function
+  <span class="literal1">
+   Turtle
+  </span>
+  from the
+  <span class="literal1">
+   turtle
+  </span>
+  module, which automatically creates a canvas (we’ll learn more about what a function is in
+  <a class="calibre6" href="ch07.xhtml#ch07">
+   Chapter 7
+  </a>
+  ).
+ </p>
+<p class="indent">
+<span id="page_45">
+</span>
+  Enter this into the Python Shell:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> t = turtle.Turtle()</pre>
+<p class="noindent">
+  You should see a blank box (the canvas), with an arrow in the center (similar to
+  <a class="calibre6" href="ch04.xhtml#ch04fig01">
+   Figure 4-1
+  </a>
+  ). The arrow in the middle of the screen is the turtle, and you’re right—it isn’t very turtle-like.
+ </p>
+<div class="image1" id="ch04fig01">
+<img alt="Image" class="calibre41" src="../images/04fig01.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 4-1: Running turtle in the Python Shell
+  </em>
+</p>
+<div class="note">
+<p class="notet">
+<strong class="calibre3">
+<span class="notes">
+     NOTE
+    </span>
+</strong>
+</p>
+<p class="notep">
+<em class="calibre7">
+    If the turtle module doesn’t appear to be working, there are some additional steps you can try in
+    <a class="calibre6" href="app03.xhtml#app03">
+     Appendix C
+    </a>
+    .
+   </em>
+</p>
+</div>
+<h3 class="h1" id="ch04lev1sec3">
+  Moving the Turtle
+ </h3>
+<p class="indent">
+  You can send instructions to the turtle by using functions available on the variable
+  <span class="literal1">
+   t
+  </span>
+  we just created, similar to using the
+  <span class="literal1">
+   Turtle
+  </span>
+  function in the
+  <span class="literal1">
+   turtle
+  </span>
+  module. For example, the
+  <span class="literal1">
+   forward
+  </span>
+  instruction tells the turtle to move forward. To tell the turtle to advance 50 pixels, enter the following command:
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre42" src="../images/f0045-01.jpg"/>
+</div>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> t.forward(50)</pre>
+<p class="noindent">
+  You should see something like
+  <a class="calibre6" href="ch04.xhtml#ch04fig02">
+   Figure 4-2
+  </a>
+  .
+ </p>
+<div class="image1" id="ch04fig02">
+<img alt="Image" class="calibre43" src="../images/04fig02.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 4-2: The turtle moving forward
+  </em>
+</p>
+<p class="indent">
+<span id="page_46">
+</span>
+  The turtle has moved forward 50 pixels. A
+  <em class="calibre7">
+   pixel
+  </em>
+  is a single point on the screen—the smallest element that can be represented. Everything you see on your computer monitor is made up of pixels, which are tiny, square dots. If you could zoom in on the canvas and the line drawn by the turtle, you would be able to see that the arrow representing the turtle’s path is just a bunch of pixels. This is the basis for simple computer graphics.
+ </p>
+<div class="image1" id="ch04fig03">
+<img alt="Image" class="calibre44" src="../images/04fig03.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 4-3: Pixels are dots!
+  </em>
+</p>
+<p class="indent">
+<span id="page_47">
+</span>
+  Now we’ll tell the turtle to turn 90 degrees to the left with the following command:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> t.left(90)</pre>
+<p class="noindent">
+  If you haven’t learned about
+  <em class="calibre7">
+   degrees
+  </em>
+  yet, imagine you’re standing in the center of a circle:
+ </p>
+<ul class="calibre22">
+<li class="noindent2">
+   The direction you’re facing is 0 degrees.
+  </li>
+<li class="noindent2">
+   If you hold out your left arm, that’s 90 degrees left.
+  </li>
+<li class="noindent2">
+   If you hold out your right arm, that’s 90 degrees right.
+  </li>
+</ul>
+<p class="noindent">
+  You can see this 90-degree turn to the left or right in
+  <a class="calibre6" href="ch04.xhtml#ch04fig04">
+   Figure 4-4
+  </a>
+  .
+ </p>
+<div class="image1" id="ch04fig04">
+<img alt="Image" class="calibre45" src="../images/04fig04.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 4-4: 90 degrees left and right
+  </em>
+</p>
+<p class="indent">
+  If you continue around the circle to the right from where your right arm is pointing, 180 degrees is directly behind you, 270 degrees is the direction your left arm is pointing, and 360 degrees is back where you started; degrees go from 0 to 360. The degrees in a full circle, when turning to the right, can be seen in 45-degree increments in
+  <a class="calibre6" href="ch04.xhtml#ch04fig05">
+   Figure 4-5
+  </a>
+  .
+ </p>
+<div class="image1" id="ch04fig05">
+<img alt="Image" class="calibre46" src="../images/04fig05.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 4-5: 45-degree increments
+  </em>
+</p>
+<p class="indent">
+<span id="page_48">
+</span>
+  When Python’s turtle turns left, it swivels around to face the new direction (just as if you turned your body to face where your arm is pointing 90 degrees left). The
+  <span class="literal1">
+   t.left(90)
+  </span>
+  command points the arrow up (since it started by pointing to the right). You can see this in
+  <a class="calibre6" href="ch04.xhtml#ch04fig06">
+   Figure 4-6
+  </a>
+  .
+ </p>
+<div class="image1" id="ch04fig06">
+<img alt="Image" class="calibre47" src="../images/04fig06.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 4-6: Turtle after turning left
+  </em>
+</p>
+<div class="note">
+<p class="notet">
+<strong class="calibre3">
+<span class="notes">
+     NOTE
+    </span>
+</strong>
+</p>
+<p class="notep">
+<em class="calibre7">
+    When you call
+    <span class="literal1">
+     t.left(90)
+    </span>
+    , it’s the same as calling
+    <span class="literal1">
+     t.right(270)
+    </span>
+    in terms of the direction the turtle ends up facing at the end. This is also true when calling
+    <span class="literal1">
+     t.right(90)
+    </span>
+    , which is the same as
+    <span class="literal1">
+     t.left(270)
+    </span>
+    . Just imagine that circle and follow along with the degrees.
+   </em>
+</p>
+</div>
+<p class="indent">
+  Now we’ll draw a square. Add the following code to the lines you’ve already entered:
+ </p>
+<pre class="pre"><span id="page_49"></span><span class="brown">&gt;&gt;&gt;</span> t.forward(50)
+<span class="brown">&gt;&gt;&gt;</span> t.left(90)
+<span class="brown">&gt;&gt;&gt;</span> t.forward(50)
+<span class="brown">&gt;&gt;&gt;</span> t.left(90)
+<span class="brown">&gt;&gt;&gt;</span> t.forward(50)
+<span class="brown">&gt;&gt;&gt;</span> t.left(90)</pre>
+<p class="indent">
+  Your turtle should have drawn a square and should now be facing in the same direction it started, as seen in
+  <a class="calibre6" href="ch04.xhtml#ch04fig07">
+   Figure 4-7
+  </a>
+  .
+ </p>
+<div class="image1" id="ch04fig07">
+<img alt="Image" class="calibre43" src="../images/04fig07.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 4-7: Turtle drawing a square
+  </em>
+</p>
+<p class="indent">
+  To erase the canvas, enter
+  <span class="literal1">
+   t.reset()
+  </span>
+  . This clears the canvas and puts the turtle back at its starting position.
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> t.reset()</pre>
+<p class="indent">
+  You can also use
+  <span class="literal1">
+   t.clear()
+  </span>
+  , which just clears the screen and leaves the turtle where it is.
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> t.clear()</pre>
+<p class="indent">
+  We can also turn our turtle right or move it backward. We can use
+  <span class="literal1">
+   up
+  </span>
+  to lift the “pen” off the page (in other words, tell the
+  <span id="page_50">
+</span>
+  turtle to stop drawing), and
+  <span class="literal1">
+   down
+  </span>
+  to start drawing again. These functions are written in the same way as the others we’ve used.
+ </p>
+<p class="indent">
+  Let’s try another drawing using some of these commands. This time, we’ll have the turtle draw two lines. Enter the following code:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> t.reset()
+<span class="brown">&gt;&gt;&gt;</span> t.backward(100)
+<span class="brown">&gt;&gt;&gt;</span> t.up()
+<span class="brown">&gt;&gt;&gt;</span> t.right(90)
+<span class="brown">&gt;&gt;&gt;</span> t.forward(20)
+<span class="brown">&gt;&gt;&gt;</span> t.left(90)
+<span class="brown">&gt;&gt;&gt;</span> t.down()
+<span class="brown">&gt;&gt;&gt;</span> t.forward(100)</pre>
+<p class="indent">
+  First, we clear the canvas and move the turtle back to its starting position with
+  <span class="literal1">
+   t.reset()
+  </span>
+  . Next, we move the turtle backward 100 pixels with
+  <span class="literal1">
+   t.backward(100)
+  </span>
+  , and then use
+  <span class="literal1">
+   t.up()
+  </span>
+  to pick up the pen and stop drawing.
+ </p>
+<p class="indent">
+  Then, with the
+  <span class="literal1">
+   t.right(90)
+  </span>
+  command, we turn the turtle right 90 degrees to point down, toward the bottom of the screen, and with
+  <span class="literal1">
+   t.forward(20)
+  </span>
+  , we move forward 20 pixels. Nothing is drawn because we used the
+  <span class="literal1">
+   up
+  </span>
+  command on the third line. Next, we turn the turtle left 90 degrees to face right with
+  <span class="literal1">
+   t.left(90)
+  </span>
+  , and then we use the
+  <span class="literal1">
+   down
+  </span>
+  command to tell the turtle to start drawing again. Lastly, we draw a line forward, parallel to the first line we drew, with
+  <span class="literal1">
+   t.forward(100)
+  </span>
+  . The two parallel lines we’ve drawn end up looking like
+  <a class="calibre6" href="ch04.xhtml#ch04fig08">
+   Figure 4-8
+  </a>
+  .
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre48" src="../images/f0050-01.jpg"/>
+</div>
+<div class="image1" id="ch04fig08">
+<img alt="Image" class="calibre43" src="../images/04fig08.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 4-8: Turtle drawing parallel lines
+  </em>
+</p>
+<h3 class="h1" id="ch04lev1sec4">
+<span class="calibre2" id="page_51">
+</span>
+  What You Learned
+ </h3>
+<p class="noindent">
+  In this chapter, you learned how to use Python’s
+  <span class="literal1">
+   turtle
+  </span>
+  module. We drew some simple lines, using left and right turns and forward and backward commands. You found out how to stop the turtle from drawing by using
+  <span class="literal1">
+   up
+  </span>
+  , and start drawing again with the
+  <span class="literal1">
+   down
+  </span>
+  command. You also discovered that the turtle turns by degrees.
+ </p>
+<h3 class="h1" id="ch04lev1sec5">
+  Programming Puzzles
+ </h3>
+<p class="noindent">
+  Try drawing some of the following shapes with the turtle. The solutions can be found at
+  <em class="calibre7">
+<a class="calibre6" href="http://python-for-kids.com">
+    http://python-for-kids.com
+   </a>
+</em>
+  .
+ </p>
+<h4 class="h3" id="ch04lev2sec1">
+<span class="calibre2" id="page_52">
+</span>
+  #1: A Rectangle
+ </h4>
+<p class="noindent">
+  Create a new canvas using the
+  <span class="literal1">
+   turtle
+  </span>
+  module’s
+  <span class="literal1">
+   Turtle
+  </span>
+  function and then draw a rectangle.
+ </p>
+<h4 class="h3" id="ch04lev2sec2">
+  #2: A Triangle
+ </h4>
+<p class="noindent">
+  Create another canvas and draw a triangle. Look back at the diagram of the circle with the degrees (“Moving the Turtle” on
+  <a class="calibre6" href="ch04.xhtml#ch04lev1sec3">
+   page 45
+  </a>
+  ) to remind yourself which direction to turn the turtle.
+ </p>
+<h4 class="h3" id="ch04lev2sec3">
+  #3: A Box Without Corners
+ </h4>
+<p class="noindent">
+  Write a program to draw the four lines shown in
+  <a class="calibre6" href="ch04.xhtml#ch04fig09">
+   Figure 4-9
+  </a>
+  (the size isn’t important, just the shape).
+ </p>
+<div class="image1" id="ch04fig09">
+<img alt="Image" class="calibre49" src="../images/04fig09.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 4-9: A box without corners in Turtle
+  </em>
+</p>
+<h4 class="h3" id="ch04lev2sec4">
+  #4: A Tilted Box Without Corners
+ </h4>
+<p class="noindent">
+  Write a program to draw the four lines shown in
+  <a class="calibre6" href="ch04.xhtml#ch04fig10">
+   Figure 4-10
+  </a>
+  (similar to the previous puzzle, but the box is tilted on its side). Again, the size of the box isn’t important—just the shape.
+ </p>
+<div class="image1" id="ch04fig10">
+<img alt="Image" class="calibre50" src="../images/04fig10.jpg"/>
+</div>
+<p class="figcap">
+<span id="page_53">
+</span>
+<em class="calibre7">
+   Figure 4-10:  A tilted box without corners in Turtle
+  </em>
+<span id="page_54">
+</span>
+</p>
+</div></body>
+</html>

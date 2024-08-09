@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch08lev1sec02"><span epub:type="pagebreak" id="page_161"></span><strong><span class="blue1">Uso de sentencias if y bucles while en funciones</span></strong></h3>
+<p class="noindent">En los <a href="ch06.xhtml#ch06">Capítulos 6</a> y <a href="ch07.xhtml#ch07">7</a>, aprendiste a poner sentencias <span class="literal">if</span> dentro de otras sentencias <span class="literal">if</span> y bucles <span class="literal">while</span> dentro de otros bucles <span class="literal">while</span>. Aprendiste que incluso puedes poner sentencias <span class="literal">if</span> dentro de bucles <span class="literal">while</span> y viceversa. En esta sección aprenderás a colocar sentencias <span class="literal">if</span> y bucles dentro de funciones. Esto hace que tus funciones sean muy flexibles, porque puedes utilizarlas para tomar decisiones y repetir código.</p>
+<h4 class="h4" id="ch08lev2sec10"><strong><span class="blue1">Sentencias if</span></strong></h4>
+<p class="noindent">Cuando escribes una sentencia <span class="literal">if</span> dentro de una función, la sintaxis es idéntica a la de una sentencia <span class="literal">if</span> normal. Sólo tienes que acordarte de sangrar la sentencia <span class="literal">if</span> cuatro espacios más al principio de cada línea para que Python sepa que forma parte de la función.</p>
+<p class="indent">El siguiente código toma un número escrito como una cadena y devuelve el número como un entero. Por ejemplo, el argumento <span class="literal">"cuatro</span> " devuelve el valor <span class="literal">4</span>:</p>
+<p class="programs" translate="no"><span class="orange">def</span> <span class="blue1">wordToNumber</span>(numToConvert):<br translate="no"/> <span class="green">""" Converts a number written as a word to an integer """</span><br translate="no"/> <span class="orange">if</span> numToConvert == <span class="green">"one"</span>:<br translate="no"/>        numAsInt = 1<br translate="no"/> <span class="orange">elif</span> numToConvert == <span class="green">"two"</span>:<br translate="no"/>        numAsInt = 2<br translate="no"/> <span class="orange">elif</span> numToConvert == <span class="green">"three"</span>:<br translate="no"/>        numAsInt = 3<br translate="no"/> <span class="orange">elif</span> numToConvert == <span class="green">"four"</span>:<br translate="no"/>        numAsInt = 4<br translate="no"/> <span class="orange">elif</span> numToConver == <span class="green">"five"</span>:<br translate="no"/>        numAsInt = 5<br translate="no"/><br translate="no"/> <span class="orange">return</span> numAsInt</p>
+<p class="indent">Veamos otro ejemplo. La siguiente función comprueba si has conocido antes a una persona y utiliza un saludo adecuado en función del resultado:</p>
+<p class="programs" translate="no"><span class="ent">➊</span> <span class="orange">def</span> <span class="blue1">chooseGreeting</span>(metBefore):<br translate="no"/> <span class="green">""" Chooses a greeting depending on whether you've met someone before.</span><br translate="no"/> <span class="green">metBefore argument should be a Boolean value """</span><br translate="no"/> <span class="orange">if</span> metBefore:<br translate="no"/><span class="ent">➋</span> <span class="rose">print</span>(<span class="green">"Nice to see you again"</span>)<br translate="no"/> <span class="orange">else</span>:<br translate="no"/><span class="ent">➌</span> <span class="rose">print</span>(<span class="green">"Nice to meet you"</span>)<br translate="no"/><br translate="no"/>   chooseGreeting(<span class="orange">True</span>)<br translate="no"/>   chooseGreeting(<span class="orange">False</span>)</p>
+<p class="indent"><span epub:type="pagebreak" id="page_162"></span>La función <span class="literal">elegirSaludo(</span> ) toma un argumento booleano, llamado <span class="literal">metAntes</span> <span class="ent">➊.</span> La sentencia <span class="literal">if</span> que hay dentro de la función imprime una salida basada en el valor del argumento. Si el valor es <span class="literal">True</span>, la salida será "Encantado de <span class="literal"> volver a verte"</span> <span class="ent">➋,</span> y si es <span class="literal">False</span> <span class="ent">➌,</span> la salida será <span class="literal">"Encantado de conocerte"</span>.</p>
+<h4 class="h4a" id="ch08lev2sec11"><strong>Misión nº 44: Ayudante del color de la lana</strong></h4>
+<p class="noindent">Has utilizado los métodos <span class="literal">setBlock()</span> y <span class="literal">setBlocks()</span> con argumentos para establecer las coordenadas y el tipo de bloque, pero estos métodos también tienen un argumento extra opcional que establecerá el <em>estado</em> del bloque.</p>
+<p class="indent">Cada bloque en Minecraft tiene 16 estados, de 0 a 15. La lana, por ejemplo, tiene un color diferente para cada estado. El TNT (ID del bloque 46) no explotará cuando lo aplastes en su estado por defecto (estado 0), pero es explosivo cuando lo aplastas en el estado 1 del bloque. Aunque cada bloque tiene 16 estados, no todos tienen comportamientos diferentes.</p>
+<p class="indent">Para establecer el estado de un bloque, proporciona a la función <span class="literal">setblock()</span> o <span class="literal">setblocks()</span> un argumento extra. El siguiente código crea un bloque rosa de lana:</p>
+<p class="programs" translate="no"><span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>mc = Minecraft.create()<br translate="no"/><br translate="no"/>block = 35<br translate="no"/>state = 6<br translate="no"/><span class="red"># Creates a single block of pink wool</span><br translate="no"/>mc.setBlock(10, 3, -4, block, state)<br translate="no"/><br translate="no"/><span class="red"># Creates a cuboid of pink wool</span><br translate="no"/>mc.setBlocks(11, 3, -4, 20, 6, -8, block, state)</p>
+<p class="indent">La lana (ID de bloque 35) tiene muchos usos en Minecraft debido a sus diferentes colores, pero es difícil recordar los diferentes estados de los bloques. Afortunadamente, no necesitas memorizar los diferentes estados de los bloques cuando puedes utilizar un programa que te lo recuerde.</p>
+<p class="indent">Hagamos un programa que contenga los estados del bloque lana. El programa contendrá una función con un argumento que toma el color que quieras escrito como una cadena. A continuación, la función devuelve el estado del bloque para el color de la lana como un número entero. La función contendrá la mayor parte del código del programa. Sin embargo, añadirás un par de líneas de código para recibir la entrada de un usuario y colocar el bloque en el juego, y utilizarás tu nueva y elegante función para establecer el color.</p>
+<p class="indent">En primer lugar, tendrás que averiguar los estados de bloque para los distintos colores de lana. Puedes encontrarlos en la "<a href="app03.xhtml#app03">Hoja de trucos de ID de bloque</a>" en <a href="app03.xhtml#page_299">la página 299</a>. Aquí tienes algo de código para empezar (el rosa es el estado de bloque 6):</p>
+<p class="sidenote" translate="no"><span class="blue"><em>woolColors.py</em></span></p>
+<p class="programs" translate="no"> <span class="orange">def</span> <span class="blue1">getWoolState</span>(color):<br translate="no"/> <span class="green">""" Takes a color as a string and returns the wool block state for</span><br translate="no"/> <span class="green">that color """</span><br translate="no"/><span class="ent">➊</span> <span class="orange">if</span> color == <span class="green">"pink"</span>:<br translate="no"/>           blockState = 6<br translate="no"/> <span class="orange">elif</span> <span class="red"># Add elif statements for the other colors</span><br translate="no"/> <span class="red"># Return the blockState here</span><br translate="no"/><br translate="no"/><span class="ent">➋</span> colorString = <span class="rose">input</span>(<span class="green">"Enter a block color: "</span>)<br translate="no"/>   state = getWoolState(colorString)<br translate="no"/><br translate="no"/><span class="ent">➌</span> pos = mc.player.getTilePos()<br translate="no"/>   mc.setBlock(pos.x, pos,y, pos.z, 35, state)</p>
+<p class="indent"><span epub:type="pagebreak" id="page_163"></span>De momento, el programa sólo tiene el principio de la función <span class="literal">getWoolState()</span>. Sólo tiene una sentencia <span class="literal">if</span> para el color rosa <span class="ent">➊.</span> También se incluye código al final del programa para tomar la entrada del usuario para el color del bloque <span class="ent">➋</span> y código para colocar el bloque de lana en la posición del jugador <span class="ent">➌.</span></p>
+<p class="indent">Añade a la función <span class="literal">getWoolState(</span> ) declaraciones <span class="literal">elif</span> para otros colores de lana y sus correspondientes estados de bloque. El programa debe tomar un argumento para el color del bloque y devolver el valor entero del estado del bloque. Por ejemplo, si proporcionas el argumento <span class="literal">"rosa</span> ", devolverá el valor 6. También tendrás que añadir una sentencia <span class="literal">return</span> al programa. Utiliza los comentarios como guía.</p>
+<p class="indent">Guarda el archivo como <em>lanaColores.py</em> en la carpeta de <em>funciones</em>.</p>
+<p class="indent">Si quieres que el programa sea más fácil de usar, puedes enviar un mensaje al chat si el argumento no es un color válido. <a href="ch08.xhtml#ch8fig4">La Figura 8-4</a> muestra la entrada en el intérprete de comandos Python y el bloque de lana colocado en el juego.</p>
+<div class="image"><img alt="image" src="../images/f08-04.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch8fig4"></a><em>Figura 8-4: Ahora puedo crear un bloque de lana de cualquier color introduciendo el nombre del color que quiero.</em></p>
+<h4 class="h4" id="ch08lev2sec12"><strong><span class="blue1">Bucles while</span></strong></h4>
+<p class="noindent">Al igual que las sentencias <span class="literal">if</span>, los bucles se pueden escribir dentro de funciones. La sintaxis de un bucle dentro de una función es la misma que la de un bucle normal. Sólo tienes que recordar que el bucle debe tener una sangría adicional de cuatro espacios en cada línea para indicar que pertenece a la función.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_164"></span>En el siguiente ejemplo, el bucle <span class="literal">while</span> dentro de la función imprimirá el argumento <span class="literal">toPrint</span>. El número de veces que se repite el bucle viene determinado por el argumento <span class="literal">repeticiones</span>.</p>
+<p class="programs" translate="no"><span class="orange">def</span> <span class="blue1">printMultiple</span>(toPrint, repeats):<br translate="no"/> <span class="green">""" Prints a string a number of times determined by the repeats variable """</span><br translate="no"/>    count = 0<br translate="no"/> <span class="orange">while</span> count &lt; repeats:<br translate="no"/> <span class="rose">print</span>(toPrint)<br translate="no"/>        count += 1</p>
+<p class="indent">También puedes utilizar sentencias <span class="literal">return</span> y bucles <span class="literal">while</span> en la misma función. En la mayoría de los casos, querrás que la sentencia de <span class="literal">retorno</span> esté fuera del bucle. (Si utilizas la sentencia <span class="literal">return</span> dentro de un bucle, romperá el bucle y terminará la función). Veamos un ejemplo:</p>
+<p class="programs" translate="no"> <span class="orange">def</span> <span class="blue1">doubleUntilHundred</span>(numberToDbl):<br translate="no"/> <span class="green">""" Doubles a number until it is greater than 100. Returns the number of</span><br translate="no"/> <span class="green">times the number was doubled """</span><br translate="no"/>       count = 0<br translate="no"/> <span class="orange">while</span> numToDbl &lt; 100:<br translate="no"/>           numberToDbl = numberToDbl * 2<br translate="no"/>           count += 1<br translate="no"/><span class="ent">➊</span> <span class="orange">return</span> count<br translate="no"/><br translate="no"/> <span class="rose">print</span>(doubleUntilHundred(2))</p>
+<p class="indent">Este programa duplica un número hasta que es mayor que 100. Luego devuelve el número de veces que se repitió el bucle <span class="ent">➊.</span></p>
+<p class="indent">También puedes poner llamadas a funciones dentro de bucles, como hiciste en capítulos anteriores.</p>
+<h4 class="h4a" id="ch08lev2sec13"><strong>Misión nº 45: Bloques, por todas partes</strong></h4>
+<p class="noindent">Al utilizar bucles dentro de funciones, puedes utilizar un argumento para determinar el número de veces que se repite un bucle. Utilizando la función <span class="literal">setBlock(</span> ), también puedes determinar el tipo de bloque que se colocará dentro del bucle.</p>
+<div class="note">
+<p class="notet"><strong><span class="warnings">ADVERTENCIA</span></strong></p>
+<p class="notep"><em>El programa de esta misión podría ser destructivo, por lo que tal vez quieras probarlo en un mundo nuevo para preservar tus preciadas creaciones.</em></p>
+</div>
+<p class="indent">En esta misión, crearás una función que coloca bloques aleatoriamente por el mapa. El número de bloques que coloca y el tipo de bloque que coloca vienen determinados por los argumentos de la función.</p>
+<p class="indent"><a href="ch08.xhtml#ch8ex4">El listado 8-4</a> genera un melón en un lugar aleatorio del mapa.</p>
+<p class="sidenote" translate="no"><span epub:type="pagebreak" id="page_165"></span><span class="blue"><em>blocksEverywhere.py</em></span></p>
+<p class="programs" translate="no"> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>   mc = Minecraft.create()<br translate="no"/> <span class="orange">import</span> random<br translate="no"/><br translate="no"/> <span class="orange">def</span> <span class="blue1">randomBlockLocations</span>(blockType, repeats):<br translate="no"/><span class="ent">➊</span>     count = 0<br translate="no"/><span class="ent">➋</span> <span class="red"># Add the loop here</span><br translate="no"/>       x = random.randint(-127, 127)<br translate="no"/>       z = random.randint(-127, 127)<br translate="no"/><span class="ent">➌</span>     y = mc.getHeight(x, z)<br translate="no"/>       mc.setBlock(x, y, z, blockType)<br translate="no"/>       count += 1</p>
+<p class="examplet"><a id="ch8ex4"></a><em>Listado 8-4: Al ser llamada, esta función colocará un bloque aleatoriamente en el juego.</em></p>
+<p class="indent">Copia <a href="ch08.xhtml#ch8ex4">el Listado 8-4</a> en un nuevo archivo en IDLE y guárdalo como <em>blocksEverywhere.py</em> en la carpeta <em>functions</em>. En <span class="ent">➋,</span> añade un bucle <span class="literal">while</span> dentro de la función para que el código se repita. La variable <span class="literal">cuenta</span> <span class="ent">➊</span> te facilita saber cuántas veces se ha repetido el bucle. Compara el argumento <span class="literal">repeticiones</span> con la variable <span class="literal">cuenta</span> en la condición del bucle para establecer cuántas veces debe repetirse el bucle. Pon sangría a todas las líneas dentro de la función después de <span class="ent">➋</span> para que también estén dentro del bucle. La función <span class="literal">getHeight(</span> ) se encarga de que el bloque se sitúe por encima del suelo <span class="ent">➌.</span></p>
+<p class="indent">Por último, añade tres llamadas a funciones para crear bloques. La primera función debe crear 10 bloques, la segunda debe crear 37 bloques y la tercera debe crear 102 bloques. Elige los tipos de bloque que quieras.</p>
+<p class="indent">Guarda el programa y ejecútalo. El programa debería crear bloques aleatoriamente alrededor del mapa. <a href="ch08.xhtml#ch8fig5">La Figura 8-5</a> muestra un ejemplo.</p>
+<div class="image"><img alt="image" src="../images/f08-05.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch8fig5"></a><em>Figura 8-5: Puedes ver algunos de los bloques que el programa ha colocado aleatoriamente. He creado un mundo nuevo para demostrar este programa, de modo que no dañe ninguno de mis edificios.</em></p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch08_2.html">anterior</a><a href="ch08.html">Subtema 3 de 5: (Ver todo)</a><a href="ch08_4.html">siguiente</a><br/></p>
+<br/><a href="ch08_3.docx" target="_blank"></a></footer>
+</body>
+</html>

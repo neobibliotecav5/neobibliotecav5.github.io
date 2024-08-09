@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c20-0013">Añadir archivos de configuración</h3>
+<p class="BodyFirst">Cada plataforma de alojamiento requiere alguna configuración para que un proyecto se ejecute correctamente en sus servidores. En esta sección, añadiremos tres archivos de configuración:</p>
+<p class="RunInPara"><span class="RunInHead"><em translate="no">.platform.app.yaml</em></span>  Este es el archivo de configuración principal del proyecto. Indica a Platform.sh qué tipo de proyecto estamos intentando desplegar y qué tipo de recursos necesita nuestro proyecto, e incluye comandos para construir el proyecto en el servidor.</p>
+<p class="RunInPara"><span class="RunInHead"><em translate="no">.platform/routes.yaml</em></span>  Este archivo define las rutas a nuestro proyecto. Cuando Platform.sh recibe una solicitud, ésta es la configuración que ayuda a dirigir estas solicitudes a nuestro proyecto específico.</p>
+<p class="RunInPara"><span class="RunInHead"><em translate="no">.platform/services.yaml</em></span>  Este archivo define cualquier servicio adicional que necesite nuestro proyecto.</p>
+<p><span epub:type="pagebreak" id="Page_448" title="448"></span>Todos estos son archivos YAML (YAML Ain't Markup Language). <em translate="no">YAML</em> es un lenguaje diseñado para escribir archivos de configuración; está hecho para ser leído fácilmente tanto por humanos como por ordenadores. Puedes escribir o modificar a mano un archivo YAML típico, pero un ordenador también puede leerlo e interpretarlo sin ambigüedades.</p>
+<p>Los archivos YAML son magníficos para la configuración del despliegue, porque te dan un gran control sobre lo que ocurre durante el proceso de despliegue.</p>
+<h4 id="h3-502703c20-0006">Hacer visibles los archivos ocultos</h4>
+<p class="BodyFirst">La mayoría de los sistemas operativos ocultan los archivos y carpetas que empiezan por un punto, como <em translate="no">.platform</em>. Cuando abras un explorador de archivos, no verás este tipo de archivos y carpetas por defecto. Pero como programador, necesitarás verlos. He aquí cómo ver los archivos ocultos, dependiendo de tu sistema operativo:</p>
+<ul>
+<li>En Windows, abre el Explorador de Windows y, a continuación, abre una carpeta como <em translate="no">Desktop</em>. Haz clic en la pestaña <b>Ver</b> y asegúrate de que están marcadas las opciones <b>Extensiones de nombre de archivo</b> y <b>Elementos ocultos</b>.</li>
+<li>En macOS, puedes pulsar ⌘-SHIFT-. (punto) en cualquier ventana del Finder para ver los archivos y carpetas ocultos.</li>
+<li>En sistemas Linux como Ubuntu, puedes pulsar CTRL-H en cualquier explorador de archivos para ver los archivos y carpetas ocultos. Para que esta configuración sea permanente, abre un explorador de archivos como Nautilus y haz clic en la pestaña de opciones (indicada por tres líneas). Selecciona la casilla <b>Mostrar</b> archivos ocultos.</li>
+</ul>
+<h4 id="h3-502703c20-0007">El archivo de configuración .platform.app.yaml</h4>
+<p class="BodyFirst">El primer archivo de configuración es el más largo, porque controla el proceso general de despliegue. Lo mostraremos por partes; puedes introducirlo a mano en tu editor de texto o descargar una copia de los recursos en línea en <a class="LinkURL" href="https://ehmatthes.github.io/pcc_3e">https://ehmatthes.github.io/pcc_3e.</a></p>
+<p>Aquí tienes la primera parte de <em translate="no">.platform.app.yaml</em>, que debes guardar en el mismo directorio que <em translate="no">manage.py</em>:</p>
+<p class="CodeLabel" translate="no"><b>.platform.app.yaml</b></p>
+<pre translate="no"><code translate="no"><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> name: "ll_project"
+type: "python:3.10"
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> relationships:
+    database: "db:postgresql"
+
+# The configuration of the app when it's exposed to the web.
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> web:
+    upstream:
+        socket_family: unix
+    commands:
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>         start: "gunicorn -w 4 -b unix:$SOCKET ll_project.wsgi:application"
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>     locations:
+        "/":
+            passthru: true
+        "/static":
+<span epub:type="pagebreak" id="Page_449" title="449"></span>            root: "static"
+            expires: 1h
+            allow: true
+
+# The size of the persistent disk of the application (in MB).
+<span aria-label="annotation6" class="CodeAnnotationHang">❻</span> disk: 512</code></pre>
+<p>Cuando guardes este archivo, asegúrate de incluir el punto al principio del nombre del archivo. Si omites el punto, Platform.sh no encontrará el archivo y tu proyecto no se desplegará.</p>
+<p>No es necesario que lo entiendas todo en <em translate="no">.platform.app.yaml</em> en este momento; destacaré las partes más importantes de la configuración. El archivo comienza especificando el <code translate="no">name</code> del proyecto, que llamaremos <code translate="no">'ll_project'</code> para ser coherentes con el nombre que utilizamos al iniciar el proyecto <span aria-label="annotation1" class="CodeAnnotation">❶.</span> También tenemos que especificar la versión de Python que estamos utilizando (3.10 en el momento de escribir esto). Puedes encontrar una lista de las versiones compatibles en <a class="LinkURL" href="https://docs.platform.sh/languages/python.html">https://docs.platform.sh/languages/python.html.</a></p>
+<p>A continuación hay una sección llamada <code translate="no">relationships</code> que define otros servicios que necesita el proyecto <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Aquí la única relación es con una base de datos Postgres. Después está la sección <code translate="no">web</code> <span aria-label="annotation3" class="CodeAnnotation">❸.</span> La sección <code translate="no">commands:start</code> indica a Platform.sh qué proceso debe utilizar para atender las peticiones entrantes. Aquí estamos especificando que <code translate="no">gunicorn</code> gestionará las peticiones <span aria-label="annotation4" class="CodeAnnotation">❹.</span> Este comando sustituye al comando <code translate="no">python manage.py runserver</code> que hemos estado utilizando localmente.</p>
+<p>La sección <code translate="no">locations</code> indica a Platform.sh dónde debe enviar las solicitudes entrantes <span aria-label="annotation5" class="CodeAnnotation">❺.</span> La mayoría de las peticiones deben pasarse a <code translate="no">gunicorn</code>; nuestros archivos <em translate="no">urls.py</em> dirán a <code translate="no">gunicorn</code> exactamente cómo manejar esas peticiones. Las solicitudes de archivos estáticos se gestionarán por separado y se actualizarán una vez cada hora. La última línea muestra que estamos solicitando 512 MB de espacio en disco en uno de los servidores de Platform.sh <span aria-label="annotation6" class="CodeAnnotation">❻.</span></p>
+<p>El resto de <a class="LinkURL" href="http://.platform.app.yaml">.platform.app.yaml</a> es como sigue:</p>
+<pre translate="no"><code translate="no"><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">disk: 512</span>
+
+# Set a local read/write mount for logs.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> mounts:
+    "logs":
+        source: local
+        source_path: logs
+
+# The hooks executed at various points in the lifecycle of the application.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> hooks:
+    build: |
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>         pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install -r requirements_remote.txt
+
+        mkdir logs
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>         python manage.py collectstatic
+        rm -rf logs
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>     deploy: |
+        python manage.py migrate</code></pre>
+<p><span epub:type="pagebreak" id="Page_450" title="450"></span>La sección <code translate="no">mounts</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span> nos permite definir directorios donde podemos leer y escribir datos mientras se ejecuta el proyecto. Esta sección define un directorio <em translate="no">logs/</em> para el proyecto desplegado.</p>
+<p>La sección <code translate="no">hooks</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span> define acciones que se llevan a cabo en varios momentos del proceso de despliegue. En la sección <code translate="no">build</code>, instalamos todos los paquetes necesarios para servir el proyecto en el entorno en vivo <span aria-label="annotation3" class="CodeAnnotation">❸.</span> También ejecutamos <code translate="no">collectstatic</code> <span aria-label="annotation4" class="CodeAnnotation">❹,</span> que reúne todos los archivos estáticos necesarios para el proyecto en un solo lugar para que puedan ser servidos de forma eficiente.</p>
+<p>Por último, en la sección <code translate="no">deploy</code> <span aria-label="annotation5" class="CodeAnnotation">❺,</span> especificamos que las migraciones se ejecuten cada vez que se despliegue el proyecto. En un proyecto sencillo, esto no tendrá ningún efecto cuando no haya habido cambios.</p>
+<p>Los otros dos archivos de configuración son mucho más cortos; vamos a escribirlos ahora.</p>
+<h4 id="h3-502703c20-0008">El archivo de configuración routes.yaml</h4>
+<p class="BodyFirst">Un <em translate="no">route</em> es la ruta que toma una petición cuando es procesada por el servidor. Cuando Platform.sh recibe una solicitud, necesita saber dónde enviarla.</p>
+<p>Crea una nueva carpeta llamada <em translate="no">.platform</em>, en el mismo directorio que <em translate="no">manage.py</em>. Asegúrate de incluir el punto al principio del nombre. Dentro de esa carpeta, crea un archivo llamado <em translate="no">routes.yaml</em> e introduce lo siguiente:</p>
+<p class="CodeLabel" translate="no"><b>.platform/routes.yaml</b></p>
+<pre translate="no"><code translate="no"># Each route describes how an incoming URL will be processed by Platform.sh.
+
+"https://{default}/":
+    type: upstream
+    upstream: "ll_project:http"
+
+"https://www.{default}/":
+    type: redirect
+    to: "https://{default}/"</code></pre>
+<p>Este archivo se asegura de que las peticiones como <em translate="no">https://project_url.com</em> y <em translate="no">www.project_url.com</em> se dirijan todas al mismo lugar.</p>
+<h4 id="h3-502703c20-0009">El archivo de configuración services.yaml</h4>
+<p class="BodyFirst">Este último archivo de configuración especifica los servicios que nuestro proyecto necesita para funcionar. Guarda este archivo en el directorio <em translate="no">.platform/</em>, junto a <em translate="no">routes.yaml</em>:</p>
+<p class="CodeLabel" translate="no"><b>.platform/routes.yaml</b></p>
+<pre translate="no"><code translate="no"># Each service listed will be deployed in its own container as part of your
+#   Platform.sh project.
+
+db:
+    type: postgresql:12
+    disk: 1024</code></pre>
+<p>Este archivo define un servicio, una base de datos Postgres.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c20_20.html">anterior</a><a href="c20.html">Subtema 21 de 37: (Ver todo)</a><a href="c20_22.html">siguiente</a><br/></p>
+<br/><a href="c20_21.docx" target="_blank"></a></footer>
+</body>
+</html>

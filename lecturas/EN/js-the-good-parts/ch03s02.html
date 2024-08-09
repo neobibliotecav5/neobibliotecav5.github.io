@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Retrieval</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Retrieval"><div class="titlepage"><div><div><h1 class="title"><a id="retrieval"/>Retrieval</h1></div></div></div><p>Values can be retrieved from an object by wrapping a string expression in a
+                    <code class="literal">[ ]</code> suffix. If the string expression is a
+                string literal, and if it is a legal JavaScript name and not a reserved word, then
+                the <code class="literal">.</code> notation can be used instead. The <code class="literal">.</code> notation is preferred because it is more compact and
+                it reads better:<a id="IDX-CHP-3-0153" class="indexterm"/><a id="IDX-CHP-3-0154" class="indexterm"/><a id="IDX-CHP-3-0155" class="indexterm"/><a id="IDX-CHP-3-0156" class="indexterm"/><a id="IDX-CHP-3-0157" class="indexterm"/></p><a id="I_programlisting3_d1e2056"/><pre class="programlisting">stooge["first-name"]     // "Jerome"
+flight.departure.IATA    // "SYD"</pre><p>The <code class="literal">undefined</code> value is produced if an attempt
+                is made to retrieve a nonexistent member:<a id="IDX-CHP-3-0158" class="indexterm"/><a id="IDX-CHP-3-0159" class="indexterm"/></p><a id="I_programlisting3_d1e2071"/><pre class="programlisting">stooge["middle-name"]    // undefined
+flight.status            // undefined
+stooge["FIRST-NAME"]     // undefined</pre><p>The <code class="literal">||</code> operator can be used to fill in default
+                values:</p><a id="I_programlisting3_d1e2078"/><pre class="programlisting">var middle = stooge["middle-name"] || "(none)";
+var status = flight.status || "unknown";</pre><p>Attempting to retrieve values from <code class="literal">undefined</code>
+                will throw a <code class="literal">TypeError</code> exception. This can be
+                guarded against with the <code class="literal">&amp;&amp;</code>
+                operator:</p><a id="I_programlisting3_d1e2091"/><pre class="programlisting">flight.equipment                              // undefined
+flight.equipment.model                        // throw "TypeError"
+flight.equipment &amp;&amp; flight.equipment.model    // undefined</pre></div></body></html>

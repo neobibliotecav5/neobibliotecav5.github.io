@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch01lev1sec04"><strong><span class="blue1">Conociendo IDLE</span></strong></h3>
+<p class="noindentb">Ahora que lo tienes todo instalado y configurado, vamos a conocer IDLE, el software que utilizarás para escribir y ejecutar tus programas Python. Tu instalación de Python incluye IDLE, así que no necesitas instalarlo por separado. Abramos IDLE ahora</p>
+<p class="hanging"><strong>Windows</strong> Abre el Menú Inicio e introduce <span class="literal"><span class="codestrong">IDLE</span></span> en el cuadro de búsqueda.</p>
+<p class="hanging"><strong>Mac</strong> Abre la carpeta <em>Aplicaciones</em>, abre la carpeta <em>Python 3.5</em> y haz clic en el icono IDLE.</p>
+<p class="hanging"><strong>Raspberry</strong> Pi En el escritorio, haz doble clic en el icono de IDLE llamado Python 3.</p>
+<p class="indentt">Se abrirá una ventana IDLE, como se muestra en la <a href="ch01.xhtml#ch1fig17">Figura 1-17</a>. Esta ventana se llama shell de Python. El intérprete de comandos de Python es tan impresionante que me dejó alucinado cuando aprendí a programar con Python.</p>
+<div class="image"><img alt="image" src="../images/f01-17.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch1fig17"></a><em>Figura 1-17: Ventana de IDLE que se utiliza para escribir programas en Python</em></p>
+<h4 class="h4" id="ch01lev2sec17"><span epub:type="pagebreak" id="page_24"></span><strong><span class="blue1">Conocer el intérprete de comandos de Python</span></strong></h4>
+<p class="noindent">El shell de Python te permite escribir y ejecutar programas línea a línea. Puedes escribir una línea de código, ejecutarla al instante y ver qué ocurre, y luego escribir otra línea. Esto es genial porque puedes jugar y probar tu código fácilmente.</p>
+<p class="indent">En la ventana deberías ver tres chevrones<span class="literal">(&gt;&gt;&gt;)</span> al principio de la línea. Esto se llama <em>símbolo</em> del sistema. El símbolo del sistema es el shell de Python diciéndote que está listo para que le des un comando. Empecemos con una orden muy básica: hacer que Python sume dos números.</p>
+<p class="indent">Haz clic en el intérprete de comandos de Python, junto al símbolo del sistema, y escribe <span class="literal"><span class="codestrong">2 + 2</span></span>. Ten en cuenta que no tienes que escribir el símbolo del sistema<span class="literal">(&gt;&gt;&gt;)</span>. Deberías tener algo parecido a esto:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> 2 + 2</p>
+<p class="indent">Después de escribir este comando, pulsa <small>INTRO</small>. El intérprete de comandos de Python mostrará el resultado. En este caso es 4:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> 2 + 2<br translate="no"/><span class="blue1">4</span></p>
+<p class="indent">También puedes utilizar el shell con texto. Escribe este código en el intérprete de comandos Python y pulsa <small>INTRO</small>:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> <span class="green">"W"</span> + <span class="green">"o"</span> * 5<br translate="no"/><span class="blue1">Wooooo</span></p>
+<p class="indent">Como puedes ver, este código muestra la palabra <span class="literal">Wooooo</span>. El número al final del comando determina cuántas <em>oes</em>hay en la palabra. Cambiando este número, puedes cambiar la longitud de la palabra. Prueba a cambiarlo a 20 (o a cualquier otro número que quieras):</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> <span class="green">"W"</span> + <span class="green">"o"</span> * 20<br translate="no"/><span class="blue1">Woooooooooooooooooooo</span></p>
+<p class="indent">¡Woooooooooooooooooooo! El shell de Python puede ser muy divertido.</p>
+<p class="indent">Observa que IDLE colorea el código. Esto se llama <em>resaltado de sintaxis</em>, y hace que las distintas partes del código sean más fáciles de ver. Todo el código de este libro es del mismo color que el de IDLE, para que los colores coincidan cuando escribas tus programas.</p>
+<p class="indent">A continuación vamos a ver el editor de texto de IDLE.</p>
+<h4 class="h4" id="ch01lev2sec18"><strong><span class="blue1">Saluda al editor de texto de IDLE</span></strong></h4>
+<p class="noindent">Cuando se trata de escribir programas más largos, no puedes utilizar el intérprete de comandos. ¡El editor de texto de IDLE es la solución! A diferencia del intérprete de comandos, no ejecuta una línea de código inmediatamente después de introducirla. En su lugar, ejecuta todo el programa cuando tú se lo indicas.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_25"></span>En IDLE, haz clic en <strong>Archivo</strong> en la barra de menús y selecciona <strong>Nuevo Archivo</strong>. Se abrirá una nueva ventana parecida a la de la <a href="ch01.xhtml#ch1fig18">Figura 1-18</a>. Éste es el editor de texto.</p>
+<div class="image"><img alt="image" src="../images/f01-18.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch1fig18"></a><em>Figura 1-18: Editor de texto de IDLE</em></p>
+<p class="indent">"¡Eh!", te oigo decir. "El editor de texto es igual que el intérprete de comandos Python de IDLE". Pues sí, se parece, pero hay una gran diferencia. La nueva ventana no tiene un símbolo del sistema<span class="literal">(&gt;&gt;&gt;</span>) al principio de cada línea.</p>
+<p class="indent">Veamos qué significa eso. En la primera línea del editor de texto, escribe este código y pulsa <small>INTRO</small>:</p>
+<p class="programs" translate="no"><span class="rose">print</span>(2 + 2)</p>
+<p class="indent">¿Esperabas que ocurriera algo? Pulsar <small>ENTER</small> no ejecuta el código aquí, sólo crea una nueva línea. Como el editor de texto no ejecuta el código cuando pulsas <small>ENTER</small>, puedes escribir tantas líneas como quieras antes de ejecutarlas. Vamos a añadir unas cuantas líneas más. Este es el aspecto que debería tener tu archivo cuando hayas terminado:</p>
+<p class="programs" translate="no"><span class="rose">print</span>(2 + 2)<br translate="no"/><span class="rose">print</span>(<span class="green">"W"</span> + <span class="green">"o"</span> * 20)<br translate="no"/><span class="rose">print</span>(<span class="green">"PYTHON!"</span>)<br translate="no"/><span class="rose">print</span>(<span class="green">"&lt;3s"</span>)<br translate="no"/><span class="rose">print</span>(<span class="green">"Minecraft"</span>)</p>
+<p class="indent">Antes de ejecutar tu código Python desde el editor de texto de IDLE, tienes que guardarlo. Para guardar el programa, haz clic en <strong>Archivo</strong> y luego en <strong>Guardar como</strong>. Crea una carpeta en tu carpeta <em>Minecraft Python</em> llamada <em>Configuración</em>. Guarda este programa como <em>pythonLovesMinecraft.py</em> en la carpeta Setting <em>Up</em>.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_26"></span>Ahora vamos a ejecutarlo. Ve a <strong>Ejecutar</strong> en el menú y haz clic en <strong>Ejecutar Módulo</strong>. Se abrirá la ventana del intérprete de comandos y tu programa se ejecutará en ella. La salida se muestra en la <a href="ch01.xhtml#ch1fig19">Figura 1-19</a>.</p>
+<div class="image"><img alt="image" src="../images/f01-19.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch1fig19"></a><em>Figura 1-19: Salida del programa Python</em></p>
+<p class="indent">A diferencia del shell, los comandos ejecutados desde el editor de texto no mostrarán automáticamente sus resultados. Por eso debes utilizar <span class="literal">print()</span> para mostrar los resultados de tu código. No te preocupes demasiado por los detalles ahora: aprenderás todo sobre esto más adelante en el libro.</p>
+<p class="indent">Siempre que ejecutes programas desde el editor de texto de IDLE, se abrirá el intérprete de comandos para ejecutar el programa. Aunque escribas el programa en una ventana aparte, IDLE siempre utiliza el shell para ejecutar tu programa.</p>
+<h4 class="h4" id="ch01lev2sec19"><strong><span class="blue1">Cuándo utilizar el intérprete de comandos de Python y cuándo el editor de texto</span></strong></h4>
+<p class="noindent">Ahora que ya has visto la diferencia entre el intérprete de comandos Python de IDLE y el editor de texto de IDLE, quizá te preguntes cuándo es mejor utilizar uno u otro. Por regla general, yo utilizo el intérprete de comandos de Python cuando sólo quiero probar unas pocas líneas y no tengo intención de reutilizarlas. A medida que sigas este libro, te recomiendo que ejecutes los ejemplos breves utilizando el shell de Python.</p>
+<p class="indent">Yo utilizo el editor de texto para los programas que tienen bastantes líneas de código o que quiero reutilizar. Todas las misiones de este libro utilizan el editor de texto para que puedas guardar tus progresos, pero siempre puedes jugar en el intérprete de comandos cuando quieras probar algo rápidamente.</p>
+<h4 class="h4" id="ch01lev2sec20"><span epub:type="pagebreak" id="page_27"></span><strong><span class="blue1">Las instrucciones utilizadas en este libro</span></strong></h4>
+<p class="noindent">A lo largo de este libro, siempre que veas un fragmento de código escrito en el intérprete de comandos Python de IDLE, comenzará con el símbolo del sistema<span class="literal">(&gt;&gt;&gt;</span>) de la siguiente manera:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> <span class="rose">print</span>(<span class="green">"Wooooo Minecraft"</span>)</p>
+<p class="indent">Te recomiendo que vayas copiando el código en IDLE a medida que lees, para que puedas familiarizarte con él. Cualquier salida del intérprete de comandos se escribirá en la línea siguiente:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> <span class="rose">print</span>(<span class="green">"Wooooo Minecraft"</span>)<br translate="no"/><span class="blue1">Wooooo Minecraft</span></p>
+<p class="indent">El código que se escriba en el editor de texto <em>no</em> empezará con el símbolo del sistema, así:</p>
+<p class="programs" translate="no"><span class="rose">print</span>(<span class="green">"Adventures"</span>)</p>
+<p class="indent">La salida del código no se mostrará automáticamente en tu ordenador. Para mostrarte cómo debería ser la salida cuando lo ejecutes, te lo explicaré o te lo mostraré en un nuevo cuadro. Por ejemplo, al ejecutar el código anterior debería aparecer:</p>
+<p class="programs" translate="no"><span class="blue1">Adventures</span></p>
+<p class="indent">Para que te resulte más fácil seguir las explicaciones del código en el libro, he incluido marcadores para señalar de qué estoy hablando. Siempre que veas uno en el código, habrá una explicación correspondiente en el texto, y viceversa. Los marcadores tienen este aspecto</p>
+<p class="indent">➊ <span class="ent">➋</span> <span class="ent">➌</span> <span class="ent">➍</span> <span class="ent">➎</span> <span class="ent">➏</span></p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch01_4.html">anterior</a><a href="ch01.html">Subtema 5 de 6: (Ver todo)</a><a href="ch01_6.html">siguiente</a><br/></p>
+<br/><a href="ch01_5.docx" target="_blank"></a></footer>
+</body>
+</html>

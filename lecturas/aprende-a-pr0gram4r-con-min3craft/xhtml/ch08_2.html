@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch08lev1sec01"><strong><span class="blue1">Definir tus propias funciones</span></strong></h3>
+<p class="noindent">Veamos cómo puedes utilizar funciones en tu código. En el siguiente ejemplo, hago una función llamada <span class="literal">saludo()</span> que simplemente imprime dos líneas:</p>
+<p class="programs" translate="no"><span class="orange">def</span> <span class="blue1">greeting</span>():<br translate="no"/> <span class="rose">print</span>(<span class="green">"Hello"</span>)<br translate="no"/> <span class="rose">print</span>(<span class="green">"Nice to meet you"</span>)</p>
+<p class="indent">La palabra clave <span class="literal">def</span>, que es una abreviatura de <em>definir</em>, indica a Python que estás escribiendo una función. Siempre que quieras escribir una función, debes escribir primero <span class="literal">def</span> seguido del nombre de la función. En este ejemplo, <span class="literal">saludo</span> es el nombre de la función. No olvides añadir los paréntesis y los dos puntos al final de la primera línea. Las líneas que siguen a los dos puntos son el <em>cuerpo</em> de la función, que es el código que se ejecutará cuando se llame a la función.</p>
+<div class="note">
+<p class="notet"><strong><span class="notes">NOTA</span></strong></p>
+<p class="notep"><em>Mantén una sangría coherente en tu código. Utiliza siempre cuatro espacios de sangría en el cuerpo de la función.</em></p>
+</div>
+<p class="indent">Una función puede contener tantas sentencias como quieras. También puede incluir sentencias <span class="literal">if</span>, bucles, variables, condiciones, operadores matemáticos, etc. Cuando llegues al final del código de la función, deja de sangrar las líneas para que Python sepa qué sentencias pertenecen a la función y qué sentencias pertenecen a otras partes de tu código.</p>
+<p class="indent">Puedes crear tantas funciones como quieras en un programa, siempre que tengan nombres diferentes.</p>
+<h4 class="h4" id="ch08lev2sec01"><strong><span class="blue1">Llamar a una función</span></strong></h4>
+<p class="noindent">Para utilizar, o <em>llamar</em>, a una función, escribe el nombre de la función con los argumentos que pueda necesitar entre paréntesis. Si tu función no necesita argumentos, escribe simplemente el nombre de la función y un conjunto de paréntesis vacíos.</p>
+<p class="indent">Para llamar a la función <span class="literal">saludo(</span> ) definida anteriormente, utilizarías el siguiente código:</p>
+<p class="programs" translate="no">greeting()</p>
+<p class="indent"><span epub:type="pagebreak" id="page_151"></span>Puedes llamar a la función tantas veces como quieras. Vamos a llamar a la función <span class="literal">saludo</span> () tres veces:</p>
+<p class="programs" translate="no">greeting()<br translate="no"/>greeting()<br translate="no"/>greeting()</p>
+<p class="indent">Cuando ejecutes el programa, debería producir la salida de la función tres veces, así:</p>
+<p class="programs" translate="no"><span class="blue1">Hello</span><br translate="no"/><span class="blue1">Nice to meet you</span><br translate="no"/><span class="blue1">Hello</span><br translate="no"/><span class="blue1">Nice to meet you</span><br translate="no"/><span class="blue1">Hello</span><br translate="no"/><span class="blue1">Nice to meet you</span></p>
+<p class="indent">Debes llamar a la función en el cuerpo de tu código, o la función no hará nada. Esto es un error muy común. Si ejecutas un programa que define algunas funciones y tu código no hace nada, puede deberse a que olvidaste llamar a las funciones que creaste.</p>
+<p class="indent">También puedes llamar a funciones desde dentro de otra función que hayas creado. Esto incluye tanto las funciones incorporadas en Python como las que tú hayas creado. Verás esto en acción dentro de un momento.</p>
+<h4 class="h4" id="ch08lev2sec02"><strong><span class="blue1">Las funciones reciben argumentos</span></strong></h4>
+<p class="noindent">Los paréntesis de una función contienen sus argumentos, que son valores que utiliza la función. Los valores se utilizan para variables específicas dentro de la función cuando ésta se ejecuta. No todas las funciones necesitan argumentos. Por ejemplo, la función <span class="literal">saludo(</span> ) no necesita argumentos.</p>
+<p class="indent">Pero supongamos que quiero mostrar un saludo a alguien utilizando su nombre. Escribiré esto como una función para poder reutilizar el código para saludar a distintas personas:</p>
+<p class="programs" translate="no"><span class="orange">def</span> <span class="blue1">fancyGreeting</span>(personName):<br translate="no"/> <span class="rose">print</span>(<span class="green">"Hello, "</span> + personName)<br translate="no"/><br translate="no"/>fancyGreeting(<span class="green">"Mario"</span>)<br translate="no"/>fancyGreeting(<span class="green">"Steve"</span>)</p>
+<p class="indent">En este ejemplo, la función se llama dos veces utilizando argumentos diferentes, <span class="literal">"Mario"</span> y <span class="literal">"Steve"</span>. Cuando ejecutas el programa, la salida tiene este aspecto:</p>
+<p class="programs" translate="no"><span class="blue1">Hello, Mario</span><br translate="no"/><span class="blue1">Hello, Steve</span></p>
+<p class="indent">Si olvidas incluir un argumento cuando llamas a una función que necesita uno, obtendrás un error. Además, si una función necesita varios argumentos <span epub:type="pagebreak" id="page_152"></span>y te olvidas de incluir aunque sólo sea uno de ellos, obtendrás un error. Por ejemplo, intentemos llamar a la función <span class="literal">fancyGreeting(</span> ) sin argumentos, así:</p>
+<p class="programs" translate="no">fancyGreeting()</p>
+<p class="indent">Aparecerá el siguiente mensaje de error:</p>
+<p class="programs" translate="no"> <span class="red">Traceback (most recent call last):</span><br translate="no"/> <span class="red">File "&lt;pyshell#2&gt;", line 1, in &lt;module&gt;</span><br translate="no"/> <span class="red">fancyGreeting()</span><br translate="no"/><span class="ent">➊</span> <span class="red">TypeError: fancyGreeting() takes exactly 1 argument (0 given)</span></p>
+<p class="indent">Se trata de un mensaje de error útil porque la última línea explica lo que está mal en el código <span class="ent">➊.</span> La función <span class="literal">fancyGreeting(</span> ) toma un argumento, pero como no se le dio ningún argumento, eso provocó el error.</p>
+<p class="indent">Puedes crear una función que tome varios argumentos. Por ejemplo, el siguiente programa contiene una función que saluda a alguien, espera unos segundos y luego se despide. La función utiliza un argumento para el nombre de la persona y el número de segundos que esperará el programa:</p>
+<p class="programs" translate="no"> <span class="orange">import</span> time<br translate="no"/><br translate="no"/><span class="ent">➊</span> <span class="orange">def</span> <span class="blue1">helloAndGoodbye</span>(personName, secsToWait):<br translate="no"/> <span class="rose">print</span>(<span class="green">"Hello, "</span> + personName)<br translate="no"/>       time.sleep(secsToWait)<br translate="no"/> <span class="rose">print</span>(<span class="green">"Goodbye, "</span> + personName)<br translate="no"/><br translate="no"/><span class="ent">➋</span> helloAndGoodbye(<span class="green">"Mario"</span>, 10)<br translate="no"/>   helloAndGoodbye(<span class="green">"Steve"</span>, 23)</p>
+<p class="indent">Cada argumento se separa con una coma cuando se define la función <span class="ent">➊.</span> Luego, cuando se llama a las funciones, los argumentos se pasan en el mismo orden en que se definieron <span class="ent">➋.</span></p>
+<div class="note">
+<p class="notet"><strong><span class="notes">NOTA</span></strong></p>
+<p class="notep">Es<em>posible que encuentres los términos</em> argumento <em>y</em> parámetro <em>utilizados casi indistintamente. Los parámetros de una función definen los tipos de argumentos que acepta o requiere, y los argumentos son los valores que pasas a la función cuando la llamas. Para simplificar,</em> <em>en este</em> libro <em>sólo utilizaremos el término</em> argumento <em>.</em></p>
+</div>
+<h4 class="h4a" id="ch08lev2sec03"><strong>Misión 41: Construir un bosque</strong></h4>
+<p class="noindent">Tu misión es crear un bosque de árboles en Minecraft. Como un bosque no es más que un montón de árboles, crearemos el bosque creando una función que construya un árbol y luego llamaremos a esa función muchas veces para crear un bosque.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_153"></span>El listado<a href="ch08.xhtml#ch8ex1">8-1</a> es el código básico que utilizarás.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>forest.py</em></span></p>
+<p class="programs" translate="no"> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>   mc = Minecraft.create()<br translate="no"/><br translate="no"/><span class="ent">➊</span> <span class="orange">def</span> <span class="blue1">growTree</span>(x, y, z):<br translate="no"/> <span class="red"># Creates a tree at the coordinates given</span><br translate="no"/> <span class="red"># Write your code to make a tree here</span><br translate="no"/><br translate="no"/>   pos = mc.player.getTilePos()<br translate="no"/>   x = pos.x<br translate="no"/>   y = pos.y<br translate="no"/>   z = pos.z<br translate="no"/><br translate="no"/><span class="ent">➋</span> growTree(x + 1, y, z)</p>
+<p class="examplet"><a id="ch8ex1"></a><em>Listado 8-1: Estructura de un programa que utiliza funciones para crear un bosque de árboles</em></p>
+<p class="indent">La función <span class="literal">growTree()</span> <span class="ent">➊</span> creada en este código toma argumentos para las coordenadas donde se construirá el árbol. Tu tarea consiste en escribir código en el cuerpo de la función que cree un árbol en las coordenadas dadas. Para ello utilizarás las funciones <span class="literal">setBlock()</span> y <span class="literal">setBlocks()</span>.</p>
+<p class="indent">Copia <a href="ch08.xhtml#ch8ex1">el Listado 8-1</a> en un nuevo archivo en IDLE y guárdalo como <em>bosque.py</em> en una nueva carpeta llamada <em>funciones</em>.</p>
+<p class="indent">Cuando hayas creado algo que se parezca a un árbol y aparezca en pantalla, prueba a escribir más llamadas a la función utilizando argumentos distintos para que los árboles aparezcan en lugares diferentes. La primera ya la has hecho <span class="ent">➋.</span> Intenta crear al menos nueve árboles delante del jugador cada vez que ejecutes tu programa. <a href="ch08.xhtml#ch8fig1">La Figura 8-1</a> muestra los árboles que creó mi programa.</p>
+<div class="image"><img alt="image" src="../images/f08-01.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch8fig1"></a><em>Figura 8-1: Acabo de crear una hermosa hilera de árboles.</em></p>
+<div class="sidebar">
+<p class="sidebart" id="ch08sb01"><span epub:type="pagebreak" id="page_154"></span><strong>OBJETIVO EXTRA: BOSQUE ALEATORIO</strong></p>
+<p class="noindent">Utiliza la función <span class="literal">randint()</span> del módulo <span class="literal">random</span> para aleatorizar la distancia entre los árboles del bosque.</p>
+</div>
+<h4 class="h4" id="ch08lev2sec04"><strong><span class="blue1">Refactorizar un programa</span></strong></h4>
+<p class="noindent">A menudo escribirás un programa que utiliza varias veces el mismo bloque de código. Hacer cambios en el programa se volverá tedioso cuando quieras cambiar el mismo código en distintos lugares. Puede que hayas hecho esto en programas que has escrito en el pasado, pero hay una forma mucho mejor.</p>
+<p class="indent">Puedes reestructurar tus programas para que utilicen funciones. Para ello, traslada el código que se repite varias veces a una única función que luego podrás utilizar tantas veces como quieras en el resto del código. Como sólo tendrás que hacer cambios en un lugar en lugar de en varios, ahorrarás espacio y el programa será más fácil de mantener. El proceso de reestructurar tu código de este modo se denomina <em>refactorización</em>.</p>
+<p class="indent">Por ejemplo, el siguiente código pregunta su nombre a tres personas y luego imprime un saludo a cada una de ellas:</p>
+<p class="programs" translate="no">name1 = <span class="rose">input</span>(<span class="green">"Hello, what is your name?"</span>)<br translate="no"/><span class="rose">print</span>(<span class="green">"Pleased to meet you, "</span> + name1)<br translate="no"/>name2 = <span class="rose">input</span>(<span class="green">"Hello, what is your name?"</span>)<br translate="no"/><span class="rose">print</span>(<span class="green">"Pleased to meet you, "</span> + name2)<br translate="no"/>name3 = <span class="rose">input</span>(<span class="green">"Hello, what is your name?"</span>)<br translate="no"/><span class="rose">print</span>(<span class="green">"Pleased to meet you, "</span> + name3)</p>
+<p class="indent">El código repite tres veces las mismas dos afirmaciones. ¿Y si quisieras cambiar la pregunta o el saludo? No hay mucho problema en cambiar el código para 3 personas, pero ¿y si escribieras código para 100 personas?</p>
+<p class="indent">La alternativa es escribir el código como una función y llamarla tres veces. Aquí tienes el código después de refactorizarlo:</p>
+<p class="programs" translate="no"><span class="orange">def</span> <span class="blue1">helloFriend</span>():<br translate="no"/>    name = <span class="rose">input</span>(<span class="green">"Hello, what is your name?"</span>)<br translate="no"/> <span class="rose">print</span>(<span class="green">"Pleased to meet you, "</span> + name)<br translate="no"/><br translate="no"/>helloFriend()<br translate="no"/>helloFriend()<br translate="no"/>helloFriend()</p>
+<p class="indent">Ahora, cuando el programa se ejecute, pedirá una entrada y luego emitirá una cadena, y hará ambas tareas tres veces. Aquí tienes la entrada y la salida:</p>
+<p class="programs" translate="no"><span class="blue1">Hello, what is your name?</span> Craig<br translate="no"/><span class="blue1">Pleased to meet you, Craig<br translate="no"/>Hello, what is your name?</span> Still Craig<br translate="no"/><span class="blue1">Pleased to meet you, Still Craig<br translate="no"/>Hello, what is your name?</span> Craig again<br translate="no"/><span class="blue1">Pleased to meet you, Craig again</span></p>
+<p class="indent"><span epub:type="pagebreak" id="page_155"></span>La segunda versión del código tiene el mismo resultado que la primera, pero como puedes ver, es mucho más fácil de leer y mucho más fácil de cambiar.</p>
+<h4 class="h4a" id="ch08lev2sec05"><strong>Misión nº 42: Refactoriza</strong></h4>
+<p class="noindent">A veces escribirás un programa para darte cuenta después de que deberías haber utilizado funciones (a mí me pasa a menudo). Refactorizar el código para incluir funciones es una habilidad muy importante.</p>
+<p class="indent">En esta misión, practicarás la refactorización de un programa para utilizar una función en lugar de repetir varias veces las mismas sentencias.</p>
+<p class="indent"><a href="ch08.xhtml#ch8ex2">El listado 8-2</a> coloca un bloque melón debajo del jugador cada 10 segundos. Reescribiremos el código para utilizar una función. Actualmente, el programa coloca tres bloques utilizando la misma línea de código tres veces. <a href="ch08.xhtml#ch8fig2">La Figura 8-2</a> muestra el resultado del programa.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>melonFunction.py</em></span></p>
+<p class="programs" translate="no"><span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>mc = Minecraft.create()<br translate="no"/><br translate="no"/><span class="orange">import</span> time<br translate="no"/><br translate="no"/>pos = mc.player.getPos()<br translate="no"/>x = pos.x<br translate="no"/>y = pos.y<br translate="no"/>z = pos.z<br translate="no"/>mc.setBlock(x, y - 1, z, 103)<br translate="no"/>time.sleep(10)<br translate="no"/><br translate="no"/>pos = mc.player.getPos()<br translate="no"/>x = pos.x<br translate="no"/>y = pos.y - 1<br translate="no"/>z = pos.z<br translate="no"/>mc.setBlock(x, y, z, 103)<br translate="no"/>time.sleep(10)<br translate="no"/><br translate="no"/>pos = mc.player.getPos()<br translate="no"/>x = pos.x<br translate="no"/>y = pos.y - 1<br translate="no"/>z = pos.z<br translate="no"/>mc.setBlock(x, y, z, 103)<br translate="no"/>time.sleep(10)</p>
+<p class="examplet"><a id="ch8ex2"></a><em>Listado 8-2: Código que necesita refactorización</em></p>
+<p class="indent">Este código no es muy bonito, ¿verdad? Se repiten varias líneas, lo que siempre es señal de que el código necesita ser refactorizado con la ayuda de una definición de función.</p>
+<div class="note">
+<p class="notet"><strong><span class="hints">CONSEJO</span></strong></p>
+<p class="notep"><em>Identifica qué partes del código se repiten para hacerte una idea de lo que debe hacer tu función.</em></p>
+</div>
+<div class="image"><span epub:type="pagebreak" id="page_156"></span><img alt="image" src="../images/f08-02.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch8fig2"></a><em>Figura 8-2: Tres deliciosos melones bajo tierra</em></p>
+<p class="indent">Cambia el código para que coloque seis bloques en total llamando a tu función seis veces. Crea un nuevo archivo y guárdalo como <em>funciónmelón.py</em> en la carpeta <em>funciones</em>. Copia <a href="ch08.xhtml#ch8ex2">el Listado 8-2</a> en tu archivo y refactoriza el código para utilizar una función. Llama a la nueva función <span class="literal">hacerMelón()</span>.</p>
+<div class="sidebar">
+<p class="sidebart" id="ch08sb02"><strong>OBJETIVO EXTRA: BLOQUES BAJO PIE</strong></p>
+<p class="noindent">Añade argumentos a tu función <span class="literal">makeMelon</span> () para controlar el tipo de bloque, el tiempo de reposo o la distancia por debajo del jugador.</p>
+</div>
+<h4 class="h4" id="ch08lev2sec06"><strong><span class="blue1">Comentar con Docstrings</span></strong></h4>
+<p class="noindent">Utilizar comentarios en el código Python es una forma de explicar lo que hace el código. Cuando Python ejecuta un programa, ignora todo lo que hay en un comentario, por lo que los comentarios no afectan a cómo se ejecuta el código. El objetivo principal de los comentarios es explicar lo que se supone que debe hacer tu código a otras personas que puedan verlo o utilizarlo. Los comentarios también son recordatorios útiles para ti mismo en el futuro.</p>
+<p class="indent">Como se supone que las funciones son reutilizables, tiene sentido explicar su finalidad. Para escribir las explicaciones de nuestras funciones, utilizaremos explicaciones largas llamadas <em>docstrings</em>. Una docstring es un comentario de varias líneas que colocas al principio de una función para explicar su uso.</p>
+<p class="indent">La función <span class="literal">duplicarPalabra(</span> ) del siguiente ejemplo tiene una docstring que explica su tarea:</p>
+<p class="programs" translate="no"> <span class="orange">def</span> <span class="blue1">duplicateString</span>(stringToDbl):<br translate="no"/><span class="ent">➊</span> <span class="green">""" Prints a string twice on the same line.</span><br translate="no"/> <span class="green">stringToDbl argument should be a string """</span><br translate="no"/> <span class="rose">print</span>(stringToDbl * 2)</p>
+<p class="indent"><span epub:type="pagebreak" id="page_157"></span>La docstring debe estar en la primera línea de una función <span class="ent">➊.</span> La docstring comienza y termina con un conjunto de tres comillas (<span class="literal">"""</span>) y puede escribirse en tantas líneas como sea necesario.</p>
+<h4 class="h4" id="ch08lev2sec07"><strong><span class="blue1">Saltos de línea en los argumentos</span></strong></h4>
+<p class="noindent">Para facilitar la lectura de largas listas de argumentos a los programadores, Python te permite colocar los argumentos a lo largo de varias líneas. Por ejemplo, la llamada a la función de este programa tiene sus argumentos divididos en varias líneas para aumentar la legibilidad:</p>
+<p class="programs" translate="no"><span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>mc = Minecraft.create()<br translate="no"/><br translate="no"/>pos = mc.player.getPos()<br translate="no"/>width = 10<br translate="no"/>height = 12<br translate="no"/>length = 13<br translate="no"/>block = 103<br translate="no"/>mc.setBlocks(pos.x, pos.y, pos.z,<br translate="no"/>             pos.x + width, pos.y + height, pos.z + length, block)</p>
+<p class="indent">Los saltos de línea en los argumentos son especialmente útiles cuando quieres utilizar operadores matemáticos en los argumentos, cuando utilizas nombres largos de variables como argumentos o cuando tienes que proporcionar varios argumentos a una función.</p>
+<h4 class="h4" id="ch08lev2sec08"><strong><span class="blue1">Valores de retorno de las funciones</span></strong></h4>
+<p class="noindent">Hay dos tipos de funciones: las que devuelven un valor y las que no. Hasta ahora, has creado funciones que no devuelven ningún valor. Veamos las que sí devuelven un valor.</p>
+<p class="indent">Devolver un valor desde una función es muy útil, porque permite que una función trabaje con datos y luego devuelva un valor al cuerpo principal del programa. Por ejemplo, imagina que vendes galletas. Para calcular el precio al que tienes que vender cada galleta para obtener suficientes beneficios, añades dos monedas de oro a la cantidad que pagaste por hacer la galleta y luego multiplicas la suma por 10. Utilizando una función que devuelva un valor, puedes escribir este cálculo y reutilizarlo en Python.</p>
+<p class="indent">Cuando crees tus propias funciones, puedes utilizar la palabra clave <span class="literal">return</span> para devolver un valor de la función. Por ejemplo, aquí tienes el código para calcular el precio de venta de una galleta:</p>
+<p class="programs" translate="no"><span class="orange">def</span> <span class="blue1">calculateCookiePrice</span>(cost):<br translate="no"/>    price = cost + 2<br translate="no"/>    price = price * 10<br translate="no"/> <span class="orange">return</span> price</p>
+<p class="indent"><span epub:type="pagebreak" id="page_158"></span>Para devolver un valor, sólo tienes que escribir <span class="literal">return</span> seguido del valor que quieras, que en este caso es <span class="literal">el precio</span>. Para utilizar una función que devuelve un valor, la llamas en un lugar en el que se esperaría un valor. Por ejemplo, para establecer la variable <span class="literal">precioDeCookie</span>, llama a la función <span class="literal">calcularPrecioDeCookie()</span> e introduce un coste, como <span class="literal">6</span>:</p>
+<p class="programs" translate="no">priceOfCookie = calculateCookiePrice(6)  <span class="red"># Value will be 80</span></p>
+<p class="indent">Puedes utilizar funciones que devuelvan valores para establecer los valores de las variables, y puedes utilizarlas en cualquier lugar en el que se espere que pongas un valor, incluso como argumento de otra función.</p>
+<p class="indent">Las funciones que no devuelven un valor no pueden utilizarse para establecer los valores de las variables. Veamos rápidamente la diferencia.</p>
+<p class="indent">Como la siguiente función devuelve un valor, se puede utilizar en cualquier lugar donde se pueda utilizar un valor, como para fijar una variable o incluso como argumento en otra llamada a una función:</p>
+<p class="programs" translate="no"><span class="orange">def</span> <span class="blue1">numberOfChickens</span>():<br translate="no"/> <span class="orange">return</span> 5<br translate="no"/><br translate="no"/>coop = numberOfChickens()<br translate="no"/><span class="rose">print</span>(numberOfChickens())</p>
+<p class="indent">Ejecuta este código para ver su resultado. Puedes tratar el resultado de la función como un valor e incluso hacer operaciones matemáticas con él. Aquí añado 4 al valor devuelto y lo almaceno en una variable llamada <span class="literal">extraGallinas</span>:</p>
+<p class="programs" translate="no">extraChickens = 4 + numberOfChickens()  <span class="red"># Value of 9</span></p>
+<p class="indent">Sin embargo, la siguiente función no tiene declaración de <span class="literal">retorno</span>, lo que significa que no puedes utilizarla en lugar de un valor. Lo único que puedes hacer es llamar a la función:</p>
+<p class="programs" translate="no"><span class="orange">def</span> <span class="blue1">chickenNoise</span>():<br translate="no"/> <span class="rose">print</span>(<span class="green">"Cluck"</span>)<br translate="no"/><br translate="no"/>chickenNoise()</p>
+<p class="indent">Escribiendo este código en el editor de texto y ejecutándolo se imprime <span class="literal">"Cluck"</span>, aunque no se puede utilizar en otras sentencias porque no devuelve un valor al programa. Por ejemplo, podría intentar concatenar la función con una cadena, así:</p>
+<p class="programs" translate="no">multipleNoises = chickenNoise() + <span class="green">", Bork"</span></p>
+<p class="indent">Si ejecutara este programa, obtendría el siguiente mensaje de error:</p>
+<p class="programs" translate="no"><span class="red">Traceback (most recent call last):</span><br translate="no"/> <span class="red">File "&lt;pyshell#3&gt;", line 1, in &lt;module&gt;</span><br translate="no"/> <span class="red">multipleNoises = chickenNoise + ", Bork"</span><br translate="no"/><span class="red">TypeError: unsupported operand type(s) for +: 'function' and 'str'</span></p>
+<p class="indent"><span epub:type="pagebreak" id="page_159"></span>Este error significa que no puedes combinar esta función con una cadena, porque la función no devuelve un valor.</p>
+<p class="indent">Sin embargo, si cambio el código para que devuelva un valor en lugar de limitarse a imprimirlo</p>
+<p class="programs" translate="no"><span class="orange">def</span> <span class="blue1">chickenNoise</span>():<br translate="no"/>    return <span class="green">"Cluck"</span><br translate="no"/><br translate="no"/>multipleNoises = chickenNoise() + <span class="green">", Bork"</span><br translate="no"/><span class="rose">print</span>(multipleNoises)</p>
+<p class="indent">el archivo se ejecutaría y mostraría la siguiente salida:</p>
+<p class="programs" translate="no"><span class="blue1">Cluck, Bork</span></p>
+<p class="indent">Ten en cuenta esta diferencia. Recuerda incluir una sentencia <span class="literal">return</span> cuando la necesites y excluirla cuando tu función no necesite devolver un valor. Cuanto más experiencia adquieras con las funciones, más fácil te resultará decidir si quieres que tu función devuelva un valor.</p>
+<h4 class="h4a" id="ch08lev2sec09"><strong>Misión nº 43: Recordatorio de ID de bloque</strong></h4>
+<p class="noindent">Como Minecraft tiene tantos bloques, es difícil recordar todos los ID de bloque. Yo siempre recuerdo los valores de melón (103) y aire (0), pero olvido otros, ¡así que sigo teniendo que construir casas de melones!</p>
+<p class="indent">Para que recordar me resulte más fácil, quiero que crees un programa para mí que devuelva los valores de los distintos bloques. Tu programa debe tener muchas funciones que me ayuden a recordar los ID de los bloques. El nombre de cada función debe ser el mismo que el del bloque cuyo valor devuelve. Por ejemplo, <a href="ch08.xhtml#ch8ex3">el Listado 8-3</a> tiene una función llamada <span class="literal">melón()</span> que devuelve el valor del bloque melón (103).</p>
+<p class="sidenote" translate="no"><span class="blue"><em>blockIds.py</em></span></p>
+<p class="programs" translate="no"><span class="orange">def</span> <span class="blue1">melon</span>():<br translate="no"/> <span class="green">""" Returns the value of the melon block """</span><br translate="no"/> <span class="orange">return</span> 103</p>
+<p class="examplet"><a id="ch8ex3"></a><em>Listado 8-3: Inicio del programa que me ayudará a recordar los ID de los bloques</em></p>
+<p class="indentb">Crea un nuevo archivo en IDLE y guárdalo como <em>blockIds.py</em> en la carpeta <em>functions</em>. Copia <a href="ch08.xhtml#ch8ex3">el Listado 8-3</a> en el archivo y añádele funciones que devuelvan los valores de los siguientes bloques (consulta "<a href="app03.xhtml#app03">Hoja de trucos</a>de ID de bloque" en la <a href="app03.xhtml#page_299">página 299</a>):</p>
+<p class="bull">- Agua</p>
+<p class="bull">- Lana</p>
+<p class="bull">- Lava</p>
+<p class="bull">- TNT</p>
+<p class="bull">- Flor</p>
+<p class="bull">- Bloque de diamante</p>
+<p class="indentt"><span epub:type="pagebreak" id="page_160"></span>Cuando hayas añadido tus funciones, pruébalas llamándolas para crear bloques. Como tus nuevas funciones devuelven el valor de un bloque, puedes utilizarlas para establecer el valor de una variable que pasarás a la función <span class="literal">setBlock()</span>. El siguiente código te ayudará a empezar:</p>
+<p class="programs" translate="no"><span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>mc = Minecraft.create()<br translate="no"/><br translate="no"/><span class="red"># Functions go here</span><br translate="no"/><br translate="no"/>block = melon()<br translate="no"/>pos = mc.player.getTilePos()<br translate="no"/>mc.setBlock(pos.x, pos.y, pos.z, block)</p>
+<p class="indent"><a href="ch08.xhtml#ch8fig3">La Figura 8-3</a> muestra el resultado del programa completado con una prueba de la función <span class="literal">melón()</span>. Observa que la colocación de cualquier bloque está codificada en este programa; siempre colocará un bloque en su ubicación actual.</p>
+<div class="image"><img alt="image" src="../images/f08-03.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch8fig3"></a><em>Figura 8-3: Ahora no tengo que recordar los tipos de bloque, todo gracias a esta práctica función.</em></p>
+<div class="note">
+<p class="notet"><strong><span class="hints">CONSEJO</span></strong></p>
+<p class="notep"><em>Para colocar un bloque diamante, TNT o cualquier otro tipo de bloque, primero tendrás que definir la función que devuelve el valor del bloque que quieres. Luego tendrás que llamar a esa función en tu código, igual que yo he llamado a la</em> <em>función</em> <span class="literal"><span class="codeitalic">melón()</span></span> <em>en este ejemplo.</em></p>
+</div>
+<div class="sidebar">
+<p class="sidebart" id="ch08sb03"><strong>OBJETIVO EXTRA: MÁS BLOQUES</strong></p>
+<p class="noindent">Añade funciones adicionales para cualquier otro tipo de bloque que desees.</p>
+</div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch08_1.html">anterior</a><a href="ch08.html">Subtema 2 de 5: (Ver todo)</a><a href="ch08_3.html">siguiente</a><br/></p>
+<br/><a href="ch08_2.docx" target="_blank"></a></footer>
+</body>
+</html>

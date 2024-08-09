@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
+    <head>
+        <meta name="dtb:uid" content="9781457189999" />
+        <meta name="dtb:generator" content="epub-nicohaenggi"/>
+        <meta name="dtb:depth" content="1"/>
+        <meta name="dtb:totalPageCount" content="0"/>
+        <meta name="dtb:maxPageNumber" content="0"/>
+    </head>
+    <docTitle>
+        <text>Doing Math with Python</text>
+    </docTitle>
+    <docAuthor>
+        <text>Amit Saha</text>
+    </docAuthor>
+    <navMap>
+        
+                <navPoint id="cover" playOrder="1" class="chapter">
+                    <navLabel>
+                        <text>Cover Page</text>
+                    </navLabel>
+                    <content src="cover.html"/>
+                </navPoint>
+        
+                <navPoint id="title" playOrder="2" class="chapter">
+                    <navLabel>
+                        <text>Title Page</text>
+                    </navLabel>
+                    <content src="title.html"/>
+                </navPoint>
+        
+                <navPoint id="copy" playOrder="3" class="chapter">
+                    <navLabel>
+                        <text>Copyright Page</text>
+                    </navLabel>
+                    <content src="copy.html"/>
+                </navPoint>
+        
+                <navPoint id="ded01" playOrder="4" class="chapter">
+                    <navLabel>
+                        <text>Dedication</text>
+                    </navLabel>
+                    <content src="ded01.html"/>
+                </navPoint>
+        
+                <navPoint id="toc" playOrder="5" class="chapter">
+                    <navLabel>
+                        <text>Brief Contents</text>
+                    </navLabel>
+                    <content src="toc.html"/>
+                </navPoint>
+        
+                <navPoint id="toc01" playOrder="6" class="chapter">
+                    <navLabel>
+                        <text>Contents in Detail</text>
+                    </navLabel>
+                    <content src="toc01.html"/>
+                </navPoint>
+        
+                <navPoint id="pref01" playOrder="7" class="chapter">
+                    <navLabel>
+                        <text>Acknowledgments</text>
+                    </navLabel>
+                    <content src="pref01.html"/>
+                </navPoint>
+        
+                <navPoint id="ch00" playOrder="8" class="chapter">
+                    <navLabel>
+                        <text>Introduction</text>
+                    </navLabel>
+                    <content src="ch00.html"/>
+                </navPoint>
+        
+                <navPoint id="ch01" playOrder="12" class="chapter">
+                    <navLabel>
+                        <text>Chapter 1: Working with Numbers</text>
+                    </navLabel>
+                    <content src="ch01.html"/>
+                </navPoint>
+        
+                <navPoint id="ch02" playOrder="33" class="chapter">
+                    <navLabel>
+                        <text>Chapter 2: Visualizing Data with Graphs</text>
+                    </navLabel>
+                    <content src="ch02.html"/>
+                </navPoint>
+        
+                <navPoint id="ch03" playOrder="59" class="chapter">
+                    <navLabel>
+                        <text>Chapter 3: Describing Data with Statistics</text>
+                    </navLabel>
+                    <content src="ch03.html"/>
+                </navPoint>
+        
+                <navPoint id="ch04" playOrder="83" class="chapter">
+                    <navLabel>
+                        <text>Chapter 4: Algebra and Symbolic Math with SymPy</text>
+                    </navLabel>
+                    <content src="ch04.html"/>
+                </navPoint>
+        
+                <navPoint id="ch05" playOrder="107" class="chapter">
+                    <navLabel>
+                        <text>Chapter 5: Playing with Sets and Probability</text>
+                    </navLabel>
+                    <content src="ch05.html"/>
+                </navPoint>
+        
+                <navPoint id="ch06" playOrder="136" class="chapter">
+                    <navLabel>
+                        <text>Chapter 6: Drawing Geometric Shapes and Fractals</text>
+                    </navLabel>
+                    <content src="ch06.html"/>
+                </navPoint>
+        
+                <navPoint id="ch07" playOrder="153" class="chapter">
+                    <navLabel>
+                        <text>Chapter 7: Solving Calculus Problems</text>
+                    </navLabel>
+                    <content src="ch07.html"/>
+                </navPoint>
+        
+                <navPoint id="app00" playOrder="177" class="chapter">
+                    <navLabel>
+                        <text>Afterword</text>
+                    </navLabel>
+                    <content src="app00.html"/>
+                </navPoint>
+        
+                <navPoint id="app01" playOrder="184" class="chapter">
+                    <navLabel>
+                        <text>Appendix A: Software Installation</text>
+                    </navLabel>
+                    <content src="app01.html"/>
+                </navPoint>
+        
+                <navPoint id="app02" playOrder="197" class="chapter">
+                    <navLabel>
+                        <text>Appendix B: Overview of Python Topics</text>
+                    </navLabel>
+                    <content src="app02.html"/>
+                </navPoint>
+        
+                <navPoint id="index" playOrder="210" class="chapter">
+                    <navLabel>
+                        <text>Index</text>
+                    </navLabel>
+                    <content src="index.html"/>
+                </navPoint>
+        
+                <navPoint id="back01" playOrder="216" class="chapter">
+                    <navLabel>
+                        <text>Resources</text>
+                    </navLabel>
+                    <content src="back01.html"/>
+                </navPoint>
+        
+                <navPoint id="back02" playOrder="217" class="chapter">
+                    <navLabel>
+                        <text>About the Author</text>
+                    </navLabel>
+                    <content src="back02.html"/>
+                </navPoint>
+        
+                <navPoint id="footnote" playOrder="211" class="chapter">
+                    <navLabel>
+                        <text>Footnotes</text>
+                    </navLabel>
+                    <content src="footnote.html"/>
+                </navPoint>
+        
+    </navMap>
+</ncx>

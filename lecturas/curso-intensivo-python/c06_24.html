@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c06-0013">Una lista dentro de un diccionario</h3>
+<p class="BodyFirst">En lugar de poner un diccionario dentro de una lista, a veces es útil poner una lista dentro de un diccionario. Por ejemplo, considera cómo podrías describir una pizza que alguien está pidiendo. Si sólo utilizaras una lista, lo único que podrías almacenar sería una lista de los ingredientes de la pizza. Con un diccionario, una lista de ingredientes puede ser sólo un aspecto de la pizza que estás describiendo.</p>
+<p>En el siguiente ejemplo, se almacenan dos tipos de información para cada pizza: un tipo de masa y una lista de ingredientes. La lista de ingredientes es un valor asociado a la clave <code translate="no">'toppings'</code>. Para utilizar los elementos de la lista, damos el nombre del diccionario y la clave <code translate="no">'toppings'</code>, como haríamos con cualquier valor del diccionario. En lugar de devolver un único valor, obtenemos una lista de coberturas:</p>
+<p class="CodeLabel" translate="no"><b>pizza.py</b></p>
+<pre translate="no"><code translate="no"># Store information about a pizza being ordered.
+pizza = {
+    'crust': 'thick',
+    'toppings': ['mushrooms', 'extra cheese'],
+    }
+
+# Summarize the order.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> print(f"You ordered a {pizza['crust']}-crust pizza "
+    "with the following toppings:")
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> for topping in pizza['toppings']:
+    print(f"\t{topping}")</code></pre>
+<p>Empezamos con un diccionario que contiene información sobre una pizza que se ha pedido. Una clave del diccionario es <code translate="no">'crust'</code>, y el valor asociado es la cadena <code translate="no">'thick'</code>. La siguiente clave, <code translate="no">'toppings'</code>, tiene como valor una lista que almacena todos los ingredientes solicitados. Resumimos el pedido antes de construir la pizza <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Cuando necesites dividir una línea larga en una llamada a <code translate="no">print()</code>, elige un punto apropiado en el que dividir la línea que se está imprimiendo, y termina la línea con una comilla. Pon sangría en la línea siguiente, añade una comilla de apertura y continúa la cadena. Python combinará automáticamente todas las cadenas que encuentre dentro de los paréntesis. Para imprimir los ingredientes, escribimos un bucle <code translate="no">for</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Para acceder a la lista de ingredientes, utilizamos la clave <code translate="no">'toppings'</code>, y Python obtiene la lista de ingredientes del diccionario.</p>
+<p>La siguiente salida resume la pizza que pensamos construir:</p>
+<pre translate="no"><code translate="no">You ordered a thick-crust pizza with the following toppings:
+    mushrooms
+    extra cheese</code></pre>
+<p>Puedes anidar una lista dentro de un diccionario siempre que quieras asociar más de un valor a una sola clave de un diccionario. En el ejemplo anterior de los lenguajes de programación favoritos, si almacenáramos las respuestas de cada persona en una lista, la gente podría elegir más de un lenguaje favorito. <span epub:type="pagebreak" id="Page_109" title="109"></span>Cuando hagamos un bucle en el diccionario, el valor asociado a cada persona sería una lista de idiomas en lugar de un único idioma. Dentro del bucle <code translate="no">for</code> del diccionario, utilizamos otro bucle <code translate="no">for</code> para recorrer la lista de lenguas asociadas a cada persona:</p>
+<p class="CodeLabel" translate="no"><b>favorite_languages.py</b></p>
+<pre translate="no"><code translate="no">favorite_languages = {
+ <code translate="no">   </code>'jen': ['python', 'rust'],
+ <code translate="no">   </code>'sarah': ['c'],
+    'edward': ['rust', 'go'],
+    'phil': ['python', 'haskell'],
+    }
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> for name, languages in favorite_languages.items():
+    print(f"\n{name.title()}'s favorite languages are:")
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     for language in languages:
+        print(f"\t{language.title()}")</code></pre>
+<p>El valor asociado a cada nombre en <code translate="no">favorite_languages</code> es ahora una lista. Observa que algunas personas tienen una lengua favorita y otras tienen varias. Cuando hacemos el bucle a través del diccionario <span aria-label="annotation1" class="CodeAnnotation">❶,</span> utilizamos el nombre de variable <code translate="no">languages</code> para contener cada valor del diccionario, porque sabemos que cada valor será una lista. Dentro del bucle principal del diccionario, utilizamos otro bucle <code translate="no">for</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span> para recorrer la lista de lenguas favoritas de cada persona. Ahora cada persona puede enumerar tantas lenguas favoritas como quiera:</p>
+<pre translate="no"><code translate="no">Jen's favorite languages are:
+    Python
+    Rust
+
+Sarah's favorite languages are:
+    C
+
+Edward's favorite languages are:
+    Rust
+    Go
+
+Phil's favorite languages are:
+    Python
+    Haskell</code></pre>
+<p>Para refinar aún más este programa, podrías incluir una sentencia <code translate="no">if</code> al principio del bucle <code translate="no">for</code> del diccionario para ver si cada persona tiene más de una lengua favorita examinando el valor de <code translate="no">len(languages)</code>. Si una persona tiene más de una favorita, la salida seguiría siendo la misma. Si la persona sólo tiene una lengua favorita, podrías cambiar la redacción para reflejarlo. Por ejemplo, podrías decir: "El lenguaje favorito de Sara es C".</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c06_23.html">anterior</a><a href="c06.html">Subtema 24 de 28: (Ver todo)</a><a href="c06_25.html">siguiente</a><br/></p>
+<br/><a href="c06_24.docx" target="_blank"></a></footer>
+</body>
+</html>

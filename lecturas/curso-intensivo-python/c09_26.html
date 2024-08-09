@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c09-0017">Importar un módulo dentro de otro módulo</h3>
+<p class="BodyFirst">A veces querrás distribuir tus clases en varios módulos para evitar que un archivo crezca demasiado y para evitar almacenar clases no relacionadas en el mismo módulo. Cuando almacenas tus clases en varios módulos, puedes encontrar que una clase de un módulo depende de una clase de otro módulo. Cuando esto ocurra, puedes importar la clase necesaria en el primer módulo.</p>
+<p>Por ejemplo, almacenemos la clase <code translate="no">Car</code> en un módulo y las clases <code translate="no">ElectricCar</code> y <code translate="no">Battery</code> en otro módulo. Crearemos un nuevo módulo llamado <em translate="no">electric_car.py</em>-reemplazando el archivo <em translate="no">electric_car.py</em> que creamos antes- y copiaremos sólo las clases <code translate="no">Battery</code> y <code translate="no">ElectricCar</code> en este archivo:</p>
+<p class="CodeLabel" translate="no"><b>electric_car.py</b></p>
+<pre translate="no"><code translate="no">"""A set of classes that can be used to represent electric cars."""
+
+from car import Car
+
+<span epub:type="pagebreak" id="Page_178" title="178"></span><span class="LiteralGray">class Battery:</span>
+<em class="LiteralGrayItalic" translate="no">    --snip--</em>
+
+<span class="LiteralGray">class ElectricCar(Car):</span>
+<em class="LiteralGrayItalic" translate="no">    --snip--</em></code></pre>
+<p>La clase <code translate="no">ElectricCar</code> necesita acceder a su clase padre <code translate="no">Car</code>, así que importaremos <code translate="no">Car</code> directamente al módulo. Si olvidamos esta línea, Python emitirá un error cuando intentemos importar el módulo <code translate="no">electric_car</code>. También tenemos que actualizar el módulo <code translate="no">Car</code> para que sólo contenga la clase <code translate="no">Car</code>:</p>
+<p class="CodeLabel" translate="no"><b>car.py</b></p>
+<pre translate="no"><code translate="no">"""A class that can be used to represent a car."""
+
+<span class="LiteralGray">class Car:</span>
+<em class="LiteralGrayItalic" translate="no">    --snip--</em></code></pre>
+<p>Ahora podemos importar de cada módulo por separado y crear la clase que necesitemos:</p>
+<p class="CodeLabel" translate="no"><b>my_cars.py</b></p>
+<pre translate="no"><code translate="no">from car import Car
+from electric_car import ElectricCar
+
+my_mustang = Car('ford', 'mustang', 2024)
+print(my_mustang.get_descriptive_name())
+
+my_leaf = ElectricCar('nissan', 'leaf', 2024)
+print(my_leaf.get_descriptive_name())</code></pre>
+<p>Importamos <code translate="no">Car</code> de su módulo, y <code translate="no">ElectricCar</code> de su módulo. A continuación, creamos un coche normal y un coche eléctrico. Ambos coches se crean correctamente:</p>
+<pre translate="no"><code translate="no">2024 Ford Mustang
+2024 Nissan Leaf</code></pre>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c09_25.html">anterior</a><a href="c09.html">Subtema 26 de 34: (Ver todo)</a><a href="c09_27.html">siguiente</a><br/></p>
+<br/><a href="c09_26.docx" target="_blank"></a></footer>
+</body>
+</html>

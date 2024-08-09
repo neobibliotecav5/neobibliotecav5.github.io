@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>hasOwnProperty</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="hasOwnProperty"><div class="titlepage"><div><div><h1 class="title"><a id="hasownproperty"/>hasOwnProperty</h1></div></div></div><p>In <a class="xref" href="ch03.html" title="Chapter 3. Objects">Chapter 3</a>, the <code class="literal">hasOwnProperty</code> method was offered as a filter to work around a
+                problem with the <code class="literal">for in</code> statement. Unfortunately,
+                    <code class="literal">hasOwnProperty</code> is a method, not an operator,
+                so in any object it could be replaced with a different function or even a value that
+                is not a function:<a id="IDX-APP-A-0532" class="indexterm"/><a id="IDX-APP-A-0533" class="indexterm"/><a id="IDX-APP-A-0534" class="indexterm"/><a id="IDX-APP-A-0535" class="indexterm"/></p><a id="I_programlisting_d1e8719"/><pre class="programlisting">var name;
+another_stooge.hasOwnProperty = null;       // trouble
+for (name in another_stooge) {
+    if (another_stooge.hasOwnProperty(name)) { // boom
+        document.writeln(name + ': ' + another_stooge[name]);
+    }
+}</pre></div></body></html>

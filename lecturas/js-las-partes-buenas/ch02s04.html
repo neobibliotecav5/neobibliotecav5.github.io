@@ -1,0 +1,53 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Strings</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="Strings"><div class="titlepage"><div><div><h1 class="title"><a id="strings"></a>Cadenas</h1></div></div></div><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject2_d1e739"></a><img alt="image with no caption" src="httpatomoreillycomsourceoreillyimages238778.png" translate="no"/></div></div><p>Una cadena literal puede ir entre comillas simples o dobles. Puede contener cero o más caracteres. La <code class="literal" translate="no">\</code> (barra invertida) es el carácter de escape. JavaScript se creó en una época en la que Unicode era un conjunto de caracteres de 16 bits, por lo que todos los caracteres de JavaScript tienen 16 bits de ancho.<a class="indexterm" id="IDX-CHP-2-0032"></a><a class="indexterm" id="IDX-CHP-2-0033"></a><a class="indexterm" id="IDX-CHP-2-0034"></a><a class="indexterm" id="IDX-CHP-2-0035"></a><a class="indexterm" id="IDX-CHP-2-0036"></a><a class="indexterm" id="IDX-CHP-2-0037"></a><a class="indexterm" id="IDX-CHP-2-0038"></a><a class="indexterm" id="IDX-CHP-2-0039"></a><a class="indexterm" id="IDX-CHP-2-0040"></a><a class="indexterm" id="IDX-CHP-2-0041"></a><a class="indexterm" id="IDX-CHP-2-0030"></a><a class="indexterm" id="IDX-CHP-2-0031"></a><a class="indexterm" id="IDX-CHP-2-0042"></a><a class="indexterm" id="IDX-CHP-2-0043"></a></p><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject2_d1e813"></a><img alt="image with no caption" src="httpatomoreillycomsourceoreillyimages238728.png" translate="no"/></div></div><p>JavaScript no tiene un tipo de carácter. Para representar un carácter, haz una cadena con un solo carácter.<a class="indexterm" id="IDX-CHP-2-0044"></a></p><p>Las secuencias de escape permiten insertar en las cadenas caracteres que normalmente no están permitidos, como barras invertidas, comillas y caracteres de control. La convención <code class="literal" translate="no">\u</code> permite especificar numéricamente los puntos de código de los caracteres.<a class="indexterm" id="IDX-CHP-2-0045"></a></p><a id="I_programlisting2_d1e831"></a><pre class="programlisting" translate="no">"A" === "\u0041"</pre><p>Las cadenas tienen una propiedad <code class="literal" translate="no">length</code>. Por ejemplo, <code class="literal" translate="no">"seven".length</code> es 5.</p><p>Las cadenas son inmutables. Una vez hecha, una cadena nunca puede modificarse. Pero es fácil crear una cadena nueva concatenando otras cadenas con el operador <code class="literal" translate="no">+</code>. Dos cadenas que contengan exactamente los mismos caracteres en el mismo orden se consideran la misma cadena. Por tanto:</p><a id="I_programlisting2_d1e846"></a><pre class="programlisting" translate="no">'c' + 'a' + 't' === 'cat'</pre><p>es verdadero.</p><p>Las cadenas tienen métodos (ver <a class="xref" href="ch08.html" title="Chapter 8. Methods">Capítulo 8</a>):</p><a id="I_programlisting2_d1e855"></a><pre class="programlisting" translate="no">'cat'.toUpperCase(  ) === 'CAT'</pre></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="ch02s03.html">← Anterior</a><a href="ch02s05.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="ch02s04.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\ch02s04.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

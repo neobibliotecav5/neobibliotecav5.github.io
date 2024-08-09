@@ -1,0 +1,53 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>eval</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="eval"><div class="titlepage"><div><div><h1 class="title"><a id="eval"></a>eval</h1></div></div></div><p>La función <code class="literal" translate="no">eval</code> pasa una cadena al compilador de JavaScript y ejecuta el resultado. Es la función más mal utilizada de JavaScript. La utilizan con más frecuencia las personas que tienen un conocimiento incompleto del lenguaje. Por ejemplo, si conoces la notación del punto, pero ignoras la notación del subíndice, podrías escribir:</p><a id="I_programlisting_d1e8920"></a><pre class="programlisting" translate="no">eval("myValue = myObject." + myKey + ";");</pre><p>en lugar de:</p><a id="I_programlisting_d1e8924"></a><pre class="programlisting" translate="no">myvalue = myObject[myKey];</pre><p>La forma <code class="literal" translate="no">eval</code> es mucho más difícil de leer. Esta forma será significativamente más lenta porque necesita ejecutar el compilador sólo para ejecutar una sentencia de asignación trivial. También frustra a JSLint (ver <a class="xref" href="apc.html" title="Appendix C. JSLint">Apéndice C</a>), por lo que la capacidad de la herramienta para detectar problemas se reduce significativamente.</p><p>La función <code class="literal" translate="no">eval</code> también compromete la seguridad de tu aplicación porque concede demasiada autoridad al texto <code class="literal" translate="no">eval</code>'d. Y compromete el rendimiento del lenguaje en su conjunto del mismo modo que lo hace la sentencia <code class="literal" translate="no">with</code>.</p><p>El constructor <code class="literal" translate="no">Function</code> es otra forma de <code class="literal" translate="no">eval</code>, y también debe evitarse.</p><p>El navegador proporciona las funciones <code class="literal" translate="no">setTimeout</code> y <code class="literal" translate="no">setInterval</code> que pueden tomar argumentos de cadena o argumentos de función. Cuando reciben argumentos de cadena, <code class="literal" translate="no">setTimeout</code> y <code class="literal" translate="no">setInterval</code> actúan como <code class="literal" translate="no">eval</code>. La forma de argumento de cadena también debe evitarse.<a class="indexterm" id="IDX-APP-B-0547"></a><a class="indexterm" id="IDX-APP-B-0548"></a></p></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="apbs02.html">← Anterior</a><a href="apbs04.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="apbs03.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\apbs03.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

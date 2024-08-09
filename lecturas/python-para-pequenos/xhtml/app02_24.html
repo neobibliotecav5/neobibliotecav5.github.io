@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="app02lev1sec23">
+<span class="calibre2" id="page_319">
+</span>
+  Abrir un archivo en Python </h3>
+<p class="noindent">
+  La función incorporada de Python <span class="literal1" translate="no">
+   open
+  </span>abre un archivo, para que puedas hacer algo útil con él (como mostrar su contenido). La forma de indicar a la función qué archivo debe abrir depende de tu sistema operativo. Lee el ejemplo para un archivo de Windows, y luego lee la sección específica para Mac o Ubuntu si utilizas uno de esos sistemas. Primero crea un archivo de <strong class="calibre5">texto </strong>plano en tu carpeta de inicio llamado <em class="calibre7">prueba.txt -en </em>Windows, puedes utilizar el Bloc de Notas; en Ubuntu Linux o Raspberry Pi, utiliza TextEditor; en macOS, utiliza TextEdit (pero en TextEdit, tendrás que seleccionar <strong class="calibre5">Formato </strong> <strong class="calibre5">▸ Hacer texto plano </strong>). Puedes poner lo que quieras en el archivo. </p>
+<h4 class="h3" id="app02lev2sec1">
+  Abrir un archivo de Windows </h4>
+<p class="noindent">
+  Si utilizas Windows, introduce el siguiente código para abrir <em class="calibre7">test.txt : </em></p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> test_file = <span class="violet">open</span>(<span class="green">'c:\\Users\\&lt;your username&gt;\\test.txt'</span>)
+<span class="brown">&gt;&gt;&gt;</span> text = test_file.read()
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(text)
+<span class="blue1">There once was a boy named Marcelo
+Who dreamed he ate a marshmallow
+He awoke with a start
+As his bed fell apart
+And he found he was a much rounder fellow</span>
+</pre>
+<p class="indent">
+  En la primera línea, utilizamos <span class="literal1" translate="no">
+   open
+  </span>, que devuelve un objeto archivo con funciones para trabajar con archivos. El parámetro que utilizamos con la función <span class="literal1" translate="no">
+   open
+  </span>es una cadena que indica a Python dónde encontrar el archivo. Si utilizas Windows, has guardado prueba. <em class="calibre7">txt </em>en tu carpeta de usuario de la unidad <em class="calibre7">C: </em>, así que especifica la ubicación de tu archivo como <span class="literal1" translate="no">
+   c:\Users\&lt;your username&gt;\test.txt
+  </span>. (¡No olvides sustituir <span class="literal1" translate="no">
+   &lt;your
+  </span><span class="literal1" translate="no">
+   username&gt;
+  </span> por tu nombre de usuario real!) </p>
+<p class="indent">
+  Las dos barras invertidas en el nombre de archivo de Windows indican a Python que la barra invertida es sólo eso, y no una especie de comando. (Como leíste en el <a class="calibre6" href="ch03.xhtml#ch03">Capítulo 3 </a>, las barras invertidas por sí solas tienen un significado especial en Python, sobre todo en las cadenas). Guardamos el objeto archivo en la variable <span class="literal1" translate="no">
+   test_file
+  </span>. </p>
+<p class="indent">
+  En la segunda línea, utilizamos la función <span class="literal1" translate="no">
+   read
+  </span>, proporcionada por el objeto archivo, para leer el contenido del archivo y almacenarlo en la variable <span class="literal1" translate="no">
+   text
+  </span>. Imprimimos la variable en la última línea para mostrar el contenido del archivo. </p>
+<h4 class="h3" id="app02lev2sec2">
+<span class="calibre2" id="page_320">
+</span>
+  Abrir un archivo macOS </h4>
+<p class="noindent">
+  Si utilizas macOS, tendrás que introducir una ubicación diferente en la primera línea del ejemplo de Windows para abrir <em class="calibre7">prueba.txt . </em>Utiliza en la cadena el nombre de usuario que seleccionaste al guardar el archivo de texto. Por ejemplo, si el nombre de usuario es <em class="calibre7">sarahwinters </em>, el parámetro <span class="literal1" translate="no">
+   open
+  </span>debería tener este aspecto: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> test_file = <span class="violet">open</span>(<span class="green">'/Users/sarahwinters/test.txt'</span>)
+</pre>
+<h4 class="h3" id="app02lev2sec3">
+  Abrir un archivo de Ubuntu o Raspberry Pi </h4>
+<p class="noindent">
+  Si utilizas Ubuntu Linux o Raspberry Pi, tendrás que introducir una ubicación diferente en la primera línea del ejemplo de Windows para abrir <em class="calibre7">test.txt . </em>Utiliza el nombre de usuario que seleccionaste al guardar el archivo de texto. Por ejemplo, si el nombre de usuario es <em class="calibre7">jacob </em>, el parámetro <span class="literal1" translate="no">
+   open
+  </span>debería tener este aspecto: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> test_file = <span class="violet">open</span>(<span class="green">'/home/jacob/test.txt'</span>)
+</pre>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="app02_23.html">anterior</a><a href="app02.html">Subtema 24 de 25: (Ver todo)</a><a href="app02_25.html">siguiente</a><br/></p>
+<br/><a href="app02_24.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<meta charset="utf-8"/>
+<title>Capítulo 7: Resolución de problemas de cálculo</title>
+<link href="style.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="core.css" media="all" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch07lev1sec08"><strong>Funciones de densidad de probabilidad</strong></h3>
+<p class="noindent">Consideremos una clase ficticia de estudiantes y sus calificaciones en un examen de matemáticas. Cada alumno puede obtener una nota entre 0 y 20, incluidas las notas fraccionarias. Si tratamos la nota como un suceso aleatorio, la nota en sí es una <em>variable aleatoria continua</em> porque puede tener <em>cualquier</em> valor entre 0 y 20. Si en <a id="page_202"></a>queremos calcular la probabilidad de que un alumno obtenga una nota entre 11 y 12, no podemos aplicar la estrategia que aprendimos en el <a href="ch05.html#ch05">Capítulo 5</a>. Para ver por qué, consideremos la fórmula, suponiendo una probabilidad uniforme,</p>
+<div class="image2"><img alt="image" src="images/e0202-01.jpg" translate="no"/></div>
+<p class="noindent">donde <em>E</em> es el conjunto de todas las calificaciones posibles entre 11 y 12 y <em>S</em> es el conjunto de todas las calificaciones posibles, es decir, todos los números reales entre 1 y 20. Según nuestra definición del problema anterior, <em>n</em><em>(E</em>) es infinito porque es imposible contar todos los números reales posibles entre 11 y 12; lo mismo ocurre con <em>n</em><em>(S</em>). Por tanto, necesitamos un enfoque diferente para calcular la probabilidad.</p>
+<p class="indent">Una <em>función de densidad de probabilidad</em>, <em>P</em><em>(x</em>), expresa la probabilidad de que el valor de una variable aleatoria se <em>aproxime</em> a <em>x</em>, un valor arbitrario<a href="footnote.html#fn05" id="fn_05"><sup>.1</sup></a> También puede indicarnos la probabilidad de que <em>x</em> caiga dentro de un intervalo. Es decir, si conociéramos la función de densidad de probabilidad que representa la probabilidad de las notas en nuestra clase ficticia, calcular <em>P</em>(11 &lt; <em>x</em> &lt; 12) nos daría la probabilidad que buscamos. Pero, ¿cómo la calculamos? Resulta que esta probabilidad es el área encerrada por la gráfica de la función de densidad de probabilidad y el <em>eje x</em> entre los puntos <em>x</em> = 11 y <em>x</em> = 12. Suponiendo una función de densidad de probabilidad arbitraria, <a href="ch07.html#ch7fig8">la Figura 7-8</a> lo demuestra.</p>
+<div class="image"><img alt="image" src="images/f07-08.jpg" translate="no"/></div>
+<p class="figuret"><a id="ch7fig8"></a><em>Figura 7-8: Una función de densidad de probabilidad para las notas de un examen de matemáticas</em></p>
+<p class="indent"><a id="page_203"></a>Ya sabemos que esta área es igual al valor de la integral,</p>
+<div class="image2"><img alt="image" src="images/e0203-01.jpg" translate="no"/></div>
+<p class="noindent">por tanto, tenemos una forma fácil de hallar la probabilidad de que la nota esté entre 11 y 12. Con las matemáticas fuera del camino, ahora podemos averiguar cuál es la probabilidad. La función de densidad de probabilidad que hemos supuesto antes es la función</p>
+<div class="image2"><img alt="image" src="images/e0203-02.jpg" translate="no"/></div>
+<p class="noindent">donde <em>x</em> es la nota obtenida. Esta función se ha elegido de modo que la probabilidad de que la nota sea próxima a 10 (mayor o menor que) sea alta, pero luego disminuya bruscamente.</p>
+<p class="indent">Ahora, vamos a calcular la integral</p>
+<div class="image2"><img alt="image" src="images/e0203-03.jpg" translate="no"/></div>
+<p class="noindent">siendo <em>p</em><em>(x</em>) la función anterior:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; from sympy import Symbol, exp, sqrt, pi, Integral<br translate="no"/>&gt;&gt;&gt; x = Symbol('x')<br translate="no"/>&gt;&gt;&gt; p = exp(-(x - 10)**2/2)/sqrt(2*pi)<br translate="no"/>&gt;&gt;&gt; Integral(p, (x, 11, 12)).doit().evalf()<br translate="no"/>0.135905121983278</p>
+<p class="indent">Creamos el objeto <span class="literal" translate="no">Integral</span> para la función, con <span class="literal" translate="no">p</span> representando la función de densidad de probabilidad que especifica que queremos calcular la integral definida entre 11 y 12 en el <em>eje x</em>. Evaluamos la función con <span class="literal" translate="no">doit()</span> y hallamos el valor numérico con <span class="literal" translate="no">evalf()</span>. Así, la probabilidad de que una nota se sitúe entre 11 y 12 es cercana a 0,14.</p>
+<div class="sidebar">
+<p class="sidebart"><strong>LA FUNCIÓN DE DENSIDAD DE PROBABILIDAD: UNA ADVERTENCIA</strong></p>
+<p class="noindent">En sentido estricto, esta función de densidad asigna una probabilidad distinta de cero a las notas inferiores a 0 o superiores a 20. Sin embargo, como puedes comprobar utilizando las ideas de esta sección, la probabilidad de que se produzca este hecho es tan pequeña que resulta despreciable para nuestros fines.</p>
+</div>
+<p class="indent"><a id="page_204"></a>Una función de densidad de probabilidad tiene dos propiedades especiales: (1) el valor de la función para cualquier <em>x</em> es siempre mayor que 0, ya que la probabilidad no puede ser menor que 0, y (2) el valor de la integral definida</p>
+<div class="image2"><img alt="image" src="images/e0204-01.jpg" translate="no"/></div>
+<p class="noindent">es igual a 1. La segunda propiedad merece cierta discusión. Como <em>p</em><em>(x</em>) es una función de densidad de probabilidad, el área encerrada por ella, que es también la integral</p>
+<div class="image2"><img alt="image" src="images/e0204-02.jpg" translate="no"/></div>
+<p class="indent">entre dos puntos cualesquiera, <em>x</em> = <em>a</em> y <em>x</em> = <em>b</em>, nos da la probabilidad de que <em>x</em> se encuentre entre <em>x</em> = <em>a</em> y <em>x</em> = <em>b</em>. Esto significa también que, sean cuales sean los valores de <em>a</em> y <em>b</em>, el valor de la integral no debe ser superior a 1, porque la probabilidad no puede ser mayor que 1 por definición. Por tanto, aunque <em>a</em> y <em>b</em> sean valores muy grandes, de modo que tiendan a -∞ y ∞, respectivamente, el valor de la integral seguirá siendo 1, como podemos comprobar nosotros mismos:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">from sympy import Symbol, exp, sqrt, pi, Integral, S</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">x = Symbol('x')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">p = exp(-(x – 10)**2/2)/sqrt(2*pi)</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">Integral(p, (x, S.NegativeInfinity, S.Infinity)).doit().evalf()</span><br translate="no"/>1.00000000000000</p>
+<p class="indent"><span class="literal" translate="no">S.NegativeInfinity</span> y <span class="literal" translate="no">S.Infinity</span> denotan el infinito negativo y positivo que luego especificamos como límites inferior y superior, respectivamente, al crear el objeto <span class="literal" translate="no">Integral</span>.</p>
+<p class="indent">Cuando tratamos con variables aleatorias continuas, puede surgir una situación complicada. En probabilidad discreta, la probabilidad de que ocurra un suceso como que un dado justo de seis caras saque un 7 es 0. A un suceso cuya probabilidad es 0 lo llamamos suceso <em>imposible</em>. En el caso de las variables aleatorias continuas, la probabilidad de que la variable asuma cualquier valor exacto es 0, aunque sea un suceso <em>posible</em>. Por ejemplo, que la nota de un alumno sea exactamente 11,5 es posible, pero debido a la naturaleza de las variables aleatorias continuas, la probabilidad es 0. Para ver por qué, considera que la probabilidad será el valor de la integral</p>
+<div class="image2"><img alt="image" src="images/e0204-03.jpg" translate="no"/></div>
+<p class="indent">Como esta integral tiene los mismos límites inferior y superior, su valor es 0. Esto es bastante poco intuitivo y paradójico, así que intentemos comprenderlo.</p>
+<p class="indent">Considera el intervalo de calificaciones que hemos abordado antes: de 0 a 20. La nota que puede obtener un alumno puede ser cualquier número de este intervalo, lo que significa que hay un número infinito de números. Si cada número tuviera la misma probabilidad de ser seleccionado, ¿cuál sería esa probabilidad? Según la fórmula de la probabilidad discreta, debería ser 1/∞, es decir, un número muy pequeño. De hecho, este número es tan pequeño que, a efectos prácticos, se considera 0. Por lo tanto, la probabilidad de que la nota sea 11,5 es 0.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch07_8.html">anterior</a><a href="ch07.html">Subtema 9 de 11: (Ver todo)</a><a href="ch07_10.html">siguiente</a><br/></p>
+<br/><a href="ch07_9.docx" target="_blank"></a></footer>
+</body>
+</html>

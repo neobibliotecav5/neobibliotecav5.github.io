@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch07lev1sec04"><strong><span class="blue1">Terminar un bucle while con break</span></strong></h3>
+<p class="noindent">Con los bucles <span class="literal">while</span>, tienes control total sobre cómo y cuándo termina el bucle. Hasta ahora sólo has utilizado condiciones para terminar bucles, pero también puedes utilizar una sentencia <span class="literal">break</span>. La sentencia <span class="literal">break</span> permite que tu código salga inmediatamente de un bucle <span class="literal">while</span>. Veamos este concepto.</p>
+<p class="indent">Una forma de utilizar las sentencias <span class="literal">break</span> es ponerlas en una sentencia <span class="literal">if</span> anidada en el bucle. Al hacerlo, el bucle se detiene inmediatamente cuando la condición de la sentencia <span class="literal">if</span> es <span class="literal">Verdadera</span>. El siguiente código pide continuamente la entrada del usuario hasta que escriba <span class="literal">"exit</span>":</p>
+<p class="programs" translate="no"><span class="ent">➊</span> <span class="orange">while True</span>:<br translate="no"/><span class="ent">➋</span>     userInput = <span class="rose">input</span>(<span class="green">"Enter a command: "</span>)<br translate="no"/><span class="ent">➌</span> <span class="orange">if</span> userInput == <span class="green">"exit"</span>:<br translate="no"/><span class="ent">➍</span> <span class="orange">break</span><br translate="no"/> <span class="rose">print</span>(userInput)<br translate="no"/><span class="ent">➎</span> <span class="rose">print</span>(<span class="green">"Loop exited"</span>)</p>
+<p class="indent">Se trata de un bucle infinito porque utiliza <span class="literal">while True</span> <span class="ent">➊.</span> Cada vez que se repite el bucle, pide al usuario que introduzca un comando <span class="ent">➋.</span> El programa comprueba si la entrada es " <span class="literal">salida"</span> <span class="ent">➌</span> utilizando una sentencia <span class="literal">if</span>. Si la entrada cumple la condición, la sentencia <span class="literal">break</span> detiene la repetición del bucle <span class="ent">➍,</span> y el programa continúa en la línea inmediatamente posterior al cuerpo del bucle, imprimiendo " <span class="literal">Bucle salido</span> " en la shell de Python <span class="ent">➎.</span></p>
+<h4 class="h4a" id="ch07lev2sec11"><strong>Misión nº 39: Crear una conversación persistente con un bucle</strong></h4>
+<p class="noindent">En la Misión nº 13<a href="ch04.xhtml#page_76">(página 76</a>), creaste un programa que publica el mensaje del usuario en el chat utilizando cadenas, entrada y salida. Aunque este programa era útil, estaba bastante limitado porque tenías que volver a ejecutar el programa cada vez que querías publicar un nuevo mensaje.</p>
+<p class="indent">En esta misión, mejorarás tu programa de chat utilizando un bucle <span class="literal">while</span> para que los usuarios puedan publicar tantos mensajes como quieran sin reiniciar el programa.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_144"></span>Abre el archivo <em>userChat.py</em> en la carpeta <em>strings</em> y luego guárdalo como <em>chatLoop.py</em> en la carpeta <em>whileLoops</em>.</p>
+<p class="indent">Para publicar un nuevo mensaje cada vez que quieras sin reiniciar el programa, añade lo siguiente a tu código:</p>
+<ol>
+<li class="noindent"><p class="list">Añade un bucle <span class="literal">while</span> infinito al programa.</p></li>
+<li class="noindent"><p class="list">Añade una sentencia <span class="literal">if</span> al bucle para comprobar si la entrada del usuario es <span class="literal">"</span>exit". Si la entrada es "exit <span class="literal">"</span>, el bucle debería romperse.</p></li>
+<li class="noindent"><p class="list">Asegúrate de que la variable <span class="literal">userName</span> está definida antes del inicio del bucle.</p></li>
+</ol>
+<p class="indent">Cuando hayas añadido los cambios, guarda tu programa y ejecútalo. Un prompt en el shell de Python te pedirá que escribas un nombre de usuario. Hazlo y pulsa <small>ENTER</small>. A continuación, el programa te pedirá que introduzcas un mensaje. Escribe un mensaje y pulsa <small>INTRO</small>. El programa seguirá pidiéndote que introduzcas un mensaje hasta que escribas <span class="literal">exit</span>. <a href="ch07.xhtml#ch7fig8">La Figura 7-8</a> muestra mi programa de chat en funcionamiento.</p>
+<div class="image"><img alt="image" src="../images/f07-08.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch7fig8"></a><em>Figura 7-8: Estoy chateando conmigo mismo.</em></p>
+<div class="sidebar">
+<p class="sidebart" id="ch07sb07"><strong>OBJETIVO EXTRA: BLOQUEAR EL CHAT</strong></p>
+<p class="noindent">Amplía la función de chat para que los usuarios puedan crear bloques. Por ejemplo, si el usuario introduce <span class="literal">"lana"</span>, el programa crea un bloque de lana. Puedes hacerlo añadiendo sentencias <span class="literal">elif</span> a tu sentencia <span class="literal">if</span> para comprobar la entrada del usuario.</p>
+</div>
+<h4 class="h4" id="ch07lev2sec12"><span epub:type="pagebreak" id="page_145"></span><strong><span class="blue1">Sentencias while-else</span></strong></h4>
+<p class="noindent">Al igual que las sentencias <span class="literal">if</span>, los bucles <span class="literal">while</span> pueden tener condiciones secundarias activadas por sentencias <span class="literal">else</span>.</p>
+<p class="indent">La sentencia <span class="literal">else</span> se ejecuta cuando la condición de una sentencia <span class="literal">while</span> es <span class="literal">False</span>. A diferencia del cuerpo de una sentencia <span class="literal">while</span>, la sentencia <span class="literal">else</span> se ejecutará sólo una vez, como se muestra aquí:</p>
+<p class="programs" translate="no">message = <span class="rose">input</span>(<span class="green">"Please enter a message."</span>)<br translate="no"/><br translate="no"/><span class="orange">while</span> message != <span class="green">"exit"</span>:<br translate="no"/> <span class="rose">print</span>(message)<br translate="no"/>    message = <span class="rose">input</span>(<span class="green">"Please enter a message."</span>)<br translate="no"/><span class="orange">else</span>:<br translate="no"/> <span class="rose">print</span>(<span class="green">"User has left the chat."</span>)</p>
+<p class="indent">Este bucle se repite mientras el <span class="literal">mensaje</span> introducido no sea igual a <span class="literal">"</span>exit". Si el <span class="literal">mensaje</span> es "exit <span class="literal">"</span>, el bucle dejará de repetirse, y el cuerpo de la <span class="literal">sentencia</span> else imprimirá "El <span class="literal"> usuario ha abandonado el chat".</span></p>
+<p class="indent">Si utilizas una sentencia <span class="literal">break</span> en la sentencia <span class="literal">while</span>, la sentencia <span class="literal">else</span> no se ejecutará. El siguiente código es similar al ejemplo anterior, pero incluye una sentencia <span class="literal">if</span> anidada y una sentencia <span class="literal">break</span>. Cuando el usuario escriba <span class="literal">abort</span> en lugar de <span class="literal">exit</span>, el bucle de chat saldrá sin imprimir el mensaje "El <span class="literal"> usuario ha abandonado el chat.</span> " en el chat.</p>
+<p class="programs" translate="no">message = <span class="rose">input</span>(<span class="green">"Please enter a message."</span>)<br translate="no"/><br translate="no"/><span class="orange">while</span> message != <span class="green">"exit"</span>:<br translate="no"/> <span class="rose">print</span>(message)<br translate="no"/>    message = <span class="rose">input</span>(<span class="green">"Please enter a message."</span>)<br translate="no"/> <span class="orange">if</span> message == <span class="green">"abort"</span>:<br translate="no"/> <span class="orange">break</span><br translate="no"/><span class="orange">else</span>:<br translate="no"/> <span class="rose">print</span>(<span class="green">"User has left the chat."</span>)</p>
+<p class="indent">La sentencia <span class="literal">if</span> comprueba si el mensaje introducido es "abortar <span class="literal">"</span>. Si es <span class="literal">True</span>, se ejecuta la sentencia <span class="literal">break</span> y el bucle saldrá. Como se ha utilizado la sentencia <span class="literal">break</span>, el cuerpo de la sentencia <span class="literal">else</span> no se ejecutará y no se imprimirá "El usuario ha abandonado <span class="literal"> el</span> chat".</p>
+<h4 class="h4a" id="ch07lev2sec13"><strong>Misión 40: Frío y caliente</strong></h4>
+<p class="noindent">En esta misión, crearemos una partida de Frío y Caliente en Minecraft. Si nunca has jugado, la idea es que tu amigo esconde un objeto y tú tienes que encontrarlo. Tu amigo te da pistas en función de lo lejos que estés del objeto. Si estás cerca, tu amigo dirá "Caliente", y si estás lejos, dirá "Frío". Cuando estés justo al lado del objeto, dirá "¡Estás ardiendo!" y si estás muy lejos, dirá "¡Congelación!".</p>
+<p class="indent"><span epub:type="pagebreak" id="page_146"></span>El objetivo del juego es encontrar y colocarte sobre el bloque de diamante que se ha colocado aleatoriamente en el mundo del juego. En esta versión del juego, jugarás tú solo, y el programa Python te dirá a qué distancia del bloque oculto te encuentras. El juego termina cuando te sitúas sobre el bloque diamante.</p>
+<p class="indent">El listado<a href="ch07.xhtml#ch7ex2">7-2</a> coloca un bloque en un lugar aleatorio.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>blockHunter.py</em></span></p>
+<p class="programs" translate="no"> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/> <span class="orange">import</span> math<br translate="no"/> <span class="orange">import</span> time<br translate="no"/> <span class="orange">import</span> random<br translate="no"/>   mc = Minecraft.create()<br translate="no"/><br translate="no"/>   destX = random.randint(-127, 127)<br translate="no"/>   destZ = random.randint(-127, 127)<br translate="no"/><span class="ent">➊</span> destY = mc.getHeight(destX, destZ)<br translate="no"/><br translate="no"/>   block = 57<br translate="no"/><span class="ent">➋</span> mc.setBlock(destX, destY, destZ, block)<br translate="no"/>   mc.postToChat(<span class="green">"Block set"</span>)<br translate="no"/><br translate="no"/> <span class="orange">while True</span>:<br translate="no"/>       pos = mc.player.getPos()<br translate="no"/><span class="ent">➌</span>     distance = math.sqrt((pos.x - destX) ** 2 + (pos.z - destZ) ** 2)<br translate="no"/><br translate="no"/><span class="ent">➍</span> <span class="orange">if</span> distance &gt; 100:<br translate="no"/>           mc.postToChat("Freez<span class="green">ing")</span><br translate="no"/> <span class="orange">elif</span> distance &gt; 50:<br translate="no"/>           mc.postToChat("Cold"<span class="green">)</span><br translate="no"/> <span class="orange">elif</span> distance &gt; 25:<br translate="no"/>           mc.postToChat("Warm"<span class="green">)</span><br translate="no"/> <span class="orange">elif</span> distance &gt; 12:<br translate="no"/>           mc.postToChat("Boili<span class="green">ng")</span><br translate="no"/> <span class="orange">elif</span> distance &gt; 6:<br translate="no"/>           mc.postToChat("On fi<span class="green">re!")</span><br translate="no"/> <span class="orange">elif</span> distance == 0:<br translate="no"/><span class="ent">➎</span>         mc.postToChat("Found <span class="green">it")</span></p>
+<p class="examplet"><a id="ch7ex2"></a><em>Listado 7-2: Inicio del programa Frío y Caliente</em></p>
+<p class="indent">Antes de colocar un bloque al azar, el programa se asegura de que el bloque no se colocará bajo tierra. Para ello, utiliza la función <span class="literal">getHeight()</span> <span class="ent">➊,</span> que encuentra el bloque que tiene la coordenada y más alta (es decir, en la superficie) para cualquier posición del juego. Luego coloca un bloque de diamante en una posición aleatoria <span class="ent">➋.</span></p>
+<p class="indent">El código en <span class="ent">➌</span> calcula la distancia al bloque de diamante. Utiliza la función <span class="literal">sqrt</span> (), que está en el módulo <span class="literal">matemático</span>; por eso es necesario <span class="literal">importar matemática</span> al principio del programa. La función <span class="literal">sqrt</span> () calcula la raíz cuadrada de un número.</p>
+<div class="note">
+<p class="notet"><span epub:type="pagebreak" id="page_147"></span><strong><span class="notes">NOTA</span></strong></p>
+<p class="notep"><em><a href="ch07.xhtml#ch7ex2">El listado 7-2</a> utiliza una fórmula llamada</em> teorema de Pitágoras<em>. La fórmula utiliza dos lados de un triángulo para calcular la longitud del tercero. En este caso, utilizo la distancia del jugador al bloque oculto en el eje x y en el eje z para calcular la distancia al bloque oculto en línea recta.</em></p>
+</div>
+<p class="indent">El mensaje que muestra el programa depende de la distancia a la que te encuentres del bloque, que puedes averiguar utilizando una sentencia <span class="literal">if</span> y la variable de <span class="literal">distancia</span> <span class="ent">➍.</span> El programa muestra <span class="literal">"Congelación"</span> si estás muy lejos y " <span class="literal">¡En llamas!"</span> si estás muy cerca.</p>
+<p class="indent">Copia <a href="ch07.xhtml#ch7ex2">el Listado 7-2</a> en un nuevo archivo en IDLE y guarda el programa como <em>blockHunter.py</em> en la carpeta <em>whileLoops</em>.</p>
+<p class="indent">De momento el programa funciona, pero no termina cuando encuentras el bloque. Para terminar el código, tienes que añadir una sentencia <span class="literal">break</span> cuando la distancia del jugador al bloque sea 0 <span class="ent">➎.</span></p>
+<p class="indent">Cuando hayas terminado el programa, guárdalo y ejecútalo. Se generará un bloque aleatorio y tendrás que encontrarlo. El programa debería detenerse cuando encuentres el bloque y te pares sobre él. <a href="ch07.xhtml#ch7fig9">La Figura 7-9</a> muestra que acabo de encontrar el bloque.</p>
+<div class="image"><img alt="image" src="../images/f07-09.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch7fig9"></a><em>Figura 7-9: He encontrado el bloque y ahora sólo tengo que ponerme encima.</em></p>
+<div class="sidebar">
+<p class="sidebart" id="ch07sb08"><strong>OBJETIVO EXTRA: TIEMPO AL TIEMPO</strong></p>
+<p class="noindent">El programa <em>blockHunter.</em> py te da todo el tiempo que necesites para encontrar el bloque. ¿Se te ocurre alguna forma de mostrar el tiempo que tarda el jugador en encontrar el bloque o incluso de limitar el tiempo que tiene para jugar?</p>
+</div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch07_4.html">anterior</a><a href="ch07.html">Subtema 5 de 6: (Ver todo)</a><a href="ch07_6.html">siguiente</a><br/></p>
+<br/><a href="ch07_5.docx" target="_blank"></a></footer>
+</body>
+</html>

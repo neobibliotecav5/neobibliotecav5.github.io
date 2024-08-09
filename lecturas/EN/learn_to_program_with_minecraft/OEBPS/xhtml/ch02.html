@@ -1,0 +1,230 @@
+<html lang="en-us" xml:lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xmlns:ns="http://www.w3.org/2001/10/synthesis">
+<head>
+<title>Learn to Program with Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+</head>
+<body>
+<h2 class="h2" id="ch02"><span epub:type="pagebreak" id="page_31"></span><strong><span class="blue1"><span class="big">2</span></span></strong><br/><strong>TELEPORTING WITH VARIABLES</strong></h2>
+<div class="image1"><img alt="image" src="../images/common01.jpg"/></div>
+<p class="noindent">Are you ready to control your Minecraft world with the power of Python? In this chapter, you’ll take a brief tour through the basics of Python. Then you’ll put your new skills to the test and create your own teleportation tour of your Minecraft world!</p>
+<p class="indent">The concepts described in this chapter aren’t specific to Minecraft Python, so you’ll be able to use them in any Python program that you create.</p>
+<h3 class="h3" id="ch02lev1sec01"><strong><span class="blue1">What Is a Program?</span></strong></h3>
+<p class="noindent">A <em>program</em> is a set of instructions that makes your computer do a specific task or tasks. Imagine a stopwatch app on a mobile phone. The stopwatch program has instructions that tell it what to do when you press start and stop. It also has instructions that display the time on the screen as it’s being counted. Some guy or gal programmed that stopwatch to work.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_32"></span>Millions of programs are used every day all around the world. A phone’s messaging app is a program, traffic lights are controlled by programs, and even computer games like Minecraft are programs.</p>
+<p class="indent">In this book, you’ll learn the fundamentals of programming and how to write programs to make your ideas come to life in Minecraft.</p>
+<h3 class="h3" id="ch02lev1sec02"><strong><span class="blue1">Storing Data with Variables</span></strong></h3>
+<p class="noindent">Let’s start by learning how to store data with variables. <em>Variables</em> let you store data to use later in a program. <em>Data</em> is any information you might want to record, such as numbers, names, any kind of text, lists of items, and so on. For example, here’s a variable called <span class="literal">pickaxes</span> that stores the number value <span class="literal">12</span>:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> pickaxes = 12</p>
+<p class="indent">Variables can store numbers, words, and even complete sentences, such as “Get out of here, Creeper!” You can also change variables, which lets you do some pretty neat things in Minecraft. In fact, shortly you’ll use variables to take advantage of the power of teleportation!</p>
+<p class="indent">To create a variable in Python, you’ll use a variable name, an equal sign (<span class="literal">=</span>), and a value. Let’s say you’re about to take off on a grand adventure through many Minecraft biomes; you’ll want to bring a lot of food with you. You can represent food as a variable. For example, in the following Python shell, <span class="literal">bread</span> is the variable name and <span class="literal">145</span> is the value:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> bread = 145</p>
+<p class="indent">The variable’s name is always on the left of the equal sign, and the value you want to store is always on the right, as shown in <a href="ch02.xhtml#ch2fig1">Figure 2-1</a>. This Python code line <em>declares</em> the variable <span class="literal">bread</span> and <em>assigns</em> the value <span class="literal">145</span> to it.</p>
+<div class="image"><img alt="image" src="../images/f02-01.jpg"/></div>
+<p class="figcap"><a id="ch2fig1"></a><em>Figure 2-1: Parts of a variable declaration. You must be very hungry if you have 145 loaves of bread.</em></p>
+<p class="indent">After you’ve declared a variable and assigned it a value, you can enter the name of the variable into the Python shell to check what it’s holding:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> bread<br/><span class="blue1">145</span></p>
+<p class="indent">You can use almost any name for a variable, but it’s best to use a name that describes the variable’s purpose so you’ll understand what’s going on in your program. Although it’s not a rule, you should start variable names with a lowercase letter instead of a capital letter. This is a style that Python programmers follow, and it’s good practice for you to follow, too, so others can easily read your code if you ever want to share it.</p>
+<div class="note">
+<p class="notet"><span epub:type="pagebreak" id="page_33"></span><strong><span class="notes">NOTE</span></strong></p>
+<p class="notep"><em>Although the value of a variable is</em> stored<em>, it is not</em> saved<em>. The value of a variable is stored in the computer’s temporary memory, meaning that when the computer is switched off or the program stops running, the value of the variable is no longer stored. Try closing IDLE and then opening it again. When you try to get the value of</em> <span class="literal"><span class="codeitalic">bread</span></span><em>, what happens?</em></p>
+</div>
+<h4 class="h4" id="ch02lev2sec01"><strong><span class="blue1">The Structure of Programming Languages</span></strong></h4>
+<p class="noindent"><em>Syntax</em> is the set of rules that describes the grammar and punctuation of a programming language, similar to the grammar and punctuation in a human language. Once you understand Python’s syntax, you’ll be better able to write programs that a computer can follow; however, if you don’t use correct syntax, the computer won’t understand what you’re telling it to do.</p>
+<p class="indent">Think of a single instruction in your code as a sentence. To end a sentence in English, you use a period (called a full stop in the United Kingdom). Instead of a period, Python uses a new line to indicate the end of an instruction and the start of the next. Each instruction on a new line is called a <em>statement</em>.</p>
+<p class="indent">For example, say you want to keep track of how many pickaxes, iron ore blocks, and cobblestone blocks you have. In the Python shell, you’d write it like this:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> pickaxes = 12<br/><span class="mer">&gt;&gt;&gt;</span> iron = 30<br/><span class="mer">&gt;&gt;&gt;</span> cobblestone = 25</p>
+<p class="indent"><a href="ch02.xhtml#ch2fig2">Figure 2-2</a> shows what this looks like in the Python shell.</p>
+<div class="image"><img alt="image" src="../images/f02-02.jpg"/></div>
+<p class="figcap"><a id="ch2fig2"></a><em>Figure 2-2: Entering code in the Python shell</em></p>
+<p class="indent"><span epub:type="pagebreak" id="page_34"></span>Notice that each statement is on its own line. Because of the new lines, Python will understand that you want to keep track of three different items. But if you don’t put each statement on a new line, Python gets confused and gives you a syntax error:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> pickaxes = 12 iron = 30 cobblestone = 25<br/><span class="red">SyntaxError: invalid syntax</span></p>
+<p class="indent">A <em>syntax error</em> is Python’s way of telling you it doesn’t understand. Python won’t be able to follow these instructions because it doesn’t know where one statement ends and another begins.</p>
+<p class="indent">Python also won’t know what to do if you start lines with a space:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span>   iron = 30<br/><span class="red">SyntaxError: unexpected indent</span></p>
+<p class="indent">If you look closely, you’ll see that the code has spaces at the beginning of the line. When you get an unexpected indent syntax error, like the one here, you’ll know that your line of code starts with spaces when it shouldn’t.</p>
+<p class="indent">Python is very picky about how you write code. If you get a syntax error when entering the examples in this book, check your work carefully. Most likely, you’ll find a small mistake.</p>
+<h4 class="h4" id="ch02lev2sec02"><strong><span class="blue1">Syntax Rules for Variables</span></strong></h4>
+<p class="noindentb">You need to know a few syntax rules for naming variables so Python can understand them:</p>
+<p class="bull">• Don’t include symbols in your variable names, except for underscores (<span class="literal">_</span>), or you’ll get a syntax error.</p>
+<p class="bull">• Don’t start a variable name with a number, as in <span class="literal">9bread</span>. Using numbers elsewhere in a variable name is fine, as in <span class="literal">bread9</span>.</p>
+<p class="bull">• You don’t need to add spaces on either side of the equal sign: your program will run fine without them. But they do make the code easier to read, so it’s a good idea to add them.</p>
+<p class="indentt">Variables are very handy. Next, you’ll learn how to change the value of variables, and then you’ll be ready to teleport your player!</p>
+<h4 class="h4" id="ch02lev2sec03"><strong><span class="blue1">Changing the Values of Variables</span></strong></h4>
+<p class="noindent">You can change the value of a variable at any time in the same way you’d declare a variable. For example, say you meet five Minecraft cats and you want to save this value as a variable. First you declare a variable, <span class="literal">cats</span>, and assign the value <span class="literal">5</span> to it, which would look like this in a Python shell:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> cats = 5<br/><span class="mer">&gt;&gt;&gt;</span> cats<br/><span class="blue1">5</span></p>
+<p class="indent"><span epub:type="pagebreak" id="page_35"></span>Later you meet five more cats and decide you want to update this value. What happens if you change the value of <span class="literal">cats</span> to 10?</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> cats = 10<br/><span class="mer">&gt;&gt;&gt;</span> cats<br/><span class="blue1">10</span></p>
+<p class="indent">When you ask Python for the new value of <span class="literal">cats</span>, it’s no longer <span class="literal">5</span>! Now when you use the <span class="literal">cats</span> variable in a program, it will use the new value of <span class="literal">10</span>.</p>
+<p class="indent">There are many types of data that you can store in variables. <em>Data types</em> tell the computer how to work with a particular piece of data. I’ll start by discussing one of the types you’ll use most often: integers. Later in the chapter, I’ll also introduce the floats data type.</p>
+<h4 class="h4" id="ch02lev2sec04"><strong><span class="blue1">Integers</span></strong></h4>
+<p class="noindent"><em>Integers</em> are positive or negative whole numbers. Values such as 10, 32, −6, 194689, and −5 are integers, but 3.14 and 6.025 are not.</p>
+<p class="indent">You probably use integers every day without even thinking about it, even in Minecraft! For example, you might see 12 cows on a hillside while you’re on your way to mine 5 diamonds with 2 fresh apples in your inventory. All those numbers are integers.</p>
+<p class="indent">Let’s say you have five pigs in your Minecraft world and you want to write a program that uses the number of pigs in some way. In Python, you’d declare an integer variable to represent the number of pigs:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> pigs = 5</p>
+<p class="indent">You can also store negative values in variables. For example, to say the temperature is negative five degrees, you would set a variable like so:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> temperature = -5</p>
+<p class="indent">To use Python variables and integers with Minecraft, complete the first mission.</p>
+<h4 class="h4a" id="ch02lev2sec05"><strong>Mission #1: Teleport the Player</strong></h4>
+<p class="noindent">In this mission, you’ll explore how variables work by teleporting your player to a new location using integers.</p>
+<p class="indent">As shown in <a href="ch02.xhtml#ch2fig3">Figure 2-3</a>, your player has a <em>position</em> in the Minecraft world that is represented by three <em>coordinates</em>: <span class="literal">x</span>, <span class="literal">y</span>, and <span class="literal">z</span>. The letter <span class="literal">y</span> represents height, and <span class="literal">x</span> and <span class="literal">z</span> represent horizontal positions on a flat plane.</p>
+<div class="image"><span epub:type="pagebreak" id="page_36"></span><img alt="image" src="../images/f02-03.jpg"/></div>
+<p class="figcap"><a id="ch2fig3"></a><em>Figure 2-3: 3D coordinates</em></p>
+<p class="indent">If you’re using the Raspberry Pi version of the game, the player’s position is given by three numbers in the top-left corner of the game window, which you can see in <a href="ch02.xhtml#ch2fig4">Figure 2-4</a>. If you’re using the desktop edition of the game, you can see the player’s coordinates by pressing F3 and finding the first line in the second block of text on the left, labeled <em>XYZ</em>, as shown in <a href="ch02.xhtml#ch2fig5">Figure 2-5</a>.</p>
+<p class="indent">Move your player around the game and watch the position numbers change; the coordinates should update in real time as the player walks. Pretty cool, right? But walking long distances takes a long time. Why spend so much time walking when you can change positions instantly using Python? Let’s look at how to do this.</p>
+<div class="image"><img alt="image" src="../images/f02-04.jpg"/></div>
+<p class="figcap"><a id="ch2fig4"></a><em>Figure 2-4: The player’s position displayed in Minecraft: Pi Edition</em></p>
+<div class="image"><span epub:type="pagebreak" id="page_37"></span><img alt="image" src="../images/f02-05.jpg"/></div>
+<p class="figcap"><a id="ch2fig5"></a><em>Figure 2-5: The player’s position displayed in the desktop edition of Minecraft</em></p>
+<p class="indent">Switch on your computer or Raspberry Pi and follow these steps:</p>
+<ol>
+<li class="noindent"><p class="list">Open IDLE and click <strong>File</strong> <img alt="image" src="../images/arrow.jpg"/> <strong>New File</strong> (or <strong>New Window</strong> on some computers). You can see the empty text editor window in <a href="ch02.xhtml#ch2fig6">Figure 2-6</a>. If you’re using a Raspberry Pi or have more than one version of Python installed on your computer, make sure you use Python 3, not Python 2.7.</p>
+<div class="image"><img alt="image" src="../images/f02-06.jpg"/></div>
+<p class="figcap"><a id="ch2fig6"></a><em>Figure 2-6: A new text editor window in IDLE</em></p></li>
+<li class="noindent"><p class="list"><span epub:type="pagebreak" id="page_38"></span>When the new window appears, click <strong>File</strong> <img alt="image" src="../images/arrow.jpg"/> <strong>Save As</strong>.</p></li>
+<li class="noindent"><p class="list">Create a new folder called <em>variables</em> inside the <em>Minecraft Python</em> folder that you created in <a href="ch01.xhtml#ch01">Chapter 1</a>.</p></li>
+<li class="noindent"><p class="list">Open the <em>variables</em> folder, name your file <em>teleport.py</em>, and click <strong>Save</strong>.</p></li>
+</ol>
+<p class="indent">Now that you’re working in IDLE’s text editor, add the following two lines of code at the top of your program:</p>
+<p class="programs"><span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br/>mc = Minecraft.create()</p>
+<p class="indent">These lines connect your program to Minecraft; you’ll use them in every program that interacts with Minecraft. Next, create three integer variables called <span class="literal">x</span>, <span class="literal">y</span>, and <span class="literal">z</span>.</p>
+<p class="programs">x = 10<br/>y = 110<br/>z = 12</p>
+<p class="indent">These variables represent the position that you want to teleport your player to. For now, set these variables to 10, 110, and 12, as shown here.</p>
+<p class="indent">Then enter the following line of code, which will transport the player:</p>
+<p class="programs">mc.player.setTilePos(x, y, z)</p>
+<p class="indent">The <span class="literal">setTilePos()</span> part of the program is a <em>function</em>, which is a prewritten and reusable piece of code. The <span class="literal">setTilePos(x, y, z)</span> function tells Minecraft to change the player’s position using the three variables you just set. The values inside the parentheses are called <em>arguments</em>. You <em>passed</em> the variables you just created to the function as arguments so the function can use the values of <span class="literal">x</span>, <span class="literal">y</span>, and <span class="literal">z</span> when it runs.</p>
+<div class="note">
+<p class="notet"><strong><span class="warnings">WARNING</span></strong></p>
+<p class="notep"><em>If you’re using a Raspberry Pi, don’t use values larger than 127 or smaller than −127 for the</em> <span class="literal"><span class="codeitalic">x</span></span> <em>and</em> <span class="literal"><span class="codeitalic">z</span></span> <em>variables. The Minecraft Pi world is small, and numbers outside this range will crash the game.</em></p>
+</div>
+<p class="indent"><a href="ch02.xhtml#ch2ex1">Listing 2-1</a> contains the full code to teleport your player, which you can also see in <a href="ch02.xhtml#ch2fig7">Figure 2-7</a>:</p>
+<p class="sidenote"><span class="blue"><em>teleport.py</em></span></p>
+<p class="programs"><span class="ent">➊</span> <span class="red"># Connect to Minecraft</span><br/>   <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br/>   mc = Minecraft.create()<br/><br/>   <span class="red"># Set x, y, and z variables to represent coordinates</span><br/>   x = 10<br/>   y = 110<br/>   z = 12<br/><br/>   <span class="red"># Change the player's position</span><br/>   mc.player.setTilePos(x, y, z)</p>
+<p class="examplet"><span epub:type="pagebreak" id="page_39"></span><a id="ch2ex1"></a><em>Listing 2-1: The finished teleport code</em></p>
+<p class="indent">To make this program easier to understand, I’ve included some <em>comments</em> <span class="ent">➊</span>. Comments are useful statements in code that describe what the code does but are ignored by Python. In other words, when you run the program, Python passes commented lines without doing anything. A single-line comment begins with a hash mark (<span class="literal">#</span>). My comments describe what each part of <em>teleport.py</em> does. It’s a good habit to write comments in your code so you can remember what the parts of your program do when you return to them later.</p>
+<p class="indent"><a href="ch02.xhtml#ch2fig7">Figure 2-7</a> shows the completed program written in IDLE’s text editor.</p>
+<div class="image"><img alt="image" src="../images/f02-07.jpg"/></div>
+<p class="figcap"><a id="ch2fig7"></a><em>Figure 2-7: The completed program in IDLE’s text editor</em></p>
+<p class="indent">Now let’s run the program! Follow these steps:</p>
+<ol>
+<li class="noindent"><p class="list">Open Minecraft by clicking the desktop icon.</p></li>
+<li class="noindent"><p class="list">If you’re using a Raspberry Pi, click <strong>Start Game</strong> and <strong>Create a New World</strong>. If you’re using the desktop edition of Minecraft, open the game world using the instructions in “<a href="ch01.xhtml#ch01lev2sec05">Running Spigot and Creating a Game Profile</a>” on <a href="ch01.xhtml#page_7">page 7</a> for Windows and on <a href="ch01.xhtml#page_18">page 18</a> for Mac.</p></li>
+<li class="noindent"><p class="list">After the world has been generated, press the <small>ESC</small> key (or <small>TAB</small> if you’re using a Raspberry Pi) to release the mouse. You can now move the mouse outside of the Minecraft window or double-click the Minecraft window to reselect the game. <a href="ch02.xhtml#ch2fig8">Figure 2-8</a> shows the IDLE and Minecraft windows on my computer.</p>
+<div class="image"><span epub:type="pagebreak" id="page_40"></span><img alt="image" src="../images/f02-08.jpg"/></div>
+<p class="figcap"><a id="ch2fig8"></a><em>Figure 2-8: This is how I like to arrange my Minecraft and IDLE text editor windows.</em></p></li>
+<li class="noindent"><p class="list">Click the IDLE text editor window that has your <em>teleport.py</em> program.</p></li>
+<li class="noindent"><p class="list">Click <strong>Run</strong> <img alt="image" src="../images/arrow.jpg"/> <strong>Run Module</strong> or press F5. If you haven’t saved the program, IDLE will always ask if you want to save before running. Click <strong>OK</strong> to save the program. If you click Cancel, the program won’t run.</p></li>
+</ol>
+<div class="note">
+<p class="notet"><strong><span class="notes">NOTE</span></strong></p>
+<p class="notep"><em>When you’re running programs from IDLE on a Raspberry Pi, a dialog asking you to save your program might appear and hide itself behind the Minecraft window. If you think IDLE has frozen, it might be that the dialog is hiding. Just minimize the Minecraft window and click OK in the IDLE dialog. After clicking OK, maximize the Minecraft window.</em></p>
+</div>
+<p class="indent">Well done! Your program should now run, and after a few seconds, your player should be teleported to coordinates (10, 110, 12), as shown in <a href="ch02.xhtml#ch2fig9">Figure 2-9</a>. Your world isn’t the same as mine, so you’ll see some differences when you run it on your computer.</p>
+<div class="sidebar">
+<p class="sidebart" id="ch02sb01"><strong>BONUS OBJECTIVE: JUMP AROUND</strong></p>
+<p class="noindent">Do you think you’ve got the hang of teleportation? Try replacing <span class="literal">x</span>, <span class="literal">y</span>, and <span class="literal">z</span> with other integers to see where your player ends up! Try negative values, too!</p>
+</div>
+<div class="image"><span epub:type="pagebreak" id="page_41"></span><img alt="image" src="../images/f02-09.jpg"/></div>
+<p class="figcap"><a id="ch2fig9"></a><em>Figure 2-9: I’ve teleported from my house to position (10, 110, 12), which is above a swamp. Look out below!</em></p>
+<h4 class="h4" id="ch02lev2sec06"><strong><span class="blue1">Floats</span></strong></h4>
+<p class="noindent">Not all numbers are whole numbers. Decimal points are used to represent values that can’t be described with whole numbers. For example, you might have half (0.5) of an apple. Numbers that use decimal points are called <em>floating point numbers</em>, or <em>floats</em>. This is another data type that Python uses. Floating point numbers are used instead of integers when you want to be more precise. Floats can also represent whole numbers (as in <span class="literal">3.0</span>), but integers can’t represent numbers with decimal places.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_42"></span>You might have noticed that your player’s position coordinates (as shown in <a href="ch02.xhtml#ch2fig4">Figures 2-4</a> and <a href="ch02.xhtml#ch2fig5">2-5</a>) include decimals, which means they’re floats!</p>
+<p class="indent">In Python, you declare a float variable in the same way that you declare an integer variable. For example, to set the variable <span class="literal">x</span> to <span class="literal">1.34</span>, you’d write this:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> x = 1.34</p>
+<p class="indent">To create a negative float, put a minus sign (<span class="literal">-</span>) before the value:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> x = -1.34</p>
+<p class="indent">In the next mission, you’ll gain even more control over your teleportation powers by using floats to teleport the player to precise locations.</p>
+<h4 class="h4a" id="ch02lev2sec07"><strong>Mission #2: Go Exactly Where You Want</strong></h4>
+<p class="noindent">You learned how to set the player’s position using integers, but you can set the player’s position more accurately if you use floats. In this mission, we’ll revise the program from Mission #1 to teleport the player using a float value:</p>
+<ol>
+<li class="noindent"><p class="list">In IDLE, open the <em>teleport.py</em> program (<a href="ch02.xhtml#page_38">page 38</a>) by clicking <strong>File</strong> <img alt="image" src="../images/arrow.jpg"/> <strong>Open</strong> and selecting the file from your <em>variables</em> folder.</p></li>
+<li class="noindent"><p class="list">Save a copy of the program as <em>teleportPrecise.py</em> in your <em>variables</em> folder.</p></li>
+<li class="noindent"><p class="list">In the <em>teleportPrecise.py</em> file, change the <span class="literal">x</span>, <span class="literal">y</span>, and <span class="literal">z</span> variables to use floats instead of integers. That is, change the values of <span class="literal">x</span>, <span class="literal">y</span>, and <span class="literal">z</span> from 10, 110, and 12 to 10.0, 110.0, and 12.0.</p></li>
+<li class="noindent"><p class="list">Change the last line of code to <span class="literal">mc.player.setPos(x, y, z)</span> by removing the word <span class="literal">Tile</span>.</p></li>
+<li class="noindent"><p class="list">Save the program.</p></li>
+<li class="noindent"><p class="list">Open a Minecraft world and run the code.</p></li>
+</ol>
+<p class="indent">The final result should look like this:</p>
+<p class="sidenote"><span class="blue"><em>teleportPrecise.py</em></span></p>
+<p class="programs"><span class="red"># Connect to Minecraft</span><br/>   <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br/>   mc = Minecraft.create()<br/><br/>   <span class="red"># Set x, y, and z variables to represent coordinates</span><br/>   x = 10.0<br/>   y = 110.0<br/>   z = 12.0<br/><br/>   <span class="red"># Change the player's position</span><br/>   mc.player.setPos(x, y, z)</p>
+<p class="indent"><span epub:type="pagebreak" id="page_43"></span>Notice the difference between <span class="literal">mc.player.setPos(x, y, z)</span>, used here, and <span class="literal">mc.player.setTilePos(x, y, z)</span>, used in <a href="ch02.xhtml#ch2ex1">Listing 2-1</a>. The <span class="literal">setTilePos()</span> function uses integers to tell the game the position of the block that you want to teleport to. The <span class="literal">setPos()</span> function is a little different—it uses floats to tell the game the position of the block as well as the precise position <em>on</em> that block that you want to teleport to. Using my program, I teleported to the top of my tower, as shown in <a href="ch02.xhtml#ch2fig10">Figure 2-10</a>.</p>
+<div class="image"><img alt="image" src="../images/f02-10.jpg"/></div>
+<p class="figcap"><a id="ch2fig10"></a><em>Figure 2-10: I’ve teleported myself to the top of my tower, using floats to be very precise.</em></p>
+<div class="sidebar">
+<p class="sidebart" id="ch02sb02"><strong>BONUS OBJECTIVE: TELEPORT ACCURATELY</strong></p>
+<p class="noindent">Change the values of the <span class="literal">x</span>, <span class="literal">y</span>, and <span class="literal">z</span> variables using a mixture of positive and negative floats and run the program. Then, change the decimal values slightly from your new ones. What happens?</p>
+</div>
+<h3 class="h3" id="ch02lev1sec03"><strong><span class="blue1">Slowing Down Teleportation Using the time Module</span></strong></h3>
+<p class="noindent">Python runs your code as fast as possible. But you can slow down the action by making your programs wait a certain number of seconds before continuing.</p>
+<p class="indent">To use time in your programs, you need the <span class="literal">time</span> module, which contains a set of prewritten functions relating to time. To use the <span class="literal">time</span> module, add the following line of code to the top of your programs:</p>
+<p class="programs"><span class="orange">import</span> time</p>
+<p class="indent"><span epub:type="pagebreak" id="page_44"></span>Order is very important when you’re using the <span class="literal">time</span> module and the <span class="literal">sleep()</span> function, which is part of the <span class="literal">time</span> module. The <span class="literal">sleep()</span> function will make a program wait a specified number of seconds before continuing. You must always import the <span class="literal">time</span> module before you use the <span class="literal">sleep()</span> function. If you don’t, Python won’t be able to find the <span class="literal">sleep()</span> function and will be so confused that it will stop your program from running. This is why it’s best to import any module you use at the top of your code. All of your <span class="literal">import</span> statements will be grouped together at the top of the program. For example, I usually include the lines of code to connect to Minecraft first, and then add the <span class="literal">import time</span> statement on the third line.</p>
+<p class="indent">Here is an example of how to use the <span class="literal">sleep()</span> function:</p>
+<p class="programs">time.sleep(5)</p>
+<p class="indent">This line of code pauses your program for five seconds. You can use any number, including integers and floats, as the following example shows:</p>
+<p class="programs">time.sleep(0.2)</p>
+<p class="indent">When your program reaches this line of code, it will wait 0.2 seconds. Now that you can control the flow of time, you’re ready for the next mission!</p>
+<h4 class="h4a" id="ch02lev2sec08"><strong>Mission #3: Teleportation Tour</strong></h4>
+<p class="noindent">The beauty of teleportation in Minecraft is that you can send your player anywhere. Using all the skills you’ve learned so far, you’ll send your player on an automated tour of your entire Minecraft world!</p>
+<p class="indent">In this mission, you’ll practice changing the values of variables by modifying the code from Mission #1 (<a href="ch02.xhtml#page_35">page 35</a>) to teleport the player to several locations across the map. The player will teleport to one location, wait a few seconds, and then teleport to another location.</p>
+<ol>
+<li class="noindent"><p class="list">In IDLE, open the <em>teleport.py</em> program (<a href="ch02.xhtml#page_38">page 38</a>) by clicking <strong>File</strong> <img alt="image" src="../images/arrow.jpg"/> <strong>Open</strong> and selecting the file from your <em>variables</em> folder.</p></li>
+<li class="noindent"><p class="list">Save a copy of the program as <em>tour.py</em> in your <em>variables</em> folder.</p></li>
+<li class="noindent"><p class="list">Just after the code that connects your program to Minecraft, add <span class="literal">import time</span>.</p></li>
+<li class="noindent"><p class="list">At the end of the program, add <span class="literal">time.sleep(10)</span>.</p></li>
+<li class="noindent"><p class="list">Copy the lines with the <span class="literal">x</span>, <span class="literal">y</span>, and <span class="literal">z</span> variables and the <span class="literal">setTilePos()</span> function and paste them at the end of the program, so those lines appear twice.</p></li>
+<li class="noindent"><p class="list"><span epub:type="pagebreak" id="page_45"></span>Change the values of both sets of <span class="literal">x</span>, <span class="literal">y</span>, and <span class="literal">z</span> variables to any numbers you want. You can find the coordinates for any position in your game by moving there and writing down the player’s coordinates like you did earlier in this chapter.</p></li>
+<li class="noindent"><p class="list">Save the program.</p></li>
+<li class="noindent"><p class="list">Open a Minecraft world and run the code.</p></li>
+</ol>
+<p class="indent">The final result should look like this, with new coordinates filled in:</p>
+<p class="sidenote"><span class="blue"><em>tour.py</em></span></p>
+<p class="programs"><span class="red"># Connect to Minecraft</span><br/><span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br/>mc = Minecraft.create()<br/><span class="orange">import</span> time<br/><br/><span class="red"># Set x, y, and z variables to represent coordinates</span><br/>x = <span class="red"># Fill in</span><br/>y = <span class="red"># Fill in</span><br/>z = <span class="red"># Fill in</span><br/><br/><span class="red"># Change the player's position</span><br/>mc.player.setTilePos(x, y, z)<br/><br/><span class="red"># Wait 10 seconds</span><br/>time.sleep(10)<br/><br/><span class="red"># Set x, y, and z variables to represent coordinates</span><br/>x = <span class="red"># Fill in</span><br/>y = <span class="red"># Fill in</span><br/>z = <span class="red"># Fill in</span><br/><br/><span class="red"># Change the player's position</span><br/>mc.player.setTilePos(x, y, z)</p>
+<p class="indent">The player should teleport to the first location, wait 10 seconds, and then teleport to the second location, as shown in <a href="ch02.xhtml#ch2fig11">Figure 2-11</a>.</p>
+<div class="sidebar">
+<p class="sidebart" id="ch02sb03"><strong>BONUS OBJECTIVE: MORE TELEPORTATION</strong></p>
+<p class="noindent">Copy the <em>tour.py</em> code to move the player as many times as you want. Replace the <span class="literal">10</span> in the function <span class="literal">time.sleep(10)</span> with a different value. You could even use a different number for each <span class="literal">sleep()</span> function so your player waits a different amount of time at each location.</p>
+<p class="indent">Then edit the code so that between teleports, only one of the <span class="literal">x</span>, <span class="literal">y</span>, and <span class="literal">z</span> variables changes. You don’t have to change every variable every time! Try using floats instead of integers, too.</p>
+</div>
+<div class="image"><span epub:type="pagebreak" id="page_46"></span><img alt="image" src="../images/f02-11.jpg"/></div>
+<p class="figcap"><a id="ch2fig11"></a><em>Figure 2-11: I’ve set the coordinates in my program to teleport to my house and then to teleport to the desert.</em></p>
+<h3 class="h3" id="ch02lev1sec04"><strong><span class="blue1">Debugging</span></strong></h3>
+<p class="noindent">Everyone makes mistakes; often, even the best programmers don’t get their code right the first time. Writing a program that works is just one skill that a good programmer needs. Fixing programs when they don’t work is another essential skill. This process is called <em>debugging</em>, and each problem in a misbehaving program is called a <em>bug</em>. In this section, you’ll learn tips and tricks to fix all your future programs.</p>
+<p class="indent">Bugs can completely stop a program from running, or they can make the program behave in an unexpected way. When a program doesn’t run, Python will show you an error message, such as the one in <a href="ch02.xhtml#ch2fig12">Figure 2-12</a>.</p>
+<div class="image"><span epub:type="pagebreak" id="page_47"></span><img alt="image" src="../images/f02-12.jpg"/></div>
+<p class="figcap"><a id="ch2fig12"></a><em>Figure 2-12: Python gives me an error message because I didn’t stick to Python’s syntax.</em></p>
+<p class="indent">In <a href="ch02.xhtml#ch2fig12">Figure 2-12</a> you can see that I’ve entered some code in the Python shell, and it has returned an error message. A lot of information is displayed in the error message, but based on the last line (<span class="literal">NameError: name 'x' is not defined</span>) I can tell that something is wrong with my <span class="literal">x</span> variable. Specifically, the <span class="literal">x</span> variable has not been defined. To fix this, I need to add an extra line of code that defines the <span class="literal">x</span> variable, like so:</p>
+<p class="programs"><span class="mer">&gt;&gt;&gt;</span> x = 10</p>
+<p class="indent">This line will fix the error message, but it doesn’t mean all errors will be fixed.</p>
+<p class="indent">Bugs that allow the program to run but cause it to behave strangely won’t show an error message, but you’ll know something is wrong when your program produces an unexpected result. For example, if you forget to write a line of code in your teleportation programs, such as <span class="literal">setTilePos()</span>, the program will run without any errors, but the player won’t change position. That’s not a very useful teleportation program!</p>
+<div class="note">
+<p class="notet"><strong><span class="warnings">WARNING</span></strong></p>
+<p class="notep"><em>Typos are among the most common causes of bugs. Spelling something in a way the computer doesn’t expect can stop your program from running. Be careful, and make sure your spelling and capitalization are correct!</em></p>
+</div>
+<h4 class="h4a" id="ch02lev2sec09"><strong>Mission #4: Fix the Buggy Teleportation</strong></h4>
+<p class="noindent">In this mission, you’ll debug two programs. The first program, <a href="ch02.xhtml#ch2ex2">Listing 2-2</a>, is similar to <em>teleport.py</em> (<a href="ch02.xhtml#page_38">page 38</a>), but this version has five mistakes. Open a new file in the IDLE text editor, copy <a href="ch02.xhtml#ch2ex2">Listing 2-2</a> into it, and save it as <em>teleportBug1.py</em>.</p>
+<p class="sidenote"><span epub:type="pagebreak" id="page_48"></span><span class="blue"><em>teleportBug1.py</em></span></p>
+<p class="programs"><span class="orange">from</span> mcpi.minceraft <span class="orange">inport</span> Minecraft<br/><span class="red"># mc = Minecraft.create()</span><br/><br/>x = 10<br/>  y = 11<br/>z = 12</p>
+<p class="examplet"><a id="ch2ex2"></a><em>Listing 2-2: A broken version of the teleport program</em></p>
+<p class="indent">To debug this program, complete the following steps:</p>
+<ol>
+<li class="noindent"><p class="list">Run <em>teleportBug1.py</em>.</p></li>
+<li class="noindent"><p class="list">When you get an error message, read the last line for a hint about what’s wrong.</p></li>
+<li class="noindent"><p class="list">Correct the bug and run the code again.</p></li>
+<li class="noindent"><p class="list">Keep correcting the bugs until the program teleports the player to a new location.</p></li>
+</ol>
+<div class="note">
+<p class="notet"><strong><span class="hints">HINT</span></strong></p>
+<p class="notep"><em>Don’t forget to double-check that you’re actually calling the</em> <span class="literal"><span class="codeitalic">setTilePos()</span></span> <em>function!</em></p>
+</div>
+<p class="indent">Let’s try debugging another program. The version of <em>teleport.py</em> in <a href="ch02.xhtml#ch2ex3">Listing 2-3</a> runs, but for some reason, the player doesn’t teleport to the specified position. Copy <a href="ch02.xhtml#ch2ex3">Listing 2-3</a> into an IDLE file and save it as <em>teleportBug2.py</em>.</p>
+<p class="sidenote"><span class="blue"><em>teleportBug2.py</em></span></p>
+<p class="programs"><span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br/>mc = Minecraft.create()<br/><br/>x = 10<br/>y = 110<br/>z = -12<br/><br/>mc.player.setPos(x, z, y)</p>
+<p class="examplet"><a id="ch2ex3"></a><em>Listing 2-3: The teleport program with bugs</em></p>
+<p class="indent">Unlike with <em>teleportBug1.py</em>, you won’t get any error messages when you run the program. To fix this program, you’ll need to read the code until you find the mistake. The program should teleport the player to position (10, 110, −12). Run the program and check the coordinates that the player has teleported to. This might help you debug the program and identify the problem with it.</p>
+<p class="indent">When you’ve squashed all the bugs in these two programs, add a comment to each to explain what the problems were. Jotting down problems you encounter in debugging can help you remember to watch out for similar bugs in the future.</p>
+<h3 class="h3" id="ch02lev1sec05"><span epub:type="pagebreak" id="page_49"></span><strong><span class="blue1">What You Learned</span></strong></h3>
+<p class="noindent">Congratulations! You’ve written your first Python programs to control a Minecraft player through the power of variables and functions. You explored two data types (integers and floats), controlled time, and debugged broken programs. You also learned two useful functions specific to the Minecraft Python API : <span class="literal">setPos()</span> and <span class="literal">setTilePos()</span>.</p>
+<p class="indent">In <a href="ch03.xhtml#ch03">Chapter 3</a>, you’ll master the art of speed building in Minecraft, using mathematical operations and functions that set blocks!<span epub:type="pagebreak" id="page_50"></span></p>
+</body>
+</html>

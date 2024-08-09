@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h2><span class="NoteHead">Nota</span></h2>
+<p>	En programación, se prefieren los espacios a las tabulaciones porque los espacios pueden ser interpretados sin ambigüedad por todas las herramientas que trabajan con un archivo de código. El ancho de los tabuladores puede ser interpretado de forma diferente por las distintas herramientas, lo que da lugar a errores que pueden ser extremadamente difíciles de diagnosticar.</p>
+<div class="bottom hr"><hr/></div>
+<h4 id="h3-502703b02-0002">Cambiar el tema de color</h4>
+<p class="BodyFirst">VS Code utiliza un tema oscuro por defecto. Si quieres cambiarlo, haz clic en <b>Archivo</b><b>(Código</b> en la barra de menús en macOS), luego en <b>Preferencias</b> y elige <b>Tema</b> de color. Aparecerá una lista desplegable que te permitirá elegir un tema que te vaya bien.</p>
+<h4 id="h3-502703b02-0003">Configurar el indicador de longitud de línea</h4>
+<p class="BodyFirst">La mayoría de los editores te permiten establecer un indicador visual, normalmente una línea vertical, para mostrar dónde deben terminar tus líneas. En la comunidad Python, la convención es limitar las líneas a 79 caracteres o menos.</p>
+<p>Para configurar esta función, haz clic en <b>Código</b> y luego en <b>Preferencias</b>, y elige <b>Configuración</b>. En el cuadro de diálogo que aparece, introduce <code class="bold" translate="no">rulers</code>. Verás una opción para <span epub:type="pagebreak" id="Page_472" title="472"></span>Editor: Reglas; haz clic en el enlace etiquetado <em translate="no">Edit in settings.json</em>. En el archivo que aparece, añade lo siguiente a la configuración de <code translate="no">editor.rulers</code>:</p>
+<p class="CodeLabel" translate="no"><b>settings.json</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    "editor.rulers": [</span>
+    80,
+<span class="LiteralGray">    ]</span></code></pre>
+<p>Esto añadirá una línea vertical en la ventana de edición en la posición de 80 caracteres. Puedes tener más de una línea vertical; por ejemplo, si quieres una línea adicional a 120 caracteres, el valor de tu configuración sería <code translate="no">[80, 120]</code>. Si no ves las líneas verticales, asegúrate de haber guardado el archivo de configuración; también es posible que tengas que salir y volver a abrir VS Code para que los cambios surtan efecto en algunos sistemas.</p>
+<h4 id="h3-502703b02-0004">Simplificar la salida</h4>
+<p class="BodyFirst">Por defecto, VS Code muestra la salida de tus programas en una ventana de terminal incrustada. Esta salida incluye los comandos que se están utilizando para ejecutar el archivo. Para muchas situaciones, esto es ideal, pero puede distraerte más de lo que deseas cuando estás aprendiendo Python por primera vez.</p>
+<p>Para simplificar la salida, cierra todas las pestañas que estén abiertas en VS Code y luego sal de VS Code. Inicia de nuevo VS Code y abre la carpeta que contiene los archivos Python en los que estás trabajando; puede ser simplemente la carpeta <em translate="no">python_work</em> donde se guarda <em translate="no">hello_world.py</em>.</p>
+<p>Haz clic en el icono Ejecutar/Depurar (que parece un triángulo con un pequeño error) y, a continuación, haz clic en <b>Crear un</b> <b>archivo</b> <b><i>launch.json</i></b>. Selecciona las opciones de Python en las indicaciones que aparecen. En el archivo <em translate="no">launch.json</em> que se abre, realiza el siguiente cambio:</p>
+<p class="CodeLabel" translate="no"><b>launch.json</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">{</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">    "configurations": [</span>
+<span class="LiteralGray">        {</span>
+<span class="LiteralGray">            </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+            "console": "internalConsole",
+<span class="LiteralGray">            "justMyCode": true</span>
+<span class="LiteralGray">        }</span>
+<span class="LiteralGray">    ]</span>
+<span class="LiteralGray">}</span></code></pre>
+<p>Aquí, estamos cambiando la configuración de <code translate="no">console</code> de <code translate="no">integratedTerminal</code> a <code translate="no">internalConsole</code>. Después de guardar el archivo de configuración, abre un archivo <em translate="no">.py</em> como <em translate="no">hello_world.py</em>, y ejecútalo pulsando CTRL-F5. En el panel de salida de VS Code, haz clic en <b>Consola de depuración </b>si no está ya seleccionada. Sólo deberías ver la salida de tu programa, y la salida debería actualizarse cada vez que ejecutes un programa.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="b02_3.html">anterior</a><a href="b02.html">Subtema 4 de 13: (Ver todo)</a><a href="b02_5.html">siguiente</a><br/></p>
+<br/><a href="b02_4.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="app01lev1sec26">
+  Pasa </h3>
+<p class="noindent">
+  A veces, cuando estás desarrollando un programa, quieres escribir sólo pequeñas partes del mismo para probar cosas. El problema de hacer esto es que no puedes tener una sentencia <span class="literal1" translate="no">
+   if
+  </span>sin el bloque de código que debe ejecutarse si la condición de la sentencia <span class="literal1" translate="no">
+   if
+  </span>es verdadera. Tampoco puedes tener un bucle <span class="literal1" translate="no">
+   for
+  </span>sin el bloque de código que debe ejecutarse en el bucle. Por ejemplo, el siguiente código funciona perfectamente: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> age = 15
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">if</span> age &gt; 10:
+        <span class="violet">print</span>(<span class="green">'older than 10'</span>)
+<span class="blue1">older than 10</span>
+</pre>
+<p class="indent">
+  Pero si no rellenas el bloque de código (el cuerpo) de la sentencia <span class="literal1" translate="no">
+   if
+  </span>, recibirás un mensaje de error: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> age = 15
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">if</span> age &gt; 10:
+<span class="red">File "&lt;stdin&gt;", line 2
+    ^
+IndentationError: expected an indented block after 'if' statement on line 1</span></pre>
+<p class="indent">
+  Este es el mensaje de error que muestra Python cuando deberías tener un bloque de código después de una sentencia de algún tipo (ni siquiera te dejará escribir este tipo de código si estás utilizando IDLE). En casos como éste, puedes utilizar la palabra clave <span class="literal1" translate="no">
+   pass
+  </span>para escribir una sentencia pero sin proporcionar el bloque de código que la acompaña. </p>
+<p class="indent">
+  Por ejemplo, supongamos que quieres crear un bucle <span class="literal1" translate="no">
+   for
+  </span>con una sentencia <span class="literal1" translate="no">
+   if
+  </span>dentro. Tal vez aún no hayas decidido qué poner en la sentencia <span class="literal1" translate="no">
+   if
+  </span>: tal vez utilices la función <span class="literal1" translate="no">
+   print
+  </span>, o pongas una interrupción, o cualquier otra cosa. Por ahora, puedes utilizar <span class="literal1" translate="no">
+   pass
+  </span>, <span id="page_295">
+</span>y el código seguirá funcionando (aunque todavía no haga exactamente lo que quieres). Aquí está de nuevo nuestra sentencia <span class="literal1" translate="no">
+   if
+  </span>, esta vez utilizando la palabra clave <span class="literal1" translate="no">
+   pass
+  </span>: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> age = 15
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">if</span> age &gt; 10:
+        <span class="orange">pass</span>
+</pre>
+<p class="indent">
+  El siguiente código muestra otro uso de la palabra clave <span class="literal1" translate="no">
+   pass
+  </span>: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> x <span class="orange">in</span> <span class="violet">range</span>(0, 7):
+<span class="brown">&gt;&gt;&gt;</span>     <span class="violet">print</span>(f<span class="green">'x is {x}'</span>)
+<span class="brown">&gt;&gt;&gt;</span>     <span class="orange">if</span> x == 4:
+            <span class="orange">pass</span>
+
+<span class="blue1">x is 0
+x is 1
+x is 2
+x is 3
+x is 4
+x is 5
+x is 6</span>
+</pre>
+<p class="indent">
+  Python sigue comprobando si la variable <span class="literal1" translate="no">
+   x
+  </span>contiene el valor <span class="literal1" translate="no">
+   4
+  </span>cada vez que ejecuta el bloque de código en el bucle, pero no hará nada en consecuencia, por lo que imprimirá todos los números del rango 0 a 7. Más adelante, podrías añadir el código en el bloque de la sentencia <span class="literal1" translate="no">
+   if
+  </span>, sustituyendo la palabra clave <span class="literal1" translate="no">
+   pass
+  </span>por otra, como <span class="literal1" translate="no">
+   break
+  </span>: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> x <span class="orange">in</span> <span class="violet">range</span>(0, 7):
+        <span class="violet">print</span>(f<span class="green">'x is {x}'</span>)
+        <span class="orange">if</span> x == 4:
+            <span class="orange">break</span>
+
+<span class="blue1">x is 1
+x is 2
+x is 3
+x is 4</span>
+</pre>
+<p class="indent">
+  La palabra clave <span class="literal1" translate="no">
+   pass
+  </span>se utiliza normalmente cuando estás creando una función pero no quieres escribir todavía el código para ella. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="app01_26.html">anterior</a><a href="app01.html">Subtema 27 de 33: (Ver todo)</a><a href="app01_28.html">siguiente</a><br/></p>
+<br/><a href="app01_27.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch10lev1sec6">
+  Dibujar muchos rectángulos </h3>
+<p class="noindent">
+  Probemos a llenar el lienzo con rectángulos de diferentes tamaños importando el módulo <span class="literal1" translate="no">
+   random
+  </span>y creando una función que utilice un número aleatorio para las coordenadas de las esquinas superior izquierda e inferior derecha del rectángulo. </p>
+<p class="indent">
+  Utilizaremos la función <span class="literal1" translate="no">
+   randrange
+  </span>proporcionada por el módulo <span class="literal1" translate="no">
+   random
+  </span>. Cuando le damos un número a esta función, devuelve un número entero aleatorio comprendido entre 0 y el número que le demos. Por ejemplo, llamar a <span class="literal1" translate="no">
+   randrange(10)
+  </span>devuelve un número entre 0 y 9, <span class="literal1" translate="no">
+   randrange(100)
+  </span>devuelve un número entre 0 y 99, y así sucesivamente. </p>
+<p class="indent">
+  Para utilizar <span class="literal1" translate="no">
+   randrange
+  </span>en una función, crea una nueva ventana seleccionando <strong class="calibre5">Archivo ▸ Nuevo Archivo </strong>, e introduce el siguiente código: </p>
+<pre class="pre" translate="no"><span class="orange">from</span> tkinter <span class="orange">import</span> *
+<span class="orange">import</span> random
+tk = Tk()
+canvas = Canvas(tk, width=400, height=400)
+canvas.pack()
+
+<span class="orange">def</span> random_rectangle(width, height):
+    x1 = random.randrange(width)
+    y1 = random.randrange(height)
+<span id="page_146"></span>    x2 = x1 + random.randrange(width)
+    y2 = y1 + random.randrange(height)
+    canvas.create_rectangle(x1, y1, x2, y2)
+</pre>
+<p class="indent">
+  Primero definimos nuestra función ( <span class="literal1" translate="no">
+   random_rectangle
+  </span>) como una función que toma dos parámetros: <span class="literal1" translate="no">
+   width
+  </span>y <span class="literal1" translate="no">
+   height
+  </span>. A continuación, creamos variables para la esquina superior izquierda del rectángulo utilizando la función <span class="literal1" translate="no">
+   randrange
+  </span>, pasando la anchura y la altura como parámetros con <span class="literal1" translate="no">
+   x1 = random
+  </span><span class="literal1" translate="no">
+   .randrange(width)
+  </span> y <span class="literal1" translate="no">
+   y1 = random.randrange(height)
+  </span>, respectivamente. Con la segunda línea de esta función, estamos diciendo: "Crea una variable llamada <span class="literal1" translate="no">
+   x1
+  </span>y establece su valor en un número aleatorio entre 0 y el valor del parámetro <span class="literal1" translate="no">
+   width
+  </span>." </p>
+<p class="indent">
+  Las dos líneas siguientes crean variables para la esquina inferior derecha del rectángulo, teniendo en cuenta las coordenadas superiores izquierdas ( <span class="literal1" translate="no">
+   x1
+  </span>o <span class="literal1" translate="no">
+   y1
+  </span>) y añadiendo un número aleatorio a esos valores. La tercera línea de la función está diciendo efectivamente: "Crea la variable <span class="literal1" translate="no">
+   x2
+  </span>añadiendo un número aleatorio al valor que ya hemos calculado para <span class="literal1" translate="no">
+   x1
+  </span>." </p>
+<p class="indent">
+  Por último, con <span class="literal1" translate="no">
+   canvas.create_rectangle
+  </span>, utilizamos las variables <span class="literal1" translate="no">
+   x1
+  </span>, <span class="literal1" translate="no">
+   y1
+  </span>, <span class="literal1" translate="no">
+   x2
+  </span>, y <span class="literal1" translate="no">
+   y2
+  </span>para dibujar el rectángulo en el lienzo. </p>
+<p class="indent">
+  Para probar nuestra función <span class="literal1" translate="no">
+   random_rectangle
+  </span>, le pasaremos la anchura y la altura del lienzo. Añade el siguiente código debajo de la función que acabas de introducir: </p>
+<pre class="pre" translate="no">random_rectangle(400, 400)</pre>
+<p class="indent">
+  Guarda el código que has introducido (selecciona <strong class="calibre5">Archivo ▸ Guardar </strong>e introduce un nombre de archivo como <em class="calibre7">randomrect.py </em>), y luego selecciona <strong class="calibre5">Ejecutar ▸ Ejecutar Módulo . </strong></p>
+<div class="note">
+<p class="notet">
+<strong class="calibre3"><span class="notes">NOTA </span></strong></p>
+<p class="notep">
+<em class="calibre7">
+    Nuestra función <span class="literal1" translate="no">
+     random_rectangle
+    </span>puede dibujar un rectángulo fuera del lateral o de la parte inferior del lienzo. </em>Esto se<em class="calibre7">debe a que la esquina superior izquierda del rectángulo puede estar en cualquier parte del lienzo (incluso en la esquina inferior derecha), y no causa ningún error dibujar más allá de la anchura o altura del lienzo. </em></p>
+</div>
+<p class="indent">
+  Una vez que hayas visto que la función funciona, llena la pantalla de rectángulos creando un bucle para llamar a <span class="literal1" translate="no">
+   random_rectangle
+  </span>varias veces. Probemos con un bucle <span class="literal1" translate="no">
+   for
+  </span>de 100 rectángulos aleatorios. Añade el siguiente código, guarda tu trabajo e intenta ejecutarlo de nuevo: </p>
+<pre class="pre" translate="no"><span class="orange">for</span> x <span class="orange">in</span> <span class="violet">range</span>(0, 100):
+    random_rectangle(400, 400)
+</pre>
+<p class="indent">
+<span id="page_147">
+</span>
+  Este código produce un poco de desorden, pero es una especie de arte moderno ( <a class="calibre6" href="ch10.xhtml#ch10fig07">Figura 10-7 </a>). </p>
+<div class="image" id="ch10fig07">
+<img alt="Image" class="calibre106" src="../images/10fig07.jpg" translate="no"/>
+</div>
+<p class="figcap">
+
+   Figura<em class="calibre7">10-7: Arte moderno con tkinter </em></p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch10_6.html">anterior</a><a href="ch10.html">Subtema 7 de 17: (Ver todo)</a><a href="ch10_8.html">siguiente</a><br/></p>
+<br/><a href="ch10_7.docx" target="_blank"></a></footer>
+</body>
+</html>

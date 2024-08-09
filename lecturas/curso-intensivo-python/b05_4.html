@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703b05-0001">Sigue las sugerencias en pantalla</h3>
+<p class="BodyFirst">A veces, la plataforma a la que estás empujando generará un mensaje con una sugerencia clara sobre cómo solucionar el problema. Por ejemplo, éste es el mensaje que verás si creas un proyecto Platform.sh antes de inicializar un repositorio Git, y luego intentas empujar el proyecto:</p>
+<pre translate="no"><code translate="no">$ <b>platform push</b>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> Enter a number to choose a project:
+  [0] ll_project (votohz445ljyg)
+ &gt; <b>0</b>
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>   [RootNotFoundException]
+  Project root not found. This can only be run from inside a project directory.
+
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>  To set the project for this Git repository, run:
+    platform project:set-remote [id]</code></pre>
+<p>Estamos intentando empujar un proyecto, pero el proyecto local aún no se ha asociado a un proyecto remoto. Entonces, la CLI de Platform.sh nos pregunta a qué proyecto remoto queremos empujar <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Introducimos <code class="bold" translate="no">0</code>, para seleccionar el único proyecto de la lista. Pero a continuación, vemos un <code translate="no">RootNotFoundException</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Esto ocurre porque Platform.sh busca un directorio <em translate="no">.git</em> cuando inspecciona el proyecto local, para averiguar cómo conectar el proyecto local con el remoto. En este caso, como no había ningún directorio <em translate="no">.git</em> cuando se creó el proyecto remoto, nunca se estableció esa conexión. La CLI sugiere una solución <span aria-label="annotation3" class="CodeAnnotation">❸;</span> nos dice que podemos especificar el proyecto remoto que debe asociarse a este proyecto local, utilizando el comando <code translate="no">project:set-remote</code>.</p>
+<p>Probemos esta sugerencia:</p>
+<pre translate="no"><code translate="no">$ <b>platform project:set-remote votohz445ljyg</b>
+Setting the remote project for this repository to: ll_project (votohz445ljyg)
+
+The remote project for this repository is
+    now set to: ll_project (votohz445ljyg)</code></pre>
+<p>En la salida anterior, la CLI mostraba el ID de este proyecto remoto, <code translate="no">votohz4451jyg</code>. Así que ejecutamos el comando sugerido, utilizando este ID, y la CLI es capaz de establecer la conexión entre el proyecto local y el proyecto remoto.</p>
+<p>Ahora vamos a intentar empujar el proyecto de nuevo:</p>
+<pre translate="no"><code translate="no">$ <b>platform push</b>
+Are you sure you want to push to the main (production) branch? [Y/n] <b>y</b>
+Pushing HEAD to the existing environment main
+<var>--snip--</var></code></pre>
+<p>Esto ha sido un push con éxito; seguir la sugerencia en pantalla ha funcionado.</p>
+<p><span epub:type="pagebreak" id="Page_496" title="496"></span>Debes tener cuidado al ejecutar comandos que no entiendas completamente. Sin embargo, si tienes buenas razones para creer que un comando puede hacer poco daño, y si confías en la fuente de la recomendación, puede ser razonable probar las sugerencias que ofrecen las herramientas que estás utilizando.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="b05_3.html">anterior</a><a href="b05.html">Subtema 4 de 12: (Ver todo)</a><a href="b05_5.html">siguiente</a><br/></p>
+<br/><a href="b05_4.docx" target="_blank"></a></footer>
+</body>
+</html>

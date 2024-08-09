@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c09-0012"><span epub:type="pagebreak" id="Page_174" title="174"></span>Importar una sola clase</h3>
+<p class="BodyFirst">Creemos un módulo que contenga sólo la clase <code translate="no">Car</code>. Esto plantea un sutil problema de nomenclatura: ya tenemos un archivo llamado <em translate="no">car.py</em> en este capítulo, pero este módulo debería llamarse <em translate="no">car.py</em> porque contiene código que representa un coche. Resolveremos este problema de nomenclatura almacenando la clase <code translate="no">Car</code> en un módulo llamado <em translate="no">car.py</em>, en sustitución del archivo <em translate="no">car.py</em> que utilizábamos anteriormente. A partir de ahora, cualquier programa que utilice este módulo necesitará un nombre de archivo más específico, como <em translate="no">my_car.py</em>. Aquí tienes <em translate="no">car.py</em> con sólo el código de la clase <code translate="no">Car</code>:</p>
+<p class="CodeLabel" translate="no"><b>car.py</b></p>
+<pre translate="no"><code translate="no"><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> """A class that can be used to represent a car."""
+
+<span class="LiteralGray">class Car:</span>
+<span class="LiteralGray">    """A simple attempt to represent a car."""</span>
+
+<span class="LiteralGray">    def __init__(self, make, model, year):</span>
+<span class="LiteralGray">        """Initialize attributes to describe a car."""</span>
+<span class="LiteralGray">        self.make = make</span>
+<span class="LiteralGray">        self.model = model</span>
+<span class="LiteralGray">        self.year = year</span>
+<span class="LiteralGray">        self.odometer_reading = 0</span>
+
+<span class="LiteralGray">    def get_descriptive_name(self):</span>
+<span class="LiteralGray">        """Return a neatly formatted descriptive name."""</span>
+<span class="LiteralGray">        long_name = f"{self.year} {self.make} {self.model}"</span>
+<span class="LiteralGray">        return long_name.title()</span>
+
+<span class="LiteralGray">    def read_odometer(self):</span>
+<span class="LiteralGray">        """Print a statement showing the car's mileage."""</span>
+<span class="LiteralGray">        print(f"This car has {self.odometer_reading} miles on it.")</span>
+
+<span class="LiteralGray">    def update_odometer(self, mileage):</span>
+<span class="LiteralGray">        """</span>
+<span class="LiteralGray">        Set the odometer reading to the given value.</span>
+<span class="LiteralGray">        Reject the change if it attempts to roll the odometer back.</span>
+<span class="LiteralGray">        """</span>
+<span class="LiteralGray">        if mileage &gt;= self.odometer_reading:</span>
+<span class="LiteralGray">            self.odometer_reading = mileage</span>
+<span class="LiteralGray">        else:</span>
+<span class="LiteralGray">            print("You can't roll back an odometer!")</span>
+
+<span class="LiteralGray">    def increment_odometer(self, miles):</span>
+<span class="LiteralGray">        """Add the given amount to the odometer reading."""</span>
+<span class="LiteralGray">        self.odometer_reading += miles</span></code></pre>
+<p>Incluimos un docstring a nivel de módulo que describe brevemente el contenido de este módulo <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Debes escribir un docstring para cada módulo que crees.</p>
+<p>Ahora creamos un archivo independiente llamado <em translate="no">my_car.py</em>. Este archivo importará la clase <code translate="no">Car</code> y luego creará una instancia a partir de esa clase:</p>
+<p class="CodeLabel" translate="no"><b>my_car.py</b></p>
+<pre translate="no"><code translate="no"><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> from car import Car
+
+my_new_car = Car('audi', 'a4', 2024)
+print(my_new_car.get_descriptive_name())
+
+<span epub:type="pagebreak" id="Page_175" title="175"></span>my_new_car.odometer_reading = 23
+my_new_car.read_odometer()</code></pre>
+<p>La sentencia <code translate="no">import</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span> indica a Python que abra el módulo <code translate="no">car</code> e importe la clase <code translate="no">Car</code>. Ahora podemos utilizar la clase <code translate="no">Car</code> como si estuviera definida en este archivo. El resultado es el mismo que vimos antes:</p>
+<pre translate="no"><code translate="no">2024 Audi A4
+This car has 23 miles on it.</code></pre>
+<p>Importar clases es una forma eficaz de programar. Imagina lo largo que sería este archivo de programa si se incluyera toda la clase <code translate="no">Car</code>. En cambio, si trasladas la clase a un módulo e importas el módulo, sigues obteniendo toda la misma funcionalidad, pero mantienes tu archivo de programa principal limpio y fácil de leer. También almacenas la mayor parte de la lógica en archivos separados; una vez que tus clases funcionen como quieres, puedes dejar esos archivos tranquilos y centrarte en la lógica de alto nivel de tu programa principal.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c09_20.html">anterior</a><a href="c09.html">Subtema 21 de 34: (Ver todo)</a><a href="c09_22.html">siguiente</a><br/></p>
+<br/><a href="c09_21.docx" target="_blank"></a></footer>
+</body>
+</html>

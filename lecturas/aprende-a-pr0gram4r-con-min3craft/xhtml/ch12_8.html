@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch12lev1sec07"><strong><span class="blue1">Entender la herencia</span></strong></h3>
+<p class="noindent">La<em>herencia</em> se produce cuando las clases comparten los mismos métodos y atributos que otras clases. Por ejemplo, los patos son un tipo de ave. Comparten los mismos métodos que otras aves (volar, comer, etc.) y tienen los mismos atributos que otras aves (peso, envergadura, etc.). Así que se podría decir que <em>los patos</em> heredan sus atributos y métodos de la clase <em>aves</em>. <a href="ch12.xhtml#ch12fig5">La figura 12-5</a> muestra esta relación en un diagrama.</p>
+<div class="image"><img alt="image" src="../images/f12-05.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch12fig5"></a><em>Figura 12-5: Tanto los pingüinos como los patos son clases de aves.</em></p>
+<p class="indent">La clase de la que heredan otras clases se llama <em>superclase</em>; la clase que hereda de la superclase se llama <em>subclase</em>.</p>
+<p class="indent">La herencia es útil porque permite crear diferencias sutiles entre objetos similares. Por ejemplo, los pingüinos también son un tipo de ave, pero pueden nadar bajo el agua, a diferencia de la mayoría de las aves. Para representar a los pingüinos, tienes que crear una subclase que herede de la clase pájaro pero que tenga adaptaciones para que los pingüinos puedan nadar bajo el agua. Estas adaptaciones son la razón por la que creas subclases: puedes conservar las características principales de la superclase para evitar tener que escribir el código de nuevo, y sólo tienes que añadir los métodos y atributos que necesites en la subclase.</p>
+<h4 class="h4" id="ch12lev2sec07"><span epub:type="pagebreak" id="page_278"></span><strong><span class="blue1">Heredar una clase</span></strong></h4>
+<p class="noindent">Cuando una subclase hereda de una superclase, la subclase puede utilizar todos los métodos y atributos de la superclase. La subclase también puede añadir clases y atributos adicionales sin alterar la superclase original.</p>
+<p class="indent">Utilicemos el ejemplo de los pájaros para ilustrarlo. Primero escribiremos el código de la superclase <span class="literal">Pájaro</span>. Abre un nuevo archivo en IDLE, llámalo <em>clasepájaro.py</em> y añade el siguiente código para crear la clase:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>birdClass.py</em></span></p>
+<p class="programs" translate="no"><span class="ent">➊</span> <span class="orange">class</span> <span class="blue1">Bird</span>(<span class="rose">object</span>):<br translate="no"/><span class="ent">➋</span> <span class="orange">def</span> <span class="blue1">__init_</span>_(self, name, wingspan):<br translate="no"/>           self.name = name<br translate="no"/>           self.wingspan = wingspan<br translate="no"/><br translate="no"/><span class="ent">➌</span> <span class="orange">def</span> <span class="blue1">birdcall</span>(self):<br translate="no"/> <span class="rose">print</span>(<span class="green">"chirp"</span>)<br translate="no"/><span class="ent">➍</span> <span class="orange">def</span> <span class="blue1">fly</span>(self):<br translate="no"/> <span class="rose">print</span>(<span class="green">"flap"</span>)</p>
+<p class="indent">Creamos una clase llamada <span class="literal">Ave</span> <span class="ent">➊,</span> pero fíjate en que la clase <span class="literal">Ave</span> hereda de <span class="literal">objeto</span>. La clase <span class="literal">objeto</span> es una clase base sobre la que se construirán todas las demás clases. Todas las clases heredan de la clase <span class="literal">objeto</span>, y se utiliza cuando no hay otras superclases de las que heredar. Aunque haya varios niveles de herencia en los que muchas clases hereden unas de otras, la clase <span class="literal">objeto</span> siempre será la superclase utilizada en el nivel más alto de herencia.</p>
+<p class="indent">El método <span class="literal">__init__()</span> de la clase <span class="literal">Pájaro</span> toma dos argumentos que establecen dos atributos: el <span class="literal">nombre</span> del pájaro y su <span class="literal">envergadura</span> <span class="ent">➋.</span> Tiene dos métodos: <span class="literal">birdcall()</span> <span class="ent">➌</span> y <span class="literal">fly()</span> <span class="ent">➍.</span> De momento, el método <span class="literal">birdcall</span> () sólo imprime <span class="literal">"chirrido"</span> y el método <span class="literal">fly</span> () sólo imprime <span class="literal">"aleteo"</span>.</p>
+<p class="indent">En el mismo archivo, crea un objeto llamado <span class="literal">pájarojardín</span> utilizando la clase <span class="literal">Pájaro</span>:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>birdClass.py</em></span></p>
+<p class="programs" translate="no">gardenBird = Bird(<span class="green">"Geoffrey"</span>, 12)<br translate="no"/>gardenBird.birdcall()<br translate="no"/>gardenBird.fly()</p>
+<p class="indent">Este código imprimirá</p>
+<p class="programs" translate="no"><span class="blue1">chirp</span><br translate="no"/><span class="blue1">flap</span></p>
+<p class="indent">Ahora que has creado una superclase, puedes crear una subclase que herede de la superclase pero que tenga su propio método. Lo harás en la siguiente sección.</p>
+<h4 class="h4" id="ch12lev2sec08"><span epub:type="pagebreak" id="page_279"></span><strong><span class="blue1">Añadir nuevos métodos a las subclases</span></strong></h4>
+<p class="noindent">Añadamos una clase para pingüinos a <em>birdClass.py</em> y llamémosla <span class="literal">Pingüino</span>. Como los pingüinos pueden nadar bajo el agua, puedes añadir un método extra a la clase <span class="literal">Pingüino</span> llamado <span class="literal">nadar()</span>:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>birdClass.py</em></span></p>
+<p class="programs" translate="no"><span class="orange">class</span> <span class="blue1">Penguin</span>(Bird):<br translate="no"/> <span class="orange">def</span> <span class="blue1">swim</span>(self):<br translate="no"/> <span class="rose">print</span>(<span class="green">"swimming"</span>)</p>
+<p class="indent">Cuando defines una subclase y quieres que herede de otra superclase en lugar de <span class="literal">un objeto</span>, pones entre paréntesis el nombre de la superclase de la que hereda. Observa que no he creado un método <span class="literal">__init__()</span> para la clase <span class="literal">Pingüino</span>. La razón es que hereda de la clase <span class="literal">Pájaro</span>, por lo que utiliza el método __init__( <span class="literal">)</span> de la clase <span class="literal">Pájaro</span>. Utilicemos ese método __init__( <span class="literal">)</span> y probemos la función <span class="literal">swim(</span> ) creando un pingüino:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>birdClass.py</em></span></p>
+<p class="programs" translate="no">sarahThePenguin = Penguin(<span class="green">"Sarah"</span>, 10)<br translate="no"/>sarahThePenguin.swim()</p>
+<p class="indent">Este código mostrará lo siguiente:</p>
+<p class="programs" translate="no"><span class="blue1">swimming</span></p>
+<p class="indent">La clase <span class="literal">Pingüino</span> también puede utilizar los métodos <span class="literal">fly()</span> y <span class="literal">birdcall()</span> porque los hereda de <span class="literal">Bird</span>.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>birdClass.py</em></span></p>
+<p class="programs" translate="no">sarahThePenguin.fly()<br translate="no"/>sarahThePenguin.birdcall()</p>
+<p class="indent">En este caso, el resultado será el siguiente:</p>
+<p class="programs" translate="no"><span class="blue1">flap</span><br translate="no"/><span class="blue1">chirp</span></p>
+<p class="indent">Pero <span class="literal">aletear</span> y <span class="literal">piar</span> no tienen sentido para un pingüino, porque los pingüinos no pueden volar y su canto de pájaro es más bien un graznido. Aprenderemos a anular métodos heredados y a solucionar esto en "<a href="ch12.xhtml#ch12lev1sec08">Anular métodos y atributos</a>", en la <a href="ch12.xhtml#page_282">página 282</a>.</p>
+<p class="indent">Pero antes, volvamos a Minecraft y creemos unos nuevos edificios fantasma utilizando la herencia.</p>
+<h4 class="h4a" id="ch12lev2sec09"><strong>Misión nº 72: Hotel Fantasma</strong></h4>
+<p class="noindent">Tanto las casas como los hoteles son tipos de edificios: tienen puertas, ventanas, habitaciones, escaleras y paredes. Los hoteles no son más que casas elegantes con extras como balcones, muchas habitaciones y una bonita entrada.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_280"></span>¿Cómo puedes programar unos hoteles fantasma utilizando el código que ya has creado para las casas fantasma? La estructura básica de los edificios es la misma. Digamos que la única diferencia es que los hoteles fantasma tienen métodos adicionales para crear alfombras dentro de las habitaciones y añadir flores alrededor del borde del edificio. Eso significa que la clase hotel fantasma puede heredar todos los métodos de la clase casa fantasma. Entonces, lo único que necesita la clase hotel fantasma son dos métodos extra para las alfombras y las flores.</p>
+<p class="indent">En IDLE, crea un nuevo archivo y guárdalo como hotelfantasma <em>.py</em> en la carpeta <em>clases</em>. Copia y pega en el archivo el código de la clase <span class="literal">Edificio</span> del programa <em>ghostHotel</em>.py.</p>
+<p class="indent">Crea una nueva clase llamada <span class="literal">FancyBuilding</span> que herede de la clase <span class="literal">Building</span>. La clase <span class="literal">FancyBuilding</span> debe tener un nuevo método llamado <span class="literal">upgrade()</span> que añada alfombra dentro del edificio y flores alrededor de las paredes. <a href="ch12.xhtml#ch12ex5">El listado 12-5</a> muestra mi código para el método upgrade( <span class="literal">)</span>, pero siéntete libre de personalizar tus hoteles.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>ghostHotel.py</em></span></p>
+<p class="programs" translate="no"><span class="red"># Create a FancyBuilding class here</span><br translate="no"/><br translate="no"/> <span class="orange">def</span> <span class="blue1">upgrade</span>(self):<br translate="no"/> <span class="red"># Carpet</span><br translate="no"/>        mc.setBlocks(self.x + 1, self.y, self.z + 1,<br translate="no"/>                     self.x + self.width - 1, self.y, self.z + self.depth - 1,<br translate="no"/>                     35, 6)<br translate="no"/><br translate="no"/> <span class="red"># Flowers</span><br translate="no"/>    mc.setBlocks(self.x - 1, self.y, self.z -1,<br translate="no"/>                 self.x - 1, self.y, self.z + self.depth + 1,<br translate="no"/>                 37)<br translate="no"/>    mc.setBlocks(self.x - 1, self.y, self.z - 1,<br translate="no"/>                 self.x + self.width + 1, self.y, self.z – 1,<br translate="no"/>                 37)<br translate="no"/>    mc.setBlocks(self.x + self.width + 1, self.y, self.z - 1,<br translate="no"/>                 self.x + self.width + 1, self.y, self.z + self.depth + 1,<br translate="no"/>                 37)<br translate="no"/>    mc.setBlocks(self.x - 1, self.y, self.z + self.depth + 1,<br translate="no"/>                 self.x + self.width + 1, self.y, self.z + self.depth = 1,<br translate="no"/>                 37)<br translate="no"/><br translate="no"/><span class="red"># Create an instance of the FancyBuilding class</span><br translate="no"/><span class="red"># Call the build() and upgrade() methods</span></p>
+<p class="examplet"><a id="ch12ex5"></a><em>Listado 12-5: Un método de la</em> <em>clase</em> <span class="literal"><span class="codeitalic">FancyBuilding</span></span> que añade alfombra <em>y</em> flores al edificio</p>
+<p class="indent">Cuando hayas creado la clase y añadido el nuevo método, crea una instancia de la clase <span class="literal">FancyBuilding</span> y llámala hotel <span class="literal">fantasma</span>. Construye el hotel fantasma con el método <span class="literal">build(</span> ) y, a continuación, añade los elementos adicionales con el método <span class="literal">upgrade()</span>.</p>
+<p class="indent"><a href="ch12.xhtml#ch12fig6">La Figura 12-6</a> muestra mi elegante hotel fantasma.</p>
+<div class="image"><span epub:type="pagebreak" id="page_281"></span><img alt="image" src="../images/f12-06.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch12fig6"></a><em>Figura 12-6: ¡Mira qué flores y qué alfombra!</em></p>
+<div class="sidebar">
+<p class="sidebart" id="ch12sb04"><strong>OBJETIVO EXTRA: ALDEA FANTASMA</strong></p>
+<p class="noindent">En la Misión nº 71, creaste un pueblo fantasma en el que todos los edificios parecían más o menos iguales. Es raro ver edificios idénticos en los pueblos reales. Cambia el programa del pueblo fantasma creando varias clases que hereden de la clase <span class="literal">Edificio</span>. Podrías crear una clase <span class="literal">Tienda</span>, una clase <span class="literal">Hospital</span> y una clase <span class="literal">Restaurante</span>, por ejemplo. Luego, cuando crees los objetos, podrás elegir qué tipo de edificio crear utilizando las distintas clases.</p>
+</div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch12_7.html">anterior</a><a href="ch12.html">Subtema 8 de 10: (Ver todo)</a><a href="ch12_9.html">siguiente</a><br/></p>
+<br/><a href="ch12_8.docx" target="_blank"></a></footer>
+</body>
+</html>

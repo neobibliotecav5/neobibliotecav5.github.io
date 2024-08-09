@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>with Statement</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="with Statement"><div class="titlepage"><div><div><h1 class="title"><a id="with_statement"/>with Statement</h1></div></div></div><p>JavaScript has a <code class="literal">with</code> statement that was
+                intended to provide a shorthand when accessing the properties of an object.
+                Unfortunately, its results can sometimes be unpredictable, so it should be
+                    avoided.<a id="IDX-APP-B-0543" class="indexterm"/><a id="IDX-APP-B-0544" class="indexterm"/><a id="IDX-APP-B-0545" class="indexterm"/><a id="IDX-APP-B-0546" class="indexterm"/></p><p>The statement:</p><a id="I_programlisting_d1e8895"/><pre class="programlisting">with (obj) {
+    a = b;
+}</pre><p>does the same thing as:</p><a id="I_programlisting_d1e8899"/><pre class="programlisting">if (obj.a === undefined) {
+    a = obj.b === undefined ? b : obj.b;
+} else {
+    obj.a = obj.b === undefined ? b : obj.b;
+}</pre><p>So, it is the same as one of these statements:</p><a id="I_programlisting_d1e8903"/><pre class="programlisting">a = b;
+a = obj.b;
+obj.a = b;
+obj.a = obj.b;</pre><p>It is not possible to tell from reading the program which of those statements you
+                will get. It can vary from one running of the program to the next. It can even vary
+                while the program is running. If you can't read a program and understand what it is
+                going to do, it is impossible to have confidence that it will correctly do what you
+                want.</p><p>Simply by being in the language, the <code class="literal">with</code>
+                statement significantly slows down JavaScript processors because it frustrates the
+                lexical binding of variable names. It was well intentioned, but the language would
+                be better if it didn't have it.</p></div></body></html>

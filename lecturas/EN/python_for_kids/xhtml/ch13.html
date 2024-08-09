@@ -1,0 +1,689 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Unknown</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+<body class="calibre">
+<div class="calibre1" id="sbo-rt-content">
+<h2 class="h2" id="ch13">
+<span class="calibre2" id="page_201">
+</span>
+<span class="big">
+   13
+  </span>
+<br class="calibre10"/>
+  Creating Graphics for the Mr. Stick Man Game
+ </h2>
+<div class="image">
+<img alt="Image" class="calibre8" src="../images/common.jpg"/>
+</div>
+<p class="indent">
+  It’s a good idea to develop a plan when creating a game (or any program). Your plan should include a description of what the game is about, as well as major elements and characters. When it’s time to start programming, your description will help keep you focused on what you are trying to develop. Your game might not turn out exactly like the original description—this is to be expected! In this chapter, we’ll begin developing a fun game called
+  <em class="calibre7">
+   Mr. Stick Man Races for the Exit
+  </em>
+  .
+ </p>
+<h3 class="h1" id="ch13lev1sec1">
+<span class="calibre2" id="page_202">
+</span>
+  Mr. Stick Man Game Plan
+ </h3>
+<p class="sb-para">
+  Here’s the description of our new game:
+ </p>
+<ul class="calibre22">
+<li class="noindent2">
+   Secret agent Mr. Stick Man is trapped in the lair of Dr. Innocuous; you must help him escape through the exit on the top floor.
+  </li>
+<li class="noindent2">
+   There is a stick figure that can run from left to right and jump up. Each floor has platforms that he must jump to.
+  </li>
+<li class="noindent2">
+   The goal is to reach the door to the exit before the game ends.
+  </li>
+</ul>
+<div class="image1">
+<img alt="Image" class="calibre135" src="../images/f0202-01.jpg"/>
+</div>
+<p class="indent">
+  Based on this description, we’ll need several images for Mr. Stick Man, the platforms, and the door. We’ll write code to pull all this together, but before we get there, we’ll create the graphics for our game. That way, we’ll have something to work with in the next chapter.
+ </p>
+<p class="indent">
+  We could draw these elements using graphics like our
+  <em class="calibre7">
+   Bounce!
+  </em>
+  game, but those are a bit too simple. Instead, we’re going to create sprites.
+ </p>
+<p class="indent">
+<em class="calibre7">
+   Sprites
+  </em>
+  are the moving objects in a game—typically a character of some kind. Sprites are usually
+  <em class="calibre7">
+   pre-rendered
+  </em>
+  , meaning they’re drawn in advance (before the program runs) rather than created by the program itself using polygons, as in our
+  <em class="calibre7">
+   Bounce!
+  </em>
+  game. In this game, Mr. Stick Man, the platforms, and the door will be sprites. To create these images, we’ll need to install a graphics program.
+ </p>
+<h3 class="h1" id="ch13lev1sec2">
+  Getting GIMP
+ </h3>
+<p class="noindent">
+  There are several graphics programs available, but for this game, we need one that supports
+  <em class="calibre7">
+   transparency
+  </em>
+  (sometimes called the
+  <em class="calibre7">
+   alpha channel
+  </em>
+  ), which lets images have sections where no colors are drawn on the screen. We need images with transparent parts because when one image passes over or near another as it moves across the screen, we don’t want the background of one image to wipe out part of another. For example, in
+  <a class="calibre6" href="ch13.xhtml#ch13fig01">
+   Figure 13-1
+  </a>
+  , the checkerboard pattern in the background represents the transparent area.
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre136" id="ch13fig01" src="../images/13fig01.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 13-1: Transparent background in GIMP
+  </em>
+</p>
+<p class="indent">
+<span id="page_203">
+</span>
+  If we copy the entire image and paste it over the top of another image (also called
+  <em class="calibre7">
+   overlaying
+  </em>
+  ), the background won’t wipe anything out. This is shown in
+  <a class="calibre6" href="ch13.xhtml#ch13fig02">
+   Figure 13-2
+  </a>
+  .
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre136" id="ch13fig02" src="../images/13fig02.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 13-2: Overlaying images
+  </em>
+</p>
+<p class="indent">
+  GIMP (
+  <em class="calibre7">
+<a class="calibre6" href="http://www.gimp.org">
+    http://www.gimp.org
+   </a>
+</em>
+  ), short for
+  <em class="calibre7">
+   GNU Image
+  </em>
+<em class="calibre7">
+   Manipulation Program
+  </em>
+  , is a free graphics program for Linux, macOS, and Windows that supports transparent images. Download and install it as follows.
+ </p>
+<ul class="calibre22">
+<li class="noindent2">
+<span id="page_204">
+</span>
+   If you’re using Windows or macOS, you’ll find installers on the GIMP project page at
+   <em class="calibre7">
+<a class="calibre6" href="https://www.gimp.org/downloads/">
+     https://www.gimp.org/downloads/
+    </a>
+</em>
+   .
+  </li>
+<li class="noindent2">
+   If you’re using Ubuntu, install GIMP by opening the Ubuntu Software Center and entering
+   <em class="calibre7">
+    gimp
+   </em>
+   in the search box. Click the Install button for the “GNU Image Manipulation Program” when it appears in the results.
+  </li>
+<li class="noindent2">
+   If you’re using Raspberry Pi, it’s easiest to install GIMP by using the  command line. Open a Terminal and enter the following command to  install (this also works on Ubuntu):
+   <pre class="calibre32">sudo apt install gimp</pre>
+</li>
+</ul>
+<p class="indent">
+  You should also create a folder for your game. To do so, right-click your desktop anywhere there is empty space and select
+  <strong class="calibre5">
+   New
+  </strong>
+  ▸
+  <strong class="calibre5">
+   Folder
+  </strong>
+  (on Ubuntu, the option is
+  <strong class="calibre5">
+   Create New Folder
+  </strong>
+  ; on macOS, it’s
+  <strong class="calibre5">
+   New Folder
+  </strong>
+  ). Enter
+  <em class="calibre7">
+   stickman
+  </em>
+  as the folder name.
+ </p>
+<h3 class="h1" id="ch13lev1sec3">
+  Creating the Game Elements
+ </h3>
+<p class="noindent">
+  Once you’ve installed your graphics program, you’re ready to draw. We’ll create these images for our game elements:
+ </p>
+<ul class="calibre22">
+<li class="noindent2">
+   Images for a stick figure that can run left and right and jump
+  </li>
+<li class="noindent2">
+   Images for the platform, in three different sizes
+  </li>
+<li class="noindent2">
+   Images for the door: one open and one closed
+  </li>
+<li class="noindent2">
+   An image for the game’s background (because a plain white or gray background makes for a boring game)
+  </li>
+</ul>
+<p class="indent">
+  Before we start drawing, we need to prepare our images with transparent backgrounds.
+ </p>
+<h3 class="h1" id="ch13lev1sec4">
+<span class="calibre2" id="page_205">
+</span>
+  Preparing a Transparent Image
+ </h3>
+<p class="noindent">
+  To set up an image with transparency, start GIMP and follow these steps:
+ </p>
+<ol class="calibre9">
+<li class="noindent1">
+   Select
+   <strong class="calibre5">
+    File
+   </strong>
+   ▸
+   <strong class="calibre5">
+    New
+   </strong>
+   .
+  </li>
+<li class="noindent1">
+   In the dialog, enter 27 pixels for the image width and 30 pixels for its height.
+  </li>
+<li class="noindent1">
+   Select
+   <strong class="calibre5">
+    Layer
+   </strong>
+   ▸
+   <strong class="calibre5">
+    Transparency
+   </strong>
+   ▸
+   <strong class="calibre5">
+    Add Alpha Channel
+   </strong>
+   .
+  </li>
+<li class="noindent1">
+   Select
+   <strong class="calibre5">
+    Select
+   </strong>
+   ▸
+   <strong class="calibre5">
+    All
+   </strong>
+   .
+  </li>
+<li class="noindent1">
+   Select
+   <strong class="calibre5">
+    Edit
+   </strong>
+   ▸
+   <strong class="calibre5">
+    Cut
+   </strong>
+   .
+  </li>
+</ol>
+<p class="indent">
+  The end result should be an image filled with a checkerboard of dark gray and light gray, as shown in
+  <a class="calibre6" href="ch13.xhtml#ch13fig03">
+   Figure 13-3
+  </a>
+  (zoomed in).
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre49" id="ch13fig03" src="../images/13fig03.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 13-3: Zooming in on the transparent background
+  </em>
+</p>
+<p class="indent">
+  Now we can begin creating our secret agent: Mr. Stick Man.
+ </p>
+<h3 class="h1" id="ch13lev1sec5">
+<span class="calibre2" id="page_206">
+</span>
+  Drawing Mr. Stick Man
+ </h3>
+<p class="noindent">
+  To draw our first stick figure image, click the Paintbrush tool in the GIMP Toolbox, and then select the brush that looks like a small dot in the Brushes toolbar (called
+  <em class="calibre7">
+   Pixel
+  </em>
+  ), as shown in
+  <a class="calibre6" href="ch13.xhtml#ch13fig04">
+   Figure 13-4
+  </a>
+  .
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre137" id="ch13fig04" src="../images/13fig04.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 13-4: GIMP Toolbox
+  </em>
+</p>
+<p class="indent">
+  We’ll draw three different images (or
+  <em class="calibre7">
+   frames
+  </em>
+  ) for our stick figure to show him running and jumping to the right. We’ll use these frames to animate Mr. Stick Man, as we did for the animation in
+  <a class="calibre6" href="ch10.xhtml#ch10">
+   Chapter 10
+  </a>
+  .
+ </p>
+<p class="indent">
+  If you zoom in to look at these images, they might look like
+  <a class="calibre6" href="ch13.xhtml#ch13fig05">
+   Figure 13-5
+  </a>
+  .
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre138" id="ch13fig05" src="../images/13fig05.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 13-5: Zooming in on the stick figure
+  </em>
+</p>
+<p class="indent">
+<span id="page_207">
+</span>
+  Your images don’t need to look exactly the same, but they should have the stick figure in three different positions of movement. Each image should be 27 pixels wide by 30 pixels tall.
+ </p>
+<h4 class="h3" id="ch13lev2sec1">
+  Mr. Stick Man Running to the Right
+ </h4>
+<p class="noindent">
+  First, we’ll draw a sequence of frames for Mr. Stick Man running to the right. Create the first image as follows:
+ </p>
+<ol class="calibre9">
+<li class="noindent1">
+   Draw the first image (the leftmost image shown in
+   <a class="calibre6" href="ch13.xhtml#ch13fig05">
+    Figure 13-5
+   </a>
+   ).
+  </li>
+<li class="noindent1">
+   Select
+   <strong class="calibre5">
+    File
+   </strong>
+   ▸
+   <strong class="calibre5">
+    Save As
+   </strong>
+   .
+  </li>
+<li class="noindent1">
+   In the dialog, enter
+   <em class="calibre7">
+    figure-R1.gif
+   </em>
+   for the name. Then click the small plus (+) button labeled
+   <strong class="calibre5">
+    Select File Type
+   </strong>
+   .
+  </li>
+<li class="noindent1">
+   Select
+   <strong class="calibre5">
+    GIF image
+   </strong>
+   in the list that appears.
+  </li>
+<li class="noindent1">
+   Save the file to the
+   <em class="calibre7">
+    stickman
+   </em>
+   folder you created earlier (click
+   <strong class="calibre5">
+    Browse for Other Folders
+   </strong>
+   to find the correct folder).
+  </li>
+</ol>
+<p class="indent">
+  Follow the same steps to create a new 27 by 30 pixel image for the next Mr. Stick Man in
+  <a class="calibre6" href="ch13.xhtml#ch13fig05">
+   Figure 13-5
+  </a>
+  . Save this image as
+  <em class="calibre7">
+   figure-R2.gif
+  </em>
+  . Repeat the process for the final image, and save it as
+  <em class="calibre7">
+   figure-R3.gif
+  </em>
+  .
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre139" src="../images/f0207-01.jpg"/>
+</div>
+<h4 class="h3" id="ch13lev2sec2">
+  Mr. Stick Man Running to the Left
+ </h4>
+<p class="noindent">
+  Rather than re-creating our drawings for the stick figure moving to the left, we can use GIMP to flip our frames of Mr. Stick Man moving to the right.
+ </p>
+<p class="indent">
+  In GIMP, open each image in sequence, and then select
+  <strong class="calibre5">
+   Tools
+  </strong>
+  ▸
+  <strong class="calibre5">
+   Transform Tools
+  </strong>
+  ▸
+  <strong class="calibre5">
+   Flip
+  </strong>
+  . When you click the image, you should see it flip from side to side, as in
+  <a class="calibre6" href="ch13.xhtml#ch13fig06">
+   Figure 13-6
+  </a>
+  . Save the images as
+  <em class="calibre7">
+   figure-L1.gif
+  </em>
+  ,
+  <em class="calibre7">
+   figure-L2.gif
+  </em>
+  , and
+  <em class="calibre7">
+   figure-L3.gif
+  </em>
+  .
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre136" id="ch13fig06" src="../images/13fig06.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 13-6: Flipped stick figure
+  </em>
+</p>
+<p class="indent">
+<span id="page_208">
+</span>
+  Now we’ve created six images for Mr. Stick Man, but we still need images for the platforms, the door, and the background.
+ </p>
+<h3 class="h1" id="ch13lev1sec6">
+  Drawing the Platforms
+ </h3>
+<p class="noindent">
+  We’ll create three platforms in different sizes: 100 pixels wide by 10 pixels tall; 66 pixels wide by 10 pixels tall; and 32 pixels wide by 10 pixels tall. You can draw the platforms any way you like, but make sure their backgrounds are transparent, as with the stick figure images.
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre140" src="../images/f0208-01.jpg"/>
+</div>
+<p class="indent">
+<span id="page_209">
+</span>
+<a class="calibre6" href="ch13.xhtml#ch13fig07">
+   Figure 13-7
+  </a>
+  shows what the platforms might look like when we zoom in.
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre100" id="ch13fig07" src="../images/13fig07.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 13-7: Zooming in on the platforms
+  </em>
+</p>
+<p class="indent">
+  As with the stick figure images, save these in the
+  <em class="calibre7">
+   stickman
+  </em>
+  folder. Call the largest platform
+  <em class="calibre7">
+   platform1.gif
+  </em>
+  , the middle-sized one
+  <em class="calibre7">
+   platform2.gif
+  </em>
+  , and the smallest
+  <em class="calibre7">
+   platform3.gif
+  </em>
+  .
+ </p>
+<h3 class="h1" id="ch13lev1sec7">
+  Drawing the Door
+ </h3>
+<p class="noindent">
+  The size of the door should be proportional to the size of Mr. Stick Man (27 pixels wide by 30 pixels tall). We’ll need two images: one for the closed door and another for the open door. The doors might look like
+  <a class="calibre6" href="ch13.xhtml#ch13fig08">
+   Figure 13-8
+  </a>
+  (zoomed in).
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre141" id="ch13fig08" src="../images/13fig08.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 13-8: Zooming in on the doors
+  </em>
+</p>
+<p class="indent">
+  To create these images, follow these steps:
+ </p>
+<ol class="calibre9">
+<li class="noindent1">
+   Click the foreground color box (at the bottom of the GIMP Toolbox) to display the color picker.
+  </li>
+<li class="noindent1">
+   Select the color you want for your door.
+   <a class="calibre6" href="ch13.xhtml#ch13fig09">
+    Figure 13-9
+   </a>
+   shows an example with yellow selected.
+  </li>
+<li class="noindent1">
+   Choose the Bucket tool (shown selected in the Toolbox), and fill the screen with the color you chose.
+   <div class="image1">
+<img alt="Image" class="calibre142" id="ch13fig09" src="../images/13fig09.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+     Figure 13-9: GIMP showing the background color selector
+    </em>
+</p>
+</li>
+<li class="noindent1">
+<span id="page_210">
+</span>
+   Change the foreground color to black.
+  </li>
+<li class="noindent1">
+   Choose either the Pencil or Paintbrush tool (both are found to the right of the Bucket tool), and draw the black outline of the door and the doorknob.
+  </li>
+<li class="noindent1">
+   Save these in the
+   <em class="calibre7">
+    stickman
+   </em>
+   folder and call them
+   <em class="calibre7">
+    door1.gif
+   </em>
+   and
+   <em class="calibre7">
+    door2.gif
+   </em>
+   .
+  </li>
+</ol>
+<h3 class="h1" id="ch13lev1sec8">
+  Drawing the Background
+ </h3>
+<p class="noindent">
+  The final image we need to create is the background. We’ll make this image 100 pixels wide by 100 pixels tall. It does not need a transparent background because we’ll fill it with a single color that will be the background “wallpaper” behind all the other elements of the game.
+ </p>
+<p class="indent">
+  To create the background, select
+  <strong class="calibre5">
+   File
+  </strong>
+  ▸
+  <strong class="calibre5">
+   New
+  </strong>
+  and enter the image size as 100 pixels wide and 100 pixels tall. Choose a suitably evil color for the wallpaper of a villain’s lair. I chose a darker shade of pink.
+ </p>
+<p class="indent">
+  You can dress up your wallpaper with flowers, stripes, stars—whatever you like for your game. For example, to add stars to the wallpaper, choose another color, select the Pencil tool, and draw your first star. Then use the Selection tool to select a box around the star, and copy and paste it around the image (select
+  <strong class="calibre5">
+   Edit
+  </strong>
+  ▸
+  <strong class="calibre5">
+   Copy
+  </strong>
+  , and then
+  <strong class="calibre5">
+   Edit
+  </strong>
+  ▸
+  <strong class="calibre5">
+   Paste
+  </strong>
+  ). You should be able to drag the pasted image around the screen by clicking it.
+  <a class="calibre6" href="ch13.xhtml#ch13fig10">
+   Figure 13-10
+  </a>
+  shows an example with some stars, and the Selection tool selected in the Toolbox.
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre143" id="ch13fig10" src="../images/13fig10.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 13-10: GIMP selection tool
+  </em>
+</p>
+<p class="indent">
+<span id="page_211">
+</span>
+  Once you’re happy with your drawing, save the image as
+  <em class="calibre7">
+   background.gif
+  </em>
+  in the
+  <em class="calibre7">
+   stickman
+  </em>
+  folder.
+ </p>
+<h3 class="h1" id="ch13lev1sec9">
+  Transparency
+ </h3>
+<p class="noindent">
+  With our graphics created, you can get a better idea of why our images (other than the background) need transparency. If we placed Mr. Stick Man in front of our background wallpaper and he didn’t have a transparent background, our game would look like
+  <a class="calibre6" href="ch13.xhtml#ch13fig11">
+   Figure 13-11
+  </a>
+  .
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre144" id="ch13fig11" src="../images/13fig11.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 13-11: Stick figure with no transparency
+  </em>
+</p>
+<p class="indent">
+<span id="page_212">
+</span>
+  The white background of Mr. Stick Man wipes out part of the wallpaper. If we use our transparent image, we get
+  <a class="calibre6" href="ch13.xhtml#ch13fig12">
+   Figure 13-12
+  </a>
+  .
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre145" id="ch13fig12" src="../images/13fig12.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 13-12: Stick figure with transparency
+  </em>
+</p>
+<p class="indent">
+  Nothing in the background is obscured by the stick figure image, except for whatever he covers himself. That’s much more professional!
+ </p>
+<h3 class="h1" id="ch13lev1sec10">
+  What You Learned
+ </h3>
+<p class="indent">
+  In this chapter, you learned how to write a basic plan for a game and figured out where to begin. Because we need graphical elements before we can make a game, we used a graphics program to create basic frames. In the process, you learned how to make the backgrounds of these images transparent so they don’t cover up other images on the screen.
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre146" src="../images/f0212-01.jpg"/>
+</div>
+<p class="indent">
+  In the next chapter, we’ll create some of the classes for our game.
+ </p>
+</div></body>
+</html>

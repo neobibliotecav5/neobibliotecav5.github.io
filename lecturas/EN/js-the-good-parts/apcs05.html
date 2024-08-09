@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Line Breaking</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Line Breaking"><div class="titlepage"><div><div><h1 class="title"><a id="line_breaking"/>Line Breaking</h1></div></div></div><p>As a further defense against the masking of errors by the semicolon insertion
+                mechanism, JSLint expects long statements to be broken only after one of these
+                punctuation characters or operators:<a id="IDX-APP-C-0619" class="indexterm"/></p><a id="I_programlisting_d1e9906"/><pre class="programlisting">, ; : { } ( [ = &lt; &gt; ? ! + - * / % ˜ ^ | &amp;
+== != &lt;= &gt;= += -= *= /= %= ^= |= &amp;= &lt;&lt; &gt;&gt; || &amp;&amp;
+=== !== &lt;&lt;= &gt;&gt;= &gt;&gt;&gt; &gt;&gt;&gt;=</pre><p>JSLint does not expect to see a long statement broken after an identifier, a
+                string, a number, a closer, or a suffix operator:</p><a id="I_programlisting_d1e9910"/><pre class="programlisting">) ] . ++ −−</pre><p>JSLint allows you to turn on the "Tolerate sloppy line breaking" (<code class="literal">laxbreak</code>) option.</p><p>Semicolon insertion can mask copy/paste errors. If you always break lines after
+                operators, then JSLint can do a better job of finding those errors.</p></div></body></html>

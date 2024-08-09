@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch02lev1sec04"><strong><span class="blue1">Depurando</span></strong></h3>
+<p class="noindent">Todo el mundo comete errores; a menudo, ni siquiera los mejores programadores aciertan con su código a la primera. Escribir un programa que funcione es sólo una de las habilidades que necesita un buen programador. Arreglar los programas cuando no funcionan es otra habilidad esencial. Este proceso se denomina <em>depuración</em>, y cada problema en un programa que se comporta mal se denomina <em>error</em>. En esta sección, aprenderás trucos y consejos para arreglar todos tus futuros programas.</p>
+<p class="indent">Los fallos pueden impedir completamente que un programa se ejecute, o pueden hacer que el programa se comporte de forma inesperada. Cuando un programa no se ejecuta, Python te mostrará un mensaje de error, como el de la <a href="ch02.xhtml#ch2fig12">Figura 2-12</a>.</p>
+<div class="image"><span epub:type="pagebreak" id="page_47"></span><img alt="image" src="../images/f02-12.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch2fig12"></a><em>Figura 2-12: Python me da un mensaje de error porque no me he atenido a la sintaxis de Python.</em></p>
+<p class="indent">En la Figura <a href="ch02.xhtml#ch2fig12">2-12</a> puedes ver que he introducido algo de código en el intérprete de comandos de Python, y me ha devuelto un mensaje de error. En el mensaje de error aparece mucha información, pero basándome en la última línea<span class="literal">(NameError: el nombre 'x' no está definido</span>) puedo decir que algo va mal con mi variable <span class="literal">x</span>. Concretamente, la variable <span class="literal">x</span> no está definida. Para solucionarlo, tengo que añadir una línea de código adicional que defina la variable <span class="literal">x</span>, así:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> x = 10</p>
+<p class="indent">Esta línea arreglará el mensaje de error, pero no significa que se arreglen todos los errores.</p>
+<p class="indent">Los errores que permiten que el programa se ejecute pero hacen que se comporte de forma extraña no mostrarán un mensaje de error, pero sabrás que algo va mal cuando tu programa produzca un resultado inesperado. Por ejemplo, si olvidas escribir una línea de código en tus programas de teletransporte, como <span class="literal">setTilePos()</span>, el programa se ejecutará sin errores, pero el jugador no cambiará de posición. ¡Eso no es un programa de teletransporte muy útil!</p>
+<div class="note">
+<p class="notet"><strong><span class="warnings">ADVERTENCIA</span></strong></p>
+<p class="notep"><em>Las erratas son una de las causas más comunes de errores. Escribir algo de una forma que el ordenador no espera puede impedir que tu programa se ejecute. Ten cuidado y asegúrate de que la ortografía y las mayúsculas son correctas.</em></p>
+</div>
+<h4 class="h4a" id="ch02lev2sec09"><strong>Misión nº 4: Arreglar el Bug del Teletransporte</strong></h4>
+<p class="noindent">En esta misión, depurarás dos programas. El primer programa, <a href="ch02.xhtml#ch2ex2">Listado 2-2</a>, es similar a <em>teleport.py</em><a href="ch02.xhtml#page_38">(página 38</a>), pero esta versión tiene cinco errores. Abre un nuevo archivo en el editor de texto IDLE, copia en él el Listado <a href="ch02.xhtml#ch2ex2">2-2</a> y guárdalo como <em>teleportBug1.py</em>.</p>
+<p class="sidenote" translate="no"><span epub:type="pagebreak" id="page_48"></span><span class="blue"><em>teleportBug1.py</em></span></p>
+<p class="programs" translate="no"><span class="orange">from</span> mcpi.minceraft <span class="orange">inport</span> Minecraft<br translate="no"/><span class="red"># mc = Minecraft.create()</span><br translate="no"/><br translate="no"/>x = 10<br translate="no"/>  y = 11<br translate="no"/>z = 12</p>
+<p class="examplet"><a id="ch2ex2"></a><em>Listado 2-2: Una versión rota del programa teletransporte</em></p>
+<p class="indent">Para depurar este programa, sigue los siguientes pasos:</p>
+<ol>
+<li class="noindent"><p class="list">Ejecuta teleportBug1 <em>.</em>py.</p></li>
+<li class="noindent"><p class="list">Cuando aparezca un mensaje de error, lee la última línea para obtener una pista sobre lo que está mal.</p></li>
+<li class="noindent"><p class="list">Corrige el error y vuelve a ejecutar el código.</p></li>
+<li class="noindent"><p class="list">Sigue corrigiendo los errores hasta que el programa teletransporte al jugador a una nueva ubicación.</p></li>
+</ol>
+<div class="note">
+<p class="notet"><strong><span class="hints">PISTA</span></strong></p>
+<p class="notep">¡<em>No olvides volver a comprobar que realmente estás llamando a la</em> <em>función</em> <span class="literal"><span class="codeitalic">setTilePos()</span></span> <em>!</em></p>
+</div>
+<p class="indent">Intentemos depurar otro programa. La versión de <em>teleport.py</em> del Listado <a href="ch02.xhtml#ch2ex3">2-3</a> se ejecuta, pero por alguna razón, el jugador no se teletransporta a la posición especificada. Copia <a href="ch02.xhtml#ch2ex3">el Listado 2-3</a> en un archivo IDLE y guárdalo como <em>teleportBug2.py</em>.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>teleportBug2.py</em></span></p>
+<p class="programs" translate="no"><span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>mc = Minecraft.create()<br translate="no"/><br translate="no"/>x = 10<br translate="no"/>y = 110<br translate="no"/>z = -12<br translate="no"/><br translate="no"/>mc.player.setPos(x, z, y)</p>
+<p class="examplet"><a id="ch2ex3"></a><em>Listado 2-3: El programa de teletransporte con errores</em></p>
+<p class="indent">A diferencia de <em>teleportBug1.py</em>, no obtendrás ningún mensaje de error cuando ejecutes el programa. Para arreglar este programa, tendrás que leer el código hasta encontrar el error. El programa debería teletransportar al jugador a la posición (10, 110, -12). Ejecuta el programa y comprueba las coordenadas a las que se ha teletransportado el jugador. Esto puede ayudarte a depurar el programa e identificar el problema que tiene.</p>
+<p class="indent">Cuando hayas eliminado todos los errores de estos dos programas, añade un comentario a cada uno para explicar cuáles eran los problemas. Anotar los problemas que encuentres en la depuración puede ayudarte a recordar que debes estar atento a errores similares en el futuro.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch02_4.html">anterior</a><a href="ch02.html">Subtema 5 de 6: (Ver todo)</a><a href="ch02_6.html">siguiente</a><br/></p>
+<br/><a href="ch02_5.docx" target="_blank"></a></footer>
+</body>
+</html>

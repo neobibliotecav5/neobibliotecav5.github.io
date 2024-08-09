@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch15lev1sec6">
+  Cómo hacer que la figura de palo salte </h3>
+<p class="noindent">
+  La función <span class="literal1" translate="no">
+   jump
+  </span>es muy similar a las funciones <span class="literal1" translate="no">
+   turn_left
+  </span>y <span class="literal1" translate="no">
+   turn_right
+  </span>: </p>
+<pre class="pre" translate="no">    <span class="gray">def turn_right(self, evt):
+        if self.y == 0:
+            self.x = 2</span>
+
+    <span class="orange">def</span> jump(self, evt):
+        <span class="orange">if</span> self.y == 0:
+            self.y = -4
+            self.jump_count = 0</pre>
+<p class="noindent">
+  Esta función vuelve a tomar un parámetro <span class="literal1" translate="no">
+   evt
+  </span>(el objeto evento), que podemos ignorar porque no necesitamos más información sobre el evento (igual que antes). Si se llama a esta función, sabemos que se ha pulsado la barra espaciadora. </p>
+<p class="indent">
+<span id="page_239">
+</span>
+  Como queremos que nuestra figura de palo salte sólo si no está saltando ya, comprobamos si <span class="literal1" translate="no">
+   y
+  </span>es igual a 0. Si la figura de palo no está saltando, ponemos <span class="literal1" translate="no">
+   y
+  </span>a -4 (para moverla verticalmente por la pantalla), y ponemos <span class="literal1" translate="no">
+   jump_count
+  </span>a 0. Utilizaremos <span class="literal1" translate="no">
+   jump_count
+  </span>para asegurarnos de que la figura de palo no sigue saltando eternamente. En lugar de eso, dejaremos que salte durante un tiempo determinado y luego haremos que vuelva a bajar, como si la gravedad tirara de él. Añadiremos este código en el próximo capítulo. </p>
+<div class="image1">
+<img alt="Image" class="calibre163" src="../images/f0239-01.jpg" translate="no"/>
+</div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch15_6.html">anterior</a><a href="ch15.html">Subtema 7 de 9: (Ver todo)</a><a href="ch15_8.html">siguiente</a><br/></p>
+<br/><a href="ch15_7.docx" target="_blank"></a></footer>
+</body>
+</html>

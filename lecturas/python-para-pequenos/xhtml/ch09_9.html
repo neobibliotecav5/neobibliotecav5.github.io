@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch09lev1sec8">
+  Dibujar cuadrados rellenos </h3>
+<p class="noindent">
+  Para dibujar un cuadrado relleno, tenemos que reiniciar el lienzo, empezar a rellenarlo y volver a llamar a la función cuadrado, con este código: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> t.reset()
+<span class="brown">&gt;&gt;&gt;</span> t.begin_fill()
+<span class="brown">&gt;&gt;&gt;</span> mysquare(50)
+</pre>
+<p class="indent">
+  Deberías ver un cuadrado vacío hasta que termines de rellenar: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> t.end_fill()
+</pre>
+<p class="indent">
+  Tu cuadrado debería parecerse a <a class="calibre6" href="ch09.xhtml#ch09fig11">la Figura 9-11 . </a></p>
+<div class="image" id="ch09fig11">
+<span id="page_129">
+</span>
+<img alt="Image" class="calibre93" src="../images/09fig11.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figura 9-11: Tortuga dibujando un cuadrado relleno </em></p>
+<p class="indent">
+  Cambiemos esta función para que podamos dibujar un cuadrado relleno o sin relleno. Para ello, necesitamos otro parámetro y un código algo más complicado: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">def</span> mysquare(size, filled):
+        <span class="orange">if</span> filled == <span class="violet">True</span>:
+            t.begin_fill()
+        <span class="orange">for</span> x <span class="orange">in</span> <span class="violet">range</span>(1, 5):
+            t.forward(size)
+            t.left(90)
+        <span class="orange">if</span> filled == <span class="violet">True</span>:
+            t.end_fill()
+</pre>
+<p class="indent">
+  En la primera línea, cambiamos la definición de nuestra función para que tome dos parámetros: <span class="literal1" translate="no">
+   size
+  </span>y <span class="literal1" translate="no">
+   filled
+  </span>. A continuación, comprobamos si el valor de relleno es <span class="literal1" translate="no">
+   True
+  </span>con <span class="literal1" translate="no">
+   if filled == True
+  </span>. Si lo está, llamamos a <span class="literal1" translate="no">
+   begin_fill
+  </span>para decirle a la tortuga que rellene la forma que hemos dibujado. A continuación, hacemos un bucle cuatro veces ( <span class="literal1" translate="no">
+   for x in range(1, 5)
+  </span>) para dibujar los cuatro lados del cuadrado (avanzando hacia delante y hacia la izquierda) antes de comprobar de nuevo si filled es <span class="literal1" translate="no">
+   True
+  </span>. Si lo está, desactivamos el relleno con <span class="literal1" translate="no">
+   t.end_fill
+  </span>, y la tortuga rellena el cuadrado de color. </p>
+<p class="indent">
+<span id="page_130">
+</span>
+  Ahora podemos dibujar un cuadrado relleno con esta línea: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> mysquare(50, <span class="violet">True</span>)
+</pre>
+<p class="indent">
+  O podemos crear un cuadrado sin relleno con esta línea: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> mysquare(150, <span class="violet">False</span>)
+</pre>
+<p class="indent">
+  Después de estas dos llamadas a la función <span class="literal1" translate="no">
+   mysquare
+  </span>, obtenemos <a class="calibre6" href="ch09.xhtml#ch09fig12">la Figura 9-12 </a>, que se parece un poco a un ojo cuadrado. </p>
+<div class="image" id="ch09fig12">
+<img alt="Image" class="calibre90" src="../images/09fig12.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figura 9-12: Tortuga dibujando un </em>ojo cuadrado</p>
+<p class="indent">
+  Pero no tiene sentido detenerse aquí. Puedes dibujar todo tipo de formas y llenarlas de color. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch09_8.html">anterior</a><a href="ch09.html">Subtema 9 de 12: (Ver todo)</a><a href="ch09_10.html">siguiente</a><br/></p>
+<br/><a href="ch09_9.docx" target="_blank"></a></footer>
+</body>
+</html>

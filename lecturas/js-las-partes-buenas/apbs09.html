@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>The function Statement Versus the function Expression</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="The function Statement Versus the function Expression"><div class="titlepage"><div><div><h1 class="title"><a id="the_function_statement_versus_the_fun"></a>La declaración de función frente a la expresión de función</h1></div></div></div><p>JavaScript tiene una declaración <code class="literal" translate="no">function</code> y una expresión <code class="literal" translate="no">function</code>. Esto es confuso porque pueden parecer exactamente iguales. Una expresión <code class="literal" translate="no">function</code>es la abreviatura de una expresión <code class="literal" translate="no">var</code> con un valor de función.<a class="indexterm" id="IDX-APP-B-0572"></a><a class="indexterm" id="IDX-APP-B-0573"></a></p><p>La expresión:</p><a id="I_programlisting_d1e9183"></a><pre class="programlisting" translate="no">function foo(  ) {}</pre><p>significa más o menos lo mismo que</p><a id="I_programlisting_d1e9187"></a><pre class="programlisting" translate="no">var foo = function foo(  ) {};</pre><p>A lo largo de este libro, he utilizado la segunda forma porque deja claro que <code class="literal" translate="no">foo</code> es una variable que contiene un valor de función. Para utilizar bien el lenguaje, es importante comprender que las funciones son valores.</p><p><code class="literal" translate="no">function</code> Las declaraciones están sujetas a <span class="emphasis"><em translate="no">hoisting</em></span>. Esto significa que, independientemente de dónde se coloque un <code class="literal" translate="no">function</code>, se desplaza a la parte superior del ámbito en el que se define. Esto relaja el requisito de que las funciones deben declararse antes de utilizarse, lo que en mi opinión conduce a la dejadez. También prohíbe el uso de declaraciones <code class="literal" translate="no">function</code> en declaraciones <code class="literal" translate="no">if</code>. Resulta que la mayoría de los navegadores permiten declaraciones <code class="literal" translate="no">function</code> en declaraciones <code class="literal" translate="no">if</code>, pero varían en cómo debe interpretarse. Esto crea problemas de portabilidad.</p><p>Lo primero que aparece en una sentencia no puede ser una expresión <code class="literal" translate="no">function</code> porque la gramática oficial asume que una sentencia que comienza con la palabra <code class="literal" translate="no">function</code> es una sentencia <code class="literal" translate="no">function</code>. La solución consiste en encerrar toda la invocación entre paréntesis:</p><a id="I_programlisting_d1e9231"></a><pre class="programlisting" translate="no">(function (  ) {
+    var hidden_variable;
+
+    // This function can have some impact on
+    // the environment, but introduces no new
+    // global variables.
+}());</pre></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="apbs08.html">← Anterior</a><a href="apbs10.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="apbs09.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\apbs09.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c10-0014">Analizar texto</h3>
+<p class="BodyFirst">Puedes analizar archivos de texto que contengan libros enteros. Muchas obras clásicas de la literatura están disponibles como simples archivos de texto porque son de dominio público. Los textos utilizados en esta sección proceden del Proyecto Gutenberg<a class="LinkURL" href="https://gutenberg.org">(https://gutenberg.org)</a>. El Proyecto Gutenberg mantiene una colección de obras literarias que están disponibles en el dominio público, y es un gran recurso si te interesa trabajar con textos literarios en tus proyectos de programación.</p>
+<p><span epub:type="pagebreak" id="Page_197" title="197"></span>Extraigamos el texto de <em translate="no">Alice in Wonderland</em> e intentemos contar el número de palabras del texto. Para ello, utilizaremos el método de cadena <code translate="no">split()</code>, que por defecto divide una cadena siempre que encuentra algún espacio en blanco:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">from pathlib import Path</span>
+
+<span class="LiteralGray">path = Path('alice.txt')</span>
+<span class="LiteralGray">try:</span>
+<span class="LiteralGray">    contents = path.read_text(encoding='utf-8')</span>
+<span class="LiteralGray">except FileNotFoundError:</span>
+<span class="LiteralGray">    print(f"Sorry, the file {path} does not exist.")</span>
+else:
+    # Count the approximate number of words in the file:
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     words = contents.split()
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     num_words = len(words)
+    print(f"The file {path} has about {num_words} words.")</code></pre>
+<p>He movido el archivo <em translate="no">alice.txt</em> al directorio correcto, así que el bloque <code translate="no">try</code> funcionará esta vez. Tomamos la cadena <code translate="no">contents</code>, que ahora contiene todo el texto de <em translate="no">Alice in Wonderland</em> como una cadena larga, y utilizamos <code translate="no">split()</code> para producir una lista de todas las palabras del libro <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Utilizando <code translate="no">len()</code> en esta lista <span aria-label="annotation2" class="CodeAnnotation">❷</span> obtenemos una buena aproximación al número de palabras del texto original. Por último, imprimimos una sentencia que informa de cuántas palabras se han encontrado en el archivo. Este código se coloca en el bloque <code translate="no">else</code> porque sólo funciona si el código del bloque <code translate="no">try</code> se ejecutó correctamente.</p>
+<p>La salida nos dice cuántas palabras hay en <em translate="no">alice.txt</em>:</p>
+<pre translate="no"><code translate="no">The file alice.txt has about 29594 words.</code></pre>
+<p>El recuento es un poco alto porque el editor proporciona información adicional en el archivo de texto utilizado aquí, pero es una buena aproximación a la longitud de <em translate="no">Alice in Wonderland</em>.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c10_25.html">anterior</a><a href="c10.html">Subtema 26 de 37: (Ver todo)</a><a href="c10_27.html">siguiente</a><br/></p>
+<br/><a href="c10_26.docx" target="_blank"></a></footer>
+</body>
+</html>

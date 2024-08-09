@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://www.w3.org/2002/06/xhtml2/ http://www.w3.org/MarkUp/SCHEMA/xhtml2.xsd">
+<head>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style></head>
+<body><div id="sbo-rt-content"><section>
+<header>
+<h1 class="chapter">
+<span class="ChapterNumber"><span epub:type="pagebreak" id="Page_113" title="113"></span>7</span><br/>
+<span class="ChapterTitle">User Input and while Loops</span></h1>
+</header>
+<figure class="opener">
+<img alt="" height="406" src="Images/chapterart.png" width="406"/>
+</figure>
+<p class="ChapterIntro">Most programs are written to solve an end user’s problem. To do so, you usually need to get some information from the user. For example, say someone wants to find out whether they’re old enough to vote. If you write a program to answer this question, you need to know the user’s age before you can provide an answer. The program will need to ask the user to enter, or <em>input</em>, their age; once the program has this input, it can compare it to the voting age to determine if the user is old enough and then report the result.</p>
+<p>In this chapter you’ll learn how to accept user input so your program can then work with it. When your program needs a name, you’ll be able to prompt the user for a name. When your program needs a list of names, you’ll be able to prompt the user for a series of names. To do this, you’ll use the <code>input()</code> function.</p>
+<p>You’ll also learn how to keep programs running as long as users want them to, so they can enter as much information as they need to; then, your <span epub:type="pagebreak" id="Page_114" title="114"></span>program can work with that information. You’ll use Python’s <code>while</code> loop to keep programs running as long as certain conditions remain true.</p>
+<p>With the ability to work with user input and the ability to control how long your programs run, you’ll be able to write fully interactive programs.</p>
+<h2 id="h1-502703c07-0001">How the input() Function Works</h2>
+<p class="BodyFirst">The <code>input()</code> function pauses your program and waits for the user to enter some text. Once Python receives the user’s input, it assigns that input to a variable to make it convenient for you to work with.</p>
+<p>For example, the following program asks the user to enter some text, then displays that message back to the user:</p>
+<p class="CodeLabel"><b>parrot.py</b></p>
+<pre><code>message = input("Tell me something, and I will repeat it back to you: ")
+print(message)</code></pre>
+<p>The <code>input()</code> function takes one argument: the <em>prompt</em> that we want to display to the user, so they know what kind of information to enter. In this example, when Python runs the first line, the user sees the prompt <code>Tell me something, and I will repeat it back to you: </code>. The program waits while the user enters their response and continues after the user presses ENTER. The response is assigned to the variable <code>message</code>, then <code>print(message)</code> displays the input back to the user:</p>
+<pre><code>Tell me something, and I will repeat it back to you: <b>Hello everyone!</b>
+Hello everyone!</code></pre>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	Some text editors won’t run programs that prompt the user for input. You can use these editors to write programs that prompt for input, but you’ll need to run these programs from a terminal. See “<span class="xref" itemid="xref_target_Running Python Programs from a Terminal">Running Python Programs from a Terminal</span>” on <span class="xref" itemid="xref_target_page 11">page 11</span>.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h3 id="h2-502703c07-0001">Writing Clear Prompts</h3>
+<p class="BodyFirst">Each time you use the <code>input()</code> function, you should include a clear, easy-to-follow prompt that tells the user exactly what kind of information you’re looking for. Any statement that tells the user what to enter should work. For example:</p>
+<p class="CodeLabel"><b>greeter.py</b></p>
+<pre><code>name = input("Please enter your name: ")
+print(f"\nHello, {name}!")</code></pre>
+<p>Add a space at the end of your prompts (after the colon in the preceding example) to separate the prompt from the user’s response and to make it clear to your user where to enter their text. For example:</p>
+<pre><code>Please enter your name: <b>Eric</b>
+Hello, Eric!</code></pre>
+<p><span epub:type="pagebreak" id="Page_115" title="115"></span>Sometimes you’ll want to write a prompt that’s longer than one line. For example, you might want to tell the user why you’re asking for certain input. You can assign your prompt to a variable and pass that variable to the <code>input()</code> function. This allows you to build your prompt over several lines, then write a clean <code>input()</code> statement.</p>
+<p class="CodeLabel"><b>greeter.py</b></p>
+<pre><code>prompt = "If you share your name, we can personalize the messages you see."
+prompt += "\nWhat is your first name? "
+
+name = input(prompt)
+<span class="LiteralGray">print(f"\nHello, {name}!")</span></code></pre>
+<p>This example shows one way to build a multiline string. The first line assigns the first part of the message to the variable <code>prompt</code>. In the second line, the operator <code>+=</code> takes the string that was assigned to <code>prompt</code> and adds the new string onto the end.</p>
+<p>The prompt now spans two lines, again with space after the question mark for clarity:</p>
+<pre><code>If you share your name, we can personalize the messages you see.
+What is your first name? <b>Eric</b>
+
+Hello, Eric!</code></pre>
+<h3 id="h2-502703c07-0002">Using int() to Accept Numerical Input</h3>
+<p class="BodyFirst">When you use the <code>input()</code> function, Python interprets everything the user enters as a string. Consider the following interpreter session, which asks for the user’s age:</p>
+<pre><code>&gt;&gt;&gt; <b>age = input("How old are you? ")</b>
+How old are you? <b>21</b>
+&gt;&gt;&gt; <b>age</b>
+'21'</code></pre>
+<p>The user enters the number <code>21</code>, but when we ask Python for the value of <code>age</code>, it returns <code>'21'</code>, the string representation of the numerical value entered. We know Python interpreted the input as a string because the number is now enclosed in quotes. If all you want to do is print the input, this works well. But if you try to use the input as a number, you’ll get an error:</p>
+<pre><code>&gt;&gt;&gt; <b>age = input("How old are you? ")</b>
+How old are you? <b>21</b>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> &gt;&gt;&gt; <b>age &gt;= 18</b>
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> TypeError: '&gt;=' not supported between instances of 'str' and 'int'</code></pre>
+<p>When you try to use the input to do a numerical comparison <span aria-label="annotation1" class="CodeAnnotation">❶</span>, Python produces an error because it can’t compare a string to an integer: the string <code>'21'</code> that’s assigned to <code>age</code> can’t be compared to the numerical value <code>18</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span>.</p>
+<p><span epub:type="pagebreak" id="Page_116" title="116"></span>We can resolve this issue by using the <code>int()</code> function, which converts the input string to a numerical value. This allows the comparison to run successfully:</p>
+<pre><code>&gt;&gt;&gt; <b>age = input("How old are you? ")</b>
+How old are you? <b>21</b>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> &gt;&gt;&gt; <b>age = int(age)</b>
+&gt;&gt;&gt; <b>age &gt;= 18</b>
+True</code></pre>
+<p>In this example, when we enter <code>21</code> at the prompt, Python interprets the number as a string, but the value is then converted to a numerical representation by <code>int()</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>. Now Python can run the conditional test: it compares <code>age</code> (which now represents the numerical value 21) and <code>18</code> to see if <code>age</code> is greater than or equal to 18. This test evaluates to <code>True</code>.</p>
+<p>How do you use the <code>int()</code> function in an actual program? Consider a program that determines whether people are tall enough to ride a roller coaster:</p>
+<p class="CodeLabel"><b>rollercoaster.py</b></p>
+<pre><code>height = input("How tall are you, in inches? ")
+height = int(height)
+
+if height &gt;= 48:
+    print("\nYou're tall enough to ride!")
+else:
+    print("\nYou'll be able to ride when you're a little older.")</code></pre>
+<p>The program can compare <code>height</code> to <code>48</code> because <code>height = int(height)</code> converts the input value to a numerical representation before the comparison is made. If the number entered is greater than or equal to 48, we tell the user that they’re tall enough:</p>
+<pre><code>How tall are you, in inches? <b>71</b>
+
+You're tall enough to ride!</code></pre>
+<p>When you use numerical input to do calculations and comparisons, be sure to convert the input value to a numerical representation first.</p>
+<h3 id="h2-502703c07-0003">The Modulo Operator</h3>
+<p class="BodyFirst">A useful tool for working with numerical information is the <em>modulo operator </em>(<code>%</code>), which divides one number by another number and returns the remainder:</p>
+<pre><code>&gt;&gt;&gt; <b>4 % 3</b>
+1
+&gt;&gt;&gt; <b>5 % 3</b>
+2
+&gt;&gt;&gt; <b>6 % 3</b>
+0
+&gt;&gt;&gt; <b>7 % 3</b>
+1</code></pre>
+<p><span epub:type="pagebreak" id="Page_117" title="117"></span>The modulo operator doesn’t tell you how many times one number fits into another; it only tells you what the remainder is.</p>
+<p>When one number is divisible by another number, the remainder is 0, so the modulo operator always returns 0. You can use this fact to determine if a number is even or odd:</p>
+<p class="CodeLabel"><b>even_or_odd.py</b></p>
+<pre><code>number = input("Enter a number, and I'll tell you if it's even or odd: ")
+number = int(number)
+
+if number % 2 == 0:
+    print(f"\nThe number {number} is even.")
+else:
+    print(f"\nThe number {number} is odd.")</code></pre>
+<p>Even numbers are always divisible by two, so if the modulo of a number and two is zero (here, <code>if number % 2 == 0</code>) the number is even. Otherwise, it’s odd.</p>
+<pre><code>Enter a number, and I'll tell you if it's even or odd: <b>42</b>
+
+The number 42 is even.</code></pre>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c07-04">7-1. Rental Car:</span> Write a program that asks the user what kind of rental car they would like. Print a message about that car, such as “Let me see if I can find you a Subaru.”</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c07-05">7-2. Restaurant Seating:</span> Write a program that asks the user how many people are in their dinner group. If the answer is more than eight, print a message saying they’ll have to wait for a table. Otherwise, report that their table is ready.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c07-06">7-3. Multiples of Ten:</span> Ask the user for a number, and then report whether the number is a multiple of 10 or not.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c07-0002">Introducing while Loops</h2>
+<p class="BodyFirst">The <code>for</code> loop takes a collection of items and executes a block of code once for each item in the collection. In contrast, the <code>while</code> loop runs as long as, or <em>while</em>, a certain condition is true.</p>
+<h3 id="h2-502703c07-0004">The while Loop in Action</h3>
+<p class="BodyFirst">You can use a <code>while</code> loop to count up through a series of numbers. For example, the following <code>while</code> loop counts from 1 to 5:</p>
+<p class="CodeLabel"><b>counting.py</b></p>
+<pre><code>current_number = 1
+while current_number &lt;= 5:
+<span epub:type="pagebreak" id="Page_118" title="118"></span>    print(current_number)
+    current_number += 1</code></pre>
+<p>In the first line, we start counting from 1 by assigning <code>current_number</code> the value 1. The <code>while</code> loop is then set to keep running as long as the value of <code>current_number</code> is less than or equal to 5. The code inside the loop prints the value of <code>current_number</code> and then adds 1 to that value with <code>current_number += 1</code>. (The <code>+=</code> operator is shorthand for <code>current_number = current_number + 1</code>.)</p>
+<p>Python repeats the loop as long as the condition <code>current_number &lt;= 5</code> is true. Because 1 is less than 5, Python prints <code>1</code> and then adds 1, making the current number <code>2</code>. Because 2 is less than 5, Python prints <code>2</code> and adds 1 again, making the current number <code>3</code>, and so on. Once the value of <code>current_number</code> is greater than 5, the loop stops running and the program ends:</p>
+<pre><code>1
+2
+3
+4
+5</code></pre>
+<p>The programs you use every day most likely contain <code>while</code> loops. For example, a game needs a <code>while</code> loop to keep running as long as you want to keep playing, and so it can stop running as soon as you ask it to quit. Programs wouldn’t be fun to use if they stopped running before we told them to or kept running even after we wanted to quit, so <code>while</code> loops are quite useful.</p>
+<h3 id="h2-502703c07-0005">Letting the User Choose When to Quit</h3>
+<p class="BodyFirst">We can make the <em>parrot.py</em> program run as long as the user wants by putting most of the program inside a <code>while</code> loop. We’ll define a <em>quit value</em> and then keep the program running as long as the user has not entered the quit value:</p>
+<p class="CodeLabel"><b>parrot.py</b></p>
+<pre><code>prompt = "\nTell me something, and I will repeat it back to you:"
+prompt += "\nEnter 'quit' to end the program. "
+
+message = ""
+while message != 'quit':
+    message = input(prompt)
+    print(message)</code></pre>
+<p>We first define a prompt that tells the user their two options: entering a message or entering the quit value (in this case, <code>'quit'</code>). Then we set up a variable <code>message</code> to keep track of whatever value the user enters. We define <code>message</code> as an empty string, <code>""</code>, so Python has something to check the first time it reaches the <code>while</code> line. The first time the program runs and Python reaches the <code>while</code> statement, it needs to compare the value of <code>message</code> to <code>'quit'</code>, but no user input has been entered yet. If Python has nothing to compare, it won’t be able to continue running the program. To solve this <span epub:type="pagebreak" id="Page_119" title="119"></span>problem, we make sure to give <code>message</code> an initial value. Although it’s just an empty string, it will make sense to Python and allow it to perform the comparison that makes the <code>while</code> loop work. This <code>while</code> loop runs as long as the value of <code>message</code> is not <code>'quit'</code>.</p>
+<p>The first time through the loop, <code>message</code> is just an empty string, so Python enters the loop. At <code>message = input(prompt)</code>, Python displays the prompt and waits for the user to enter their input. Whatever they enter is assigned to <code>message</code> and printed; then, Python reevaluates the condition in the <code>while</code> statement. As long as the user has not entered the word <code>'quit'</code>, the prompt is displayed again and Python waits for more input. When the user finally enters <code>'quit'</code>, Python stops executing the <code>while</code> loop and the program ends:</p>
+<pre><code>Tell me something, and I will repeat it back to you:
+Enter 'quit' to end the program. <b>Hello everyone!</b>
+Hello everyone!
+
+Tell me something, and I will repeat it back to you:
+Enter 'quit' to end the program. <b>Hello again.</b>
+Hello again.
+
+Tell me something, and I will repeat it back to you:
+Enter 'quit' to end the program. <b>quit</b>
+quit</code></pre>
+<p>This program works well, except that it prints the word <code>'quit'</code> as if it were an actual message. A simple <code>if</code> test fixes this:</p>
+<pre><code><span class="LiteralGray">prompt = "\nTell me something, and I will repeat it back to you:"</span>
+<span class="LiteralGray">prompt += "\nEnter 'quit' to end the program. "</span>
+
+<span class="LiteralGray">message = ""</span>
+<span class="LiteralGray">while message != 'quit':</span>
+<span class="LiteralGray">    message = input(prompt)</span>
+
+    if message != 'quit':
+        <span class="LiteralGray">print(message)</span></code></pre>
+<p>Now the program makes a quick check before displaying the message and only prints the message if it does not match the quit value:</p>
+<pre><code>Tell me something, and I will repeat it back to you:
+Enter 'quit' to end the program. <b>Hello everyone!</b>
+Hello everyone!
+
+Tell me something, and I will repeat it back to you:
+Enter 'quit' to end the program. <b>Hello again.</b>
+Hello again.
+
+Tell me something, and I will repeat it back to you:
+Enter 'quit' to end the program. <b>quit</b></code></pre>
+<h3 id="h2-502703c07-0006"><span epub:type="pagebreak" id="Page_120" title="120"></span>Using a Flag</h3>
+<p class="BodyFirst">In the previous example, we had the program perform certain tasks while a given condition was true. But what about more complicated programs in which many different events could cause the program to stop running?</p>
+<p>For example, in a game, several different events can end the game. When the player runs out of ships, their time runs out, or the cities they were supposed to protect are all destroyed, the game should end. It needs to end if any one of these events happens. If many possible events might occur to stop the program, trying to test all these conditions in one <code>while</code> statement becomes complicated and difficult.</p>
+<p>For a program that should run only as long as many conditions are true, you can define one variable that determines whether or not the entire program is active. This variable, called a <em>flag</em>, acts as a signal to the program. We can write our programs so they run while the flag is set to <code>True</code> and stop running when any of several events sets the value of the flag to <code>False</code>. As a result, our overall <code>while</code> statement needs to check only one condition: whether the flag is currently <code>True</code>. Then, all our other tests (to see if an event has occurred that should set the flag to <code>False</code>) can be neatly organized in the rest of the program.</p>
+<p>Let’s add a flag to <em>parrot.py</em> from the previous section. This flag, which we’ll call <code>active</code> (though you can call it anything), will monitor whether or not the program should continue running:</p>
+<pre><code><span class="LiteralGray">prompt = "\nTell me something, and I will repeat it back to you:"</span>
+<span class="LiteralGray">prompt += "\nEnter 'quit' to end the program. "</span>
+
+active = True
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> while active:
+    message = input(prompt)
+
+    if message == 'quit':
+        active = False
+    else:
+        print(message)</code></pre>
+<p>We set the variable <code>active</code> to <code>True</code> so the program starts in an active state. Doing so makes the <code>while</code> statement simpler because no comparison is made in the <code>while</code> statement itself; the logic is taken care of in other parts of the program. As long as the <code>active</code> variable remains <code>True</code>, the loop will continue running <span aria-label="annotation1" class="CodeAnnotation">❶</span>.</p>
+<p>In the <code>if</code> statement inside the <code>while</code> loop, we check the value of <code>message</code> once the user enters their input. If the user enters <code>'quit'</code>, we set <code>active</code> to <code>False</code>, and the <code>while</code> loop stops. If the user enters anything other than <code>'quit'</code>, we print their input as a message.</p>
+<p>This program has the same output as the previous example where we placed the conditional test directly in the <code>while</code> statement. But now that we <span epub:type="pagebreak" id="Page_121" title="121"></span>have a flag to indicate whether the overall program is in an active state, it would be easy to add more tests (such as <code>elif</code> statements) for events that should cause <code>active</code> to become <code>False</code>. This is useful in complicated programs like games, in which there may be many events that should each make the program stop running. When any of these events causes the active flag to become <code>False</code>, the main game loop will exit, a <em>Game Over</em> message can be displayed, and the player can be given the option to play again.</p>
+<h3 id="h2-502703c07-0007">Using break to Exit a Loop</h3>
+<p class="BodyFirst">To exit a <code>while</code> loop immediately without running any remaining code in the loop, regardless of the results of any conditional test, use the <code>break</code> statement. The <code>break</code> statement directs the flow of your program; you can use it to control which lines of code are executed and which aren’t, so the program only executes code that you want it to, when you want it to.</p>
+<p>For example, consider a program that asks the user about places they’ve visited. We can stop the <code>while</code> loop in this program by calling <code>break</code> as soon as the user enters the <code>'quit'</code> value:</p>
+<p class="CodeLabel"><b>cities.py</b></p>
+<pre><code>prompt = "\nPlease enter the name of a city you have visited:"
+prompt += "\n(Enter 'quit' when you are finished.) "
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> while True:
+    city = input(prompt)
+
+    if city == 'quit':
+        break
+    else:
+        print(f"I'd love to go to {city.title()}!")</code></pre>
+<p>A loop that starts with <code>while True</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span> will run forever unless it reaches a <code>break</code> statement. The loop in this program continues asking the user to enter the names of cities they’ve been to until they enter <code>'quit'</code>. When they enter <code>'quit'</code>, the <code>break</code> statement runs, causing Python to exit the loop:</p>
+<pre><code>Please enter the name of a city you have visited:
+(Enter 'quit' when you are finished.) <b>New York</b>
+I'd love to go to New York!
+
+Please enter the name of a city you have visited:
+(Enter 'quit' when you are finished.) <b>San Francisco</b>
+I'd love to go to San Francisco!
+
+Please enter the name of a city you have visited:
+(Enter 'quit' when you are finished.) <b>quit</b></code></pre>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	You can use the <code>break</code> statement in any of Python’s loops. For example, you could use <code>break</code> to quit a <code>for</code> loop that’s working through a list or a dictionary.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h3 id="h2-502703c07-0008"><span epub:type="pagebreak" id="Page_122" title="122"></span>Using continue in a Loop</h3>
+<p class="BodyFirst">Rather than breaking out of a loop entirely without executing the rest of its code, you can use the <code>continue</code> statement to return to the beginning of the loop, based on the result of a conditional test. For example, consider a loop that counts from 1 to 10 but prints only the odd numbers in that range:</p>
+<p class="CodeLabel"><b>counting.py</b></p>
+<pre><code>current_number = 0
+while current_number &lt; 10:
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     current_number += 1
+    if current_number % 2 == 0:
+        continue
+
+    print(current_number)</code></pre>
+<p>First, we set <code>current_number</code> to 0. Because it’s less than 10, Python enters the <code>while</code> loop. Once inside the loop, we increment the count by 1 <span aria-label="annotation1" class="CodeAnnotation">❶</span>, so <code>current_number</code> is 1. The <code>if</code> statement then checks the modulo of <code>current_number</code> and 2. If the modulo is 0 (which means <code>current_number</code> is divisible by 2), the <code>continue</code> statement tells Python to ignore the rest of the loop and return to the beginning. If the current number is not divisible by 2, the rest of the loop is executed and Python prints the current number:</p>
+<pre><code>1
+3
+5
+7
+9</code></pre>
+<h3 id="h2-502703c07-0009">Avoiding Infinite Loops</h3>
+<p class="BodyFirst">Every <code>while</code> loop needs a way to stop running so it won’t continue to run forever. For example, this counting loop should count from 1 to 5:</p>
+<p class="CodeLabel"><b>counting.py</b></p>
+<pre><code>x = 1
+while x &lt;= 5:
+    print(x)
+    x += 1</code></pre>
+<p>However, if you accidentally omit the line <code>x += 1</code>, the loop will run forever:</p>
+<pre><code># This loop runs forever!
+x = 1
+while x &lt;= 5:
+    print(x)</code></pre>
+<p><span epub:type="pagebreak" id="Page_123" title="123"></span>Now the value of <code>x</code> will start at <code>1</code> but never change. As a result, the conditional test <code>x &lt;= 5</code> will always evaluate to <code>True</code> and the <code>while</code> loop will run forever, printing a series of 1s, like this:</p>
+<pre><code>1
+1
+1
+1
+<var>--snip--</var></code></pre>
+<p>Every programmer accidentally writes an infinite <code>while</code> loop from time to time, especially when a program’s loops have subtle exit conditions. If your program gets stuck in an infinite loop, press CTRL-C or just close the terminal window displaying your program’s output.</p>
+<p>To avoid writing infinite loops, test every <code>while</code> loop and make sure the loop stops when you expect it to. If you want your program to end when the user enters a certain input value, run the program and enter that value. If the program doesn’t end, scrutinize the way your program handles the value that should cause the loop to exit. Make sure at least one part of the program can make the loop’s condition <code>False</code> or cause it to reach a <code>break</code> statement.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	VS Code, like many editors, displays output in an embedded terminal window. To cancel an infinite loop, make sure you click in the output area of the editor before pressing CTRL-C.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c07-13">7-4. Pizza Toppings:</span> Write a loop that prompts the user to enter a series of pizza toppings until they enter a <code>'quit'</code> value. As they enter each topping, print a message saying you’ll add that topping to their pizza.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c07-14">7-5. Movie Tickets:</span> A movie theater charges different ticket prices depending on a person’s age. If a person is under the age of 3, the ticket is free; if they are between 3 and 12, the ticket is $10; and if they are over age 12, the ticket is $15. Write a loop in which you ask users their age, and then tell them the cost of their movie ticket.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c07-15">7-6. Three Exits:</span> Write different versions of either Exercise 7-4 or 7-5 that do each of the following at least once:</p>
+<ul>
+<li>Use a conditional test in the <code>while</code> statement to stop the loop.</li>
+<li>Use an <code>active</code> variable to control how long the loop runs.</li>
+<li>Use a <code>break</code> statement to exit the loop when the user enters a <code>'quit'</code> value.</li>
+</ul>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c07-16">7-7. Infinity:</span> Write a loop that never ends, and run it. (To end the loop, press CTRL-C or close the window displaying the output.)</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c07-0003"><span epub:type="pagebreak" id="Page_124" title="124"></span>Using a while Loop with Lists and Dictionaries</h2>
+<p class="BodyFirst">So far, we’ve worked with only one piece of user information at a time. We received the user’s input and then printed the input or a response to it. The next time through the <code>while</code> loop, we’d receive another input value and respond to that. But to keep track of many users and pieces of information, we’ll need to use lists and dictionaries with our <code>while</code> loops.</p>
+<p>A <code>for</code> loop is effective for looping through a list, but you shouldn’t modify a list inside a <code>for</code> loop because Python will have trouble keeping track of the items in the list. To modify a list as you work through it, use a <code>while</code> loop. Using <code>while</code> loops with lists and dictionaries allows you to collect, store, and organize lots of input to examine and report on later.</p>
+<h3 id="h2-502703c07-0010">Moving Items from One List to Another</h3>
+<p class="BodyFirst">Consider a list of newly registered but unverified users of a website. After we verify these users, how can we move them to a separate list of confirmed users? One way would be to use a <code>while</code> loop to pull users from the list of unconfirmed users as we verify them and then add them to a separate list of confirmed users. Here’s what that code might look like:</p>
+<p class="CodeLabel"><b>confirmed_users.py</b></p>
+<pre><code># Start with users that need to be verified,
+#  and an empty list to hold confirmed users.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> unconfirmed_users = ['alice', 'brian', 'candace']
+confirmed_users = []
+
+# Verify each user until there are no more unconfirmed users.
+#  Move each verified user into the list of confirmed users.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> while unconfirmed_users:
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     current_user = unconfirmed_users.pop()
+
+    print(f"Verifying user: {current_user.title()}")
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>     confirmed_users.append(current_user)
+
+# Display all confirmed users.
+print("\nThe following users have been confirmed:")
+for confirmed_user in confirmed_users:
+    print(confirmed_user.title())</code></pre>
+<p>We begin with a list of unconfirmed users <span aria-label="annotation1" class="CodeAnnotation">❶</span> (Alice, Brian, and Candace) and an empty list to hold confirmed users. The <code>while</code> loop runs as long as the list <code>unconfirmed_users</code> is not empty <span aria-label="annotation2" class="CodeAnnotation">❷</span>. Within this loop, the <code>pop()</code> method removes unverified users one at a time from the end of <code>unconfirmed_users</code> <span aria-label="annotation3" class="CodeAnnotation">❸</span>. Because Candace is last in the <code>unconfirmed_users</code> list, her name will be the first to be removed, assigned to <code>current_user</code>, and added to the <code>confirmed_users</code> list <span aria-label="annotation4" class="CodeAnnotation">❹</span>. Next is Brian, then Alice.</p>
+<p>We simulate confirming each user by printing a verification message and then adding them to the list of confirmed users. As the list of unconfirmed users shrinks, the list of confirmed users grows. When the list of <span epub:type="pagebreak" id="Page_125" title="125"></span>unconfirmed users is empty, the loop stops and the list of confirmed users is printed:</p>
+<pre><code>Verifying user: Candace
+Verifying user: Brian
+Verifying user: Alice
+
+The following users have been confirmed:
+Candace
+Brian
+Alice</code></pre>
+<h3 id="h2-502703c07-0011">Removing All Instances of Specific Values from a List</h3>
+<p class="BodyFirst">In <span class="xref" itemid="xref_target_Chapter 3,">Chapter 3,</span> we used <code>remove()</code> to remove a specific value from a list. The <code>remove()</code> function worked because the value we were interested in appeared only once in the list. But what if you want to remove all instances of a value from a list?</p>
+<p>Say you have a list of pets with the value <code>'cat'</code> repeated several times. To remove all instances of that value, you can run a <code>while</code> loop until <code>'cat'</code> is no longer in the list, as shown here:</p>
+<p class="CodeLabel"><b>pets.py</b></p>
+<pre><code>pets = ['dog', 'cat', 'dog', 'goldfish', 'cat', 'rabbit', 'cat']
+print(pets)
+
+while 'cat' in pets:
+    pets.remove('cat')
+
+print(pets)</code></pre>
+<p>We start with a list containing multiple instances of <code>'cat'</code>. After printing the list, Python enters the <code>while</code> loop because it finds the value <code>'cat'</code> in the list at least once. Once inside the loop, Python removes the first instance of <code>'cat'</code>, returns to the <code>while</code> line, and then reenters the loop when it finds that <code>'cat'</code> is still in the list. It removes each instance of <code>'cat'</code> until the value is no longer in the list, at which point Python exits the loop and prints the list again:</p>
+<pre><code>['dog', 'cat', 'dog', 'goldfish', 'cat', 'rabbit', 'cat']
+['dog', 'dog', 'goldfish', 'rabbit']</code></pre>
+<h3 id="h2-502703c07-0012">Filling a Dictionary with User Input</h3>
+<p class="BodyFirst">You can prompt for as much input as you need in each pass through a <code>while</code> loop. Let’s make a polling program in which each pass through the loop prompts for the participant’s name and response. We’ll store the data we gather in a dictionary, because we want to connect each response with a particular user:</p>
+<p class="CodeLabel"><b>mountain_poll.py</b></p>
+<pre><code>responses = {}
+# Set a flag to indicate that polling is active.
+polling_active = True
+
+<span epub:type="pagebreak" id="Page_126" title="126"></span>while polling_active:
+    # Prompt for the person's name and response.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     name = input("\nWhat is your name? ")
+    response = input("Which mountain would you like to climb someday? ")
+
+    # Store the response in the dictionary.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     responses[name] = response
+
+    # Find out if anyone else is going to take the poll.
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     repeat = input("Would you like to let another person respond? (yes/ no) ")
+    if repeat == 'no':
+        polling_active = False
+
+# Polling is complete. Show the results.
+print("\n--- Poll Results ---")
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> for name, response in responses.items():
+    print(f"{name} would like to climb {response}.")</code></pre>
+<p>The program first defines an empty dictionary (<code>responses</code>) and sets a flag (<code>polling_active</code>) to indicate that polling is active. As long as <code>polling_active</code> is <code>True</code>, Python will run the code in the <code>while</code> loop.</p>
+<p>Within the loop, the user is prompted to enter their name and a mountain they’d like to climb <span aria-label="annotation1" class="CodeAnnotation">❶</span>. That information is stored in the <code>responses</code> dictionary <span aria-label="annotation2" class="CodeAnnotation">❷</span>, and the user is asked whether or not to keep the poll running <span aria-label="annotation3" class="CodeAnnotation">❸</span>. If they enter <code>yes</code>, the program enters the <code>while</code> loop again. If they enter <code>no</code>, the <code>polling_active</code> flag is set to <code>False</code>, the <code>while</code> loop stops running, and the final code block <span aria-label="annotation4" class="CodeAnnotation">❹</span> displays the results of the poll.</p>
+<p>If you run this program and enter sample responses, you should see output like this:</p>
+<pre><code>What is your name? <b>Eric</b>
+Which mountain would you like to climb someday? <b>Denali</b>
+Would you like to let another person respond? (yes/ no) <b>yes</b>
+
+What is your name? <b>Lynn</b>
+Which mountain would you like to climb someday? <b>Devil's Thumb</b>
+Would you like to let another person respond? (yes/ no) <b>no</b>
+
+--- Poll Results ---
+Eric would like to climb Denali.
+Lynn would like to climb Devil's Thumb.</code></pre>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2><span epub:type="pagebreak" id="Page_127" title="127"></span>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c07-20">7-8. Deli:</span> Make a list called <code>sandwich_orders</code> and fill it with the names of various sandwiches. Then make an empty list called <code>finished_sandwiches</code>. Loop through the list of sandwich orders and print a message for each order, such as <code>I made your tuna sandwich</code>. As each sandwich is made, move it to the list of finished sandwiches. After all the sandwiches have been made, print a message listing each sandwich that was made.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c07-21">7-9. No Pastrami:</span> Using the list <code>sandwich_orders</code> from Exercise 7-8, make sure the sandwich <code>'pastrami'</code> appears in the list at least three times. Add code near the beginning of your program to print a message saying the deli has run out of pastrami, and then use a <code>while</code> loop to remove all occurrences of <code>'pastrami'</code> from <code>sandwich_orders</code>. Make sure no pastrami sandwiches end up in <code>finished_sandwiches</code>.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c07-22">7-10. Dream Vacation:</span> Write a program that polls users about their dream vacation. Write a prompt similar to <em>If you could visit one place in the world, where would you go?</em> Include a block of code that prints the results of the poll.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c07-0004">Summary</h2>
+<p class="BodyFirst">In this chapter, you learned how to use <code>input()</code> to allow users to provide their own information in your programs. You learned to work with both text and numerical input and how to use <code>while</code> loops to make your programs run as long as your users want them to. You saw several ways to control the flow of a <code>while</code> loop by setting an <code>active</code> flag, using the <code>break</code> statement, and using the <code>continue</code> statement. You learned how to use a <code>while</code> loop to move items from one list to another and how to remove all instances of a value from a list. You also learned how <code>while</code> loops can be used with dictionaries.</p>
+<p>In <span class="xref" itemid="xref_target_Chapter 8">Chapter 8</span> you’ll learn about functions. <em>Functions</em> allow you to break your programs into small parts, each of which does one specific job. You can call a function as many times as you want, and you can store your functions in separate files. By using functions, you’ll be able to write more efficient code that’s easier to troubleshoot and maintain and that can be reused in many different programs.</p>
+</section>
+</div></body>
+</html>

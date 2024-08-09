@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch12lev1sec05"><span epub:type="pagebreak" id="page_273"></span><strong><span class="blue1">Crear varios objetos</span></strong></h3>
+<p class="noindent">Puedes crear varios objetos a partir de la misma clase creando objetos con nombres diferentes utilizando el mismo constructor de clase (recuerda que <em>constructor</em> es otro nombre para el método <span class="literal">__init__()</span> ). Por ejemplo, supongamos que encontramos una segunda gata llamada Stella que ahora es amiga de Fluff. Abre <em>catClass.py</em> e introduce el siguiente código para añadir a Stella:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>catClass.py</em></span></p>
+<p class="programs" translate="no"><span class="ash">class Cat(object):</span><br translate="no"/> <span class="ash">def __init__(self, name, weight):</span><br translate="no"/> <span class="ash">self.name = name</span><br translate="no"/> <span class="ash">self.weight = weight</span><br translate="no"/><br translate="no"/><span class="ash">fluff = Cat("Fluff", 4.5)</span><br translate="no"/>stella = Cat(<span class="green">"Stella"</span>, 3.9)</p>
+<p class="indent">Ahora tenemos dos objetos gato, <span class="literal">Pelusa</span> y <span class="literal">Stella</span>. Cada uno tiene los mismos atributos, <span class="literal">nombre</span> y <span class="literal">peso</span>, pero con valores diferentes.</p>
+<p class="indent">Añade el siguiente código a <em>catClass.</em> py para imprimir los nombres de los gatos:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>catClass.py</em></span></p>
+<p class="programs" translate="no"><span class="rose">print</span>(fluff.name)<br translate="no"/><span class="rose">print</span>(stella.name)</p>
+<p class="indent">Cuando ejecutes el archivo, obtendrás esta salida:</p>
+<p class="programs" translate="no"><span class="blue1">Fluff</span><br translate="no"/><span class="blue1">Stella</span></p>
+<p class="indent">Los dos objetos gato también tienen acceso a los mismos métodos. Ambos pueden llamar a la función <span class="literal">comer()</span>. Añade este código a <em>catClass.</em>py:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>catClass.py</em></span></p>
+<p class="programs" translate="no">fluff.eat(<span class="green">"tuna"</span>)<br translate="no"/>stella.eat(<span class="green">"cake"</span>)</p>
+<p class="indent">Y la salida tendrá este aspecto:</p>
+<p class="programs" translate="no"><span class="blue1">Fluff is eating tuna</span><br translate="no"/><span class="blue1">Stella is eating cake</span></p>
+<p class="indent">Escribir una clase facilita mucho la creación de muchos objetos. ¡Intentemos crear varios objetos con Minecraft!</p>
+<h4 class="h4a" id="ch12lev2sec06"><strong>Misión nº 71: Ciudad Fantasma</strong></h4>
+<p class="noindent">¿Qué da más miedo que una casa fantasma? Exacto, dos casas fantasma. Pero tres casas fantasma darían aún más miedo. ¿Y más de tres casas fantasma? Tengo que dejar de pensar en esto, ¡o no podré dormir esta noche!</p>
+<p class="indent"><span epub:type="pagebreak" id="page_274"></span>En la Misión 69<a href="ch12.xhtml#page_267">(página 267</a>), creaste una clase que construye una casa que desaparece. Ahora puedes crear varios objetos utilizando la misma clase, y Python recordará cada uno de los atributos y métodos del objeto. Puedes hacer tantas casas como quieras, y puedes hacer que aparezcan y desaparezcan con facilidad.</p>
+<p class="indent">Tu misión es crear cuatro o más objetos casa fantasma y disponerlos en un pueblo. Al cabo de cierto tiempo, haz que desaparezcan todas y reaparezcan en otro lugar del mapa, como en un verdadero pueblo fantasma.</p>
+<p class="indent">Abre <em>ghostHouse.py</em> en IDLE: lo utilizaremos como base. Cuando hayas creado una casa en el programa <em>ghostHouse.</em> py, tu código debería tener este aspecto:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>ghostHouse.py</em></span></p>
+<p class="programs" translate="no">ghostHouse = Building(17, 22, -54, 10, 6, 8)<br translate="no"/>ghostHouse.build()<br translate="no"/><br translate="no"/>time.sleep(30)<br translate="no"/><br translate="no"/>ghostHouse.clear()</p>
+<p class="indent">Guarda <em>ghostHouse</em>.py como un nuevo archivo llamado <em>ghostVillage.py</em>, y luego crea tres o más objetos en el archivo utilizando la clase <span class="literal">Edificio</span> para construir el pueblo. Para ayudarte a empezar, en <a href="ch12.xhtml#ch12ex4">el Listado 12-4</a> he creado un segundo objeto llamado <span class="literal">tienda</span>. También he establecido las variables <span class="literal">x</span>, <span class="literal">y</span> y <span class="literal">z</span> para que contengan la posición actual del jugador, que encontraremos utilizando <span class="literal">player.getTilePos()</span>. Esto facilita la construcción de la aldea a tu alrededor.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>ghostVillage.py</em></span></p>
+<p class="programs" translate="no">pos = mc.player.getTilePos()<br translate="no"/>x = pos.x<br translate="no"/>y = pos.y<br translate="no"/>z = pos.z<br translate="no"/>ghostHouse = Building(x, y, z, 10, 6, 8)<br translate="no"/>shop = Building(x + 12, y, z, 8, 12, 10)<br translate="no"/><span class="red"># Create more ghost building objects here</span><br translate="no"/><br translate="no"/>ghostHouse.build()<br translate="no"/>shop.build()<br translate="no"/><span class="red"># Build more ghost building objects here</span><br translate="no"/><br translate="no"/>time.sleep(30)<br translate="no"/><br translate="no"/>ghostHouse.clear()<br translate="no"/>shop.clear()</p>
+<p class="examplet"><a id="ch12ex4"></a><em>Listado 12-4: Creación de múltiples objetos de construcción fantasma</em></p>
+<p class="indent"><a href="ch12.xhtml#ch12fig4">La Figura 12-4</a> muestra mi aldea fantasma. Después de 30 segundos, los edificios fantasma desaparecen de repente.</p>
+<div class="image"><span epub:type="pagebreak" id="page_275"></span><img alt="image" src="../images/f12-04.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch12fig4"></a><em>Figura 12-4: ¡Mira todos los edificios fantasma del pueblo fantasma!</em></p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch12_5.html">anterior</a><a href="ch12.html">Subtema 6 de 10: (Ver todo)</a><a href="ch12_7.html">siguiente</a><br/></p>
+<br/><a href="ch12_6.docx" target="_blank"></a></footer>
+</body>
+</html>

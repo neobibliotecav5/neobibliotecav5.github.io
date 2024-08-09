@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>A Simple Testing Ground</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="A Simple Testing Ground"><div class="titlepage"><div><div><h1 class="title"><a id="a_simple_testing_ground"/>A Simple Testing Ground</h1></div></div></div><p>If you have a web browser and any text editor, you have everything you need to run
+                JavaScript programs. First, make an HTML file with a name like <em class="filename">program.html</em>:<a id="IDX-CHP-1-0008" class="indexterm"/></p><a id="I_programlisting1_d1e426"/><pre class="programlisting">&lt;html&gt;&lt;body&gt;&lt;pre&gt;&lt;script src="program.js"&gt;
+&lt;/script&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</pre><p>Then, make a file in the same directory with a name like <em class="filename">program.js</em>:</p><a id="I_programlisting1_d1e433"/><pre class="programlisting">document.writeln('Hello, world!');</pre><p>Next, open your HTML file in your browser to see the result. Throughout the book,
+                a <code class="literal">method</code> method is used to define new methods.
+                This is its definition:</p><a id="I_programlisting1_d1e440"/><pre class="programlisting">Function.prototype.method = function (name, func) {
+    this.prototype[name] = func;
+    return this;
+};</pre><p>It will be explained in <a class="xref" href="ch04.html" title="Chapter 4. Functions">Chapter 4</a>.</p></div></body></html>

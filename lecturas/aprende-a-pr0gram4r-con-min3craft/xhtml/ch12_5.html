@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch12lev1sec04"><strong><span class="blue1">Devolver valores con métodos</span></strong></h3>
+<p class="noindent">Al igual que las funciones, los métodos también pueden devolver valores, o los atributos de un objeto, utilizando la palabra clave <span class="literal">return</span>. Por ejemplo, supongamos que queremos convertir el peso del gato Fluff de kilogramos a gramos. Un kilogramo equivale a 1000 gramos, así que para hacer la conversión, multiplica el atributo <span class="literal">peso</span> por 1000 y devuélvelo. Añade el siguiente método <span class="literal">getPesoEnGramos()</span> a la clase <span class="literal">Gato</span> en <em>catClass.py</em>:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>catClass.py</em></span></p>
+<p class="programs" translate="no"><span class="ash">class Cat(object):</span><br translate="no"/> <span class="ash">def __init__(self, name, weight):</span><br translate="no"/> <span class="ash">self.name = name</span><br translate="no"/> <span class="ash">self.weight = weight</span><br translate="no"/><br translate="no"/> <span class="orange">def</span> <span class="blue1">getWeightInGrams</span>(self):<br translate="no"/> <span class="orange">return</span> self.weight * 1000</p>
+<p class="indent">Para obtener el valor devuelto por el método, creas un objeto y llamas al método. En el código siguiente, se utiliza el objeto <span class="literal">pelusa</span>, y se llama al método dentro de una función <span class="literal">print(</span> ) para obtener el peso del gato en gramos:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>catClass.py</em></span></p>
+<p class="programs" translate="no"><span class="ash">fluff = Cat("Fluff", 4.5)</span><br translate="no"/><span class="rose">print</span>(fluff.getWeightInGrams())</p>
+<p class="indent">Ahora, cuando ejecutes el archivo, saldrá lo siguiente:</p>
+<p class="programs" translate="no"><span class="blue1">4500</span></p>
+<p class="indent">En la próxima misión, ampliaremos el programa de la casa fantasma para incluir un método que devuelva información sobre el edificio.</p>
+<h4 class="h4a" id="ch12lev2sec05"><strong>Misión nº 70: Castillo fantasma</strong></h4>
+<p class="noindent">Tengo en mente todo tipo de nombres para los distintos lugares que he construido en mi mundo Minecraft: la casa de la playa, la granja de plantas, la granja de animales, el almacén, el palacio, el palacio submarino, el palacio subterráneo, y un montón más. ¡El problema es que los nombres sólo existen en mi cabeza!</p>
+<p class="indent">Con las clases, puedes crear atributos como ubicación y tamaño para las cosas que construyas, como viste en la Misión 69<a href="ch12.xhtml#page_267">(página 267</a>). ¡También puedes incluir nombres!</p>
+<p class="indent"><span epub:type="pagebreak" id="page_271"></span>Pongamos un nombre a la casa fantasma y hagamos que Python lo recuerde por nosotros. Actualizaremos la clase <span class="literal">Edificio</span> de la Misión nº 69 para añadir un método extra que devuelva el nombre del edificio. Copia <a href="ch12.xhtml#ch12ex3">el Listado 12-3</a> en un nuevo archivo llamado <em>castillofantasma.py</em> en la carpeta de <em>clases</em>.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>ghostCastle.py</em></span></p>
+<p class="programs" translate="no"> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>   mc = Minecraft.create()<br translate="no"/> <span class="orange">import</span> time<br translate="no"/><br translate="no"/><span class="ent">➊</span> <span class="orange">class</span> <span class="blue1">NamedBuilding</span>(<span class="rose">object</span>):<br translate="no"/><span class="ent">➋</span> <span class="orange">def</span> <span class="blue1">__init_</span>_(self, x, y, z, width, height, depth, name):<br translate="no"/>           self.x = x<br translate="no"/>           self.y = y<br translate="no"/>           self.z = z<br translate="no"/><br translate="no"/>           self.width = width<br translate="no"/>           self.height = height<br translate="no"/>           self.depth = depth<br translate="no"/><br translate="no"/><span class="ent">➌</span>         self.name = name<br translate="no"/><br translate="no"/> <span class="orange">def</span> <span class="blue1">build</span>(self):<br translate="no"/>           mc.setBlocks(self.x, self.y, self.z,<br translate="no"/>                        self.x + self.width, self.y + self.height,<br translate="no"/>                        self.z + self.depth, 4)<br translate="no"/><br translate="no"/>           mc.setBlocks(self.x + 1, self.y + 1, self.z + 1,<br translate="no"/>                        self.x + self.width - 1, self.y + self.height - 1,<br translate="no"/>                        self.z + self.depth - 1, 0)<br translate="no"/><br translate="no"/> <span class="orange">def</span> <span class="blue1">clear</span>(self):<br translate="no"/>           mc.setBlocks(self.x, self.y, self.z,<br translate="no"/>                        self.x + self.width, self.y + self.height,<br translate="no"/>                        self.z + self.depth, 0)<br translate="no"/><br translate="no"/><span class="ent">➍</span> <span class="orange">def</span> <span class="blue1">getInfo</span>():<br translate="no"/> <span class="red"># Add the body of the getInfo() method here</span><br translate="no"/><br translate="no"/>   pos = mc.player.getTilePos()<br translate="no"/>   x = pos.x<br translate="no"/>   y = pos.y<br translate="no"/>   z = pos.z<br translate="no"/>   ghostCastle = NamedBuilding(x, y, z, 10, 16, 16, <span class="green">"Ghost Castle"</span>)<br translate="no"/>   ghostCastle.build()<br translate="no"/><span class="ent">➎</span> mc.postToChat(ghostCastle.getInfo())<br translate="no"/><br translate="no"/>   time.sleep(30)<br translate="no"/><br translate="no"/>   ghostCastle.clear()</p>
+<p class="examplet"><em><a id="ch12ex3"></a>Listado 12-3:</em> <span class="literal"><span class="codeitalic">EdificioNombrado</span></span> <em>es muy similar a la</em> <em>clase</em> <span class="literal"><span class="codeitalic">Edificio</span></span> <em>, salvo que tiene un atributo extra llamado</em> <span class="literal"><span class="codeitalic">nombre</span></span> <em>y un método extra que devuelve una descripción del edificio.</em></p>
+<p class="indent"><span epub:type="pagebreak" id="page_272"></span>En primer lugar, he cambiado el nombre de la clase a <span class="literal">EdificioNombrado</span> para que no la confundamos con la clase <span class="literal">Edificio</span> de la misión anterior <span class="ent">➊.</span> He añadido un argumento y un atributo extra al constructor llamado <span class="literal">nombre</span> <span class="ent">➋.</span> El argumento te permite dar un nombre al edificio, y el constructor asigna el <span class="literal">nombre</span> al atributo nombre <span class="ent">➌.</span></p>
+<p class="indent">Tu misión es añadir un método llamado <span class="literal">getInfo()</span> a la nueva clase <span class="literal">EdificioNombrado</span> que devuelva el nombre y la posición del edificio. Te he añadido el inicio del método <span class="literal">getInfo</span> () en <span class="ent">➍.</span> Sólo tienes que añadir el cuerpo. El método <span class="literal">getInfo</span> () se invoca en el objeto <span class="literal">castillofantasma</span> en <span class="ent">➎</span> para que envíe la cadena devuelta por el método al chat de Minecraft. Por ejemplo, si el castillo fantasma está situado en <span class="literal">x = -310</span>, <span class="literal">y = 64</span>, <span class="literal">z = 1081</span>, el método getInfo <span class="literal">(</span> ) debe devolver la cadena "La <span class="literal"> ubicación del castillo fantasma está en -310, 64, 1081"</span>.</p>
+<p class="indent"><a href="ch12.xhtml#ch12fig3">La Figura 12-3</a> muestra mi programa en funcionamiento. Aunque el castillo fantasma es más alto, se parece a la casa de la Misión nº 69. Esto se debe a que los métodos <span class="literal">build(</span> ) son los mismos para ambos, pero siéntete libre de cambiar tu versión del código para que tu edificio se parezca más a un castillo.</p>
+<div class="image"><img alt="image" src="../images/f12-03.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch12fig3"></a><em>Figura 12-3: Aparece la descripción del castillo fantasma.</em></p>
+<div class="sidebar">
+<p class="sidebart" id="ch12sb03"><strong>OBJETIVO EXTRA: UNA CÁLIDA BIENVENIDA</strong></p>
+<p class="noindent">¿No sería genial que el nombre de cualquier edificio al que entraras apareciera automáticamente en el chat? Bueno, es posible, pero es un poco difícil. Si quieres intentarlo, puedes utilizar el programa <em>ducha.py</em> de la Misión 32<a href="ch06.xhtml#page_124">(página 124</a>) como punto de partida. El archivo debe estar en tu carpeta <em>ifDeclaraciones</em>. Puedes utilizar el programa para detectar las coordenadas del jugador y, si está dentro del edificio, llamar al método <span class="literal">getInfo()</span> del objeto <span class="literal">edificio</span>.</p>
+</div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch12_4.html">anterior</a><a href="ch12.html">Subtema 5 de 10: (Ver todo)</a><a href="ch12_6.html">siguiente</a><br/></p>
+<br/><a href="ch12_5.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,791 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Unknown</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+<body class="calibre">
+<div class="calibre1" id="sbo-rt-content">
+<h2 class="h2" id="ch07">
+<span class="calibre2" id="page_83">
+</span>
+<span class="big">
+   7
+  </span>
+<br class="calibre10"/>
+  Recycling Your Code with Functions and Modules
+ </h2>
+<div class="image">
+<img alt="Image" class="calibre8" src="../images/common.jpg"/>
+</div>
+<p class="indent">
+  Think about how much stuff you throw away each day: water bottles, soda cans, potato chip bags, plastic sandwich wrappers, bags that held carrot sticks or apple slices, shopping bags, newspapers, magazines, and so on. Now imagine all of that trash just got dumped in a pile at the end of your driveway, without separating out the paper, the plastic, and the tin cans.
+ </p>
+<p class="indent">
+<span id="page_84">
+</span>
+  You probably recycle as much as possible, which is good, because no one likes to climb over a pile of trash on the way to school. Rather than sitting in an enormous, gross pile, recycled glass bottles are melted down and turned into new jars and bottles; paper is pulped into recycled paper; and plastic is turned into heavier plastic goods. We reuse things we would otherwise throw away.
+ </p>
+<p class="indent">
+  In the programming world, recycling is just as important. Your program might not disappear under a pile of garbage, but if you never reuse any code, you’ll type so much that your fingers might eventually wear down to painful stubs! Recycling also makes your code shorter and easier to read.
+ </p>
+<div class="image">
+<img alt="Image" class="calibre67" src="../images/f0084-01.jpg"/>
+</div>
+<p class="indent">
+  As you’ll learn in this chapter, Python offers a number of ways to reuse code.
+ </p>
+<h3 class="h1" id="ch07lev1sec1">
+  Using Functions
+ </h3>
+<p class="noindent">
+<em class="calibre7">
+   Functions
+  </em>
+  are chunks of code that tell Python to do something. They are one way to reuse code—you can use functions in your programs again and again. Python has many functions available to use; these are called
+  <em class="calibre7">
+   built-in
+  </em>
+  functions, or
+  <em class="calibre7">
+   builtins
+  </em>
+  (for more information on builtins, see
+  <a class="calibre6" href="app02.xhtml#app02">
+   Appendix B
+  </a>
+  ). There are also functions available in modules (more on those below), and you can even write functions yourself.
+ </p>
+<p class="indent">
+  We started learning about functions in the previous chapter, when we used
+  <span class="literal1">
+   range
+  </span>
+  and
+  <span class="literal1">
+   list
+  </span>
+  to make Python count:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">list</span>(<span class="violet">range</span>(0, 5))
+<span class="blue1">[0, 1, 2, 3, 4]</span></pre>
+<p class="indent">
+  It’s not too hard to type a list of consecutive numbers yourself, but the larger the list, the more you need to type. With functions, you can just as easily create a list of a thousand numbers.
+ </p>
+<p class="indent">
+  Here’s an example that uses the
+  <span class="literal1">
+   list
+  </span>
+  and
+  <span class="literal1">
+   range
+  </span>
+  functions to produce a list of numbers:
+ </p>
+<pre class="pre"><span id="page_85"></span><span class="brown">&gt;&gt;&gt;</span> <span class="violet">list</span>(<span class="violet">range</span>(0, 1000))
+<span class="blue1">[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16..., 997, 998, 999]</span></pre>
+<p class="indent">
+  When you’re writing simple programs, functions are handy. Once you start writing long, complex programs—like games—functions are
+  <em class="calibre7">
+   essential
+  </em>
+  (assuming you want to finish writing your program this century).
+ </p>
+<p class="indent">
+  Let’s look at how to write our own functions.
+ </p>
+<h3 class="h1" id="ch07lev1sec2">
+  Parts of a Function
+ </h3>
+<p class="noindent">
+  A function has three parts: a name, parameters, and a body. Here’s an example of a simple function:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">def</span> testfunc(myname):
+        <span class="violet">print</span>(f<span class="green">'hello {myname}'</span>)</pre>
+<p class="indent">
+  The name of this function is
+  <span class="literal1">
+   testfunc
+  </span>
+  . It has a single parameter,
+  <span class="literal1">
+   myname
+  </span>
+  , and its body is the block of code immediately following the line beginning with
+  <span class="literal1">
+   def
+  </span>
+  (short for
+  <em class="calibre7">
+   define
+  </em>
+  ). A
+  <em class="calibre7">
+   parameter
+  </em>
+  is a variable that exists only while a function is being used.
+ </p>
+<p class="indent">
+  You can run the function by calling its name, using parentheses around the parameter value:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> testfunc(<span class="green">'Mary'</span>)
+<span class="blue1">hello Mary</span></pre>
+<p class="indent">
+  Functions can take any number of parameters:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">def</span> testfunc(fname, lname):
+        <span class="violet">print</span>(f<span class="green">'Hello {fname} {lname}'</span>)</pre>
+<p class="indent">
+  When using multiple parameters, make sure you separate the values with a comma:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> testfunc(<span class="green">'Mary', 'Smith'</span>)
+<span class="blue1">Hello Mary Smith</span></pre>
+<p class="indent">
+  We can also create variables first and then call the function with them:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> firstname = <span class="green">'Joe'</span>
+<span class="brown">&gt;&gt;&gt;</span> lastname = <span class="green">'Robertson'</span>
+<span id="page_86"></span><span class="brown">&gt;&gt;&gt;</span> testfunc(firstname, lastname)
+<span class="blue1">Hello Joe Robertson</span></pre>
+<p class="indent">
+  A function can return a value with a
+  <span class="literal1">
+   return
+  </span>
+  statement. For example, you could write a function to calculate how much money you’re saving:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">def</span> savings(pocket_money, paper_route, spending):
+        <span class="orange">return</span> pocket_money + paper_route - spending</pre>
+<p class="indent">
+  This function takes three parameters. It adds the first two (
+  <span class="literal1">
+   pocket_money
+  </span>
+  and
+  <span class="literal1">
+   paper_route)
+  </span>
+  and subtracts the last (
+  <span class="literal1">
+   spending
+  </span>
+  ). The result is returned and can be assigned to a variable (the same way we set other values to variables) or printed:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(savings(10, 10, 5))
+<span class="blue1">15</span></pre>
+<p class="indent">
+  We pass in parameters
+  <span class="literal1">
+   10
+  </span>
+  ,
+  <span class="literal1">
+   10
+  </span>
+  , and
+  <span class="literal1">
+   5
+  </span>
+  , and the
+  <span class="literal1">
+   savings
+  </span>
+  function calculates
+  <span class="literal1">
+   15
+  </span>
+  as the result and then returns the value.
+ </p>
+<h3 class="h1" id="ch07lev1sec3">
+  Variables and Scope
+ </h3>
+<p class="noindent">
+  A variable that’s inside the body of a function can’t be used again once the function has finished running because it exists only inside the function. In the world of programming, where a variable can be used is called its
+  <em class="calibre7">
+   scope
+  </em>
+  . Let’s look at a simple function that uses a couple of variables but doesn’t have any parameters:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">def</span> variable_test():
+        first_variable = 10
+        second_variable = 20
+        <span class="orange">return</span> first_variable * second_variable</pre>
+<p class="indent">
+  In this example, we create the
+  <span class="literal1">
+   variable_test
+  </span>
+  function, which multiplies
+  <span class="literal1">
+   first_variable
+  </span>
+  and
+  <span class="literal1">
+   second_variable
+  </span>
+  and returns the result:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(variable_test())
+<span class="blue1">200</span></pre>
+<p class="indent">
+  If we call this function using
+  <span class="literal1">
+   print
+  </span>
+  , we get 200. However, if we try to print the contents of
+  <span class="literal1">
+   first_variable
+  </span>
+  (or
+  <span class="literal1">
+   second_variable
+  </span>
+  ,
+  <span id="page_87">
+</span>
+  for that matter) outside of the block of code in the function, we get an error message:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(first_variable)
+<span class="red">Traceback (most recent call last):
+  File "&lt;pyshell#50&gt;", line 1, in &lt;module&gt;
+    print(first_variable)
+NameError: name 'first_variable' is not defined</span></pre>
+<p class="indent">
+  If a variable is defined outside the function, it has a different scope. For example, let’s define a variable before we create our function, and then try using it inside the function:
+ </p>
+<pre class="pre"><span class="ent">➊</span> <span class="brown">&gt;&gt;&gt;</span> another_variable = 100
+  <span class="brown">&gt;&gt;&gt;</span> <span class="orange">def</span> variable_test2():
+          first_variable = 10
+          second_variable = 20
+       <span class="ent">➋</span> <span class="orange">return</span> first_variable * second_variable * another_variable</pre>
+<p class="indent">
+  In this code, even though the variables
+  <span class="literal1">
+   first_variable
+  </span>
+  and
+  <span class="literal1">
+   second_variable
+  </span>
+  can’t be used outside the function, the variable
+  <span class="literal1">
+   another_variable
+  </span>
+  (which was created outside the function
+  <span class="ent">
+   ➊
+  </span>
+  ) can be used inside it
+  <span class="ent">
+   ➋
+  </span>
+  .
+ </p>
+<p class="indent">
+  Here’s the result of calling this function:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(variable_test2())
+<span class="blue1">20000</span></pre>
+<p class="indent">
+  Now, suppose you were building a spaceship out of something economical like recycled tin cans. You can flatten two cans a week to create the curved walls of your spaceship, but you’ll need about 500 cans to finish the fuselage. Let’s try writing a function to print out the total cans flattened each week over a year.
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre68" src="../images/f0087-01.jpg"/>
+</div>
+<p class="indent">
+  Our function will calculate how many cans we’ve flattened each week, with the number of cans as a parameter (that makes it easier to change the number of cans later):
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">def</span> spaceship_building(cans):
+        total_cans = 0
+        <span class="orange">for</span> week <span class="orange">in</span> <span class="violet">range</span>(1, 53):
+<span id="page_88"></span>            total_cans = total_cans + cans
+            <span class="violet">print</span>(f<span class="green">'Week {week} = {total_cans} cans'</span>)</pre>
+<p class="indent">
+  On the first line of the function, we create the
+  <span class="literal1">
+   total_cans
+  </span>
+  variable and set its value to 0. We then create a loop for the weeks in the year and add the number of cans flattened each week. This block of code makes up the content of our function, and the last two lines make up another block of the
+  <span class="literal1">
+   for
+  </span>
+  loop.
+ </p>
+<p class="indent">
+  Let’s try entering that function in the Python Shell and calling it with different values for the number of cans, starting with 2:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> spaceship_building(2)
+<span class="blue1">Week 1 = 2 cans
+Week 2 = 4 cans
+Week 3 = 6 cans
+Week 4 = 8 cans
+Week 5 = 10 cans
+Week 6 = 12 cans
+Week 7 = 14 cans
+Week 8 = 16 cans
+...
+Week 50 = 100 cans
+Week 51 = 102 cans
+Week 52 = 104 cans</span>
+
+<span class="brown">&gt;&gt;&gt;</span> spaceship_building(10)
+<span class="blue1">Week 1 = 10 cans
+Week 2 = 20 cans
+Week 3 = 30 cans
+Week 4 = 40 cans
+Week 5 = 50 cans
+...
+Week 48 = 480 cans
+Week 49 = 490 cans
+Week 50 = 500 cans
+Week 51 = 510 cans
+Week 52 = 520 cans</span></pre>
+<p class="indent">
+  This function can be reused with different values for the number of cans per week, which is a bit more efficient than retyping the
+  <span class="literal1">
+   for
+  </span>
+  loop every time you want to try it with different
+  <span id="page_89">
+</span>
+  numbers. When we run
+  <span class="literal1">
+   spaceship_building(10)
+  </span>
+  , we can see we’ll have enough cans to build the spaceship walls at week 50.
+ </p>
+<p class="indent">
+  Functions can also be grouped together into modules, which makes Python
+  <em class="calibre7">
+   really
+  </em>
+  useful, as opposed to just mildly useful.
+ </p>
+<h3 class="h1" id="ch07lev1sec4">
+  Using Modules
+ </h3>
+<p class="indent">
+<em class="calibre7">
+   Modules
+  </em>
+  are used to group functions, variables, and other things together into larger, more powerful programs. Some modules are built in to Python, and others must be downloaded separately. There are modules to help you write games (such as
+  <span class="literal1">
+   tkinter
+  </span>
+  , which is built in, and
+  <span class="literal1">
+   PyGame
+  </span>
+  , which is not), modules for manipulating images (such as
+  <span class="literal1">
+   Pillow
+  </span>
+  , the Python Imaging Library), and modules for drawing three-dimensional graphics (such as
+  <span class="literal1">
+   Panda3D
+  </span>
+  ).
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre69" src="../images/f0089-01.jpg"/>
+</div>
+<p class="indent">
+  Modules can be used to do all sorts of useful things. For example, if you were designing a simulation game and you wanted the world to change according to the real world, you could calculate the current date and time by using the built-in
+  <span class="literal1">
+   time
+  </span>
+  module:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">import</span> time</pre>
+<p class="indent">
+  The
+  <span class="literal1">
+   import
+  </span>
+  command tells Python we want to use the
+  <span class="literal1">
+   time
+  </span>
+  module.
+ </p>
+<p class="indent">
+  We can then call functions available in this module by using the dot symbol. (We used similar functions to work with the
+  <span class="literal1">
+   turtle
+  </span>
+  module in
+  <a class="calibre6" href="ch04.xhtml#ch04">
+   Chapter 4
+  </a>
+  , such as
+  <span class="literal1">
+   t.forward(50)
+  </span>
+  .) For example, here’s how we might call the
+  <span class="literal1">
+   asctime
+  </span>
+  function in the
+  <span class="literal1">
+   time
+  </span>
+  module:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(time.asctime())
+<span class="blue1">Tue Aug 12 07:05:32 2025</span></pre>
+<p class="indent">
+<span id="page_90">
+</span>
+  The
+  <span class="literal1">
+   asctime
+  </span>
+  function is a part of the
+  <span class="literal1">
+   time
+  </span>
+  module that returns the current date and time as a string.
+ </p>
+<p class="indent">
+  Now suppose you want to ask someone to enter a value, like their date of birth or age. You can do this using a
+  <span class="literal1">
+   print
+  </span>
+  statement to display a message, and the
+  <span class="literal1">
+   sys
+  </span>
+  (short for
+  <em class="calibre7">
+   system
+  </em>
+  ) module, which contains utilities for interacting with the Python system itself. First, we import the
+  <span class="literal1">
+   sys
+  </span>
+  module:
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre70" src="../images/f0090-01.jpg"/>
+</div>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">import</span> sys</pre>
+<p class="indent">
+  Inside the
+  <span class="literal1">
+   sys
+  </span>
+  module is a special object called
+  <span class="literal1">
+   stdin
+  </span>
+  (for
+  <em class="calibre7">
+   standard input
+  </em>
+  ), which provides a useful function called
+  <span class="literal1">
+   readline
+  </span>
+  . The
+  <span class="literal1">
+   readline
+  </span>
+  function is used to read a line of text typed on the keyboard until you press ENTER. (We’ll look at how objects work in
+  <a class="calibre6" href="ch08.xhtml#ch08">
+   Chapter 8
+  </a>
+  .) To test
+  <span class="literal1">
+   readline
+  </span>
+  , enter the following code in the Python Shell:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">import</span> sys
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(sys.stdin.readline())</pre>
+<p class="indent">
+  If you then type some words and press ENTER, those words will be printed out in the Python Shell.
+ </p>
+<p class="indent">
+  Think back to the code we wrote in
+  <a class="calibre6" href="ch05.xhtml#ch05">
+   Chapter 5
+  </a>
+  , using an
+  <span class="literal1">
+   if
+  </span>
+  statement:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">if</span> age &gt;= 10 <span class="orange">and</span> age &lt;= 13:
+        <span class="violet">print</span>(<span class="green">'What is 13 + 49 + 84 + 155 + 97? A headache!'</span>)
+    <span class="orange">else</span>:
+        <span class="violet">print</span>(<span class="green">'Huh?'</span>)</pre>
+<p class="indent">
+  Rather than creating the
+  <span class="literal1">
+   age
+  </span>
+  variable and giving it a specific value before the
+  <span class="literal1">
+   if
+  </span>
+  statement, we can now ask someone to enter the value instead. But first, let’s turn the code into a function:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">def</span> silly_age_joke(age):
+        <span class="orange">if</span> age &gt;= 10 <span class="orange">and</span> age &lt;= 13:
+            <span class="violet">print</span>(<span class="green">'What is 13 + 49 + 84 + 155 + 97? A headache!'</span>)
+        <span class="orange">else</span>:
+            <span class="violet">print</span>(<span class="green">'Huh?'</span>)</pre>
+<p class="indent">
+<span id="page_91">
+</span>
+  Now you can call the function by entering its name and telling it what number to use by entering the number in parentheses. Does it work?
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> silly_age_joke(9)
+<span class="blue1">Huh?</span>
+<span class="brown">&gt;&gt;&gt;</span> silly_age_joke(10)
+<span class="blue1">What is 13 + 49 + 84 + 155 + 97? A headache!</span></pre>
+<p class="indent">
+  It works! Now let’s make the function ask for a person’s age. (You can add to or change a function as many times as you want.)
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">def</span> silly_age_joke():
+        <span class="violet">print</span>(<span class="green">'How old are you?'</span>)
+     <span class="ent">➊</span> age = <span class="violet">int</span>(sys.stdin.readline())
+     <span class="ent">➋</span> <span class="orange">if</span> age &gt;= 10 <span class="orange">and</span> age &lt;= 13:
+            <span class="violet">print</span>(<span class="green">'What is 13 + 49 + 84 + 155 + 97? A headache!'</span>)
+        <span class="orange">else</span>:
+            <span class="violet">print</span>(<span class="green">'Huh?'</span>)</pre>
+<p class="indent">
+  Did you recognize the function
+  <span class="literal1">
+   int
+  </span>
+<span class="ent">
+   ➊
+  </span>
+  , which converts a string to a number? We included that function because
+  <span class="literal1">
+   sys.stdin.
+  </span>
+<span class="literal1">
+   readline()
+  </span>
+  returns whatever someone enters as a string, but we want a number so we can compare it with the numbers 10 and 13
+  <span class="ent">
+   ➋
+  </span>
+  . To try this yourself, call the function without any parameters, and then type a number when
+  <span class="literal1">
+   How old are you?
+  </span>
+  appears:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> silly_age_joke()
+<span class="blue1">How old are you?</span>
+10
+<span class="blue1">What is 13 + 49 + 84 + 155 + 97? A headache!</span>
+<span class="brown">&gt;&gt;&gt;</span> silly_age_joke()
+<span class="blue1">How old are you?</span>
+15
+<span class="blue1">Huh?</span></pre>
+<p class="indent">
+  The first time we call the function, it displays “How old are you?”; then we enter
+  <span class="literal1">
+   10
+  </span>
+  , and it prints the joke. The second time, we enter
+  <span class="literal1">
+   15
+  </span>
+  and it prints “Huh?”
+ </p>
+<h3 class="h1" id="ch07lev1sec5">
+<span class="calibre2" id="page_92">
+</span>
+  The input function
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   sys.stdin.readline
+  </span>
+  function is not the only way to read input from the keyboard. A much simpler option is the built-in
+  <span class="literal1">
+   input
+  </span>
+  function. The
+  <span class="literal1">
+   input
+  </span>
+  function takes an optional
+  <span class="literal1">
+   prompt
+  </span>
+  parameter (a string with the message you want to display), and then returns whatever is typed until the ENTER key is hit.
+  <a class="calibre6" href="ch07.xhtml#ch07fig01">
+   Figure 7-1
+  </a>
+  shows what happens when you run this code:
+ </p>
+<pre class="pre">i = <span class="violet">input</span>(<span class="green">'??? '</span>)
+<span class="violet">print</span>(i)</pre>
+<div class="image1" id="ch07fig01">
+<img alt="Image" class="calibre71" src="../images/07fig01.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 7-1: Using the
+   <span class="literal">
+    input
+   </span>
+   function
+  </em>
+</p>
+<p class="indent">
+  Let’s rewrite the
+  <span class="literal1">
+   silly_age_joke
+  </span>
+  function to use
+  <span class="literal1">
+   input
+  </span>
+  instead:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">def</span> silly_age_joke():
+        age = <span class="violet">int</span>(<span class="violet">input</span>(<span class="green">'How old are you?\n'</span>))
+        <span class="orange">if</span> age &gt;= 10 <span class="orange">and</span> age &lt;= 13:
+            <span class="violet">print</span>(<span class="green">'What is 13 + 49 + 84 + 155 + 97? A headache!'</span>)
+        <span class="orange">else</span>:
+            <span class="violet">print</span>(<span class="green">'Huh?'</span>)</pre>
+<p class="indent">
+  Apart from having slightly fewer lines, another difference between the earlier code and this version is that we add a
+  <em class="calibre7">
+   newline
+  </em>
+  character (∖
+  <span class="literal1">
+   n
+  </span>
+  ) at the end of our string (
+  <span class="literal1">
+   ‘How old are you?
+  </span>
+  ∖
+  <span class="literal1">
+   n’
+  </span>
+  ). A newline simply moves the cursor from one line of the display down to the next one. This happens automatically with
+  <span class="literal1">
+   print
+  </span>
+  , but not with the
+  <span class="literal1">
+   input
+  </span>
+  function.
+ </p>
+<p class="indent">
+  Regardless, this code works exactly the same as before.
+ </p>
+<h3 class="h1" id="ch07lev1sec6">
+  What You Learned
+ </h3>
+<p class="noindent">
+  In this chapter, you learned to make reusable chunks of code in Python with functions and use functions provided by
+  <span id="page_93">
+</span>
+  modules. You saw how the scope of variables controls whether they can be seen inside or outside of functions. You also learned how to create functions by using the
+  <span class="literal1">
+   def
+  </span>
+  keyword and how to import modules to use their contents.
+ </p>
+<h3 class="h1" id="ch07lev1sec7">
+  Programming Puzzles
+ </h3>
+<p class="noindent">
+  Try the following examples to experiment with creating your own functions. The solutions can be found at
+  <em class="calibre7">
+<a class="calibre6" href="http://python-for-kids.com">
+    http://python-for-kids.com
+   </a>
+</em>
+  .
+ </p>
+<h4 class="h3" id="ch07lev2sec1">
+  #1: Basic Moon Weight Function
+ </h4>
+<p class="noindent">
+  In one of
+  <a class="calibre6" href="ch06.xhtml#ch06">
+   Chapter 6
+  </a>
+  ’s programming puzzles, we created a
+  <span class="literal1">
+   for
+  </span>
+  loop to determine your weight on the moon over a period of 15 years. That
+  <span class="literal1">
+   for
+  </span>
+  loop could easily be turned into a function. Try creating a function that takes a starting weight and increases its amount each year. You might call the new function using code like this:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> moon_weight(30, 0.25)</pre>
+<h4 class="h3" id="ch07lev2sec2">
+  #2: Moon Weight Function and Years
+ </h4>
+<p class="noindent">
+  Take the function you’ve just created and change it to work out the weight over different periods, such as 5 years or 20 years. Be sure to change the function so it takes three arguments: the initial weight, the weight gained each year, and the number of years:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> moon_weight(90, 0.25, 5)</pre>
+<h4 class="h3" id="ch07lev2sec3">
+  #3: Moon Weight Program
+ </h4>
+<p class="noindent">
+  Instead of using a simple function and passing in the values as parameters, you can use
+  <span class="literal1">
+   sys.stdin.readline()
+  </span>
+  or
+  <span class="literal1">
+   input()
+  </span>
+  to make a mini-program that prompts for the values. In this case, you call the function without any parameters at all:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> moon_weight()</pre>
+<p class="indent">
+  The function will display a message asking for the starting weight, a second message asking for the amount the weight
+  <span id="page_94">
+</span>
+  will increase each year, and a final message asking for the number of years. You would see something like the following:
+ </p>
+<pre class="pre"><span class="blue1">Please enter your current Earth weight</span>
+45
+<span class="blue1">Please enter the amount your weight might increase each year</span>
+0.4
+<span class="blue1">Please enter the number of years</span>
+12</pre>
+<p class="noindent">
+  Remember to import the
+  <span class="literal1">
+   sys
+  </span>
+  module before creating your function, if you are using
+  <span class="literal1">
+   sys.stdin.readline()
+  </span>
+  :
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">import</span> sys</pre>
+<h4 class="h3" id="ch07lev2sec4">
+  #4: Mars Weight Program
+ </h4>
+<p class="noindent">
+  Let’s change our moon weight program to calculate weights on Mars—only this time, for your entire family. The function should ask for each family member’s weight, calculate how much they would weigh on Mars (by multiplying the number by 0.3782), and then add up and display the total weight at the end. You can write this code in many ways; what’s important is that it displays the total weight at the end.
+ </p>
+</div></body>
+</html>

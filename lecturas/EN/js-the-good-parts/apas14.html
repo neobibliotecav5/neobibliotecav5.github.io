@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Object</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Object"><div class="titlepage"><div><div><h1 class="title"><a id="object"/>Object</h1></div></div></div><p>JavaScript's objects are never truly empty because they can pick up members from
+                the prototype chain. Sometimes that matters. For example, suppose you are writing a
+                program that counts the number of occurrences of each word in a text. We can use the
+                    <code class="literal">toLowerCase</code> method to normalize the text to
+                lowercase, and then use the <code class="literal">split</code> method with a
+                regular expression to produce an array of words. We can then loop through the words
+                and count the number of times we see each one:<a id="IDX-APP-A-0536" class="indexterm"/></p><a id="I_programlisting_d1e8735"/><pre class="programlisting">var i;
+var word;
+var text =
+        "This oracle of comfort has so pleased me, " +
+        "That when I am in heaven I shall desire " +
+        "To see what this child does, " +
+        "and praise my Constructor.";
+
+var words = text.toLowerCase(  ).split(/[\s,.]+/);
+var count = {};
+for (i = 0; i &lt; words.length; i += 1) {
+    word = words[i];
+    if (count[word]) {
+        count[word] += 1;
+    } else {
+        count[word] = 1;
+    }
+}</pre><p>If we look at the results, <code class="literal">count['this']</code> is 2
+                and <code class="literal">count.heaven</code> is 1, but <code class="literal">count.constructor</code> contains a crazy looking string. The
+                reason is that the <code class="literal">count</code> object inherits from
+                    <code class="literal">Object.prototype</code>, and <code class="literal">Object.prototype</code> contains a member named <code class="literal">constructor</code> whose value is <code class="literal">Object</code>. The <code class="literal">+=</code> operator, like the
+                    <code class="literal">+</code> operator, does concatenation rather than
+                addition when its operands are not numbers. <code class="literal">Object</code> is a function, so <code class="literal">+=</code>
+                converts it to a string somehow and concatenates a 1 to its butt.</p><p>We can avoid problems like this the same way we avoid problems with <code class="literal">for in</code>: by testing for membership with the <code class="literal">hasOwnProperty</code> method or by looking for specific
+                types. In this case, our test for the truthiness of <code class="literal">count[word]</code> was not specific enough. We could have written
+                instead:</p><a id="I_programlisting_d1e8788"/><pre class="programlisting">if (typeof count[word] === 'number') {</pre></div></body></html>

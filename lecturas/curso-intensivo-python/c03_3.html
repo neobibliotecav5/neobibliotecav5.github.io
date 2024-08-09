@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c03-0001">Acceder a los elementos de una lista</h3>
+<p class="BodyFirst">Las listas son colecciones ordenadas, por lo que puedes acceder a cualquier elemento de una lista indicando a Python la posición, o<em translate="no"> index</em>, del elemento deseado. Para acceder a un elemento de una lista, escribe el nombre de la lista seguido del índice del elemento entre corchetes.</p>
+<p>Por ejemplo, vamos a sacar la primera bicicleta de la lista <code translate="no">bicycles</code>:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">bicycles = ['trek', 'cannondale', 'redline', 'specialized']</span>
+print(bicycles[0])</code></pre>
+<p>Cuando pedimos un solo elemento de una lista, Python devuelve sólo ese elemento sin corchetes:</p>
+<pre translate="no"><code translate="no">trek</code></pre>
+<p>Este es el resultado que quieres que vean tus usuarios: una salida limpia y bien formateada.</p>
+<p>También puedes utilizar los métodos de cadena del <span class="xref" itemid="xref_target_Chapter 2">Capítulo</span> 2 en cualquier elemento de esta lista. Por ejemplo, puedes formatear el elemento <code translate="no">'trek'</code> para que tenga un aspecto más presentable utilizando el método <code translate="no">title()</code>:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">bicycles = ['trek', 'cannondale', 'redline', 'specialized']</span>
+print(bicycles[0].title())</code></pre>
+<p>Este ejemplo produce la misma salida que el ejemplo anterior, excepto que <code translate="no">'Trek'</code> está en mayúsculas.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c03_2.html">anterior</a><a href="c03.html">Subtema 3 de 23: (Ver todo)</a><a href="c03_4.html">siguiente</a><br/></p>
+<br/><a href="c03_3.docx" target="_blank"></a></footer>
+</body>
+</html>

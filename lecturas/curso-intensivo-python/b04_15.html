@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h2 id="h1-502703b04-0011">Revisar confirmaciones anteriores</h2>
+<p class="BodyFirst">Puedes revisar cualquier confirmación en tu registro, utilizando el comando <code translate="no">checkout</code>, utilizando los seis primeros caracteres de un ID de referencia. Tras comprobar y revisar una confirmación anterior, puedes volver a la última confirmación o abandonar tu trabajo reciente y retomar el desarrollo a partir de la confirmación anterior:</p>
+<pre translate="no"><code translate="no">git_practice$ <b>git log --pretty=oneline</b>
+945fa13af128a266d0114eebb7a3276f7d58ecd2 (HEAD -&gt; main) Extended greeting.
+cea13ddc51b885d05a410201a54faf20e0d2e246 Started project.
+git_practice$ <b>git checkout cea13d</b>
+Note: switching to 'cea13d'.
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+<span epub:type="pagebreak" id="Page_490" title="490"></span>If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c &lt;new-branch-name&gt;
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at cea13d Started project.
+git_practice$</code></pre>
+<p>Cuando revisas una confirmación anterior, abandonas la rama principal y entras en lo que Git denomina estado <em translate="no">detached HEAD</em> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> <em translate="no">HEAD</em> es el estado comprometido actual del proyecto; estás en <em translate="no">detached</em> porque has abandonado una rama con nombre (<code translate="no">main</code>, en este caso).</p>
+<p>Para volver a la rama <code translate="no">main</code>, sigue la sugerencia <span aria-label="annotation2" class="CodeAnnotation">❷</span> deshacer la operación anterior:</p>
+<pre translate="no"><code translate="no">git_practice$ <b>git switch -</b>
+Previous HEAD position was cea13d Started project.
+Switched to branch 'main'
+git_practice$</code></pre>
+<p>Este comando te devuelve a la rama <code translate="no">main</code>. A menos que quieras trabajar con algunas funciones más avanzadas de Git, es mejor que no hagas ningún cambio en tu proyecto cuando hayas comprobado una confirmación anterior. Sin embargo, si eres el único que trabaja en un proyecto y quieres descartar todas las confirmaciones más recientes y volver a un estado anterior, puedes restablecer el proyecto a una confirmación anterior. Trabajando desde la rama <code translate="no">main</code>, introduce lo siguiente:</p>
+<pre translate="no"><code translate="no"><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> git_practice$ <b>git status</b>
+On branch main
+nothing to commit, working directory clean
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> git_practice$ <b>git log --pretty=oneline</b>
+945fa13af128a266d0114eebb7a3276f7d58ecd2 (HEAD -&gt; main) Extended greeting.
+cea13ddc51b885d05a410201a54faf20e0d2e246 Started project.
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> git_practice$ <b>git reset --hard cea13d</b>
+HEAD is now at cea13dd Started project.
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> git_practice$ <b>git status</b>
+On branch main
+nothing to commit, working directory clean
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span> git_practice$ <b>git log --pretty=oneline</b>
+cea13ddc51b885d05a410201a54faf20e0d2e246 (HEAD -&gt; main) Started project.
+git_practice$</code></pre>
+<p>Primero comprobamos el estado para asegurarnos de que estamos en la rama <code translate="no">main</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Cuando miramos el registro, vemos ambos commits <span aria-label="annotation2" class="CodeAnnotation">❷.</span> A continuación, emitimos el comando <code translate="no">git reset --hard</code> con los seis primeros caracteres del ID de referencia de <span epub:type="pagebreak" id="Page_491" title="491"></span>, el commit al que queremos volver permanentemente <span aria-label="annotation3" class="CodeAnnotation">❸.</span> Comprobamos de nuevo el estado y vemos que estamos en la rama <code translate="no">main</code> sin nada que confirmar <span aria-label="annotation4" class="CodeAnnotation">❹.</span> Cuando volvemos a mirar el registro, vemos que estamos en la confirmación desde la que queríamos volver a empezar <span aria-label="annotation5" class="CodeAnnotation">❺.</span></p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="b04_14.html">anterior</a><a href="b04.html">Subtema 15 de 16: (Ver todo)</a><a href="b04_16.html">siguiente</a><br/></p>
+<br/><a href="b04_15.docx" target="_blank"></a></footer>
+</body>
+</html>

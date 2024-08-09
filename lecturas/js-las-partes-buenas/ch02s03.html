@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Numbers</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="Numbers"><div class="titlepage"><div><div><h1 class="title"><a id="numbers"></a>Números</h1></div></div></div><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject2_d1e603"></a><img alt="image with no caption" src="httpatomoreillycomsourceoreillyimages238808.png" translate="no"/></div></div><p>JavaScript tiene un único tipo de número. Internamente, se representa como punto flotante de 64 bits, igual que el de Java <code class="literal" translate="no">double</code>. A diferencia de la mayoría de los demás lenguajes de programación, no existe un tipo entero separado, por lo que <code class="literal" translate="no">1</code> y <code class="literal" translate="no">1.0</code> son el mismo valor. Esto es una comodidad importante porque se evitan por completo los problemas de desbordamiento en enteros cortos, y todo lo que necesitas saber sobre un número es que es un número. Se evita una gran clase de errores de tipo numérico.<a class="indexterm" id="IDX-CHP-2-0025"></a><a class="indexterm" id="IDX-CHP-2-0023"></a><a class="indexterm" id="IDX-CHP-2-0024"></a></p><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject2_d1e631"></a><img alt="image with no caption" src="httpatomoreillycomsourceoreillyimages238698.png" translate="no"/></div></div><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject2_d1e637"></a><img alt="image with no caption" src="httpatomoreillycomsourceoreillyimages238748.png" translate="no"/></div></div><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject2_d1e643"></a><img alt="image with no caption" src="httpatomoreillycomsourceoreillyimages238796.png" translate="no"/></div></div><p>Si un literal numérico tiene una parte de exponente, entonces el valor del literal se calcula multiplicando la parte anterior a <code class="literal" translate="no">e</code> por <code class="literal" translate="no">10</code> elevado a la potencia de la parte posterior a <code class="literal" translate="no">e</code>. Por tanto, <code class="literal" translate="no">100</code>y <code class="literal" translate="no">1e2</code> son el mismo número.<a class="indexterm" id="IDX-CHP-2-0026"></a></p><p>Los números negativos se pueden formar utilizando el operador prefijo <code class="literal" translate="no">-</code>.</p><p>El valor <code class="literal" translate="no">NaN</code> es un valor numérico que es el resultado de una operación que no puede producir un resultado normal. <code class="literal" translate="no">NaN</code> no es igual a ningún valor, incluido él mismo. Puedes detectar <code class="literal" translate="no">NaN</code> con la función <code class="literal" translate="no">isNaN(</code><em class="replaceable" translate="no"><code translate="no">number</code></em>
+<code class="literal" translate="no">)</code>.</p><p>El valor <code class="literal" translate="no">Infinity</code> representa todos los valores mayores que <code class="literal" translate="no">1.79769313486231570e+308</code>.<a class="indexterm" id="IDX-CHP-2-0027"></a></p><p>Los números tienen métodos (consulta <a class="xref" href="ch08.html" title="Chapter 8. Methods">el Capítulo 8</a>). JavaScript tiene un objeto <code class="literal" translate="no">Math</code> que contiene un conjunto de métodos que actúan sobre los números. Por ejemplo, el método <code class="literal" translate="no">Math.floor(</code><em class="replaceable" translate="no"><code translate="no">number</code></em>
+<code class="literal" translate="no">)</code> puede utilizarse para convertir un número en un entero.<a class="indexterm" id="IDX-CHP-2-0028"></a><a class="indexterm" id="IDX-CHP-2-0029"></a></p></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="ch02s02.html">← Anterior</a><a href="ch02s04.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="ch02s03.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\ch02s03.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

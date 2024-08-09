@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://www.w3.org/2002/06/xhtml2/ http://www.w3.org/MarkUp/SCHEMA/xhtml2.xsd">
+<head>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style></head>
+<body><div id="sbo-rt-content"><section>
+<header>
+<h1 class="chapter">
+<span class="ChapterNumber"><span epub:type="pagebreak" id="Page_355" title="355"></span>17</span><br/>
+<span class="ChapterTitle">Working with APIs</span></h1>
+</header>
+<figure class="opener">
+<img alt="" height="406" src="Images/chapterart.png" width="406"/>
+</figure>
+<p class="ChapterIntro">In this chapter, you’ll learn how to write a self-contained program that generates a visualization based on data it retrieves. Your program will use an <em>application programming interface (</em><em>API)</em> to automatically request specific information from a website and then use that information to generate a visualization. Because programs written like this will always use current data to generate a visualization, even when that data might be rapidly changing, the visualization will always be up to date.</p>
+<h2 id="h1-502703c17-0001">Using an API</h2>
+<p class="BodyFirst">An API is a part of a website designed to interact with programs. Those programs use very specific URLs to request certain information. This kind of request is called an <em>API call</em>. The requested data will be returned in an <span epub:type="pagebreak" id="Page_356" title="356"></span>easily processed format, such as JSON or CSV. Most apps that use external data sources, such as apps that integrate with social media sites, rely on API calls.</p>
+<h3 id="h2-502703c17-0001">Git and GitHub</h3>
+<p class="BodyFirst">We’ll base our visualization on information from GitHub (<a class="LinkURL" href="https://github.com">https://github.com</a>), a site that allows programmers to collaborate on coding projects. We’ll use GitHub’s API to request information about Python projects on the site, and then generate an interactive visualization of the relative popularity of these projects using Plotly.</p>
+<p>GitHub takes its name from Git, a distributed version control system. Git helps people manage their work on a project in a way that prevents changes made by one person from interfering with changes other people are making. When you implement a new feature in a project, Git tracks the changes you make to each file. When your new code works, you <em>commit</em> the changes you’ve made, and Git records the new state of your project. If you make a mistake and want to revert your changes, you can easily return to any previously working state. (To learn more about version control using Git, see <span class="xref" itemid="xref_target_Appendix D">Appendix D</span>.) Projects on GitHub are stored in <em>repositories</em>, which contain everything associated with the project: its code, information on its collaborators, any issues or bug reports, and so on.</p>
+<p>When users on GitHub like a project, they can “star” it to show their support and keep track of projects they might want to use. In this chapter, we’ll write a program to automatically download information about the most-starred Python projects on GitHub, and then we’ll create an informative visualization of these projects.</p>
+<h3 id="h2-502703c17-0002">Requesting Data Using an API Call</h3>
+<p class="BodyFirst">GitHub’s API lets you request a wide range of information through API calls. To see what an API call looks like, enter the following into your browser’s address bar and press ENTER:</p>
+<pre><code><b>https://api.github.com/search/repositories?q=language:python+sort:stars</b></code></pre>
+<p>This call returns the number of Python projects currently hosted on GitHub, as well as information about the most popular Python repositories. Let’s examine the call. The first part, <code>https://api.github.com/</code>, directs the request to the part of GitHub that responds to API calls. The next part, <code>search/repositories</code>, tells the API to conduct a search through all the repositories on GitHub.</p>
+<p>The question mark after <code>repositories</code> signals that we’re about to pass an argument. The <code>q</code> stands for <em>query</em>, and the equal sign (<code>=</code>) lets us begin specifying a query (<code>q=</code>). By using <code>language:python</code>, we indicate that we want information only on repositories that have Python as the primary language. The final part, <code>+sort:stars</code>, sorts the projects by the number of stars they’ve been given.</p>
+<p><span epub:type="pagebreak" id="Page_357" title="357"></span>The following snippet shows the first few lines of the response:</p>
+<pre><code>{
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>   "total_count": 8961993,
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>   "incomplete_results": true,
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>   "items": [
+    {
+      "id": 54346799,
+      "node_id": "MDEwOlJlcG9zaXRvcnk1NDM0Njc5OQ==",
+      "name": "public-apis",
+      "full_name": "public-apis/public-apis",
+<var>      --snip--</var></code></pre>
+<p>You can see from the response that this URL is not primarily intended to be entered by humans, because it’s in a format that’s meant to be processed by a program. GitHub found just under nine million Python projects as of this writing <span aria-label="annotation1" class="CodeAnnotation">❶</span>. The value for <code>"incomplete_results"</code> is <code>true</code>, which tells us that GitHub didn’t fully process the query <span aria-label="annotation2" class="CodeAnnotation">❷</span>. GitHub limits how long each query can run, in order to keep the API responsive for all users. In this case it found some of the most popular Python repositories, but it didn’t have time to find all of them; we’ll fix that in a moment. The <code>"items"</code> returned are displayed in the list that follows, which contains details about the most popular Python projects on GitHub <span aria-label="annotation3" class="CodeAnnotation">❸</span>.</p>
+<h3 id="h2-502703c17-0003">Installing Requests</h3>
+<p class="BodyFirst">The <em>Requests</em> package allows a Python program to easily request information from a website and examine the response. Use pip to install Requests:</p>
+<pre><code>$ <b>python -m pip install --user requests</b></code></pre>
+<p>If you use a command other than <code class="bold">python</code> to run programs or start a terminal session, such as <code class="bold">python3</code>, your command will look like this:</p>
+<pre><code>$ <b>python3 -m pip install --user requests</b></code></pre>
+<h3 id="h2-502703c17-0004">Processing an API Response</h3>
+<p class="BodyFirst">Now we’ll write a program to automatically issue an API call and process the results:</p>
+<p class="CodeLabel"><b>python_repos.py</b></p>
+<pre><code>import requests
+
+# Make an API call and check the response.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> url = "https://api.github.com/search/repositories"
+url += "?q=language:python+sort:stars+stars:&gt;10000"
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> headers = {"Accept": "application/vnd.github.v3+json"}
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> r = requests.get(url, headers=headers)
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> print(f"Status code: {r.status_code}")
+
+<span epub:type="pagebreak" id="Page_358" title="358"></span># Convert the response object to a dictionary.
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span> response_dict = r.json()
+
+# Process results.
+print(response_dict.keys())</code></pre>
+<p>We first import the <code>requests</code> module. Then we assign the URL of the API call to the <code>url</code> variable <span aria-label="annotation1" class="CodeAnnotation">❶</span>. This is a long URL, so we break it into two lines. The first line is the main part of the URL, and the second line is the query string. We’ve included one more condition to the original query string: <code>stars:&gt;10000</code>, which tells GitHub to only look for Python repositories that have more than 10,000 stars. This should allow GitHub to return a complete, consistent set of results.</p>
+<p>GitHub is currently on the third version of its API, so we define headers for the API call that ask explicitly to use this version of the API, and return the results in the JSON format <span aria-label="annotation2" class="CodeAnnotation">❷</span>. Then we use <code>requests</code> to make the call to the API <span aria-label="annotation3" class="CodeAnnotation">❸</span>. We call <code>get()</code> and pass it the URL and the header that we defined, and we assign the response object to the variable <code>r</code>.</p>
+<p>The response object has an attribute called <code>status_code</code>, which tells us whether the request was successful. (A status code of 200 indicates a successful response.) We print the value of <code>status_code</code> so we can make sure the call went through successfully <span aria-label="annotation4" class="CodeAnnotation">❹</span>. We asked the API to return the information in JSON format, so we use the <code>json()</code> method to convert the information to a Python dictionary <span aria-label="annotation5" class="CodeAnnotation">❺</span>. We assign the resulting dictionary to <code>response_dict</code>.</p>
+<p>Finally, we print the keys from <code>response_dict</code> and see the following output:</p>
+<pre><code>Status code: 200
+dict_keys(['total_count', 'incomplete_results', 'items'])</code></pre>
+<p>Because the status code is <code>200</code>, we know that the request was successful. The response dictionary contains only three keys: <code>'total_count'</code>, <code>'incomplete_results'</code>, and <code>'items'</code>. Let’s take a look inside the response dictionary.</p>
+<h3 id="h2-502703c17-0005">Working with the Response Dictionary</h3>
+<p class="BodyFirst">With the information from the API call represented as a dictionary, we can work with the data stored there. Let’s generate some output that summarizes the information. This is a good way to make sure we received the information we expected, and to start examining the information we’re interested in:</p>
+<p class="CodeLabel"><b>python_repos.py</b></p>
+<pre><code><span class="LiteralGray">import requests</span>
+
+<span class="LiteralGray"># Make an API call and store the response.</span>
+<em class="LiteralGrayItalic">--snip--</em>
+
+<span class="LiteralGray"># Convert the response object to a dictionary.</span>
+<span class="LiteralGray">response_dict = r.json()</span>
+<span epub:type="pagebreak" id="Page_359" title="359"></span><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> print(f"Total repositories: {response_dict['total_count']}")
+print(f"Complete results: {not response_dict['incomplete_results']}")
+
+# Explore information about the repositories.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> repo_dicts = response_dict['items']
+print(f"Repositories returned: {len(repo_dicts)}")
+
+# Examine the first repository.
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> repo_dict = repo_dicts[0]
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> print(f"\nKeys: {len(repo_dict)}")
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span> for key in sorted(repo_dict.keys()):
+    print(key)</code></pre>
+<p>We start exploring the response dictionary by printing the value associated with <code>'total_count'</code>, which represents the total number of Python repositories returned by this API call <span aria-label="annotation1" class="CodeAnnotation">❶</span>. We also use the value associated with <code>'incomplete_results'</code>, so we'll know if GitHub was able to fully process the query. Rather than printing this value directly, we print its opposite: a value of <code>True</code> will indicate that we received a complete set of results.</p>
+<p>The value associated with <code>'items'</code> is a list containing a number of dictionaries, each of which contains data about an individual Python repository. We assign this list of dictionaries to <code>repo_dicts</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span>. We then print the length of <code>repo_dicts</code> to see how many repositories we have information for.</p>
+<p>To look closer at the information returned about each repository, we pull out the first item from <code>repo_dicts</code> and assign it to <code>repo_dict</code> <span aria-label="annotation3" class="CodeAnnotation">❸</span>. We then print the number of keys in the dictionary to see how much information we have <span aria-label="annotation4" class="CodeAnnotation">❹</span>. Finally, we print all the dictionary’s keys to see what kind of information is included <span aria-label="annotation5" class="CodeAnnotation">❺</span>.</p>
+<p>The results give us a clearer picture of the actual data:</p>
+<pre><code>Status code: 200
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> Total repositories: 248
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> Complete results: True
+Repositories returned: 30
+
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> Keys: 78
+allow_forking
+archive_url
+archived
+<var>--snip--</var>
+url
+visiblity
+watchers
+watchers_count</code></pre>
+<p>At the time of this writing, there are only <code>248</code> Python repositories with over 10,000 stars <span aria-label="annotation1" class="CodeAnnotation">❶</span>. We can see that GitHub was able to fully process the API call <span aria-label="annotation2" class="CodeAnnotation">❷</span>. In this response, GitHub returned information about the first <code>30</code> repositories that match the conditions of our query. If we want more repositories, we can request additional pages of data.</p>
+<p><span epub:type="pagebreak" id="Page_360" title="360"></span>GitHub’s API returns a lot of information about each repository: there are <code>78</code> keys in <code>repo_dict</code> <span aria-label="annotation3" class="CodeAnnotation">❸</span>. When you look through these keys, you’ll get a sense of the kind of information you can extract about a project. (The only way to know what information is available through an API is to read the documentation or to examine the information through code, as we’re doing here.)</p>
+<p>Let’s pull out the values for some of the keys in <code>repo_dict</code>:</p>
+<p class="CodeLabel"><b>python_repos.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray"># Examine the first repository.</span>
+<span class="LiteralGray">repo_dict = repo_dicts[0]</span>
+
+print("\nSelected information about first repository:")
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> print(f"Name: {repo_dict['name']}")
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> print(f"Owner: {repo_dict['owner']['login']}")
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> print(f"Stars: {repo_dict['stargazers_count']}")
+print(f"Repository: {repo_dict['html_url']}")
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> print(f"Created: {repo_dict['created_at']}")
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span> print(f"Updated: {repo_dict['updated_at']}")
+print(f"Description: {repo_dict['description']}")</code></pre>
+<p>Here, we print the values for a number of keys from the first repository’s dictionary. We start with the name of the project <span aria-label="annotation1" class="CodeAnnotation">❶</span>. An entire dictionary represents the project’s owner, so we use the key <code>owner</code> to access the dictionary representing the owner, and then use the key <code>login</code> to get the owner’s login name <span aria-label="annotation2" class="CodeAnnotation">❷</span>. Next, we print how many stars the project has earned <span aria-label="annotation3" class="CodeAnnotation">❸</span> and the URL for the project’s GitHub repository. We then show when it was created <span aria-label="annotation4" class="CodeAnnotation">❹</span> and when it was last updated <span aria-label="annotation5" class="CodeAnnotation">❺</span>. Finally, we print the repository’s description.</p>
+<p>The output should look something like this:</p>
+<pre><code>Status code: 200
+Total repositories: 248
+Complete results: True
+Repositories returned: 30
+
+Selected information about first repository:
+Name: public-apis
+Owner: public-apis
+Stars: 191493
+Repository: https://github.com/public-apis/public-apis
+Created: 2016-03-20T23:49:42Z
+Updated: 2022-05-12T06:37:11Z
+Description: A collective list of free APIs</code></pre>
+<p>We can see that the most-starred Python project on GitHub as of this writing is <em>public-apis</em>. Its owner is an organization with the same name, and it has been starred by almost 200,000 GitHub users. We can see the URL for the project’s repository, its creation date of March 2016, and that it was updated recently. Additionally, the description tells us that <em>public-apis</em> contains a list of free APIs that programmers might be interested in.</p>
+<h3 id="h2-502703c17-0006"><span epub:type="pagebreak" id="Page_361" title="361"></span>Summarizing the Top Repositories</h3>
+<p class="BodyFirst">When we make a visualization for this data, we’ll want to include more than one repository. Let’s write a loop to print selected information about each repository the API call returns so we can include them all in the visualization:</p>
+<p class="CodeLabel"><b>python_repos.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray"># Explore information about the repositories.</span>
+<span class="LiteralGray">repo_dicts = response_dict['items']</span>
+<span class="LiteralGray">print(f"Repositories returned: {len(repo_dicts)}")</span>
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> print("\nSelected information about each repository:")
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> for repo_dict in repo_dicts:
+<span class="LiteralGray">    print(f"\nName: {repo_dict['name']}")</span>
+<span class="LiteralGray">    print(f"Owner: {repo_dict['owner']['login']}")</span>
+<span class="LiteralGray">    print(f"Stars: {repo_dict['stargazers_count']}")</span>
+<span class="LiteralGray">    print(f"Repository: {repo_dict['html_url']}")</span>
+<span class="LiteralGray">    print(f"Description: {repo_dict['description']}")</span></code></pre>
+<p>We first print an introductory message <span aria-label="annotation1" class="CodeAnnotation">❶</span>. Then we loop through all the dictionaries in <code>repo_dicts</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span>. Inside the loop, we print the name of each project, its owner, how many stars it has, its URL on GitHub, and the project’s description:</p>
+<pre><code>Status code: 200
+Total repositories: 248
+Complete results: True
+Repositories returned: 30
+
+Selected information about each repository:
+
+Name: public-apis
+Owner: public-apis
+Stars: 191494
+Repository: https://github.com/public-apis/public-apis
+Description: A collective list of free APIs
+
+Name: system-design-primer
+Owner: donnemartin
+Stars: 179952
+Repository: https://github.com/donnemartin/system-design-primer
+Description: Learn how to design large-scale systems. Prep for the system
+  design interview.  Includes Anki flashcards.
+<var>--snip--</var>
+
+Name: PayloadsAllTheThings
+Owner: swisskyrepo
+Stars: 37227
+Repository: https://github.com/swisskyrepo/PayloadsAllTheThings
+Description: A list of useful payloads and bypass for Web Application Security
+  and Pentest/CTF</code></pre>
+<p><span epub:type="pagebreak" id="Page_362" title="362"></span>Some interesting projects appear in these results, and it might be worth looking at a few. But don’t spend too much time here, because we’re about to create a visualization that will make the results much easier to read.</p>
+<h3 id="h2-502703c17-0007">Monitoring API Rate Limits</h3>
+<p class="BodyFirst">Most APIs have <em>rate limits</em>, which means there’s a limit to how many requests you can make in a certain amount of time. To see if you’re approaching GitHub’s limits, enter <a class="LinkURL" href="https://api.github.com/rate_limit%20">https://api.github.com/rate_limit </a>into a web browser. You should see a response that begins like this:</p>
+<pre><code>{
+  "resources": {
+    <var>--snip--</var>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     "search": {
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>       "limit": 10,
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>       "remaining": 9,
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>       "reset": 1652338832,
+      "used": 1,
+      "resource": "search"
+    },
+    <var>--snip--</var></code></pre>
+<p>The information we’re interested in is the rate limit for the search API <span aria-label="annotation1" class="CodeAnnotation">❶</span>. We see that the limit is 10 requests per minute <span aria-label="annotation2" class="CodeAnnotation">❷</span> and that we have 9 requests remaining for the current minute <span aria-label="annotation3" class="CodeAnnotation">❸</span>. The value associated with the key <code>"reset"</code> represents the time in <em>Unix</em> or <em>epoch time</em> (the number of seconds since midnight on January 1, 1970) when our quota will reset <span aria-label="annotation4" class="CodeAnnotation">❹</span>. If you reach your quota, you’ll get a short response that lets you know you’ve reached the API limit. If you reach the limit, just wait until your quota resets.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	Many APIs require you to register and obtain an API key or access token to make API calls. As of this writing, GitHub has no such requirement, but if you obtain an access token, your limits will be much higher.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c17-0002">Visualizing Repositories Using Plotly</h2>
+<p class="BodyFirst">Let’s make a visualization using the data we’ve gathered to show the relative popularity of Python projects on GitHub. We’ll make an interactive bar chart: the height of each bar will represent the number of stars the project has acquired, and you’ll be able to click the bar’s label to go to that project’s home on GitHub.</p>
+<p><span epub:type="pagebreak" id="Page_363" title="363"></span>Save a copy of the program we’ve been working on as <em>python_repos_visual.py</em>, then modify it so it reads as follows:</p>
+<p class="CodeLabel"><b>python_repos_visual.py</b></p>
+<pre><code><span class="LiteralGray">import requests</span>
+import plotly.express as px
+
+<span class="LiteralGray"># Make an API call and check the response.</span>
+<span class="LiteralGray">url = "https://api.github.com/search/repositories"</span>
+<span class="LiteralGray">url += "?q=language:python+sort:stars+stars:&gt;10000"</span>
+
+<span class="LiteralGray">headers = {"Accept": "application/vnd.github.v3+json"}</span>
+<span class="LiteralGray">r = requests.get(url, headers=headers)</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span><span class="LiteralGray"> print(f"Status code: {r.status_code}")</span>
+
+# Process overall results.
+<span class="LiteralGray">response_dict = r.json()</span>
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span><span class="LiteralGray"> print(f"Complete results: {not response_dict['incomplete_results']}")</span>
+
+# Process repository information.
+<span class="LiteralGray">repo_dicts = response_dict['items']</span>
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> repo_names, stars = [], []
+<span class="LiteralGray">for repo_dict in repo_dicts:</span>
+    repo_names.append(repo_dict['name'])
+    stars.append(repo_dict['stargazers_count'])
+
+# Make visualization.
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> fig = px.bar(x=repo_names, y=stars)
+fig.show()</code></pre>
+<p>We import Plotly Express and then make the API call as we have been doing. We continue to print the status of the API call response so we’ll know if there is a problem <span aria-label="annotation1" class="CodeAnnotation">❶</span>. When we process the overall results, we continue to print the message confirming that we got a complete set of results <span aria-label="annotation2" class="CodeAnnotation">❷</span>. We remove the rest of the <code>print()</code> calls because we’re no longer in the exploratory phase; we know we have the data we want.</p>
+<p>We then create two empty lists <span aria-label="annotation3" class="CodeAnnotation">❸</span> to store the data we’ll include in the initial chart. We’ll need the name of each project to label the bars (<code>repo_names</code>) and the number of stars to determine the height of the bars (<code>stars</code>). In the loop, we append the name of each project and the number of stars it has to these lists.</p>
+<p>We make the initial visualization with just two lines of code <span aria-label="annotation4" class="CodeAnnotation">❹</span>. This is consistent with Plotly Express’s philosophy that you should be able to see your visualization as quickly as possible before refining its appearance. Here we use the <code>px.bar()</code> function to create a bar chart. We pass the list <code>repo_names</code> as the <code>x</code> argument and <code>stars</code> as the <code>y</code> argument.</p>
+<p><a href="#figure17-1" id="figureanchor17-1">Figure 17-1</a> shows the resulting chart. We can see that the first few projects are significantly more popular than the rest, but all of them are important projects in the Python ecosystem.</p>
+<span epub:type="pagebreak" id="Page_364" title="364"></span><figure>
+<img alt="" class="keyline" height="429" src="Images/f17001.png" width="694"/>
+<figcaption><p><a id="figure17-1">Figure 17-1</a>: The most-starred Python projects on GitHub</p></figcaption>
+</figure>
+<h3 id="h2-502703c17-0008">Styling the Chart</h3>
+<p class="BodyFirst">Plotly supports a number of ways to style and customize the plots, once you know the information in the plot is correct. We’ll make some changes in the initial <code>px.bar()</code> call and then make some further adjustments to the <code>fig</code> object after it’s been created.</p>
+<p>We’ll start styling the chart by adding a title and labels for each axis:</p>
+<p class="CodeLabel"><b>python_repos_visual.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray"># Make visualization.</span>
+title = "Most-Starred Python Projects on GitHub"
+labels = {'x': 'Repository', 'y': 'Stars'}
+fig = px.bar(x=repo_names, y=stars, title=title, labels=labels)
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> fig.update_layout(title_font_size=28, xaxis_title_font_size=20,
+        yaxis_title_font_size=20)
+
+<span class="LiteralGray">fig.show()</span></code></pre>
+<p>We first add a title and labels for each axis, as we did in <span class="xref" itemid="xref_target_Chapters 15">Chapters 15</span> and <span class="xref" itemid="xref_target_16">16</span>. We then use the <code>fig.update_layout()</code> method to modify specific elements of the chart <span aria-label="annotation1" class="CodeAnnotation">❶</span>. Plotly uses a convention where aspects of a chart element are connected by underscores. As you become familiar with Plotly’s documentation, you’ll start to see consistent patterns in how different elements of a chart are named and modified. Here we set the title font size to <code>28</code> and the font size for each axis title to <code>20</code>. The result is shown in <a href="#figure17-2" id="figureanchor17-2">Figure 17-2</a>.</p>
+<span epub:type="pagebreak" id="Page_365" title="365"></span><figure>
+<img alt="" class="keyline" height="429" src="Images/f17002.png" width="694"/>
+<figcaption><p><a id="figure17-2">Figure 17-2</a>: A title has been added to the main chart, and to each axis as well.</p></figcaption>
+</figure>
+<h3 id="h2-502703c17-0009">Adding Custom Tooltips</h3>
+<p class="BodyFirst">In Plotly, you can hover the cursor over an individual bar to show the information the bar represents. This is commonly called a <em>tooltip</em>, and in this case, it currently shows the number of stars a project has. Let’s create a custom tooltip to show each project’s description as well as the project’s owner.</p>
+<p>We need to pull some additional data to generate the tooltips:</p>
+<p class="CodeLabel"><b>python_repos_visual.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray"># Process repository information.</span>
+<span class="LiteralGray">repo_dicts = response_dict['items']</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> repo_names, stars, hover_texts = [], [], []
+<span class="LiteralGray">for repo_dict in repo_dicts:</span>
+<span class="LiteralGray">    repo_names.append(repo_dict['name'])</span>
+<span class="LiteralGray">    stars.append(repo_dict['stargazers_count'])</span>
+
+    # Build hover texts.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     owner = repo_dict['owner']['login']
+    description = repo_dict['description']
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     hover_text = f"{owner}&lt;br /&gt;{description}"
+    hover_texts.append(hover_text)
+
+<span class="LiteralGray"># Make visualization.</span>
+<span class="LiteralGray">title = "Most-Starred Python Projects on GitHub"</span>
+<span class="LiteralGray">labels = {'x': 'Repository', 'y': 'Stars'}</span>
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> fig = px.bar(x=repo_names, y=stars, title=title, labels=labels,
+        hover_name=hover_texts)
+
+<span epub:type="pagebreak" id="Page_366" title="366"></span><span class="LiteralGray">fig.update_layout(title_font_size=28, xaxis_title_font_size=20,</span>
+<span class="LiteralGray">        yaxis_title_font_size=20)</span>
+
+<span class="LiteralGray">fig.show()</span></code></pre>
+<p>We first define a new empty list, <code>hover_texts</code>, to hold the text we want to display for each project <span aria-label="annotation1" class="CodeAnnotation">❶</span>. In the loop where we process the data, we pull the owner and the description for each project <span aria-label="annotation2" class="CodeAnnotation">❷</span>. Plotly allows you to use HTML code within text elements, so we generate a string for the label with a line break (<code>&lt;br /&gt;</code>) between the project owner’s username and the description <span aria-label="annotation3" class="CodeAnnotation">❸</span>. We then append this label to the list <code>hover_texts</code>.</p>
+<p>In the <code>px.bar()</code> call, we add the <code>hover_name</code> argument and pass it <code>hover_texts</code> <span aria-label="annotation4" class="CodeAnnotation">❹</span>. This is the same approach we used to customize the label for each dot in the map of global earthquake activity. As Plotly creates each bar, it will pull labels from this list and only display them when the viewer hovers over a bar. <a href="#figure17-3" id="figureanchor17-3">Figure 17-3</a> shows one of these custom tooltips.</p>
+<figure>
+<img alt="" class="keyline" height="399" src="Images/f17003.png" width="571"/>
+<figcaption><p><a id="figure17-3">Figure 17-3</a>: Hovering over a bar shows the project’s owner and description.</p></figcaption>
+</figure>
+<h3 id="h2-502703c17-0010">Adding Clickable Links</h3>
+<p class="BodyFirst">Because Plotly allows you to use HTML on text elements, we can easily add links to a chart. Let’s use the <em>x</em>-axis labels as a way to let the viewer visit any project’s home page on GitHub. We need to pull the URLs from the data and use them when generating the <em>x</em>-axis labels:</p>
+<p class="CodeLabel"><b>python_repos_visual.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray"># Process repository information.</span>
+<span class="LiteralGray">repo_dicts = response_dict['items']</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> repo_links, stars, hover_texts = [], [], []
+<span class="LiteralGray">for repo_dict in repo_dicts:</span>
+    # Turn repo names into active links.
+    repo_name = repo_dict['name']
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     repo_url = repo_dict['html_url']
+<span epub:type="pagebreak" id="Page_367" title="367"></span><span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     repo_link = f"&lt;a href='{repo_url}'&gt;{repo_name}&lt;/a&gt;"
+    repo_links.append(repo_link)
+
+<span class="LiteralGray">    stars.append(repo_dict['stargazers_count'])</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic">--snip--</em>
+
+<span class="LiteralGray"># Make visualization.</span>
+<span class="LiteralGray">title = "Most-Starred Python Projects on GitHub"</span>
+<span class="LiteralGray">labels = {'x': 'Repository', 'y': 'Stars'}</span>
+fig = px.bar(x=repo_links, y=stars, title=title, labels=labels,
+<span class="LiteralGray">        hover_name=hover_texts)</span>
+
+<span class="LiteralGray">fig.update_layout(title_font_size=28, xaxis_title_font_size=20,</span>
+<span class="LiteralGray">        yaxis_title_font_size=20)</span>
+
+<span class="LiteralGray">fig.show()</span></code></pre>
+<p>We update the name of the list we’re creating from <code>repo_names</code> to <code>repo_links</code> to more accurately communicate the kind of information we’re putting together for the chart <span aria-label="annotation1" class="CodeAnnotation">❶</span>. We then pull the URL for the project from <code>repo_dict</code> and assign it to the temporary variable <code>repo_url</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span>. Next, we generate a link to the project <span aria-label="annotation3" class="CodeAnnotation">❸</span>. We use the HTML anchor tag, which has the form <code>&lt;a href='URL'&gt;link text&lt;/a&gt;</code>, to generate the link. We then append this link to <code>repo_links</code>.</p>
+<p>When we call <code>px.bar()</code>, we use <code>repo_links</code> for the <em>x</em>-values in the chart. The result looks the same as before, but now the viewer can click any of the project names at the bottom of the chart to visit that project’s home page on GitHub. Now we have an interactive, informative visualization of data retrieved through an API!</p>
+<h3 id="h2-502703c17-0011">Customizing Marker Colors</h3>
+<p class="BodyFirst">Once a chart has been created, almost any aspect of the chart can be customized through an update method. We’ve used the <code>update_layout()</code> method previously. Another method, <code>update_traces()</code>, can be used to customize the data that’s represented on a chart.</p>
+<p>Let’s change the bars to a darker blue, with some transparency:</p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">fig.update_layout(title_font_size=28, xaxis_title_font_size=20,</span>
+<span class="LiteralGray">        yaxis_title_font_size=20)</span>
+
+fig.update_traces(marker_color='SteelBlue', marker_opacity=0.6)
+
+<span class="LiteralGray">fig.show()</span></code></pre>
+<p>In Plotly, a <em>trace</em> refers to a collection of data on a chart. The <code>update_traces()</code> method can take a number of different arguments; any argument that starts with <code>marker_</code> affects the markers on the chart. Here we set each marker’s color to <code>'SteelBlue'</code>; any named CSS color will work here. We also set the opacity of each marker to <code>0.6</code>. An opacity of 1.0 will be entirely opaque, and an opacity of 0 will be entirely invisible.</p>
+<h3 id="h2-502703c17-0012"><span epub:type="pagebreak" id="Page_368" title="368"></span>More About Plotly and the GitHub API</h3>
+<p class="BodyFirst">Plotly’s documentation is extensive and well organized; however, it can be hard to know where to start reading. A good place to start is with the article “Plotly Express in Python,” at <a class="LinkURL" href="https://plotly.com/python/plotly-express">https://plotly.com/python/plotly-express</a>. This is an overview of all the plots you can make with Plotly Express, and you can find links to longer articles about each individual chart type.</p>
+<p>If you want to understand how to customize Plotly charts better, the article “Styling Plotly Express Figures in Python” will expand on what you’ve seen in <span class="xref" itemid="xref_target_Chapters 15">Chapters 15</span>–<span class="xref" itemid="xref_target_17">17</span>. You can find this article at <a class="LinkURL" href="https://plotly.com/python/styling-plotly-express">https://plotly.com/python/styling-plotly-express</a>.</p>
+<p>For more about the GitHub API, refer to its documentation at <a class="LinkURL" href="https://docs.github.com/en/rest">https://docs.github.com/en/rest</a>. Here you’ll learn how to pull a wide variety of information from GitHub. To expand on what you saw in this project, look for the Search section of the reference in the sidebar. If you have a GitHub account, you can work with your own data as well as the publicly available data from other users’ repositories.</p>
+<h2 id="h1-502703c17-0003">The Hacker News API</h2>
+<p class="BodyFirst">To explore how to use API calls on other sites, let’s take a quick look at Hacker News (<a class="LinkURL" href="https://news.ycombinator.com">https://news.ycombinator.com</a>). On Hacker News, people share articles about programming and technology and engage in lively discussions about those articles. The Hacker News API provides access to data about all submissions and comments on the site, and you can use the API without having to register for a key.</p>
+<p>The following call returns information about the current top article as of this writing:</p>
+<pre><code>https://hacker-news.firebaseio.com/v0/item/31353677.json</code></pre>
+<p>When you enter this URL in a browser, you’ll see that the text on the page is enclosed by braces, meaning it’s a dictionary. But the response is difficult to examine without some better formatting. Let’s run this URL through the <code>json.dumps()</code> method, like we did in the earthquake project in <span class="xref" itemid="xref_target_Chapter 16">Chapter 16</span>, so we can explore the kind of information that’s returned about an article:</p>
+<p class="CodeLabel"><b>hn_article.py</b></p>
+<pre><code>import requests
+import json
+
+# Make an API call, and store the response.
+url = "https://hacker-news.firebaseio.com/v0/item/31353677.json"
+r = requests.get(url)
+print(f"Status code: {r.status_code}")
+
+# Explore the structure of the data.
+response_dict = r.json()
+response_string = json.dumps(response_dict, indent=4)
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> print(response_string)</code></pre>
+<p><span epub:type="pagebreak" id="Page_369" title="369"></span>Everything in this program should look familiar, because we’ve used it all in the previous two chapters. The main difference here is that we can print the formatted response string <span aria-label="annotation1" class="CodeAnnotation">❶</span> instead of writing it to a file, because the output is not particularly long.</p>
+<p>The output is a dictionary of information about the article with the ID <code>31353677</code>:</p>
+<pre><code>{
+    "by": "sohkamyung",
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     "descendants": 302,
+    "id": 31353677,
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     "kids": [
+        31354987,
+        31354235,
+        <var>--snip--</var>
+    ],
+    "score": 785,
+    "time": 1652361401,
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     "title": "Astronomers reveal first image of the black hole
+        at the heart of our galaxy",
+    "type": "story",
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>     "url": "https://public.nrao.edu/news/.../"
+}</code></pre>
+<p>The dictionary contains a number of keys we can work with. The key <code>"descendants"</code> tells us the number of comments the article has received <span aria-label="annotation1" class="CodeAnnotation">❶</span>. The key <code>"kids"</code> provides the IDs of all comments made directly in response to this submission <span aria-label="annotation2" class="CodeAnnotation">❷</span>. Each of these comments might have comments of their own as well, so the number of descendants a submission has is usually greater than its number of kids. We can see the title of the article being discussed <span aria-label="annotation3" class="CodeAnnotation">❸</span> and a URL for the article being discussed as well <span aria-label="annotation4" class="CodeAnnotation">❹</span>.</p>
+<p>The following URL returns a simple list of all the IDs of the current top articles on Hacker News:</p>
+<pre><code>https://hacker-news.firebaseio.com/v0/topstories.json</code></pre>
+<p>We can use this call to find out which articles are on the home page right now, and then generate a series of API calls similar to the one we just examined. With this approach, we can print a summary of all the articles on the front page of Hacker News at the moment:</p>
+<p class="CodeLabel"><b>hn_submissions.py</b></p>
+<pre><code>from operator import itemgetter
+
+import requests
+
+# Make an API call and check the response.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> url = "https://hacker-news.firebaseio.com/v0/topstories.json"
+r = requests.get(url)
+print(f"Status code: {r.status_code}")
+
+# Process information about each submission.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> submission_ids = r.json()
+<span epub:type="pagebreak" id="Page_370" title="370"></span><span aria-label="annotation3" class="CodeAnnotationHang">❸</span> submission_dicts = []
+for submission_id in submission_ids[:5]:
+    # Make a new API call for each submission.
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>     url = f"https://hacker-news.firebaseio.com/v0/item/{submission_id}.json"
+    r = requests.get(url)
+    print(f"id: {submission_id}\tstatus: {r.status_code}")
+    response_dict = r.json()
+
+    # Build a dictionary for each article.
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>     submission_dict = {
+        'title': response_dict['title'],
+        'hn_link': f"https://news.ycombinator.com/item?id={submission_id}",
+        'comments': response_dict['descendants'],
+    }
+<span aria-label="annotation6" class="CodeAnnotationHang">❻</span>     submission_dicts.append(submission_dict)
+
+<span aria-label="annotation7" class="CodeAnnotationHang">❼</span> submission_dicts = sorted(submission_dicts, key=itemgetter('comments'),
+                            reverse=True)
+
+<span aria-label="annotation8" class="CodeAnnotationHang">❽</span> for submission_dict in submission_dicts:
+    print(f"\nTitle: {submission_dict['title']}")
+    print(f"Discussion link: {submission_dict['hn_link']}")
+    print(f"Comments: {submission_dict['comments']}")</code></pre>
+<p>First, we make an API call and print the status of the response <span aria-label="annotation1" class="CodeAnnotation">❶</span>. This API call returns a list containing the IDs of up to 500 of the most popular articles on Hacker News at the time the call is issued. We then convert the response object to a Python list <span aria-label="annotation2" class="CodeAnnotation">❷</span>, which we assign to <code>submission_ids</code>. We’ll use these IDs to build a set of dictionaries, each of which contains information about one of the current submissions.</p>
+<p>We set up an empty list called <code>submission_dicts</code> to store these dictionaries <span aria-label="annotation3" class="CodeAnnotation">❸</span>. We then loop through the IDs of the top 30 submissions. We make a new API call for each submission by generating a URL that includes the current value of <code>submission_id</code> <span aria-label="annotation4" class="CodeAnnotation">❹</span>. We print the status of each request along with its ID, so we can see whether it’s successful.</p>
+<p>Next, we create a dictionary for the submission currently being processed <span aria-label="annotation5" class="CodeAnnotation">❺</span>. We store the title of the submission, a link to the discussion page for that item, and the number of comments the article has received so far. Then we append each <code>submission_dict</code> to the list <code>submission_dicts</code> <span aria-label="annotation6" class="CodeAnnotation">❻</span>.</p>
+<p>Each submission on Hacker News is ranked according to an overall score based on a number of factors, including how many times it’s been voted on, how many comments it’s received, and how recent the submission is. We want to sort the list of dictionaries by the number of comments. To do this, we use a function called <code>itemgetter()</code> <span aria-label="annotation7" class="CodeAnnotation">❼</span>, which comes from the <code>operator</code> module. We pass this function the key <code>'comments'</code>, and it pulls the value associated with that key from each dictionary in the list. The <code>sorted()</code> function then uses this value as its basis for sorting the list. We sort the list in reverse order, to place the most-commented stories first.</p>
+<p>Once the list is sorted, we loop through the list <span aria-label="annotation8" class="CodeAnnotation">❽</span> and print out three pieces of information about each of the top submissions: the title, a link <span epub:type="pagebreak" id="Page_371" title="371"></span>to the discussion page, and the number of comments the submission currently has:</p>
+<pre><code>Status code: 200
+id: 31390506    status: 200
+id: 31389893    status: 200
+id: 31390742    status: 200
+<var>--snip--</var>
+
+Title: Fly.io: The reclaimer of Heroku's magic
+Discussion link: https://news.ycombinator.com/item?id=31390506
+Comments: 134
+
+Title: The weird Hewlett Packard FreeDOS option
+Discussion link: https://news.ycombinator.com/item?id=31389893
+Comments: 64
+
+Title: Modern JavaScript Tutorial
+Discussion link: https://news.ycombinator.com/item?id=31390742
+Comments: 20
+<var>--snip--</var></code></pre>
+<p>You would use a similar process to access and analyze information with any API. With this data, you could make a visualization showing which submissions have inspired the most active recent discussions. This is also the basis for apps that provide a customized reading experience for sites like Hacker News. To learn more about what kind of information you can access through the Hacker News API, visit the documentation page at <a class="LinkURL" href="https://github.com/HackerNews/API">https://github.com/HackerNews/API</a>.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	Hacker News sometimes allows companies it supports to make special hiring posts, and comments are disabled on these posts. If you run this program while one of these posts is present, you’ll get a <code>KeyError</code>. If this causes an issue, you can wrap the code that builds <code>submission_dict</code> in a <code>try-except</code> block and skip over these posts.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c17-13">17-1.	Other Languages:</span> Modify the API call in <em>python_repos.py</em> so it generates a chart showing the most popular projects in other languages. Try languages such as <em>JavaScript</em>, <em>Ruby</em>, <em>C</em>, <em>Java</em>, <em>Perl</em>, <em>Haskell</em>, and <em>Go</em>.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c17-14">17-2.	Active Discussions:</span> Using the data from <em>hn_submissions.py</em>, make a bar chart showing the most active discussions currently happening on Hacker News. The height of each bar should correspond to the number of comments each submission has. The label for each bar should include the submission’s title and act as a link to the discussion page for that submission. If you get a <code>KeyError</code> when creating a chart, use a <code>try-except</code> block to skip over the promotional posts.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c17-15">17-3.	<span epub:type="pagebreak" id="Page_372" title="372"></span>Testing python_repos.py:</span> In <em>python_repos.py</em>, we printed the value of <code>status_code</code> to make sure the API call was successful. Write a program called <em>test_python_repos.py</em> that uses <code>pytest</code> to assert that the value of <code>status_code</code> is 200. Figure out some other assertions you can make: for example, that the number of items returned is expected and that the total number of repositories is greater than a certain amount.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c17-16">17-4.	Further Exploration:</span> Visit the documentation for Plotly and either the GitHub API or the Hacker News API. Use some of the information you find there to either customize the style of the plots we’ve already made or pull some different information and create your own visualizations. If you’re curious about exploring other APIs, take a look at the APIs mentioned in the GitHub repository at <a class="LinkURL" href="https://github.com/public-apis">https://github.com/public-apis</a>.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c17-0004">Summary</h2>
+<p class="BodyFirst">In this chapter, you learned how to use APIs to write self-contained programs that automatically gather the data they need and use that data to create a visualization. You used the GitHub API to explore the most-starred Python projects on GitHub, and you also looked briefly at the Hacker News API. You learned how to use the Requests package to automatically issue an API call and how to process the results of that call. We also introduced some Plotly settings that further customize the appearance of the charts you generate.</p>
+<p>In the next chapter, you’ll use Django to build a web application as your final project.</p>
+</section>
+</div></body>
+</html>

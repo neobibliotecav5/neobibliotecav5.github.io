@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c12-0023">Disparar balas</h3>
+<p class="BodyFirst">En <code translate="no">AlienInvasion</code>, tenemos que modificar <code translate="no">_check_keydown_events()</code> para disparar una bala cuando el jugador pulse la barra espaciadora. No necesitamos modificar <code translate="no">_check_keyup_events()</code> porque no ocurre nada cuando se suelta la barra espaciadora. También tenemos que modificar <code translate="no">_update_screen()</code> para asegurarnos de que cada bala se dibuja en la pantalla antes de llamar a <code translate="no">flip()</code>.</p>
+<p>Habrá un poco de trabajo que hacer cuando disparemos una bala, así que vamos a escribir un nuevo método, <code translate="no">_fire_bullet()</code>, para manejar este trabajo:</p>
+<p class="CodeLabel" translate="no"><b>alien_invasion.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    def _check_keydown_events(self, event):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">        elif event.key == pygame.K_q:</span>
+<span class="LiteralGray">            sys.exit()</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         elif event.key == pygame.K_SPACE:
+            self._fire_bullet()
+
+<span class="LiteralGray">    def _check_keyup_events(self, event):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+
+    def _fire_bullet(self):
+        """Create a new bullet and add it to the bullets group."""
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         new_bullet = Bullet(self)
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>         self.bullets.add(new_bullet)
+
+<span epub:type="pagebreak" id="Page_250" title="250"></span><span class="LiteralGray">    def _update_screen(self):</span>
+<span class="LiteralGray">        """Update images on the screen, and flip to the new screen."""</span>
+<span class="LiteralGray">        self.screen.fill(self.settings.bg_color)</span>
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span><span class="LiteralGray">   </span>      for bullet in self.bullets.sprites():
+            bullet.draw_bullet()
+<span class="LiteralGray">        self.ship.blitme()</span>
+
+<span class="LiteralGray">        pygame.display.flip()</span>
+<em class="LiteralGrayItalic" translate="no">--snip--</em></code></pre>
+<p>Llamamos a <code translate="no">_fire_bullet()</code> cuando se pulsa la barra espaciadora <span aria-label="annotation1" class="CodeAnnotation">❶.</span> En <code translate="no">_fire_bullet()</code>, creamos una instancia de <code translate="no">Bullet</code> y la llamamos <code translate="no">new_bullet</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Luego lo añadimos al grupo <code translate="no">bullets</code> utilizando el método <code translate="no">add()</code> <span aria-label="annotation3" class="CodeAnnotation">❸.</span> El método <code translate="no">add()</code> es similar a <code translate="no">append()</code>, pero está escrito específicamente para grupos Pygame.</p>
+<p>El método <code translate="no">bullets.sprites()</code> devuelve una lista de todos los sprites del grupo <code translate="no">bullets</code>. Para dibujar todas las balas disparadas en la pantalla, hacemos un bucle a través de los sprites en <code translate="no">bullets</code> y llamamos a <code translate="no">draw_bullet()</code> en cada uno de ellos <span aria-label="annotation4" class="CodeAnnotation">❹.</span> Colocamos este bucle antes de la línea que dibuja la nave, para que las balas no empiecen encima de la nave.</p>
+<p>Cuando ejecutes ahora <em translate="no">alien_invasion.py</em>, deberías poder mover la nave a derecha e izquierda y disparar tantas balas como quieras. Las balas suben por la pantalla y desaparecen cuando llegan arriba, como se muestra en la <a href="#figure12-3" id="figureanchor12-3">Figura 12-3</a>. Puedes modificar el tamaño, el color y la velocidad de las balas en <em translate="no">settings.py</em>.</p>
+<figure>
+<img alt="" class="keyline" height="407" src="Images/f12003.png" translate="no" width="590"/>
+<figcaption><p>Figura<a id="figure12-3">12-3</a>: La nave después de disparar una serie de</p></figcaption></figure>balas
+        
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c12_37.html">anterior</a><a href="c12.html">Subtema 38 de 43: (Ver todo)</a><a href="c12_39.html">siguiente</a><br/></p>
+<br/><a href="c12_38.docx" target="_blank"></a></footer>
+</body>
+</html>

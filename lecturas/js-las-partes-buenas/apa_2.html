@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/><title>Appendix A. Awful Parts</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h1 class="title"><a id="global_variables"></a>Variables globales</h1><p>La peor de todas las características malas de JavaScript es su dependencia de las variables globales. Una <em class="firstterm" translate="no">global variable</em> es una variable visible en todos los ámbitos. Las variables globales pueden ser convenientes en programas muy pequeños, pero se vuelven rápidamente inmanejables a medida que los programas se hacen más grandes. Dado que una variable global puede ser modificada por cualquier parte del programa en cualquier momento, pueden complicar significativamente el comportamiento del programa. El uso de variables globales degrada la fiabilidad de los programas que las utilizan.<a class="indexterm" id="IDX-APP-A-0501"></a><a class="indexterm" id="IDX-APP-A-0502"></a></p><p>Las variables globales dificultan la ejecución de subprogramas independientes en el mismo programa. Si resulta que los subprogramas tienen variables globales que comparten los mismos nombres, entonces interferirán entre sí y probablemente fallarán, normalmente de formas difíciles de diagnosticar.</p><p>Muchos lenguajes tienen variables globales. Por ejemplo, los miembros <code class="literal" translate="no">public static</code> de Java son variables globales. El problema de JavaScript no es sólo que las permite, sino que las requiere. JavaScript no tiene enlazador. Todas las unidades de compilación se cargan en un objeto global común.</p><p>Hay tres formas de definir variables globales. La primera es colocar una declaración <code class="literal" translate="no">var</code> fuera de cualquier función:</p><a id="I_programlisting_d1e8179"></a><pre class="programlisting" translate="no">var foo = value;</pre><p>La segunda es añadir una propiedad directamente al objeto global. El objeto global es el contenedor de todas las variables globales. En los navegadores web, el objeto global recibe el nombre de <code class="literal" translate="no">window</code>:</p><a id="I_programlisting_d1e8186"></a><pre class="programlisting" translate="no">window.foo = value;</pre><p>La tercera es utilizar una variable sin declararla. Esto se llama     <span class="emphasis"><em translate="no">implied global</em></span>:<a class="indexterm" id="IDX-APP-A-0503"></a></p><a id="I_programlisting_d1e8196"></a><pre class="programlisting" translate="no">foo = value;</pre><p>Se concibió como una comodidad para los principiantes, ya que hace innecesario declarar las variables antes de utilizarlas. Por desgracia, olvidarse de declarar una variable es un error muy común. La política de JavaScript de hacer globales las variables olvidadas crea errores que pueden ser muy difíciles de encontrar.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="apa_1.html">anterior</a><a href="apa.html">Subtema 2 de 2: (Ver todo)</a><br/></p>
+<br/><a href="apa_2.docx" target="_blank"></a></footer>
+</body>
+</html>

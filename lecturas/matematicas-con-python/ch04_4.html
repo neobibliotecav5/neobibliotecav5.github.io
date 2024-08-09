@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<meta charset="utf-8"/>
+<title>Capítulo 4: Álgebra y matemáticas simbólicas con SymPy</title>
+<link href="style.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="core.css" media="all" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch04lev1sec03"><strong>Resolución de ecuaciones</strong></h3>
+<p class="noindent">La función <span class="literal" translate="no">solve()</span> de SymPy puede utilizarse para encontrar soluciones a ecuaciones. Cuando introduces una expresión con un símbolo que representa una variable, como <em>x</em>, <span class="literal" translate="no">solve()</span> calcula el valor de ese símbolo. Esta función siempre realiza su cálculo suponiendo que la expresión que introduces es igual a cero, es decir, imprime el valor que, al sustituir al símbolo, hace que toda la expresión sea igual a cero. Empecemos con la sencilla ecuación <em>x</em> - 5 = 7. Si queremos utilizar <span class="literal" translate="no">solve()</span> para hallar el valor de <span class="literal" translate="no">x</span>, primero tenemos que hacer que uno de los lados de la ecuación sea igual a cero<em>(x</em> - 5 - 7 = 0). Entonces, estamos preparados para utilizar <span class="literal" translate="no">solve()</span>, como se indica a continuación:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">from sympy import Symbol, solve</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">x = Symbol('x')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">expr = x - 5 - 7</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">solve(expr)</span><br translate="no"/>[12]</p>
+<p class="indent">Cuando utilizamos <span class="literal" translate="no">solve()</span>, calcula el valor de <span class="literal" translate="no">'x'</span> como 12 porque ése es el valor que hace que la expresión<em>(x</em> - 5 - 7) sea igual a cero.</p>
+<p class="indent">Observa que el resultado 12 se devuelve en una lista. Una ecuación puede tener varias soluciones; por ejemplo, una ecuación cuadrática tiene dos soluciones. En ese caso, la lista tendrá todas las soluciones como miembros. También puedes pedir a la función <span class="literal" translate="no">solve()</span> que devuelva el resultado de forma que cada miembro sea un diccionario. Cada diccionario está compuesto por el símbolo (nombre de la variable) y su valor (la solución). Esto es especialmente útil cuando resolvemos ecuaciones simultáneas en las que tenemos más de una variable que resolver, porque cuando la solución se devuelve como diccionario, sabemos qué solución corresponde a cada variable.</p>
+<h4 class="h4" id="ch04lev2sec05"><a id="page_106"></a><strong><em>Resolver ecuaciones cuadráticas</em></strong></h4>
+<p class="noindent">En el <a href="ch01.html#ch01">Capítulo 1</a>, encontramos las raíces de la ecuación cuadrática <sup>ax2</sup> + <em>bx</em> + <em>c</em> = 0 escribiendo las fórmulas de las dos raíces y sustituyendo después los valores de las constantes <em>a</em>, <em>b</em> y <em>c</em>. Ahora aprenderemos a utilizar la función <span class="literal" translate="no">solve()</span> de SymPy para encontrar las raíces sin necesidad de escribir las fórmulas. Veamos un ejemplo:</p>
+<p class="programs" translate="no"><span class="ent">➊</span> &gt;&gt;&gt; <span class="codestrong">from sympy import solve</span><br translate="no"/>   &gt;&gt;&gt; <span class="codestrong">x = Symbol('x')</span><br translate="no"/><span class="ent">➋</span> &gt;&gt;&gt; <span class="codestrong">expr = x**2 + 5*x + 4</span><br translate="no"/><span class="ent">➌</span> &gt;&gt;&gt; <span class="codestrong">solve(expr, dict=True)</span><br translate="no"/><span class="ent">➍</span> [{x: -4}, {x: -1}]</p>
+<p class="indent">Primero importamos la función <span class="literal" translate="no">solve()</span> en <span class="ent">➊.</span> A continuación, definimos un símbolo, <span class="literal" translate="no">x</span>, y una expresión correspondiente a la ecuación cuadrática, <span class="literal" translate="no">x**2 + 5*x + 4</span>, en <span class="ent">➋.</span> A continuación, llamamos a la función <span class="literal" translate="no">solve()</span> con la expresión anterior en <span class="ent">➌.</span> El segundo argumento de la función <span class="literal" translate="no">solve()</span> (<span class="literal" translate="no">dict=True</span>) especifica que queremos que el resultado se devuelva como una lista de diccionarios Python.</p>
+<p class="indent">Cada solución de la lista devuelta es un diccionario que utiliza el símbolo como clave emparejado con su valor correspondiente. Si la solución está vacía, se devuelve una lista vacía. Las raíces de la ecuación anterior son -4 y -1, como puedes ver en <span class="ent">➍.</span></p>
+<p class="indentb">En el primer capítulo descubrimos que las raíces de la ecuación</p>
+<p class="center"><sup>x2</sup> + <em>x</em> + 1 = 0</p>
+<p class="noindentt">son números complejos. Intentemos hallarlas utilizando <span class="literal" translate="no">solve()</span>:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">x=Symbol('x')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">expr = x**2 + x + 1</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">solve(expr, dict=True)</span><br translate="no"/>[{x: -1/2 - sqrt(3)*I/2}, {x: -1/2 + sqrt(3)*I/2}]</p>
+<p class="indent">Ambas raíces son imaginarias, como era de esperar, con la componente imaginaria indicada por el símbolo <span class="literal" translate="no">I</span>.</p>
+<h4 class="h4" id="ch04lev2sec06"><strong><em>Resolución de una variable en función de otras</em></strong></h4>
+<p class="noindent">Además de hallar las raíces de las ecuaciones, podemos aprovechar la matemática simbólica para utilizar la función <span class="literal" translate="no">solve()</span> para expresar una variable de una ecuación en términos de las demás. Veamos cómo encontrar las raíces de la ecuación cuadrática genérica <sup>ax2</sup> + <em>bx</em> + <em>c</em> = 0. Para ello, definiremos <em>x</em> y tres símbolos <em>adicionales-a</em>, <em>b</em> y <em>c</em>, que corresponden a las tres constantes:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">x = Symbol('x')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">a = Symbol('a')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">b = Symbol('b')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">c = Symbol('c')</span></p>
+<p class="indent"><a id="page_107"></a>A continuación, escribimos la expresión correspondiente a la ecuación y utilizamos sobre ella la función <span class="literal" translate="no">solve()</span>:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">expr = a*x*x + b*x + c</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">solve(expr, x, dict=True)</span><br translate="no"/>[{x: (-b + sqrt(-4*a*c + b**2))/(2*a)}, {x: -(b + sqrt(-4*a*c + b**2))/(2*a)}]</p>
+<p class="indent">Aquí, tenemos que incluir un argumento adicional, <span class="literal" translate="no">x</span>, a la función <span class="literal" translate="no">solve()</span>. Como hay más de un símbolo en la ecuación, tenemos que decirle a <span class="literal" translate="no">solve()</span> qué símbolo debe resolver, que es lo que indicamos pasando <span class="literal" translate="no">x</span> como segundo argumento. Como era de esperar, <span class="literal" translate="no">solve()</span> imprime la fórmula cuadrática: la fórmula genérica para encontrar el valor o valores de <em>x</em> en una expresión polinómica.</p>
+<p class="indent">Para que quede claro, cuando utilizamos <span class="literal" translate="no">solve()</span> en una ecuación con más de un símbolo, especificamos el símbolo a resolver como segundo argumento (y ahora el tercer argumento especifica cómo queremos que se devuelvan los resultados).</p>
+<p class="indent">A continuación, veamos un ejemplo de física. Según una de las ecuaciones del movimiento, la distancia recorrida por un cuerpo que se mueve con una aceleración constante <em>a</em>, con una velocidad inicial <em>u</em>, en un tiempo <em>t</em>, viene dada por</p>
+<div class="image2"><img alt="image" src="images/e0107-01.jpg" translate="no"/></div>
+<p class="indent">Sin embargo, dados <em>u</em> y <em>a</em>, si quisieras hallar el tiempo necesario para recorrer una distancia dada, <em>s</em>, tendrías que expresar primero <em>t</em> en términos de las otras variables. He aquí cómo podrías hacerlo utilizando la función <span class="literal" translate="no">solve()</span> de SymPy:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">from sympy import Symbol, solve, pprint</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">s = Symbol('s')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">u = Symbol('u')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">t = Symbol('t')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">a = Symbol('a')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">expr = u*t + (1/2)*a*t*t - s</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">t_expr = solve(expr,t, dict=True)</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">pprint(t_expr)</span></p>
+<p class="indent">El resultado tiene este aspecto:</p>
+<div class="image2"><img alt="image" src="images/f0107-01.jpg" translate="no"/></div>
+<p class="indent">Ahora que tenemos la expresión para <em>t</em> (a la que se refiere la etiqueta <span class="literal" translate="no">t_expr</span>), podemos utilizar el método <span class="literal" translate="no">subs()</span> para sustituir los valores de <em>s</em>, <em>u</em> y <em>a</em> y encontrar los dos valores posibles de <em>t</em>.</p>
+<h4 class="h4" id="ch04lev2sec07"><a id="page_108"></a><strong><em>Resolución de un sistema de ecuaciones lineales</em></strong></h4>
+<p class="noindentb">Considera las dos ecuaciones siguientes</p>
+<p class="center"><em>2x</em> + <em>3y</em> = 6</p>
+<p class="center"><em>3x</em> + <em>2y</em> = 12</p>
+<p class="indentt">Supongamos que queremos encontrar el par de valores<em>(x</em>, <em>y</em>) que satisface las dos ecuaciones. Podemos utilizar la función <span class="literal" translate="no">solve()</span> para encontrar la solución de un sistema de ecuaciones como éste.</p>
+<p class="indent">En primer lugar, definimos los dos símbolos y creamos las dos ecuaciones:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">x = Symbol('x')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">y = Symbol('y')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">expr1 = 2*x + 3*y - 6</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">expr2 = 3*x + 2*y – 12</span></p>
+<p class="indent">Las dos ecuaciones están definidas por las expresiones <span class="literal" translate="no">expr1</span> y <span class="literal" translate="no">expr2</span>, respectivamente. Observa cómo hemos reordenado las expresiones para que ambas sean iguales a cero (hemos desplazado el lado derecho de las ecuaciones dadas al lado izquierdo). Para encontrar la solución, llamamos a la función <span class="literal" translate="no">solve()</span> con las dos expresiones formando una tupla:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">solve((expr1, expr2), dict=True)</span><br translate="no"/>[{y: -6/5, x: 24/5}]</p>
+<p class="indent">Como he dicho antes, obtener la solución en forma de diccionario es útil en este caso. Podemos ver que el valor de <span class="literal" translate="no">x</span> es 24/5 y el valor de <span class="literal" translate="no">y</span> es -6/5. Verifiquemos si la solución que hemos obtenido satisface realmente las ecuaciones. Para ello, primero crearemos una etiqueta, <span class="literal" translate="no">soln</span>, para referirnos a la solución que hemos obtenido y, a continuación, utilizaremos el método <span class="literal" translate="no">subs()</span> para sustituir los valores correspondientes de <span class="literal" translate="no">x</span> y <span class="literal" translate="no">y</span> en las dos expresiones:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">soln = solve((expr1, expr2), dict=True)</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">soln = soln[0]</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">expr1.subs({x:soln[x], y:soln[y]})</span><br translate="no"/>0<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">expr2.subs({x:soln[x], y:soln[y]})</span><br translate="no"/>0</p>
+<p class="indent">El resultado de sustituir los valores de <span class="literal" translate="no">x</span> y <span class="literal" translate="no">y</span> correspondientes a la solución en las dos expresiones es cero.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch04_3.html">anterior</a><a href="ch04.html">Subtema 4 de 7: (Ver todo)</a><a href="ch04_5.html">siguiente</a><br/></p>
+<br/><a href="ch04_4.docx" target="_blank"></a></footer>
+</body>
+</html>

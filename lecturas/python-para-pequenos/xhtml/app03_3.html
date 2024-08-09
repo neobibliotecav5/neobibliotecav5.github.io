@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="app03lev1sec2">
+  Error de atributo con Turtle </h3>
+<p class="noindent">
+  Algunos programadores noveles experimentan extraños errores de <em class="calibre7">atributo </em>al intentar utilizar tortuga: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">import</span> turtle
+<span class="brown">&gt;&gt;&gt;</span> t = turtle.Turtle()
+<span class="red">Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+AttributeError: module 'turtle' has no attribute 'Turtle'</span>
+</pre>
+<p class="indent">
+  La causa más típica de este error es que hayas creado un archivo llamado tortuga <em class="calibre7">.py </em>en tu carpeta de inicio. En este caso, cuando introduces <span class="literal1" translate="no">
+   import turtle
+  </span>, obtienes el archivo que has creado y no el módulo <span class="literal1" translate="no">
+   turtle
+  </span>de Python. Si eliminas o cambias el nombre de ese archivo, el módulo correcto debería importarse correctamente. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="app03_2.html">anterior</a><a href="app03.html">Subtema 3 de 5: (Ver todo)</a><a href="app03_4.html">siguiente</a><br/></p>
+<br/><a href="app03_3.docx" target="_blank"></a></footer>
+</body>
+</html>

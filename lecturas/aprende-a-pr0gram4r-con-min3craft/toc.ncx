@@ -1,0 +1,1814 @@
+<?xml version="1.0"?>
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1" xml:lang="en">
+<head>
+<meta name="dtb:uid" content="9781593276706"/>
+<meta name="dtb:depth" content="1"/>
+<meta name="dtb:totalPageCount" content="340"/>
+<meta name="dtb:maxPageNumber" content="340"/>
+</head>
+<docTitle>
+<text>Learn to Program With Minecraft&#174;</text>
+</docTitle>
+<navMap>
+<navPoint id="i1" playOrder="1">
+<navLabel>
+<text>Cover Page</text>
+</navLabel>
+<content src="xhtml/cover.xhtml"/>
+</navPoint>
+<navPoint id="i2" playOrder="2">
+<navLabel>
+<text>Title Page</text>
+</navLabel>
+<content src="xhtml/title.xhtml"/>
+</navPoint>
+<navPoint id="i3" playOrder="3">
+<navLabel>
+<text>Copyright Page</text>
+</navLabel>
+<content src="xhtml/copy.xhtml"/>
+</navPoint>
+<navPoint id="i4" playOrder="4">
+<navLabel>
+<text>About the Author</text>
+</navLabel>
+<content src="xhtml/pref01.xhtml"/>
+</navPoint>
+<navPoint id="i5" playOrder="5">
+<navLabel>
+<text>About the Technical Reviewer</text>
+</navLabel>
+<content src="xhtml/pref02.xhtml"/>
+</navPoint>
+<navPoint id="i6" playOrder="6">
+<navLabel>
+<text>Brief Contents</text>
+</navLabel>
+<content src="xhtml/toc01.xhtml"/>
+</navPoint>
+<navPoint id="i7" playOrder="7">
+<navLabel>
+<text>Contents in Detail</text>
+</navLabel>
+<content src="xhtml/toc02.xhtml"/>
+</navPoint>
+<navPoint id="i8" playOrder="8">
+<navLabel>
+<text>Acknowledgments</text>
+</navLabel>
+<content src="xhtml/pref03.xhtml"/>
+</navPoint>
+<navPoint id="i9" playOrder="9">
+<navLabel>
+<text>Introduction</text>
+</navLabel>
+<content src="xhtml/ch00.xhtml"/>
+<navPoint id="i10" playOrder="10">
+<navLabel>
+<text>Why Learn to Program?</text>
+</navLabel>
+<content src="xhtml/ch00.xhtml#ch00lev1sec01"/>
+</navPoint>
+<navPoint id="i11" playOrder="11">
+<navLabel>
+<text>Why Python?</text>
+</navLabel>
+<content src="xhtml/ch00.xhtml#ch00lev1sec02"/>
+</navPoint>
+<navPoint id="i12" playOrder="12">
+<navLabel>
+<text>Why Minecraft?</text>
+</navLabel>
+<content src="xhtml/ch00.xhtml#ch00lev1sec03"/>
+</navPoint>
+<navPoint id="i13" playOrder="13">
+<navLabel>
+<text>What&#8217;s in This Book?</text>
+</navLabel>
+<content src="xhtml/ch00.xhtml#ch00lev1sec04"/>
+</navPoint>
+<navPoint id="i14" playOrder="14">
+<navLabel>
+<text>Online Resources</text>
+</navLabel>
+<content src="xhtml/ch00.xhtml#ch00lev1sec05"/>
+</navPoint>
+<navPoint id="i15" playOrder="15">
+<navLabel>
+<text>Let the Adventure Begin!</text>
+</navLabel>
+<content src="xhtml/ch00.xhtml#ch00lev1sec06"/>
+</navPoint>
+</navPoint>
+<navPoint id="i16" playOrder="16">
+<navLabel>
+<text>Chapter 1: Setting Up for Your Adventure</text>
+</navLabel>
+<content src="xhtml/ch01.xhtml"/>
+<navPoint id="i17" playOrder="17">
+<navLabel>
+<text>Setting Up Your Windows PC</text>
+</navLabel>
+<content src="xhtml/ch01.xhtml#ch01lev1sec01"/>
+<navPoint id="i18" playOrder="18">
+<navLabel>
+<text>Installing Minecraft</text>
+</navLabel>
+<content src="xhtml/ch01.xhtml#ch01lev2sec01"/>
+</navPoint>
+<navPoint id="i19" playOrder="19">
+<navLabel>
+<text>Installing Python</text>
+</navLabel>
+<content src="xhtml/ch01.xhtml#ch01lev2sec02"/>
+</navPoint>
+<navPoint id="i20" playOrder="20">
+<navLabel>
+<text>Installing Java</text>
+</navLabel>
+<content src="xhtml/ch01.xhtml#ch01lev2sec03"/>
+</navPoint>
+<navPoint id="i21" playOrder="21">
+<navLabel>
+<text>Installing the Minecraft Python API and Spigot</text>
+</navLabel>
+<content src="xhtml/ch01.xhtml#ch01lev2sec04"/>
+</navPoint>
+<navPoint id="i22" playOrder="22">
+<navLabel>
+<text>Running Spigot and Creating a Game Profile</text>
+</navLabel>
+<content src="xhtml/ch01.xhtml#ch01lev2sec05"/>
+</navPoint>
+<navPoint id="i23" playOrder="23">
+<navLabel>
+<text>Starting Over with a New World</text>
+</navLabel>
+<content src="xhtml/ch01.xhtml#ch01lev2sec06"/>
+</navPoint>
+<navPoint id="i24" playOrder="24">
+<navLabel>
+<text>Playing Offline</text>
+</navLabel>
+<content src="xhtml/ch01.xhtml#ch01lev2sec07"/>
+</navPoint>
+<navPoint id="i25" playOrder="25">
+<navLabel>
+<text>Switching to Survival Mode</text>
+</navLabel>
+<content src="xhtml/ch01.xhtml#ch01lev2sec08"/>
+</navPoint>
+</navPoint>
+<navPoint id="i26" playOrder="26">
+<navLabel>
+<text>Setting Up Your Mac</text>
+</navLabel>
+<content src="xhtml/ch01.xhtml#ch01lev1sec02"/>
+<navPoint id="i27" playOrder="27">
+<navLabel>
+<text>Installing Minecraft</text>
+</navLabel>
+<content src="xhtml/ch01.xhtml#ch01lev2sec09"/>
+</navPoint>
+<navPoint id="i28" playOrder="28">
+<navLabel>
+<text>Installing Python</text>
+</navLabel>
+<content src="xhtml/ch01.xhtml#ch01lev2sec10"/>
+</navPoint>
+<navPoint id="i29" playOrder="29">
+<navLabel>
+<text>Installing Java</text>
+</navLabel>
+<content src="xhtml/ch01.xhtml#ch01lev2sec11"/>
+</navPoint>
+<navPoint id="i30" playOrder="30">
+<navLabel>
+<text>Installing the Minecraft Python API and Spigot</text>
+</navLabel>
+<content src="xhtml/ch01.xhtml#ch01lev2sec12"/>
+</navPoint>
+<navPoint id="i31" playOrder="31">
+<navLabel>
+<text>Running Spigot and Creating a Game Profile</text>
+</navLabel>
+<content src="xhtml/ch01.xhtml#ch01lev2sec13"/>
+</navPoint>
+<navPoint id="i32" playOrder="32">
+<navLabel>
+<text>Starting Over with a New World</text>
+</navLabel>
+<content src="xhtml/ch01.xhtml#ch01lev2sec14"/>
+</navPoint>
+<navPoint id="i33" playOrder="33">
+<navLabel>
+<text>Playing Offline</text>
+</navLabel>
+<content src="xhtml/ch01.xhtml#ch01lev2sec15"/>
+</navPoint>
+<navPoint id="i34" playOrder="34">
+<navLabel>
+<text>Switching to Survival Mode</text>
+</navLabel>
+<content src="xhtml/ch01.xhtml#ch01lev2sec16"/>
+</navPoint>
+</navPoint>
+<navPoint id="i35" playOrder="35">
+<navLabel>
+<text>Setting Up Your Raspberry Pi</text>
+</navLabel>
+<content src="xhtml/ch01.xhtml#ch01lev1sec03"/>
+</navPoint>
+<navPoint id="i36" playOrder="36">
+<navLabel>
+<text>Getting to Know IDLE</text>
+</navLabel>
+<content src="xhtml/ch01.xhtml#ch01lev1sec04"/>
+<navPoint id="i37" playOrder="37">
+<navLabel>
+<text>Getting to Know the Python Shell</text>
+</navLabel>
+<content src="xhtml/ch01.xhtml#ch01lev2sec17"/>
+</navPoint>
+<navPoint id="i38" playOrder="38">
+<navLabel>
+<text>Say Hello to IDLE&#8217;s Text Editor</text>
+</navLabel>
+<content src="xhtml/ch01.xhtml#ch01lev2sec18"/>
+</navPoint>
+<navPoint id="i39" playOrder="39">
+<navLabel>
+<text>When to Use the Python Shell and When to Use the Text Editor</text>
+</navLabel>
+<content src="xhtml/ch01.xhtml#ch01lev2sec19"/>
+</navPoint>
+<navPoint id="i40" playOrder="40">
+<navLabel>
+<text>The Prompts Used in This Book</text>
+</navLabel>
+<content src="xhtml/ch01.xhtml#ch01lev2sec20"/>
+</navPoint>
+</navPoint>
+<navPoint id="i41" playOrder="41">
+<navLabel>
+<text>Testing Your Minecraft Python Setup</text>
+</navLabel>
+<content src="xhtml/ch01.xhtml#ch01lev1sec05"/>
+</navPoint>
+</navPoint>
+<navPoint id="i42" playOrder="42">
+<navLabel>
+<text>Chapter 2: Teleporting with Variables</text>
+</navLabel>
+<content src="xhtml/ch02.xhtml"/>
+<navPoint id="i43" playOrder="43">
+<navLabel>
+<text>What Is a Program?</text>
+</navLabel>
+<content src="xhtml/ch02.xhtml#ch02lev1sec01"/>
+</navPoint>
+<navPoint id="i44" playOrder="44">
+<navLabel>
+<text>Storing Data with Variables</text>
+</navLabel>
+<content src="xhtml/ch02.xhtml#ch02lev1sec02"/>
+<navPoint id="i45" playOrder="45">
+<navLabel>
+<text>The Structure of Programming Languages</text>
+</navLabel>
+<content src="xhtml/ch02.xhtml#ch02lev2sec01"/>
+</navPoint>
+<navPoint id="i46" playOrder="46">
+<navLabel>
+<text>Syntax Rules for Variables</text>
+</navLabel>
+<content src="xhtml/ch02.xhtml#ch02lev2sec02"/>
+</navPoint>
+<navPoint id="i47" playOrder="47">
+<navLabel>
+<text>Changing the Values of Variables</text>
+</navLabel>
+<content src="xhtml/ch02.xhtml#ch02lev2sec03"/>
+</navPoint>
+<navPoint id="i48" playOrder="48">
+<navLabel>
+<text>Integers</text>
+</navLabel>
+<content src="xhtml/ch02.xhtml#ch02lev2sec04"/>
+</navPoint>
+<navPoint id="i49" playOrder="49">
+<navLabel>
+<text>Mission #1: Teleport the Player</text>
+</navLabel>
+<content src="xhtml/ch02.xhtml#ch02lev2sec05"/>
+</navPoint>
+<navPoint id="i50" playOrder="50">
+<navLabel>
+<text>Floats</text>
+</navLabel>
+<content src="xhtml/ch02.xhtml#ch02lev2sec06"/>
+</navPoint>
+<navPoint id="i51" playOrder="51">
+<navLabel>
+<text>Mission #2: Go Exactly Where You Want</text>
+</navLabel>
+<content src="xhtml/ch02.xhtml#ch02lev2sec07"/>
+</navPoint>
+</navPoint>
+<navPoint id="i52" playOrder="52">
+<navLabel>
+<text>Slowing Down Teleportation Using the time Module</text>
+</navLabel>
+<content src="xhtml/ch02.xhtml#ch02lev1sec03"/>
+<navPoint id="i53" playOrder="53">
+<navLabel>
+<text>Mission #3: Teleportation Tour</text>
+</navLabel>
+<content src="xhtml/ch02.xhtml#ch02lev2sec08"/>
+</navPoint>
+</navPoint>
+<navPoint id="i54" playOrder="54">
+<navLabel>
+<text>Debugging</text>
+</navLabel>
+<content src="xhtml/ch02.xhtml#ch02lev1sec04"/>
+<navPoint id="i55" playOrder="55">
+<navLabel>
+<text>Mission #4: Fix the Buggy Teleportation</text>
+</navLabel>
+<content src="xhtml/ch02.xhtml#ch02lev2sec09"/>
+</navPoint>
+</navPoint>
+<navPoint id="i56" playOrder="56">
+<navLabel>
+<text>What You Learned</text>
+</navLabel>
+<content src="xhtml/ch02.xhtml#ch02lev1sec05"/>
+</navPoint>
+</navPoint>
+<navPoint id="i57" playOrder="57">
+<navLabel>
+<text>Chapter 3: Building Quickly and Traveling Far with Math</text>
+</navLabel>
+<content src="xhtml/ch03.xhtml"/>
+<navPoint id="i58" playOrder="58">
+<navLabel>
+<text>Expressions and Statements</text>
+</navLabel>
+<content src="xhtml/ch03.xhtml#ch03lev1sec01"/>
+</navPoint>
+<navPoint id="i59" playOrder="59">
+<navLabel>
+<text>Operators</text>
+</navLabel>
+<content src="xhtml/ch03.xhtml#ch03lev1sec02"/>
+<navPoint id="i60" playOrder="60">
+<navLabel>
+<text>Addition</text>
+</navLabel>
+<content src="xhtml/ch03.xhtml#ch03lev2sec01"/>
+</navPoint>
+<navPoint id="i61" playOrder="61">
+<navLabel>
+<text>Mission #5: Stack Blocks</text>
+</navLabel>
+<content src="xhtml/ch03.xhtml#ch03lev2sec02"/>
+</navPoint>
+<navPoint id="i62" playOrder="62">
+<navLabel>
+<text>Mission #6: Super Jump</text>
+</navLabel>
+<content src="xhtml/ch03.xhtml#ch03lev2sec03"/>
+</navPoint>
+<navPoint id="i63" playOrder="63">
+<navLabel>
+<text>Subtraction</text>
+</navLabel>
+<content src="xhtml/ch03.xhtml#ch03lev2sec04"/>
+</navPoint>
+<navPoint id="i64" playOrder="64">
+<navLabel>
+<text>Mission #7: Change the Blocks Under You</text>
+</navLabel>
+<content src="xhtml/ch03.xhtml#ch03lev2sec05"/>
+</navPoint>
+<navPoint id="i65" playOrder="65">
+<navLabel>
+<text>Using Math Operators in Arguments</text>
+</navLabel>
+<content src="xhtml/ch03.xhtml#ch03lev2sec06"/>
+</navPoint>
+<navPoint id="i66" playOrder="66">
+<navLabel>
+<text>Mission #8: Speed Building</text>
+</navLabel>
+<content src="xhtml/ch03.xhtml#ch03lev2sec07"/>
+</navPoint>
+<navPoint id="i67" playOrder="67">
+<navLabel>
+<text>Multiplication</text>
+</navLabel>
+<content src="xhtml/ch03.xhtml#ch03lev2sec08"/>
+</navPoint>
+<navPoint id="i68" playOrder="68">
+<navLabel>
+<text>Division</text>
+</navLabel>
+<content src="xhtml/ch03.xhtml#ch03lev2sec09"/>
+</navPoint>
+<navPoint id="i69" playOrder="69">
+<navLabel>
+<text>Mission #9: Spectacular Spires</text>
+</navLabel>
+<content src="xhtml/ch03.xhtml#ch03lev2sec10"/>
+</navPoint>
+</navPoint>
+<navPoint id="i70" playOrder="70">
+<navLabel>
+<text>Exponents</text>
+</navLabel>
+<content src="xhtml/ch03.xhtml#ch03lev1sec03"/>
+</navPoint>
+<navPoint id="i71" playOrder="71">
+<navLabel>
+<text>Parentheses and Order of Operations</text>
+</navLabel>
+<content src="xhtml/ch03.xhtml#ch03lev1sec04"/>
+</navPoint>
+<navPoint id="i72" playOrder="72">
+<navLabel>
+<text>Handy Math Tricks</text>
+</navLabel>
+<content src="xhtml/ch03.xhtml#ch03lev1sec05"/>
+<navPoint id="i73" playOrder="73">
+<navLabel>
+<text>Shorthand Operators</text>
+</navLabel>
+<content src="xhtml/ch03.xhtml#ch03lev2sec11"/>
+</navPoint>
+<navPoint id="i74" playOrder="74">
+<navLabel>
+<text>Playing with Random Numbers</text>
+</navLabel>
+<content src="xhtml/ch03.xhtml#ch03lev2sec12"/>
+</navPoint>
+<navPoint id="i75" playOrder="75">
+<navLabel>
+<text>Mission #10: Super Jump Somewhere New!</text>
+</navLabel>
+<content src="xhtml/ch03.xhtml#ch03lev2sec13"/>
+</navPoint>
+</navPoint>
+<navPoint id="i76" playOrder="76">
+<navLabel>
+<text>What You Learned</text>
+</navLabel>
+<content src="xhtml/ch03.xhtml#ch03lev1sec06"/>
+</navPoint>
+</navPoint>
+<navPoint id="i77" playOrder="77">
+<navLabel>
+<text>Chapter 4: Chatting with Strings</text>
+</navLabel>
+<content src="xhtml/ch04.xhtml"/>
+<navPoint id="i78" playOrder="78">
+<navLabel>
+<text>What Are Strings?</text>
+</navLabel>
+<content src="xhtml/ch04.xhtml#ch04lev1sec01"/>
+</navPoint>
+<navPoint id="i79" playOrder="79">
+<navLabel>
+<text>The print() Function</text>
+</navLabel>
+<content src="xhtml/ch04.xhtml#ch04lev1sec02"/>
+<navPoint id="i80" playOrder="80">
+<navLabel>
+<text>Mission #11: Hello, Minecraft World</text>
+</navLabel>
+<content src="xhtml/ch04.xhtml#ch04lev2sec01"/>
+</navPoint>
+</navPoint>
+<navPoint id="i81" playOrder="81">
+<navLabel>
+<text>The input() Function</text>
+</navLabel>
+<content src="xhtml/ch04.xhtml#ch04lev1sec03"/>
+<navPoint id="i82" playOrder="82">
+<navLabel>
+<text>Mission #12: Write Your Own Chat Message</text>
+</navLabel>
+<content src="xhtml/ch04.xhtml#ch04lev2sec02"/>
+</navPoint>
+</navPoint>
+<navPoint id="i83" playOrder="83">
+<navLabel>
+<text>Joining Strings</text>
+</navLabel>
+<content src="xhtml/ch04.xhtml#ch04lev1sec04"/>
+<navPoint id="i84" playOrder="84">
+<navLabel>
+<text>Converting Numbers to Strings</text>
+</navLabel>
+<content src="xhtml/ch04.xhtml#ch04lev2sec03"/>
+</navPoint>
+<navPoint id="i85" playOrder="85">
+<navLabel>
+<text>Concatenating Integers and Floats</text>
+</navLabel>
+<content src="xhtml/ch04.xhtml#ch04lev2sec04"/>
+</navPoint>
+<navPoint id="i86" playOrder="86">
+<navLabel>
+<text>Mission #13: Add Usernames to Chat</text>
+</navLabel>
+<content src="xhtml/ch04.xhtml#ch04lev2sec05"/>
+</navPoint>
+</navPoint>
+<navPoint id="i87" playOrder="87">
+<navLabel>
+<text>Converting Strings to Integers with int()</text>
+</navLabel>
+<content src="xhtml/ch04.xhtml#ch04lev1sec05"/>
+<navPoint id="i88" playOrder="88">
+<navLabel>
+<text>Mission #14: Create a Block with Input</text>
+</navLabel>
+<content src="xhtml/ch04.xhtml#ch04lev2sec06"/>
+</navPoint>
+</navPoint>
+<navPoint id="i89" playOrder="89">
+<navLabel>
+<text>Bounce Back from Errors</text>
+</navLabel>
+<content src="xhtml/ch04.xhtml#ch04lev1sec06"/>
+<navPoint id="i90" playOrder="90">
+<navLabel>
+<text>Mission #15: Only Numbers Allowed</text>
+</navLabel>
+<content src="xhtml/ch04.xhtml#ch04lev2sec07"/>
+</navPoint>
+<navPoint id="i91" playOrder="91">
+<navLabel>
+<text>Mission #16: Sprint Record</text>
+</navLabel>
+<content src="xhtml/ch04.xhtml#ch04lev2sec08"/>
+</navPoint>
+</navPoint>
+<navPoint id="i92" playOrder="92">
+<navLabel>
+<text>What You Learned</text>
+</navLabel>
+<content src="xhtml/ch04.xhtml#ch04lev1sec07"/>
+</navPoint>
+</navPoint>
+<navPoint id="i93" playOrder="93">
+<navLabel>
+<text>Chapter 5: Figuring Out What&#8217;s True and False with Booleans</text>
+</navLabel>
+<content src="xhtml/ch05.xhtml"/>
+<navPoint id="i94" playOrder="94">
+<navLabel>
+<text>Boolean Basics</text>
+</navLabel>
+<content src="xhtml/ch05.xhtml#ch05lev1sec01"/>
+<navPoint id="i95" playOrder="95">
+<navLabel>
+<text>Mission #17: Stop Smashing Blocks!</text>
+</navLabel>
+<content src="xhtml/ch05.xhtml#ch05lev2sec01"/>
+</navPoint>
+</navPoint>
+<navPoint id="i96" playOrder="96">
+<navLabel>
+<text>Concatenating Booleans</text>
+</navLabel>
+<content src="xhtml/ch05.xhtml#ch05lev1sec02"/>
+</navPoint>
+<navPoint id="i97" playOrder="97">
+<navLabel>
+<text>Comparators</text>
+</navLabel>
+<content src="xhtml/ch05.xhtml#ch05lev1sec03"/>
+<navPoint id="i98" playOrder="98">
+<navLabel>
+<text>Equal To</text>
+</navLabel>
+<content src="xhtml/ch05.xhtml#ch05lev2sec02"/>
+</navPoint>
+<navPoint id="i99" playOrder="99">
+<navLabel>
+<text>Mission #18: Am I Swimming?</text>
+</navLabel>
+<content src="xhtml/ch05.xhtml#ch05lev2sec03"/>
+</navPoint>
+<navPoint id="i100" playOrder="100">
+<navLabel>
+<text>Not Equal To</text>
+</navLabel>
+<content src="xhtml/ch05.xhtml#ch05lev2sec04"/>
+</navPoint>
+<navPoint id="i101" playOrder="101">
+<navLabel>
+<text>Mission #19: Am I Standing in Something Other Than Air?</text>
+</navLabel>
+<content src="xhtml/ch05.xhtml#ch05lev2sec05"/>
+</navPoint>
+<navPoint id="i102" playOrder="102">
+<navLabel>
+<text>Greater Than and Less Than</text>
+</navLabel>
+<content src="xhtml/ch05.xhtml#ch05lev2sec06"/>
+</navPoint>
+<navPoint id="i103" playOrder="103">
+<navLabel>
+<text>Greater Than or Equal To and Less Than or Equal To</text>
+</navLabel>
+<content src="xhtml/ch05.xhtml#ch05lev2sec07"/>
+</navPoint>
+<navPoint id="i104" playOrder="104">
+<navLabel>
+<text>Mission #20: Am I Above the Ground?</text>
+</navLabel>
+<content src="xhtml/ch05.xhtml#ch05lev2sec08"/>
+</navPoint>
+<navPoint id="i105" playOrder="105">
+<navLabel>
+<text>Mission #21: Am I Close to Home?</text>
+</navLabel>
+<content src="xhtml/ch05.xhtml#ch05lev2sec09"/>
+</navPoint>
+</navPoint>
+<navPoint id="i106" playOrder="106">
+<navLabel>
+<text>Logical Operators</text>
+</navLabel>
+<content src="xhtml/ch05.xhtml#ch05lev1sec04"/>
+<navPoint id="i107" playOrder="107">
+<navLabel>
+<text>and</text>
+</navLabel>
+<content src="xhtml/ch05.xhtml#ch05lev2sec10"/>
+</navPoint>
+<navPoint id="i108" playOrder="108">
+<navLabel>
+<text>Mission #22: Am I Entirely Underwater?</text>
+</navLabel>
+<content src="xhtml/ch05.xhtml#ch05lev2sec11"/>
+</navPoint>
+<navPoint id="i109" playOrder="109">
+<navLabel>
+<text>or</text>
+</navLabel>
+<content src="xhtml/ch05.xhtml#ch05lev2sec12"/>
+</navPoint>
+<navPoint id="i110" playOrder="110">
+<navLabel>
+<text>Mission #23: Am I in a Tree?</text>
+</navLabel>
+<content src="xhtml/ch05.xhtml#ch05lev2sec13"/>
+</navPoint>
+<navPoint id="i111" playOrder="111">
+<navLabel>
+<text>not</text>
+</navLabel>
+<content src="xhtml/ch05.xhtml#ch05lev2sec14"/>
+</navPoint>
+<navPoint id="i112" playOrder="112">
+<navLabel>
+<text>Mission #24: Is This Block Not a Melon?</text>
+</navLabel>
+<content src="xhtml/ch05.xhtml#ch05lev2sec15"/>
+</navPoint>
+<navPoint id="i113" playOrder="113">
+<navLabel>
+<text>Logical Operator Order</text>
+</navLabel>
+<content src="xhtml/ch05.xhtml#ch05lev2sec16"/>
+</navPoint>
+<navPoint id="i114" playOrder="114">
+<navLabel>
+<text>Is My Number Between Two Others?</text>
+</navLabel>
+<content src="xhtml/ch05.xhtml#ch05lev2sec17"/>
+</navPoint>
+<navPoint id="i115" playOrder="115">
+<navLabel>
+<text>Mission #25: Am I in the House?</text>
+</navLabel>
+<content src="xhtml/ch05.xhtml#ch05lev2sec18"/>
+</navPoint>
+</navPoint>
+<navPoint id="i116" playOrder="116">
+<navLabel>
+<text>What You Learned</text>
+</navLabel>
+<content src="xhtml/ch05.xhtml#ch05lev1sec05"/>
+</navPoint>
+</navPoint>
+<navPoint id="i117" playOrder="117">
+<navLabel>
+<text>Chapter 6: Making Mini-Games with if Statements</text>
+</navLabel>
+<content src="xhtml/ch06.xhtml"/>
+<navPoint id="i118" playOrder="118">
+<navLabel>
+<text>Using if Statements</text>
+</navLabel>
+<content src="xhtml/ch06.xhtml#ch06lev1sec01"/>
+<navPoint id="i119" playOrder="119">
+<navLabel>
+<text>Mission #26: Blast a Crater</text>
+</navLabel>
+<content src="xhtml/ch06.xhtml#ch06lev2sec01"/>
+</navPoint>
+<navPoint id="i120" playOrder="120">
+<navLabel>
+<text>else Statements</text>
+</navLabel>
+<content src="xhtml/ch06.xhtml#ch06lev2sec02"/>
+</navPoint>
+<navPoint id="i121" playOrder="121">
+<navLabel>
+<text>Mission #27: Prevent Smashing, or Not</text>
+</navLabel>
+<content src="xhtml/ch06.xhtml#ch06lev2sec03"/>
+</navPoint>
+<navPoint id="i122" playOrder="122">
+<navLabel>
+<text>elif Statements</text>
+</navLabel>
+<content src="xhtml/ch06.xhtml#ch06lev2sec04"/>
+</navPoint>
+<navPoint id="i123" playOrder="123">
+<navLabel>
+<text>Mission #28: Offer a Gift</text>
+</navLabel>
+<content src="xhtml/ch06.xhtml#ch06lev2sec05"/>
+</navPoint>
+<navPoint id="i124" playOrder="124">
+<navLabel>
+<text>Chaining Together elif Statements</text>
+</navLabel>
+<content src="xhtml/ch06.xhtml#ch06lev2sec06"/>
+</navPoint>
+<navPoint id="i125" playOrder="125">
+<navLabel>
+<text>Mission #29: Teleport to the Right Place</text>
+</navLabel>
+<content src="xhtml/ch06.xhtml#ch06lev2sec07"/>
+</navPoint>
+<navPoint id="i126" playOrder="126">
+<navLabel>
+<text>Nested if Statements</text>
+</navLabel>
+<content src="xhtml/ch06.xhtml#ch06lev2sec08"/>
+</navPoint>
+<navPoint id="i127" playOrder="127">
+<navLabel>
+<text>Mission #30: Open a Secret Passage</text>
+</navLabel>
+<content src="xhtml/ch06.xhtml#ch06lev2sec09"/>
+</navPoint>
+</navPoint>
+<navPoint id="i128" playOrder="128">
+<navLabel>
+<text>Using if Statements to Test a Range of Values</text>
+</navLabel>
+<content src="xhtml/ch06.xhtml#ch06lev1sec02"/>
+<navPoint id="i129" playOrder="129">
+<navLabel>
+<text>Mission #31: Restrict Teleport Locations</text>
+</navLabel>
+<content src="xhtml/ch06.xhtml#ch06lev2sec10"/>
+</navPoint>
+</navPoint>
+<navPoint id="i130" playOrder="130">
+<navLabel>
+<text>Boolean Operators and if Statements</text>
+</navLabel>
+<content src="xhtml/ch06.xhtml#ch06lev1sec03"/>
+<navPoint id="i131" playOrder="131">
+<navLabel>
+<text>Mission #32: Take a Shower</text>
+</navLabel>
+<content src="xhtml/ch06.xhtml#ch06lev2sec11"/>
+</navPoint>
+</navPoint>
+<navPoint id="i132" playOrder="132">
+<navLabel>
+<text>What You Learned</text>
+</navLabel>
+<content src="xhtml/ch06.xhtml#ch06lev1sec04"/>
+</navPoint>
+</navPoint>
+<navPoint id="i133" playOrder="133">
+<navLabel>
+<text>Chapter 7: Dance Parties and Flower Parades with while Loops</text>
+</navLabel>
+<content src="xhtml/ch07.xhtml"/>
+<navPoint id="i134" playOrder="134">
+<navLabel>
+<text>A Simple while Loop</text>
+</navLabel>
+<content src="xhtml/ch07.xhtml#ch07lev1sec01"/>
+<navPoint id="i135" playOrder="135">
+<navLabel>
+<text>Mission #33: A Random Teleportation Tour</text>
+</navLabel>
+<content src="xhtml/ch07.xhtml#ch07lev2sec01"/>
+</navPoint>
+</navPoint>
+<navPoint id="i136" playOrder="136">
+<navLabel>
+<text>Controlling Loops with a Count Variable</text>
+</navLabel>
+<content src="xhtml/ch07.xhtml#ch07lev1sec02"/>
+<navPoint id="i137" playOrder="137">
+<navLabel>
+<text>Mission #34: The Watery Curse</text>
+</navLabel>
+<content src="xhtml/ch07.xhtml#ch07lev2sec02"/>
+</navPoint>
+<navPoint id="i138" playOrder="138">
+<navLabel>
+<text>Infinite while Loops</text>
+</navLabel>
+<content src="xhtml/ch07.xhtml#ch07lev2sec03"/>
+</navPoint>
+<navPoint id="i139" playOrder="139">
+<navLabel>
+<text>Mission #35: Flower Trail</text>
+</navLabel>
+<content src="xhtml/ch07.xhtml#ch07lev2sec04"/>
+</navPoint>
+</navPoint>
+<navPoint id="i140" playOrder="140">
+<navLabel>
+<text>Fancy Conditions</text>
+</navLabel>
+<content src="xhtml/ch07.xhtml#ch07lev1sec03"/>
+<navPoint id="i141" playOrder="141">
+<navLabel>
+<text>Mission #36: Diving Contest</text>
+</navLabel>
+<content src="xhtml/ch07.xhtml#ch07lev2sec05"/>
+</navPoint>
+<navPoint id="i142" playOrder="142">
+<navLabel>
+<text>Boolean Operators and while Loops</text>
+</navLabel>
+<content src="xhtml/ch07.xhtml#ch07lev2sec06"/>
+</navPoint>
+<navPoint id="i143" playOrder="143">
+<navLabel>
+<text>Checking a Range of Values in while Loops</text>
+</navLabel>
+<content src="xhtml/ch07.xhtml#ch07lev2sec07"/>
+</navPoint>
+<navPoint id="i144" playOrder="144">
+<navLabel>
+<text>Mission #37: Make a Dance Floor</text>
+</navLabel>
+<content src="xhtml/ch07.xhtml#ch07lev2sec08"/>
+</navPoint>
+<navPoint id="i145" playOrder="145">
+<navLabel>
+<text>Nested if Statements and while Loops</text>
+</navLabel>
+<content src="xhtml/ch07.xhtml#ch07lev2sec09"/>
+</navPoint>
+<navPoint id="i146" playOrder="146">
+<navLabel>
+<text>Mission #38: The Midas Touch</text>
+</navLabel>
+<content src="xhtml/ch07.xhtml#ch07lev2sec10"/>
+</navPoint>
+</navPoint>
+<navPoint id="i147" playOrder="147">
+<navLabel>
+<text>Ending a while Loop with break</text>
+</navLabel>
+<content src="xhtml/ch07.xhtml#ch07lev1sec04"/>
+<navPoint id="i148" playOrder="148">
+<navLabel>
+<text>Mission #39: Create a Persistent Chat with a Loop</text>
+</navLabel>
+<content src="xhtml/ch07.xhtml#ch07lev2sec11"/>
+</navPoint>
+<navPoint id="i149" playOrder="149">
+<navLabel>
+<text>while-else Statements</text>
+</navLabel>
+<content src="xhtml/ch07.xhtml#ch07lev2sec12"/>
+</navPoint>
+<navPoint id="i150" playOrder="150">
+<navLabel>
+<text>Mission #40: Hot and Cold</text>
+</navLabel>
+<content src="xhtml/ch07.xhtml#ch07lev2sec13"/>
+</navPoint>
+</navPoint>
+<navPoint id="i151" playOrder="151">
+<navLabel>
+<text>What You Learned</text>
+</navLabel>
+<content src="xhtml/ch07.xhtml#ch07lev1sec05"/>
+</navPoint>
+</navPoint>
+<navPoint id="i152" playOrder="152">
+<navLabel>
+<text>Chapter 8: Functions Give You Superpowers</text>
+</navLabel>
+<content src="xhtml/ch08.xhtml"/>
+<navPoint id="i153" playOrder="153">
+<navLabel>
+<text>Defining Your Own Functions</text>
+</navLabel>
+<content src="xhtml/ch08.xhtml#ch08lev1sec01"/>
+<navPoint id="i154" playOrder="154">
+<navLabel>
+<text>Calling a Function</text>
+</navLabel>
+<content src="xhtml/ch08.xhtml#ch08lev2sec01"/>
+</navPoint>
+<navPoint id="i155" playOrder="155">
+<navLabel>
+<text>Functions Take Arguments</text>
+</navLabel>
+<content src="xhtml/ch08.xhtml#ch08lev2sec02"/>
+</navPoint>
+<navPoint id="i156" playOrder="156">
+<navLabel>
+<text>Mission #41: Build a Forest</text>
+</navLabel>
+<content src="xhtml/ch08.xhtml#ch08lev2sec03"/>
+</navPoint>
+<navPoint id="i157" playOrder="157">
+<navLabel>
+<text>Refactoring a Program</text>
+</navLabel>
+<content src="xhtml/ch08.xhtml#ch08lev2sec04"/>
+</navPoint>
+<navPoint id="i158" playOrder="158">
+<navLabel>
+<text>Mission #42: Refactor Away</text>
+</navLabel>
+<content src="xhtml/ch08.xhtml#ch08lev2sec05"/>
+</navPoint>
+<navPoint id="i159" playOrder="159">
+<navLabel>
+<text>Commenting with Docstrings</text>
+</navLabel>
+<content src="xhtml/ch08.xhtml#ch08lev2sec06"/>
+</navPoint>
+<navPoint id="i160" playOrder="160">
+<navLabel>
+<text>Line Breaks in Arguments</text>
+</navLabel>
+<content src="xhtml/ch08.xhtml#ch08lev2sec07"/>
+</navPoint>
+<navPoint id="i161" playOrder="161">
+<navLabel>
+<text>Function Return Values</text>
+</navLabel>
+<content src="xhtml/ch08.xhtml#ch08lev2sec08"/>
+</navPoint>
+<navPoint id="i162" playOrder="162">
+<navLabel>
+<text>Mission #43: Block ID Reminder</text>
+</navLabel>
+<content src="xhtml/ch08.xhtml#ch08lev2sec09"/>
+</navPoint>
+</navPoint>
+<navPoint id="i163" playOrder="163">
+<navLabel>
+<text>Using if Statements and while Loops in Functions</text>
+</navLabel>
+<content src="xhtml/ch08.xhtml#ch08lev1sec02"/>
+<navPoint id="i164" playOrder="164">
+<navLabel>
+<text>if Statements</text>
+</navLabel>
+<content src="xhtml/ch08.xhtml#ch08lev2sec10"/>
+</navPoint>
+<navPoint id="i165" playOrder="165">
+<navLabel>
+<text>Mission #44: Wool Color Helper</text>
+</navLabel>
+<content src="xhtml/ch08.xhtml#ch08lev2sec11"/>
+</navPoint>
+<navPoint id="i166" playOrder="166">
+<navLabel>
+<text>while Loops</text>
+</navLabel>
+<content src="xhtml/ch08.xhtml#ch08lev2sec12"/>
+</navPoint>
+<navPoint id="i167" playOrder="167">
+<navLabel>
+<text>Mission #45: Blocks, Everywhere</text>
+</navLabel>
+<content src="xhtml/ch08.xhtml#ch08lev2sec13"/>
+</navPoint>
+</navPoint>
+<navPoint id="i168" playOrder="168">
+<navLabel>
+<text>Global and Local Variables</text>
+</navLabel>
+<content src="xhtml/ch08.xhtml#ch08lev1sec03"/>
+<navPoint id="i169" playOrder="169">
+<navLabel>
+<text>Mission #46: A Moving Block</text>
+</navLabel>
+<content src="xhtml/ch08.xhtml#ch08lev2sec14"/>
+</navPoint>
+</navPoint>
+<navPoint id="i170" playOrder="170">
+<navLabel>
+<text>What You Learned</text>
+</navLabel>
+<content src="xhtml/ch08.xhtml#ch08lev1sec04"/>
+</navPoint>
+</navPoint>
+<navPoint id="i171" playOrder="171">
+<navLabel>
+<text>Chapter 9: Hitting Things with Lists and Dictionaries</text>
+</navLabel>
+<content src="xhtml/ch09.xhtml"/>
+<navPoint id="i172" playOrder="172">
+<navLabel>
+<text>Using Lists</text>
+</navLabel>
+<content src="xhtml/ch09.xhtml#ch09lev1sec01"/>
+<navPoint id="i173" playOrder="173">
+<navLabel>
+<text>Accessing a List Item</text>
+</navLabel>
+<content src="xhtml/ch09.xhtml#ch09lev2sec01"/>
+</navPoint>
+<navPoint id="i174" playOrder="174">
+<navLabel>
+<text>Changing a List Item</text>
+</navLabel>
+<content src="xhtml/ch09.xhtml#ch09lev2sec02"/>
+</navPoint>
+<navPoint id="i175" playOrder="175">
+<navLabel>
+<text>Mission #47: High and Low</text>
+</navLabel>
+<content src="xhtml/ch09.xhtml#ch09lev2sec03"/>
+</navPoint>
+</navPoint>
+<navPoint id="i176" playOrder="176">
+<navLabel>
+<text>Manipulating Lists</text>
+</navLabel>
+<content src="xhtml/ch09.xhtml#ch09lev1sec02"/>
+<navPoint id="i177" playOrder="177">
+<navLabel>
+<text>Adding an Item</text>
+</navLabel>
+<content src="xhtml/ch09.xhtml#ch09lev2sec04"/>
+</navPoint>
+<navPoint id="i178" playOrder="178">
+<navLabel>
+<text>Inserting an Item</text>
+</navLabel>
+<content src="xhtml/ch09.xhtml#ch09lev2sec05"/>
+</navPoint>
+<navPoint id="i179" playOrder="179">
+<navLabel>
+<text>Deleting an Item</text>
+</navLabel>
+<content src="xhtml/ch09.xhtml#ch09lev2sec06"/>
+</navPoint>
+<navPoint id="i180" playOrder="180">
+<navLabel>
+<text>Mission #48: Progress Bar</text>
+</navLabel>
+<content src="xhtml/ch09.xhtml#ch09lev2sec07"/>
+</navPoint>
+</navPoint>
+<navPoint id="i181" playOrder="181">
+<navLabel>
+<text>Treating Strings Like Lists</text>
+</navLabel>
+<content src="xhtml/ch09.xhtml#ch09lev1sec03"/>
+</navPoint>
+<navPoint id="i182" playOrder="182">
+<navLabel>
+<text>Tuples</text>
+</navLabel>
+<content src="xhtml/ch09.xhtml#ch09lev1sec04"/>
+<navPoint id="i183" playOrder="183">
+<navLabel>
+<text>Setting Variables with Tuples</text>
+</navLabel>
+<content src="xhtml/ch09.xhtml#ch09lev2sec08"/>
+</navPoint>
+<navPoint id="i184" playOrder="184">
+<navLabel>
+<text>Mission #49: Sliding</text>
+</navLabel>
+<content src="xhtml/ch09.xhtml#ch09lev2sec09"/>
+</navPoint>
+<navPoint id="i185" playOrder="185">
+<navLabel>
+<text>Returning a Tuple</text>
+</navLabel>
+<content src="xhtml/ch09.xhtml#ch09lev2sec10"/>
+</navPoint>
+</navPoint>
+<navPoint id="i186" playOrder="186">
+<navLabel>
+<text>Other Useful Features of Lists</text>
+</navLabel>
+<content src="xhtml/ch09.xhtml#ch09lev1sec05"/>
+<navPoint id="i187" playOrder="187">
+<navLabel>
+<text>List Length</text>
+</navLabel>
+<content src="xhtml/ch09.xhtml#ch09lev2sec11"/>
+</navPoint>
+<navPoint id="i188" playOrder="188">
+<navLabel>
+<text>Mission #50: Block Hits</text>
+</navLabel>
+<content src="xhtml/ch09.xhtml#ch09lev2sec12"/>
+</navPoint>
+<navPoint id="i189" playOrder="189">
+<navLabel>
+<text>Randomly Choosing an Item</text>
+</navLabel>
+<content src="xhtml/ch09.xhtml#ch09lev2sec13"/>
+</navPoint>
+<navPoint id="i190" playOrder="190">
+<navLabel>
+<text>Mission #51: Random Block</text>
+</navLabel>
+<content src="xhtml/ch09.xhtml#ch09lev2sec14"/>
+</navPoint>
+<navPoint id="i191" playOrder="191">
+<navLabel>
+<text>Copying a List</text>
+</navLabel>
+<content src="xhtml/ch09.xhtml#ch09lev2sec15"/>
+</navPoint>
+<navPoint id="i192" playOrder="192">
+<navLabel>
+<text>Items and if Statements</text>
+</navLabel>
+<content src="xhtml/ch09.xhtml#ch09lev2sec16"/>
+</navPoint>
+<navPoint id="i193" playOrder="193">
+<navLabel>
+<text>Mission #52: Night Vision Sword</text>
+</navLabel>
+<content src="xhtml/ch09.xhtml#ch09lev2sec17"/>
+</navPoint>
+</navPoint>
+<navPoint id="i194" playOrder="194">
+<navLabel>
+<text>Dictionaries</text>
+</navLabel>
+<content src="xhtml/ch09.xhtml#ch09lev1sec06"/>
+<navPoint id="i195" playOrder="195">
+<navLabel>
+<text>Defining a Dictionary</text>
+</navLabel>
+<content src="xhtml/ch09.xhtml#ch09lev2sec18"/>
+</navPoint>
+<navPoint id="i196" playOrder="196">
+<navLabel>
+<text>Accessing Items in Dictionaries</text>
+</navLabel>
+<content src="xhtml/ch09.xhtml#ch09lev2sec19"/>
+</navPoint>
+<navPoint id="i197" playOrder="197">
+<navLabel>
+<text>Mission #53: Sightseeing Guide</text>
+</navLabel>
+<content src="xhtml/ch09.xhtml#ch09lev2sec20"/>
+</navPoint>
+<navPoint id="i198" playOrder="198">
+<navLabel>
+<text>Changing or Adding an Item in a Dictionary</text>
+</navLabel>
+<content src="xhtml/ch09.xhtml#ch09lev2sec21"/>
+</navPoint>
+<navPoint id="i199" playOrder="199">
+<navLabel>
+<text>Deleting Items in Dictionaries</text>
+</navLabel>
+<content src="xhtml/ch09.xhtml#ch09lev2sec22"/>
+</navPoint>
+<navPoint id="i200" playOrder="200">
+<navLabel>
+<text>Mission #54: Block Hits Score</text>
+</navLabel>
+<content src="xhtml/ch09.xhtml#ch09lev2sec23"/>
+</navPoint>
+</navPoint>
+<navPoint id="i201" playOrder="201">
+<navLabel>
+<text>What You Learned</text>
+</navLabel>
+<content src="xhtml/ch09.xhtml#ch09lev1sec07"/>
+</navPoint>
+</navPoint>
+<navPoint id="i202" playOrder="202">
+<navLabel>
+<text>Chapter 10: Minecraft Magic with for Loops</text>
+</navLabel>
+<content src="xhtml/ch10.xhtml"/>
+<navPoint id="i203" playOrder="203">
+<navLabel>
+<text>A Simple for Loop</text>
+</navLabel>
+<content src="xhtml/ch10.xhtml#ch10lev1sec01"/>
+<navPoint id="i204" playOrder="204">
+<navLabel>
+<text>Mission #55: Magic Wand</text>
+</navLabel>
+<content src="xhtml/ch10.xhtml#ch10lev2sec01"/>
+</navPoint>
+<navPoint id="i205" playOrder="205">
+<navLabel>
+<text>The range() function</text>
+</navLabel>
+<content src="xhtml/ch10.xhtml#ch10lev2sec02"/>
+</navPoint>
+<navPoint id="i206" playOrder="206">
+<navLabel>
+<text>Mission #56: Magic Stairs</text>
+</navLabel>
+<content src="xhtml/ch10.xhtml#ch10lev2sec03"/>
+</navPoint>
+<navPoint id="i207" playOrder="207">
+<navLabel>
+<text>Playing Around with range()</text>
+</navLabel>
+<content src="xhtml/ch10.xhtml#ch10lev2sec04"/>
+</navPoint>
+</navPoint>
+<navPoint id="i208" playOrder="208">
+<navLabel>
+<text>Other List Functions</text>
+</navLabel>
+<content src="xhtml/ch10.xhtml#ch10lev1sec02"/>
+<navPoint id="i209" playOrder="209">
+<navLabel>
+<text>Mission #57: Pillars</text>
+</navLabel>
+<content src="xhtml/ch10.xhtml#ch10lev2sec05"/>
+</navPoint>
+<navPoint id="i210" playOrder="210">
+<navLabel>
+<text>Mission #58: Pyramid</text>
+</navLabel>
+<content src="xhtml/ch10.xhtml#ch10lev2sec06"/>
+</navPoint>
+</navPoint>
+<navPoint id="i211" playOrder="211">
+<navLabel>
+<text>Looping Over a Dictionary</text>
+</navLabel>
+<content src="xhtml/ch10.xhtml#ch10lev1sec03"/>
+<navPoint id="i212" playOrder="212">
+<navLabel>
+<text>Mission #59: Scoreboard</text>
+</navLabel>
+<content src="xhtml/ch10.xhtml#ch10lev2sec07"/>
+</navPoint>
+</navPoint>
+<navPoint id="i213" playOrder="213">
+<navLabel>
+<text>for-else Loops</text>
+</navLabel>
+<content src="xhtml/ch10.xhtml#ch10lev1sec04"/>
+<navPoint id="i214" playOrder="214">
+<navLabel>
+<text>Breaking a for-else Loop</text>
+</navLabel>
+<content src="xhtml/ch10.xhtml#ch10lev2sec08"/>
+</navPoint>
+<navPoint id="i215" playOrder="215">
+<navLabel>
+<text>Mission #60: The Diamond Prospector</text>
+</navLabel>
+<content src="xhtml/ch10.xhtml#ch10lev2sec09"/>
+</navPoint>
+</navPoint>
+<navPoint id="i216" playOrder="216">
+<navLabel>
+<text>Nested for Loops and Multidimensional Lists</text>
+</navLabel>
+<content src="xhtml/ch10.xhtml#ch10lev1sec05"/>
+<navPoint id="i217" playOrder="217">
+<navLabel>
+<text>Thinking in Two Dimensions</text>
+</navLabel>
+<content src="xhtml/ch10.xhtml#ch10lev2sec10"/>
+</navPoint>
+<navPoint id="i218" playOrder="218">
+<navLabel>
+<text>Accessing Values in 2D Lists</text>
+</navLabel>
+<content src="xhtml/ch10.xhtml#ch10lev2sec11"/>
+</navPoint>
+<navPoint id="i219" playOrder="219">
+<navLabel>
+<text>Mission #61: Pixel Art</text>
+</navLabel>
+<content src="xhtml/ch10.xhtml#ch10lev2sec12"/>
+</navPoint>
+<navPoint id="i220" playOrder="220">
+<navLabel>
+<text>Generating 2D Lists with Loops</text>
+</navLabel>
+<content src="xhtml/ch10.xhtml#ch10lev2sec13"/>
+</navPoint>
+<navPoint id="i221" playOrder="221">
+<navLabel>
+<text>Mission #62: A Weather-Worn Wall</text>
+</navLabel>
+<content src="xhtml/ch10.xhtml#ch10lev2sec14"/>
+</navPoint>
+<navPoint id="i222" playOrder="222">
+<navLabel>
+<text>Thinking in Three Dimensions</text>
+</navLabel>
+<content src="xhtml/ch10.xhtml#ch10lev2sec15"/>
+</navPoint>
+<navPoint id="i223" playOrder="223">
+<navLabel>
+<text>Outputting 3D Lists</text>
+</navLabel>
+<content src="xhtml/ch10.xhtml#ch10lev2sec16"/>
+</navPoint>
+<navPoint id="i224" playOrder="224">
+<navLabel>
+<text>Accessing Values in 3D Lists</text>
+</navLabel>
+<content src="xhtml/ch10.xhtml#ch10lev2sec17"/>
+</navPoint>
+<navPoint id="i225" playOrder="225">
+<navLabel>
+<text>Mission #63: Duplicate a Building</text>
+</navLabel>
+<content src="xhtml/ch10.xhtml#ch10lev2sec18"/>
+</navPoint>
+</navPoint>
+<navPoint id="i226" playOrder="226">
+<navLabel>
+<text>What You Learned</text>
+</navLabel>
+<content src="xhtml/ch10.xhtml#ch10lev1sec06"/>
+</navPoint>
+</navPoint>
+<navPoint id="i227" playOrder="227">
+<navLabel>
+<text>Chapter 11: Saving and Loading Buildings with Files and Modules</text>
+</navLabel>
+<content src="xhtml/ch11.xhtml"/>
+<navPoint id="i228" playOrder="228">
+<navLabel>
+<text>Using Files</text>
+</navLabel>
+<content src="xhtml/ch11.xhtml#ch11lev1sec01"/>
+<navPoint id="i229" playOrder="229">
+<navLabel>
+<text>Opening a File</text>
+</navLabel>
+<content src="xhtml/ch11.xhtml#ch11lev2sec01"/>
+</navPoint>
+<navPoint id="i230" playOrder="230">
+<navLabel>
+<text>Writing to and Saving a File</text>
+</navLabel>
+<content src="xhtml/ch11.xhtml#ch11lev2sec02"/>
+</navPoint>
+<navPoint id="i231" playOrder="231">
+<navLabel>
+<text>Reading a File</text>
+</navLabel>
+<content src="xhtml/ch11.xhtml#ch11lev2sec03"/>
+</navPoint>
+<navPoint id="i232" playOrder="232">
+<navLabel>
+<text>Reading a Line of a File</text>
+</navLabel>
+<content src="xhtml/ch11.xhtml#ch11lev2sec04"/>
+</navPoint>
+<navPoint id="i233" playOrder="233">
+<navLabel>
+<text>Mission #64: To-Do List</text>
+</navLabel>
+<content src="xhtml/ch11.xhtml#ch11lev2sec05"/>
+</navPoint>
+<navPoint id="i234" playOrder="234">
+<navLabel>
+<text>Part 1: Writing the To-Do List</text>
+</navLabel>
+<content src="xhtml/ch11.xhtml#ch11lev2sec06"/>
+</navPoint>
+<navPoint id="i235" playOrder="235">
+<navLabel>
+<text>Part 2: Displaying the To-Do List</text>
+</navLabel>
+<content src="xhtml/ch11.xhtml#ch11lev2sec07"/>
+</navPoint>
+</navPoint>
+<navPoint id="i236" playOrder="236">
+<navLabel>
+<text>Using Modules</text>
+</navLabel>
+<content src="xhtml/ch11.xhtml#ch11lev1sec02"/>
+<navPoint id="i237" playOrder="237">
+<navLabel>
+<text>The pickle Module</text>
+</navLabel>
+<content src="xhtml/ch11.xhtml#ch11lev2sec08"/>
+</navPoint>
+<navPoint id="i238" playOrder="238">
+<navLabel>
+<text>Importing pickle</text>
+</navLabel>
+<content src="xhtml/ch11.xhtml#ch11lev2sec09"/>
+</navPoint>
+<navPoint id="i239" playOrder="239">
+<navLabel>
+<text>Importing One Function with the from Clause</text>
+</navLabel>
+<content src="xhtml/ch11.xhtml#ch11lev2sec10"/>
+</navPoint>
+<navPoint id="i240" playOrder="240">
+<navLabel>
+<text>Importing All Functions with *</text>
+</navLabel>
+<content src="xhtml/ch11.xhtml#ch11lev2sec11"/>
+</navPoint>
+<navPoint id="i241" playOrder="241">
+<navLabel>
+<text>Giving a Module a Nickname</text>
+</navLabel>
+<content src="xhtml/ch11.xhtml#ch11lev2sec12"/>
+</navPoint>
+<navPoint id="i242" playOrder="242">
+<navLabel>
+<text>Mission #65: Save a Building</text>
+</navLabel>
+<content src="xhtml/ch11.xhtml#ch11lev2sec13"/>
+</navPoint>
+<navPoint id="i243" playOrder="243">
+<navLabel>
+<text>Part 1: Saving the Building</text>
+</navLabel>
+<content src="xhtml/ch11.xhtml#ch11lev2sec14"/>
+</navPoint>
+<navPoint id="i244" playOrder="244">
+<navLabel>
+<text>Part 2: Loading the Building</text>
+</navLabel>
+<content src="xhtml/ch11.xhtml#ch11lev2sec15"/>
+</navPoint>
+</navPoint>
+<navPoint id="i245" playOrder="245">
+<navLabel>
+<text>Storing Lots of Data with the shelve Module</text>
+</navLabel>
+<content src="xhtml/ch11.xhtml#ch11lev1sec03"/>
+<navPoint id="i246" playOrder="246">
+<navLabel>
+<text>Opening a File with shelve</text>
+</navLabel>
+<content src="xhtml/ch11.xhtml#ch11lev2sec16"/>
+</navPoint>
+<navPoint id="i247" playOrder="247">
+<navLabel>
+<text>Adding, Modifying, and Accessing Items with shelve</text>
+</navLabel>
+<content src="xhtml/ch11.xhtml#ch11lev2sec17"/>
+</navPoint>
+<navPoint id="i248" playOrder="248">
+<navLabel>
+<text>Mission #66: Save a Collection of Structures</text>
+</navLabel>
+<content src="xhtml/ch11.xhtml#ch11lev2sec18"/>
+</navPoint>
+<navPoint id="i249" playOrder="249">
+<navLabel>
+<text>Part 1: Saving a Structure to a Collection</text>
+</navLabel>
+<content src="xhtml/ch11.xhtml#ch11lev2sec19"/>
+</navPoint>
+<navPoint id="i250" playOrder="250">
+<navLabel>
+<text>Part 2: Loading a Structure from a Collection</text>
+</navLabel>
+<content src="xhtml/ch11.xhtml#ch11lev2sec20"/>
+</navPoint>
+</navPoint>
+<navPoint id="i251" playOrder="251">
+<navLabel>
+<text>Installing New Modules with pip</text>
+</navLabel>
+<content src="xhtml/ch11.xhtml#ch11lev1sec04"/>
+<navPoint id="i252" playOrder="252">
+<navLabel>
+<text>Using pip on Windows</text>
+</navLabel>
+<content src="xhtml/ch11.xhtml#ch11lev2sec21"/>
+</navPoint>
+<navPoint id="i253" playOrder="253">
+<navLabel>
+<text>Using pip on a Mac or Raspberry Pi</text>
+</navLabel>
+<content src="xhtml/ch11.xhtml#ch11lev2sec22"/>
+</navPoint>
+</navPoint>
+<navPoint id="i254" playOrder="254">
+<navLabel>
+<text>Using a Module from pip: Flask</text>
+</navLabel>
+<content src="xhtml/ch11.xhtml#ch11lev1sec05"/>
+<navPoint id="i255" playOrder="255">
+<navLabel>
+<text>Mission #67: Position Website</text>
+</navLabel>
+<content src="xhtml/ch11.xhtml#ch11lev2sec23"/>
+</navPoint>
+</navPoint>
+<navPoint id="i256" playOrder="256">
+<navLabel>
+<text>What You Learned</text>
+</navLabel>
+<content src="xhtml/ch11.xhtml#ch11lev1sec06"/>
+</navPoint>
+</navPoint>
+<navPoint id="i257" playOrder="257">
+<navLabel>
+<text>Chapter 12: Getting Classy with Object-Oriented Programming</text>
+</navLabel>
+<content src="xhtml/ch12.xhtml"/>
+<navPoint id="i258" playOrder="258">
+<navLabel>
+<text>Object-Oriented Basics</text>
+</navLabel>
+<content src="xhtml/ch12.xhtml#ch12lev1sec01"/>
+</navPoint>
+<navPoint id="i259" playOrder="259">
+<navLabel>
+<text>Creating a Class</text>
+</navLabel>
+<content src="xhtml/ch12.xhtml#ch12lev1sec02"/>
+<navPoint id="i260" playOrder="260">
+<navLabel>
+<text>Creating an Object</text>
+</navLabel>
+<content src="xhtml/ch12.xhtml#ch12lev2sec01"/>
+</navPoint>
+<navPoint id="i261" playOrder="261">
+<navLabel>
+<text>Accessing Attributes</text>
+</navLabel>
+<content src="xhtml/ch12.xhtml#ch12lev2sec02"/>
+</navPoint>
+<navPoint id="i262" playOrder="262">
+<navLabel>
+<text>Mission #68: Location Objects</text>
+</navLabel>
+<content src="xhtml/ch12.xhtml#ch12lev2sec03"/>
+</navPoint>
+</navPoint>
+<navPoint id="i263" playOrder="263">
+<navLabel>
+<text>Understanding Methods</text>
+</navLabel>
+<content src="xhtml/ch12.xhtml#ch12lev1sec03"/>
+<navPoint id="i264" playOrder="264">
+<navLabel>
+<text>Mission #69: Ghost House</text>
+</navLabel>
+<content src="xhtml/ch12.xhtml#ch12lev2sec04"/>
+</navPoint>
+</navPoint>
+<navPoint id="i265" playOrder="265">
+<navLabel>
+<text>Returning Values with Methods</text>
+</navLabel>
+<content src="xhtml/ch12.xhtml#ch12lev1sec04"/>
+<navPoint id="i266" playOrder="266">
+<navLabel>
+<text>Mission #70: Ghost Castle</text>
+</navLabel>
+<content src="xhtml/ch12.xhtml#ch12lev2sec05"/>
+</navPoint>
+</navPoint>
+<navPoint id="i267" playOrder="267">
+<navLabel>
+<text>Creating Multiple Objects</text>
+</navLabel>
+<content src="xhtml/ch12.xhtml#ch12lev1sec05"/>
+<navPoint id="i268" playOrder="268">
+<navLabel>
+<text>Mission #71: Ghost Town</text>
+</navLabel>
+<content src="xhtml/ch12.xhtml#ch12lev2sec06"/>
+</navPoint>
+</navPoint>
+<navPoint id="i269" playOrder="269">
+<navLabel>
+<text>Class Attributes</text>
+</navLabel>
+<content src="xhtml/ch12.xhtml#ch12lev1sec06"/>
+</navPoint>
+<navPoint id="i270" playOrder="270">
+<navLabel>
+<text>Understanding Inheritance</text>
+</navLabel>
+<content src="xhtml/ch12.xhtml#ch12lev1sec07"/>
+<navPoint id="i271" playOrder="271">
+<navLabel>
+<text>Inheriting a Class</text>
+</navLabel>
+<content src="xhtml/ch12.xhtml#ch12lev2sec07"/>
+</navPoint>
+<navPoint id="i272" playOrder="272">
+<navLabel>
+<text>Adding New Methods to Subclasses</text>
+</navLabel>
+<content src="xhtml/ch12.xhtml#ch12lev2sec08"/>
+</navPoint>
+<navPoint id="i273" playOrder="273">
+<navLabel>
+<text>Mission #72: Ghost Hotel</text>
+</navLabel>
+<content src="xhtml/ch12.xhtml#ch12lev2sec09"/>
+</navPoint>
+</navPoint>
+<navPoint id="i274" playOrder="274">
+<navLabel>
+<text>Overriding Methods and Attributes</text>
+</navLabel>
+<content src="xhtml/ch12.xhtml#ch12lev1sec08"/>
+<navPoint id="i275" playOrder="275">
+<navLabel>
+<text>Mission #73: Ghost Tree</text>
+</navLabel>
+<content src="xhtml/ch12.xhtml#ch12lev2sec10"/>
+</navPoint>
+</navPoint>
+<navPoint id="i276" playOrder="276">
+<navLabel>
+<text>What You Learned</text>
+</navLabel>
+<content src="xhtml/ch12.xhtml#ch12lev1sec09"/>
+</navPoint>
+</navPoint>
+<navPoint id="i277" playOrder="277">
+<navLabel>
+<text>Afterword</text>
+</navLabel>
+<content src="xhtml/app01.xhtml"/>
+</navPoint>
+<navPoint id="i278" playOrder="278">
+<navLabel>
+<text>Troubleshooting</text>
+</navLabel>
+<content src="xhtml/app02.xhtml"/>
+<navPoint id="i279" playOrder="279">
+<navLabel>
+<text>Pick the Right Minecraft Version</text>
+</navLabel>
+<content src="xhtml/app02.xhtml#app02lev1sec01"/>
+<navPoint id="i280" playOrder="280">
+<navLabel>
+<text>For Windows</text>
+</navLabel>
+<content src="xhtml/app02.xhtml#app02lev2sec01"/>
+</navPoint>
+<navPoint id="i281" playOrder="281">
+<navLabel>
+<text>For Mac</text>
+</navLabel>
+<content src="xhtml/app02.xhtml#app02lev2sec02"/>
+</navPoint>
+</navPoint>
+<navPoint id="i282" playOrder="282">
+<navLabel>
+<text>Am I Using the Right Version of Python?</text>
+</navLabel>
+<content src="xhtml/app02.xhtml#app02lev1sec02"/>
+<navPoint id="i283" playOrder="283">
+<navLabel>
+<text>For Windows</text>
+</navLabel>
+<content src="xhtml/app02.xhtml#app02lev2sec03"/>
+</navPoint>
+<navPoint id="i284" playOrder="284">
+<navLabel>
+<text>For Mac</text>
+</navLabel>
+<content src="xhtml/app02.xhtml#app02lev2sec04"/>
+</navPoint>
+</navPoint>
+<navPoint id="i285" playOrder="285">
+<navLabel>
+<text>Am I Using the Right Version of Java?</text>
+</navLabel>
+<content src="xhtml/app02.xhtml#app02lev1sec03"/>
+<navPoint id="i286" playOrder="286">
+<navLabel>
+<text>For Windows</text>
+</navLabel>
+<content src="xhtml/app02.xhtml#app02lev2sec05"/>
+</navPoint>
+<navPoint id="i287" playOrder="287">
+<navLabel>
+<text>For Mac</text>
+</navLabel>
+<content src="xhtml/app02.xhtml#app02lev2sec06"/>
+</navPoint>
+</navPoint>
+<navPoint id="i288" playOrder="288">
+<navLabel>
+<text>What If I Have Two Versions of Python on My Computer?</text>
+</navLabel>
+<content src="xhtml/app02.xhtml#app02lev1sec04"/>
+<navPoint id="i289" playOrder="289">
+<navLabel>
+<text>For Windows</text>
+</navLabel>
+<content src="xhtml/app02.xhtml#app02lev2sec07"/>
+</navPoint>
+<navPoint id="i290" playOrder="290">
+<navLabel>
+<text>For Mac</text>
+</navLabel>
+<content src="xhtml/app02.xhtml#app02lev2sec08"/>
+</navPoint>
+</navPoint>
+<navPoint id="i291" playOrder="291">
+<navLabel>
+<text>Start_Server, File Cannot Be Found (For Windows)</text>
+</navLabel>
+<content src="xhtml/app02.xhtml#app02lev1sec05"/>
+</navPoint>
+<navPoint id="i292" playOrder="292">
+<navLabel>
+<text>Connection Refused Error (For Mac)</text>
+</navLabel>
+<content src="xhtml/app02.xhtml#app02lev1sec06"/>
+</navPoint>
+<navPoint id="i293" playOrder="293">
+<navLabel>
+<text>Nothing Happens After I Click Install_API (For Windows)</text>
+</navLabel>
+<content src="xhtml/app02.xhtml#app02lev1sec07"/>
+</navPoint>
+<navPoint id="i294" playOrder="294">
+<navLabel>
+<text>Permissions Error When Installing API (For Mac)</text>
+</navLabel>
+<content src="xhtml/app02.xhtml#app02lev1sec08"/>
+</navPoint>
+<navPoint id="i295" playOrder="295">
+<navLabel>
+<text>I Got a Different Error!</text>
+</navLabel>
+<content src="xhtml/app02.xhtml#app02lev1sec09"/>
+</navPoint>
+</navPoint>
+<navPoint id="i296" playOrder="296">
+<navLabel>
+<text>Block ID Cheat Sheet</text>
+</navLabel>
+<content src="xhtml/app03.xhtml"/>
+</navPoint>
+<navPoint id="i297" playOrder="297">
+<navLabel>
+<text>Index</text>
+</navLabel>
+<content src="xhtml/index.xhtml"/>
+</navPoint>
+<navPoint id="i298" playOrder="298">
+<navLabel>
+<text>More Smart Books for Curious Kids!</text>
+</navLabel>
+<content src="xhtml/back01.xhtml"/>
+</navPoint>
+<navPoint id="i299" playOrder="299">
+<navLabel>
+<text>Resources</text>
+</navLabel>
+<content src="xhtml/back02.xhtml"/>
+</navPoint>
+<navPoint id="i300" playOrder="300">
+<navLabel>
+<text>A Blocky Introduction to Programming</text>
+</navLabel>
+<content src="xhtml/back03.xhtml"/>
+</navPoint>
+</navMap>
+</ncx>

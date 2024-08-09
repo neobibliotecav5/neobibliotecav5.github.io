@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c04-0003">Hacer algo después de un bucle for</h3>
+<p class="BodyFirst">¿Qué ocurre una vez que un bucle <code translate="no">for</code> ha terminado de ejecutarse? Normalmente, querrás resumir un bloque de salida o pasar a otro trabajo que tu programa deba realizar.</p>
+<p>Cualquier línea de código después del bucle <code translate="no">for</code> que no esté indentada se ejecuta una vez sin repetirse. Escribamos un mensaje de agradecimiento al grupo de magos en su conjunto, dándoles las gracias por haber ofrecido un espectáculo excelente. Para mostrar este mensaje de grupo después de que se hayan impreso todos los mensajes individuales, colocamos el mensaje de agradecimiento después del bucle <code translate="no">for</code>, sin sangría:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">magicians = ['alice', 'david', 'carolina']</span>
+<span class="LiteralGray">for magician in magicians:</span>
+<span class="LiteralGray">    print(f"{magician.title()}, that was a great trick!")</span>
+<span class="LiteralGray">    print(f"I can't wait to see your next trick, {magician.title()}.\n")</span>
+
+print("Thank you, everyone. That was a great magic show!")</code></pre>
+<p>Las dos primeras llamadas a <code translate="no">print()</code> se repiten una vez para cada mago de la lista, como has visto antes. Sin embargo, como la última línea no tiene sangría, sólo se imprime una vez:</p>
+<pre translate="no"><code translate="no">Alice, that was a great trick!
+I can't wait to see your next trick, Alice.
+
+David, that was a great trick!
+<span epub:type="pagebreak" id="Page_53" title="53"></span>I can't wait to see your next trick, David.
+
+Carolina, that was a great trick!
+I can't wait to see your next trick, Carolina.
+
+Thank you, everyone. That was a great magic show!</code></pre>
+<p>Cuando proceses datos utilizando un bucle <code translate="no">for</code>, verás que ésta es una buena forma de resumir una operación realizada en un conjunto de datos completo. Por ejemplo, puedes utilizar un bucle <code translate="no">for</code> para inicializar un juego recorriendo una lista de personajes y mostrando cada uno de ellos en la pantalla. Después de este bucle, puedes escribir código adicional que muestre un botón <em translate="no">Play Now</em> una vez que todos los personajes se hayan dibujado en la pantalla.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c04_4.html">anterior</a><a href="c04.html">Subtema 5 de 41: (Ver todo)</a><a href="c04_6.html">siguiente</a><br/></p>
+<br/><a href="c04_5.docx" target="_blank"></a></footer>
+</body>
+</html>

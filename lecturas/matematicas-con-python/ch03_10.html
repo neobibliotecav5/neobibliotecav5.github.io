@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<meta charset="utf-8"/>
+<title>Capítulo 3: Describir datos con estadísticas</title>
+<link href="style.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="core.css" media="all" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch03lev1sec09"><strong><span class="bordera">Retos de programación</span></strong></h3>
+<p class="noindent">A continuación, aplica lo que has aprendido para completar los siguientes retos de programación.</p>
+<h4 class="h4" id="ch03lev2sec10"><strong><em>#nº 1: Mejor programa de búsqueda de coeficientes de correlación</em></strong></h4>
+<p class="noindent">La función <span class="literal" translate="no">find_corr_x_y()</span> que escribimos antes para hallar el coeficiente de correlación entre dos conjuntos de números supone que los dos conjuntos de números tienen la misma longitud. Mejora la función para que compruebe primero la longitud de las listas. Si son iguales, sólo entonces la función debe proceder con los cálculos restantes; de lo contrario, debe imprimir un mensaje de error indicando que no se puede encontrar la correlación.</p>
+<h4 class="h4" id="ch03lev2sec11"><strong><em>#2: Calculadora estadística</em></strong></h4>
+<p class="noindent">Implementa una calculadora estadística que tome una lista de números del archivo <em>misdatos.txt</em> y luego calcule e imprima su media, mediana, moda, varianza y desviación típica utilizando las funciones que escribimos anteriormente en este capítulo.</p>
+<h4 class="h4" id="ch03lev2sec12"><strong><em>#3: Experimenta con otros datos CSV</em></strong></h4>
+<p class="noindent">Puedes experimentar con numerosas fuentes de datos interesantes disponibles gratuitamente en Internet. El sitio web <em><a href="http://www.quandl.com/">http://www.quandl.com/</a></em> es una de esas fuentes. Para este reto, descarga los siguientes datos como archivo CVS de <em><a href="http://www.quandl.com/WORLDBANK/USA_SP_POP_TOTL/">http://www.quandl.com/WORLDBANK/USA_SP_POP_TOTL/:</a></em> la población total de Estados Unidos al final de cada año para los años 1960 a 2012. A continuación, calcula la media, la mediana, la varianza y la desviación típica de la <em>diferencia</em> de población a lo largo de los años y crea un gráfico que muestre estas diferencias.</p>
+<h4 class="h4" id="ch03lev2sec13"><strong><em>#nº 4: Hallar el percentil</em></strong></h4>
+<p class="noindent">El percentil es una estadística de uso común que transmite el valor por debajo del cual cae un determinado porcentaje de observaciones. Por ejemplo, si un alumno obtuvo una puntuación percentil 95 en un examen, significa que el 95 por ciento de los alumnos obtuvieron una puntuación inferior o igual a la suya. Otro ejemplo: en la lista de números 5, 1, 9, 3, 14, 9 y 7, el percentil 50 es 7 y el percentil 25 es 3,5, un número que no está presente en la lista.</p>
+<p class="indent"><a id="page_90"></a>Hay varias formas de encontrar la observación correspondiente a un percentil determinado, pero aquí tienes un enfoque<a href="footnote.html#fn02" id="fn_02"><sup>.2</sup></a></p>
+<p class="indentb">Supongamos que queremos calcular la observación en el percentil <em>p</em>:</p>
+<p class="order">1. En orden ascendente, ordena la lista dada de números, que podríamos llamar <span class="literal" translate="no">data</span>.</p>
+<p class="order">2. Calcula</p>
+<div class="image2"><img alt="image" src="images/e0090-01.jpg" translate="no"/></div>
+<p class="orderp">donde <em>n</em> es el número de elementos de <span class="literal" translate="no">data</span>.</p>
+<p class="order">3. Si <em>i</em> es un número entero, <span class="literal" translate="no">data[i]</span> es el número correspondiente al percentil <em>p</em>.</p>
+<p class="order">4. Si <em>i</em> <em>no</em> es un número entero, establece <em>k</em> igual a la parte integral de <em>i</em> y <em>f</em> igual a la parte fraccionaria de <em>i</em>. El número <span class="literal" translate="no">(1-f)*data[k] + f*data[k+1]</span> es el número correspondiente al percentil <em>p</em>.</p>
+<p class="indentt">Utilizando este enfoque, escribe un programa que tome un conjunto de números en un archivo y muestre el número que corresponde a un percentil específico suministrado como entrada al programa.</p>
+<h4 class="h4" id="ch03lev2sec14"><strong><em>#5: Creación de una tabla de frecuencias agrupadas</em></strong></h4>
+<p class="noindent">Para este reto, tu tarea consiste en escribir un programa que cree una tabla de frecuencias agrupadas a partir de un conjunto de números. Una tabla de frecuencias agrupadas muestra la frecuencia de los datos clasificados en diferentes <em>clases</em>. Por ejemplo, consideremos las puntuaciones de las que hablamos en "<a href="ch03.html#ch03lev2sec03">Crear una</a>tabla de frecuencias" en <a href="ch03.html#page_69">la página 69</a>: 7, 8, 9, 2, 10, 9, 9, 9, 9, 4, 5, 6, 1, 5, 6, 7, 8, 6, 1 y 10. Una tabla de frecuencias agrupadas mostraría estos datos de la siguiente manera:</p>
+<table border="0" cellpadding="0" cellspacing="0" class="topbot" width="40%">
+<thead>
+<tr>
+<td class="table_th" valign="top"><p class="table"><strong>Curso</strong></p></td>
+<td class="table_th" valign="top"><p class="table"><strong>Frecuencia</strong></p></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="table" valign="top"><p class="table">1-6</p></td>
+<td class="table" valign="top"><p class="table">6</p></td>
+</tr>
+<tr>
+<td class="table" valign="top"><p class="table">6-11</p></td>
+<td class="table" valign="top"><p class="table">14</p></td>
+</tr>
+</tbody>
+</table>
+<p class="indent">La tabla clasifica los grados en dos clases: 1-6 (que incluye 1 pero no 6) y 6-11 (que incluye 6 pero no 11). Muestra frente a ellas el número de grados que pertenecen a cada categoría. Determinar el número de clases y el rango de números de cada clase son dos pasos clave para crear esta tabla. En este ejemplo, he mostrado dos clases con el rango de números de cada clase dividido a partes iguales entre las dos.</p>
+<p class="indent"><a id="page_91"></a>He aquí un enfoque sencillo para crear clases, que supone que el número de clases puede elegirse arbitrariamente:</p>
+<p class="programs" translate="no">def create_classes(numbers, n):<br translate="no"/>    low = min(numbers)<br translate="no"/>    high = max(numbers)<br translate="no"/><br translate="no"/>    # Width of each class<br translate="no"/>    width = (high - low)/n<br translate="no"/>    classes = []<br translate="no"/>    a = low<br translate="no"/>    b = low + width<br translate="no"/>    classes = []<br translate="no"/>    while a &lt; (high-width):<br translate="no"/>        classes.append((a, b))<br translate="no"/>        a = b<br translate="no"/>        b = a + width<br translate="no"/>    # The last class may be of a size that is less than width<br translate="no"/>    classes.append((a, high+1))<br translate="no"/>    return classes</p>
+<p class="indent">La función <span class="literal" translate="no">create_classes()</span> acepta dos argumentos: una lista de números, <span class="literal" translate="no">numbers</span>, y <span class="literal" translate="no">n</span>, el número de clases a crear. Devolverá una lista de tuplas en la que cada tupla representa una clase. Por ejemplo, si se llama con los números 7, 8, 9, 2, 10, 9, 9, 9, 9, 4, 5, 6, 1, 5, 6, 7, 8, 6, 1, 10, y <span class="literal" translate="no">n</span> = 4, devuelve la siguiente lista: [(1, 3.25), (3.25, 5.5), (5.5, 7.75), (7.75, 11)]. Una vez que tengas la lista, el siguiente paso es repasar cada uno de los números y averiguar a qué clase de las devueltas pertenece.</p>
+<p class="indent">Tu reto consiste en escribir un programa que lea una lista de números de un fichero y luego imprima la tabla de frecuencias agrupadas, haciendo uso de la función <span class="literal" translate="no">create_classes()</span>.<a id="page_92"></a></p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch03_9.html">anterior</a><a href="ch03.html">Subtema 10 de 10: (Ver todo)</a><br/></p>
+<br/><a href="ch03_10.docx" target="_blank"></a></footer>
+</body>
+</html>

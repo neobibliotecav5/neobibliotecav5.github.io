@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h2 id="h1-502703b04-0012">Borrar el repositorio</h2>
+<p class="BodyFirst">A veces estropearás el historial de tu repositorio y no sabrás cómo recuperarlo. Si esto ocurre, primero considera la posibilidad de pedir ayuda utilizando los métodos comentados en <span class="xref" itemid="xref_target_Appendix C">el Apéndice C</span>. Si no puedes arreglarlo y estás trabajando en un proyecto en solitario, puedes seguir trabajando con los archivos pero deshacerte del historial del proyecto borrando el directorio <em translate="no">.git</em>. Esto no afectará al estado actual de ninguno de los archivos, pero borrará todos los commits, por lo que no podrás consultar ningún otro estado del proyecto.</p>
+<p>Para ello, abre un explorador de archivos y borra el repositorio <em translate="no">.git</em> o bórralo desde la línea de comandos. Después, tendrás que empezar de nuevo con un repositorio nuevo para empezar a seguir tus cambios de nuevo. Este es el aspecto de todo este proceso en una sesión de terminal:</p>
+<pre translate="no"><code translate="no"><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> git_practice$ <b>git status</b>
+On branch main
+nothing to commit, working directory clean
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> git_practice$ <b>rm -rf .git/</b>
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> git_practice$ <b>git status</b>
+fatal: Not a git repository (or any of the parent directories): .git
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> git_practice$ <b>git init</b>
+Initialized empty Git repository in git_practice/.git/
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span> git_practice$ <b>git status</b>
+On branch main
+No commits yet
+
+Untracked files:
+  (use "git add &lt;file&gt;..." to include in what will be committed)
+      .gitignore
+      hello_git.py
+
+nothing added to commit but untracked files present (use "git add" to track)
+<span aria-label="annotation6" class="CodeAnnotationHang">❻</span> git_practice$ <b>git add .</b>
+git_practice$ <b>git commit -m "Starting over."</b>
+[main (root-commit) 14ed9db] Starting over.
+ 2 files changed, 5 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 hello_git.py
+<span aria-label="annotation7" class="CodeAnnotationHang">❼</span> git_practice$ <b>git status</b>
+On branch main
+nothing to commit, working tree clean
+git_practice$</code></pre>
+<p>Primero comprobamos el estado y vemos que tenemos un directorio de trabajo limpio <span aria-label="annotation1" class="CodeAnnotation">❶.</span> A continuación, utilizamos el comando <code translate="no">rm -rf .git/</code> para borrar el directorio <em translate="no">.git</em> (<code translate="no">del .git</code> en Windows) <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Cuando comprobamos el estado después de borrar la carpeta <em translate="no">.git</em> <span epub:type="pagebreak" id="Page_492" title="492"></span> , nos dice que no es un repositorio Git <span aria-label="annotation3" class="CodeAnnotation">❸.</span> Toda la información que Git utiliza para rastrear un repositorio se almacena en la carpeta <em translate="no">.git</em>, por lo que al eliminarla se elimina todo el repositorio.</p>
+<p>Entonces podemos utilizar <code translate="no">git init</code> para iniciar un repositorio nuevo <span aria-label="annotation4" class="CodeAnnotation">❹.</span> Comprobar el estado muestra que estamos de nuevo en la fase inicial, a la espera de la primera confirmación <span aria-label="annotation5" class="CodeAnnotation">❺.</span> Añadimos los archivos y hacemos la primera confirmación <span aria-label="annotation6" class="CodeAnnotation">❻.</span> Comprobar el estado nos muestra ahora que estamos en la nueva rama <code translate="no">main</code> sin nada que confirmar <span aria-label="annotation7" class="CodeAnnotation">❼.</span></p>
+<p>Utilizar el control de versiones requiere un poco de práctica, pero una vez que empieces a usarlo, nunca querrás volver a trabajar sin él.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="b04_15.html">anterior</a><a href="b04.html">Subtema 16 de 16: (Ver todo)</a><br/></p>
+<br/><a href="b04_16.docx" target="_blank"></a></footer>
+</body>
+</html>

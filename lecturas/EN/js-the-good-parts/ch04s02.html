@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Function Literal</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Function Literal"><div class="titlepage"><div><div><h1 class="title"><a id="function_literal"/>Function Literal</h1></div></div></div><p>Function objects are created with function literals:<a id="IDX-CHP-4-0185" class="indexterm"/></p><a id="I_programlisting4_d1e2415"/><pre class="programlisting">// Create a variable called add and store a function
+// in it that adds two numbers.
+
+var add = <strong class="userinput"><code>function (a, b) {</code></strong>
+<span class="strong"><strong>    return a + b;</strong></span>
+<span class="strong"><strong>};</strong></span></pre><p>A function literal has four parts. The first part is the reserved word <code class="literal">function</code>.</p><p>The optional second part is the function's name. The function can use its name to
+                call itself recursively. The name can also be used by debuggers and development
+                tools to identify the function. If a function is not given a name, as shown in the
+                previous example, it is said to be <span class="emphasis"><em>anonymous</em></span>.</p><p>The third part is the set of parameters of the function, wrapped in parentheses.
+                Within the parentheses is a set of zero or more parameter names, separated by
+                commas. These names will be defined as variables in the function. Unlike ordinary
+                variables, instead of being initialized to <code class="literal">undefined</code>, they will be initialized to the arguments supplied when
+                the function is invoked.</p><p>The fourth part is a set of statements wrapped in curly braces. These statements
+                are the body of the function. They are executed when the function is invoked.</p><p>A function literal can appear anywhere that an expression can appear. Functions
+                can be defined inside of other functions. An inner function of course has access to
+                its parameters and variables. An inner function also enjoys access to the parameters
+                and variables of the functions it is nested within. The function object created by a
+                function literal contains a link to that outer context. This is called
+                    <span class="emphasis"><em>closure</em></span>. This is the source of enormous expressive
+                power.</p></div></body></html>

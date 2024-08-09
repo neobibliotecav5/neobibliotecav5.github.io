@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c12-0012">Ajustar la velocidad de la nave</h3>
+<p class="BodyFirst">Actualmente, la nave se mueve un píxel por ciclo a través del bucle <code translate="no">while</code>, pero podemos tener un control más preciso de la velocidad de la nave añadiendo un atributo <code translate="no">ship_speed</code> a la clase <code translate="no">Settings</code>. Utilizaremos este atributo para determinar la distancia que debe recorrer la nave en cada pasada por el bucle. Aquí tienes el nuevo atributo en <em translate="no">settings.py</em>:</p>
+<p class="CodeLabel" translate="no"><b>settings.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">class Settings:</span>
+<span class="LiteralGray">    """A class to store all settings for Alien Invasion."""</span>
+
+<span class="LiteralGray">    def __init__(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+
+        # Ship settings
+        self.ship_speed = 1.5</code></pre>
+<p>Fijamos el valor inicial de <code translate="no">ship_speed</code> en <code translate="no">1.5</code>. Cuando la nave se mueve ahora, su posición se ajusta 1,5 píxeles (en lugar de 1 píxel) en cada pasada por el bucle.</p>
+<p>Estamos utilizando un flotador para el ajuste de velocidad, para tener un control más preciso de la velocidad de la nave cuando aumentemos el ritmo del juego más adelante. Sin embargo, los atributos de <code translate="no">rect</code> como <code translate="no">x</code> sólo almacenan valores enteros, así que tenemos que hacer algunas modificaciones en <code translate="no">Ship</code>:</p>
+<p class="CodeLabel" translate="no"><b>ship.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">class Ship:</span>
+<span class="LiteralGray">    """A class to manage the ship."""</span>
+
+    <span class="LiteralGray">def __init__(self, ai_game):</span>
+<span class="LiteralGray">        """Initialize the ship and set its starting position."""</span>
+<span class="LiteralGray">        self.screen = ai_game.screen</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         self.settings = ai_game.settings
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+
+<span class="LiteralGray">        # Start each new ship at the bottom center of the screen.</span>
+<span class="LiteralGray">        </span><span class="LiteralGray">self.rect.midbottom = self.screen_rect.midbottom</span>
+
+        # Store a float for the ship's exact horizontal position.
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         self.x = float(self.rect.x)
+
+<span class="LiteralGray">        # Movement flags; start with a ship that's not moving.</span>
+<span class="LiteralGray">        self.moving_right = False</span>
+<span class="LiteralGray">        self.moving_left = False</span>
+
+<span class="LiteralGray">    def update(self):</span>
+<span class="LiteralGray">        """Update the ship's position based on movement flags."""</span>
+<span class="LiteralGray"> </span>       # Update the ship's x value, not the rect.
+<span class="LiteralGray">        if self.moving_right:</span>
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>             self.x += self.settings.ship_speed
+<span epub:type="pagebreak" id="Page_243" title="243"></span><span class="LiteralGray">        if self.moving_left:</span>
+            self.x -= self.settings.ship_speed
+
+        # Update rect object from self.x.
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>         self.rect.x = self.x
+
+<span class="LiteralGray">    def blitme(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic" translate="no">--snip--</em></code></pre>
+<p>Creamos un atributo <code translate="no">settings</code> para <code translate="no">Ship</code>, de modo que podamos utilizarlo en <code translate="no">update()</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Como estamos ajustando la posición de la nave en fracciones de píxel, necesitamos asignar la posición a una variable a la que se le pueda asignar un flotador. Puedes utilizar un flotador para ajustar un atributo de <code translate="no">rect</code>, pero <code translate="no">rect</code> sólo conservará la parte entera de ese valor. Para hacer un seguimiento preciso de la posición del barco, definimos un nuevo <code translate="no">self.x</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Utilizamos la función <code translate="no">float()</code> para convertir el valor de <code translate="no">self.rect.x</code> en un flotador y asignamos este valor a <code translate="no">self.x</code>.</p>
+<p>Ahora, cuando cambiamos la posición del barco en <code translate="no">update()</code>, el valor de <code translate="no">self.x</code> se ajusta en la cantidad almacenada en <code translate="no">settings.ship_speed</code> <span aria-label="annotation3" class="CodeAnnotation">❸.</span> Una vez actualizado <code translate="no">self.x</code>, utilizamos el nuevo valor para actualizar <code translate="no">self.rect.x</code>, que controla la posición del barco <span aria-label="annotation4" class="CodeAnnotation">❹.</span> Sólo la parte entera de <code translate="no">self.x</code> se asignará a <code translate="no">self.rect.x</code>, pero eso está bien para mostrar la nave.</p>
+<p>Ahora podemos cambiar el valor de <code translate="no">ship_speed</code>, y cualquier valor mayor que 1 hará que la nave se mueva más rápido. Esto ayudará a que la nave responda con suficiente rapidez para derribar alienígenas, y nos permitirá cambiar el tempo del juego a medida que el jugador progresa en la partida.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c12_22.html">anterior</a><a href="c12.html">Subtema 23 de 43: (Ver todo)</a><a href="c12_24.html">siguiente</a><br/></p>
+<br/><a href="c12_23.docx" target="_blank"></a></footer>
+</body>
+</html>

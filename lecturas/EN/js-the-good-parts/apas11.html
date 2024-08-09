@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Phony Arrays</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Phony Arrays"><div class="titlepage"><div><div><h1 class="title"><a id="phony_arrays"/>Phony Arrays</h1></div></div></div><p>JavaScript does not have real arrays. That isn't all bad. JavaScript's arrays are
+                really easy to use. There is no need to give them a dimension, and they never
+                generate out-of-bounds errors. But their performance can be considerably worse than
+                real arrays.<a id="IDX-APP-A-0523" class="indexterm"/><a id="IDX-APP-A-0524" class="indexterm"/></p><p>The <code class="literal">typeof</code> operator does not distinguish
+                between arrays and objects. To determine that a value is an array, you also need to
+                consult its constructor property:</p><a id="I_programlisting_d1e8542"/><pre class="programlisting">if (Object.prototype.toString.apply(my_value) === '[object Array]'){
+   // my_value is truly an array!
+}</pre><p>That test will give a false negative if an array was created in a different frame
+                or window. This test is more reliable when the value might have been created in
+                another frame:</p><a id="I_programlisting_d1e8546"/><pre class="programlisting">if (my_value &amp;&amp; typeof my_value === 'object' &amp;&amp;
+        typeof my_value.length === 'number' &amp;&amp;
+        !(my_value.propertyIsEnumerable('length')) {
+    // my_value is truly an array!
+}</pre><p>The <code class="literal">arguments</code> array is not an array; it is an
+                object with a <code class="literal">length</code> member. These tests will not
+                identify the arguments array as an array.</p></div></body></html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="app01lev1sec16">
+  De </h3>
+<p class="noindent">
+  Al importar un módulo, puedes importar sólo la parte que necesites utilizando la palabra clave <span class="literal1" translate="no">
+   from
+  </span>. Por ejemplo, el módulo <span class="literal1" translate="no">
+   turtle
+  </span>introducido en el <a class="calibre6" href="ch04.xhtml#ch04">Capítulo 4 </a>tiene una clase llamada <span class="literal1" translate="no">
+   Turtle
+  </span>, que utilizamos para crear un objeto <span class="literal1" translate="no">
+   Turtle
+  </span>(que incluye el lienzo sobre el que se mueve la tortuga). Así es como importamos todo el módulo <span class="literal1" translate="no">
+   turtle
+  </span>y luego utilizamos la clase <span class="literal1" translate="no">
+   Turtle
+  </span>: </p>
+<pre class="pre" translate="no"><span class="orange">import</span> turtle
+t = turtle.Turtle()
+</pre>
+<p class="indent">
+  También podrías importar la clase <span class="literal1" translate="no">
+   Turtle
+  </span>por sí sola, y luego utilizarla directamente (sin referirte en absoluto al módulo <span class="literal1" translate="no">
+   turtle
+  </span>): </p>
+<pre class="pre" translate="no"><span class="orange">from</span> turtle <span class="orange">import</span> Turtle
+t = Turtle()
+</pre>
+<p class="indent">
+<span id="page_290">
+</span>
+  Podrías hacer esto para que la próxima vez que mires la parte superior de ese programa, puedas ver todas las funciones y clases que estás utilizando (lo que resulta especialmente útil en programas más grandes que importan muchos módulos). Sin embargo, si decides hacer esto, no podrás utilizar las partes del módulo que no hayas importado. Por ejemplo, el módulo <span class="literal1" translate="no">
+   time
+  </span>tiene funciones llamadas <span class="literal1" translate="no">
+   localtime
+  </span>y <span class="literal1" translate="no">
+   gmtime
+  </span>, pero si importas sólo <span class="literal1" translate="no">
+   localtime
+  </span>y luego intentas utilizar <span class="literal1" translate="no">
+   gmtime
+  </span>, obtendrás un error: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">from</span> time <span class="orange">import</span> localtime
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(localtime())
+<span class="blue1">(2019, 1, 30, 20, 53, 42, 1, 30, 0)</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(gmtime())
+<span class="red">Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+NameError: name 'gmtime' is not defined</span>
+</pre>
+<p class="indent">
+  El mensaje de error <span class="literal1" translate="no">
+   name ’gmtime’ is not defined
+  </span>significa que Python no sabe nada de la función <span class="literal1" translate="no">
+   gmtime
+  </span>, porque no la has importado. </p>
+<p class="indent">
+  Si un módulo concreto tiene varias funciones que quieres utilizar, y no quieres referirte a ellas utilizando nombres de módulo (por ejemplo, <span class="literal1" translate="no">
+   time.localtime
+  </span>, o <span class="literal1" translate="no">
+   time.gmtime
+  </span>), puedes importar todo lo que hay en el módulo utilizando un asterisco ( <span class="literal1" translate="no">
+   *
+  </span>), de esta forma: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">from</span> time <span class="orange">import</span> *
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(localtime())
+<span class="blue1">(2021, 1, 30, 20, 57, 7, 1, 30, 0)</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(gmtime())
+<span class="blue1">(2021, 1, 30, 13, 57, 9, 1, 30, 0)</span>
+</pre>
+<p class="indent">
+  Este formulario importa todo del módulo <span class="literal1" translate="no">
+   time
+  </span>, y ahora puedes referirte a las funciones individuales por su nombre. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="app01_16.html">anterior</a><a href="app01.html">Subtema 17 de 33: (Ver todo)</a><a href="app01_18.html">siguiente</a><br/></p>
+<br/><a href="app01_17.docx" target="_blank"></a></footer>
+</body>
+</html>

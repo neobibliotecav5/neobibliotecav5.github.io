@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Using JSON Securely</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Using JSON Securely"><div class="titlepage"><div><div><h1 class="title"><a id="using_json_securely"/>Using JSON Securely</h1></div></div></div><p>JSON is particularly easy to use in web applications because JSON is JavaScript. A
+                JSON text can be turned into a useful data structure with the <code class="literal">eval</code> function:<a id="IDX-APP-E-0699" class="indexterm"/><a id="IDX-APP-E-0700" class="indexterm"/><a id="IDX-APP-E-0701" class="indexterm"/></p><a id="I_programlisting_d1e11235"/><pre class="programlisting">var myData = eval('(' + myJSONText + ')');</pre><p>(The concatenation of the parentheses around the JSON text is a workaround for an
+                ambiguity in JavaScript's grammar.)</p><p>The <code class="literal">eval</code> function has horrendous security
+                problems, however. Is it safe to use <code class="literal">eval</code> to
+                parse a JSON text? Currently, the best technique for obtaining data from a server in
+                a web browser is through <code class="literal">XMLHttpRequest</code>. <code class="literal">XMLHttpRequest</code> can obtain data only from the same
+                server that produced the HTML. <code class="literal">eval</code> ing text from
+                that server is no less secure than the original HTML. But, that assumes the server
+                is malicious. What if the server is simply incompetent?<a id="IDX-APP-E-0702" class="indexterm"/></p><p>An incompetent server might not do the JSON encoding correctly. If it builds JSON
+                texts by slapping together some strings rather than using a proper JSON encoder,
+                then it could unintentionally send dangerous material. If it acts as a proxy and
+                simply passes JSON text through without determining whether it is well formed, then
+                it could send dangerous material again.</p><p>The danger can be avoided by using the <code class="literal">JSON.parse</code> method instead of <code class="literal">eval</code>
+                (see <a class="ulink" href="http://www.JSON.org/json2.js">http://www.JSON.org/json2.js</a>). <code class="literal">JSON.parse</code> will throw an exception if the text contains anything
+                dangerous. It is recommended that you always use <code class="literal">JSON.parse</code> instead of <code class="literal">eval</code> to
+                defend against server incompetence. It is also good practice for the day when the
+                browser provides safe data access to other servers.</p><p>There is another danger in the interaction between external data and <code class="literal">innerHTML</code>. A common Ajax pattern is for the server to
+                send an HTML text fragment that gets assigned to the <code class="literal">innerHTML</code> property of an HTML element. This is a very bad practice.
+                If the HTML text contains a <code class="literal">&lt;script&gt;</code> tag or
+                its equivalent, then an evil script will run. This again could be due to server
+                incompetence.</p><p>What specifically is the danger? If an evil script gets to run on your page, it
+                gets access to all of the state and capabilities of the page. It can interact with
+                your server, and your server will not be able to distinguish the evil requests from
+                legitimate requests. The evil script has access to the global object, which gives it
+                access to all of the data in the application except for variables hidden in
+                closures. It has access to the document object, which gives it access to everything
+                that the user sees. It also gives the evil script the capability to dialog with the
+                user. The browser's location bar and all of the anti-phishing chrome will tell the
+                user that the dialog should be trusted. The document object also gives the evil
+                script access to the network, allowing it to load more evil scripts, or to probe for
+                sites within your firewall, or to send the secrets it has learned to any server in
+                the world.<a id="IDX-APP-E-0703" class="indexterm"/></p><p>This danger is a direct consequence of JavaScript's global object, which is far
+                and away the worst part of JavaScript's many bad parts. These dangers are not caused
+                by Ajax or JSON or <code class="literal">XMLHttpRequest</code> or Web 2.0
+                (whatever that is). These dangers have been in the browser since the introduction of
+                JavaScript, and will remain until JavaScript is replaced or repaired. Be
+                careful.</p></div></body></html>

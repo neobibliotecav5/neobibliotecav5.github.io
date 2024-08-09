@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c12-0010">Permitir el movimiento continuo</h3>
+<p class="BodyFirst">Cuando el jugador mantenga pulsada la tecla de flecha derecha, queremos que la nave siga moviéndose hasta que el jugador suelte la tecla. Haremos que el juego detecte un evento <code translate="no">pygame.KEYUP</code> para saber cuándo se suelta la tecla de la flecha derecha; luego utilizaremos los eventos <code translate="no">KEYDOWN</code> y <code translate="no">KEYUP</code> junto con una bandera llamada <code translate="no">moving_right</code> para implementar el movimiento continuo.</p>
+<p>Cuando la bandera <code translate="no">moving_right</code> sea <code translate="no">False</code>, la nave estará inmóvil. Cuando el jugador pulse la tecla de flecha derecha, pondremos la bandera a <code translate="no">True</code>, y cuando el jugador suelte la tecla, volveremos a poner la bandera a <code translate="no">False</code>.</p>
+<p>La clase <code translate="no">Ship</code> controla todos los atributos de la nave, así que le daremos un atributo llamado <code translate="no">moving_right</code> y un método <code translate="no">update()</code> para comprobar el estado de la bandera <code translate="no">moving_right</code>. El método <code translate="no">update()</code> cambiará la posición de la nave si la bandera se establece en <code translate="no">True</code>. Llamaremos a este método una vez en cada pasada por el bucle <code translate="no">while</code> para actualizar la posición de la nave.</p>
+<p>Estos son los cambios en <code translate="no">Ship</code>:</p>
+<p class="CodeLabel" translate="no"><b>ship.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">class Ship:</span>
+<span class="LiteralGray">    """A class to manage the ship."""</span>
+
+<span class="LiteralGray">    def __init__(self, ai_game):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">        # Start each new ship at the bottom center of the screen.</span>
+<span class="LiteralGray">        self.rect.midbottom = self.screen_rect.midbottom</span>
+
+<span epub:type="pagebreak" id="Page_240" title="240"></span>        # Movement flag; start with a ship that's not moving.
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         self.moving_right = False
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     def update(self):
+        """Update the ship's position based on the movement flag."""
+        if self.moving_right:
+            self.rect.x += 1
+
+<span class="LiteralGray">    def blitme(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic" translate="no">--snip--</em></code></pre>
+<p>Añadimos un atributo <code translate="no">self.moving_right</code> en el método <code translate="no">__init__()</code> y lo fijamos inicialmente en <code translate="no">False</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Después añadimos <code translate="no">update()</code>, que mueve el barco a la derecha si la bandera es <code translate="no">True</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> El método <code translate="no">update()</code> será llamado desde fuera de la clase, por lo que no se considera un método ayudante.</p>
+<p>Ahora tenemos que modificar <code translate="no">_check_events()</code> para que <code translate="no">moving_right</code> se convierta en <code translate="no">True</code> cuando se pulse la tecla de flecha derecha y en <code translate="no">False</code> cuando se suelte la tecla:</p>
+<p class="CodeLabel" translate="no"><b>alien_invasion.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    def _check_events(self):</span>
+<span class="LiteralGray">        """Respond to keypresses and mouse events."""</span>
+<span class="LiteralGray">        for event in pygame.event.get():</span>
+<span class="LiteralGray">            </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">            elif event.type == pygame.KEYDOWN:</span>
+<span class="LiteralGray">                if event.key == pygame.K_RIGHT:</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>                     self.ship.moving_right = True
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>             elif event.type == pygame.KEYUP:
+                if event.key == pygame.K_RIGHT:
+                    self.ship.moving_right = False</code></pre>
+<p>Aquí modificamos cómo responde el juego cuando el jugador pulsa la tecla de flecha derecha: en lugar de cambiar directamente la posición de la nave, nos limitamos a establecer <code translate="no">moving_right</code> en <code translate="no">True</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Luego añadimos un nuevo bloque <code translate="no">elif</code>, que responde a los eventos <code translate="no">KEYUP</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Cuando el jugador suelta la tecla de flecha derecha (<code translate="no">K_RIGHT</code>), establecemos <code translate="no">moving_right</code> en <code translate="no">False</code>.</p>
+<p>A continuación, modificamos el bucle <code translate="no">while</code> en <code translate="no">run_game()</code> para que llame al método <code translate="no">update()</code> de la nave en cada pasada por el bucle:</p>
+<p class="CodeLabel" translate="no"><b>alien_invasion.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">     def run_game(self):</span>
+<span class="LiteralGray">        """Start the main loop for the game."""</span>
+<span class="LiteralGray">        while True:</span>
+<span class="LiteralGray">            self._check_events()</span>
+<span class="LiteralGray">            </span>self.ship.update()
+<span class="LiteralGray">            self._update_screen()</span>
+<span class="LiteralGray">            self.clock.tick(60)</span></code></pre>
+<p>La posición de la nave se actualizará después de comprobar los eventos del teclado y antes de actualizar la pantalla. Esto permite que la posición de la nave se actualice en respuesta a la entrada del jugador y garantiza que la posición actualizada se utilizará al dibujar la nave en la pantalla.</p>
+<p>Cuando ejecutes <em translate="no">alien_invasion.py</em> y mantengas pulsada la tecla de flecha derecha, la nave debería moverse continuamente hacia la derecha hasta que sueltes la tecla.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c12_20.html">anterior</a><a href="c12.html">Subtema 21 de 43: (Ver todo)</a><a href="c12_22.html">siguiente</a><br/></p>
+<br/><a href="c12_21.docx" target="_blank"></a></footer>
+</body>
+</html>

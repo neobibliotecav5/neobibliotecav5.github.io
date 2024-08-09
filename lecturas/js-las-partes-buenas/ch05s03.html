@@ -1,0 +1,97 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Prototypal</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head><body><body><div class="sect1" title="Prototypal"><div class="titlepage"><div><div><h1 class="title"><a id="prototypal"></a>Prototípico</h1></div></div></div><p>En un patrón puramente prototípico, prescindimos de las clases. En su lugar, nos centramos en los objetos. La herencia prototípica es conceptualmente más sencilla que la herencia clásica: un objeto nuevo puede heredar las propiedades de un objeto antiguo. Esto quizá no te resulte familiar, pero es muy fácil de entender. Empiezas haciendo un objeto útil. Luego puedes hacer muchos más objetos que sean como ése. El proceso de clasificación de descomponer una aplicación en un conjunto de clases abstractas anidadas puede evitarse por completo.<a class="indexterm" id="IDX-CHP-5-0274"></a></p><p>Empecemos utilizando un literal de objeto para crear un objeto útil:</p><a id="I_programlisting5_d1e3889"></a><pre class="programlisting" translate="no">var myMammal = {
+    name : 'Herb the Mammal',
+    get_name : function (  ) {
+        return this.name;
+    },
+    says : function (  ) {
+        return this.saying || '';
+    }
+};</pre><p>Una vez que tengamos un objeto que nos guste, podemos hacer más instancias con el método <code class="literal" translate="no">Object.create</code> del <a class="xref" href="ch03.html" title="Chapter 3. Objects">Capítulo 3</a>. Luego podemos personalizar las nuevas instancias:</p><a id="I_programlisting5_d1e3898"></a><pre class="programlisting" translate="no">var myCat = Object.create(myMammal);
+myCat.name = 'Henrietta';
+myCat.saying = 'meow';
+myCat.purr = function (n) {
+    var i, s = '';
+    for (i = 0; i &lt; n; i += 1) {
+        if (s) {
+            s += '-';
+        }
+        s += 'r';
+    }
+    return s;
+};
+myCat.get_name = function (  ) {
+    return this.says() + ' ' + this.name + ' ' + this.says();
+};</pre><p>Esto es <span class="emphasis"><em translate="no">differential inheritance</em></span>. Al personalizar un nuevo objeto, especificamos las diferencias con el objeto en el que se basa.<a class="indexterm" id="IDX-CHP-5-0275"></a><a class="indexterm" id="IDX-CHP-5-0276"></a></p><p>A veces es útil que las estructuras de datos hereden de otras estructuras de datos. He aquí un ejemplo: Supongamos que estamos analizando un lenguaje como JavaScript o<sub>TEX</sub>en el que un par de llaves indica un ámbito. Los elementos definidos en un ámbito no son visibles fuera de él. En cierto sentido, un ámbito interno hereda de su ámbito externo. Los objetos de JavaScript representan muy bien esta relación. Se llama a la función <code class="literal" translate="no">block</code>cuando se encuentra una llave izquierda. La función <code class="literal" translate="no">parse</code> buscará símbolos en <code class="literal" translate="no">scope</code>, y aumentará <code class="literal" translate="no">scope</code> cuando defina nuevos símbolos:</p><a id="I_programlisting5_d1e3930"></a><pre class="programlisting" translate="no">var block = function (  ) {
+
+// Remember the current scope. Make a new scope that
+// includes everything from the current one.
+
+    var oldScope = scope;
+    scope = Object.create(scope);
+
+// Advance past the left curly brace.
+
+    advance('{');
+
+// Parse using the new scope.
+
+    parse(scope);
+
+// Advance past the right curly brace and discard the
+// new scope, restoring the old one.
+
+    advance('}');
+    scope = oldScope;
+};</pre></div></body><footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<a href="ch05s02.html">← Anterior</a><a href="ch05s04.html">Siguiente →</a><br/><br/><em>Recursos no desglosados:</em><br/><a href="ch05s03.docx" target="_blank">&gt; Acceso sin conexión (formato Word / DOCX)</a><br/><a href="..\EN\js-the-good-parts\ch05s03.html" target="_blank">&gt; Lectura en inglés</a></footer></body></html>

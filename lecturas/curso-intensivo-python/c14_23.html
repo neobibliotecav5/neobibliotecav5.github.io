@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c14-0016">Puntuaciones altas</h3>
+<p class="BodyFirst">Todos los jugadores quieren superar la puntuación máxima de un juego, así que vamos a registrar e informar de las puntuaciones máximas para dar a los jugadores algo por lo que esforzarse. Almacenaremos las puntuaciones altas en <code translate="no">GameStats</code>:</p>
+<p class="CodeLabel" translate="no"><b>game_stats.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    def __init__(self, ai_game):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">    </span>    # High score should never be reset.
+    <span class="LiteralGray">    </span>self.high_score = 0</code></pre>
+<p>Como la puntuación máxima no debe restablecerse nunca, inicializamos <code translate="no">high_score</code> en <code translate="no">__init__()</code> en lugar de en <code translate="no">reset_stats()</code>.</p>
+<p>A continuación, modificaremos <code translate="no">Scoreboard</code> para que muestre la puntuación máxima. Empecemos con el método <code translate="no">__init__()</code>:</p>
+<p class="CodeLabel" translate="no"><b>scoreboard.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    def __init__(self, ai_game):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">    </span>    # Prepare the initial score images.
+<span class="LiteralGray">        self.prep_score()</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     <span class="LiteralGray">    </span>self.prep_high_score()</code></pre>
+<p>La puntuación alta se mostrará separada de la puntuación, por lo que necesitamos un nuevo método, <code translate="no">prep_high_score()</code>, para preparar la imagen de la puntuación alta <span aria-label="annotation1" class="CodeAnnotation">❶.</span></p>
+<p><span epub:type="pagebreak" id="Page_293" title="293"></span>Aquí tienes el método <code translate="no">prep_high_score()</code>:</p>
+<p class="CodeLabel" translate="no"><b>scoreboard.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    </span>def prep_high_score(self):
+    <span class="LiteralGray">    </span>"""Turn the high score into a rendered image."""
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     <span class="LiteralGray">    </span>high_score = round(self.stats.high_score, -1)
+    <span class="LiteralGray">    </span>high_score_str = f"{high_score:,}"
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     <span class="LiteralGray">    </span>self.high_score_image = self.font.render(high_score_str, True,
+        <span class="LiteralGray">        </span>self.text_color, self.settings.bg_color)
+
+<span class="LiteralGray">    </span>    # Center the high score at the top of the screen.
+    <span class="LiteralGray">    </span>self.high_score_rect = self.high_score_image.get_rect()
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> <span class="LiteralGray">    </span>    self.high_score_rect.centerx = self.screen_rect.centerx
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>     <span class="LiteralGray">    </span>self.high_score_rect.top = self.score_rect.top</code></pre>
+<p>Redondeamos la puntuación máxima a la decena más próxima y le damos formato con comas <span aria-label="annotation1" class="CodeAnnotation">❶.</span> A continuación, generamos una imagen a partir de la puntuación máxima <span aria-label="annotation2" class="CodeAnnotation">❷,</span> centramos horizontalmente la puntuación máxima <code translate="no">rect</code> <span aria-label="annotation3" class="CodeAnnotation">❸,</span> y establecemos su atributo <code translate="no">top</code> para que coincida con la parte superior de la imagen de la puntuación <span aria-label="annotation4" class="CodeAnnotation">❹.</span></p>
+<p>El método <code translate="no">show_score()</code> dibuja ahora la puntuación actual en la parte superior derecha y la puntuación alta en la parte superior central de la pantalla:</p>
+<p class="CodeLabel" translate="no"><b>scoreboard.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    def show_score(self):</span>
+<span class="LiteralGray">        """Draw score to the screen."""</span>
+<span class="LiteralGray">        self.screen.blit(self.score_image, self.score_rect)</span>
+    <span class="LiteralGray">    </span>self.screen.blit(self.high_score_image, self.high_score_rect)</code></pre>
+<p>Para comprobar las puntuaciones altas, escribiremos un nuevo método, <code translate="no">check_high_score()</code>, en <code translate="no">Scoreboard</code>:</p>
+<p class="CodeLabel" translate="no"><b>scoreboard.py</b></p>
+<pre translate="no"><code translate="no">    def check_high_score(self):
+<code translate="no">        </code>"""Check to see if there's a new high score."""
+        if self.stats.score &gt; self.stats.high_score:
+            self.stats.high_score = self.stats.score
+            self.prep_high_score()</code></pre>
+<p>El método <code translate="no">check_high_score()</code> comprueba la puntuación actual comparándola con la puntuación alta. Si la puntuación actual es mayor, actualizamos el valor de <code translate="no">high_score</code> y llamamos a <code translate="no">prep_high_score()</code> para actualizar la imagen de la puntuación alta.</p>
+<p>Tenemos que llamar a <code translate="no">check_high_score()</code> cada vez que se golpea a un alienígena después de actualizar la puntuación en <code translate="no">_check_bullet_alien_collisions()</code>:</p>
+<p class="CodeLabel" translate="no"><b>alien_invasion.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    def _check_bullet_alien_collisions(self):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">        if collisions:</span>
+<span class="LiteralGray">            for aliens in collisions.values():</span>
+<span class="LiteralGray">                self.stats.score += self.settings.alien_points * len(aliens)</span>
+<span class="LiteralGray">            self.sb.prep_score()</span>
+<span class="LiteralGray">        </span>    self.sb.check_high_score()
+        <em class="LiteralGrayItalic" translate="no">--snip--</em></code></pre>
+<p>Llamamos a <code translate="no">check_high_score()</code> cuando el diccionario <code translate="no">collisions</code> está presente, y lo hacemos después de actualizar la puntuación de todos los alienígenas que han sido golpeados.</p>
+<p><span epub:type="pagebreak" id="Page_294" title="294"></span>La primera vez que juegues a <em translate="no">Alien Invasion</em>, tu puntuación será la puntuación máxima, por lo que se mostrará como la puntuación actual y la puntuación máxima. Pero cuando empieces una segunda partida, tu puntuación alta debería aparecer en el centro y tu puntuación actual debería aparecer a la derecha, como se muestra en la <a href="#figure14-4" id="figureanchor14-4">Figura 14-4</a>.</p>
+<figure><img alt="" class="keyline" height="442" src="Images/f14004.png" translate="no" width="641"/>
+Figura</figure><figure><figcaption><p><a id="figure14-4">14-4</a>: La puntuación máxima aparece en la parte superior central de la pantalla.</p></figcaption></figure>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c14_22.html">anterior</a><a href="c14.html">Subtema 23 de 29: (Ver todo)</a><a href="c14_24.html">siguiente</a><br/></p>
+<br/><a href="c14_23.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch10lev1sec11">
+<span class="calibre2" id="page_157">
+</span>
+  Visualizar imágenes </h3>
+<p class="noindent">
+  Para mostrar una imagen en un lienzo utilizando <span class="literal1" translate="no">
+   tkinter
+  </span>, primero carga la imagen y luego utiliza la función <span class="literal1" translate="no">
+   create_image
+  </span>en el objeto lienzo. Cualquier imagen que cargues debe estar en una carpeta (o directorio) accesible para Python. </p>
+<p class="indent">
+  El mejor lugar para colocar las imágenes es en tu carpeta de inicio. En Windows es <em class="calibre7">c: </em>\<em class="calibre7">Users </em>\<em class="calibre7">&lt;tu </em>nombre de usuario&gt; ; en macOS, <em class="calibre7">/Users/&lt;tu nombre de usuario&gt; </em>; y en Ubuntu o Raspberry Pi, <em class="calibre7">/home/&lt;tu </em><em class="calibre7">nombre de usuario&gt; </em>. <a class="calibre6" href="ch10.xhtml#ch10fig16">La Figura 10-16 </a>muestra una carpeta home en Windows. </p>
+<div class="image" id="ch10fig16">
+<img alt="Image" class="calibre114" src="../images/10fig16.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">Figura 10-16: </em>Carpeta de inicio en Windows</p>
+<div class="note">
+<p class="notet">
+<strong class="calibre3"><span class="notes">NOTA </span></strong></p>
+<p class="notep">
+<em class="calibre7">Con <span class="literal1" translate="no">
+     tkinter
+    </span>, sólo puedes cargar imágenes GIF -archivos de imagen con la extensión </em>.gif-. <em class="calibre7">Puedes mostrar otros tipos de imágenes, como PNG </em>(.png) <em class="calibre7">y JPG </em>(.jpg), <em class="calibre7">pero tendrás que utilizar un módulo diferente como Pillow, la biblioteca de imágenes de Python (que encontrarás en </em>https://python-pillow.org <em class="calibre7">) </em><em class="calibre7">. Si no tienes un GIF para utilizar, prueba a abrir una foto y luego guardarla como GIF. En Windows puedes hacerlo fácilmente con la aplicación Paint, pero hay muchas otras formas de convertir imágenes al formato GIF. </em></p>
+</div>
+<p class="indent">
+  Podemos visualizar una imagen llamada <em class="calibre7">prueba.gif </em>de la siguiente manera. </p>
+<span id="page_158">
+</span>
+<pre class="pre" translate="no"><span class="orange">from</span> tkinter <span class="orange">import</span> *
+tk = Tk()
+canvas = Canvas(tk, width=400, height=400)
+canvas.pack()
+my_image = PhotoImage(<span class="orange">file</span>=<span class="green">'c:\\Users\\jason\\test.gif'</span>)
+canvas.create_image(0, 0, anchor=NW, image=my_image)
+</pre>
+<p class="indent">
+  En las cuatro primeras líneas, configuramos el lienzo como en los ejemplos anteriores. En la quinta línea, la imagen se carga en la variable <span class="literal1" translate="no">
+   my_image
+  </span>. Creamos <span class="literal1" translate="no">
+   PhotoImage
+  </span>con el nombre de archivo <em class="calibre7">c:\\ </em><em class="calibre7">Usuarios\jason\test.gif . </em>Necesitamos usar dos barras invertidas ( <em class="calibre7">\ </em>) en un nombre de archivo de Windows, porque la barra invertida es un carácter especial en una cadena Python (se usa para algo llamado carácter de escape -por ejemplo, <em class="calibre7">\t </em>es el carácter de escape que representa un tabulador, <em class="calibre7">\n </em>es el carácter de escape que representa una nueva línea, que ya usamos en el <a class="calibre6" href="ch07.xhtml#ch07">Capítulo 7 </a>), y dos barras invertidas son simplemente una forma de decir: "No quiero usar un carácter de escape aquí -quiero una sola barra invertida". </p>
+<p class="indent">
+  Si guardaste tu imagen en el escritorio, debes crear el <span class="literal1" translate="no">
+   PhotoImage
+  </span>con esa carpeta, así: </p>
+<pre class="pre" translate="no">my_image = PhotoImage(<span class="orange">file</span>=<span class="green">'C:\\Users\\JoeSmith\\Desktop\\test.gif'</span>)
+</pre>
+<p class="indent">
+  Una vez cargada la imagen en la variable, <span class="literal1" translate="no">
+   canvas
+  </span><span class="literal1" translate="no">
+   .create_image(0, 0, anchor=NW, image=my_image)
+  </span> la muestra utilizando la función <span class="literal1" translate="no">
+   create_image
+  </span>. Las coordenadas ( <span class="literal1" translate="no">
+   0, 0
+  </span>) son dónde se mostrará la imagen, y <span class="literal1" translate="no">
+   anchor=NW
+  </span>(con NW que significa <em class="calibre7">noroeste </em>) indica a la función que utilice el borde superior izquierdo de la imagen como punto de partida al dibujar; de lo contrario, utilizará por defecto el centro de la imagen como punto de partida. El último parámetro con nombre, <span class="literal1" translate="no">
+   image
+  </span>, señala la variable de la imagen cargada. Tu pantalla debería tener un aspecto similar al de <a class="calibre6" href="ch10.xhtml#ch10fig17">la Figura 10-17 . </a></p>
+<div class="image" id="ch10fig17">
+<span id="page_159">
+</span>
+<img alt="Image" class="calibre109" src="../images/10fig17.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">Figura 10-17: Visualización de una imagen </em></p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch10_11.html">anterior</a><a href="ch10.html">Subtema 12 de 17: (Ver todo)</a><a href="ch10_13.html">siguiente</a><br/></p>
+<br/><a href="ch10_12.docx" target="_blank"></a></footer>
+</body>
+</html>

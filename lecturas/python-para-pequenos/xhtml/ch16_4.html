@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch16lev1sec3">
+  Obtener la posición de la figura de palo </h3>
+<p class="noindent">
+  Como tendremos que determinar en qué parte de la pantalla se encuentra la figura de palo (ya que se está moviendo), la función <span class="literal1" translate="no">
+   coords
+  </span>será distinta de las demás funciones de la clase <span class="literal1" translate="no">
+   Sprite
+  </span>. <span id="page_248">
+</span>Utilizaremos la función <span class="literal1" translate="no">
+   coords
+  </span>del lienzo para determinar dónde está la figura de palo, y luego utilizaremos esos valores para establecer los valores <span class="literal1" translate="no">
+   x1
+  </span>, <span class="literal1" translate="no">
+   y1
+  </span>y <span class="literal1" translate="no">
+   x2
+  </span>, <span class="literal1" translate="no">
+   y2
+  </span>de la variable <span class="literal1" translate="no">
+   coordinates
+  </span>que creamos en la función <span class="literal1" translate="no">
+   __init__
+  </span>al principio del <a class="calibre6" href="ch15.xhtml#ch15">Capítulo 15. </a>Añade el siguiente código después de la función <span class="literal1" translate="no">
+   animate
+  </span>: </p>
+<pre class="pre" translate="no">    <span class="orange">def</span> coords(self):
+        xy = self.game.canvas.coords(self.image)
+        self.coordinates.x1 = xy[0]
+        self.coordinates.y1 = xy[1]
+        self.coordinates.x2 = xy[0] + 27
+        self.coordinates.y2 = xy[1] + 30
+        <span class="orange">return</span> self.coordinates</pre>
+<p class="indent">
+  Cuando creamos la clase <span class="literal1" translate="no">
+   Game
+  </span>en el <a class="calibre6" href="ch14.xhtml#ch14">Capítulo 14 </a>, una de las variables del objeto era la <span class="literal1" translate="no">
+   canvas
+  </span>. Utilizamos la función <span class="literal1" translate="no">
+   coords
+  </span>de esta variable <span class="literal1" translate="no">
+   canvas
+  </span>(con <span class="literal1" translate="no">
+   self.game.canvas.coords
+  </span>), que toma el identificador de algo dibujado en el lienzo, y devuelve las <em class="calibre7">posiciones </em> <em class="calibre7">x e </em> <em class="calibre7">y </em>como una lista de dos números. En este caso, utilizamos el identificador almacenado en la variable <span class="literal1" translate="no">
+   current_image
+  </span>y almacenamos la lista devuelta en la variable <span class="literal1" translate="no">
+   xy
+  </span>. A continuación, utilizamos los dos valores para establecer las coordenadas de nuestra figura de palo. El valor <span class="literal1" translate="no">
+   xy[0]
+  </span>(que es el primer número de la lista) se convierte en nuestra coordenada <span class="literal1" translate="no">
+   x1
+  </span>, y el valor <span class="literal1" translate="no">
+   xy[1]
+  </span>(el segundo número de la lista) se convierte en nuestra coordenada <span class="literal1" translate="no">
+   y1
+  </span>. Ésa es la posición superior izquierda de la figura. </p>
+<p class="indent">
+  Como todas las imágenes de figuras de palitos que hemos creado tienen 27 píxeles de ancho por 30 de alto, podemos determinar cuáles deben ser las variables <span class="literal1" translate="no">
+   x2
+  </span>y <span class="literal1" translate="no">
+   y2
+  </span>(ésa es la posición inferior derecha de la figura) sumando la anchura y la altura a los valores <span class="literal1" translate="no">
+   xy[0]
+  </span>y <span class="literal1" translate="no">
+   xy[1]
+  </span>, respectivamente. </p>
+<p class="indent">
+  Así, si <span class="literal1" translate="no">
+   self.game.canvas.coords(self.image)
+  </span>devuelve <span class="literal1" translate="no">
+   [270, 350]
+  </span>obtendremos los siguientes valores: </p>
+<ul class="calibre22">
+<li class="noindent2">
+<span class="literal1" translate="no">
+    self.coordinates.x1
+   </span>
+   será 270  </li>
+<li class="noindent2">
+<span class="literal1" translate="no">
+    self.coordinates.y1
+   </span>
+   será 350  </li>
+<li class="noindent2">
+<span class="literal1" translate="no">
+    self.coordinates.x2
+   </span>
+   será 297  </li>
+<li class="noindent2">
+<span class="literal1" translate="no">
+    self.coordinates.y2
+   </span>
+   será 380  </li>
+</ul>
+<p class="indent">
+  Finalmente, en la última línea de la función, devolvemos la variable objeto <span class="literal1" translate="no">
+   coordinates
+  </span>que acabamos de actualizar. </p>
+<p class="indent">
+</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch16_3.html">anterior</a><a href="ch16.html">Subtema 4 de 13: (Ver todo)</a><a href="ch16_5.html">siguiente</a><br/></p>
+<br/><a href="ch16_4.docx" target="_blank"></a></footer>
+</body>
+</html>

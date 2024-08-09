@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://www.w3.org/2002/06/xhtml2/ http://www.w3.org/MarkUp/SCHEMA/xhtml2.xsd">
+<head>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style></head>
+<body><div id="sbo-rt-content"><section>
+<header>
+<h1 class="chapter">
+<span class="ChapterNumber"><span epub:type="pagebreak" id="Page_183" title="183"></span>10</span><br/>
+<span class="ChapterTitle">Files and Exceptions</span></h1>
+</header>
+<figure class="opener">
+<img alt="" height="406" src="Images/chapterart.png" width="406"/>
+</figure>
+<p class="ChapterIntro">Now that you’ve mastered the basic skills you need to write organized programs that are easy to use, it’s time to think about making your programs even more relevant and usable. In this chapter, you’ll learn to work with files so your programs can quickly analyze lots of data.</p>
+<p>You’ll learn to handle errors so your programs don’t crash when they encounter unexpected situations. You’ll learn about <em>exceptions</em>, which are special objects Python creates to manage errors that arise while a program is running. You’ll also learn about the <code>json</code> module, which allows you to save user data so it isn’t lost when your program stops running.</p>
+<p>Learning to work with files and save data will make your programs easier for people to use. Users will be able to choose what data to enter and when to enter it. People will be able to run your program, do some work, and then close the program and pick up where they left off. Learning to handle exceptions will help you deal with situations in which files don’t exist and deal with other problems that can cause your programs to crash. This will make your programs more robust when they encounter bad data, whether it comes from <span epub:type="pagebreak" id="Page_184" title="184"></span>innocent mistakes or from malicious attempts to break your programs. With the skills you’ll learn in this chapter, you’ll make your programs more applicable, usable, and stable.</p>
+<h2 id="h1-502703c10-0001">Reading from a File</h2>
+<p class="BodyFirst">An incredible amount of data is available in text files. Text files can contain weather data, traffic data, socioeconomic data, literary works, and more. Reading from a file is particularly useful in data analysis applications, but it’s also applicable to any situation in which you want to analyze or modify information stored in a file. For example, you can write a program that reads in the contents of a text file and rewrites the file with formatting that allows a browser to display it.</p>
+<p>When you want to work with the information in a text file, the first step is to read the file into memory. You can then work through all of the file’s contents at once or work through the contents line by line.</p>
+<h3 id="h2-502703c10-0001">Reading the Contents of a File</h3>
+<p class="BodyFirst">To begin, we need a file with a few lines of text in it. Let’s start with a file that contains <em>pi</em> to 30 decimal places, with 10 decimal places per line:</p>
+<p class="CodeLabel"><b>pi_digits.txt</b></p>
+<pre><code>3.1415926535
+  8979323846
+  2643383279</code></pre>
+<p>To try the following examples yourself, you can enter these lines in an editor and save the file as <em>pi_digits.txt</em>, or you can download the file from the book’s resources through <a class="LinkURL" href="https://ehmatthes.github.io/pcc_3e">https://ehmatthes.github.io/pcc_3e</a>. Save the file in the same directory where you’ll store this chapter’s programs.</p>
+<p>Here’s a program that opens this file, reads it, and prints the contents of the file to the screen:</p>
+<p class="CodeLabel"><b>file_reader.py</b></p>
+<pre><code>from pathlib import Path
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> path = Path('pi_digits.txt')
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> contents = path.read_text()
+print(contents)</code></pre>
+<p>To work with the contents of a file, we need to tell Python the path to the file. A <em>path</em> is the exact location of a file or folder on a system. Python provides a module called <code>pathlib</code> that makes it easier to work with files and directories, no matter which operating system you or your program’s users are working with. A module that provides specific functionality like this is often called a <em>library</em>, hence the name <code>pathlib</code>.</p>
+<p>We start by importing the <code>Path</code> class from <code>pathlib</code>. There’s a lot you can do with a <code>Path</code> object that points to a file. For example, you can check that the file exists before working with it, read the file’s contents, or write new data to the file. Here, we build a <code>Path</code> object representing the file <em>pi_digits.txt</em>, which we assign to the variable <code>path</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>. Since this file is saved in the same <span epub:type="pagebreak" id="Page_185" title="185"></span>directory as the <em>.py</em> file we’re writing, the filename is all that <code>Path</code> needs to access the file.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	VS Code looks for files in the folder that was most recently opened. If you’re using VS Code, start by opening the folder where you’re storing this chapter’s programs. For example, if you’re saving your program files in a folder called <em>chapter_10</em>, press CTRL-O (⌘-O on macOS), and open that folder.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<p>Once we have a <code>Path</code> object representing <em>pi_digits.txt</em>, we use the <code>read_text()</code> method to read the entire contents of the file <span aria-label="annotation2" class="CodeAnnotation">❷</span>. The contents of the file are returned as a single string, which we assign to the variable <code>contents</code>. When we print the value of <code>contents</code>, we see the entire contents of the text file:</p>
+<pre><code>3.1415926535
+  8979323846
+  2643383279
+
+</code></pre>
+<p>The only difference between this output and the original file is the extra blank line at the end of the output. The blank line appears because <code>read_text()</code> returns an empty string when it reaches the end of the file; this empty string shows up as a blank line.</p>
+<p>We can remove the extra blank line by using <code>rstrip()</code> on the <code>contents</code> string:</p>
+<pre><code><span class="LiteralGray">from pathlib import Path</span>
+
+<span class="LiteralGray">path = Path('pi_digits.txt')</span>
+<span class="LiteralGray">contents = path.read_text()</span>
+contents = contents.rstrip()
+<span class="LiteralGray">print(contents)</span></code></pre>
+<p>Recall from <span class="xref" itemid="xref_target_Chapter 2">Chapter 2</span> that Python’s <code>rstrip()</code> method removes, or strips, any whitespace characters from the right side of a string. Now the output matches the contents of the original file exactly:</p>
+<pre><code>3.1415926535
+  8979323846
+  2643383279</code></pre>
+<p>We can strip the trailing newline character when we read the contents of the file, by applying the <code>rstrip()</code> method immediately after calling <code>read_text()</code>:</p>
+<pre><code>contents = path.read_text().rstrip()</code></pre>
+<p>This line tells Python to call the <code>read_text()</code> method on the file we’re working with. Then it applies the <code>rstrip()</code> method to the string that <code>read_text()</code> returns. The cleaned-up string is then assigned to the variable <code>contents</code>. This approach is called <em>method chaining</em>, and you’ll see it used often in programming.</p>
+<h3 id="h2-502703c10-0002"><span epub:type="pagebreak" id="Page_186" title="186"></span>Relative and Absolute File Paths</h3>
+<p class="BodyFirst">When you pass a simple filename like <em>pi_digits.txt</em> to <code>Path</code>, Python looks in the directory where the file that’s currently being executed (that is, your <em>.py</em> program file) is stored.</p>
+<p>Sometimes, depending on how you organize your work, the file you want to open won’t be in the same directory as your program file. For example, you might store your program files in a folder called <em>python_work</em>; inside <em>python_work</em>, you might have another folder called <em>text_files</em> to distinguish your program files from the text files they’re manipulating. Even though <em>text_files</em> is in <em>python_work</em>, just passing <code>Path</code> the name of a file in <em>text_files</em> won’t work, because Python will only look in <em>python_work </em>and stop there; it won’t go on and look in <em>text_files.</em> To get Python to open files from a directory other than the one where your program file is stored, you need to provide the correct path.</p>
+<p>There are two main ways to specify paths in programming. A <em>relative file path</em> tells Python to look for a given location relative to the directory where the currently running program file is stored. Since <em>text_files</em> is inside <em>python_work</em>, we need to build a path that starts with the directory <em>text_files</em>, and ends with the filename. Here’s how to build this path:</p>
+<pre><code>path = Path('text_files/<var>filename</var>.txt')</code></pre>
+<p>You can also tell Python exactly where the file is on your computer, regardless of where the program that’s being executed is stored. This is called an <em>absolute file path</em>. You can use an absolute path if a relative path doesn’t work. For instance, if you’ve put <em>text_files</em> in some folder other than <em>python_work</em>, then just passing <code>Path</code> the path <code>'text_files/</code><var>filename</var><code>.txt'</code> won’t work because Python will only look for that location inside <em>python_work</em>. You’ll need to write out an absolute path to clarify where you want Python to look.</p>
+<p>Absolute paths are usually longer than relative paths, because they start at your system’s root folder:</p>
+<pre><code>path = Path('/home/eric/data_files/text_files/<var>filename</var>.txt')</code></pre>
+<p>Using absolute paths, you can read files from any location on your system. For now it’s easiest to store files in the same directory as your program files, or in a folder such as <em>text_files</em> within the directory that stores your program files.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	Windows systems use a backslash (<code>\</code>) instead of a forward slash (<code>/</code>) when displaying file paths, but you should use forward slashes in your code, even on Windows. The <code>pathlib</code> library will automatically use the correct representation of the path when it interacts with your system, or any user’s system.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h3 id="h2-502703c10-0003">Accessing a File’s Lines</h3>
+<p class="BodyFirst">When you’re working with a file, you’ll often want to examine each line of the file. You might be looking for certain information in the file, or <span epub:type="pagebreak" id="Page_187" title="187"></span>you might want to modify the text in the file in some way. For example, you might want to read through a file of weather data and work with any line that includes the word <em>sunny</em> in the description of that day’s weather. In a news report, you might look for any line with the tag <code>&lt;headline&gt;</code> and rewrite that line with a specific kind of formatting.</p>
+<p>You can use the <code>splitlines()</code> method to turn a long string into a set of lines, and then use a <code>for</code> loop to examine each line from a file, one at a time:</p>
+<p class="CodeLabel"><b> file_reader.py</b></p>
+<pre><code><span class="LiteralGray">from pathlib import Path</span>
+
+<span class="LiteralGray">path = Path('pi_digits.txt')</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> contents = path.read_text()
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> lines = contents.splitlines()
+for line in lines:
+    print(line)</code></pre>
+<p>We start out by reading the entire contents of the file, as we did earlier <span aria-label="annotation1" class="CodeAnnotation">❶</span>. If you’re planning to work with the individual lines in a file, you don’t need to strip any whitespace when reading the file. The <code>splitlines()</code> method returns a list of all lines in the file, and we assign this list to the variable <code>lines</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span>. We then loop over these lines and print each one:</p>
+<pre><code>3.1415926535
+  8979323846
+  2643383279</code></pre>
+<p>Since we haven’t modified any of the lines, the output matches the original text file exactly.</p>
+<h3 id="h2-502703c10-0004">Working with a File’s Contents</h3>
+<p class="BodyFirst">After you’ve read the contents of a file into memory, you can do whatever you want with that data, so let’s briefly explore the digits of <em>pi</em>. First, we’ll attempt to build a single string containing all the digits in the file with no whitespace in it:</p>
+<p class="CodeLabel"><b>pi_string.py</b></p>
+<pre><code><span class="LiteralGray">from pathlib import Path</span>
+
+<span class="LiteralGray">path = Path('pi_digits.txt')</span>
+<span class="LiteralGray">contents = path.read_text()</span>
+
+<span class="LiteralGray">lines = contents.splitlines()</span>
+pi_string = ''
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> for line in lines:
+    pi_string += line
+
+print(pi_string)
+print(len(pi_string))</code></pre>
+<p>We start by reading the file and storing each line of digits in a list, just as we did in the previous example. We then create a variable, <code>pi_string</code>, <span epub:type="pagebreak" id="Page_188" title="188"></span>to hold the digits of <em>pi</em>. We write a loop that adds each line of digits to <code>pi_string</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>. We print this string, and also show how long the string is:</p>
+<pre><code>3.1415926535  8979323846  2643383279
+36</code></pre>
+<p>The variable <code>pi_string</code> contains the whitespace that was on the left side of the digits in each line, but we can get rid of that by using <code>lstrip()</code> on each line:</p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">for line in lines:</span>
+<span class="LiteralGray">    </span>pi_string += line.lstrip()
+
+<span class="LiteralGray">print(pi_string)</span>
+<span class="LiteralGray">print(len(pi_string))</span></code></pre>
+<p>Now we have a string containing <em>pi</em> to 30 decimal places. The string is 32 characters long because it also includes the leading <code>3</code> and a decimal point:</p>
+<pre><code>3.141592653589793238462643383279
+32</code></pre>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	When Python reads from a text file, it interprets all text in the file as a string. If you read in a number and want to work with that value in a numerical context, you’ll have to convert it to an integer using the <code>int()</code> function or a float using the <code>float()</code> function.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h3 id="h2-502703c10-0005">Large Files: One Million Digits</h3>
+<p class="BodyFirst">So far, we’ve focused on analyzing a text file that contains only three lines, but the code in these examples would work just as well on much larger files. If we start with a text file that contains <em>pi</em> to 1,000,000 decimal places, instead of just 30, we can create a single string containing all these digits. We don’t need to change our program at all, except to pass it a different file. We’ll also print just the first 50 decimal places, so we don’t have to watch a million digits scroll by in the terminal:</p>
+<p class="CodeLabel"><b>pi_string.py</b></p>
+<pre><code><span class="LiteralGray">from pathlib import Path</span>
+
+path = Path('pi_million_digits.txt')
+<span class="LiteralGray">contents = path.read_text()</span>
+
+<span class="LiteralGray">lines = contents.splitlines()</span>
+<span class="LiteralGray">pi_string = ''</span>
+<span class="LiteralGray">for line in lines:</span>
+<span class="LiteralGray">    pi_string += line.lstrip()</span>
+
+print(f"{pi_string[:52]}...")
+<span class="LiteralGray">print(len(pi_string))</span></code></pre>
+<p><span epub:type="pagebreak" id="Page_189" title="189"></span>The output shows that we do indeed have a string containing <em>pi</em> to 1,000,000 decimal places:</p>
+<pre><code>3.14159265358979323846264338327950288419716939937510...
+1000002</code></pre>
+<p>Python has no inherent limit to how much data you can work with; you can work with as much data as your system’s memory can handle.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	To run this program (and many of the examples that follow), you’ll need to download the resources available at <a class="LinkURL" href="https://ehmatthes.github.io/pcc_3e">https://ehmatthes.github.io/pcc_3e</a>.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h3 id="h2-502703c10-0006">Is Your Birthday Contained in Pi?</h3>
+<p class="BodyFirst">I’ve always been curious to know if my birthday appears anywhere in the digits of <em>pi</em>. Let’s use the program we just wrote to find out if someone’s birthday appears anywhere in the first million digits of <em>pi</em>. We can do this by expressing each birthday as a string of digits and seeing if that string appears anywhere in <code>pi_string</code>:</p>
+<p class="CodeLabel"><b>pi_birthday.py</b></p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">for line in lines:</span>
+<span class="LiteralGray">    pi_string += line.strip()</span>
+
+birthday = input("Enter your birthday, in the form mmddyy: ")
+if birthday in pi_string:
+    print("Your birthday appears in the first million digits of pi!")
+else:
+    print("Your birthday does not appear in the first million digits of pi.")</code></pre>
+<p>We first prompt for the user’s birthday, and then check if that string is in <code>pi_string</code>. Let’s try it:</p>
+<pre><code>Enter your birthdate, in the form mmddyy: <b>120372</b>
+Your birthday appears in the first million digits of pi!</code></pre>
+<p>My birthday does appear in the digits of <em>pi</em>! Once you’ve read from a file, you can analyze its contents in just about any way you can imagine.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c10-07">10-1. Learning Python:</span> Open a blank file in your text editor and write a few lines summarizing what you’ve learned about Python so far. Start each line with the phrase <em>In Python you can. . . </em>. Save the file as <em>learning_python.txt</em> in the same directory as your exercises from this chapter. Write a program that reads the file and prints what you wrote two times: print the contents once by reading in the entire file, and once by storing the lines in a list and then looping over each line.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c10-08">10-2.	<span epub:type="pagebreak" id="Page_190" title="190"></span>Learning C:</span> You can use the <code>replace()</code> method to replace any word in a string with a different word. Here’s a quick example showing how to replace <code>'dog'</code> with <code>'cat'</code> in a sentence:</p>
+<pre><code>&gt;&gt;&gt; <code class="bold">message = "I really like dogs."</code>
+&gt;&gt;&gt; <code class="bold">message.replace('dog', 'cat')</code>
+'I really like cats.'</code></pre>
+<p class="BoxBody">Read in each line from the file you just created, <em>learning_python.txt</em>, and replace the word <em>Python</em> with the name of another language, such as <em>C</em>. Print each modified line to the screen.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c10-09">10-3.	Simpler Code</span>: The program <em>file_reader.py</em> in this section uses a temporary variable, <code>lines</code>, to show how <code>splitlines()</code> works. You can skip the temporary variable and loop directly over the list that <code>splitlines()</code> returns:</p>
+<pre><code>for line in contents.splitlines():</code></pre>
+<p class="BoxBody">Remove the temporary variable from each of the programs in this section, to make them more concise.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c10-0002">Writing to a File</h2>
+<p class="BodyFirst">One of the simplest ways to save data is to write it to a file. When you write text to a file, the output will still be available after you close the terminal containing your program’s output. You can examine output after a program finishes running, and you can share the output files with others as well. You can also write programs that read the text back into memory and work with it again later.</p>
+<h3 id="h2-502703c10-0007">Writing a Single Line</h3>
+<p class="BodyFirst">Once you have a path defined, you can write to a file using the <code>write_text()</code> method. To see how this works, let’s write a simple message and store it in a file instead of printing it to the screen:</p>
+<p class="CodeLabel"><b>write_message.py</b></p>
+<pre><code>from pathlib import Path
+
+path = Path('programming.txt')
+path.write_text("I love programming.")</code></pre>
+<p>The <code>write_text()</code> method takes a single argument: the string that you want to write to the file. This program has no terminal output, but if you open the file <em>programming.txt</em>, you’ll see one line:</p>
+<p class="CodeLabel"><b>programming.txt</b></p>
+<pre><code>I love programming.</code></pre>
+<p><span epub:type="pagebreak" id="Page_191" title="191"></span>This file behaves like any other file on your computer. You can open it, write new text in it, copy from it, paste to it, and so forth.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	Python can only write strings to a text file. If you want to store numerical data in a text file, you’ll have to convert the data to string format first using the <code>str()</code> function.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h3 id="h2-502703c10-0008">Writing Multiple Lines</h3>
+<p class="BodyFirst">The <code>write_text()</code> method does a few things behind the scenes. If the file that <code>path</code> points to doesn’t exist, it creates that file. Also, after writing the string to the file, it makes sure the file is closed properly. Files that aren’t closed properly can lead to missing or corrupted data.</p>
+<p>To write more than one line to a file, you need to build a string containing the entire contents of the file, and then call <code>write_text()</code> with that string. Let’s write several lines to the <em>programming.txt</em> file:</p>
+<pre><code><span class="LiteralGray">from pathlib import Path</span>
+
+contents = "I love programming.\n"
+contents += "I love creating new games.\n"
+contents += "I also love working with data.\n"
+
+<span class="LiteralGray">path = Path('programming.txt')</span>
+path.write_text(contents)</code></pre>
+<p>We define a variable called <code>contents</code> that will hold the entire contents of the file. On the next line, we use the <code>+=</code> operator to add to this string. You can do this as many times as you need, to build strings of any length. In this case we include newline characters at the end of each line, to make sure each statement appears on its own line.</p>
+<p>If you run this and then open <em>programming.txt</em>, you’ll see each of these lines in the text file:</p>
+<pre><code>I love programming.
+I love creating new games.
+I also love working with data.</code></pre>
+<p>You can also use spaces, tab characters, and blank lines to format your output, just as you’ve been doing with terminal-based output. There’s no limit to the length of your strings, and this is how many computer-generated documents are created.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	Be careful when calling <code>write_text()</code> on a path object. If the file already exists, <code>write_text()</code> will erase the current contents of the file and write new contents to the file. Later in this chapter, you’ll learn to check whether a file exists using <code>pathlib</code>.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2><span epub:type="pagebreak" id="Page_192" title="192"></span>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c10-12">10-4.	Guest:</span> Write a program that prompts the user for their name. When they respond, write their name to a file called <em>guest.txt</em>.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c10-13">10-5.	Guest Book:</span> Write a <code>while</code> loop that prompts users for their name. Collect all the names that are entered, and then write these names to a file called <em>guest_book.txt</em>. Make sure each entry appears on a new line in the file.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c10-0003">Exceptions</h2>
+<p class="BodyFirst">Python uses special objects called <em>exceptions</em> to manage errors that arise during a program’s execution. Whenever an error occurs that makes Python unsure of what to do next, it creates an exception object. If you write code that handles the exception, the program will continue running. If you don’t handle the exception, the program will halt and show a <em>traceback</em>, which includes a report of the exception that was raised.</p>
+<p>Exceptions are handled with <code>try</code>-<code>except</code> blocks. A <em>try</em>-<em>except</em> block asks Python to do something, but it also tells Python what to do if an exception is raised. When you use <code>try</code>-<code>except</code> blocks, your programs will continue running even if things start to go wrong. Instead of tracebacks, which can be confusing for users to read, users will see friendly error messages that you’ve written.</p>
+<h3 id="h2-502703c10-0009">Handling the ZeroDivisionError Exception</h3>
+<p class="BodyFirst">Let’s look at a simple error that causes Python to raise an exception. You probably know that it’s impossible to divide a number by zero, but let’s ask Python to do it anyway:</p>
+<p class="CodeLabel"><b>division_calculator.py</b></p>
+<pre><code>print(5/0)</code></pre>
+<p>Python can’t do this, so we get a traceback:</p>
+<pre><code>Traceback (most recent call last):
+  File "division_calculator.py", line 1, in &lt;module&gt;
+    print(5/0)
+          ~^~
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> ZeroDivisionError: division by zero</code></pre>
+<p>The error reported in the traceback, <code>ZeroDivisionError</code>, is an exception object <span aria-label="annotation1" class="CodeAnnotation">❶</span>. Python creates this kind of object in response to a situation where it can’t do what we ask it to. When this happens, Python stops the program and tells us the kind of exception that was raised. We can use this information to modify our program. We’ll tell Python what to do when this kind of exception occurs; that way, if it happens again, we’ll be prepared.</p>
+<h3 id="h2-502703c10-0010"><span epub:type="pagebreak" id="Page_193" title="193"></span>Using try-except Blocks</h3>
+<p class="BodyFirst">When you think an error may occur, you can write a <code>try</code>-<code>except</code> block to handle the exception that might be raised. You tell Python to try running some code, and you tell it what to do if the code results in a particular kind of exception.</p>
+<p>Here’s what a <code>try</code>-<code>except</code> block for handling the <code>ZeroDivisionError</code> exception looks like:</p>
+<pre><code>try:
+    <span class="LiteralGray">print(5/0)</span>
+except ZeroDivisionError:
+    print("You can't divide by zero!")</code></pre>
+<p>We put <code>print(5/0)</code>, the line that caused the error, inside a <code>try</code> block. If the code in a <code>try</code> block works, Python skips over the <code>except</code> block. If the code in the <code>try</code> block causes an error, Python looks for an <code>except</code> block whose error matches the one that was raised, and runs the code in that block.</p>
+<p>In this example, the code in the <code>try</code> block produces a <code>ZeroDivisionError</code>, so Python looks for an <code>except</code> block telling it how to respond. Python then runs the code in that block, and the user sees a friendly error message instead of a traceback:</p>
+<pre><code>You can't divide by zero!</code></pre>
+<p>If more code followed the <code>try</code>-<code>except</code> block, the program would continue running because we told Python how to handle the error. Let’s look at an example where catching an error can allow a program to continue running.</p>
+<h3 id="h2-502703c10-0011">Using Exceptions to Prevent Crashes</h3>
+<p class="BodyFirst">Handling errors correctly is especially important when the program has more work to do after the error occurs. This happens often in programs that prompt users for input. If the program responds to invalid input appropriately, it can prompt for more valid input instead of crashing.</p>
+<p>Let’s create a simple calculator that does only division:</p>
+<p class="CodeLabel"><b>division_calculator.py</b></p>
+<pre><code>print("Give me two numbers, and I'll divide them.")
+print("Enter 'q' to quit.")
+
+while True:
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     first_number = input("\nFirst number: ")
+    if first_number == 'q':
+        break
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     second_number = input("Second number: ")
+    if second_number == 'q':
+        break
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     answer = int(first_number) / int(second_number)
+    print(answer)</code></pre>
+<p><span epub:type="pagebreak" id="Page_194" title="194"></span>This program prompts the user to input a <code>first_number</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span> and, if the user does not enter <code>q</code> to quit, a <code>second_number</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span>. We then divide these two numbers to get an <code>answer</code> <span aria-label="annotation3" class="CodeAnnotation">❸</span>. This program does nothing to handle errors, so asking it to divide by zero causes it to crash:</p>
+<pre><code>Give me two numbers, and I'll divide them.
+Enter 'q' to quit.
+
+First number: <b>5</b>
+Second number: <b>0</b>
+Traceback (most recent call last):
+  File "division_calculator.py", line 11, in &lt;module&gt;
+    answer = int(first_number) / int(second_number)
+             ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+ZeroDivisionError: division by zero</code></pre>
+<p>It’s bad that the program crashed, but it’s also not a good idea to let users see tracebacks. Nontechnical users will be confused by them, and in a malicious setting, attackers will learn more than you want them to. For example, they’ll know the name of your program file, and they’ll see a part of your code that isn’t working properly. A skilled attacker can sometimes use this information to determine which kind of attacks to use against your code.</p>
+<h3 id="h2-502703c10-0012">The else Block</h3>
+<p class="BodyFirst">We can make this program more error resistant by wrapping the line that might produce errors in a <code>try</code>-<code>except</code> block. The error occurs on the line that performs the division, so that’s where we’ll put the <code>try</code>-<code>except</code> block. This example also includes an <code>else</code> block. Any code that depends on the <code>try</code> block executing successfully goes in the <code>else</code> block:</p>
+<pre><code><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">while True:</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">    if second_number == 'q':</span>
+<span class="LiteralGray">        break</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     try:
+        <span class="LiteralGray">answer = int(first_number) / int(second_number)</span>
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     except ZeroDivisionError:
+        print("You can't divide by 0!")
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     else:
+<span class="LiteralGray">        print(answer)</span></code></pre>
+<p>We ask Python to try to complete the division operation in a <code>try</code> block <span aria-label="annotation1" class="CodeAnnotation">❶</span>, which includes only the code that might cause an error. Any code that depends on the <code>try</code> block succeeding is added to the <code>else</code> block. In this case, if the division operation is successful, we use the <code>else</code> block to print the result <span aria-label="annotation3" class="CodeAnnotation">❸</span>.</p>
+<p>The <code>except</code> block tells Python how to respond when a <code>ZeroDivisionError</code> arises <span aria-label="annotation2" class="CodeAnnotation">❷</span>. If the <code>try</code> block doesn’t succeed because of a division-by-zero error, <span epub:type="pagebreak" id="Page_195" title="195"></span>we print a friendly message telling the user how to avoid this kind of error. The program continues to run, and the user never sees a traceback:</p>
+<pre><code>Give me two numbers, and I'll divide them.
+Enter 'q' to quit.
+
+First number: <b>5</b>
+Second number: <b>0</b>
+You can't divide by 0!
+
+First number: <b>5</b>
+Second number: <b>2</b>
+2.5
+
+First number: <b>q</b></code></pre>
+<p>The only code that should go in a <code>try</code> block is code that might cause an exception to be raised. Sometimes you’ll have additional code that should run only if the <code>try</code> block was successful; this code goes in the <code>else</code> block. The <code>except</code> block tells Python what to do in case a certain exception arises when it tries to run the code in the <code>try</code> block.</p>
+<p>By anticipating likely sources of errors, you can write robust programs that continue to run even when they encounter invalid data and missing resources. Your code will be resistant to innocent user mistakes and malicious attacks.</p>
+<h3 id="h2-502703c10-0013">Handling the FileNotFoundError Exception</h3>
+<p class="BodyFirst">One common issue when working with files is handling missing files. The file you’re looking for might be in a different location, the filename might be misspelled, or the file might not exist at all. You can handle all of these situations with a <code>try</code>-<code>except</code> block.</p>
+<p>Let’s try to read a file that doesn’t exist. The following program tries to read in the contents of <em>Alice in Wonderland</em>, but I haven’t saved the file <em>alice.txt</em> in the same directory as <em>alice.py</em>:</p>
+<p class="CodeLabel"><b>alice.py</b></p>
+<pre><code>from pathlib import Path
+
+path = Path('alice.txt')
+contents = path.read_text(encoding='utf-8')</code></pre>
+<p>Note that we’re using <code>read_text()</code> in a slightly different way here than what you saw earlier. The <code>encoding</code> argument is needed when your system’s default encoding doesn’t match the encoding of the file that’s being read. This is most likely to happen when reading from a file that wasn’t created on your system.</p>
+<p>Python can’t read from a missing file, so it raises an exception:</p>
+<pre><code>Traceback (most recent call last):
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>   File "alice.py", line 4, in &lt;module&gt;
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     contents = path.read_text(encoding='utf-8')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<span epub:type="pagebreak" id="Page_196" title="196"></span>  File "/.../pathlib.py", line 1056, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.../pathlib.py", line 1042, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> FileNotFoundError: [Errno 2] No such file or directory: 'alice.txt'</code></pre>
+<p>This is a longer traceback than the ones we’ve seen previously, so let’s look at how you can make sense of more complex tracebacks. It’s often best to start at the very end of the traceback. On the last line, we can see that a <code>FileNotFoundError</code> exception was raised <span aria-label="annotation3" class="CodeAnnotation">❸</span>. This is important because it tells us what kind of exception to use in the <code>except</code> block that we’ll write.</p>
+<p>Looking back near the beginning of the traceback <span aria-label="annotation1" class="CodeAnnotation">❶</span>, we can see that the error occurred at line 4 in the file <em>alice.py</em>. The next line shows the line of code that caused the error <span aria-label="annotation2" class="CodeAnnotation">❷</span>. The rest of the traceback shows some code from the libraries that are involved in opening and reading from files. You don’t usually need to read through or understand all of these lines in a traceback.</p>
+<p>To handle the error that’s being raised, the <code>try</code> block will begin with the line that was identified as problematic in the traceback. In our example, this is the line that contains <code>read_text()</code>:</p>
+<pre><code><span class="LiteralGray">from pathlib import Path</span>
+
+<span class="LiteralGray">path = Path('alice.txt')</span>
+try:
+    <span class="LiteralGray">contents = path.read_text(encoding='utf-8')</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> except FileNotFoundError:
+    print(f"Sorry, the file {path} does not exist.")</code></pre>
+<p>In this example, the code in the <code>try</code> block produces a <code>FileNotFoundError</code>, so we write an <code>except</code> block that matches that error <span aria-label="annotation1" class="CodeAnnotation">❶</span>. Python then runs the code in that block when the file can’t be found, and the result is a friendly error message instead of a traceback:</p>
+<pre><code>Sorry, the file alice.txt does not exist.</code></pre>
+<p>The program has nothing more to do if the file doesn’t exist, so this is all the output we see. Let’s build on this example and see how exception handling can help when you’re working with more than one file.</p>
+<h3 id="h2-502703c10-0014">Analyzing Text</h3>
+<p class="BodyFirst">You can analyze text files containing entire books. Many classic works of literature are available as simple text files because they are in the public domain. The texts used in this section come from Project Gutenberg (<a class="LinkURL" href="https://gutenberg.org">https://gutenberg.org</a>). Project Gutenberg maintains a collection of literary works that are available in the public domain, and it’s a great resource if you’re interested in working with literary texts in your programming projects.</p>
+<p><span epub:type="pagebreak" id="Page_197" title="197"></span>Let’s pull in the text of <em>Alice in Wonderland</em> and try to count the number of words in the text. To do this, we’ll use the string method <code>split()</code>, which by default splits a string wherever it finds any whitespace:</p>
+<pre><code><span class="LiteralGray">from pathlib import Path</span>
+
+<span class="LiteralGray">path = Path('alice.txt')</span>
+<span class="LiteralGray">try:</span>
+<span class="LiteralGray">    contents = path.read_text(encoding='utf-8')</span>
+<span class="LiteralGray">except FileNotFoundError:</span>
+<span class="LiteralGray">    print(f"Sorry, the file {path} does not exist.")</span>
+else:
+    # Count the approximate number of words in the file:
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     words = contents.split()
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     num_words = len(words)
+    print(f"The file {path} has about {num_words} words.")</code></pre>
+<p>I moved the file <em>alice.txt</em> to the correct directory, so the <code>try</code> block will work this time. We take the string <code>contents</code>, which now contains the entire text of <em>Alice in Wonderland</em> as one long string, and use <code>split()</code> to produce a list of all the words in the book <span aria-label="annotation1" class="CodeAnnotation">❶</span>. Using <code>len()</code> on this list <span aria-label="annotation2" class="CodeAnnotation">❷</span> gives us a good approximation of the number of words in the original text. Lastly, we print a statement that reports how many words were found in the file. This code is placed in the <code>else</code> block because it only works if the code in the <code>try</code> block was executed successfully.</p>
+<p>The output tells us how many words are in <em>alice.txt</em>:</p>
+<pre><code>The file alice.txt has about 29594 words.</code></pre>
+<p>The count is a little high because extra information is provided by the publisher in the text file used here, but it’s a good approximation of the length of <em>Alice in Wonderland</em>.</p>
+<h3 id="h2-502703c10-0015">Working with Multiple Files</h3>
+<p class="BodyFirst">Let’s add more books to analyze, but before we do, let’s move the bulk of this program to a function called <code>count_words()</code>. This will make it easier to run the analysis for multiple books:</p>
+<p class="CodeLabel"><b>word_count.py</b></p>
+<pre><code><span class="LiteralGray">from pathlib import Path</span>
+
+def count_words(path):
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     """Count the approximate number of words in a file."""
+    <span class="LiteralGray">try:</span>
+<span class="LiteralGray">        contents = path.read_text(encoding='utf-8')</span>
+<span class="LiteralGray">    except FileNotFoundError:</span>
+<span class="LiteralGray">        print(f"Sorry, the file {path} does not exist.")</span>
+<span class="LiteralGray">    else:</span>
+<span class="LiteralGray">        # Count the approximate number of words in the file:</span>
+<span class="LiteralGray">        words = contents.split()</span>
+<span class="LiteralGray">        num_words = len(words)</span>
+<span class="LiteralGray">        print(f"The file {path} has about {num_words} words.")</span>
+
+<span epub:type="pagebreak" id="Page_198" title="198"></span><span class="LiteralGray">path = Path('alice.txt')</span>
+count_words(path)</code></pre>
+<p>Most of this code is unchanged. It’s only been indented, and moved into the body of <code>count_words()</code>. It’s a good habit to keep comments up to date when you’re modifying a program, so the comment has also been changed to a docstring and reworded slightly <span aria-label="annotation1" class="CodeAnnotation">❶</span>.</p>
+<p>Now we can write a short loop to count the words in any text we want to analyze. We do this by storing the names of the files we want to analyze in a list, and then we call <code>count_words()</code> for each file in the list. We’ll try to count the words for <em>Alice in Wonderland</em>, <em>Siddhartha</em>, <em>Moby Dick</em>, and <em>Little Women</em>, which are all available in the public domain. I’ve intentionally left <em>siddhartha.txt</em> out of the directory containing <em>word_count.py</em>, so we can see how well our program handles a missing file:</p>
+<pre><code><span class="LiteralGray">from pathlib import Path</span>
+
+<span class="LiteralGray">def count_words(filename):</span>
+<span class="LiteralGray">    </span><em class="LiteralGrayItalic">--snip--</em>
+
+filenames = ['alice.txt', 'siddhartha.txt', 'moby_dick.txt', 
+        'little_women.txt']
+for filename in filenames:
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     path = Path(filename)
+    <span class="LiteralGray">count_words(path)</span></code></pre>
+<p>The names of the files are stored as simple strings. Each string is then converted to a <code>Path</code> object <span aria-label="annotation1" class="CodeAnnotation">❶</span>, before the call to <code>count_words()</code>. The missing <em>siddhartha.txt</em> file has no effect on the rest of the program’s execution:</p>
+<pre><code>The file alice.txt has about 29594 words.
+Sorry, the file siddhartha.txt does not exist.
+The file moby_dick.txt has about 215864 words.
+The file little_women.txt has about 189142 words.</code></pre>
+<p>Using the <code>try</code>-<code>except</code> block in this example provides two significant advantages. We prevent our users from seeing a traceback, and we let the program continue analyzing the texts it’s able to find. If we don’t catch the <code>FileNotFoundError</code> that <em>siddhartha.txt</em> raises, the user would see a full traceback, and the program would stop running after trying to analyze <em>Siddhartha</em>. It would never analyze <em>Moby Dick</em> or <em>Little Women</em>.</p>
+<h3 id="h2-502703c10-0016">Failing Silently</h3>
+<p class="BodyFirst">In the previous example, we informed our users that one of the files was unavailable. But you don’t need to report every exception you catch. Sometimes, you’ll want the program to fail silently when an exception occurs and continue on as if nothing happened. To make a program fail silently, you write a <code>try</code> block as usual, but you explicitly tell Python to do <span epub:type="pagebreak" id="Page_199" title="199"></span>nothing in the <code>except</code> block. Python has a <code>pass</code> statement that tells it to do nothing in a block:</p>
+<pre><code><span class="LiteralGray">def count_words(path):</span>
+<span class="LiteralGray">    """Count the approximate number of words in a file."""</span>
+<span class="LiteralGray">    try:</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em>
+<span class="LiteralGray">    except FileNotFoundError:</span>
+        pass
+<span class="LiteralGray">    else:</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic">--snip--</em></code></pre>
+<p>The only difference between this listing and the previous one is the <code>pass</code> statement in the <code>except</code> block. Now when a <code>FileNotFoundError</code> is raised, the code in the <code>except</code> block runs, but nothing happens. No traceback is produced, and there’s no output in response to the error that was raised. Users see the word counts for each file that exists, but they don’t see any indication that a file wasn’t found:</p>
+<pre><code>The file alice.txt has about 29594 words.
+The file moby_dick.txt has about 215864 words.
+The file little_women.txt has about 189142 words.</code></pre>
+<p>The <code>pass</code> statement also acts as a placeholder. It’s a reminder that you’re choosing to do nothing at a specific point in your program’s execution and that you might want to do something there later. For example, in this program we might decide to write any missing filenames to a file called <em>missing_files.txt</em>. Our users wouldn’t see this file, but we’d be able to read the file and deal with any missing texts.</p>
+<h3 id="h2-502703c10-0017">Deciding Which Errors to Report</h3>
+<p class="BodyFirst">How do you know when to report an error to your users and when to let your program fail silently? If users know which texts are supposed to be analyzed, they might appreciate a message informing them why some texts were not analyzed. If users expect to see some results but don’t know which books are supposed to be analyzed, they might not need to know that some texts were unavailable. Giving users information they aren’t looking for can decrease the usability of your program. Python’s error-handling structures give you fine-grained control over how much to share with users when things go wrong; it’s up to you to decide how much information to share.</p>
+<p>Well-written, properly tested code is not very prone to internal errors, such as syntax or logical errors. But every time your program depends on something external such as user input, the existence of a file, or the availability of a network connection, there is a possibility of an exception being raised. A little experience will help you know where to include exception-handling blocks in your program and how much to report to users about errors that arise.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2><span epub:type="pagebreak" id="Page_200" title="200"></span>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c10-23">10-6.	Addition:</span> One common problem when prompting for numerical input occurs when people provide text instead of numbers. When you try to convert the input to an <code>int</code>, you’ll get a <code>ValueError</code>. Write a program that prompts for two numbers. Add them together and print the result. Catch the <code>ValueError</code> if either input value is not a number, and print a friendly error message. Test your program by entering two numbers and then by entering some text instead of a number.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c10-24">10-7.	Addition Calculator:</span> Wrap your code from Exercise 10-5 in a <code>while</code> loop so the user can continue entering numbers, even if they make a mistake and enter text instead of a number.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c10-25">10-8.	Cats and Dogs:</span> Make two files, <em>cats.txt</em> and <em>dogs.txt</em>. Store at least three names of cats in the first file and three names of dogs in the second file. Write a program that tries to read these files and print the contents of the file to the screen. Wrap your code in a <code>try-except</code> block to catch the <code>FileNotFound</code> error, and print a friendly message if a file is missing. Move one of the files to a different location on your system, and make sure the code in the <code>except</code> block executes properly.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c10-26">10-9.	Silent Cats and Dogs:</span> Modify your <code>except</code> block in Exercise 10-7 to fail silently if either file is missing.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c10-27">10-10. Common Words:</span> Visit Project Gutenberg (<a class="LinkURL" href="https://gutenberg.org">https://gutenberg.org</a>) and find a few texts you’d like to analyze. Download the text files for these works, or copy the raw text from your browser into a text file on your computer.</p>
+<p class="BoxBody">You can use the <code>count()</code> method to find out how many times a word or phrase appears in a string. For example, the following code counts the number of times <code>'row'</code> appears in a string:</p>
+<pre><code>&gt;&gt;&gt; <code class="bold">line = "Row, row, row your boat"</code>
+&gt;&gt;&gt; <code class="bold">line.count('row')</code>
+2
+&gt;&gt;&gt; <code class="bold">line.lower().count('row')</code>
+3</code></pre>
+<p class="BoxBody">Notice that converting the string to lowercase using <code>lower()</code> catches all appearances of the word you’re looking for, regardless of how it’s formatted.</p>
+<p class="BoxBody">Write a program that reads the files you found at Project Gutenberg and determines how many times the word <code>'the'</code> appears in each text. This will be an approximation because it will also count words such as <code>'then'</code> and <code>'there'</code>. Try counting <code>'the '</code>, with a space in the string, and see how much lower your count is.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c10-0004"><span epub:type="pagebreak" id="Page_201" title="201"></span>Storing Data</h2>
+<p class="BodyFirst">Many of your programs will ask users to input certain kinds of information. You might allow users to store preferences in a game or provide data for a visualization. Whatever the focus of your program is, you’ll store the information users provide in data structures such as lists and dictionaries. When users close a program, you’ll almost always want to save the information they entered. A simple way to do this involves storing your data using the <code>json</code> module.</p>
+<p>The <code>json</code> module allows you to convert simple Python data structures into JSON-formatted strings, and then load the data from that file the next time the program runs. You can also use <code>json</code> to share data between different Python programs. Even better, the JSON data format is not specific to Python, so you can share data you store in the JSON format with people who work in many other programming languages. It’s a useful and portable format, and it’s easy to learn.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+<h2><span class="NoteHead">Note</span></h2>
+<p>	The <em>JSON</em> <em>(JavaScript Object Notation)</em> format was originally developed for JavaScript. However, it has since become a common format used by many languages, including Python.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h3 id="h2-502703c10-0018">Using json.dumps() and json.loads()</h3>
+<p class="BodyFirst">Let’s write a short program that stores a set of numbers and another program that reads these numbers back into memory. The first program will use <code>json.dumps()</code> to store the set of numbers, and the second program will use <code>json.loads()</code>.</p>
+<p>The <code>json.dumps()</code> function takes one argument: a piece of data that should be converted to the JSON format. The function returns a string, which we can then write to a data file:</p>
+<p class="CodeLabel"><b>number_writer.py</b></p>
+<pre><code>from pathlib import Path
+import json
+
+numbers = [2, 3, 5, 7, 11, 13]
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> path = Path('numbers.json')
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> contents = json.dumps(numbers)
+path.write_text(contents)</code></pre>
+<p>We first import the <code>json</code> module, and then create a list of numbers to work with. Then we choose a filename in which to store the list of numbers <span aria-label="annotation1" class="CodeAnnotation">❶</span>. It’s customary to use the file extension <em>.json</em> to indicate that the data in the file is stored in the JSON format. Next, we use the <code>json.dumps()</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span> function to generate a string containing the JSON representation of the data we’re working with. Once we have this string, we write it to the file using the same <code>write_text()</code> method we used earlier.</p>
+<p>This program has no output, but let’s open the file <em>numbers.json</em> and look at it. The data is stored in a format that looks just like Python:</p>
+<pre><code>[2, 3, 5, 7, 11, 13]</code></pre>
+<p><span epub:type="pagebreak" id="Page_202" title="202"></span>Now we’ll write a separate program that uses <code>json.loads()</code> to read the list back into memory:</p>
+<p class="CodeLabel"><b>number_reader.py</b></p>
+<pre><code>from pathlib import Path
+import json
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> path = Path('numbers.json')
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> contents = path.read_text()
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> numbers = json.loads(contents)
+
+print(numbers)</code></pre>
+<p>We make sure to read from the same file we wrote to <span aria-label="annotation1" class="CodeAnnotation">❶</span>. Since the data file is just a text file with specific formatting, we can read it with the <code>read_text()</code> method <span aria-label="annotation2" class="CodeAnnotation">❷</span>. We then pass the contents of the file to <code>json.loads()</code> <span aria-label="annotation3" class="CodeAnnotation">❸</span>. This function takes in a JSON-formatted string and returns a Python object (in this case, a list), which we assign to <code>numbers</code>. Finally, we print the recovered list of numbers and see that it’s the same list created in <em>number_writer.py</em>:</p>
+<pre><code>[2, 3, 5, 7, 11, 13]</code></pre>
+<p>This is a simple way to share data between two programs.</p>
+<h3 id="h2-502703c10-0019">Saving and Reading User-Generated Data</h3>
+<p class="BodyFirst">Saving data with <code>json</code> is useful when you’re working with user-generated data, because if you don’t store your user’s information somehow, you’ll lose it when the program stops running. Let’s look at an example where we prompt the user for their name the first time they run a program and then remember their name when they run the program again.</p>
+<p>Let’s start by storing the user’s name:</p>
+<p class="CodeLabel"><b>remember_me.py</b></p>
+<pre><code>from pathlib import Path
+import json
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> username = input("What is your name? ")
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> path = Path('username.json')
+contents = json.dumps(username)
+path.write_text(contents)
+
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> print(f"We'll remember you when you come back, {username}!")</code></pre>
+<p>We first prompt for a username to store <span aria-label="annotation1" class="CodeAnnotation">❶</span>. Next, we write the data we just collected to a file called <em>username.json</em> <span aria-label="annotation2" class="CodeAnnotation">❷</span>. Then we print a message informing the user that we’ve stored their information <span aria-label="annotation3" class="CodeAnnotation">❸</span>:</p>
+<pre><code>What is your name? <b>Eric</b>
+We'll remember you when you come back, Eric!</code></pre>
+<p><span epub:type="pagebreak" id="Page_203" title="203"></span>Now let’s write a new program that greets a user whose name has already been stored:</p>
+<p class="CodeLabel"><b>greet_user.py</b></p>
+<pre><code>from pathlib import Path
+import json
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> path = Path('username.json')
+contents = path.read_text()
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> username = json.loads(contents)
+
+print(f"Welcome back, {username}!")</code></pre>
+<p>We read the contents of the data file <span aria-label="annotation1" class="CodeAnnotation">❶</span> and then use <code>json.loads()</code> to assign the recovered data to the variable <code>username</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span>. Since we’ve recovered the username, we can welcome the user back with a personalized greeting:</p>
+<pre><code>Welcome back, Eric!</code></pre>
+<p>We need to combine these two programs into one file. When someone runs <em>remember_me.py</em>, we want to retrieve their username from memory if possible; if not, we’ll prompt for a username and store it in <em>username.json</em> for next time. We could write a <code>try</code>-<code>except</code> block here to respond appropriately if <em>username.json</em> doesn’t exist, but instead we’ll use a handy method from the <code>pathlib</code> module:</p>
+<p class="CodeLabel"><b>remember_me.py</b></p>
+<pre><code>from pathlib import Path
+import json
+
+path = Path('username.json')
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> if path.exists():
+    contents = path.read_text()
+    username = json.loads(contents)
+    print(f"Welcome back, {username}!")
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> else:
+    username = input("What is your name? ")
+    contents = json.dumps(username)
+    path.write_text(contents)
+    print(f"We'll remember you when you come back, {username}!")</code></pre>
+<p>There are many helpful methods you can use with <code>Path</code> objects. The <code>exists()</code> method returns <code>True</code> if a file or folder exists and <code>False</code> if it doesn’t. Here we use <code>path.exists()</code> to find out if a username has already been stored <span aria-label="annotation1" class="CodeAnnotation">❶</span>. If <em>username.json</em> exists, we load the username and print a personalized greeting to the user.</p>
+<p>If the file <em>username.json</em> doesn’t exist <span aria-label="annotation2" class="CodeAnnotation">❷</span>, we prompt for a username and store the value that the user enters. We also print the familiar message that we’ll remember them when they come back.</p>
+<p>Whichever block executes, the result is a username and an appropriate greeting. If this is the first time the program runs, this is the output:</p>
+<pre><code>What is your name? <b>Eric</b>
+We'll remember you when you come back, Eric!</code></pre>
+<p><span epub:type="pagebreak" id="Page_204" title="204"></span>Otherwise:</p>
+<pre><code>Welcome back, Eric!</code></pre>
+<p>This is the output you see if the program was already run at least once. Even though the data in this section is just a single string, the program would work just as well with any data that can be converted to a JSON-formatted string. </p>
+<h3 id="h2-502703c10-0020">Refactoring</h3>
+<p class="BodyFirst">Often, you’ll come to a point where your code will work, but you’ll recognize that you could improve the code by breaking it up into a series of functions that have specific jobs. This process is called <em>refactoring</em>. Refactoring makes your code cleaner, easier to understand, and easier to extend.</p>
+<p>We can refactor <em>remember_me.py</em> by moving the bulk of its logic into one or more functions. The focus of <em>remember_me.py</em> is on greeting the user, so let’s move all of our existing code into a function called <code>greet_user()</code>:</p>
+<p class="CodeLabel"><b>remember_me.py</b></p>
+<pre><code><span class="LiteralGray">from pathlib import Path</span>
+<span class="LiteralGray">import json</span>
+
+def greet_user():
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     """Greet the user by name."""
+    <span class="LiteralGray">path = Path('username.json')</span>
+<span class="LiteralGray">    if path.exists():</span>
+<span class="LiteralGray">        contents = path.read_text()</span>
+<span class="LiteralGray">        username = json.loads(contents)</span>
+<span class="LiteralGray">        print(f"Welcome back, {username}!")</span>
+<span class="LiteralGray">    else:</span>
+<span class="LiteralGray">        username = input("What is your name? ")</span>
+<span class="LiteralGray">        contents = json.dumps(username)</span>
+<span class="LiteralGray">        path.write_text(contents)</span>
+<span class="LiteralGray">        print(f"We'll remember you when you come back, {username}!")</span>
+
+greet_user()</code></pre>
+<p>Because we’re using a function now, we rewrite the comments as a docstring that reflects how the program currently works <span aria-label="annotation1" class="CodeAnnotation">❶</span>. This file is a little cleaner, but the function <code>greet_user()</code> is doing more than just greeting the user—it’s also retrieving a stored username if one exists and prompting for a new username if one doesn’t.</p>
+<p>Let’s refactor <code>greet_user()</code> so it’s not doing so many different tasks. We’ll start by moving the code for retrieving a stored username to a separate function:</p>
+<pre><code><span class="LiteralGray">from pathlib import Path</span>
+<span class="LiteralGray">import json</span>
+
+def get_stored_username(path):
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     """Get stored username if available."""
+<span epub:type="pagebreak" id="Page_205" title="205"></span>    <span class="LiteralGray">if path.exists():</span>
+<span class="LiteralGray">        contents = path.read_text()</span>
+<span class="LiteralGray">        username = json.loads(contents)</span>
+        return username
+    else:
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         return None
+
+<span class="LiteralGray">def greet_user():</span>
+<span class="LiteralGray">    """Greet the user by name."""</span>
+    <span class="LiteralGray">path = Path('username.json')</span>
+    username = get_stored_username(path)
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>     if username:
+        <span class="LiteralGray">print(f"Welcome back, {username}!")</span>
+    <span class="LiteralGray">else:</span>
+<span class="LiteralGray">        username = input("What is your name? ")</span>
+<span class="LiteralGray">        contents = json.dumps(username)</span>
+<span class="LiteralGray">        path.write_text(contents)</span>
+<span class="LiteralGray">        print(f"We'll remember you when you come back, {username}!")</span>
+
+<span class="LiteralGray">greet_user()</span></code></pre>
+<p>The new function <code>get_stored_username()</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span> has a clear purpose, as stated in the docstring. This function retrieves a stored username and returns the username if it finds one. If the path that’s passed to <code>get_stored_username()</code> doesn’t exist, the function returns <code>None</code> <span aria-label="annotation2" class="CodeAnnotation">❷</span>. This is good practice: a function should either return the value you’re expecting, or it should return <code>None</code>. This allows us to perform a simple test with the return value of the function. We print a welcome back message to the user if the attempt to retrieve a username is successful <span aria-label="annotation3" class="CodeAnnotation">❸</span>, and if it isn’t, we prompt for a new username.</p>
+<p>We should factor one more block of code out of <code>greet_user()</code>. If the username doesn’t exist, we should move the code that prompts for a new username to a function dedicated to that purpose:</p>
+<pre><code><span class="LiteralGray">from pathlib import Path</span>
+<span class="LiteralGray">import json</span>
+
+<span class="LiteralGray">def get_stored_username(path):</span>
+<span class="LiteralGray">    """Get stored username if available."""</span>
+    <em class="LiteralGrayItalic">--snip--</em>
+
+def get_new_username(path):
+    """Prompt for a new username."""
+    <span class="LiteralGray">username = input("What is your name? ")</span>
+<span class="LiteralGray">    contents = json.dumps(username)</span>
+<span class="LiteralGray">    path.write_text(contents)</span>
+    return username
+
+<span class="LiteralGray">def greet_user():</span>
+<span class="LiteralGray">    """Greet the user by name."""</span>
+<span class="LiteralGray">    path = Path('username.json')</span>
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span><span class="LiteralGray">     username = get_stored_username(path)</span>
+<span class="LiteralGray">    if username:</span>
+<span class="LiteralGray">        print(f"Welcome back, {username}!")</span>
+<span epub:type="pagebreak" id="Page_206" title="206"></span>    else:
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         username = get_new_username(path)
+        <span class="LiteralGray">print(f"We'll remember you when you come back, {username}!")</span>
+
+<span class="LiteralGray">greet_user()</span></code></pre>
+<p>Each function in this final version of <em>remember_me.py</em> has a single, clear purpose. We call <code>greet_user()</code>, and that function prints an appropriate message: it either welcomes back an existing user or greets a new user. It does this by calling <code>get_stored_username()</code> <span aria-label="annotation1" class="CodeAnnotation">❶</span>, which is responsible only for retrieving a stored username if one exists. Finally, if necessary, <code>greet_user()</code> calls <code>get_new_username()</code><span aria-label="annotation2" class="CodeAnnotation">❷</span>, which is responsible only for getting a new username and storing it. This compartmentalization of work is an essential part of writing clear code that will be easy to maintain and extend.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+<h2>Try It Yourself</h2>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c10-31">10-11. Favorite Number:</span> Write a program that prompts for the user’s favorite number. Use <code>json.dumps()</code> to store this number in a file. Write a separate program that reads in this value and prints the message “I know your favorite number! It’s _____.”</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c10-32">10-12. Favorite Number Remembered:</span> Combine the two programs you wrote in Exercise 10-11 into one file. If the number is already stored, report the favorite number to the user. If not, prompt for the user’s favorite number and store it in a file. Run the program twice to see that it works.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c10-33">10-13. User Dictionary:</span> The <em>remember_me.py</em> example only stores one piece of information, the username. Expand this example by asking for two more pieces of information about the user, then store all the information you collect in a dictionary. Write this dictionary to a file using <code>json.dumps()</code>, and read it back in using <code>json.loads()</code>. Print a summary showing exactly what your program remembers about the user.</p>
+<p class="BoxBodyCustom"><span class="BoxNumber" id="h2-502703c10-34">10-14. Verify User:</span> The final listing for <em>remember_me.py</em> assumes either that the user has already entered their username or that the program is running for the first time. We should modify it in case the current user is not the person who last used the program.</p>
+<p class="BoxBody">Before printing a welcome back message in <code>greet_user()</code>, ask the user if this is the correct username. If it’s not, call <code>get_new_username()</code> to get the correct username.</p>
+<div class="bottom hr"><hr/></div>
+</section>
+</aside>
+<h2 id="h1-502703c10-0005"><span epub:type="pagebreak" id="Page_207" title="207"></span>Summary</h2>
+<p class="BodyFirst">In this chapter, you learned how to work with files. You learned to read the entire contents of a file, and then work through the contents one line at a time if you need to. You learned to write as much text as you want to a file. You also read about exceptions and how to handle the exceptions you’re likely to see in your programs. Finally, you learned how to store Python data structures so you can save information your users provide, preventing them from having to start over each time they run a program.</p>
+<p>In <span class="xref" itemid="xref_target_Chapter 11,">Chapter 11,</span> you’ll learn efficient ways to test your code. This will help you trust that the code you develop is correct, and it will help you identify bugs that are introduced as you continue to build on the programs you’ve written.</p>
+</section>
+</div></body>
+</html>

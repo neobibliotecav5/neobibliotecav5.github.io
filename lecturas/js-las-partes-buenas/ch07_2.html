@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/><title>Chapter 7. Regular Expressions</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h1 class="title"><a id="an_example"></a>Un ejemplo</h1><p>He aquí un ejemplo. Se trata de una expresión regular que empareja URLs. Las páginas de este libro no son infinitamente anchas, así que lo he dividido en dos líneas. En un programa JavaScript, la expresión regular debe estar en una sola línea. Los espacios en blanco son importantes:<a class="indexterm" id="IDX-CHP-7-0338"></a><a class="indexterm" id="IDX-CHP-7-0339"></a><a class="indexterm" id="IDX-CHP-7-0340"></a><a class="indexterm" id="IDX-CHP-7-0341"></a><a class="indexterm" id="IDX-CHP-7-0342"></a><a class="indexterm" id="IDX-CHP-7-0343"></a><a class="indexterm" id="IDX-CHP-7-0344"></a></p><a id="I_programlisting7_d1e4918"></a><pre class="programlisting" translate="no">var parse_url = /^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)
+(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/;
+
+var url = "http://www.ora.com:80/goodparts?q#fragment";</pre><p>Llamemos al método <code class="literal" translate="no">exec</code> de <code class="literal" translate="no">parse_url</code>. Si coincide con éxito con la cadena que le pasemos, devolverá una matriz que contiene fragmentos extraídos del <code class="literal" translate="no">url</code>:</p><a id="I_programlisting7_d1e4931"></a><pre class="programlisting" translate="no">var url = "http://www.ora.com:80/goodparts?q#fragment";
+
+var result = parse_url.exec(url);
+
+var names = ['url', 'scheme', 'slash', 'host', 'port',
+    'path', 'query', 'hash'];
+
+var blanks = '       ';
+var i;
+
+for (i = 0; i &lt; names.length; i += 1) {
+    document.writeln(names[i] + ':' +
+        blanks.substring(names[i].length), result[i]);
+}</pre><p>Esto produce:</p><a id="I_programlisting7_d1e4935"></a><pre class="programlisting" translate="no">url:    http://www.ora.com:80/goodparts?q#fragment
+scheme: http
+slash:  //
+host:   www.ora.com
+port:   80
+path:   goodparts
+query:  q
+hash:   fragment</pre><p>En el <a class="xref" href="ch02.html" title="Chapter 2. Grammar">Capítulo 2</a>, utilizamos diagramas de ferrocarril para describir el lenguaje JavaScript. También podemos utilizarlos para describir los lenguajes definidos por expresiones regulares. Esto puede facilitar la comprensión de lo que hace una expresión regular. Éste es un diagrama de ferrocarril para <code class="literal" translate="no">parse_url</code>.<a class="indexterm" id="IDX-CHP-7-0345"></a><a class="indexterm" id="IDX-CHP-7-0346"></a></p><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject7_d1e4953"></a><img alt="image with no caption" src="httpatomoreillycomsourceoreillyimages238822.png" translate="no"/></div></div><p>Las expresiones regulares no pueden dividirse en trozos más pequeños como las funciones, por lo que la vía que representa a <code class="literal" translate="no">parse_url</code> es larga.</p><p>Vamos a dividir <code class="literal" translate="no">parse_url</code> en sus partes para ver cómo funciona.</p><a id="I_programlisting7_d1e4969"></a><pre class="programlisting" translate="no">^</pre><p>El carácter <code class="literal" translate="no">^</code> indica el principio de la cadena. Es un ancla que impide que <code class="literal" translate="no">exec</code> se salte un prefijo que no sea URL.</p><a id="I_programlisting7_d1e4979"></a><pre class="programlisting" translate="no">(?:([A-Za-z]+):)?</pre><p>Este factor coincide con un nombre de esquema, pero sólo si va seguido de <code class="literal" translate="no">:</code> (dos puntos). El <code class="literal" translate="no">(?:</code>. . . <code class="literal" translate="no">)</code> indica un grupo no capturador. El sufijo <code class="literal" translate="no">?</code> indica que el grupo es opcional.<a class="indexterm" id="IDX-CHP-7-0347"></a></p><p>Significa <span class="emphasis"><em translate="no">repeat zero or one time</em></span>. El ( . . . ) indica un grupo de captura. Un grupo de captura copia el texto con el que coincide y lo coloca en la matriz <code class="literal" translate="no">result</code>. A cada grupo de captura se le asigna un número. Este primer grupo de captura es el 1, por lo que una copia del texto coincidente con este grupo de captura aparecerá en <code class="literal" translate="no">result[1]</code>. El [ . . . ] indica una clase de caracteres. Esta clase de caracteres, <code class="literal" translate="no">A-Za-z</code>, contiene 26 letras mayúsculas y 26 letras minúsculas. Los guiones indican rangos, de la A a la Z. El sufijo <code class="literal" translate="no">+</code> indica que la clase de caracteres coincidirá una o más veces. El grupo va seguido del carácter <code class="literal" translate="no">:</code>, que se emparejará literalmente.<a class="indexterm" id="IDX-CHP-7-0348"></a><a class="indexterm" id="IDX-CHP-7-0349"></a></p><a id="I_programlisting7_d1e5031"></a><pre class="programlisting" translate="no">(\/{0,3})</pre><p>El siguiente factor es el grupo de captura 2. <code class="literal" translate="no">\/</code>
+                indica que debe coincidir un carácter <code class="literal" translate="no">/</code> (barra oblicua). Se escapa con <code class="literal" translate="no">\</code> (barra invertida) para que no se malinterprete como el final del literal de la expresión regular. El sufijo <code class="literal" translate="no">{0,3}</code> indica que el <code class="literal" translate="no">/</code> se emparejará 0 ó 1 ó 2 ó 3 veces.</p><a id="I_programlisting7_d1e5050"></a><pre class="programlisting" translate="no">([0-9.\-A-Za-z]+)</pre><p>El siguiente factor es el grupo de captura 3. Coincidirá con un nombre de host, que esté formado por uno o más dígitos, letras o <code class="literal" translate="no">.</code> o <code class="literal" translate="no">-</code>. El <code class="literal" translate="no">-</code> se ha escapado <code class="literal" translate="no">as \-</code> para evitar que se confunda con un guión de rango.</p><a id="I_programlisting7_d1e5066"></a><pre class="programlisting" translate="no">(?::(\d+))?</pre><p>El siguiente factor coincide opcionalmente con un número de puerto, que es una secuencia de uno o más dígitos precedida por un <code class="literal" translate="no">:</code>. <code class="literal" translate="no">\d</code> representa un carácter de dígito. La serie de uno o más dígitos será el grupo de captura 4.</p><a id="I_programlisting7_d1e5077"></a><pre class="programlisting" translate="no">(?:\/([^?#]*))?</pre><p>Tenemos otro grupo opcional. Éste comienza con un <code class="literal" translate="no">/</code>. La clase de caracteres <code class="literal" translate="no">[^?#]</code>comienza con un <code class="literal" translate="no">^</code>, que indica que la clase incluye todos los caracteres <span class="emphasis">excepto ? y #</span>. El <code class="literal" translate="no">*</code> indica que la clase de caracteres coincide cero o más veces.<a class="indexterm" id="IDX-CHP-7-0350"></a></p><p>Ten en cuenta que aquí estoy siendo descuidado. La clase de todos los caracteres <span class="emphasis"><em translate="no">except ?
+                    and #</em></span> incluye caracteres de fin de línea, caracteres de control y muchos otros caracteres que realmente no deberían coincidir aquí. La mayoría de las veces esto hará lo que queremos, pero existe el riesgo de que se cuele algún texto incorrecto. Las expresiones regulares descuidadas son una fuente popular de fallos de seguridad. Es mucho más fácil escribir expresiones regulares descuidadas que expresiones regulares rigurosas.<a class="indexterm" id="IDX-CHP-7-0351"></a></p><a id="I_programlisting7_d1e5124"></a><pre class="programlisting" translate="no">(?:\?([^#]*))?</pre><p>A continuación, tenemos un grupo opcional que empieza por <code class="literal" translate="no">?</code>. Contiene el grupo de captura 6, que contiene cero o más caracteres que no son <code class="literal" translate="no">#</code>.</p><a id="I_programlisting7_d1e5134"></a><pre class="programlisting" translate="no">(?:#(.*))?</pre><p>Tenemos un último grupo opcional que empieza por <code class="literal" translate="no">#</code>. El <code class="literal" translate="no">.</code> coincidirá con cualquier carácter excepto con un carácter de final de línea.</p><a id="I_programlisting7_d1e5144"></a><pre class="programlisting" translate="no">$</pre><p>El <code class="literal" translate="no">$</code> representa el final de la cadena. Nos asegura que no hay material extra tras el final de la URL.</p><p>Ésos son los factores de la expresión regular <code class="literal" translate="no">parse_url</code>.<sup>[<a class="footnote" href="#ftn.CHP-7-FN-1" id="CHP-7-FN-1">1</a>]</sup></p><p>Es posible hacer expresiones regulares más complejas que <code class="literal" translate="no">parse_url</code>, pero yo no lo recomendaría. Las expresiones regulares son mejores cuando son cortas y sencillas. Sólo así podemos tener la seguridad de que funcionan correctamente y de que podrían modificarse con éxito si fuera necesario.</p><p>Existe un grado muy alto de compatibilidad entre los procesadores del lenguaje JavaScript. La parte del lenguaje que es <span class="emphasis"><em translate="no">least</em></span> portable es la implementación de expresiones regulares. Las expresiones regulares muy complicadas o enrevesadas tienen más probabilidades de tener problemas de portabilidad. Las expresiones regulares anidadas también pueden sufrir horribles problemas de rendimiento en algunas implementaciones. La simplicidad es la mejor estrategia.</p><p>Veamos otro ejemplo: una expresión regular que coincide con números. Los números pueden tener una parte entera con un signo menos opcional, una parte fraccionaria opcional y una parte de exponente opcional.</p><a id="I_programlisting7_d1e5174"></a><pre class="programlisting" translate="no">var parse_number = /^-?\d+(?:\.\d*)?(?:e[+\-]?\d+)?$/i;
+
+var test = function (num) {
+    document.writeln(parse_number.test(num));
+};
+
+test('1');                // true
+test('number');           // false
+test('98.6');             // true
+test('132.21.86.100');    // false
+test('123.45E-67');       // true
+test('123.45D-67');       // false</pre><p><code class="literal" translate="no">parse_number</code> identificó con éxito las cadenas que se ajustaban a nuestra especificación y las que no, pero para las que no, no nos da ninguna información sobre por qué o dónde fallaron la prueba de números.</p><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject7_d1e5181"></a><img alt="image with no caption" src="httpatomoreillycomsourceoreillyimages238858.png" translate="no"/></div></div><p>Vamos a desglosar <code class="literal" translate="no">parse_number</code>.</p><a id="I_programlisting7_d1e5191"></a><pre class="programlisting" translate="no">/^   $/i</pre><p>Volvemos a utilizar <code class="literal" translate="no">^</code> y <code class="literal" translate="no">$</code> para anclar la expresión regular. Esto hace que todos los caracteres del texto se comparen con la expresión regular. Si hubiéramos omitido las anclas, la expresión regular nos diría si una cadena contiene un número. Con las anclas, nos dice si la cadena sólo contiene un número. Si sólo incluyéramos <code class="literal" translate="no">^</code>, coincidiría con las cadenas que empezaran por un número. Si incluimos sólo <code class="literal" translate="no">$</code>, coincidirá con las cadenas que terminen con un número.</p><p>La bandera <code class="literal" translate="no">i</code> hace que se ignoren las mayúsculas y minúsculas al buscar letras. La única letra de nuestro patrón es <code class="literal" translate="no">e</code>. Queremos que <code class="literal" translate="no">e</code> coincida también con <code class="literal" translate="no">E</code>. Podríamos haber escrito el factor <code class="literal" translate="no">e</code> como <code class="literal" translate="no">[Ee]</code> o <code class="literal" translate="no">(?:E|e)</code>, pero no tuvimos que hacerlo porque utilizamos la bandera <code class="literal" translate="no">i</code>:</p><a id="I_programlisting7_d1e5234"></a><pre class="programlisting" translate="no">-?</pre><p>El sufijo <code class="literal" translate="no">?</code> en el signo menos indica que el signo menos es opcional:</p><a id="I_programlisting7_d1e5242"></a><pre class="programlisting" translate="no">\d+</pre><p><code class="literal" translate="no">\d</code> significa lo mismo que <code class="literal" translate="no">[0-9]</code>. Coincide con un dígito. El sufijo <code class="literal" translate="no">+</code>hace que coincida con uno o más dígitos:<a class="indexterm" id="IDX-CHP-7-0352"></a></p><a id="I_programlisting7_d1e5259"></a><pre class="programlisting" translate="no">(?:\.\d*)?</pre><p>El (?: . . . <code class="literal" translate="no">)?</code> indica un grupo opcional de no captura. Suele ser mejor utilizar grupos de no captura en lugar de los grupos de captura, menos feos, porque la captura tiene una penalización de rendimiento. El grupo coincidirá con un punto decimal seguido de cero o más dígitos:<a class="indexterm" id="IDX-CHP-7-0353"></a></p><a id="I_programlisting7_d1e5271"></a><pre class="programlisting" translate="no">(?:e[+\-]?\d+)?</pre><p>Este es otro grupo opcional de no captura. Coincide con <code class="literal" translate="no">e</code> (o <code class="literal" translate="no">E</code>), un signo opcional y uno o más dígitos.</p><div class="footnotes"><br translate="no"/><hr/><div class="footnote"><p>[Cuando los pulsas todos juntos de nuevo, resulta visualmente bastante confuso:       <code class="literal" translate="no">/^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/</code></p></div></div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch07_1.html">anterior</a><a href="ch07.html">Subtema 2 de 2: (Ver todo)</a><br/></p>
+<br/><a href="ch07_2.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c20-0019">Perfeccionar el despliegue de Platform.sh</h3>
+<p class="BodyFirst">Ahora perfeccionaremos el despliegue creando un superusuario, igual que hicimos localmente. También haremos que el proyecto sea más seguro cambiando la configuración <code translate="no">DEBUG</code> a <code translate="no">False</code>, para que los mensajes de error no muestren a los usuarios ninguna información adicional que puedan utilizar para atacar al servidor.</p>
+<h4 id="h3-502703c20-0014">Crear un superusuario en Plataforma.sh</h4>
+<p class="BodyFirst">Se ha creado la base de datos del proyecto en vivo, pero está completamente vacía. Todos los usuarios que hemos creado antes sólo existen en nuestra versión local del proyecto.</p>
+<p>Para crear un superusuario en la versión en vivo del proyecto, iniciaremos una sesión SSH (secure socket shell) en la que podremos ejecutar comandos de gestión en el servidor remoto:</p>
+<pre translate="no"><code translate="no">(ll_env)learning_log$ <b>platform environment:ssh</b>
+
+ ___ _      _    __                    _
+| _ \ |__ _| |_ / _|___ _ _ _ __    __| |_
+|  _/ / _` |  _|  _/ _ \ '_| '  \ _(_-&lt; ' \
+|_| |_\__,_|\__|_| \___/_| |_|_|_(_)__/_||_|
+
+ Welcome to Platform.sh.
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> web@ll_project.0:~$ <b>ls</b>
+accounts  learning_logs  ll_project  logs  manage.py  requirements.txt
+    requirements_remote.txt  static
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> web@ll_project.0:~$ <b>python manage.py createsuperuser</b>
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> Username (leave blank to use 'web'): <b>ll_admin_live</b>
+Email address:
+<span epub:type="pagebreak" id="Page_457" title="457"></span>Password:
+Password (again):
+Superuser created successfully.
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> web@ll_project.0:~$ <b>exit</b>
+logout
+Connection to ssh.us-3.platform.sh closed.
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span> (ll_env)learning_log$</code></pre>
+<p>Cuando ejecutes por primera vez el comando <code class="bold" translate="no">platform environment:ssh</code>, puede que aparezca otro mensaje sobre la autenticidad de este host. Si ves este mensaje, introduce <code class="bold" translate="no">Y</code> y deberías acceder a una sesión de terminal remota.</p>
+<p>Después de ejecutar el comando <code class="bold" translate="no">ssh</code>, tu terminal actúa igual que un terminal en el servidor remoto. Observa que tu prompt ha cambiado para indicar que estás en una sesión <code translate="no">web</code> asociada al proyecto llamado <code translate="no">ll_project</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Si ejecutas el comando <code class="bold" translate="no">ls</code>, verás los archivos que se han enviado al servidor Platform.sh.</p>
+<p>Emite el mismo comando <code class="bold" translate="no">createsuperuser</code> que utilizamos en el <span class="xref" itemid="xref_target_Chapter 18">Capítulo 18</span> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Esta vez, he introducido un nombre de usuario de administrador, <code class="bold" translate="no">ll_admin_live</code>, que es distinto del que utilicé localmente <span aria-label="annotation3" class="CodeAnnotation">❸.</span> Cuando hayas terminado de trabajar en la sesión de terminal remota, introduce el comando <code class="bold" translate="no">exit</code> <span aria-label="annotation4" class="CodeAnnotation">❹.</span> Tu prompt te indicará que estás trabajando de nuevo en tu sistema local <span aria-label="annotation5" class="CodeAnnotation">❺.</span></p>
+<p>Ahora puedes añadir <em translate="no">/admin/</em> al final de la URL de la aplicación en vivo e iniciar sesión en el sitio de administración. Si otras personas ya han empezado a utilizar tu proyecto, ¡ten en cuenta que tendrás acceso a todos sus datos! Tómate en serio esta responsabilidad y los usuarios seguirán confiándote sus datos.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c20_29.html">anterior</a><a href="c20.html">Subtema 30 de 37: (Ver todo)</a><a href="c20_31.html">siguiente</a><br/></p>
+<br/><a href="c20_30.docx" target="_blank"></a></footer>
+</body>
+</html>

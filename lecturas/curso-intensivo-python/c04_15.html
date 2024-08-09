@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c04-0010"><span epub:type="pagebreak" id="Page_58" title="58"></span>Utilizar range() para hacer una lista de números</h3>
+<p class="BodyFirst">Si quieres hacer una lista de números, puedes convertir los resultados de <code translate="no">range()</code> directamente en una lista utilizando la función <code translate="no">list()</code>. Cuando envuelvas <code translate="no">list()</code> en una llamada a la función <code translate="no">range()</code>, la salida será una lista de números.</p>
+<p>En el ejemplo de la sección anterior, simplemente imprimimos una serie de números. Podemos utilizar <code translate="no">list()</code> para convertir esa misma serie de números en una lista:</p>
+<pre translate="no"><code translate="no">numbers = list(range(1, 6))
+print(numbers)</code></pre>
+<p>Este es el resultado:</p>
+<pre translate="no"><code translate="no">[1, 2, 3, 4, 5]</code></pre>
+<p>También podemos utilizar la función <code translate="no">range()</code> para decirle a Python que se salte los números de un rango determinado. Si pasas un tercer argumento a <code translate="no">range()</code>, Python utiliza ese valor como tamaño de paso al generar los números.</p>
+<p>Por ejemplo, aquí tienes cómo hacer una lista de los números pares entre el 1 y el 10:</p>
+<p class="CodeLabel" translate="no"><b>even_numbers.py</b></p>
+<pre translate="no"><code translate="no">even_numbers = list(range(2, 11, 2))
+print(even_numbers)</code></pre>
+<p>En este ejemplo, la función <code translate="no">range()</code> comienza con el valor 2 y luego suma 2 a ese valor. Suma 2 repetidamente hasta que alcanza o sobrepasa el valor final, 11, y produce este resultado:</p>
+<pre translate="no"><code translate="no">[2, 4, 6, 8, 10]</code></pre>
+<p>Puedes crear casi cualquier conjunto de números que desees utilizando la función <code translate="no">range()</code>. Por ejemplo, considera cómo podrías hacer una lista de los 10 primeros números cuadrados (es decir, el cuadrado de cada número entero del 1 al 10). En Python, dos asteriscos (<code translate="no">**</code>) representan exponentes. He aquí cómo podrías poner los 10 primeros números cuadrados en una lista:</p>
+<p class="CodeLabel" translate="no"><b>square_numbers.py</b></p>
+<pre translate="no"><code translate="no">squares = []
+for value in range(1, 11):
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>     square = value ** 2
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>     squares.append(square)
+
+print(squares)</code></pre>
+<p>Empezamos con una lista vacía llamada <code translate="no">squares</code>. A continuación, le decimos a Python que repase cada valor del 1 al 10 utilizando la función <code translate="no">range()</code>. Dentro del bucle, el valor actual se eleva a la segunda potencia y se asigna a la variable <code translate="no">square</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> A continuación, cada nuevo valor de <code translate="no">square</code> se añade a la lista <code translate="no">squares</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Por último, cuando el bucle ha terminado de ejecutarse, se imprime la lista de cuadrados:</p>
+<pre translate="no"><code translate="no">[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]</code></pre>
+<p><span epub:type="pagebreak" id="Page_59" title="59"></span>Para escribir este código de forma más concisa, omite la variable temporal <code translate="no">square</code> y añade cada nuevo valor directamente a la lista:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">squares = []</span>
+<span class="LiteralGray">for value in range(1,11):</span>
+    squares.append(value**2)
+
+<span class="LiteralGray">print(squares)</span></code></pre>
+<p>Esta línea hace el mismo trabajo que las líneas dentro del bucle <code translate="no">for</code> del listado anterior. Cada valor del bucle se eleva a la segunda potencia y se añade inmediatamente a la lista de cuadrados.</p>
+<p>Puedes utilizar cualquiera de estos métodos cuando hagas listas más complejas. A veces, utilizar una variable temporal hace que tu código sea más fácil de leer; otras veces hace que el código sea innecesariamente largo. Céntrate primero en escribir código que entiendas claramente y que haga lo que quieres que haga. Luego busca enfoques más eficientes a medida que revises tu código.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c04_14.html">anterior</a><a href="c04.html">Subtema 15 de 41: (Ver todo)</a><a href="c04_16.html">siguiente</a><br/></p>
+<br/><a href="c04_15.docx" target="_blank"></a></footer>
+</body>
+</html>

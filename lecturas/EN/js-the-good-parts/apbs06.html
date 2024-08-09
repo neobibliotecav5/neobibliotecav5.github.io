@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Block-less Statements</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Block-less Statements"><div class="titlepage"><div><div><h1 class="title"><a id="block-less_statements"/>Block-less Statements</h1></div></div></div><p>An <code class="literal">if</code> or <code class="literal">while</code> or <code class="literal">do</code> or <code class="literal">for</code> statement can take a block or a single statement.
+                The single statement form is another attractive nuisance. It offers the advantage of
+                saving two characters, a dubious advantage. It obscures the program's structure so
+                that subsequent manipulators of the code can easily insert bugs. For
+                    example:<a id="IDX-APP-B-0558" class="indexterm"/><a id="IDX-APP-B-0559" class="indexterm"/></p><a id="I_programlisting_d1e9065"/><pre class="programlisting">if (ok)
+    t = true;</pre><p>can become:</p><a id="I_programlisting_d1e9069"/><pre class="programlisting">if (ok)
+    t = true;
+    advance(  );</pre><p>which looks like:</p><a id="I_programlisting_d1e9073"/><pre class="programlisting">if (ok) {
+    t = true;
+    advance(  );
+}</pre><p>but which actually means:</p><a id="I_programlisting_d1e9077"/><pre class="programlisting">if (ok) {
+    t = true;
+}
+advance(  );</pre><p>Programs that appear to do one thing but actually do another are much harder to
+                get right. A disciplined and consistent use of blocks makes it easier to get it
+                right.</p></div></body></html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<meta charset="utf-8"/>
+<title>Capítulo 4: Álgebra y matemáticas simbólicas con SymPy</title>
+<link href="style.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="core.css" media="all" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch04lev1sec01"><a id="page_94"></a><strong>Definición de símbolos y operaciones simbólicas</strong></h3>
+<p class="noindent"><em>Los símbolos</em> forman los bloques de construcción de la matemática simbólica. El término <em>símbolo</em> no es más que un nombre general para las <em>x</em>, <em>y</em>, <em>as</em>y <em>b</em>que utilizas en ecuaciones y expresiones algebraicas. Crear y utilizar símbolos nos permitirá hacer las cosas de forma diferente a como las hacíamos antes. Considera las siguientes afirmaciones:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">x = 1</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">x + x + 1</span><br translate="no"/>3</p>
+<p class="indent">Aquí creamos una etiqueta, <span class="literal" translate="no">x</span>, para referirnos al número 1. Luego, cuando escribimos la expresión <span class="literal" translate="no">x + x + 1</span>, se evalúa por nosotros, y el resultado es 3. ¿Y si quisieras el resultado en términos del símbolo <em>x</em>? Es decir, ¿si en lugar de 3, quisieras que Python te dijera que el resultado es<em>2x</em> + 1? No podrías escribir <span class="literal" translate="no">x + x + 1</span> <em>sin</em> la sentencia <span class="literal" translate="no">x = 1</span>, porque Python no sabría a qué se refiere <span class="literal" translate="no">x</span>.</p>
+<p class="indent">SymPy nos permite escribir programas en los que podemos expresar y evaluar expresiones matemáticas en términos de dichos símbolos. Para utilizar un símbolo en tu programa, tienes que crear un objeto de la clase <span class="literal" translate="no">Symbol</span>, de la siguiente manera:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">from sympy import Symbol</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">x = Symbol('x')</span></p>
+<p class="indent">Primero, importamos la clase <span class="literal" translate="no">Symbol</span> de la biblioteca <span class="literal" translate="no">sympy</span>. A continuación, creamos un objeto de esta clase pasando <span class="literal" translate="no">'x'</span> como parámetro. Observa que este <span class="literal" translate="no">'x'</span> se escribe como una cadena entre comillas. Ahora podemos definir expresiones y ecuaciones en términos de este símbolo. Por ejemplo, aquí tienes la expresión anterior:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">from sympy import Symbol</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">x = Symbol('x')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">x + x + 1</span><br translate="no"/>2*x + 1</p>
+<p class="indent">Ahora el resultado se da en términos del símbolo <em>x</em>. En la expresión <span class="literal" translate="no">x = Symbol('x')</span>, el <span class="literal" translate="no">x</span> de la izquierda es la etiqueta Python. Es el mismo tipo de etiqueta que hemos utilizado antes, sólo que esta vez se refiere al símbolo <em>x</em> en lugar de a un número -más concretamente, a un objeto <span class="literal" translate="no">Symbol</span> que representa el símbolo <span class="literal" translate="no">'x'</span>. Esta etiqueta tampoco tiene que coincidir necesariamente con el símbolo; podríamos haber utilizado una etiqueta como <span class="literal" translate="no">a</span> o <span class="literal" translate="no">var1</span>. Por lo tanto, no hay ningún problema en escribir las declaraciones anteriores de la siguiente manera:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">a = Symbol('x')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">a + a + 1</span><br translate="no"/>2*x + 1</p>
+<p class="indent">Sin embargo, utilizar una etiqueta que no coincida puede resultar confuso, por lo que te recomiendo que elijas una etiqueta que tenga la misma letra que el símbolo al que se refiere.</p>
+<div class="sidebar">
+<p class="sidebart"><a id="page_95"></a><strong>ENCONTRAR EL SÍMBOLO REPRESENTADO POR UN OBJETO SÍMBOLO</strong></p>
+<p class="noindent">Para cualquier objeto <span class="literal" translate="no">Symbol</span>, su atributo <span class="literal" translate="no">name</span> es una cadena que es el símbolo real que representa:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">x = Symbol('x')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">x.name</span><br translate="no"/>'x'<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">a = Symbol('x')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">a.name</span><br translate="no"/>'x'</p>
+<p class="indent">Puedes utilizar <span class="literal" translate="no">.name</span> en una etiqueta para recuperar el símbolo que almacena.</p>
+</div>
+<p class="indent">Para que quede claro, el símbolo que crees debe especificarse como una cadena. Por ejemplo, no puedes crear el símbolo <em>x</em> utilizando <span class="literal" translate="no">x = Symbol(x)</span>-debes definirlo como <span class="literal" translate="no">x = Symbol('x')</span>.</p>
+<p class="indent">Para definir varios símbolos, puedes crear objetos <span class="literal" translate="no">Symbol</span> separados o utilizar la función <span class="literal" translate="no">symbols()</span> para definirlos de forma más concisa. Supongamos que quieres utilizar tres símbolos <em>-x</em>, <em>y</em> y <em>z- en</em>tu programa. Podrías definirlos individualmente, como hemos hecho antes:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">x = Symbol('x')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">y = Symbol('y')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">z = Symbol('z')</span></p>
+<p class="indent">Pero un método más breve sería utilizar la función <span class="literal" translate="no">symbols()</span> para definir los tres a la vez:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">from sympy import symbols</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">x,y,z = symbols('x,y,z')</span></p>
+<p class="indent">Primero, importamos la función <span class="literal" translate="no">symbols()</span> de SymPy. Luego, la llamamos con los tres símbolos que queremos crear, escritos como una cadena con comas separándolas. Una vez ejecutada esta sentencia, <span class="literal" translate="no">x</span>, <span class="literal" translate="no">y</span>, y <span class="literal" translate="no">z</span> harán referencia a los tres símbolos <span class="literal" translate="no">'x'</span>, <span class="literal" translate="no">'y'</span>, y <span class="literal" translate="no">'z'</span>.</p>
+<p class="indent">Una vez que hayas definido los símbolos, puedes realizar operaciones matemáticas básicas con ellos, utilizando los mismos operadores que aprendiste en <a href="ch01.html#ch01">el Capítulo 1</a> (<span class="literal" translate="no">+</span>, <span class="literal" translate="no">-</span>, <span class="literal" translate="no">/</span>, <span class="literal" translate="no">*</span>, y <span class="literal" translate="no">**</span>). Por ejemplo, puedes hacer lo siguiente:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">from sympy import Symbol</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">x = Symbol('x')</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">y = Symbol('y')</span><br translate="no"/><a id="page_96"></a><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">s = x*y + x*y</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">s</span><br translate="no"/>2*x*y</p>
+<p class="indent">Veamos si podemos encontrar el producto de <span class="literal" translate="no">x(x + x)</span>:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">p = x*(x + x)</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">p</span><br translate="no"/>2*x**2</p>
+<p class="indent">SymPy realizará automáticamente estos cálculos sencillos de suma y multiplicación, pero si introducimos una expresión más compleja, no cambiará. Veamos qué ocurre cuando introducimos la expresión <span class="literal" translate="no">(x + 2)*(x + 3)</span>:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">p = (x + 2)*(x + 3)</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">p</span><br translate="no"/>(x + 2)*(x + 3)</p>
+<p class="indent">Es posible que esperaras que SymPy lo multiplicara todo e imprimiera <span class="literal" translate="no">x**2 + 5*x + 6</span>. En lugar de eso, la expresión se imprimió exactamente como la introdujimos. SymPy sólo simplifica automáticamente las expresiones más básicas y deja que el programador exija explícitamente la simplificación en casos como el anterior. Si quieres multiplicar la expresión para obtener la versión expandida, tendrás que utilizar la función <span class="literal" translate="no">expand()</span>, que veremos dentro de un momento.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch04_1.html">anterior</a><a href="ch04.html">Subtema 2 de 7: (Ver todo)</a><a href="ch04_3.html">siguiente</a><br/></p>
+<br/><a href="ch04_2.docx" target="_blank"></a></footer>
+</body>
+</html>

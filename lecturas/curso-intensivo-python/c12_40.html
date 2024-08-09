@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c12-0025">Limitar el número de balas</h3>
+<p class="BodyFirst">Muchos juegos de disparos limitan el número de balas que un jugador puede tener en la pantalla a la vez; al hacerlo, animan a los jugadores a disparar con precisión. Haremos lo mismo en <em translate="no">Alien Invasion</em>.</p>
+<p>Primero, almacena el número de balas permitidas en <em translate="no">settings.py</em>:</p>
+<p class="CodeLabel" translate="no"><b>settings.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">        # Bullet settings</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">        self.bullet_color = (60, 60, 60)</span>
+<span class="LiteralGray">        </span>self.bullets_allowed = 3</code></pre>
+<p><span epub:type="pagebreak" id="Page_252" title="252"></span>Esto limita al jugador a tres balas a la vez. Utilizaremos este ajuste en <code translate="no">AlienInvasion</code> para comprobar cuántas balas existen antes de crear una nueva bala en <code translate="no">_fire_bullet()</code>:</p>
+<p class="CodeLabel" translate="no"><b>alien_invasion.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    def _fire_bullet(self):</span>
+<span class="LiteralGray">        """Create a new bullet and add it to the bullets group."""</span>
+<span class="LiteralGray">        </span>if len(self.bullets) &lt; self.settings.bullets_allowed:
+<span class="LiteralGray">            new_bullet = Bullet(self)</span>
+<span class="LiteralGray">            self.bullets.add(new_bullet)</span></code></pre>
+<p>Cuando el jugador pulsa la barra espaciadora, comprobamos la longitud de <code translate="no">bullets</code>. Si <code translate="no">len(self.bullets)</code> es inferior a tres, creamos una nueva bala. Pero si ya hay tres balas activas, no ocurre nada cuando se pulsa la barra espaciadora. Cuando ejecutes el juego ahora, sólo deberías poder disparar balas en grupos de tres.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c12_39.html">anterior</a><a href="c12.html">Subtema 40 de 43: (Ver todo)</a><a href="c12_41.html">siguiente</a><br/></p>
+<br/><a href="c12_40.docx" target="_blank"></a></footer>
+</body>
+</html>

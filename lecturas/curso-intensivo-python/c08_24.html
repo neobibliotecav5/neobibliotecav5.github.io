@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c08-0013">Evitar que una función modifique una lista</h3>
+<p class="BodyFirst">A veces querrás evitar que una función modifique una lista. Por ejemplo, supongamos que empiezas con una lista de diseños sin imprimir y escribes una función para moverlos a una lista de modelos terminados, como en el ejemplo anterior. Puede que decidas que, aunque hayas impreso todos los diseños, quieres conservar la lista original de diseños sin imprimir para tus archivos. Pero como has movido todos los nombres de los diseños fuera de <code translate="no">unprinted_designs</code>, la lista está ahora vacía, y la lista vacía es la única versión que tienes; la original ha desaparecido. En este caso, puedes solucionar este problema pasando a la función una copia de la lista, no el original. Cualquier cambio que la función haga en la lista afectará sólo a la copia, dejando intacta la lista original.</p>
+<p>Puedes enviar una copia de una lista a una función de esta forma:</p>
+<pre translate="no"><code translate="no"><var>function_name</var>(<var>list_name</var>[:])</code></pre>
+<p>La notación de corte <code translate="no">[:]</code> hace una copia de la lista para enviarla a la función. Si no quisiéramos vaciar la lista de diseños no impresos en <em translate="no">printing_models.py</em>, podríamos llamar a <code translate="no">print_models()</code> de este modo:</p>
+<pre translate="no"><code translate="no">print_models(unprinted_designs[:], completed_models)</code></pre>
+<p>La función <code translate="no">print_models()</code> puede hacer su trabajo porque sigue recibiendo los nombres de todos los diseños no impresos. Pero esta vez utiliza una copia de la lista original de diseños sin imprimir, no la lista real <code translate="no">unprinted_designs</code>. La lista <code translate="no">completed_models</code> se llenará con los nombres de los modelos impresos como antes, pero la lista original de diseños no impresos no se verá afectada por la función.</p>
+<p>Aunque puedes conservar el contenido de una lista pasando una copia de ella a tus funciones, debes pasar la lista original a las funciones a menos que tengas una razón específica para pasar una copia. Es más eficaz que una función trabaje con una lista existente, porque así se evita emplear el tiempo y la memoria necesarios para hacer una copia por separado. Esto es especialmente cierto cuando se trabaja con listas grandes.</p>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c08_23.html">anterior</a><a href="c08.html">Subtema 24 de 40: (Ver todo)</a><a href="c08_25.html">siguiente</a><br/></p>
+<br/><a href="c08_24.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch05lev1sec01"><strong><span class="blue1">Conceptos básicos de los booleanos</span></strong></h3>
+<p class="noindent">Un booleano es un poco como un interruptor de la luz: es <span class="literal">Verdadero</span> (encendido) o <span class="literal">Falso</span> (apagado). En Python, puedes declarar una variable booleana como ésta para representar que la luz está encendida:</p>
+<p class="programs" translate="no">light = <span class="orange">True</span></p>
+<p class="indent">Aquí asignas el valor <span class="literal">Verdadero</span> a la variable <span class="literal">luz</span>. Para apagar la luz, podrías asignar el valor <span class="literal">Falso</span> a luz:</p>
+<p class="programs" translate="no">light = <span class="orange">False</span></p>
+<p class="indent">Escribe siempre en mayúsculas la primera letra de <span class="literal">Verdadero</span> y <span class="literal">Falso</span>. Si no lo haces, Python no reconocerá el valor como booleano y lanzará una excepción en lugar de evaluar tu cálculo.</p>
+<p class="indent">En la siguiente misión, utilizarás booleanos para impedir que el jugador rompa bloques en el mundo del juego.</p>
+<h4 class="h4a" id="ch05lev2sec01"><strong>Misión nº 17: ¡Deja de romper bloques!</strong></h4>
+<p class="noindent">En Minecraft, es fácil aplastar bloques, lo que está muy bien cuando quieres minar en busca de recursos. Pero es muy molesto pasarse años construyendo una estructura genial y luego romperla y destruirla accidentalmente. En esta misión, harás que tu mundo Minecraft sea indestructible.</p>
+<p class="indent">Usando setting <span class="literal">("mundo_inmutable", True)</span> puedes hacer que los bloques sean <em>inmutables</em>, lo que significa que no se pueden cambiar. La línea de código setting( <span class="literal">)</span> es una función como las funciones <span class="literal">setTilePos()</span> y <span class="literal">setPos()</span> que has visto. <a href="ch05.xhtml#ch5ex1">El listado 5-1</a> muestra cómo hacer que el mundo sea inmutable.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>immutableOn.py</em></span></p>
+<p class="programs" translate="no"><span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>mc = Minecraft.create()<br translate="no"/><br translate="no"/>mc.setting(<span class="green">"world_immutable"</span>, <span class="orange">True</span>)</p>
+<p class="examplet"><a id="ch5ex1"></a><em>Listado 5-1: Código que impide que se rompan los bloques</em></p>
+<p class="indent"><span epub:type="pagebreak" id="page_87"></span>La función <span class="literal">setting</span> () tiene opciones que puedes poner a <span class="literal">True</span> para activarlas. Una de las opciones es " <span class="literal">mundo_inmutable"</span>. Para activar una opción de <span class="literal">setting</span> (), escribe <span class="literal">True</span> después del nombre de la opción dentro de los paréntesis.</p>
+<p class="indent">Escribe <a href="ch05.xhtml#ch5ex1">el Listado 5-1</a> en IDLE y guárdalo como <em>inmutableOn.py</em> en una nueva carpeta llamada <em>booleans</em>. Cuando lo ejecutes, no deberías poder romper la mayoría de los bloques, como se muestra en la <a href="ch05.xhtml#ch5fig1">Figura 5-1</a>. Pero, ¿qué ocurre cuando <em>quieres</em> volver a romper bloques? Copia tu programa en un archivo nuevo y cámbialo para que el jugador pueda romper bloques. (Sugerencia: ¡utiliza un booleano!) Guarda el nuevo archivo como <em>inmutableOff.py</em> en la carpeta <em>booleanos</em>.</p>
+<div class="image"><img alt="image" src="../images/f05-01.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch5fig1"></a><em>Figura 5-1: ¡Por mucho que lo intento, el bloque no se rompe!</em></p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch05_1.html">anterior</a><a href="ch05.html">Subtema 2 de 6: (Ver todo)</a><a href="ch05_3.html">siguiente</a><br/></p>
+<br/><a href="ch05_2.docx" target="_blank"></a></footer>
+</body>
+</html>

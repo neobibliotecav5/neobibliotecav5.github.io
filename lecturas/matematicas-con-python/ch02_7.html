@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<meta charset="utf-8"/>
+<title>Capítulo 2: Visualizar datos con gráficos</title>
+<link href="style.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="core.css" media="all" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch02lev1sec06"><a id="page_55"></a><strong><span class="bordera">Retos de programación</span></strong></h3>
+<p class="noindent">Aquí tienes algunos retos que se basan en lo que has aprendido en este capítulo. Puedes encontrar ejemplos de soluciones en <em><a href="http://www.nostarch.com/doingmathwithpython/">http://www.nostarch.com/doingmathwithpython/</a></em>.</p>
+<h4 class="h4" id="ch02lev2sec09"><strong><em>#nº 1: ¿Cómo varía la temperatura durante el día?</em></strong></h4>
+<p class="noindent">Si introduces un término de búsqueda como "el tiempo en Nueva York" en el buscador de Google, verás, entre otras cosas, un gráfico que muestra la temperatura en diferentes momentos del día actual. Tu tarea aquí es recrear ese gráfico.</p>
+<p class="indent">Utilizando una ciudad de tu elección, encuentra la temperatura en diferentes momentos del día. Utiliza los datos para crear dos listas en tu programa y para crear un gráfico con la hora del día en el <em>eje x</em> y la temperatura correspondiente en el <em>eje y</em>. El gráfico debe indicarte cómo varía la temperatura con la hora del día. Prueba con otra ciudad y observa cómo se comparan las dos ciudades trazando ambas líneas en el mismo gráfico.</p>
+<p class="indent">La hora del día puede indicarse mediante cadenas como <span class="literal" translate="no">'10:11 AM'</span> o <span class="literal" translate="no">'09:21 PM'</span>.</p>
+<h4 class="h4" id="ch02lev2sec10"><strong><em>#nº 2: Exploración visual de una función cuadrática</em></strong></h4>
+<p class="noindent">En el <a href="ch01.html#ch01">capítulo 1</a>, aprendiste a encontrar las raíces de una ecuación cuadrática, como <sup>x2</sup> +<em>2x</em> + 1 = 0. Podemos convertir esta ecuación en una función escribiéndola como <em>y</em> = <sup>x2</sup> +<em>2x</em> + 1. Para cualquier valor de <em>x</em>, la función cuadrática produce <em>algún</em> valor para <em>y</em>. Por ejemplo, cuando <em>x</em> = 1, <em>y</em> = 4. Aquí tienes un programa que calcula el valor de <em>y</em> para seis valores distintos de <em>x</em>:</p>
+<p class="programs" translate="no">   '''<br translate="no"/>   Quadratic function calculator<br translate="no"/>   '''<br translate="no"/><br translate="no"/>   # Assume values of x<br translate="no"/><span class="ent">➊</span> x_values = [-1, 1, 2, 3, 4, 5]<br translate="no"/><span class="ent">➋</span> for x in x_values:<br translate="no"/>       # Calculate the value of the quadratic function<br translate="no"/>       y = x**2 + 2*x + 1<br translate="no"/>       print('x={0} y={1}'.format(x, y))</p>
+<p class="indent">En <span class="ent">➊,</span> creamos una lista con seis valores diferentes para <span class="literal" translate="no">x</span>. El bucle <span class="literal" translate="no">for</span> que comienza en <span class="ent">➋</span> calcula el valor de la función anterior para cada uno de estos valores y utiliza la etiqueta <span class="literal" translate="no">y</span> para referirse a la lista de resultados. A continuación, imprimimos el valor de <span class="literal" translate="no">x</span> y el valor correspondiente de <span class="literal" translate="no">y</span>. Cuando ejecutes el programa, deberías ver la siguiente salida:</p>
+<p class="programs" translate="no">x=-1 y=0<br translate="no"/>x=1 y=4<br translate="no"/>x=2 y=9<br translate="no"/><a id="page_56"></a><br translate="no"/>x=3 y=16<br translate="no"/>x=4 y=25<br translate="no"/>x=5 y=36</p>
+<p class="indent">Observa que la primera línea de la salida es una raíz de la ecuación cuadrática porque es un valor de <span class="literal" translate="no">x</span> que hace que la función sea igual a 0.</p>
+<p class="indent">Tu reto de programación es mejorar este programa para crear una gráfica de la función. Intenta utilizar al menos 10 valores para <span class="literal" translate="no">x</span> en lugar de los 6 anteriores. Calcula los valores correspondientes de <span class="literal" translate="no">y</span> utilizando la función y luego crea una gráfica utilizando estos dos conjuntos de valores.</p>
+<p class="indent">Una vez que hayas creado la gráfica, dedica algún tiempo a analizar cómo varía el valor de <em>y</em> con respecto a <em>x</em>. ¿La variación es lineal o no lineal?</p>
+<h4 class="h4" id="ch02lev2sec11"><strong><em>#nº 3: Programa de comparación de trayectorias de proyectiles mejoradas</em></strong></h4>
+<p class="noindent">Tu reto aquí es mejorar el programa de comparación de trayectorias de varias maneras. En primer lugar, tu programa debe imprimir el tiempo de vuelo, la distancia horizontal máxima y la distancia vertical máxima recorrida para cada una de las combinaciones de velocidad y ángulo de proyección.</p>
+<p class="indent">La otra mejora consiste en hacer que el programa funcione con cualquier número de valores iniciales de velocidad y ángulo de proyección, suministrados por el usuario. Por ejemplo, así es como el programa debería pedir las entradas al usuario:</p>
+<p class="programs" translate="no">How many trajectories? <span class="codestrong">3</span><br translate="no"/>Enter the initial velocity for trajectory 1 (m/s): <span class="codestrong">45</span><br translate="no"/>Enter the angle of projection for trajectory 1 (degrees): <span class="codestrong">45</span><br translate="no"/>Enter the initial velocity for trajectory 2 (m/s): <span class="codestrong">60</span><br translate="no"/>Enter the angle of projection for trajectory 2 (degrees): <span class="codestrong">45</span><br translate="no"/>Enter the initial velocity for trajectory(m/s) 3: <span class="codestrong">45</span><br translate="no"/>Enter the angle of projection for trajectory(degrees) 3: <span class="codestrong">90</span></p>
+<p class="indent">Tu programa también debería asegurarse de que las entradas erróneas se gestionan adecuadamente mediante un bloque <span class="literal" translate="no">try...except</span>, igual que en el programa original.</p>
+<h4 class="h4" id="ch02lev2sec12"><strong><em>#nº 4: Visualizar tus gastos</em></strong></h4>
+<p class="noindent">Siempre me pregunto a final de mes: "¿Adónde ha ido a parar todo ese dinero?". Estoy seguro de que no es un problema al que me enfrente sólo yo.</p>
+<p class="indent">Para este reto, escribirás un programa que cree un gráfico de barras para comparar fácilmente los gastos semanales. El programa debe pedir primero el número de categorías para los gastos y el gasto total semanal en cada categoría, y luego debe crear el gráfico de barras que muestre estos gastos.</p>
+<p class="indent">Aquí tienes un ejemplo de cómo debería funcionar el programa:</p>
+<p class="programs" translate="no">Enter the number of categories: <span class="codestrong">4</span><br translate="no"/>Enter category: <span class="codestrong">Food</span><br translate="no"/>Expenditure: <span class="codestrong">70</span><br translate="no"/><a id="page_57"></a><br translate="no"/>Enter category: <span class="codestrong">Transportation</span><br translate="no"/>Expenditure: <span class="codestrong">35</span><br translate="no"/>Enter category: <span class="codestrong">Entertainment</span><br translate="no"/>Expenditure: <span class="codestrong">30</span><br translate="no"/>Enter category: <span class="codestrong">Phone/Internet</span><br translate="no"/>Expenditure: <span class="codestrong">30</span></p>
+<p class="indent"><a href="ch02.html#ch2fig16">La Figura 2-16</a> muestra el gráfico de barras que se creará para comparar los gastos. Si guardas el gráfico de barras para cada semana, al final del mes podrás ver cómo han variado los gastos entre las semanas para las distintas categorías.</p>
+<div class="image"><img alt="image" src="images/f02-16.jpg" translate="no"/></div>
+<p class="figuret"><a id="ch2fig16"></a><em>Figura 2-16: Gráfico de barras que muestra los gastos por categoría durante la semana</em></p>
+<p class="indent">No hemos hablado de la creación de un gráfico de barras con matplotlib, así que probemos con un ejemplo.</p>
+<p class="indent">Se puede crear un gráfico de barras utilizando la función <span class="literal" translate="no">barh()</span> de matplotlib, que también está definida en el módulo <span class="literal" translate="no">pyplot</span>. <a href="ch02.html#ch2fig17">La Figura 2-17</a> muestra un gráfico de barras que ilustra el número de pasos que he dado durante la semana pasada. Los días de la semana -domingo, lunes, martes, etc.- se denominan <em>etiquetas</em>. Cada barra horizontal parte del <em>eje y</em>, y tenemos que especificar la <em>coordenada y</em> del <em>centro</em> de esta posición para cada una de las barras. La longitud de cada barra corresponde al número de pasos especificado.</p>
+<div class="image"><a id="page_58"></a><img alt="image" src="images/f02-17.jpg" translate="no"/></div>
+<p class="figuret"><a id="ch2fig17"></a><em>Figura 2-17: Gráfico de barras que muestra el número de pasos caminados durante una semana</em></p>
+<p class="indent">El siguiente programa crea el gráfico de barras:</p>
+<p class="programs" translate="no">   '''<br translate="no"/>   Example of drawing a horizontal bar chart<br translate="no"/>   '''<br translate="no"/>   import matplotlib.pyplot as plt<br translate="no"/>   def create_bar_chart(data, labels):<br translate="no"/>       # Number of bars<br translate="no"/>       num_bars = len(data)<br translate="no"/>       # This list is the point on the y-axis where each<br translate="no"/>       # Bar is centered. Here it will be [1, 2, 3...]<br translate="no"/><span class="ent">➊</span>     positions = range(1, num_bars+1)<br translate="no"/><span class="ent">➋</span>     plt.barh(positions, data, align='center')<br translate="no"/>       # Set the label of each bar<br translate="no"/>       plt.yticks(positions, labels)<br translate="no"/>       plt.xlabel('Steps')<br translate="no"/>       plt.ylabel('Day')<br translate="no"/>       plt.title('Number of steps walked')<br translate="no"/>       # Turns on the grid which may assist in visual estimation<br translate="no"/>       plt.grid(<br translate="no"/>       plt.show()<br translate="no"/><br translate="no"/>   if __name__ == '__main__':<br translate="no"/>       # Number of steps I walked during the past week<br translate="no"/>       steps = [6534, 7000, 8900, 10786, 3467, 11045, 5095]<br translate="no"/>       # Corresponding days<br translate="no"/>       labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']<br translate="no"/>       create_bar_chart(steps, labels)</p>
+<p class="indent"><a id="page_59"></a>La función <span class="literal" translate="no">create_bar_chart()</span> acepta dos parámetros:<span class="literal" translate="no">data</span>, que es una lista de números que queremos representar mediante las barras y etiquetas, y la correspondiente lista <span class="literal" translate="no">labels</span>. Hay que especificar el centro de cada barra, y yo he elegido arbitrariamente los centros 1, 2, 3, 4, etc. utilizando la ayuda de la función <span class="literal" translate="no">range()</span> en <span class="ent">➊.</span></p>
+<p class="indent">A continuación, llamamos a la función <span class="literal" translate="no">barh()</span>, pasando <span class="literal" translate="no">positions</span> y <span class="literal" translate="no">data</span> como los dos primeros argumentos y luego el argumento de palabra clave, <span class="literal" translate="no">align='center'</span>, en <span class="ent">➋.</span> El argumento de la palabra clave especifica que las barras se centren en las posiciones del <em>eje y</em> especificadas por la lista. A continuación, establecemos las etiquetas de cada barra, las etiquetas de los ejes y el título mediante la función <span class="literal" translate="no">yticks()</span>. También llamamos a la función <span class="literal" translate="no">grid()</span> para activar la cuadrícula, que puede ser útil para una estimación visual del número de pasos. Por último, llamamos a la función <span class="literal" translate="no">show()</span>.</p>
+<h4 class="h4" id="ch02lev2sec13"><strong><em>#5: Exploración de la relación entre la secuencia de Fibonacci y la proporción áurea</em></strong></h4>
+<p class="noindent">La secuencia de Fibonacci (1, 1, 2, 3, 5, ...) es la serie de números en la que el <em>i-ésimo</em>número de la serie es la suma de los dos números anteriores, es decir, los números en las posiciones<em>(i</em> - 2) y<em>(i</em> - 1). Los números sucesivos de esta serie muestran una relación interesante. A medida que aumentas el número de términos de la serie, los cocientes de los pares de números consecutivos son casi iguales entre sí. Este valor se aproxima a un número especial denominado <em>razón</em> áurea. Numéricamente, la proporción áurea es el número 1,618033988 ..., y ha sido objeto de amplios estudios en música, arquitectura y naturaleza. Para este reto, escribe un programa que trace en un gráfico la relación entre números de Fibonacci consecutivos para, digamos, 100 números, lo que demostrará que los valores se aproximan a la proporción áurea.</p>
+<p class="indent">La siguiente función, que devuelve una lista de los <em>n</em> primeros números de Fibonacci, puede resultarte útil para implementar tu solución:</p>
+<p class="programs" translate="no">def fibo(n):<br translate="no"/>    if n == 1:<br translate="no"/>        return [1]<br translate="no"/>    if n == 2:<br translate="no"/>        return [1, 1]<br translate="no"/>    # n &gt; 2<br translate="no"/>    a = 1<br translate="no"/>    b = 1<br translate="no"/>    # First two members of the series<br translate="no"/>    series = [a, b]<br translate="no"/>    for i in range(n):<br translate="no"/>        c = a + b<br translate="no"/>        series.append(c)<br translate="no"/>        a = b<br translate="no"/>        b = c<br translate="no"/><br translate="no"/>    return series</p>
+<p class="indent"><a id="page_60"></a>La salida de tu solución debe ser un gráfico, como el que se muestra en la <a href="ch02.html#ch2fig18">Figura 2</a>-18.</p>
+<div class="image"><img alt="image" src="images/f02-18.jpg" translate="no"/></div>
+<p class="figuret"><a id="ch2fig18"></a><em>Figura 2-18: La relación entre los números de Fibonacci consecutivos se aproxima a la proporción áurea.</em></p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch02_6.html">anterior</a><a href="ch02.html">Subtema 7 de 7: (Ver todo)</a><br/></p>
+<br/><a href="ch02_7.docx" target="_blank"></a></footer>
+</body>
+</html>

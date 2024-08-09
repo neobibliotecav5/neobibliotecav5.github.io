@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/><title>Elements</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h2 class="title"><a id="regexp_group"></a>Grupo Regexp</h2><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject7_d1e5834"></a><img alt="image with no caption" src="httpatomoreillycomsourceoreillyimages238708.png" translate="no"/></div></div><p>Hay cuatro tipos de grupos:<a class="indexterm" id="IDX-CHP-7-0384"></a><a class="indexterm" id="IDX-CHP-7-0385"></a><a class="indexterm" id="IDX-CHP-7-0386"></a></p><div class="variablelist"><dl><dt><span class="term">
+<span class="emphasis"><em translate="no">Capturing</em></span>
+</span></dt><dd><p>Un grupo de captura es una elección regexp envuelta entre paréntesis. Los caracteres que coincidan con el grupo serán capturados. A cada grupo de captura se le asigna un número. La primera captura <code class="literal" translate="no">(</code> de la expresión regular es el grupo 1. El segundo <code class="literal" translate="no">(</code> capturador de la expresión regular es el grupo 2.<a class="indexterm" id="IDX-CHP-7-0387"></a></p></dd><dt><span class="term">
+<span class="emphasis"><em translate="no">Noncapturing</em></span>
+</span></dt><dd><p>Un grupo de no captura tiene un prefijo <code class="literal" translate="no">(?:</code>. Un grupo no capturador simplemente coincide; no captura el texto coincidente. Los grupos no capturadores no interfieren con la numeración de los grupos capturadores.<a class="indexterm" id="IDX-CHP-7-0388"></a></p></dd><dt><span class="term">
+<span class="emphasis"><em translate="no">Positive lookahead</em></span>
+</span></dt><dd><p>Un grupo de búsqueda positiva tiene un prefijo <code class="literal" translate="no">(?=</code>. Es como un grupo de no captura, excepto en que después de que el grupo coincida, el texto se rebobina hasta donde empezó el grupo, sin que coincida nada. Esta parte no es buena.<a class="indexterm" id="IDX-CHP-7-0389"></a></p></dd><dt><span class="term">
+<span class="emphasis"><em translate="no">Negative lookahead</em></span>
+</span></dt><dd><p>Un grupo de búsqueda negativa tiene un prefijo <code class="literal" translate="no">(?!</code>. Es como un grupo de búsqueda positiva, salvo que sólo coincide si no coincide. Esta parte no es buena.<a class="indexterm" id="IDX-CHP-7-0390"></a></p></dd></dl></div><div class="sect2" title="Regexp Class"><div class="titlepage"><div><div></div></div></div></div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch07s03_5.html">anterior</a><a href="ch07s03.html">Subtema 6 de 9: (Ver todo)</a><a href="ch07s03_7.html">siguiente</a><br/></p>
+<br/><a href="ch07s03_6.docx" target="_blank"></a></footer>
+</body>
+</html>

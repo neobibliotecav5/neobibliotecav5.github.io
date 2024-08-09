@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch07lev1sec03"><strong><span class="blue1">Condiciones extravagantes</span></strong></h3>
+<p class="noindent">Como los bucles <span class="literal">while</span> esperan un valor booleano para su condición, puedes utilizar cualquiera de los comparadores y operadores booleanos que has aprendido hasta ahora. Por ejemplo, ya has visto que los operadores mayor que y menor que funcionan igual que en capítulos anteriores.</p>
+<p class="indent">Pero también puedes controlar los bucles <span class="literal">while</span> con comparadores y operadores booleanos de otras formas. ¡Echemos un vistazo!</p>
+<p class="indent">Empezaremos escribiendo una condición más interactiva. El siguiente código crea la variable <span class="literal">continueAnswer</span> antes de que se inicie el bucle y comprueba que el valor es igual a <span class="literal">"Y"</span>. Ten en cuenta que no podemos utilizar la palabra <span class="literal">continuar</span> como nombre de variable porque es una palabra reservada en Python.</p>
+<p class="programs" translate="no">continueAnswer <span class="green">= "Y"</span><br translate="no"/>coins = 0<br translate="no"/><span class="orange">while</span> continueAnswer == <span class="green">"Y"</span>:<br translate="no"/>    coins = coins + 1<br translate="no"/>    continueAnswer = input("C<span class="green">ontinue? Y/N")</span><br translate="no"/><span class="rose">print</span>(<span class="green">"You have</span> " + <span class="rose">str</span>(coins) <span class="green">+ " coins"</span>)</p>
+<p class="indent"><span epub:type="pagebreak" id="page_136"></span>En la última línea del bucle <span class="literal">while</span>, el programa pide una entrada al usuario. Si el usuario pulsa algo más que <span class="literal">"Y</span> " como respuesta, el bucle saldrá. El usuario puede pulsar repetidamente Y y Y y Y, y cada vez el valor de la variable <span class="literal">monedas</span> aumentará en 1.</p>
+<p class="indent">Observa que la variable que se comprueba, <span class="literal">continuarRespuesta</span>, se crea antes de que se inicie el bucle. Si no fuera así, el programa mostraría un error. Por eso, la variable que utilizamos para comprobar la condición debe existir antes de que intentemos utilizarla, y debe ser <span class="literal">Verdadera</span> cuando el programa llegue al bucle <span class="literal">while</span> la primera vez; de lo contrario, la condición no se cumplirá, y la sentencia del cuerpo del bucle while nunca se ejecutará.</p>
+<h4 class="h4a" id="ch07lev2sec05"><strong>Misión 36: Concurso de inmersión</strong></h4>
+<p class="noindent">Vamos a divertirnos un poco con los bucles <span class="literal">while</span> y el comparador igual a<span class="literal">(==</span>). En esta misión, crearás un minijuego en el que el jugador se sumerja bajo el agua todo el tiempo que pueda. El programa registrará cuántos segundos permanece bajo el agua y mostrará su puntuación al final del programa. Para felicitar al jugador, el programa le regalará flores si permanece bajo el agua más de 6 segundos.</p>
+<p class="indent">Aquí tienes algo de código para empezar:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>divingContest.py</em></span></p>
+<p class="programs" translate="no"> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>   mc = Minecraft.create()<br translate="no"/> <span class="orange">import</span> time<br translate="no"/><br translate="no"/>   score = 0<br translate="no"/>   pos = mc.player.getPos()<br translate="no"/><span class="ent">➊</span> blockAbove = mc.getBlock(pos.x, pos.y + 2, pos.z)<br translate="no"/><br translate="no"/><span class="ent">➋</span> <span class="red"># Add a while loop here</span><br translate="no"/>   time.sleep(1)<br translate="no"/>   pos = mc.player.getPos()<br translate="no"/><span class="ent">➌</span> blockAbove = mc.getBlock(pos.x, pos.y + 2, pos.z)<br translate="no"/><span class="ent">➍</span> score = score + 1<br translate="no"/>   mc.postToChat(<span class="green">"Current score: "</span> + <span class="rose">str</span>(score))<br translate="no"/><br translate="no"/>   mc.postToChat(<span class="green">"Final score: "</span> + <span class="rose">str</span>(score))<br translate="no"/><br translate="no"/><span class="ent">➎</span> <span class="orange">if</span> score &gt; 6:<br translate="no"/>       finalPos = mc.player.getTilePos()<br translate="no"/>       mc.setBlocks(finalPos.x - 5, finalPos.y + 10, finalPos.z - 5,<br translate="no"/>                    finalPos.x + 5, finalPos.y + 10, finalPos.z + 5, 38)</p>
+<p class="indent">Guarda el programa como <em>divingContest.py</em> en tu carpeta <em>whileLoops</em>. La variable <span class="literal">puntuación</span> lleva la cuenta de cuántos segundos permanece el jugador bajo el agua.</p>
+<p class="indent">Ejecuta el código para ver qué ocurre. De momento, el programa no está completo: sólo comprueba una vez si el jugador está bajo el agua y luego termina.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_137"></span>Antes de arreglar esto, veamos qué hace el resto del código. La variable <span class="literal">bloqueEncima</span> almacena el tipo de bloque situado en la cabeza del jugador <span class="ent">➊.</span> Por ejemplo, si la cabeza del jugador está bajo el agua, esta variable almacenará un valor de 8 (lo que significa que el bloque es agua). Más adelante en el código, volverás a establecer <span class="literal">blockAbove</span> para que almacene el valor del bloque situado encima de la cabeza del jugador <span class="ent">➌</span>, de modo que cuando crees tu bucle <span class="literal">while</span>, actualizará <span class="literal">blockAbove</span> con el bloque actual situado encima de la cabeza del jugador. En <span class="ent">➍,</span> el programa añade 1 punto al total por cada segundo que el jugador esté bajo el agua, y en <span class="ent">➎,</span> utiliza una sentencia <span class="literal">if</span> para crear una lluvia de flores sobre el jugador si la puntuación es superior a 6.</p>
+<p class="indent">Te toca añadir un bucle al programa que utilice la variable <span class="literal">bloqueSobre</span> como condición en <span class="ent">➋.</span> Haz que el bucle <span class="literal">while</span> compruebe si <span class="literal">bloqueSobre</span> es igual a agua (bloque de tipo 8) o igual a agua corriente (bloque de tipo 9). Puedes utilizar la siguiente condición en el bucle while para comprobarlo: <span class="literal">while bloqueEncima == 8 o bloqueEncima == 9</span>. Esto comprueba si el jugador está actualmente bajo el agua y seguirá comprobando si el jugador está bajo el agua cada vez que se repita el bucle.</p>
+<p class="indent">Para probar tu programa, busca un poco de agua que tenga al menos tres bloques de profundidad y sumérgete en ella. El programa sólo se ejecutará si ya estás bajo el agua. Cuando ejecutes el programa, debería empezar a mostrar cuántos segundos has estado bajo el agua. Al cabo de un rato, nada hasta la superficie. El programa mostrará tu puntuación y te colmará de flores si has estado bajo el agua 6 segundos o más. La <a href="ch07.xhtml#ch7fig4">Figura 7-4</a> muestra al jugador bajo el agua y la puntuación que se muestra. La Figura <a href="ch07.xhtml#ch7fig5">7-5</a> muestra las flores que aparecen cuando ganas.</p>
+<div class="image"><img alt="image" src="../images/f07-04.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch7fig4"></a><em>Figura 7-4: Estoy aguantando la respiración bajo el agua, y se muestra el número de segundos que he estado bajo el agua.</em></p>
+<div class="image"><span epub:type="pagebreak" id="page_138"></span><img alt="image" src="../images/f07-05.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch7fig5"></a><em>Figura 7-5: ¡He ganado mi propia celebración florida!</em></p>
+<div class="sidebar">
+<p class="sidebart" id="ch07sb04"><strong>OBJETIVO EXTRA: UN GANADOR ERES TÚ</strong></p>
+<p class="noindent">Prueba a añadir premios extra escribiendo más código en la sentencia <span class="literal">if</span> al final del programa. Si el jugador obtiene una puntuación alta, podrías darle un bloque de oro. Prueba a añadir varios niveles de dificultad con premios diferentes para cada uno.</p>
+</div>
+<h4 class="h4" id="ch07lev2sec06"><strong><span class="blue1">Operadores booleanos y bucles while</span></strong></h4>
+<p class="noindent">Puedes utilizar operadores booleanos como <em>y</em>, <em>o</em>, y <em>no</em> con un bucle <span class="literal">while</span> cuando quieras que el bucle utilice más de una condición. Por ejemplo, el siguiente bucle iterará mientras el usuario no haya introducido la contraseña correcta y haya hecho tres intentos o menos:</p>
+<p class="programs" translate="no">   password = <span class="green">"cats"</span><br translate="no"/>   passwordInput = <span class="rose">input</span>(<span class="green">"Please enter the password: "</span>)<br translate="no"/>   attempts = 0<br translate="no"/><span class="ent">➊</span> <span class="orange">while</span> password != passwordInput <span class="orange">and</span> attempts &lt; 3:<br translate="no"/><span class="ent">➋</span>     attempts += 1<br translate="no"/><span class="ent">➌</span>     passwordInput = input(<span class="green">"Incorrect. Please enter the password: "</span>)<br translate="no"/><span class="ent">➍</span> <span class="orange">if</span> password == passwordInput:<br translate="no"/> <span class="rose">print</span>(<span class="green">"Password accepted."</span>)</p>
+<p class="indent">La condición del bucle <span class="literal">while</span> <span class="ent">➊</span> realiza dos tareas: comprueba si la contraseña es diferente de la introducida por el usuario<span class="literal">(contraseña != contraseñaEntrada</span>) y comprueba si el usuario ha intentado introducir la contraseña tres veces o menos<span class="literal">(intentos &lt; 3</span>). El operador <span class="literal">and</span> permite que el bucle <span class="literal">while</span> compruebe ambas condiciones al mismo tiempo. Si la condición es <span class="literal">False</span>, el bucle incrementa la variable <span epub:type="pagebreak" id="page_139"></span><span class="literal">intent</span> os <span class="ent">➋</span> y pide al usuario que vuelva a introducir la contraseña <span class="ent">➌.</span> El bucle finalizará si el usuario introduce la contraseña correcta o la variable <span class="literal">intentos</span> es mayor que 3. Una vez finalizado el bucle, el programa mostrará <span class="literal">Contraseña aceptada</span> sólo si el usuario ha introducido la contraseña correcta <span class="ent">➍.</span></p>
+<h4 class="h4" id="ch07lev2sec07"><strong><span class="blue1">Comprobar un rango de valores en bucles while</span></strong></h4>
+<p class="noindent">También puedes comprobar valores en un rango determinado utilizando un bucle <span class="literal">while</span>. Por ejemplo, el siguiente código comprueba si el valor que ha introducido el usuario está entre 0 y 10. Si no lo está, el bucle saldrá.</p>
+<p class="programs" translate="no">   position = 0<br translate="no"/><span class="ent">➊</span> <span class="orange">while</span> 0 &lt;= position &lt;= 10:<br translate="no"/>       position = <span class="rose">int</span>(<span class="rose">input</span>(<span class="green">"Enter your position 0-10: "</span>))<br translate="no"/> <span class="rose">print</span>(position)</p>
+<p class="indent">Si la variable de <span class="literal">posición</span> es mayor que 10, el bucle no se repetirá <span class="ent">➊.</span> Lo mismo ocurrirá si el valor es menor que 0. Esto es útil en Minecraft cuando compruebas si la posición del jugador se encuentra en una determinada zona del juego, como verás en la siguiente misión.</p>
+<h4 class="h4a" id="ch07lev2sec08"><strong>Misión 37: Hacer una pista de baile</strong></h4>
+<p class="noindent">¡Es hora de bailar! Pero antes de que puedas hacer unos buenos movimientos, necesitarás una pista de baile. El programa de esta misión generará una pista de baile que parpadeará con colores diferentes cada medio segundo mientras el jugador permanezca en la pista.</p>
+<p class="indent">A continuación se muestra el inicio del código. Crea una pista de baile en la posición actual del jugador y utiliza una sentencia <span class="literal">if</span> para cambiar los colores. Pero el código no está completo.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>danceFloor.py</em></span></p>
+<p class="programs" translate="no"> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>   mc = Minecraft.create()<br translate="no"/> <span class="orange">import</span> time<br translate="no"/><br translate="no"/>   pos = mc.player.getTilePos()<br translate="no"/>   floorX = pos.x – 2<br translate="no"/>   floorY = pos.y - 1<br translate="no"/>   floorZ = pos.z – 2<br translate="no"/>   width = 5<br translate="no"/>   length = 5<br translate="no"/>   block = 41<br translate="no"/><span class="ent">➊</span> mc.setBlocks(floorX, floorY, floorZ,<br translate="no"/>                floorX + width, floorY, floorZ + length, block)<br translate="no"/><br translate="no"/><span class="ent">➋</span> <span class="orange">while</span> floorX &lt;= pos.x &lt;= floorX + width <span class="orange">and</span> <span class="red"># Check z is within the floor</span><br translate="no"/><span class="ent">➌</span> <span class="orange">if</span> block == 41:<br translate="no"/>           block = 57<br translate="no"/> <span class="orange">else</span>:<br translate="no"/>           block = 41<br translate="no"/><br translate="no"/>    mc.setBlocks(floorX, floorY, floorZ,<br translate="no"/>                 floorX + width, floorY, floorZ + length, block)<br translate="no"/>    pos = mc.player.getTilePos()<br translate="no"/>    time.sleep(0.5)</p>
+<p class="indent"><span epub:type="pagebreak" id="page_140"></span>Abre IDLE, crea un nuevo archivo y guarda el programa como pista de <em>baile.py</em> en la carpeta <em>whileLoops</em>. El código construye la pista de baile basándose en la posición actual del jugador <span class="ent">➊</span> y almacena la ubicación y el tamaño de la pista de baile en las variables <span class="literal">floorX</span>, <span class="literal">floorY</span>, <span class="literal">floorZ</span>, <span class="literal">width</span> y <span class="literal">length</span>. Dentro del bucle <span class="literal">while</span>, el código utiliza una sentencia <span class="literal">if</span> para alternar los bloques de los que está hecha la pista de baile <span class="ent">➌,</span> haciendo que la pista de baile parezca que parpadea.</p>
+<p class="indent">Para que el programa funcione correctamente, tienes que cambiar la condición del bucle <span class="literal">while</span> para comprobar si la coordenada z del jugador está en la pista de baile <span class="ent">➋.</span> En otras palabras, comprueba si <span class="literal">pos.z</span> es mayor o igual que <span class="literal">floorZ</span> y menor o igual que <span class="literal">floorZ</span> más <span class="literal">la longitud</span>. Como orientación, mira cómo he comprobado si pos. <span class="literal">x</span> está en la pista de baile utilizando<span class="literal">(sueloX &lt;= pos.x &lt;= sueloX + anchura</span>). ¡La <a href="ch07.xhtml#ch7fig6">Figura 7-6</a> muestra la pista de baile en acción!</p>
+<div class="image"><img alt="image" src="../images/f07-06.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch7fig6"></a><em>Figura 7-6: Mostrando mis movimientos en la pista de baile.</em></p>
+<p class="indent">Cuando hayas terminado el programa, guárdalo y ejecútalo. Debería aparecer una pista de baile debajo del reproductor y cambiar cada medio segundo. Baila un poco en <span epub:type="pagebreak" id="page_141"></span>, ¡diviértete! Cuando hayas terminado, sal de la pista de baile y asegúrate de que deja de parpadear. No volverá a encenderse a menos que vuelvas a ejecutar el programa para crear una nueva pista de baile.</p>
+<div class="sidebar">
+<p class="sidebart" id="ch07sb05"><strong>OBJETIVO EXTRA: SE ACABÓ LA FIESTA</strong></p>
+<p class="noindent">Cuando el jugador haya terminado de bailar en la pista de baile, haz que ésta desaparezca. Para ello, cambia la pista de baile a aire cuando termine el bucle.</p>
+</div>
+<h4 class="h4" id="ch07lev2sec09"><strong><span class="blue1">Sentencias if anidadas y bucles while</span></strong></h4>
+<p class="noindent">Puedes escribir programas más potentes utilizando sentencias <span class="literal">if</span> y sentencias <span class="literal">if</span> anidadas dentro de bucles <span class="literal">while</span>. Puede que hayas visto una sentencia <span class="literal">if</span> anidada en el código de la Misión 37<a href="ch07.xhtml#page_139">(página 139</a>).</p>
+<p class="indent">En el siguiente ejemplo, la sentencia <span class="literal">if</span> anidada comprueba la última palabra que se imprimió y decide si se imprimen las palabras <span class="literal">"mine"</span> y <span class="literal">"craft"</span>. El bucle se repite 50 veces.</p>
+<p class="programs" translate="no">word = <span class="green">"mine"</span><br translate="no"/>count = 0<br translate="no"/><span class="orange">while</span> count &lt; 50:<br translate="no"/> <span class="rose">print</span>(word)<br translate="no"/> <span class="orange">if</span> word == <span class="green">"mine"</span>:<br translate="no"/>        word = <span class="green">"craft"</span><br translate="no"/> <span class="orange">else</span>:<br translate="no"/>        word = <span class="green">"mine"</span></p>
+<p class="indent">La variable <span class="literal">palabra</span> almacena la primera palabra que se imprimirá. La sentencia <span class="literal">if</span> del bucle comprueba si la palabra actual es "mina <span class="literal">"</span> y, si lo es, cambia la palabra a "artesanía <span class="literal">"</span> y la imprime en la siguiente iteración del bucle. Si la palabra no es "mía <span class="literal">"</span>, se cambiará a "artesanía <span class="literal">"</span>. Se trata de un bucle infinito, ¡así que asegúrate de utilizar <small>CTRL-C</small> para escapar!</p>
+<p class="indent">También puedes anidar sentencias <span class="literal">elif</span> y otros bucles <span class="literal">while</span> dentro de bucles <span class="literal">while</span>.</p>
+<p class="indent">El siguiente programa pregunta al usuario si desea imprimir todos los números comprendidos entre uno y un millón:</p>
+<p class="programs" translate="no">   userAnswer = <span class="rose">input</span>(<span class="green">"Print the numbers between 1 and 1000000? (yes/no): "</span>)<br translate="no"/><br translate="no"/><span class="ent">➊</span> <span class="orange">if</span> userAnswer = <span class="green">"yes"</span>:<br translate="no"/>       count = 1<br translate="no"/><span class="ent">➋</span> <span class="orange">while</span> count &lt;= 1000000:<br translate="no"/> <span class="rose">print</span>(count)<br translate="no"/>           count += 1</p>
+<p class="indent">La sentencia <span class="literal">if</span> comprueba si la entrada del usuario es <span class="literal">sí</span> <span class="ent">➊.</span> Si lo es, el programa ejecuta el bucle anidado en la sentencia <span class="literal">if</span> <span class="ent">➋.</span> Si la entrada es cualquier otra, el programa no ejecutará el bucle y terminará.</p>
+<h4 class="h4a" id="ch07lev2sec10"><span epub:type="pagebreak" id="page_142"></span><strong>Misión 38: El toque de Midas</strong></h4>
+<p class="noindent">Midas es un rey de leyenda. Todo lo que tocaba se convertía en oro. Tu misión es escribir un programa que convierta en oro todos los bloques situados por debajo del jugador, excepto el aire y el agua, claro, ¡o estarías en un buen lío! Recuerda que el bloque dorado tiene un valor de 41, el agua es 9 y el aire es 0.</p>
+<p class="sidenote" translate="no"><span class="blue"><em>midas.py</em></span></p>
+<p class="programs" translate="no"> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>   mc = Minecraft.create()<br translate="no"/><br translate="no"/>   air = 0<br translate="no"/>   water = 9<br translate="no"/><br translate="no"/><span class="ent">➊</span> <span class="red"># Add an infinite while loop here</span><br translate="no"/>       pos = mc.player.getTilePos()<br translate="no"/>       blockBelow = mc.getBlock(pos.x, pos.y - 1, pos.z)<br translate="no"/><br translate="no"/><span class="ent">➋</span> <span class="red"># Add if statement here</span><br translate="no"/>           mc.setBlock(pos.x, pos.y - 1, pos.z, 41)</p>
+<p class="indent">Abre IDLE y crea un nuevo archivo. Guarda el archivo como <em>midas.py</em> en la carpeta <em>whileLoops</em>. Tienes que añadir algo más al programa para que pueda hacer lo que necesitas. En primer lugar, añadirás un bucle <span class="literal">while</span> infinito <span class="ent">➊.</span> Recuerda que un bucle <span class="literal">while</span> infinito tiene una condición que siempre es <span class="literal">Verdadera</span>. También tienes que añadir una sentencia <span class="literal">if</span> que compruebe si el bloque situado debajo del jugador no es igual a aire y no es igual a agua estancada <span class="ent">➋.</span> El valor del bloque situado debajo del jugador se almacena en la variable <span class="literal">bloqueDebajo</span>, y los valores del aire y del agua se almacenan en las variables <span class="literal">aire</span> y <span class="literal">agua</span>.</p>
+<p class="indent">Cuando hayas completado el programa, guárdalo y ejecútalo. El jugador debería dejar un rastro de oro tras de sí. Cuando salte al agua o vuele por el aire, los bloques que hay debajo no deberían cambiar. <a href="ch07.xhtml#ch7fig7">La Figura 7-7</a> muestra el programa en acción.</p>
+<div class="image"><img alt="image" src="../images/f07-07.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch7fig7"></a><em>Figura 7-7: Cada bloque que piso se convierte en oro.</em></p>
+<p class="indent"><span epub:type="pagebreak" id="page_143"></span>Para salir del bucle infinito, ve a <strong>Shell</strong> <img alt="image" src="../images/arrow.jpg" translate="no"/> <strong>Reiniciar Shell</strong> en tu shell IDLE o haz clic en el shell y pulsa <small>CTRL-C</small>.</p>
+<div class="sidebar">
+<p class="sidebart" id="ch07sb06"><strong>OBJETIVO EXTRA: SOY UN LABRADOR</strong></p>
+<p class="noindent">Puedes cambiar <em>midas.</em> py para que sirva a diversos propósitos. ¿Qué tal si lo cambias para que cambie automáticamente los bloques de tierra por bloques de hierba? ¿Qué tal cambiar los bloques de tierra por bloques de hierba?</p>
+</div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch07_3.html">anterior</a><a href="ch07.html">Subtema 4 de 6: (Ver todo)</a><a href="ch07_5.html">siguiente</a><br/></p>
+<br/><a href="ch07_4.docx" target="_blank"></a></footer>
+</body>
+</html>

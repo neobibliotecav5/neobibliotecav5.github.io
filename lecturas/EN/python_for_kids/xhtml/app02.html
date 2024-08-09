@@ -1,0 +1,1749 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Unknown</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+<body class="calibre">
+<div class="calibre1" id="sbo-rt-content">
+<h2 class="h2" id="app02">
+<span class="calibre2" id="page_299">
+</span>
+<span class="big">
+   B
+  </span>
+<br class="calibre10"/>
+  Python’s Built-in Functions
+ </h2>
+<div class="image">
+<img alt="Image" class="calibre8" src="../images/common.jpg"/>
+</div>
+<p class="indent">
+  Python has a well-stocked box of programming tools, including a large number of functions and modules that are ready-made for you to use. These built-in tools can make writing programs a lot easier.
+ </p>
+<p class="indent">
+  As you read in
+  <a class="calibre6" href="ch07.xhtml#ch07">
+   Chapter 7
+  </a>
+  , modules need to be imported before they can be used. Python’s
+  <em class="calibre7">
+   built-in functions
+  </em>
+  don’t need to be imported first; they’re available as soon as the Python Shell starts. In this appendix, we’ll look at some of the
+  <span id="page_300">
+</span>
+  more useful built-in functions, and then focus on one: the
+  <span class="literal1">
+   open
+  </span>
+  function, which lets you open files to read and write from them.
+ </p>
+<h3 class="h1" id="app02lev1sec1">
+  Using Built-in Functions
+ </h3>
+<p class="noindent">
+  Let’s look at some of the built-in functions that are commonly used by Python programmers. I’ll describe what they do and how to use them, and then show examples of how they can help in your programs.
+ </p>
+<h3 class="h1" id="app02lev1sec2">
+  The abs Function
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   abs
+  </span>
+  function returns the
+  <em class="calibre7">
+   absolute value
+  </em>
+  of a number, which is the value of a number without its sign. For example, the absolute value of 10 is 10, and the absolute value of –10 is 10.
+ </p>
+<p class="indent">
+  To use the
+  <span class="literal1">
+   abs
+  </span>
+  function, simply call it with a number or variable as its parameter, like this:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="violet">abs</span>(10))
+10
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="violet">abs</span>(-10))
+10
+</pre>
+<p class="indent">
+  You might use the
+  <span class="literal1">
+   abs
+  </span>
+  function to calculate an absolute amount of movement of a character in a game, no matter in which the direction that character is traveling. For example, say the character takes 3 steps to their left (negative 3 or –3) and then 10 steps to their right (positive 10).
+ </p>
+<p class="indent">
+  If we didn’t care about the direction (positive or negative), the absolute value of these numbers would be 3 and 10. You might use this in a board game where you roll two dice and then move your character a maximum number of steps in any direction, based on the total of the dice. Now, if we store the number of steps in a variable, we can determine if the character is moving with the following code. We might want to display some information when the player has decided to move (in this case, we’ll display “Character is moving far” or “Character is moving,” depending on the number):
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre186" src="../images/f0300-01.jpg"/>
+</div>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> steps = -3
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">if</span> <span class="violet">abs</span>(steps) &gt; 5:
+        <span class="violet">print</span>(<span class="green">'Character is moving far'</span>)
+    <span class="orange">elif</span> <span class="violet">abs</span>(steps) != 0:
+        <span class="violet">print</span>(<span class="green">'Character is moving'</span>)
+</pre>
+<p class="indent">
+<span id="page_301">
+</span>
+  If we hadn’t used
+  <span class="literal1">
+   abs
+  </span>
+  , the
+  <span class="literal1">
+   if
+  </span>
+  statement might look like this:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> steps = 10
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">if</span> steps &lt; -5 <span class="orange">or</span> steps &gt; 5:
+        <span class="violet">print</span>(<span class="green">'Character is moving far'</span>)
+    <span class="orange">elif</span> steps != 0:
+        <span class="violet">print</span>(<span class="green">'Character is moving'</span>)
+</pre>
+<p class="indent">
+  As you can see, using
+  <span class="literal1">
+   abs
+  </span>
+  made the
+  <span class="literal1">
+   if
+  </span>
+  statement a little shorter and easier to understand.
+ </p>
+<h3 class="h1" id="app02lev1sec3">
+  The all Function
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   all
+  </span>
+  function returns
+  <span class="literal1">
+   True
+  </span>
+  if all items in a list (or any other sort of collection) evaluate to
+  <span class="literal1">
+   True
+  </span>
+  . Put most simply, this means that all the values of the items in the list are not 0,
+  <span class="literal1">
+   None
+  </span>
+  , an empty string (
+  <span class="literal1">
+   ’’’’
+  </span>
+  ) or the Boolean value
+  <span class="literal1">
+   False
+  </span>
+  .
+ </p>
+<p class="indent">
+  So if all the items in the list are nonzero numbers,
+  <span class="literal1">
+   all
+  </span>
+  will return
+  <span class="literal1">
+   True
+  </span>
+  :
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> mylist = [1,2,5,6]
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">all</span>(mylist)
+<span class="blue1">True</span>
+</pre>
+<p class="indent">
+  But if any of the values are
+  <span class="literal1">
+   0
+  </span>
+  , it will return
+  <span class="literal1">
+   False
+  </span>
+  :
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> mylist = [1, 2, 3, 0]
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">all</span>(mylist)
+<span class="blue1">False</span>
+</pre>
+<p class="indent">
+  Not just numbers—a mixed list of values that includes
+  <span class="literal1">
+   None
+  </span>
+  will also return
+  <span class="literal1">
+   False
+  </span>
+  :
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> mylist = [100, <span class="green">'a'</span>, <span class="violet">None</span>, <span class="green">'b'</span>, <span class="violet">True</span>, <span class="green">'zzz'</span>, <span class="green">' '</span>]
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">all</span>(mylist)
+<span class="blue1">False</span>
+</pre>
+<p class="indent">
+<span id="page_302">
+</span>
+  Let’s try that same example again if
+  <span class="literal1">
+   None
+  </span>
+  is removed:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> mylist = [100, <span class="green">'a'</span>, <span class="green">'b'</span>, <span class="violet">True</span>, <span class="green">'zzz'</span>, <span class="green">' '</span>]
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">all</span>(mylist)
+<span class="blue1">True</span>
+</pre>
+<h3 class="h1" id="app02lev1sec4">
+  The any Function
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   any
+  </span>
+  function is similar to
+  <span class="literal1">
+   all
+  </span>
+  , except that if any of the values evaluate to
+  <span class="literal1">
+   True
+  </span>
+  , it will return
+  <span class="literal1">
+   True
+  </span>
+  . Let’s try the same example with the numbers:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> mylist = [1, 2, 5, 6]
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">any</span>(mylist)
+<span class="blue1">True</span>
+</pre>
+<p class="indent">
+  Our mixed list of zeros,
+  <span class="literal1">
+   None
+  </span>
+  , empty strings, and
+  <span class="literal1">
+   False
+  </span>
+  also works the same as
+  <span class="literal1">
+   all
+  </span>
+  :
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> mylist = [0, <span class="violet">False, None</span>, "", 0, <span class="violet">False</span>, <span class="green">''</span>]
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">any</span>(mylist)
+<span class="blue1">False</span>
+</pre>
+<p class="indent">
+  But if we make a minor change to that list—such as adding a nonzero number like 100—we then get
+  <span class="literal1">
+   True
+  </span>
+  instead:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> mylist = [0, <span class="violet">False, None</span>, "", 0, <span class="violet">False</span>, <span class="green">''</span>, 100]
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">any</span>(mylist)
+<span class="blue1">True</span>
+</pre>
+<h3 class="h1" id="app02lev1sec5">
+  The bin Function
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   bin
+  </span>
+  function converts a number into its
+  <em class="calibre7">
+   binary representation
+  </em>
+  . Binary is beyond the scope of this book, but, in short, it’s a numbering system made up of 1s and 0s and is the basis for pretty much everything in computing. Here’s a simple example, converting some numbers into binary:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">bin</span>(100)
+<span class="blue1">'0b1100100'</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">bin</span>(5)
+<span class="blue1">'0b101'</span>
+</pre>
+<h3 class="h1" id="app02lev1sec6">
+<span class="calibre2" id="page_303">
+</span>
+  The bool Function
+ </h3>
+<p class="noindent">
+  The name
+  <span class="literal1">
+   bool
+  </span>
+  is short for
+  <em class="calibre7">
+   Boolean
+  </em>
+  , the word programmers use to describe a type of data that can have one of two possible values: typically,
+  <span class="literal1">
+   True
+  </span>
+  or
+  <span class="literal1">
+   False
+  </span>
+  .
+ </p>
+<p class="indent">
+  The
+  <span class="literal1">
+   bool
+  </span>
+  function takes a single parameter and returns either
+  <span class="literal1">
+   True
+  </span>
+  or
+  <span class="literal1">
+   False
+  </span>
+  based on its value. When using
+  <span class="literal1">
+   bool
+  </span>
+  for numbers,
+  <span class="literal1">
+   0
+  </span>
+  returns
+  <span class="literal1">
+   False
+  </span>
+  but any other number returns
+  <span class="literal1">
+   True
+  </span>
+  . Here’s how you might use
+  <span class="literal1">
+   bool
+  </span>
+  with various numbers:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="violet">bool</span>(0))
+<span class="blue1">False</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="violet">bool</span>(1))
+<span class="blue1">True</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="violet">bool</span>(1123.23))
+<span class="blue1">True</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="violet">bool</span>(-500))
+<span class="blue1">True</span>
+</pre>
+<p class="indent">
+  When you use
+  <span class="literal1">
+   bool
+  </span>
+  for other values, like strings, it returns
+  <span class="literal1">
+   False
+  </span>
+  if there’s no value for the string (in other words, the
+  <span class="literal1">
+   None
+  </span>
+  keyword or an empty string). Otherwise, it will return
+  <span class="literal1">
+   True
+  </span>
+  , as shown here:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="violet">bool</span>(<span class="violet">None</span>))
+<span class="blue1">False</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="violet">bool</span>(<span class="green">'a'</span>))
+<span class="blue1">True</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="violet">bool</span>(<span class="green">' '</span>))
+<span class="blue1">True</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="violet">bool</span>(<span class="green">'What do you call a pig doing karate? Pork Chop!'</span>))
+<span class="blue1">True</span>
+</pre>
+<p class="indent">
+  The
+  <span class="literal1">
+   bool
+  </span>
+  function will also return
+  <span class="literal1">
+   False
+  </span>
+  for lists, tuples, and maps that do not contain any values, or
+  <span class="literal1">
+   True
+  </span>
+  when they do:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> my_silly_list = []
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="violet">bool</span>(my_silly_list))
+<span class="blue1">False</span>
+<span class="brown">&gt;&gt;&gt;</span> my_silly_list = [<span class="green">'s'</span>, <span class="green">'i'</span>, <span class="green">'l'</span>, <span class="green">'l'</span>, <span class="green">'y'</span>]
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="violet">bool</span>(my_silly_list))
+<span class="blue1">True</span>
+</pre>
+<p class="indent">
+<span id="page_304">
+</span>
+  You might use
+  <span class="literal1">
+   bool
+  </span>
+  when you need to decide whether a value has been set or not. For example, if we ask people using our program to enter the year they were born, our
+  <span class="literal1">
+   if
+  </span>
+  statement could use
+  <span class="literal1">
+   bool
+  </span>
+  to test the value they enter:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> year = <span class="violet">input</span>(<span class="green">'Year of birth: '</span>)
+<span class="blue1">Year of birth</span>:
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">if not</span> <span class="violet">bool</span>(year):
+        <span class="violet">print</span>(<span class="green">'You need to enter a value for your year of birth'</span>)
+
+<span class="blue1">You need to enter a value for your year of birth</span>
+</pre>
+<p class="indent">
+  The first line of this example uses
+  <span class="literal1">
+   input
+  </span>
+  to store what someone enters on the keyboard as the variable year. Pressing ENTER on the next line (without typing anything else) results in an empty string in the variable. (We also used
+  <span class="literal1">
+   sys.stdin.readline()
+  </span>
+  in
+  <a class="calibre6" href="ch07.xhtml#ch07">
+   Chapter 7
+  </a>
+  , which is another way to do the same thing.)
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre187" src="../images/f0304-01.jpg"/>
+</div>
+<p class="indent">
+  On the following line, the
+  <span class="literal1">
+   if
+  </span>
+  statement checks the Boolean value of the variable. Because the user didn’t enter anything in this example, the
+  <span class="literal1">
+   bool
+  </span>
+  function returns
+  <span class="literal1">
+   False
+  </span>
+  . The
+  <span class="literal1">
+   if
+  </span>
+  statement uses the
+  <span class="literal1">
+   not
+  </span>
+  keyword, which is a way of saying, “Do this if the function does not return
+  <span class="literal1">
+   True
+  </span>
+  ,” and so the code prints
+  <span class="literal1">
+   You need to enter a value for your year of birth
+  </span>
+  on the next line.
+ </p>
+<h3 class="h1" id="app02lev1sec7">
+  The callable Function
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   callable
+  </span>
+  function simply tells you if something is a function (in other words, can it be called?). The following code returns
+  <span class="literal1">
+   False
+  </span>
+  . . .
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">callable</span>(<span class="green">'peas'</span>)
+<span class="blue1">False</span>
+</pre>
+<p class="indent">
+  . . . because the string
+  <span class="literal1">
+   ’peas’
+  </span>
+  is not a function. But the following code returns
+  <span class="literal1">
+   True
+  </span>
+  . . .
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">callable</span>(<span class="orange">bin</span>)
+<span class="blue1">True</span>
+</pre>
+<p class="indent">
+<span id="page_305">
+</span>
+  . . . because
+  <span class="literal1">
+   bin
+  </span>
+  is a function. The following code will also return
+  <span class="literal1">
+   True
+  </span>
+  :
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">class</span> People:
+        <span class="orange">def</span> run(self):
+            <span class="violet">print</span>(<span class="green">'running'</span>)
+
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">callable</span>(People.run)
+<span class="blue1">True</span>
+</pre>
+<p class="indent">
+  The
+  <span class="literal1">
+   People
+  </span>
+  class has a single function
+  <span class="literal1">
+   run
+  </span>
+  . If we check whether the class function is callable (it is), we get
+  <span class="literal1">
+   True
+  </span>
+  . Also, if we create an object of the class, and then check whether the object function (
+  <span class="literal1">
+   p.run
+  </span>
+  ) is callable, again we get
+  <span class="literal1">
+   True
+  </span>
+  :
+ </p>
+<pre class="calibre32"><span class="brown">&gt;&gt;&gt;</span> p = People()
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">callable</span>(p.run)
+<span class="blue1">True</span>
+</pre>
+<h3 class="h1" id="app02lev1sec8">
+  The chr Function
+ </h3>
+<p class="noindent">
+  Every character you type in Python has an underlying numeric code identifying it. The character
+  <span class="literal1">
+   ’a’
+  </span>
+  for example, has the numeric value 97. A capital
+  <span class="literal1">
+   ’A’
+  </span>
+  has the numeric value 65. The
+  <span class="literal1">
+   chr
+  </span>
+  function takes a numeric parameter and returns the character. So we can try the values 97 and 65:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">chr</span>(97)
+<span class="blue1">'a'</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">chr</span>(65)
+<span class="blue1">'A'</span>
+</pre>
+<p class="indent">
+  We can try some more random numbers, like 22283, which is a character in the Chinese character set:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">chr</span>(22283)
+<img alt="Image" class="calibre188" src="../images/305fig01.jpg"/>
+</pre>
+<p class="indent">
+  Or 949, which is the Greek character
+  <em class="calibre7">
+   epsilon
+  </em>
+  :
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">chr</span>(949)
+<span class="blue1">'</span>ε<span class="blue1">'</span>
+</pre>
+<p class="indent">
+<span id="page_306">
+</span>
+  Or 8595, which isn’t a character at all—it’s a downward-pointing arrow:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">chr</span>(8595)
+<span class="blue1">'</span>↓<span class="blue1">'</span>
+</pre>
+<h3 class="h1" id="app02lev1sec9">
+  The dir Function
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   dir
+  </span>
+  function (short for
+  <em class="calibre7">
+   directory
+  </em>
+  ) returns information about any value. Basically, it tells you the functions that can be used with that value in alphabetical order.
+ </p>
+<p class="indent">
+  For example, to display the functions that are available for a list value, enter this:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">dir</span>([<span class="green">'a'</span>, <span class="green">'short'</span>, <span class="green">'list'</span>])
+<span class="blue1">['__add__', '__class__', '__contains__', '__delattr__',
+'__delitem__', '__doc__', '__eq__', '__format__', '__ge__',
+'__getattribute__', '__getitem__', '__gt__', '__hash__', '__iadd__',
+'__imul__', '__init__', '__iter__', '__le__', '__len__', '__lt__',
+'__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__',
+'__repr__', '__reversed__', '__rmul__', '__setattr__', '__setitem__',
+'__sizeof__', '__str__', '__subclasshook__', 'append', 'count',
+'extend', 'index', 'insert', 'pop', 'remove', 'reverse', 'sort']</span>
+</pre>
+<p class="indent">
+  The
+  <span class="literal1">
+   dir
+  </span>
+  function works on pretty much anything, including strings, numbers, functions, modules, objects, and classes. But sometimes the information it returns may not be very useful. For example, if you call
+  <span class="literal1">
+   dir
+  </span>
+  on the number 1, it displays a number of special functions (those that start and end with underscores) used by Python itself, which isn’t really useful (you can usually ignore most of them):
+ </p>
+<pre class="pre">&gt;&gt;&gt; <span class="violet">dir</span>(1)
+<span class="blue1">['__abs__', '__add__', '__and__', '__bool__', '__ceil__', '__class__',
+'__delattr__', '__dir__', '__divmod__', '__doc__', '__eq__', '__float__', 
+'__floor__', '__floordiv__', '__format__', '__ge__', '__getattribute__', 
+'__getnewargs__', '__gt__', '__hash__', '__index__', '__init__',
+'__init_subclass__', '__int__', '__invert__', '__le__', '__lshift__',
+'__lt__', '__mod__', '__mul__', '__ne__', '__neg__', '__new__', '__or__', 
+'__pos__', '__pow__', '__radd__', '__rand__', '__rdivmod__', '__reduce__', 
+'__reduce_ex__', '__repr__', '__rfloordiv__', '__rlshift__', '__rmod__', 
+'__rmul__', '__ror__', '__round__', '__rpow__', '__rrshift__', '__rshift__', 
+'__rsub__', '__rtruediv__', '__rxor__', '__setattr__', '__sizeof__', '__str__', 
+'__sub__', '__subclasshook__', '__truediv__', '__trunc__', '__xor__', 
+'as_integer_ratio', 'bit_count', 'bit_length',
+'conjugate', 'denominator', 'from_bytes', 'imag', 'numerator',
+'real', 'to_bytes']</span>
+</pre>
+<p class="indent">
+<span id="page_307">
+</span>
+  The
+  <span class="literal1">
+   dir
+  </span>
+  function can be useful when you have a variable and want to quickly find out what you can do with it. For example, run
+  <span class="literal1">
+   dir
+  </span>
+  using the variable
+  <span class="literal1">
+   popcorn
+  </span>
+  containing a string value, and you get the list of functions provided by the
+  <span class="literal1">
+   string
+  </span>
+  class (all strings are members of the
+  <span class="literal1">
+   string
+  </span>
+  class):
+ </p>
+<pre class="pre">&gt;&gt;&gt; popcorn = <span class="green">'I love popcorn!'</span>
+&gt;&gt;&gt; <span class="violet">dir</span>(popcorn)
+<span class="blue1">['__add__', '__class__', '__contains__', '__delattr__', '__dir__', '__doc__', 
+'__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__',
+'__getnewargs__', '__gt__', '__hash__', '__init__', '__init_subclass__', 
+'__iter__', '__le__', '__len__', '__lt__', '__mod__', '__mul__', '__ne__',
+'__new__', '__reduce__', '__reduce_ex__', '__repr__', '__rmod__', 
+'__rmul__', '__setattr__', '__sizeof__', '__str__',
+'__subclasshook__', 'capitalize', 'casefold', 'center', 'count', 'encode', 
+'endswith', 'expandtabs', 'find', 'format', 'format_map', 'index',
+'isalnum', 'isalpha', 'isascii', 'isdecimal', 'isdigit', 'isidentifier', 
+'islower', 'isnumeric', 'isprintable', 'isspace', 'istitle', 'isupper', 
+'join', 'ljust', 'lower', 'lstrip', 'maketrans', 'partition',
+'removeprefix', 'removesuffix', 'replace', 'rfind', 'rindex', 'rjust', 
+'rpartition', 'rsplit', 'rstrip', 'split', 'splitlines', 'startswith',
+'strip', 'swapcase', 'title', 'translate', 'upper', 'zfill']</span>
+</pre>
+<p class="indent">
+  At this point, you could use
+  <span class="literal1">
+   help
+  </span>
+  to get a short description of any function in the list. Here’s an example of running
+  <span class="literal1">
+   help
+  </span>
+  for the
+  <span class="literal1">
+   upper
+  </span>
+  function:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">help</span>(popcorn.upper)
+<span class="blue1">Help on built-in function upper:
+
+upper() method of builtins.str instance
+    Return a copy of the string converted to uppercase.</span>
+</pre>
+<p class="indent">
+  The information returned can be a little confusing, so let’s take a closer look. The first line tells you that
+  <span class="literal1">
+   upper
+  </span>
+  is a built-in function of an instance (object) of a string. And the second
+  <span id="page_308">
+</span>
+  line tells you exactly what it does (returns a copy of the string in uppercase).
+ </p>
+<h3 class="h1" id="app02lev1sec10">
+  The divmod Function
+ </h3>
+<p class="noindent">
+  The helper function
+  <span class="literal1">
+   divmod
+  </span>
+  takes two parameters (two numbers representing a dividend and divisor) and then returns the result of dividing the two numbers, along with the result of performing the modulo operation on the two numbers. Division is the mathematical operation of calculating how many times one number can be divided into parts of a second number. For example, how many times can we divide a set of six balls into sets of two balls?
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre189" src="../images/f0308-01.jpg"/>
+</div>
+<p class="indent">
+  The answer: we can divide it three times.
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre190" src="../images/f0308-02.jpg"/>
+</div>
+<p class="indent">
+  The
+  <span class="literal1">
+   modulo
+  </span>
+  operation is almost the same thing, except modulo returns the number left over after we do the division. So the result of modulo for the six balls divided by two above is zero (because there’s nothing left over). What if we add one more ball? If we divide seven balls into sets of two, the result of the division is still three, but one ball will be left over.
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre191" src="../images/f0308-03.jpg"/>
+</div>
+<p class="indent">
+  And that’s what
+  <span class="literal1">
+   divmod
+  </span>
+  will return as a tuple of two numbers: the result of the division and the result of the modulo operation. Let’s try with 6 and 2 first:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">divmod</span>(6, 2)
+<span class="blue1">(3, 0)</span>
+</pre>
+<p class="indent">
+<span id="page_309">
+</span>
+  And then with 7 and 2:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">divmod</span>(7, 2)
+<span class="blue1">(3, 1)</span>
+</pre>
+<h3 class="h1" id="app02lev1sec11">
+  The eval Function
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   eval
+  </span>
+  function (short for
+  <em class="calibre7">
+   evaluate
+  </em>
+  ) takes a string as a parameter and runs it as though it were a Python expression. For example,
+  <span class="literal1">
+   eval(’print(’’wow’’)’)
+  </span>
+  will actually run the statement
+  <span class="literal1">
+   print(’’wow’’)
+  </span>
+  .
+ </p>
+<p class="indent">
+  The
+  <span class="literal1">
+   eval
+  </span>
+  function works only with simple expressions, such as the following:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">eval</span>(<span class="green">'10*5'</span>)
+<span class="blue1">50</span>
+</pre>
+<p class="indent">
+  Expressions that are split over more than one line (such as
+  <span class="literal1">
+   if
+  </span>
+  statements) generally won’t evaluate, as in this example:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">eval</span>(<span class="brown">'''if True:
+        print("this won't work at all")'''</span>)
+
+<span class="red">Traceback (most recent call last):
+  File "&lt;pyshell#2&gt;", line 1, in &lt;module&gt;
+    eval('''if True:
+  File "&lt;string&gt;", line 1
+    if True:
+    ^^
+SyntaxError: invalid syntax</span>
+</pre>
+<p class="indent">
+  The
+  <span class="literal1">
+   eval
+  </span>
+  function is often used to turn user input into Python expressions. For example, you could write a simple calculator program that reads equations entered into Python and then calculates (evaluates) the answers.
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre192" src="../images/f0309-01.jpg"/>
+</div>
+<p class="indent">
+<span id="page_310">
+</span>
+  Because user input is read as a string, Python needs to convert it into numbers and operators before doing any calculations. The
+  <span class="literal1">
+   eval
+  </span>
+  function makes that conversion easy:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> your_calculation = <span class="violet">input</span>(<span class="green">'Enter a calculation: '</span>)
+
+<span class="blue1">Enter a calculation</span>: 12*52
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">eval</span>(your_calculation)
+<span class="blue1">624</span>
+</pre>
+<p class="indent">
+  In this example, we use the
+  <span class="literal1">
+   input
+  </span>
+  function to read what the user enters into the
+  <span class="literal1">
+   your_calculation
+  </span>
+  variable. On the next line, we enter the expression
+  <span class="literal1">
+   12*52
+  </span>
+  . We use
+  <span class="literal1">
+   eval
+  </span>
+  to run this calculation, and the result is printed on the final line.
+ </p>
+<h3 class="h1" id="app02lev1sec12">
+  The exec Function
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   exec
+  </span>
+  function is like
+  <span class="literal1">
+   eval
+  </span>
+  , except you can use it to run more complicated programs. While
+  <span class="literal1">
+   eval
+  </span>
+  returns a value (something you can save in a variable),
+  <span class="literal1">
+   exec
+  </span>
+  does not. Here’s an example:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> my_small_program = <span class="brown">'''print('ham')
+print('sandwich')'''</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">exec</span>(my_small_program)
+<span class="blue1">ham
+sandwich</span>
+</pre>
+<p class="indent">
+  In the first two lines, we create a variable with a multiline string containing two
+  <span class="literal1">
+   print
+  </span>
+  statements, and then use
+  <span class="literal1">
+   exec
+  </span>
+  to run the string.
+ </p>
+<p class="indent">
+  You can use
+  <span class="literal1">
+   exec
+  </span>
+  to run mini programs your Python program reads in from files—programs inside programs! This can be quite useful when writing long, complex applications. For example, you could create a
+  <em class="calibre7">
+   Dueling Robots
+  </em>
+  game, where two robots move around a screen and try to attack each other. Players of the game would provide the instructions for their robot as mini Python programs. The
+  <em class="calibre7">
+   Dueling Robots
+  </em>
+  game would read in these scripts and use
+  <span class="literal1">
+   exec
+  </span>
+  to run.
+ </p>
+<h3 class="h1" id="app02lev1sec13">
+<span class="calibre2" id="page_311">
+</span>
+  The float Function
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   float
+  </span>
+  function converts a string or a number into a
+  <em class="calibre7">
+   floating-point
+  </em>
+  number, which is a number with a decimal place (also called a
+  <em class="calibre7">
+   real number
+  </em>
+  or
+  <em class="calibre7">
+   float
+  </em>
+  ). For example, the number 10 is an integer (also called a
+  <em class="calibre7">
+   whole number
+  </em>
+  ), but 10.0, 10.1, and 10.253 are all floating-point numbers. You might use floating point numbers if you’re writing a simple program to calculate monetary amounts. Floats are also used in graphics programs (like 3D games) to calculate how and where to draw things on the screen.
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre193" src="../images/f0311-01.jpg"/>
+</div>
+<p class="indent">
+  You can convert a string to a float simply by calling
+  <span class="literal1">
+   float
+  </span>
+  :
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">float</span>(<span class="green">'12'</span>)
+<span class="blue1">12.0</span>
+</pre>
+<p class="indent">
+  You can use a decimal place in a string as well:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">float</span>(<span class="green">'123.456789'</span>)
+<span class="blue1">123.456789</span>
+</pre>
+<p class="indent">
+  You might use
+  <span class="literal1">
+   float
+  </span>
+  to convert values entered into your program into proper numbers, which is particularly useful when you need to compare the value a person enters with other values. For example, to check whether a person’s age is above a certain number, we could do this:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> your_age = <span class="violet">input</span>(<span class="green">'Enter your age: '</span>)
+
+<span class="blue1">Enter your age</span>: 20
+<span class="brown">&gt;&gt;&gt;</span> age = <span class="violet">float</span>(your_age)
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">if</span> age &gt; 13:
+        <span class="violet">print</span>(f<span class="green">'You are {age - 13} years too old'</span>)
+
+<span class="blue1">You are 7.0 years too old</span>
+</pre>
+<h3 class="h1" id="app02lev1sec14">
+<span class="calibre2" id="page_312">
+</span>
+  The input Function
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   input
+  </span>
+  function is used to read text entered by the person who’s using your program—everything they type until they hit the ENTER key. The results are returned in a string for you to use. You can prompt the user of your program to enter something, with a message like this example:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> s = <span class="violet">input</span>(<span class="green">'Tell me a play on words:\n'</span>)
+<span class="blue1">Tell me a play on words</span>:
+A hedgehog went to see a play about a plucky young girl, but left
+dis-a-pointed
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(s)
+<span class="blue1">A hedgehog went to see a play about a plucky young girl, but left
+dis-a-pointed</span>
+</pre>
+<p class="noindent">
+  Or with no message:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> s = <span class="violet">input</span>()
+A hedgehog went to see a play about a plucky young girl, but left
+dis-a-pointed
+</pre>
+<p class="indent">
+  In either case, the result of the
+  <span class="literal1">
+   input
+  </span>
+  function is the same: a string containing the text. See the previous section on the
+  <span class="literal1">
+   float
+  </span>
+  function for more examples of using the return value.
+ </p>
+<h3 class="h1" id="app02lev1sec15">
+  The int Function
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   int
+  </span>
+  function converts a string or a number into a whole number (or
+  <em class="calibre7">
+   integer
+  </em>
+  ), which basically means that everything after the decimal point is dropped. For example, here’s how to convert a floating-point number into a plain integer:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">int</span>(123.456)
+123
+</pre>
+<p class="indent">
+  This example converts a string to an integer:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">int</span>(<span class="green">'123'</span>)
+<span class="blue1">123</span>
+</pre>
+<p class="indent">
+  But try to convert a string containing a floating-point number into an integer, and you get an error message. For
+  <span id="page_313">
+</span>
+  example, here we try to convert a string containing a floating-point number using the
+  <span class="literal1">
+   int
+  </span>
+  function:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">int</span>(<span class="green">'123.456'</span>)
+<span class="red">Traceback (most recent call last):
+  File "&lt;pyshell&gt;", line 1, in &lt;module&gt;
+    int('123.456')
+ValueError: invalid literal for int() with base 10: '123.456'</span>
+</pre>
+<p class="indent">
+  As you can see, the result is a
+  <span class="literal1">
+   ValueError
+  </span>
+  message.
+ </p>
+<h3 class="h1" id="app02lev1sec16">
+  The len Function
+ </h3>
+<div class="image1">
+<img alt="Image" class="calibre194" src="../images/f0313-01.jpg"/>
+</div>
+<p class="noindent">
+  The
+  <span class="literal1">
+   len
+  </span>
+  function returns the length of an object or, in the case of a string, the number of characters in the string. For example, to get the length of
+  <span class="literal1">
+   ’this is a
+  </span>
+<span class="literal1">
+   test string’
+  </span>
+  , you’d do this:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">len</span>(<span class="green">'this is a test string'</span>)
+<span class="blue1">21</span>
+</pre>
+<p class="indent">
+  When used with a list or a tuple,
+  <span class="literal1">
+   len
+  </span>
+  returns the number of items in that list or tuple:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> creature_list = [<span class="green">'unicorn'</span>, <span class="green">'cyclops'</span>, <span class="green">'fairy'</span>, <span class="green">'elf'</span>, <span class="green">'dragon'</span>, 
+                     <span class="green">'troll'</span>]
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="violet">len</span>(creature_list))
+<span class="blue1">6</span>
+</pre>
+<p class="indent">
+  Used with a
+  <span class="literal1">
+   dict
+  </span>
+  (or
+  <em class="calibre7">
+   dictionary
+  </em>
+  ),
+  <span class="literal1">
+   len
+  </span>
+  also returns the number of items in the
+  <span class="literal1">
+   dict
+  </span>
+  :
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> enemies = {<span class="green">'Batman'</span> : <span class="green">'Joker'</span>,
+               <span class="green">'Superman'</span> : <span class="green">'Lex Luthor'</span>, 
+               <span class="green">'Spiderman'</span> : <span class="green">'Green Goblin'</span>}
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="violet">len</span>(enemies))
+<span class="blue1">3</span>
+</pre>
+<p class="indent">
+<span id="page_314">
+</span>
+  The
+  <span class="literal1">
+   len
+  </span>
+  function is particularly useful when you’re working with loops. For example, we could use it to display the index positions of the elements in a list like so:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> fruit = [<span class="green">'apple'</span>, <span class="green">'banana'</span>, <span class="green">'clementine'</span>, <span class="green">'dragon fruit'</span>]
+<span class="brown">&gt;&gt;&gt;</span> length = <span class="violet">len</span>(fruit)
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> x <span class="orange">in</span> <span class="violet">range</span>(0, length):
+        <span class="violet">print</span>(f<span class="green">'the fruit at index {x} is {fruit[x]}'</span>)
+
+<span class="blue1">the fruit at index 0 is apple
+the fruit at index 1 is banana
+the fruit at index 2 is clementine
+the fruit at index 3 is dragon fruit</span>
+</pre>
+<p class="indent">
+  First, we store the length of the list in the variable
+  <span class="literal1">
+   length
+  </span>
+  , and then use that variable in the
+  <span class="literal1">
+   range
+  </span>
+  function to create our loop. As we loop through each item in the list, we print a message showing the item’s index position and value. You could also use the
+  <span class="literal1">
+   len
+  </span>
+  function, if you had a list of strings and wanted to print every second or third item in the list.
+ </p>
+<h3 class="h1" id="app02lev1sec17">
+  The list Function
+ </h3>
+<p class="noindent">
+  If you call
+  <span class="literal1">
+   list
+  </span>
+  without any parameters, you’ll get an empty list object in response. There’s no difference between
+  <span class="literal1">
+   list()
+  </span>
+  and using square brackets at that point. We can check if this is actually the case by testing if the two lists are equal (
+  <span class="literal1">
+   ==
+  </span>
+  ):
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> l1 = <span class="violet">list</span>()
+<span class="brown">&gt;&gt;&gt;</span> l2 = []
+<span class="brown">&gt;&gt;&gt;</span> l1 == l2
+<span class="blue1">True</span>
+</pre>
+<p class="indent">
+  While this might not seem particularly useful,
+  <span class="literal1">
+   list
+  </span>
+  can also be used to convert certain types of Python objects (called
+  <em class="calibre7">
+   iterables
+  </em>
+  ) into a list. The simplest example of this would be to use the
+  <span class="literal1">
+   range
+  </span>
+  function (this function is described on
+  <a class="calibre6" href="app02.xhtml#app02lev1sec21">
+   page 317
+  </a>
+  ) with
+  <span class="literal1">
+   list
+  </span>
+  :
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">list</span>(<span class="violet">range</span>(0, 10))
+<span class="blue1">[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span>
+</pre>
+<h3 class="h1" id="app02lev1sec18">
+<span class="calibre2" id="page_315">
+</span>
+  The max and min Functions
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   max
+  </span>
+  function returns the largest item in a list, tuple, or string. For example, here’s how to use it with a list of numbers:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> numbers = [5, 4, 10, 30, 22]
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="violet">max</span>(numbers))
+<span class="blue1">30</span>
+</pre>
+<p class="indent">
+  You can do exactly the same thing with a string, or a list of strings:
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre195" src="../images/f0315-01.jpg"/>
+</div>
+<pre class="calibre32">&gt;&gt;&gt; strings = <span class="blue1">'stringSTRING'</span>
+&gt;&gt;&gt; <span class="violet">print</span>(<span class="violet">max</span>(strings))
+<span class="blue1">t</span>
+&gt;&gt;&gt; strings = [<span class="green">'s'</span>, <span class="green">'t'</span>, <span class="green">'r'</span>, <span class="green">'i'</span>, <span class="green">'n'</span>, <span class="green">'g'</span>, <span class="green">'S'</span>, <span class="green">'T'</span>, <span class="green">'R'</span>, <span class="green">'I'</span>, <span class="green">'N'</span>, <span class="green">'G'</span>]
+&gt;&gt;&gt; <span class="violet">print</span>(<span class="violet">max</span>(strings))
+<span class="blue1">t</span>
+</pre>
+<p class="indent">
+  Letters are ranked alphabetically, but lowercase letters come after uppercase letters, so
+  <span class="literal1">
+   t
+  </span>
+  is more than
+  <span class="literal1">
+   T
+  </span>
+  . But you don’t have to use lists, tuples, or strings. You can also call the max function directly, and enter the items that you want to compare into the parentheses as parameters:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="violet">max</span>(10, 300, 450, 50, 90))
+<span class="blue1">450</span>
+</pre>
+<p class="indent">
+  The
+  <span class="literal1">
+   min
+  </span>
+  function works like
+  <span class="literal1">
+   max
+  </span>
+  , except it returns the smallest item in the list, tuple, or string. Here’s our list of numbers example using
+  <span class="literal1">
+   min
+  </span>
+  instead of
+  <span class="literal1">
+   max
+  </span>
+  :
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> numbers = [5, 4, 10, 30, 22]
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="violet">min</span>(numbers))
+<span class="blue1">4</span>
+</pre>
+<p class="indent">
+  Suppose you’re playing a guessing game with a team of four players, and each has to guess a number that is less than your number. If any player guesses above your number, all players lose, but if they all guess lower, they win. We could
+  <span id="page_316">
+</span>
+  use
+  <span class="literal1">
+   max
+  </span>
+  to quickly find whether any of the guesses are higher, like so:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> guess_this_number = 61
+<span class="brown">&gt;&gt;&gt;</span> player_guesses = [12, 15, 70, 45]
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">if</span> <span class="violet">max</span>(player_guesses) &gt; guess_this_number:
+        <span class="violet">print</span>(<span class="green">'Boom! You all lose'</span>)
+    <span class="orange">else</span>:
+        <span class="violet">print</span>(<span class="green">'You win'</span>)
+
+<span class="blue1">Boom! You all lose</span>
+</pre>
+<p class="indent">
+  In this example, we store the number to guess using the variable
+  <span class="literal1">
+   guess_this_number
+  </span>
+  . The team members’ guesses are stored in the list
+  <span class="literal1">
+   player_guesses
+  </span>
+  . The
+  <span class="literal1">
+   if
+  </span>
+  statement checks the maximum guess against the number in
+  <span class="literal1">
+   guess_this_number
+  </span>
+  , and if any player guesses over the number, we print the message “Boom! You all lose.”
+ </p>
+<h3 class="h1" id="app02lev1sec19">
+  The ord Function
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   ord
+  </span>
+  function is basically the reverse of the
+  <span class="literal1">
+   chr
+  </span>
+  function: whereas
+  <span class="literal1">
+   chr
+  </span>
+  converts a number to a character,
+  <span class="literal1">
+   ord
+  </span>
+  tells you what the number code is for a character. Here are some examples:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">ord</span>(<span class="green">'a'</span>)
+<span class="blue1">97</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">ord</span>(<span class="green">'A'</span>)
+<span class="blue1">65</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">ord</span>(<span class="green">'<img alt="Image" class="middle" src="../images/316fig01.jpg"/>'</span>)
+<span class="blue1">22283</span>
+</pre>
+<h3 class="h1" id="app02lev1sec20">
+  The pow Function
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   pow
+  </span>
+  function takes two numbers and calculates the value of one number (let’s call this
+  <span class="literal1">
+   x
+  </span>
+  ) to the power of the other number (let’s call this
+  <span class="literal1">
+   y
+  </span>
+  ). Essentially,
+  <span class="literal1">
+   pow
+  </span>
+  will multiply
+  <span class="literal1">
+   x
+  </span>
+  by itself
+  <span class="literal1">
+   y
+  </span>
+  times. For example, 2 to the power of 3 (in mathematics terms this is 2
+  <sup class="calibre196">
+   3
+  </sup>
+  ) would be 2 * 2 * 2 (or in mathematical notation,
+  <span id="page_317">
+</span>
+  2 × 2 × 2), which is 8 (2 * 2 is 4, 4 * 2 is 8). Another example: 3 to the power of 3 (3
+  <sup class="calibre196">
+   3
+  </sup>
+  ) is 27. Let’s see how this looks in code:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">pow</span>(2, 3)
+<span class="blue1">8</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">pow</span>(3, 3)
+<span class="blue1">27</span>
+</pre>
+<h3 class="h1" id="app02lev1sec21">
+  The range Function
+ </h3>
+<p class="indent">
+  The
+  <span class="literal1">
+   range
+  </span>
+  function is mainly used in
+  <span class="literal1">
+   for
+  </span>
+  loops to loop through a section of code a specific number of times. The first two parameters given to
+  <span class="literal1">
+   range
+  </span>
+  are called the
+  <em class="calibre7">
+   start
+  </em>
+  and the
+  <em class="calibre7">
+   stop
+  </em>
+  . You’ve seen
+  <span class="literal1">
+   range
+  </span>
+  with these two parameters in the earlier example using the
+  <span class="literal1">
+   len
+  </span>
+  function to work with a loop.
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre197" src="../images/f0317-01.jpg"/>
+</div>
+<p class="indent">
+  The numbers that
+  <span class="literal1">
+   range
+  </span>
+  generates begin with the number given as the first parameter and end with the number that’s one less than the second parameter. For example, the following shows what happens when we print the numbers that
+  <span class="literal1">
+   range
+  </span>
+  creates between 0 and 5:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> x <span class="orange">in</span> <span class="violet">range</span>(0, 5):
+        <span class="violet">print</span>(x)
+
+<span class="blue1">0
+1
+2
+3
+4</span>
+</pre>
+<p class="indent">
+  The
+  <span class="literal1">
+   range
+  </span>
+  function actually returns a special object called an
+  <em class="calibre7">
+   iterator
+  </em>
+  that repeats an action a number of times. In this case, it returns the next highest number each time it is called.
+ </p>
+<p class="indent">
+<span id="page_318">
+</span>
+  You can convert the iterator into a list by using the
+  <span class="literal1">
+   list
+  </span>
+  function. If you then print the returned value when calling
+  <span class="literal1">
+   range
+  </span>
+  , you’ll see the numbers it contains as well:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="violet">list</span>(<span class="violet">range</span>(0, 5)))
+<span class="blue1">[0, 1, 2, 3, 4]</span>
+</pre>
+<p class="indent">
+  You can also add a third parameter to
+  <span class="literal1">
+   range
+  </span>
+  , called
+  <span class="literal1">
+   step
+  </span>
+  . If the
+  <span class="literal1">
+   step
+  </span>
+  value is not included, the number 1 is used as the
+  <span class="literal1">
+   step
+  </span>
+  by default. But what happens when we pass in the number 2 as the
+  <span class="literal1">
+   step
+  </span>
+  ? Here’s the result:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> count_by_twos = <span class="violet">list</span>(<span class="violet">range</span>(0, 30, 2))
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(count_by_twos)
+<span class="blue1">[0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28]</span>
+</pre>
+<p class="indent">
+  Each number in the list increases by two from the previous number, and the list ends with the number 28, which is 2 less than 30. You can also use negative steps:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> count_down_by_twos = <span class="violet">list</span>(<span class="violet">range</span>(40, 10, -2))
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(count_down_by_twos)
+<span class="blue1">[40, 38, 36, 34, 32, 30, 28, 26, 24, 22, 20, 18, 16, 14, 12]</span>
+</pre>
+<h3 class="h1" id="app02lev1sec22">
+  The sum Function
+ </h3>
+<p class="noindent">
+  The
+  <span class="literal1">
+   sum
+  </span>
+  function adds up items in a list and returns the total. Here’s an example:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> my_list_of_numbers = <span class="violet">list</span>(<span class="violet">range</span>(0, 500, 50))
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(my_list_of_numbers)
+<span class="blue1">[0, 50, 100, 150, 200, 250, 300, 350, 400, 450]</span>
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="violet">sum</span>(my_list_of_numbers))
+<span class="blue1">2250</span>
+</pre>
+<p class="indent">
+  On the first line, we create a list of numbers between 0 and 500, using
+  <span class="literal1">
+   range
+  </span>
+  with a step of 50. Next, we print the list to see the result. Lastly, passing the variable
+  <span class="literal1">
+   my_list_of_numbers
+  </span>
+  to the
+  <span class="literal1">
+   sum
+  </span>
+  function with
+  <span class="literal1">
+   print(sum(my_list_of_numbers))
+  </span>
+  adds all the items in the list, giving the total of 2250.
+ </p>
+<h3 class="h1" id="app02lev1sec23">
+<span class="calibre2" id="page_319">
+</span>
+  Opening a File in Python
+ </h3>
+<p class="noindent">
+  Python’s built-in
+  <span class="literal1">
+   open
+  </span>
+  function opens a file, so you can do something useful with it (like display the contents). How you tell the function which file to open depends on your operating system. Read over the example for a Windows file, and then read the Mac or Ubuntu-specific section if you’re using one of those systems. First create a plaintext file in your home folder called
+  <em class="calibre7">
+   test.txt
+  </em>
+  —on Windows, you can use Notepad; on Ubuntu Linux or Raspberry Pi, use TextEditor; on macOS, use TextEdit (but in TextEdit, you will need to select
+  <strong class="calibre5">
+   Format
+  </strong>
+  ▸
+  <strong class="calibre5">
+   Make Plain Text
+  </strong>
+  ). You can put whatever you like in the file.
+ </p>
+<h4 class="h3" id="app02lev2sec1">
+  Opening a Windows File
+ </h4>
+<p class="noindent">
+  If you’re using Windows, enter the following code to open
+  <em class="calibre7">
+   test.txt
+  </em>
+  :
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> test_file = <span class="violet">open</span>(<span class="green">'c:\\Users\\&lt;your username&gt;\\test.txt'</span>)
+<span class="brown">&gt;&gt;&gt;</span> text = test_file.read()
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(text)
+<span class="blue1">There once was a boy named Marcelo
+Who dreamed he ate a marshmallow
+He awoke with a start
+As his bed fell apart
+And he found he was a much rounder fellow</span>
+</pre>
+<p class="indent">
+  On the first line, we use
+  <span class="literal1">
+   open
+  </span>
+  , which returns a file object with functions for working with files. The parameter we use with the
+  <span class="literal1">
+   open
+  </span>
+  function is a string telling Python where to find the file. If you’re using Windows, you saved
+  <em class="calibre7">
+   test.txt
+  </em>
+  to your user folder on the
+  <em class="calibre7">
+   C:
+  </em>
+  drive, so you specify the location of your file as
+  <span class="literal1">
+   c:\Users\&lt;your username&gt;\test.txt
+  </span>
+  . (Don’t forget to replace
+  <span class="literal1">
+   &lt;your
+  </span>
+<span class="literal1">
+   username&gt;
+  </span>
+  with your actual username!)
+ </p>
+<p class="indent">
+  The two backslashes in the Windows filename tell Python that the backslash is just that, and not some sort of command. (As you read in
+  <a class="calibre6" href="ch03.xhtml#ch03">
+   Chapter 3
+  </a>
+  , backslashes on their own have a special meaning in Python, particularly in strings.) We save the file object to the
+  <span class="literal1">
+   test_file
+  </span>
+  variable.
+ </p>
+<p class="indent">
+  On the second line, we use the
+  <span class="literal1">
+   read
+  </span>
+  function, provided by the file object, to read the contents of the file and store it in the
+  <span class="literal1">
+   text
+  </span>
+  variable. We print the variable on the final line to display the contents of the file.
+ </p>
+<h4 class="h3" id="app02lev2sec2">
+<span class="calibre2" id="page_320">
+</span>
+  Opening a macOS File
+ </h4>
+<p class="noindent">
+  If you are using macOS, you’ll need to enter a different location on the first line of the Windows example to open
+  <em class="calibre7">
+   test.txt
+  </em>
+  . Use the username you clicked when saving the text file in the string. For example, if the username is
+  <em class="calibre7">
+   sarahwinters
+  </em>
+  , the
+  <span class="literal1">
+   open
+  </span>
+  parameter should look like this:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> test_file = <span class="violet">open</span>(<span class="green">'/Users/sarahwinters/test.txt'</span>)
+</pre>
+<h4 class="h3" id="app02lev2sec3">
+  Opening an Ubuntu or Raspberry Pi File
+ </h4>
+<p class="noindent">
+  If you are using Ubuntu Linux or Raspberry Pi, you’ll need to enter a different location on the first line of the Windows example to open
+  <em class="calibre7">
+   test.txt
+  </em>
+  . Use the username you clicked when saving the text file. For example, if the username is
+  <em class="calibre7">
+   jacob
+  </em>
+  , the
+  <span class="literal1">
+   open
+  </span>
+  parameter should look like this:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> test_file = <span class="violet">open</span>(<span class="green">'/home/jacob/test.txt'</span>)
+</pre>
+<h3 class="h1" id="app02lev1sec24">
+  Writing to Files
+ </h3>
+<p class="noindent">
+  The file object returned by
+  <span class="literal1">
+   open
+  </span>
+  has other functions besides
+  <span class="literal1">
+   read
+  </span>
+  . We can create a new, empty file by using a second parameter—the string
+  <span class="literal1">
+   ’w’
+  </span>
+  —when we call
+  <span class="literal1">
+   open
+  </span>
+  (this parameter tells Python that we want to write to the file object, rather than read from it):
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> test_file = <span class="violet">open</span>(<span class="green">'c:\\Users\\rachel\\myfile.txt'</span>, <span class="green">'w'</span>)
+</pre>
+<p class="indent">
+  We can now add information to this new file using the
+  <span class="literal1">
+   write
+  </span>
+  function:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> test_file = <span class="violet">open</span>(<span class="green">'c:\\Users\\rachel\\myfile.txt'</span>, <span class="green">'w'</span>)
+<span class="brown">&gt;&gt;&gt;</span> test_file.write(<span class="green">'What is green and loud? A froghorn!'</span>)
+<span class="blue1">20</span>
+</pre>
+<p class="indent">
+  Finally, we need to tell Python when we’re finished writing to the file, using the
+  <span class="literal1">
+   close
+  </span>
+  function:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> test_file = <span class="violet">open</span>(<span class="green">'c:\\Users\\rachel\\myfile.txt'</span>, <span class="green">'w'</span>)
+<span class="brown">&gt;&gt;&gt;</span> test_file.write(<span class="green">'What is green and loud? A froghorn!'</span>)
+<span class="brown">&gt;&gt;&gt;</span> test_file.close()
+</pre>
+<p class="indent">
+<span id="page_321">
+</span>
+  Now, if you open the file with your text editor, you should see that it contains the text “What is green and loud? A froghorn!” Or, you can use Python to read it again:
+ </p>
+<div class="image1">
+<img alt="Image" class="calibre198" src="../images/f0321-01.jpg"/>
+</div>
+<pre class="calibre32">&gt;&gt;&gt; test_file = <span class="violet">open</span>(<span class="green">'c:\\Users\\rachel\\myfile.txt'</span>)
+&gt;&gt;&gt; <span class="violet">print</span>(test_file.read())
+<span class="blue1">What is green and loud? A froghorn!</span></pre>
+<span id="page_322">
+</span>
+</div></body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/><title>Elements</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h2 class="title"><a id="regexp_choice"></a>Elección Regexp</h2><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject7_d1e5496"></a><img alt="image with no caption" src="httpatomoreillycomsourceoreillyimages238826.png" translate="no"/></div></div><p>A <span class="emphasis"><em translate="no">regexp choice</em></span> contiene uno o varios <span class="emphasis"><em translate="no">regexp
+                        sequences</em></span>. Las secuencias están separadas por el carácter <code class="literal" translate="no">|</code> (barra vertical). La elección coincide si alguna de las secuencias coincide. Intenta hacer coincidir cada una de las secuencias en orden, por lo que:<a class="indexterm" id="IDX-CHP-7-0360"></a></p><a id="I_programlisting7_d1e5519"></a><pre class="programlisting" translate="no">"into".match(/in|int/)</pre><p>coincide con <code class="literal" translate="no">in</code> en <code class="literal" translate="no">into</code>. No coincidiría con <code class="literal" translate="no">int</code>porque la coincidencia de <code class="literal" translate="no">in</code> tuvo éxito.</p><div class="sect2" title="Regexp Sequence"><div class="titlepage"><div><div></div></div></div></div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch07s03_1.html">anterior</a><a href="ch07s03.html">Subtema 2 de 9: (Ver todo)</a><a href="ch07s03_3.html">siguiente</a><br/></p>
+<br/><a href="ch07s03_2.docx" target="_blank"></a></footer>
+</body>
+</html>

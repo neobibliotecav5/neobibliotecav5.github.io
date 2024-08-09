@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch10lev1sec5">
+  Cajas de dibujo </h3>
+<p class="noindent">
+  Con el módulo <span class="literal1" translate="no">
+   turtle
+  </span>, dibujábamos una caja avanzando, girando, avanzando, girando de nuevo, y así sucesivamente. Finalmente, pudimos dibujar una caja rectangular o cuadrada cambiando la distancia a la que nos movíamos hacia delante. </p>
+<p class="indent">
+  El módulo <span class="literal1" translate="no">
+   tkinter
+  </span>hace que sea mucho más fácil dibujar un cuadrado o un rectángulo. Todo lo que necesitas saber son las coordenadas de las esquinas. Prueba el siguiente ejemplo (ya puedes cerrar las demás ventanas): </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">from</span> tkinter <span class="orange">import</span> *
+<span class="brown">&gt;&gt;&gt;</span> tk = Tk()
+<span class="brown">&gt;&gt;&gt;</span> canvas = Canvas(tk, width=400, height=400)
+<span class="brown">&gt;&gt;&gt;</span> canvas.pack()
+<span class="brown">&gt;&gt;&gt;</span> canvas.create_rectangle(10, 10, 50, 50)
+</pre>
+<p class="indent">
+  En este código, utilizamos <span class="literal1" translate="no">
+   tkinter
+  </span>para crear un lienzo de 400 píxeles de ancho por 400 píxeles de alto, y luego dibujamos un cuadrado en la esquina superior izquierda de la ventana, como en <a class="calibre6" href="ch10.xhtml#ch10fig04">la Figura 10-4 . </a></p>
+<div class="image" id="ch10fig04">
+<span id="page_143">
+</span>
+<img alt="Image" class="calibre103" src="../images/10fig04.jpg" translate="no"/>
+</div>
+<p class="figcap">
+
+   Figura<em class="calibre7">10-4: Dibujar un rec </em>uadro</p>
+<p class="indent">
+  Los parámetros que pasamos a <span class="literal1" translate="no">
+   canvas.create_rectangle
+  </span>en la última línea del código son las coordenadas de las esquinas superior izquierda e inferior derecha del cuadrado. Proporcionamos estas coordenadas como la distancia desde el lado izquierdo del lienzo y la distancia desde la parte superior del lienzo. En este caso, las dos primeras coordenadas (la esquina superior izquierda) están a 10 píxeles de la izquierda y a 10 píxeles de la parte superior; esos son los primeros números: <span class="literal1" translate="no">
+   10, 10
+  </span>. La esquina inferior derecha del cuadrado está a 50 píxeles de la izquierda y a 50 píxeles de la parte superior -los segundos números: <span class="literal1" translate="no">
+   50, 50
+  </span>. </p>
+<p class="indent">
+  Nos referiremos a estos dos conjuntos de coordenadas como <em class="calibre7">x1 </em>, <em class="calibre7">y1 </em>y <em class="calibre7">x2 </em>, <em class="calibre7">y2 . </em>Para dibujar un rectángulo, podemos aumentar la distancia de la segunda esquina desde el lado del lienzo (aumentando el valor del parámetro <em class="calibre7">x2 </em>), de este modo: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">from</span> tkinter <span class="orange">import</span> *
+<span class="brown">&gt;&gt;&gt;</span> tk = Tk()
+<span class="brown">&gt;&gt;&gt;</span> canvas = Canvas(tk, width=400, height=400)
+<span class="brown">&gt;&gt;&gt;</span> canvas.pack()
+<span class="brown">&gt;&gt;&gt;</span> canvas.create_rectangle(10, 10, 300, 50)
+</pre>
+<p class="indent">
+<span id="page_144">
+</span>
+  En este ejemplo, las coordenadas superiores izquierdas del rectángulo (su posición en la pantalla) son ( <span class="literal1" translate="no">
+   10, 10
+  </span>), y las coordenadas inferiores derechas son ( <span class="literal1" translate="no">
+   300, 50
+  </span>). El resultado es un rectángulo de la misma altura que nuestro cuadrado original (40 píxeles), pero mucho más ancho. </p>
+<div class="image" id="ch10fig05">
+<img alt="Image" class="calibre104" src="../images/10fig05.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">Figura 10-5: Un rectángulo ancho </em></p>
+<p class="indent">
+  También podemos dibujar un rectángulo aumentando la distancia de la segunda esquina desde la parte superior del lienzo (aumentando el valor del parámetro <em class="calibre7">y2 </em>), así </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">from</span> tkinter <span class="orange">import</span> *
+<span class="brown">&gt;&gt;&gt;</span> tk = Tk()
+<span class="brown">&gt;&gt;&gt;</span> canvas = Canvas(tk, width=400, height=400)
+<span class="brown">&gt;&gt;&gt;</span> canvas.pack()
+<span class="brown">&gt;&gt;&gt;</span> canvas.create_rectangle(10, 10, 50, 300)
+</pre>
+<p class="indent">
+  En esta llamada a la función <span class="literal1" translate="no">
+   create_rectangle
+  </span>, le estamos diciendo a <span class="literal1" translate="no">
+   tkinter
+  </span>que: </p>
+<ul class="calibre22">
+<li class="noindent2">
+   Se desplace 10 píxeles a través del lienzo (desde la parte superior izquierda).  </li>
+<li class="noindent2">
+   Ir 10 píxeles hacia abajo en el lienzo. Esta es la esquina inicial del rectángulo.  </li>
+<li class="noindent2">
+   Dibuja el rectángulo transversalmente hasta 50 píxeles.  </li>
+<li class="noindent2">
+   Dibuja hacia abajo hasta 300 píxeles.  </li>
+</ul>
+<p class="indent">
+  El resultado final debe parecerse a <a class="calibre6" href="ch10.xhtml#ch10fig06">la Figura 10-6 . </a></p>
+<div class="image" id="ch10fig06">
+<span id="page_145">
+</span>
+<img alt="Image" class="calibre105" src="../images/10fig06.jpg" translate="no"/>
+</div>
+<p class="figcap">
+
+   Figura<em class="calibre7">10-6: Un rectángulo alto </em></p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch10_5.html">anterior</a><a href="ch10.html">Subtema 6 de 17: (Ver todo)</a><a href="ch10_7.html">siguiente</a><br/></p>
+<br/><a href="ch10_6.docx" target="_blank"></a></footer>
+</body>
+</html>

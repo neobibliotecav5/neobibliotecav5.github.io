@@ -1,0 +1,1167 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1" xml:lang="eng">
+  <head>
+    <meta content="d0dd87b2-15b7-4b8d-aa7a-29904324325f" name="dtb:uid"/>
+    <meta content="3" name="dtb:depth"/>
+    <meta content="calibre (3.39.1)" name="dtb:generator"/>
+    <meta content="0" name="dtb:totalPageCount"/>
+    <meta content="0" name="dtb:maxPageNumber"/>
+  </head>
+  <docTitle>
+    <text>Python for Kids: A Playful Introduction to Programming, 2nd Edition</text>
+  </docTitle>
+  <navMap>
+    <navPoint class="chapter" id="i1" playOrder="1">
+      <navLabel>
+        <text>Cover Page</text>
+      </navLabel>
+      <content src="xhtml/cover.xhtml"/>
+    </navPoint>
+    <navPoint class="chapter" id="i2" playOrder="2">
+      <navLabel>
+        <text>Title Page</text>
+      </navLabel>
+      <content src="xhtml/title.xhtml"/>
+    </navPoint>
+    <navPoint class="chapter" id="i3" playOrder="3">
+      <navLabel>
+        <text>Copyright Page</text>
+      </navLabel>
+      <content src="xhtml/copy.xhtml"/>
+    </navPoint>
+    <navPoint class="chapter" id="i4" playOrder="4">
+      <navLabel>
+        <text>BRIEF CONTENTS</text>
+      </navLabel>
+      <content src="xhtml/toc.xhtml"/>
+    </navPoint>
+    <navPoint class="chapter" id="i5" playOrder="5">
+      <navLabel>
+        <text>CONTENTS IN DETAIL</text>
+      </navLabel>
+      <content src="xhtml/toc1.xhtml"/>
+    </navPoint>
+    <navPoint class="chapter" id="i6" playOrder="6">
+      <navLabel>
+        <text>ACKNOWLEDGMENTS</text>
+      </navLabel>
+      <content src="xhtml/ack.xhtml"/>
+    </navPoint>
+    <navPoint class="chapter" id="i7" playOrder="7">
+      <navLabel>
+        <text>INTRODUCTION</text>
+      </navLabel>
+      <content src="xhtml/introduction.xhtml"/>
+      <navPoint class="chapter" id="i8" playOrder="8">
+        <navLabel>
+          <text>Why Python</text>
+        </navLabel>
+        <content src="xhtml/introduction.xhtml#ch00lev1sec1"/>
+      </navPoint>
+      <navPoint class="chapter" id="i9" playOrder="9">
+        <navLabel>
+          <text>How to Learn to Code</text>
+        </navLabel>
+        <content src="xhtml/introduction.xhtml#ch00lev1sec2"/>
+      </navPoint>
+      <navPoint class="chapter" id="i10" playOrder="10">
+        <navLabel>
+          <text>Who Should Read This Book</text>
+        </navLabel>
+        <content src="xhtml/introduction.xhtml#ch00lev1sec3"/>
+      </navPoint>
+      <navPoint class="chapter" id="i11" playOrder="11">
+        <navLabel>
+          <text>What’s in This Book</text>
+        </navLabel>
+        <content src="xhtml/introduction.xhtml#ch00lev1sec4"/>
+      </navPoint>
+      <navPoint class="chapter" id="i12" playOrder="12">
+        <navLabel>
+          <text>Python for Kids Website</text>
+        </navLabel>
+        <content src="xhtml/introduction.xhtml#ch00lev1sec5"/>
+      </navPoint>
+      <navPoint class="chapter" id="i13" playOrder="13">
+        <navLabel>
+          <text>Have Fun!</text>
+        </navLabel>
+        <content src="xhtml/introduction.xhtml#ch00lev1sec6"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="i14" playOrder="14">
+      <navLabel>
+        <text>PART I LEARNING TO PROGRAM</text>
+      </navLabel>
+      <content src="xhtml/part01.xhtml"/>
+    </navPoint>
+    <navPoint class="chapter" id="i15" playOrder="15">
+      <navLabel>
+        <text>1 NOT ALL SNAKES SLITHER</text>
+      </navLabel>
+      <content src="xhtml/ch01.xhtml"/>
+      <navPoint class="chapter" id="i16" playOrder="16">
+        <navLabel>
+          <text>A Few Words About Language</text>
+        </navLabel>
+        <content src="xhtml/ch01.xhtml#ch01lev1sec1"/>
+      </navPoint>
+      <navPoint class="chapter" id="i17" playOrder="17">
+        <navLabel>
+          <text>Installing Python</text>
+        </navLabel>
+        <content src="xhtml/ch01.xhtml#ch01lev1sec2"/>
+      </navPoint>
+      <navPoint class="chapter" id="i18" playOrder="18">
+        <navLabel>
+          <text>Once You’ve Installed Python</text>
+        </navLabel>
+        <content src="xhtml/ch01.xhtml#ch01lev1sec3"/>
+      </navPoint>
+      <navPoint class="chapter" id="i19" playOrder="19">
+        <navLabel>
+          <text>Saving Your Python Programs</text>
+        </navLabel>
+        <content src="xhtml/ch01.xhtml#ch01lev1sec4"/>
+      </navPoint>
+      <navPoint class="chapter" id="i20" playOrder="20">
+        <navLabel>
+          <text>What You Learned</text>
+        </navLabel>
+        <content src="xhtml/ch01.xhtml#ch01lev1sec5"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="i21" playOrder="21">
+      <navLabel>
+        <text>2 CALCULATIONS AND VARIABLES</text>
+      </navLabel>
+      <content src="xhtml/ch02.xhtml"/>
+      <navPoint class="chapter" id="i22" playOrder="22">
+        <navLabel>
+          <text>Calculating with Python</text>
+        </navLabel>
+        <content src="xhtml/ch02.xhtml#ch02lev1sec1"/>
+      </navPoint>
+      <navPoint class="chapter" id="i23" playOrder="23">
+        <navLabel>
+          <text>Python Operators</text>
+        </navLabel>
+        <content src="xhtml/ch02.xhtml#ch02lev1sec2"/>
+      </navPoint>
+      <navPoint class="chapter" id="i24" playOrder="24">
+        <navLabel>
+          <text>The Order of Operations</text>
+        </navLabel>
+        <content src="xhtml/ch02.xhtml#ch02lev1sec3"/>
+      </navPoint>
+      <navPoint class="chapter" id="i25" playOrder="25">
+        <navLabel>
+          <text>Variables Are Like Labels</text>
+        </navLabel>
+        <content src="xhtml/ch02.xhtml#ch02lev1sec4"/>
+      </navPoint>
+      <navPoint class="chapter" id="i26" playOrder="26">
+        <navLabel>
+          <text>Using Variables</text>
+        </navLabel>
+        <content src="xhtml/ch02.xhtml#ch02lev1sec5"/>
+      </navPoint>
+      <navPoint class="chapter" id="i27" playOrder="27">
+        <navLabel>
+          <text>What You Learned</text>
+        </navLabel>
+        <content src="xhtml/ch02.xhtml#ch02lev1sec6"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="i28" playOrder="28">
+      <navLabel>
+        <text>3 STRINGS, LISTS, TUPLES, AND DICTIONARIES</text>
+      </navLabel>
+      <content src="xhtml/ch03.xhtml"/>
+      <navPoint class="chapter" id="i29" playOrder="29">
+        <navLabel>
+          <text>Strings</text>
+        </navLabel>
+        <content src="xhtml/ch03.xhtml#ch03lev1sec1"/>
+      </navPoint>
+      <navPoint class="chapter" id="i30" playOrder="30">
+        <navLabel>
+          <text>Creating Strings</text>
+        </navLabel>
+        <content src="xhtml/ch03.xhtml#ch03lev1sec2"/>
+      </navPoint>
+      <navPoint class="chapter" id="i31" playOrder="31">
+        <navLabel>
+          <text>Handling Problems with Strings</text>
+        </navLabel>
+        <content src="xhtml/ch03.xhtml#ch03lev1sec3"/>
+      </navPoint>
+      <navPoint class="chapter" id="i32" playOrder="32">
+        <navLabel>
+          <text>Embedding Values in Strings</text>
+        </navLabel>
+        <content src="xhtml/ch03.xhtml#ch03lev1sec4"/>
+      </navPoint>
+      <navPoint class="chapter" id="i33" playOrder="33">
+        <navLabel>
+          <text>Multiplying Strings</text>
+        </navLabel>
+        <content src="xhtml/ch03.xhtml#ch03lev1sec5"/>
+      </navPoint>
+      <navPoint class="chapter" id="i34" playOrder="34">
+        <navLabel>
+          <text>Lists Are More Powerful than Strings</text>
+        </navLabel>
+        <content src="xhtml/ch03.xhtml#ch03lev1sec6"/>
+      </navPoint>
+      <navPoint class="chapter" id="i35" playOrder="35">
+        <navLabel>
+          <text>Adding Items to a List</text>
+        </navLabel>
+        <content src="xhtml/ch03.xhtml#ch03lev1sec7"/>
+      </navPoint>
+      <navPoint class="chapter" id="i36" playOrder="36">
+        <navLabel>
+          <text>Removing Items from a List</text>
+        </navLabel>
+        <content src="xhtml/ch03.xhtml#ch03lev1sec8"/>
+      </navPoint>
+      <navPoint class="chapter" id="i37" playOrder="37">
+        <navLabel>
+          <text>List Arithmetic</text>
+        </navLabel>
+        <content src="xhtml/ch03.xhtml#ch03lev1sec9"/>
+      </navPoint>
+      <navPoint class="chapter" id="i38" playOrder="38">
+        <navLabel>
+          <text>Tuples</text>
+        </navLabel>
+        <content src="xhtml/ch03.xhtml#ch03lev1sec10"/>
+      </navPoint>
+      <navPoint class="chapter" id="i39" playOrder="39">
+        <navLabel>
+          <text>Python Dictionaries</text>
+        </navLabel>
+        <content src="xhtml/ch03.xhtml#ch03lev1sec11"/>
+      </navPoint>
+      <navPoint class="chapter" id="i40" playOrder="40">
+        <navLabel>
+          <text>What You Learned</text>
+        </navLabel>
+        <content src="xhtml/ch03.xhtml#ch03lev1sec12"/>
+      </navPoint>
+      <navPoint class="chapter" id="i41" playOrder="41">
+        <navLabel>
+          <text>Programming Puzzles</text>
+        </navLabel>
+        <content src="xhtml/ch03.xhtml#ch03lev1sec13"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="i42" playOrder="42">
+      <navLabel>
+        <text>4 DRAWING WITH TURTLES</text>
+      </navLabel>
+      <content src="xhtml/ch04.xhtml"/>
+      <navPoint class="chapter" id="i43" playOrder="43">
+        <navLabel>
+          <text>Using Python’s Turtle Module</text>
+        </navLabel>
+        <content src="xhtml/ch04.xhtml#ch04lev1sec1"/>
+      </navPoint>
+      <navPoint class="chapter" id="i44" playOrder="44">
+        <navLabel>
+          <text>Creating a Canvas</text>
+        </navLabel>
+        <content src="xhtml/ch04.xhtml#ch04lev1sec2"/>
+      </navPoint>
+      <navPoint class="chapter" id="i45" playOrder="45">
+        <navLabel>
+          <text>Moving the Turtle</text>
+        </navLabel>
+        <content src="xhtml/ch04.xhtml#ch04lev1sec3"/>
+      </navPoint>
+      <navPoint class="chapter" id="i46" playOrder="46">
+        <navLabel>
+          <text>What You Learned</text>
+        </navLabel>
+        <content src="xhtml/ch04.xhtml#ch04lev1sec4"/>
+      </navPoint>
+      <navPoint class="chapter" id="i47" playOrder="47">
+        <navLabel>
+          <text>Programming Puzzles</text>
+        </navLabel>
+        <content src="xhtml/ch04.xhtml#ch04lev1sec5"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="i48" playOrder="48">
+      <navLabel>
+        <text>5 ASKING QUESTIONS WITH IF AND ELSE</text>
+      </navLabel>
+      <content src="xhtml/ch05.xhtml"/>
+      <navPoint class="chapter" id="i49" playOrder="49">
+        <navLabel>
+          <text>If Statements</text>
+        </navLabel>
+        <content src="xhtml/ch05.xhtml#ch05lev1sec1"/>
+      </navPoint>
+      <navPoint class="chapter" id="i50" playOrder="50">
+        <navLabel>
+          <text>A Block Is a Group of Programming Statements</text>
+        </navLabel>
+        <content src="xhtml/ch05.xhtml#ch05lev1sec2"/>
+      </navPoint>
+      <navPoint class="chapter" id="i51" playOrder="51">
+        <navLabel>
+          <text>Conditions Help Us Compare Things</text>
+        </navLabel>
+        <content src="xhtml/ch05.xhtml#ch05lev1sec3"/>
+      </navPoint>
+      <navPoint class="chapter" id="i52" playOrder="52">
+        <navLabel>
+          <text>If-Then-Else Statements</text>
+        </navLabel>
+        <content src="xhtml/ch05.xhtml#ch05lev1sec4"/>
+      </navPoint>
+      <navPoint class="chapter" id="i53" playOrder="53">
+        <navLabel>
+          <text>if and elif Statements</text>
+        </navLabel>
+        <content src="xhtml/ch05.xhtml#ch05lev1sec5"/>
+      </navPoint>
+      <navPoint class="chapter" id="i54" playOrder="54">
+        <navLabel>
+          <text>Combining Conditions</text>
+        </navLabel>
+        <content src="xhtml/ch05.xhtml#ch05lev1sec6"/>
+      </navPoint>
+      <navPoint class="chapter" id="i55" playOrder="55">
+        <navLabel>
+          <text>Variables with No Value—None</text>
+        </navLabel>
+        <content src="xhtml/ch05.xhtml#ch05lev1sec7"/>
+      </navPoint>
+      <navPoint class="chapter" id="i56" playOrder="56">
+        <navLabel>
+          <text>The Difference Between Strings and Numbers</text>
+        </navLabel>
+        <content src="xhtml/ch05.xhtml#ch05lev1sec8"/>
+      </navPoint>
+      <navPoint class="chapter" id="i57" playOrder="57">
+        <navLabel>
+          <text>What You Learned</text>
+        </navLabel>
+        <content src="xhtml/ch05.xhtml#ch05lev1sec9"/>
+      </navPoint>
+      <navPoint class="chapter" id="i58" playOrder="58">
+        <navLabel>
+          <text>Programming Puzzles</text>
+        </navLabel>
+        <content src="xhtml/ch05.xhtml#ch05lev1sec10"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="i59" playOrder="59">
+      <navLabel>
+        <text>6 GOING LOOPY</text>
+      </navLabel>
+      <content src="xhtml/ch06.xhtml"/>
+      <navPoint class="chapter" id="i60" playOrder="60">
+        <navLabel>
+          <text>Using for Loops</text>
+        </navLabel>
+        <content src="xhtml/ch06.xhtml#ch06lev1sec1"/>
+      </navPoint>
+      <navPoint class="chapter" id="i61" playOrder="61">
+        <navLabel>
+          <text>While We’re Talking About Looping</text>
+        </navLabel>
+        <content src="xhtml/ch06.xhtml#ch06lev1sec2"/>
+      </navPoint>
+      <navPoint class="chapter" id="i62" playOrder="62">
+        <navLabel>
+          <text>What You Learned</text>
+        </navLabel>
+        <content src="xhtml/ch06.xhtml#ch06lev1sec3"/>
+      </navPoint>
+      <navPoint class="chapter" id="i63" playOrder="63">
+        <navLabel>
+          <text>Programming Puzzles</text>
+        </navLabel>
+        <content src="xhtml/ch06.xhtml#ch06lev1sec4"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="i64" playOrder="64">
+      <navLabel>
+        <text>7 RECYCLING YOUR CODE WITH FUNCTIONS AND MODULES</text>
+      </navLabel>
+      <content src="xhtml/ch07.xhtml"/>
+      <navPoint class="chapter" id="i65" playOrder="65">
+        <navLabel>
+          <text>Using Functions</text>
+        </navLabel>
+        <content src="xhtml/ch07.xhtml#ch07lev1sec1"/>
+      </navPoint>
+      <navPoint class="chapter" id="i66" playOrder="66">
+        <navLabel>
+          <text>Parts of a Function</text>
+        </navLabel>
+        <content src="xhtml/ch07.xhtml#ch07lev1sec2"/>
+      </navPoint>
+      <navPoint class="chapter" id="i67" playOrder="67">
+        <navLabel>
+          <text>Variables and Scope</text>
+        </navLabel>
+        <content src="xhtml/ch07.xhtml#ch07lev1sec3"/>
+      </navPoint>
+      <navPoint class="chapter" id="i68" playOrder="68">
+        <navLabel>
+          <text>Using Modules</text>
+        </navLabel>
+        <content src="xhtml/ch07.xhtml#ch07lev1sec4"/>
+      </navPoint>
+      <navPoint class="chapter" id="i69" playOrder="69">
+        <navLabel>
+          <text>The input function</text>
+        </navLabel>
+        <content src="xhtml/ch07.xhtml#ch07lev1sec5"/>
+      </navPoint>
+      <navPoint class="chapter" id="i70" playOrder="70">
+        <navLabel>
+          <text>What You Learned</text>
+        </navLabel>
+        <content src="xhtml/ch07.xhtml#ch07lev1sec6"/>
+      </navPoint>
+      <navPoint class="chapter" id="i71" playOrder="71">
+        <navLabel>
+          <text>Programming Puzzles</text>
+        </navLabel>
+        <content src="xhtml/ch07.xhtml#ch07lev1sec7"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="i72" playOrder="72">
+      <navLabel>
+        <text>8 HOW TO USE CLASSES AND OBJECTS</text>
+      </navLabel>
+      <content src="xhtml/ch08.xhtml"/>
+      <navPoint class="chapter" id="i73" playOrder="73">
+        <navLabel>
+          <text>Breaking Things into Classes</text>
+        </navLabel>
+        <content src="xhtml/ch08.xhtml#ch08lev1sec1"/>
+      </navPoint>
+      <navPoint class="chapter" id="i74" playOrder="74">
+        <navLabel>
+          <text>Children and Parents</text>
+        </navLabel>
+        <content src="xhtml/ch08.xhtml#ch08lev1sec2"/>
+      </navPoint>
+      <navPoint class="chapter" id="i75" playOrder="75">
+        <navLabel>
+          <text>Adding Objects to Classes</text>
+        </navLabel>
+        <content src="xhtml/ch08.xhtml#ch08lev1sec3"/>
+      </navPoint>
+      <navPoint class="chapter" id="i76" playOrder="76">
+        <navLabel>
+          <text>Defining Functions of Classes</text>
+        </navLabel>
+        <content src="xhtml/ch08.xhtml#ch08lev1sec4"/>
+      </navPoint>
+      <navPoint class="chapter" id="i77" playOrder="77">
+        <navLabel>
+          <text>Adding Class Characteristics</text>
+        </navLabel>
+        <content src="xhtml/ch08.xhtml#ch08lev1sec5"/>
+      </navPoint>
+      <navPoint class="chapter" id="i78" playOrder="78">
+        <navLabel>
+          <text>Why Use Classes and Objects?</text>
+        </navLabel>
+        <content src="xhtml/ch08.xhtml#ch08lev1sec6"/>
+      </navPoint>
+      <navPoint class="chapter" id="i79" playOrder="79">
+        <navLabel>
+          <text>Objects and Classes in Pictures</text>
+        </navLabel>
+        <content src="xhtml/ch08.xhtml#ch08lev1sec7"/>
+      </navPoint>
+      <navPoint class="chapter" id="i80" playOrder="80">
+        <navLabel>
+          <text>Other Useful Features of Objects and Classes</text>
+        </navLabel>
+        <content src="xhtml/ch08.xhtml#ch08lev1sec8"/>
+      </navPoint>
+      <navPoint class="chapter" id="i81" playOrder="81">
+        <navLabel>
+          <text>Inherited Functions</text>
+        </navLabel>
+        <content src="xhtml/ch08.xhtml#ch08lev1sec9"/>
+      </navPoint>
+      <navPoint class="chapter" id="i82" playOrder="82">
+        <navLabel>
+          <text>Functions Calling Other Functions</text>
+        </navLabel>
+        <content src="xhtml/ch08.xhtml#ch08lev1sec10"/>
+      </navPoint>
+      <navPoint class="chapter" id="i83" playOrder="83">
+        <navLabel>
+          <text>Initializing an Object</text>
+        </navLabel>
+        <content src="xhtml/ch08.xhtml#ch08lev1sec11"/>
+      </navPoint>
+      <navPoint class="chapter" id="i84" playOrder="84">
+        <navLabel>
+          <text>What You Learned</text>
+        </navLabel>
+        <content src="xhtml/ch08.xhtml#ch08lev1sec12"/>
+      </navPoint>
+      <navPoint class="chapter" id="i85" playOrder="85">
+        <navLabel>
+          <text>Programming Puzzles</text>
+        </navLabel>
+        <content src="xhtml/ch08.xhtml#ch08lev1sec13"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="i86" playOrder="86">
+      <navLabel>
+        <text>9 MORE TURTLE GRAPHICS</text>
+      </navLabel>
+      <content src="xhtml/ch09.xhtml"/>
+      <navPoint class="chapter" id="i87" playOrder="87">
+        <navLabel>
+          <text>Starting with the Basic Square</text>
+        </navLabel>
+        <content src="xhtml/ch09.xhtml#ch09lev1sec1"/>
+      </navPoint>
+      <navPoint class="chapter" id="i88" playOrder="88">
+        <navLabel>
+          <text>Drawing Stars</text>
+        </navLabel>
+        <content src="xhtml/ch09.xhtml#ch09lev1sec2"/>
+      </navPoint>
+      <navPoint class="chapter" id="i89" playOrder="89">
+        <navLabel>
+          <text>Drawing a Car</text>
+        </navLabel>
+        <content src="xhtml/ch09.xhtml#ch09lev1sec3"/>
+      </navPoint>
+      <navPoint class="chapter" id="i90" playOrder="90">
+        <navLabel>
+          <text>Coloring Things In</text>
+        </navLabel>
+        <content src="xhtml/ch09.xhtml#ch09lev1sec4"/>
+      </navPoint>
+      <navPoint class="chapter" id="i91" playOrder="91">
+        <navLabel>
+          <text>A Function to Draw a Filled Circle</text>
+        </navLabel>
+        <content src="xhtml/ch09.xhtml#ch09lev1sec5"/>
+      </navPoint>
+      <navPoint class="chapter" id="i92" playOrder="92">
+        <navLabel>
+          <text>Creating Pure Black and White</text>
+        </navLabel>
+        <content src="xhtml/ch09.xhtml#ch09lev1sec6"/>
+      </navPoint>
+      <navPoint class="chapter" id="i93" playOrder="93">
+        <navLabel>
+          <text>A Square-Drawing Function</text>
+        </navLabel>
+        <content src="xhtml/ch09.xhtml#ch09lev1sec7"/>
+      </navPoint>
+      <navPoint class="chapter" id="i94" playOrder="94">
+        <navLabel>
+          <text>Drawing Filled Squares</text>
+        </navLabel>
+        <content src="xhtml/ch09.xhtml#ch09lev1sec8"/>
+      </navPoint>
+      <navPoint class="chapter" id="i95" playOrder="95">
+        <navLabel>
+          <text>Drawing Filled Stars</text>
+        </navLabel>
+        <content src="xhtml/ch09.xhtml#ch09lev1sec9"/>
+      </navPoint>
+      <navPoint class="chapter" id="i96" playOrder="96">
+        <navLabel>
+          <text>What You Learned</text>
+        </navLabel>
+        <content src="xhtml/ch09.xhtml#ch09lev1sec10"/>
+      </navPoint>
+      <navPoint class="chapter" id="i97" playOrder="97">
+        <navLabel>
+          <text>Programming Puzzles</text>
+        </navLabel>
+        <content src="xhtml/ch09.xhtml#ch09lev1sec11"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="i98" playOrder="98">
+      <navLabel>
+        <text>10 USING TKINTER FOR BETTER GRAPHICS</text>
+      </navLabel>
+      <content src="xhtml/ch10.xhtml"/>
+      <navPoint class="chapter" id="i99" playOrder="99">
+        <navLabel>
+          <text>Creating a Clickable Button</text>
+        </navLabel>
+        <content src="xhtml/ch10.xhtml#ch10lev1sec1"/>
+      </navPoint>
+      <navPoint class="chapter" id="i100" playOrder="100">
+        <navLabel>
+          <text>Using Named Parameters</text>
+        </navLabel>
+        <content src="xhtml/ch10.xhtml#ch10lev1sec2"/>
+      </navPoint>
+      <navPoint class="chapter" id="i101" playOrder="101">
+        <navLabel>
+          <text>Creating a Canvas for Drawing</text>
+        </navLabel>
+        <content src="xhtml/ch10.xhtml#ch10lev1sec3"/>
+      </navPoint>
+      <navPoint class="chapter" id="i102" playOrder="102">
+        <navLabel>
+          <text>Drawing Lines</text>
+        </navLabel>
+        <content src="xhtml/ch10.xhtml#ch10lev1sec4"/>
+      </navPoint>
+      <navPoint class="chapter" id="i103" playOrder="103">
+        <navLabel>
+          <text>Drawing Boxes</text>
+        </navLabel>
+        <content src="xhtml/ch10.xhtml#ch10lev1sec5"/>
+      </navPoint>
+      <navPoint class="chapter" id="i104" playOrder="104">
+        <navLabel>
+          <text>Drawing a Lot of Rectangles</text>
+        </navLabel>
+        <content src="xhtml/ch10.xhtml#ch10lev1sec6"/>
+      </navPoint>
+      <navPoint class="chapter" id="i105" playOrder="105">
+        <navLabel>
+          <text>Setting the Color</text>
+        </navLabel>
+        <content src="xhtml/ch10.xhtml#ch10lev1sec7"/>
+      </navPoint>
+      <navPoint class="chapter" id="i106" playOrder="106">
+        <navLabel>
+          <text>Drawing Arcs</text>
+        </navLabel>
+        <content src="xhtml/ch10.xhtml#ch10lev1sec8"/>
+      </navPoint>
+      <navPoint class="chapter" id="i107" playOrder="107">
+        <navLabel>
+          <text>Drawing Polygons</text>
+        </navLabel>
+        <content src="xhtml/ch10.xhtml#ch10lev1sec9"/>
+      </navPoint>
+      <navPoint class="chapter" id="i108" playOrder="108">
+        <navLabel>
+          <text>Displaying Text</text>
+        </navLabel>
+        <content src="xhtml/ch10.xhtml#ch10lev1sec10"/>
+      </navPoint>
+      <navPoint class="chapter" id="i109" playOrder="109">
+        <navLabel>
+          <text>Displaying Images</text>
+        </navLabel>
+        <content src="xhtml/ch10.xhtml#ch10lev1sec11"/>
+      </navPoint>
+      <navPoint class="chapter" id="i110" playOrder="110">
+        <navLabel>
+          <text>Creating Basic Animation</text>
+        </navLabel>
+        <content src="xhtml/ch10.xhtml#ch10lev1sec12"/>
+      </navPoint>
+      <navPoint class="chapter" id="i111" playOrder="111">
+        <navLabel>
+          <text>Making an Object React to Something</text>
+        </navLabel>
+        <content src="xhtml/ch10.xhtml#ch10lev1sec13"/>
+      </navPoint>
+      <navPoint class="chapter" id="i112" playOrder="112">
+        <navLabel>
+          <text>More Ways to Use the Identifier</text>
+        </navLabel>
+        <content src="xhtml/ch10.xhtml#ch10lev1sec14"/>
+      </navPoint>
+      <navPoint class="chapter" id="i113" playOrder="113">
+        <navLabel>
+          <text>What You Learned</text>
+        </navLabel>
+        <content src="xhtml/ch10.xhtml#ch10lev1sec15"/>
+      </navPoint>
+      <navPoint class="chapter" id="i114" playOrder="114">
+        <navLabel>
+          <text>Programming Puzzles</text>
+        </navLabel>
+        <content src="xhtml/ch10.xhtml#ch10lev1sec16"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="i115" playOrder="115">
+      <navLabel>
+        <text>PART II BOUNCE!</text>
+      </navLabel>
+      <content src="xhtml/part02.xhtml"/>
+    </navPoint>
+    <navPoint class="chapter" id="i116" playOrder="116">
+      <navLabel>
+        <text>11 BEGINNING YOUR FIRST GAME: BOUNCE!</text>
+      </navLabel>
+      <content src="xhtml/ch11.xhtml"/>
+      <navPoint class="chapter" id="i117" playOrder="117">
+        <navLabel>
+          <text>Whack the Bouncing Ball</text>
+        </navLabel>
+        <content src="xhtml/ch11.xhtml#ch11lev1sec1"/>
+      </navPoint>
+      <navPoint class="chapter" id="i118" playOrder="118">
+        <navLabel>
+          <text>Creating the Game Canvas</text>
+        </navLabel>
+        <content src="xhtml/ch11.xhtml#ch11lev1sec2"/>
+      </navPoint>
+      <navPoint class="chapter" id="i119" playOrder="119">
+        <navLabel>
+          <text>Creating the Ball Class</text>
+        </navLabel>
+        <content src="xhtml/ch11.xhtml#ch11lev1sec3"/>
+      </navPoint>
+      <navPoint class="chapter" id="i120" playOrder="120">
+        <navLabel>
+          <text>Adding Some Action</text>
+        </navLabel>
+        <content src="xhtml/ch11.xhtml#ch11lev1sec4"/>
+      </navPoint>
+      <navPoint class="chapter" id="i121" playOrder="121">
+        <navLabel>
+          <text>What You Learned</text>
+        </navLabel>
+        <content src="xhtml/ch11.xhtml#ch11lev1sec5"/>
+      </navPoint>
+      <navPoint class="chapter" id="i122" playOrder="122">
+        <navLabel>
+          <text>Programming Puzzles</text>
+        </navLabel>
+        <content src="xhtml/ch11.xhtml#ch11lev1sec6"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="i123" playOrder="123">
+      <navLabel>
+        <text>12 FINISHING YOUR FIRST GAME: BOUNCE!</text>
+      </navLabel>
+      <content src="xhtml/ch12.xhtml"/>
+      <navPoint class="chapter" id="i124" playOrder="124">
+        <navLabel>
+          <text>Adding the Paddle</text>
+        </navLabel>
+        <content src="xhtml/ch12.xhtml#ch12lev1sec1"/>
+      </navPoint>
+      <navPoint class="chapter" id="i125" playOrder="125">
+        <navLabel>
+          <text>Making the Paddle Move</text>
+        </navLabel>
+        <content src="xhtml/ch12.xhtml#ch12lev1sec2"/>
+      </navPoint>
+      <navPoint class="chapter" id="i126" playOrder="126">
+        <navLabel>
+          <text>Finding Out When the Ball Hits the Paddle</text>
+        </navLabel>
+        <content src="xhtml/ch12.xhtml#ch12lev1sec3"/>
+      </navPoint>
+      <navPoint class="chapter" id="i127" playOrder="127">
+        <navLabel>
+          <text>Adding an Element of Chance</text>
+        </navLabel>
+        <content src="xhtml/ch12.xhtml#ch12lev1sec4"/>
+      </navPoint>
+      <navPoint class="chapter" id="i128" playOrder="128">
+        <navLabel>
+          <text>What You Learned</text>
+        </navLabel>
+        <content src="xhtml/ch12.xhtml#ch12lev1sec5"/>
+      </navPoint>
+      <navPoint class="chapter" id="i129" playOrder="129">
+        <navLabel>
+          <text>Programming Puzzles</text>
+        </navLabel>
+        <content src="xhtml/ch12.xhtml#ch12lev1sec6"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="i130" playOrder="130">
+      <navLabel>
+        <text>PART III MR. STICK MAN RACES FOR THE EXIT</text>
+      </navLabel>
+      <content src="xhtml/part03.xhtml"/>
+    </navPoint>
+    <navPoint class="chapter" id="i131" playOrder="131">
+      <navLabel>
+        <text>13 CREATING GRAPHICS FOR THE MR. STICK MAN GAME</text>
+      </navLabel>
+      <content src="xhtml/ch13.xhtml"/>
+      <navPoint class="chapter" id="i132" playOrder="132">
+        <navLabel>
+          <text>Mr. Stick Man Game Plan</text>
+        </navLabel>
+        <content src="xhtml/ch13.xhtml#ch13lev1sec1"/>
+      </navPoint>
+      <navPoint class="chapter" id="i133" playOrder="133">
+        <navLabel>
+          <text>Getting GIMP</text>
+        </navLabel>
+        <content src="xhtml/ch13.xhtml#ch13lev1sec2"/>
+      </navPoint>
+      <navPoint class="chapter" id="i134" playOrder="134">
+        <navLabel>
+          <text>Creating the Game Elements</text>
+        </navLabel>
+        <content src="xhtml/ch13.xhtml#ch13lev1sec3"/>
+      </navPoint>
+      <navPoint class="chapter" id="i135" playOrder="135">
+        <navLabel>
+          <text>Preparing a Transparent Image</text>
+        </navLabel>
+        <content src="xhtml/ch13.xhtml#ch13lev1sec4"/>
+      </navPoint>
+      <navPoint class="chapter" id="i136" playOrder="136">
+        <navLabel>
+          <text>Drawing Mr. Stick Man</text>
+        </navLabel>
+        <content src="xhtml/ch13.xhtml#ch13lev1sec5"/>
+      </navPoint>
+      <navPoint class="chapter" id="i137" playOrder="137">
+        <navLabel>
+          <text>Drawing the Platforms</text>
+        </navLabel>
+        <content src="xhtml/ch13.xhtml#ch13lev1sec6"/>
+      </navPoint>
+      <navPoint class="chapter" id="i138" playOrder="138">
+        <navLabel>
+          <text>Drawing the Door</text>
+        </navLabel>
+        <content src="xhtml/ch13.xhtml#ch13lev1sec7"/>
+      </navPoint>
+      <navPoint class="chapter" id="i139" playOrder="139">
+        <navLabel>
+          <text>Drawing the Background</text>
+        </navLabel>
+        <content src="xhtml/ch13.xhtml#ch13lev1sec8"/>
+      </navPoint>
+      <navPoint class="chapter" id="i140" playOrder="140">
+        <navLabel>
+          <text>Transparency</text>
+        </navLabel>
+        <content src="xhtml/ch13.xhtml#ch13lev1sec9"/>
+      </navPoint>
+      <navPoint class="chapter" id="i141" playOrder="141">
+        <navLabel>
+          <text>What You Learned</text>
+        </navLabel>
+        <content src="xhtml/ch13.xhtml#ch13lev1sec10"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="i142" playOrder="142">
+      <navLabel>
+        <text>14 DEVELOPING THE MR. STICK MAN GAME</text>
+      </navLabel>
+      <content src="xhtml/ch14.xhtml"/>
+      <navPoint class="chapter" id="i143" playOrder="143">
+        <navLabel>
+          <text>Creating the Game Class</text>
+        </navLabel>
+        <content src="xhtml/ch14.xhtml#ch14lev1sec1"/>
+      </navPoint>
+      <navPoint class="chapter" id="i144" playOrder="144">
+        <navLabel>
+          <text>Setting the Window Title and Creating the Canvas</text>
+        </navLabel>
+        <content src="xhtml/ch14.xhtml#ch14lev1sec2"/>
+      </navPoint>
+      <navPoint class="chapter" id="i145" playOrder="145">
+        <navLabel>
+          <text>Finishing the __init__ Function</text>
+        </navLabel>
+        <content src="xhtml/ch14.xhtml#ch14lev1sec3"/>
+      </navPoint>
+      <navPoint class="chapter" id="i146" playOrder="146">
+        <navLabel>
+          <text>Creating the mainloop Function</text>
+        </navLabel>
+        <content src="xhtml/ch14.xhtml#ch14lev1sec4"/>
+      </navPoint>
+      <navPoint class="chapter" id="i147" playOrder="147">
+        <navLabel>
+          <text>Creating the Coords Class</text>
+        </navLabel>
+        <content src="xhtml/ch14.xhtml#ch14lev1sec5"/>
+      </navPoint>
+      <navPoint class="chapter" id="i148" playOrder="148">
+        <navLabel>
+          <text>Checking for Collisions</text>
+        </navLabel>
+        <content src="xhtml/ch14.xhtml#ch14lev1sec6"/>
+      </navPoint>
+      <navPoint class="chapter" id="i149" playOrder="149">
+        <navLabel>
+          <text>Sprites Colliding Horizontally</text>
+        </navLabel>
+        <content src="xhtml/ch14.xhtml#ch14lev1sec7"/>
+      </navPoint>
+      <navPoint class="chapter" id="i150" playOrder="150">
+        <navLabel>
+          <text>Sprites Colliding Vertically</text>
+        </navLabel>
+        <content src="xhtml/ch14.xhtml#ch14lev1sec8"/>
+      </navPoint>
+      <navPoint class="chapter" id="i151" playOrder="151">
+        <navLabel>
+          <text>Putting It All Together: Our Final Collision-Detection Code</text>
+        </navLabel>
+        <content src="xhtml/ch14.xhtml#ch14lev1sec9"/>
+      </navPoint>
+      <navPoint class="chapter" id="i152" playOrder="152">
+        <navLabel>
+          <text>Creating the Sprite Class</text>
+        </navLabel>
+        <content src="xhtml/ch14.xhtml#ch14lev1sec10"/>
+      </navPoint>
+      <navPoint class="chapter" id="i153" playOrder="153">
+        <navLabel>
+          <text>Adding the Platforms</text>
+        </navLabel>
+        <content src="xhtml/ch14.xhtml#ch14lev1sec11"/>
+      </navPoint>
+      <navPoint class="chapter" id="i154" playOrder="154">
+        <navLabel>
+          <text>Adding a Platform Object</text>
+        </navLabel>
+        <content src="xhtml/ch14.xhtml#ch14lev1sec12"/>
+      </navPoint>
+      <navPoint class="chapter" id="i155" playOrder="155">
+        <navLabel>
+          <text>Adding a Bunch of Platforms</text>
+        </navLabel>
+        <content src="xhtml/ch14.xhtml#ch14lev1sec13"/>
+      </navPoint>
+      <navPoint class="chapter" id="i156" playOrder="156">
+        <navLabel>
+          <text>What You Learned</text>
+        </navLabel>
+        <content src="xhtml/ch14.xhtml#ch14lev1sec14"/>
+      </navPoint>
+      <navPoint class="chapter" id="i157" playOrder="157">
+        <navLabel>
+          <text>Programming Puzzles</text>
+        </navLabel>
+        <content src="xhtml/ch14.xhtml#ch14lev1sec15"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="i158" playOrder="158">
+      <navLabel>
+        <text>15 CREATING MR. STICK MAN</text>
+      </navLabel>
+      <content src="xhtml/ch15.xhtml"/>
+      <navPoint class="chapter" id="i159" playOrder="159">
+        <navLabel>
+          <text>Initializing the Stick Figure</text>
+        </navLabel>
+        <content src="xhtml/ch15.xhtml#ch15lev1sec1"/>
+      </navPoint>
+      <navPoint class="chapter" id="i160" playOrder="160">
+        <navLabel>
+          <text>Loading the Stick Figure Images</text>
+        </navLabel>
+        <content src="xhtml/ch15.xhtml#ch15lev1sec2"/>
+      </navPoint>
+      <navPoint class="chapter" id="i161" playOrder="161">
+        <navLabel>
+          <text>Setting Up Variables</text>
+        </navLabel>
+        <content src="xhtml/ch15.xhtml#ch15lev1sec3"/>
+      </navPoint>
+      <navPoint class="chapter" id="i162" playOrder="162">
+        <navLabel>
+          <text>Binding to Keys</text>
+        </navLabel>
+        <content src="xhtml/ch15.xhtml#ch15lev1sec4"/>
+      </navPoint>
+      <navPoint class="chapter" id="i163" playOrder="163">
+        <navLabel>
+          <text>Turning the Stick Figure Left and Right</text>
+        </navLabel>
+        <content src="xhtml/ch15.xhtml#ch15lev1sec5"/>
+      </navPoint>
+      <navPoint class="chapter" id="i164" playOrder="164">
+        <navLabel>
+          <text>Making the Stick Figure Jump</text>
+        </navLabel>
+        <content src="xhtml/ch15.xhtml#ch15lev1sec6"/>
+      </navPoint>
+      <navPoint class="chapter" id="i165" playOrder="165">
+        <navLabel>
+          <text>What We Have So Far</text>
+        </navLabel>
+        <content src="xhtml/ch15.xhtml#ch15lev1sec7"/>
+      </navPoint>
+      <navPoint class="chapter" id="i166" playOrder="166">
+        <navLabel>
+          <text>What You Learned</text>
+        </navLabel>
+        <content src="xhtml/ch15.xhtml#ch15lev1sec8"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="i167" playOrder="167">
+      <navLabel>
+        <text>16 COMPLETING THE MR. STICK MAN GAME</text>
+      </navLabel>
+      <content src="xhtml/ch16.xhtml"/>
+      <navPoint class="chapter" id="i168" playOrder="168">
+        <navLabel>
+          <text>Animating the Stick Figure</text>
+        </navLabel>
+        <content src="xhtml/ch16.xhtml#ch16lev1sec1"/>
+      </navPoint>
+      <navPoint class="chapter" id="i169" playOrder="169">
+        <navLabel>
+          <text>Creating the Animate Function</text>
+        </navLabel>
+        <content src="xhtml/ch16.xhtml#ch16lev1sec2"/>
+      </navPoint>
+      <navPoint class="chapter" id="i170" playOrder="170">
+        <navLabel>
+          <text>Getting the Stick Figure’s Position</text>
+        </navLabel>
+        <content src="xhtml/ch16.xhtml#ch16lev1sec3"/>
+      </navPoint>
+      <navPoint class="chapter" id="i171" playOrder="171">
+        <navLabel>
+          <text>Making the Stick Figure Move</text>
+        </navLabel>
+        <content src="xhtml/ch16.xhtml#ch16lev1sec4"/>
+      </navPoint>
+      <navPoint class="chapter" id="i172" playOrder="172">
+        <navLabel>
+          <text>Testing Our Stick Figure Sprite</text>
+        </navLabel>
+        <content src="xhtml/ch16.xhtml#ch16lev1sec5"/>
+      </navPoint>
+      <navPoint class="chapter" id="i173" playOrder="173">
+        <navLabel>
+          <text>The Exit!</text>
+        </navLabel>
+        <content src="xhtml/ch16.xhtml#ch16lev1sec6"/>
+      </navPoint>
+      <navPoint class="chapter" id="i174" playOrder="174">
+        <navLabel>
+          <text>Creating the DoorSprite Class</text>
+        </navLabel>
+        <content src="xhtml/ch16.xhtml#ch16lev1sec7"/>
+      </navPoint>
+      <navPoint class="chapter" id="i175" playOrder="175">
+        <navLabel>
+          <text>Detecting the Door</text>
+        </navLabel>
+        <content src="xhtml/ch16.xhtml#ch16lev1sec8"/>
+      </navPoint>
+      <navPoint class="chapter" id="i176" playOrder="176">
+        <navLabel>
+          <text>Adding the Door Object</text>
+        </navLabel>
+        <content src="xhtml/ch16.xhtml#ch16lev1sec9"/>
+      </navPoint>
+      <navPoint class="chapter" id="i177" playOrder="177">
+        <navLabel>
+          <text>The Final Game</text>
+        </navLabel>
+        <content src="xhtml/ch16.xhtml#ch16lev1sec10"/>
+      </navPoint>
+      <navPoint class="chapter" id="i178" playOrder="178">
+        <navLabel>
+          <text>What You Learned</text>
+        </navLabel>
+        <content src="xhtml/ch16.xhtml#ch16lev1sec11"/>
+      </navPoint>
+      <navPoint class="chapter" id="i179" playOrder="179">
+        <navLabel>
+          <text>Programming Puzzles</text>
+        </navLabel>
+        <content src="xhtml/ch16.xhtml#ch16lev1sec12"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="i180" playOrder="180">
+      <navLabel>
+        <text>AFTERWORD: WHERE TO GO FROM HERE</text>
+      </navLabel>
+      <content src="xhtml/aft.xhtml"/>
+      <navPoint class="chapter" id="i181" playOrder="181">
+        <navLabel>
+          <text>Installing Python pip on Windows</text>
+        </navLabel>
+        <content src="xhtml/aft.xhtml#aftlev1sec1"/>
+      </navPoint>
+      <navPoint class="chapter" id="i182" playOrder="182">
+        <navLabel>
+          <text>Installing Python pip on Ubuntu</text>
+        </navLabel>
+        <content src="xhtml/aft.xhtml#aftlev1sec2"/>
+      </navPoint>
+      <navPoint class="chapter" id="i183" playOrder="183">
+        <navLabel>
+          <text>Installing Python pip on Raspberry Pi</text>
+        </navLabel>
+        <content src="xhtml/aft.xhtml#aftlev1sec3"/>
+      </navPoint>
+      <navPoint class="chapter" id="i184" playOrder="184">
+        <navLabel>
+          <text>Installing Python pip on macOS</text>
+        </navLabel>
+        <content src="xhtml/aft.xhtml#aftlev1sec4"/>
+      </navPoint>
+      <navPoint class="chapter" id="i185" playOrder="185">
+        <navLabel>
+          <text>Trying out PyGame</text>
+        </navLabel>
+        <content src="xhtml/aft.xhtml#aftlev1sec5"/>
+      </navPoint>
+      <navPoint class="chapter" id="i186" playOrder="186">
+        <navLabel>
+          <text>Other Games and Graphics Programming</text>
+        </navLabel>
+        <content src="xhtml/aft.xhtml#aftlev1sec6"/>
+      </navPoint>
+      <navPoint class="chapter" id="i187" playOrder="187">
+        <navLabel>
+          <text>Other Programming Languages</text>
+        </navLabel>
+        <content src="xhtml/aft.xhtml#aftlev1sec7"/>
+      </navPoint>
+      <navPoint class="chapter" id="i188" playOrder="188">
+        <navLabel>
+          <text>Final Words</text>
+        </navLabel>
+        <content src="xhtml/aft.xhtml#aftlev1sec8"/>
+      </navPoint>
+    </navPoint>
+    <navPoint class="chapter" id="i189" playOrder="189">
+      <navLabel>
+        <text>A PYTHON KEYWORDS</text>
+      </navLabel>
+      <content src="xhtml/app01.xhtml"/>
+    </navPoint>
+    <navPoint class="chapter" id="i190" playOrder="190">
+      <navLabel>
+        <text>B PYTHON’S BUILT-IN FUNCTIONS</text>
+      </navLabel>
+      <content src="xhtml/app02.xhtml"/>
+    </navPoint>
+    <navPoint class="chapter" id="i191" playOrder="191">
+      <navLabel>
+        <text>C TROUBLESHOOTING</text>
+      </navLabel>
+      <content src="xhtml/app03.xhtml"/>
+    </navPoint>
+    <navPoint class="chapter" id="i192" playOrder="192">
+      <navLabel>
+        <text>INDEX</text>
+      </navLabel>
+      <content src="xhtml/index.xhtml"/>
+    </navPoint>
+  </navMap>
+</ncx>

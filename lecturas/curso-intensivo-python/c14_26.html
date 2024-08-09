@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c14-0018">Mostrar el número de naves</h3>
+<p class="BodyFirst">Por último, vamos a mostrar el número de naves que le quedan al jugador, pero esta vez, utilizaremos un gráfico. Para ello, dibujaremos naves en la esquina superior izquierda de la pantalla para representar cuántas naves quedan, tal y como hacen muchos juegos arcade clásicos.</p>
+<p>Primero, tenemos que hacer que <code translate="no">Ship</code> herede de <code translate="no">Sprite</code> para poder crear un grupo de naves:</p>
+<p class="CodeLabel" translate="no"><b>ship.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">import pygame</span>
+from pygame.sprite import Sprite
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span> class Ship(Sprite):
+<span class="LiteralGray">    """A class to manage the ship."""</span>
+
+<span class="LiteralGray">    def __init__(self, ai_game):</span>
+<span class="LiteralGray">        """Initialize the ship and set its starting position."""</span>
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         super().__init__()
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic" translate="no">--snip--</em></code></pre>
+<p>Aquí importamos <code translate="no">Sprite</code>, nos aseguramos de que <code translate="no">Ship</code> hereda de <code translate="no">Sprite</code> <span aria-label="annotation1" class="CodeAnnotation">❶,</span> y llamamos a <code translate="no">super()</code> al principio de <code translate="no">__init__()</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span></p>
+<p><span epub:type="pagebreak" id="Page_297" title="297"></span>A continuación, tenemos que modificar <code translate="no">Scoreboard</code> para crear un grupo de naves que podamos mostrar. Estas son las sentencias <code translate="no">import</code> para <code translate="no">Scoreboard</code>:</p>
+<p class="CodeLabel" translate="no"><b>scoreboard.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">import pygame.font</span>
+from pygame.sprite import Group
+
+from ship import Ship</code></pre>
+<p>Como estamos creando un grupo de barcos, importamos las clases <code translate="no">Group</code> y <code translate="no">Ship</code>.</p>
+<p>Aquí tienes <code translate="no">__init__()</code>:</p>
+<p class="CodeLabel" translate="no"><b>scoreboard.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    def __init__(self, ai_game):</span>
+<span class="LiteralGray">        """Initialize scorekeeping attributes."""</span>
+<span class="LiteralGray">        </span>self.ai_game = ai_game
+<span class="LiteralGray">        self.screen = ai_game.screen</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">        self.prep_level()</span>
+        self.prep_ships()</code></pre>
+<p>Asignamos la instancia del juego a un atributo, porque la necesitaremos para crear algunas naves. Llamamos a <code translate="no">prep_ships()</code> después de la llamada a <code translate="no">prep_level()</code>.</p>
+<p>Aquí tienes <code translate="no">prep_ships()</code>:</p>
+<p class="CodeLabel" translate="no"><b>scoreboard.py</b></p>
+<pre translate="no"><code translate="no"><code translate="no">    </code>def prep_ships(self):
+        """Show how many ships are left."""
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         self.ships = Group()
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         for ship_number in range(self.stats.ships_left):
+            ship = Ship(self.ai_game)
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>             ship.rect.x = 10 + ship_number * ship.rect.width
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>             ship.rect.y = 10
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>             self.ships.add(ship)</code></pre>
+<p>El método <code translate="no">prep_ships()</code> crea un grupo vacío, <code translate="no">self.ships</code>, para contener las instancias de naves <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Para llenar este grupo, se ejecuta un bucle una vez por cada nave que el jugador haya dejado <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Dentro del bucle, creamos una nueva nave y establecemos el valor de la coordenada <em translate="no">x</em> de cada nave para que las naves aparezcan una junto a otra con un margen de 10 píxeles a la izquierda del grupo de naves <span aria-label="annotation3" class="CodeAnnotation">❸.</span> Fijamos el valor de <em translate="no">y</em>-coordenada 10 píxeles hacia abajo desde la parte superior de la pantalla para que las naves aparezcan en la esquina superior izquierda de la pantalla <span aria-label="annotation4" class="CodeAnnotation">❹.</span> A continuación, añadimos cada nave nueva al grupo <code translate="no">ships</code> <span aria-label="annotation5" class="CodeAnnotation">❺.</span></p>
+<p>Ahora tenemos que dibujar las naves en la pantalla:</p>
+<p class="CodeLabel" translate="no"><b>scoreboard.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    def show_score(self):</span>
+        """Draw scores, level, and ships to the screen."""
+<span class="LiteralGray">        self.screen.blit(self.score_image, self.score_rect)</span>
+<span class="LiteralGray">        self.screen.blit(self.high_score_image, self.high_score_rect)</span>
+<span class="LiteralGray">        self.screen.blit(self.level_image, self.level_rect)</span>
+    <span class="LiteralGray">    </span>self.ships.draw(self.screen)</code></pre>
+<p><span epub:type="pagebreak" id="Page_298" title="298"></span>Para mostrar las naves en la pantalla, llamamos a <code translate="no">draw()</code> en el grupo, y Pygame dibuja cada nave.</p>
+<p>Para mostrar al jugador cuántas naves tiene para empezar, llamamos a <code translate="no">prep_ships()</code> cuando comienza una nueva partida. Esto lo hacemos en <code translate="no">_check_play_button()</code> en <code translate="no">AlienInvasion</code>:</p>
+<p class="CodeLabel" translate="no"><b>alien_invasion.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    def _check_play_button(self, mouse_pos):</span>
+<span class="LiteralGray">        </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">        if button_clicked and not self.game_active:</span>
+<span class="LiteralGray">            </span><em class="LiteralGrayItalic" translate="no">--snip--</em>
+            <span class="LiteralGray">self.sb.prep_level()</span>
+            self.sb.prep_ships()
+            <em class="LiteralGrayItalic" translate="no">--snip--</em></code></pre>
+<p>También llamamos a <code translate="no">prep_ships()</code> cuando una nave es alcanzada, para actualizar la visualización de las imágenes de las naves cuando el jugador pierde una nave:</p>
+<p class="CodeLabel" translate="no"><b>alien_invasion.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    def _ship_hit(self):</span>
+<span class="LiteralGray">        """Respond to ship being hit by alien."""</span>
+<span class="LiteralGray">        if self.stats.ships_left &gt; 0:</span>
+            # Decrement ships_left, and update scoreboard.
+<span class="LiteralGray">            self.stats.ships_left -= 1</span>
+            self.sb.prep_ships()
+            <var>--snip--</var></code></pre>
+<p>Llamamos a <code translate="no">prep_ships()</code> después de disminuir el valor de <code translate="no">ships_left</code>, para que se muestre el número correcto de naves restantes cada vez que se destruye una nave.</p>
+<p><a href="#figure14-6" id="figureanchor14-6">La Figura 14-6</a> muestra el sistema de puntuación completo, con las naves restantes mostradas en la parte superior izquierda de la pantalla.</p>
+<figure>
+<img alt="" class="keyline" height="442" src="Images/f14006.png" translate="no" width="641"/>
+<figcaption><p>Figura<a id="figure14-6">14-6</a>: El sistema de puntuación completo de <em translate="no">Alien Invasion</em></p></figcaption></figure><aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="box">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c14_25.html">anterior</a><a href="c14.html">Subtema 26 de 29: (Ver todo)</a><a href="c14_27.html">siguiente</a><br/></p>
+<br/><a href="c14_26.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<meta charset="utf-8"/>
+<title>Capítulo 1: Trabajar con números</title>
+<link href="style.css" media="all" rel="stylesheet" type="text/css"/>
+<link href="core.css" media="all" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch01lev1sec04"><a id="page_8"></a><strong>Obtener la entrada del usuario</strong></h3>
+<p class="noindent">Cuando empecemos a escribir programas, nos será útil disponer de una forma agradable y sencilla de aceptar la entrada del usuario mediante la función <span class="literal" translate="no">input()</span>. De esta forma, podemos escribir programas que pidan al usuario que introduzca un número, realice operaciones específicas con ese número y, a continuación, muestre los resultados de las operaciones. Veámoslo en acción:</p>
+<p class="programs" translate="no"><span class="ent">➊</span> &gt;&gt;&gt; <span class="codestrong">a = input()</span><br translate="no"/><span class="ent">➋</span> 1</p>
+<p class="indent">En <span class="ent">➊,</span> llamamos a la función <span class="literal" translate="no">input()</span>, que espera a que escribas algo, como se muestra en <span class="ent">➋,</span> y pulses <small>INTRO</small>. La información introducida se almacena en <span class="literal" translate="no">a</span>:</p>
+<p class="programs" translate="no">   &gt;&gt;&gt; <span class="codestrong">a</span><br translate="no"/><span class="ent">➌</span> '1'</p>
+<p class="indent">Observa las comillas simples alrededor del 1 en <span class="ent">➌.</span> La función <span class="literal" translate="no">input()</span> devuelve la entrada como una <em>cadena</em>. En Python, una cadena es cualquier conjunto de caracteres entre dos comillas. Cuando quieras crear una cadena, puedes utilizar comillas simples o dobles:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">s1 = 'a string'</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">s2 = "a string"</span></p>
+<p class="indent">Aquí, tanto <span class="literal" translate="no">s1</span> como <span class="literal" translate="no">s2</span> se refieren a la misma cadena.</p>
+<p class="indent">Aunque los únicos caracteres de una cadena sean números, Python no tratará esa cadena como un número a menos que nos deshagamos de esas comillas. Así que antes de poder realizar cualquier operación matemática con la entrada, tendremos que convertirla al tipo de número correcto. Una cadena puede convertirse en un número entero o de coma flotante utilizando la función <span class="literal" translate="no">int()</span> o <span class="literal" translate="no">float()</span>, respectivamente:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">a = '1'</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">int(a) + 1</span><br translate="no"/>2<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">float(a) + 1</span><br translate="no"/>2.0</p>
+<p class="indent">Son las mismas funciones <span class="literal" translate="no">int()</span> y <span class="literal" translate="no">float()</span> que vimos antes, pero esta vez en lugar de convertir la entrada de un tipo de número a otro, toman una cadena como entrada (<span class="literal" translate="no">'1'</span>) y devuelven un número (<span class="literal" translate="no">2</span> o <span class="literal" translate="no">2.0</span>). Sin embargo, es importante tener en cuenta que la función <span class="literal" translate="no">int()</span> no puede convertir una cadena que contenga un decimal de coma flotante en un número entero. Si tomas una cadena que contenga un número de coma flotante (como <span class="literal" translate="no">'2.5'</span> o incluso <span class="literal" translate="no">'2.0'</span>) e introduces esa cadena en la función <span class="literal" translate="no">int()</span>, obtendrás un mensaje de error:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">int('2.0')</span><br translate="no"/>Traceback (most recent call last):<br translate="no"/><a id="page_9"></a><br translate="no"/>  File "&lt;pyshell#26&gt;", line 1, in <br translate="no"/>    int('2.0')<br translate="no"/>ValueError: invalid literal for int() with base 10: '2.0'</p>
+<p class="indent">Éste es un ejemplo de <em>excepción:</em>la forma que tiene <em>Python</em>de decirte que no puede seguir ejecutando tu programa debido a un error. En este caso, la excepción es del tipo <span class="literal" translate="no">ValueError</span>. (Para un rápido repaso de las excepciones, consulta <a href="app02.html#app02">el Apéndice B</a>.)</p>
+<p class="indent">Del mismo modo, cuando proporcionas un número fraccionario como 3/4 como entrada, Python no puede convertirlo en un número de coma flotante o entero equivalente. Una vez más, se lanza una excepción <span class="literal" translate="no">ValueError</span>:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">a = float(input())</span><br translate="no"/>3/4<br translate="no"/>Traceback (most recent call last):<br translate="no"/>  File "&lt;pyshell#25&gt;", line 1, in <br translate="no"/>    a=float(input())<br translate="no"/>ValueError: could not convert string to float: '3/4'</p>
+<p class="indent">Puede resultarte útil realizar la conversión en un bloque <span class="literal" translate="no">try...except</span> para poder <em>manejar</em> esta excepción y alertar al usuario de que el programa se ha encontrado con una entrada no válida. A continuación veremos los bloques <span class="literal" translate="no">try...except</span>.</p>
+<h4 class="h4" id="ch01lev2sec03"><strong><em>Manejar excepciones y entradas no válidas</em></strong></h4>
+<p class="noindent">Si no estás familiarizado con <span class="literal" translate="no">try...except</span>, la idea básica es la siguiente: si ejecutas una o más sentencias en un bloque <span class="literal" translate="no">try...except</span> y se produce un error durante la ejecución, tu programa no se bloqueará e imprimirá un <span class="literal" translate="no">Traceback</span>. En su lugar, la ejecución se transfiere al bloque <span class="literal" translate="no">except</span>, donde puedes realizar una operación apropiada, por ejemplo, imprimir un mensaje de error útil o intentar otra cosa.</p>
+<p class="indent">Así es como realizarías la conversión anterior en un bloque <span class="literal" translate="no">try...except</span> e imprimirías un mensaje de error útil si la entrada no es válida:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">try:</span><br translate="no"/> <span class="codestrong">a = float(input('Enter a number: '))</span><br translate="no"/><span class="codestrong">except ValueError:</span><br translate="no"/> <span class="codestrong">print('You entered an invalid number')</span></p>
+<p class="indent">Ten en cuenta que tenemos que especificar el tipo de excepción que queremos manejar. Aquí, queremos manejar la excepción <span class="literal" translate="no">ValueError</span>, así que la especificamos como <span class="literal" translate="no">except ValueError</span>.</p>
+<p class="indent">Ahora, cuando des una entrada no válida, como 3/4, imprime un mensaje de error útil, como se muestra en <span class="ent">➊:</span></p>
+<p class="programs" translate="no">   Enter a number: <span class="codestrong">3/4</span><br translate="no"/><span class="ent">➊</span> You entered an invalid number</p>
+<p class="indent"><a id="page_10"></a>También puedes especificar un aviso con la función <span class="literal" translate="no">input()</span> para indicar al usuario qué tipo de entrada se espera. Por ejemplo:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">a = input('Input an integer: ')</span></p>
+<p class="indent">El usuario verá ahora el mensaje indicándole que introduzca un número entero como entrada:</p>
+<p class="programs" translate="no">Input an integer: <span class="codestrong">1</span></p>
+<p class="indent">En muchos programas de este libro, pediremos al usuario que introduzca un número como entrada, por lo que tendremos que asegurarnos de que nos ocupamos de la conversión antes de intentar realizar cualquier operación con estos números. Puedes combinar la entrada y la conversión en una sola sentencia, como se indica a continuación:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">a = int(input())</span><br translate="no"/>1<br translate="no"/>&gt;&gt;&gt; <span class="codestrong">a + 1</span><br translate="no"/>2</p>
+<p class="indent">Esto funciona muy bien si el usuario introduce un número entero. Pero como hemos visto antes, si la entrada es un número en coma flotante (incluso uno equivalente a un entero, como 1,0), se producirá un error:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">a = int(input())</span><br translate="no"/><span class="codestrong">1.0</span><br translate="no"/>Traceback (most recent call last):<br translate="no"/>  File "&lt;pyshell#42&gt;", line 1, in <br translate="no"/>    a=int(input())<br translate="no"/>ValueError: invalid literal for int() with base 10: '1.0'</p>
+<p class="indent">Para evitar este error, podríamos configurar una captura <span class="literal" translate="no">ValueError</span> como la que vimos antes para las fracciones. De este modo, el programa detectaría los números en coma flotante, lo que no funcionaría en un programa pensado para enteros. Sin embargo, también detectaría números como 1,0 y 2,0, que Python <em>ve</em> como números de coma flotante pero que son equivalentes a los enteros y funcionarían perfectamente si se introdujeran como el tipo Python correcto.</p>
+<p class="indent">Para evitar todo esto, utilizaremos el método <span class="literal" translate="no">is_integer()</span> para filtrar cualquier número con un dígito significativo después del punto decimal. (Este método sólo está definido para números de tipo <span class="literal" translate="no">float</span> en Python; no funcionará con números que ya estén introducidos en forma de entero).</p>
+<p class="indent">He aquí un ejemplo:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">1.1.is_integer()</span><br translate="no"/>False</p>
+<p class="indent">Aquí, llamamos al método <span class="literal" translate="no">is_integer()</span> para comprobar si 1,1 es un número entero, y el resultado es <span class="literal" translate="no">False</span> porque 1,1 es realmente un número en coma flotante. Por otro lado <a id="page_11"></a>, cuando se llama al método con 1,0 como número de coma flotante, el resultado es <span class="literal" translate="no">True</span>:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">1.0.is_integer()</span><br translate="no"/>True</p>
+<p class="indent">Podemos utilizar <span class="literal" translate="no">is_integer()</span> para filtrar entradas que no sean números enteros y mantener entradas como 1,0, que se expresa como un número de coma flotante pero equivale a un número entero. Veremos cómo encajaría el método en un programa más grande un poco más adelante.</p>
+<h4 class="h4" id="ch01lev2sec04"><strong><em>Fracciones y números complejos como entrada</em></strong></h4>
+<p class="noindent">La clase <span class="literal" translate="no">Fraction</span> que hemos conocido antes también es capaz de convertir una cadena como <span class="literal" translate="no">'3/4'</span> en un objeto <span class="literal" translate="no">Fraction</span>. De hecho, así es como podemos aceptar una fracción como entrada:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">a = Fraction(input('Enter a fraction: '))</span><br translate="no"/>Enter a fraction: <span class="codestrong">3/4</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">a</span><br translate="no"/>Fraction(3, 4)</p>
+<p class="indent">Intenta introducir una fracción como 3/0 como entrada:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">a = Fraction(input('Enter a fraction: '))</span><br translate="no"/>Enter a fraction: <span class="codestrong">3/0</span><br translate="no"/>Traceback (most recent call last):<br translate="no"/>  File "&lt;pyshell#2&gt;", line 1, in <br translate="no"/>    a = Fraction(input('Enter a fraction: '))<br translate="no"/>  File "/usr/lib64/python3.3/fractions.py", line 167, in __new__<br translate="no"/>    raise ZeroDivisionError('Fraction(%s, 0)' % numerator)<br translate="no"/>ZeroDivisionError: Fraction(3, 0)</p>
+<p class="indent">El mensaje de excepción <span class="literal" translate="no">ZeroDivisionError</span> te dice (como ya sabes) que una fracción con denominador 0 no es válida. Si piensas hacer que los usuarios introduzcan fracciones en uno de tus programas, es una buena idea atrapar siempre este tipo de excepciones. He aquí cómo puedes hacer algo así:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">try:</span><br translate="no"/> <span class="codestrong">a = Fraction(input('Enter a fraction: '))<br translate="no"/>except ZeroDivisionError:</span><br translate="no"/> <span class="codestrong">print('Invalid fraction')</span><br translate="no"/><br translate="no"/>Enter a fraction: <span class="codestrong">3/0</span><br translate="no"/>Invalid fraction</p>
+<p class="indent">Ahora, cada vez que el usuario de tu programa introduzca una fracción con 0 en el denominador, imprimirá el mensaje <span class="literal" translate="no">Invalid fraction</span>.</p>
+<p class="indent"><a id="page_12"></a>Del mismo modo, la función <span class="literal" translate="no">complex()</span> puede convertir una cadena como <span class="literal" translate="no">'2+3j'</span> en un número complejo:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">z = complex(input('Enter a complex number: '))</span><br translate="no"/>Enter a complex number: <span class="codestrong">2+3j</span><br translate="no"/>&gt;&gt;&gt; <span class="codestrong">z</span><br translate="no"/>(2+3j)</p>
+<p class="indent">Si introduces la cadena como <span class="literal" translate="no">'2 + 3j'</span> (con espacios), aparecerá un mensaje de error <span class="literal" translate="no">ValueError</span>:</p>
+<p class="programs" translate="no">&gt;&gt;&gt; <span class="codestrong">z = complex(input('Enter a complex number: '))</span><br translate="no"/>Enter a complex number: <span class="codestrong">2 + 3j</span><br translate="no"/>Traceback (most recent call last):<br translate="no"/>  File "&lt;pyshell#43&gt;", line 1, in <br translate="no"/>    z = complex(input('Enter a complex number: '))<br translate="no"/>ValueError: complex() arg is a malformed string</p>
+<p class="indent">Es una buena idea capturar la excepción <span class="literal" translate="no">ValueError</span> al convertir una cadena en un número complejo, como hemos hecho para otros tipos de números.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch01_4.html">anterior</a><a href="ch01.html">Subtema 5 de 8: (Ver todo)</a><a href="ch01_6.html">siguiente</a><br/></p>
+<br/><a href="ch01_5.docx" target="_blank"></a></footer>
+</body>
+</html>

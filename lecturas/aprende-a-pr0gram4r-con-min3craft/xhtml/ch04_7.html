@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch04lev1sec06"><span epub:type="pagebreak" id="page_80"></span><strong><span class="blue1">Recuperarse de los errores</span></strong></h3>
+<p class="noindent">Python utiliza el manejo de <em>excepciones</em> para asegurarse de que tu programa pueda recuperarse de los errores y continuar ejecutándose cuando se produzcan. Por ejemplo, el manejo de excepciones es una forma de gestionar las entradas incorrectas del usuario.</p>
+<p class="indent">Supongamos que tu programa solicita un número entero, pero el usuario introduce una cadena. Normalmente, el programa mostraría un mensaje de error, lo que también se llama <em>lanzar una</em> excepción, y dejaría de ejecutarse.</p>
+<p class="indent">Con el manejo de excepciones, puedes gestionar tú mismo ese error: puedes mantener el programa funcionando sin problemas, mostrar un mensaje de error útil al usuario -como <span class="literal">"Por favor, introduzca un número en su lugar"</span>- y darle la oportunidad de solucionar su problema sin reiniciar el programa.</p>
+<p class="indent">Una sentencia <span class="literal">try-except</span> es una herramienta que puedes utilizar para gestionar errores. Es especialmente buena para proporcionar información útil al usuario cuando introduce datos incorrectos, y puede evitar que tu programa se detenga cuando se produce un error.</p>
+<p class="indent">La sentencia se compone de dos partes: el <span class="literal">try</span> y el <span class="literal">except</span>. La primera parte, <span class="literal">try</span>, es el código que quieres ejecutar si no se produce ningún error. Este código puede tomar una entrada o imprimir una cadena. La parte <span class="literal">except</span> de la sentencia se ejecutará sólo si se produce un error en la parte <span class="literal">try</span>.</p>
+<p class="indent">Imagina un código que te pregunta cuántos pares de gafas de sol tienes (tengo tres pares):</p>
+<p class="programs" translate="no"> <span class="orange">try</span>:<br translate="no"/><span class="ent">➊</span>    noOfSunglasses = <span class="rose">int</span>(<span class="rose">input</span>(<span class="green">"How many sunglasses do you own? "</span>))<br translate="no"/> <span class="orange">except</span>:<br translate="no"/><span class="ent">➋</span> <span class="rose">print</span>(<span class="green">"Invalid input: please enter a number"</span>)</p>
+<p class="indent">Este programa requiere un número. Si introduces letras o símbolos, imprimirá <span class="literal">"Entrada no válida: introduce un número"</span>. El error se produce porque la función <span class="literal">int(</span> ) sólo puede convertir cadenas que contengan sólo números enteros <span class="ent">➊.</span> Si introduces un número, el código funcionará, pero si introduces algo que no es un número, como <span class="literal">muchas gafas de sol</span>, esta entrada provocará un error en la función int( <span class="literal">)</span>.</p>
+<p class="indent">Por cierto, ¿has notado algo diferente en este trozo de código? Es la primera vez que utilizamos una sentencia que requiere <em>sangría</em>, que es cuando escribes varios espacios <em>antes de</em> escribir cualquier texto. Hablaré más de la sangría cuando trate las sentencias <span class="literal">if</span> en <a href="ch06.xhtml#ch06">el Capítulo 6</a> y los bucles <span class="literal">for</span> en <a href="ch07.xhtml#ch07">los Capítulos 7</a> y <a href="ch09.xhtml#ch09">9</a>. Por ahora, asegúrate de que escribes tu código exactamente como aparece en este libro.</p>
+<p class="indent">Normalmente, cuando se produce un error, Python muestra un mensaje difícil de entender y no indica claramente al usuario cómo solucionar el problema. Pero con <span class="literal">try-except</span>, puedes evitar que los mensajes de error de Python se muestren al usuario cuando introduzca un tipo de datos incorrecto; en su lugar, puedes darle instrucciones sencillas y útiles sobre lo que debe hacer. A veces el usuario simplemente pulsa <small>INTRO</small> en lugar de introducir datos. Normalmente, esto crea un error, pero con el código dentro de la sentencia <span class="literal">try-except</span> <span class="ent">➊,</span> en su lugar se imprimirá la cadena " <span class="literal">Entrada no válida: por favor, introduzca un número</span> <span class="ent">➋.</span></p>
+<p class="indent"><span epub:type="pagebreak" id="page_81"></span>Puedes poner casi cualquier código dentro de una sentencia <span class="literal">try-except</span>, incluso otras sentencias <span class="literal">try-except</span>. ¡Pruébalo en la siguiente misión!</p>
+<h4 class="h4a" id="ch04lev2sec07"><strong>Misión nº 15: Sólo se permiten números</strong></h4>
+<p class="noindent">¿Recuerdas el programa que escribiste en la Misión 14? Cuando introducías un valor entero, el programa funcionaba exactamente como debía y creaba un bloque. Pero si introducías una cadena, el programa dejaba de funcionar y mostraba un error, como se muestra en la <a href="ch04.xhtml#ch4fig5">Figura 4-5</a>.</p>
+<div class="image"><img alt="image" src="../images/f04-05.jpg" translate="no"/></div>
+<p class="figcap"><em><a id="ch4fig5"></a>Figura</em><em>4-5:</em> <span class="literal"><span class="codeitalic">cake</span></span> <em>no es un número, por lo que el programa no creó un bloque.</em></p>
+<p class="indent">Este mensaje de error tiene sentido cuando estás acostumbrado a Python. Pero, ¿qué pasaría si alguien que nunca antes hubiera utilizado Python intentara introducir una cadena en lugar de un número entero? Recibiría un mensaje de error que no entendería. Tu misión es utilizar el tratamiento de errores para escribir un mensaje que sea fácil de entender.</p>
+<p class="indent">Abre el programa bloqueEntrada <em>.py</em> que creaste en la Misión 14. Guarda el programa como <em>blockInputFix.py</em> en la carpeta <em>strings</em>.</p>
+<p class="indent">Vas a cambiar el programa para que utilice una sentencia <span class="literal">try-except</span> cuando te pida un número de bloque. Busca la última línea de código en el programa. Debe tener este aspecto:</p>
+<p class="programs" translate="no">mc.setBlock(x, y, z, blockType)</p>
+<p class="indent">Añade una sentencia <span class="literal">try</span> en la línea anterior a ésta y añade cuatro espacios al principio de la línea antes de la función <span class="literal">mc.setBlock()</span>. Después, en la línea anterior a setBlock( <span class="literal">)</span>, añade este código para obtener una entrada del usuario: <span class="literal">blockType = int(input("Introduce un tipo de bloque: "))</span>.</p>
+<p class="indent">A continuación, en la línea justo después de la función setBlock <span class="literal">()</span>, escribe una sentencia <span class="literal">except</span>. Dentro de la sentencia <span class="literal">except</span> añade una línea de código que publique un mensaje en el chat de Minecraft para decir que el tipo de bloque debe ser un número; <span epub:type="pagebreak" id="page_82"></span>por ejemplo, " <span class="literal">¡No has introducido un número! Introduce un número la próxima vez"</span>. Este es el aspecto que debería tener el código modificado (fíjate en los cuatro espacios, o sangría, al principio de las líneas <span class="ent">➊</span> y <span class="ent">➋)</span>:</p>
+<p class="programs" translate="no"> <span class="orange">try</span>:<br translate="no"/><span class="ent">➊</span>    blockType = <span class="rose">int</span>(<span class="rose">input</span>(<span class="green">"Enter a block type: "</span>))<br translate="no"/>      mc.setBlock(x, y, z, blockType)<br translate="no"/> <span class="orange">except</span>:<br translate="no"/><span class="ent">➋</span>    mc.postToChat("Yo<span class="green">u did not enter a number! Enter a number next time.")</span></p>
+<p class="indent">La función <span class="literal">int(</span> ) espera convertir la entrada introducida por el usuario en un número entero <span class="ent">➊.</span> Como hemos añadido la sentencia <span class="literal">try-except</span> al programa, si el usuario introduce algo que no es un número (como letras o símbolos), se producirá un error. En lugar de mostrar el mensaje de error normal de Python, el programa enviará una cadena al chat pidiendo al usuario que introduzca sólo un número <span class="ent">➋.</span> Quizá quieras cambiar el mensaje del chat para que sea un poco más educado.</p>
+<p class="indent">Cuando hayas terminado de introducir un mensaje de error más amable, guarda el archivo <em>blockInputFix.py</em> y ejecútalo para admirar tu obra. El resultado debería parecerse a <a href="ch04.xhtml#ch4fig6">la Figura 4-6</a>.</p>
+<div class="image"><img alt="image" src="../images/f04-06.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch4fig6"></a><em>Figura 4-6: El mensaje de error mostrado en el chat es mucho más fácil de entender.</em></p>
+<h4 class="h4a" id="ch04lev2sec08"><strong>Misión nº 16: Sprint Record</strong></h4>
+<p class="noindent">La misión final de este capítulo combina todo lo que has aprendido sobre variables<a href="ch02.xhtml#ch02">(Capítulo 2</a>) y operadores matemáticos<a href="ch03.xhtml#ch03">(Capítulo 3</a>) con la publicación de mensajes en el chat. Tu tarea consiste en crear un registrador: el programa calculará la distancia que recorre el jugador en 10 segundos y mostrará los resultados en el chat.</p>
+<p class="indent"><span epub:type="pagebreak" id="page_83"></span>Recuerda que puedes utilizar el siguiente código para hacer que tus programas esperen, o duerman, un determinado número de segundos:</p>
+<p class="programs" translate="no"><span class="orange">import</span> time     <span class="red"># Place this somewhere near the top of your program</span><br translate="no"/>time.sleep(30)  <span class="red"># Makes the program wait 30 seconds</span></p>
+<p class="indent">Utiliza este ejemplo de <span class="literal">sleep()</span> y escribe el siguiente código para empezar con este nuevo programa:</p>
+<p class="sidenote" translate="no"><span class="blue"><em>sprint.py</em></span></p>
+<p class="programs" translate="no"> <span class="orange">import</span> time<br translate="no"/> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>   mc = Minecraft.create()<br translate="no"/><br translate="no"/><span class="ent">➊</span> pos1 = mc.player.getTilePos()<br translate="no"/>   x1 = pos1.x<br translate="no"/>   y1 = pos1.y<br translate="no"/>   z1 = pos1.z<br translate="no"/><br translate="no"/>   time.sleep(10)<br translate="no"/><br translate="no"/><span class="ent">➋</span> pos2 = mc.player.getTilePos()<br translate="no"/>   x2 = pos2.x<br translate="no"/>   y2 = pos2.y<br translate="no"/>   z2 = pos2.z<br translate="no"/><br translate="no"/> <span class="red"># Compare the difference between the starting position and ending position</span><br translate="no"/><span class="ent">➌</span> xDistance = x2 – x1<br translate="no"/>   yDistance =<br translate="no"/>   zDistance =<br translate="no"/><br translate="no"/> <span class="red"># Post the results to the chat</span><br translate="no"/><span class="ent">➍</span> mc.postToChat(<span class="green">""</span>)</p>
+<p class="indent">Desglosemos este código. El programa obtiene la posición inicial del jugador <span class="ent">➊,</span> espera 10 segundos y luego obtiene la posición final del jugador <span class="ent">➋.</span> Para terminar el programa, tienes que calcular la diferencia entre las posiciones inicial y final. Para ello, establece los valores de las variables <span class="literal">yDistancia</span> y <span class="literal">zDistancia</span>, que comienzan en <span class="ent">➌.</span> Para ayudarte, he incluido el valor de la variable <span class="literal">xDistancia</span>, que debe ser <span class="literal">x2 - x1</span>. Los valores de las variables <span class="literal">yDistancia</span> y <span class="literal">zDistancia</span> deben ser similares a éste, pero utilizando variables distintas en lugar de <span class="literal">x1</span> y <span class="literal">x2</span>.</p>
+<p class="indent">En la última línea, envía los resultados al chat de Minecraft <span class="ent">➍.</span> Los resultados deben tener el siguiente formato <span class="literal">"El jugador se ha movido x: 10, y:</span> 6, <span class="literal"> y z: -3"</span>. Utiliza cadenas, concatenación y los valores de las variables <span class="literal">xDistancia</span>, <span class="literal">yDistancia</span> y <span class="literal">zDistancia</span> para hacerlo.</p>
+<p class="indent">Guarda este programa en la carpeta <em>cadenas</em> como <em>sprint.py</em> y ejecútalo. <a href="ch04.xhtml#ch4fig7">La Figura 4-7</a> muestra el resultado del programa.</p>
+<div class="image"><span epub:type="pagebreak" id="page_84"></span><img alt="image" src="../images/f04-07.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch4fig7"></a><em>Figura 4-7: Al finalizar el programa se muestra la distancia recorrida.</em></p>
+<p class="indent">Si tienes el programa en marcha pero te resulta difícil cambiar entre la línea de comandos y Minecraft lo suficientemente rápido, prueba a añadir una cuenta atrás de tres segundos antes del paso 2. Publica esta cuenta atrás en el chat.</p>
+<div class="sidebar">
+<p class="sidebart" id="ch04sb05"><strong>OBJETIVO EXTRA: A VUELO DE PÁJARO</strong></p>
+<p class="noindent">En este punto, el programa muestra la distancia recorrida a lo largo de cada eje por separado: la dirección x, la dirección y y la dirección z. ¿Cómo crearías y mostrarías la distancia recorrida como un único número entero, es decir, a vuelo de pájaro? Pista: Tendrás que utilizar la trigonometría, concretamente el teorema de Pitágoras. Si no estás seguro de cómo hacerlo ahora, no te preocupes; verás un programa similar con código para calcular la distancia recorrida como un único número entero en la Misión 40<a href="ch07.xhtml#page_145">(página 145</a>).</p>
+</div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch04_6.html">anterior</a><a href="ch04.html">Subtema 7 de 8: (Ver todo)</a><a href="ch04_8.html">siguiente</a><br/></p>
+<br/><a href="ch04_7.docx" target="_blank"></a></footer>
+</body>
+</html>

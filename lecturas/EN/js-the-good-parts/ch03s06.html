@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Reflection</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Reflection"><div class="titlepage"><div><div><h1 class="title"><a id="reflection"/>Reflection</h1></div></div></div><p>It is easy to inspect an object to determine what properties it has by attempting
+                to retrieve the properties and examining the values obtained. The <code class="literal">typeof</code> operator can be very helpful in determining the
+                type of a property:<a id="IDX-CHP-3-0171" class="indexterm"/><a id="IDX-CHP-3-0172" class="indexterm"/><a id="IDX-CHP-3-0173" class="indexterm"/><a id="IDX-CHP-3-0169" class="indexterm"/><a id="IDX-CHP-3-0170" class="indexterm"/></p><a id="I_programlisting3_d1e2232"/><pre class="programlisting">typeof flight.number      // 'number'
+typeof flight.status      // 'string'
+typeof flight.arrival     // 'object'
+typeof flight.manifest    // 'undefined'</pre><p>Some care must be taken because any property on the prototype chain can produce a
+                value:</p><a id="I_programlisting3_d1e2236"/><pre class="programlisting">typeof flight.toString    // 'function'
+typeof flight.constructor // 'function'</pre><p>There are two approaches to dealing with these undesired properties. The first is
+                to have your program look for and reject function values. Generally, when you are
+                reflecting, you are interested in data, and so you should be aware that some values
+                could be functions.</p><p>The other approach is to use the <code class="literal">hasOwnProperty</code>
+                method, which returns <code class="literal">true</code> if the object has a
+                particular property. The <code class="literal">hasOwnProperty</code> method
+                does not look at the prototype chain:</p><a id="I_programlisting3_d1e2251"/><pre class="programlisting">flight.hasOwnProperty('number')         // true
+flight.hasOwnProperty('constructor')    // false</pre></div></body></html>

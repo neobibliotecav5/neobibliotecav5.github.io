@@ -1,0 +1,527 @@
+<?xml version='1.0' encoding='utf-8'?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Unknown</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+</head>
+<body class="calibre">
+<div class="calibre1" id="sbo-rt-content">
+<h2 class="h2" id="ch02">
+<span class="calibre2" id="page_15">
+</span>
+<span class="big">
+   2
+  </span>
+<br class="calibre10"/>
+  Calculations and Variables
+ </h2>
+<div class="image">
+<img alt="Image" class="calibre8" src="../images/common.jpg"/>
+</div>
+<p class="indent">
+  Now that you’ve installed Python and know how to start the Python Shell, you’re ready to do something with it. We’ll begin with some simple calculations and then learn how to use variables. Variables are a way of storing things in a computer program, and they can help you write useful programs.
+ </p>
+<h3 class="h1" id="ch02lev1sec1">
+<span class="calibre2" id="page_16">
+</span>
+  Calculating with Python
+ </h3>
+<p class="noindent">
+  Normally, when asked to find the product of two numbers like 8 × 3.57, you would use a calculator or a pencil and paper. Well, how about using the Python Shell to perform your calculation? Let’s try it.
+ </p>
+<p class="indent">
+  Start the Python Shell by double-clicking the IDLE icon on your desktop, or if you’re using Ubuntu, click the IDLE icon in the Applications menu. At the prompt, enter this calculation:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> 8 * 3.57
+<span class="blue1">28.56</span></pre>
+<p class="indent">
+  When entering a multiplication calculation in Python, you use the asterisk symbol (
+  <span class="literal1">
+   *
+  </span>
+  ) instead of a multiplication sign (×).
+ </p>
+<p class="indent">
+  How about we try an equation that’s a bit more useful?
+ </p>
+<p class="indent">
+  Suppose you are digging in your backyard and uncover a bag of 20 gold coins. The next day, you sneak down to the basement and stick the coins inside your grandfather’s steam-powered replicating invention (luckily, you can
+  <em class="calibre7">
+   just
+  </em>
+  fit the 20 coins inside). You hear a whiz and a pop and, a few hours later, out shoot another 10 gleaming coins.
+ </p>
+<p class="indent">
+  How many coins would you have in your treasure chest if you did this every day for a year? On paper, the equations might look like this:
+ </p>
+<p class="center">
+  10 × 365 = 3650
+  <br class="calibre1"/>
+  3650 + 20 = 3670
+ </p>
+<p class="indent">
+  Sure, it’s easy enough to do these calculations using a calculator or on paper, but we can do all of these calculations with the Python Shell as well. First, we multiply 10 coins by 365 days in a year to get 3650. Next, we add the original 20 coins to get 3670.
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> 10 * 365
+<span class="blue1">3650</span>
+<span class="brown">&gt;&gt;&gt;</span> 3650 + 20
+<span class="blue1">3670</span></pre>
+<p class="indent">
+  Now, what if a raven spots the shiny gold sitting in your bedroom, and every week flies in and manages to steal three coins? How many coins would you have left at the end of the year? Here’s how this calculation looks in the Python Shell:
+ </p>
+<pre class="pre"><span id="page_17"></span><span class="brown">&gt;&gt;&gt;</span> 3 * 52
+<span class="blue1">156</span>
+<span class="brown">&gt;&gt;&gt;</span> 3670 - 156
+<span class="blue1">3514</span></pre>
+<p class="indent">
+  First, we multiply 3 coins by 52 weeks in the year. The result is 156. We subtract that number from our total number of coins (3670), which tells us that we would have 3514 coins remaining at the end of the year.
+ </p>
+<p class="indent">
+  Although you could easily do this calculation with a calculator, working through it in the Python Shell is beneficial in learning to write simple computer programs. In this book, you’ll learn how to expand on these ideas to write programs that are even more useful.
+ </p>
+<h3 class="h1" id="ch02lev1sec2">
+  Python Operators
+ </h3>
+<p class="noindent">
+  You can do addition, subtraction, multiplication, and division in the Python Shell, among other mathematical operations that we’ll explore later on. The basic symbols Python uses to perform mathematical operations, called
+  <em class="calibre7">
+   operators
+  </em>
+  , are listed in
+  <a class="calibre6" href="ch02.xhtml#ch02tab01">
+   Table 2-1
+  </a>
+  .
+ </p>
+<p class="tabcap" id="ch02tab01">
+<strong class="calibre5">
+   Table 2-1:
+  </strong>
+  Basic Python Operators
+ </p>
+<table class="all">
+<colgroup class="calibre23">
+<col class="calibre24"/>
+<col class="calibre24"/>
+<col class="calibre24"/>
+<col class="calibre24"/>
+<col class="calibre24"/>
+</colgroup>
+<thead class="calibre25">
+<tr class="calibre26">
+<th class="table-h">
+<p class="taba">
+<strong class="calibre5">
+       Symbol
+      </strong>
+</p>
+</th>
+<th class="table-h">
+<p class="taba">
+<strong class="calibre5">
+       Operation
+      </strong>
+</p>
+</th>
+</tr>
+</thead>
+<tbody class="calibre27">
+<tr class="calibre26">
+<td class="calibre28">
+<p class="taba">
+      +
+     </p>
+</td>
+<td class="calibre28">
+<p class="taba">
+      Addition
+     </p>
+</td>
+</tr>
+<tr class="calibre26">
+<td class="calibre28">
+<p class="taba">
+      -
+     </p>
+</td>
+<td class="calibre28">
+<p class="taba">
+      Subtraction
+     </p>
+</td>
+</tr>
+<tr class="calibre26">
+<td class="calibre28">
+<p class="taba">
+      *
+     </p>
+</td>
+<td class="calibre28">
+<p class="taba">
+      Multiplication
+     </p>
+</td>
+</tr>
+<tr class="calibre26">
+<td class="table-1bw_bot">
+<p class="taba">
+      /
+     </p>
+</td>
+<td class="table-1bw_bot">
+<p class="taba">
+      Division
+     </p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="indent">
+  The
+  <em class="calibre7">
+   forward slash
+  </em>
+  (
+  <span class="literal1">
+   /
+  </span>
+  ) is used for division because it’s similar to the division line that you would use when writing a fraction. For example, if you had 100 pirates and 20 large barrels and you wanted to calculate how many pirates you could hide in each barrel, you could divide 100 pirates by 20 barrels (100 ÷ 20) by entering
+  <span class="literal1">
+   100 / 20
+  </span>
+  in the Python Shell. Just remember that the forward slash is the one whose top falls to the right.
+ </p>
+<h3 class="h1" id="ch02lev1sec3">
+<span class="calibre2" id="page_18">
+</span>
+  The Order of Operations
+ </h3>
+<p class="noindent">
+  We use parentheses in programming languages to control the order of operations. An
+  <em class="calibre7">
+   operation
+  </em>
+  is anything that uses an operator. Multiplication and division have a higher order than addition and subtraction, so they’re performed first. In other words, if you enter an equation in Python, multiplication or division is performed before addition or subtraction.
+ </p>
+<p class="indent">
+  For example, in the following equation, the numbers 30 and 20 are multiplied first, and the number 5 is added to their product:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> 5 + 30 * 20
+<span class="blue1">605</span></pre>
+<p class="indent">
+  This equation is another way of saying, “Multiply 30 by 20, and then add 5 to the result.” The result is 605. We can change the order of operations by adding parentheses around the first two numbers, like so:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> (5 + 30) * 20
+<span class="blue1">700</span></pre>
+<p class="indent">
+  The result of this equation is 700 (not 605) because the parentheses tell Python to do the operation in the parentheses first, and then do the operation outside the parentheses. This example is saying, “Add 5 to 30, and then multiply the result by 20.”
+ </p>
+<p class="indent">
+  Parentheses can be
+  <em class="calibre7">
+   nested
+  </em>
+  , which means that there can be parentheses inside parentheses, like this:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> ((5 + 30) * 20) / 10
+<span class="blue1">70.0</span></pre>
+<p class="indent">
+  In this case, Python evaluates the innermost parentheses first, then the outer ones, and then the final division operator. In other words, this equation is saying, “Add 5 to 30, then multiply the result by 20, and divide that result by 10.” Here’s what happens:
+ </p>
+<ol class="calibre9">
+<li class="noindent1">
+   Adding 5 to 30 gives 35.
+  </li>
+<li class="noindent1">
+   Multiplying 35 by 20 gives 700.
+  </li>
+<li class="noindent1">
+   Dividing 700 by 10 gives the final answer of 70.
+  </li>
+</ol>
+<p class="indent">
+<span id="page_19">
+</span>
+  If we had not used parentheses, the result would be slightly different:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> 5 + 30 * 20 / 10
+<span class="blue1">65.0</span></pre>
+<p class="indent">
+  In this case, 30 is first multiplied by 20 (giving 600), and then 600 is divided by 10 (giving 60). Finally, 5 is added to get the result of 65.
+ </p>
+<div class="note">
+<p class="notet">
+<strong class="calibre3">
+<span class="notes">
+     NOTE
+    </span>
+</strong>
+</p>
+<p class="notep">
+<em class="calibre7">
+    Remember that multiplication and division always go before addition and subtraction, unless parentheses are used to control the order of operations.
+   </em>
+</p>
+</div>
+<h3 class="h1" id="ch02lev1sec4">
+  Variables Are Like Labels
+ </h3>
+<p class="noindent">
+  The word
+  <em class="calibre7">
+   variable
+  </em>
+  in programming describes a place to store information such as numbers, text, lists of numbers and text, and so on. A variable is essentially a label for something.
+ </p>
+<p class="indent">
+  For example, to create a variable named
+  <span class="literal1">
+   fred
+  </span>
+  , we use an equal sign (
+  <span class="literal1">
+   =
+  </span>
+  ) and then tell Python what information the variable should be the label for. Here, we create the variable
+  <span class="literal1">
+   fred
+  </span>
+  and tell Python that it’s a label for the number 100 (note that this doesn’t mean that another variable can’t have the same value):
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> fred = 100</pre>
+<p class="indent">
+  To find the value of a variable, enter
+  <span class="literal1">
+   print
+  </span>
+  in the Python Shell, followed by the variable name in parentheses, like this:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(fred)
+<span class="blue1">100</span></pre>
+<p class="indent">
+  We can also tell Python to change the variable
+  <span class="literal1">
+   fred
+  </span>
+  so that it labels something else. For example, here’s how to change
+  <span class="literal1">
+   fred
+  </span>
+  to the number 200:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> fred = 200
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(fred)
+<span class="blue1">200</span></pre>
+<p class="indent">
+  On the first line, we say that
+  <span class="literal1">
+   fred
+  </span>
+  labels a number
+  <span class="literal1">
+   200
+  </span>
+  . In the second line, we print the value of
+  <span class="literal1">
+   fred
+  </span>
+  , just to confirm the change. Python prints the result on the last line.
+ </p>
+<p class="indent">
+<span id="page_20">
+</span>
+  We can also use more than one label (or variable) for the same item:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> fred = 200
+<span class="brown">&gt;&gt;&gt;</span> john = fred
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(john)
+<span class="blue1">200</span></pre>
+<p class="indent">
+  In this example, we’re telling Python that we want the name (or variable)
+  <span class="literal1">
+   john
+  </span>
+  to label the same thing as
+  <span class="literal1">
+   fred
+  </span>
+  by using the equal sign between
+  <span class="literal1">
+   john
+  </span>
+  and
+  <span class="literal1">
+   fred
+  </span>
+  .
+ </p>
+<p class="indent">
+  Of course,
+  <span class="literal1">
+   fred
+  </span>
+  probably isn’t a very useful name for a variable because it most likely doesn’t tell us anything about what the variable is used for. Let’s call our variable
+  <span class="literal1">
+   number_of_coins
+  </span>
+  instead of
+  <span class="literal1">
+   fred
+  </span>
+  , like this:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> number_of_coins = 200
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(number_of_coins)
+<span class="blue1">200</span></pre>
+<p class="indent">
+  This makes it clear that we’re talking about 200 coins. Variable names can be made up of letters, numbers, and the underscore character (
+  <span class="literal1">
+   _
+  </span>
+  ), but they can’t start with a number. You can use anything from single letters (such as
+  <span class="literal1">
+   a
+  </span>
+  ) to long sentences for variable names. (A variable can’t contain a space, so use an underscore to separate words.) Sometimes, if you’re doing something quick, a short variable name is best. The name you choose should depend on how meaningful you need the variable name to be.
+ </p>
+<p class="indent">
+  Now that you know how to create variables, let’s look at how to use them.
+ </p>
+<h3 class="h1" id="ch02lev1sec5">
+  Using Variables
+ </h3>
+<p class="noindent">
+  Remember our equation for figuring out how many coins you would have at the end of the year if you could magically create new coins with your grandfather’s mysterious invention in the basement? We had this equation:
+ </p>
+<pre class="pre"><span id="page_21"></span><span class="brown">&gt;&gt;&gt;</span> 20 + 10 * 365
+<span class="blue1">3670</span>
+<span class="brown">&gt;&gt;&gt;</span> 3 * 52
+<span class="blue1">156</span>
+<span class="brown">&gt;&gt;&gt;</span> 3670 - 156
+<span class="blue1">3514</span></pre>
+<p class="indent">
+  We can turn that into a single line of code:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> 20 + 10 * 365 - 3 * 52
+<span class="blue1">3514</span></pre>
+<p class="indent">
+  That’s not very easy to read, but what if we turn the numbers into variables? Try entering the following:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> found_coins = 20
+<span class="brown">&gt;&gt;&gt;</span> magic_coins = 10
+<span class="brown">&gt;&gt;&gt;</span> stolen_coins = 3</pre>
+<p class="indent">
+  These entries create the variables
+  <span class="literal1">
+   found_coins
+  </span>
+  ,
+  <span class="literal1">
+   magic_coins
+  </span>
+  , and
+  <span class="literal1">
+   stolen_coins
+  </span>
+  .
+ </p>
+<p class="indent">
+  Now, we can reenter the equation like this:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> found_coins + magic_coins * 365 - stolen_coins * 52
+<span class="blue1">3514</span></pre>
+<p class="indent">
+  You can see that this gives us the same answer. So who cares, right? Ah, but here’s the magic of variables. What if you stick a scarecrow in your window, and the raven steals only two coins instead of three? When we use a variable, we can simply change the variable to hold that new number, and it will change everywhere it is used in the equation. We can change the
+  <span class="literal1">
+   stolen_coins
+  </span>
+  variable to
+  <span class="literal1">
+   2
+  </span>
+  by entering this:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> stolen_coins = 2</pre>
+<p class="indent">
+  We can then copy and paste the equation to calculate the answer again, like so:
+ </p>
+<ol class="calibre9">
+<li class="noindent1">
+   Select the text to copy by clicking with the mouse and dragging from the beginning to the end of the line, as shown in
+   <a class="calibre6" href="ch02.xhtml#ch02fig01">
+    Figure 2-1
+   </a>
+   .
+  </li>
+</ol>
+<div class="image1" id="ch02fig01">
+<img alt="Image" class="calibre29" src="../images/02fig01.jpg"/>
+</div>
+<p class="figcap">
+<span id="page_22">
+</span>
+<em class="calibre7">
+   Figure 2-1: Selecting in the Python Shell
+  </em>
+</p>
+<ol class="calibre9">
+<li class="noindent1">
+   Hold down the CTRL key (or, if you’re using a Mac, the COMMAND key ⌘) and press C to copy the selected text. (You’ll see this as CTRL-C from now on.)
+  </li>
+<li class="noindent1">
+   Click the last prompt line (after
+   <span class="literal1">
+    stolen_coins = 2
+   </span>
+   ).
+  </li>
+<li class="noindent1">
+   Hold down the CTRL (or COMMAND) key and press V to paste the selected text. (You’ll see this as CTRL-V from now on.)
+  </li>
+<li class="noindent1">
+   Press ENTER to see the new result.
+  </li>
+</ol>
+<div class="image1" id="ch02fig02">
+<img alt="Image" class="calibre30" src="../images/02fig02.jpg"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figure 2-2: Pasting in the Python Shell
+  </em>
+</p>
+<p class="indent">
+  That’s much easier than retyping the whole equation!
+ </p>
+<p class="indent">
+  You can try changing the other variables, and then copy (CTRL-C) and paste (CTRL-V) the calculation to see the effect of your changes. For example, if you bang the sides of your grandfather’s invention at the right moment, and it spits out
+  <span id="page_23">
+</span>
+  three extra coins each time, you’ll find that you end up with 4661 coins at the end of the year:
+ </p>
+<pre class="pre"><span class="brown">&gt;&gt;&gt;</span> magic_coins = 13
+<span class="brown">&gt;&gt;&gt;</span> found_coins + magic_coins * 365 stolen_coins * 52
+<span class="blue1">4661</span></pre>
+<p class="indent">
+  Of course, using variables for a simple equation like this one is still only
+  <em class="calibre7">
+   slightly
+  </em>
+  useful. We haven’t gotten to
+  <em class="calibre7">
+   really
+  </em>
+  useful yet. For now, just remember that variables are a way of labeling things so that you can use them later.
+ </p>
+<h3 class="h1" id="ch02lev1sec6">
+  What You Learned
+ </h3>
+<p class="noindent">
+  In this chapter, you learned how to do simple equations using Python operators and how to use parentheses to control the order of operations (the order in which Python evaluates the parts of the equations). We then created variables to label values and used those variables in our calculations.
+  <span id="page_24">
+</span>
+</p>
+</div></body>
+</html>

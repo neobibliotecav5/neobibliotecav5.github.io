@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch09lev1sec2">
+<span class="calibre2" id="page_117">
+</span>
+  Dibujar estrellas </h3>
+<p class="noindent">
+  Ahora, con unos sencillos cambios en nuestro bucle <span class="literal1" translate="no">
+   for
+  </span>, podemos crear algo aún más interesante. Introduce lo siguiente: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> t.reset()
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> x <span class="orange">in</span> <span class="violet">range</span>(1, 9):
+        t.forward(100)
+        t.left(225)
+</pre>
+<p class="indent">
+  Este código produce una estrella de ocho puntas, como en la <a class="calibre6" href="ch09.xhtml#ch09fig01">Figura 9-1 . </a></p>
+<div class="image" id="ch09fig01">
+<img alt="Image" class="calibre84" src="../images/09fig01.jpg" translate="no"/>
+</div>
+<p class="figcap">
+
+   Figura<em class="calibre7">9-1: </em>Estrella de ocho puntas</p>
+<p class="indent">
+  El código en sí es muy similar al que utilizamos para dibujar un cuadrado, con algunas excepciones: </p>
+<ul class="calibre22">
+<li class="noindent2">
+   En lugar de hacer un bucle cuatro veces con <span class="literal1" translate="no">
+    range(1, 5)
+   </span>, hacemos un bucle ocho veces con <span class="literal1" translate="no">
+    range(1, 9)
+   </span>. </li>
+<li class="noindent2">
+   En lugar de avanzar 50 píxeles, avanzamos 100 píxeles.  </li>
+<li class="noindent2">
+   En lugar de girar 90 grados, giramos 225 grados a la izquierda.  </li>
+</ul>
+<p class="indent">
+<span id="page_118">
+</span>
+  Desarrollemos un poco más nuestra estrella. Utilizando un ángulo de 175 grados y haciendo un bucle 37 veces, podemos hacer una estrella con aún más puntos. Introduce el código siguiente: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> t.reset()
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> x <span class="orange">in</span> <span class="violet">range</span>(1, 38):
+        t.forward(100)
+        t.left(175)
+</pre>
+<p class="indent">
+  Puedes ver el resultado de ejecutar este código en la <a class="calibre6" href="ch09.xhtml#ch09fig02">Figura 9-2 . </a></p>
+<div class="image" id="ch09fig02">
+<img alt="Image" class="calibre84" src="../images/09fig02.jpg" translate="no"/>
+</div>
+<p class="figcap">
+
+   Figura<em class="calibre7">9-2: Estrella multipunto </em></p>
+<p class="indent">
+  Ahora, prueba a introducir este código para producir una estrella en espiral: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> t.reset()
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> x <span class="orange">in</span> <span class="violet">range</span>(1, 20):
+        t.forward(100)
+        t.left(95)
+</pre>
+<p class="indent">
+  Cambiando el grado del giro y reduciendo el número de bucles, la tortuga acaba dibujando un estilo de estrella bastante diferente, que puedes ver en la Figura 9-3 <a class="calibre6" href="ch09.xhtml#ch09fig03">. </a></p>
+<div class="image" id="ch09fig03">
+<span id="page_119">
+</span>
+<img alt="Image" class="calibre85" src="../images/09fig03.jpg" translate="no"/>
+</div>
+<p class="figcap">
+
+   Figura<em class="calibre7">9-3: Estrella en espiral </em></p>
+<p class="indent">
+  Utilizando un código similar, podemos crear una gran variedad de formas, desde un cuadrado básico hasta una estrella en espiral. Como puedes ver, el uso de los bucles <span class="literal1" translate="no">
+   for
+  </span>simplificó mucho el dibujo de estas formas. Sin los bucles de <span class="literal1" translate="no">
+   for
+  </span>, nuestro código habría requerido mucha escritura tediosa. </p>
+<div class="image">
+<img alt="Image" class="calibre86" src="../images/f0119-01.jpg" translate="no"/>
+</div>
+<p class="indent">
+  Probemos a utilizar una sentencia <span class="literal1" translate="no">
+   if
+  </span>para controlar cómo girará la tortuga y dibujar otra variación de estrella. En este ejemplo, queremos que la tortuga gire un ángulo la primera vez, y luego otro ángulo la siguiente: </p>
+<pre class="pre" translate="no">   t.reset()
+<span class="ent">➊</span> <span class="orange">for</span> x <span class="orange">in</span> <span class="violet">range</span>(1, 19):
+    <span class="ent">➋</span> t.forward(100)
+       <span class="orange">if</span> x % 2 == 0:
+           t.left(175)
+       <span class="orange">else</span>:
+           t.left(225)
+</pre>
+<p class="indent">
+  Aquí, creamos un bucle que se ejecutará 18 veces <span class="ent">➊ </span>y le diremos a la tortuga que avance 100 píxeles <span class="ent">➋ </span>. También hemos añadido la sentencia <span class="literal1" translate="no">
+   if
+  </span>, que comprueba si la variable <span class="literal1" translate="no">
+   x
+  </span>contiene un número par <span id="page_120">
+</span>utilizando un operador de módulo <em class="calibre7">. </em>El operador de módulo es el <span class="literal1" translate="no">
+   %
+  </span>del código <span class="literal1" translate="no">
+   x % 2 == 0
+  </span>, que es una forma de decir: <em class="calibre7">"x </em>mod 2 es igual a 0". </p>
+<p class="indent">
+  El código <span class="literal1" translate="no">
+   x % 2
+  </span>pregunta: "¿Cuál es la cantidad que sobra cuando divides el número de la variable <span class="literal1" translate="no">
+   x
+  </span>en dos partes iguales?". Por ejemplo, si dividiéramos 7 bolas en dos partes, obtendríamos dos grupos de 3 bolas (haciendo un total de 6 bolas), y el resto (la cantidad que sobra) sería 1 bola, como se muestra en <a class="calibre6" href="ch09.xhtml#ch09fig04">la Figura 9-4 . </a></p>
+<div class="image" id="ch09fig04">
+<img alt="Image" class="calibre87" src="../images/09fig04.jpg" translate="no"/>
+</div>
+<p class="figcap">
+
+   Figura<em class="calibre7">9-4: Dividir </em>7 bolas en dos partes iguales</p>
+<p class="indent">
+  Si dividiéramos 13 bolas en dos partes, obtendríamos dos grupos de 6 bolas y nos quedaría 1 bola ( <a class="calibre6" href="ch09.xhtml#ch09fig05">Figura 9-5 </a>). </p>
+<div class="image" id="ch09fig05">
+<img alt="Image" class="calibre88" src="../images/09fig05.jpg" translate="no"/>
+</div>
+<p class="figcap">
+
+   Figura<em class="calibre7">9-5: </em>Dividir 13 bolas en dos partes iguales</p>
+<p class="indent">
+  Cuando comprobamos si el resto es igual a cero después de dividir <span class="literal1" translate="no">
+   x
+  </span>entre 2, en realidad estamos preguntando si se puede dividir en dos partes sin resto. Este método es una buena forma de ver si un número de una variable es par, porque los números pares siempre se pueden dividir en dos partes iguales. </p>
+<p class="indent">
+  En la quinta línea de nuestro código, le decimos a la tortuga que gire 175 grados a la izquierda ( <span class="literal1" translate="no">
+   t.left(175)
+  </span>) si el número de <span class="literal1" translate="no">
+   x
+  </span>es par ( <span class="literal1" translate="no">
+   if x % 2 == 0
+  </span>); en caso contrario ( <span class="literal1" translate="no">
+   else
+  </span>), en la última línea, le decimos que gire 225 grados ( <span class="literal1" translate="no">
+   t.left(225)
+  </span>). </p>
+<p class="indent">
+<a class="calibre6" href="ch09.xhtml#ch09fig06">La Figura 9-6 </a>muestra el resultado. </p>
+<div class="image" id="ch09fig06">
+<span id="page_121">
+</span>
+<img alt="Image" class="calibre89" src="../images/09fig06.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">Figura 9-6: Estrella de nueve puntas </em></p>
+<p class="indent">
+  Si intentaste el reto de las cuatro espirales del capítulo anterior, puede que crearas cuatro objetos tortuga y copiaras el código cuatro veces con ligeras diferencias para cada tortuga, de modo que dibujaran la espiral en la dirección correcta. Con los bucles <span class="literal1" translate="no">
+   for
+  </span>y las sentencias <span class="literal1" translate="no">
+   if
+  </span>, podrías hacer lo mismo con un código mucho más sencillo. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch09_2.html">anterior</a><a href="ch09.html">Subtema 3 de 12: (Ver todo)</a><a href="ch09_4.html">siguiente</a><br/></p>
+<br/><a href="ch09_3.docx" target="_blank"></a></footer>
+</body>
+</html>

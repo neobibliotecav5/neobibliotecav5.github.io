@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="app02lev1sec16">
+  La función len </h3>
+<div class="image1">
+<img alt="Image" class="calibre194" src="../images/f0313-01.jpg" translate="no"/>
+</div>
+<p class="noindent">
+  La función <span class="literal1" translate="no">
+   len
+  </span>devuelve la longitud de un objeto o, en el caso de una cadena, el número de caracteres de la cadena. Por ejemplo, para obtener la longitud de <span class="literal1" translate="no">
+   ’this is a
+  </span><span class="literal1" translate="no">
+   test string’
+  </span> , harías lo siguiente: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">len</span>(<span class="green">'this is a test string'</span>)
+<span class="blue1">21</span>
+</pre>
+<p class="indent">
+  Cuando se utiliza con una lista o una tupla, <span class="literal1" translate="no">
+   len
+  </span>devuelve el número de elementos de esa lista o tupla: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> creature_list = [<span class="green">'unicorn'</span>, <span class="green">'cyclops'</span>, <span class="green">'fairy'</span>, <span class="green">'elf'</span>, <span class="green">'dragon'</span>, 
+                     <span class="green">'troll'</span>]
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="violet">len</span>(creature_list))
+<span class="blue1">6</span>
+</pre>
+<p class="indent">
+  Si se utiliza con un <span class="literal1" translate="no">
+   dict
+  </span>(o <em class="calibre7">diccionario </em>), <span class="literal1" translate="no">
+   len
+  </span>también devuelve el número de elementos del <span class="literal1" translate="no">
+   dict
+  </span>: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> enemies = {<span class="green">'Batman'</span> : <span class="green">'Joker'</span>,
+               <span class="green">'Superman'</span> : <span class="green">'Lex Luthor'</span>, 
+               <span class="green">'Spiderman'</span> : <span class="green">'Green Goblin'</span>}
+<span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(<span class="violet">len</span>(enemies))
+<span class="blue1">3</span>
+</pre>
+<p class="indent">
+<span id="page_314">
+</span>
+  La función <span class="literal1" translate="no">
+   len
+  </span>es especialmente útil cuando trabajas con bucles. Por ejemplo, podríamos utilizarla para mostrar las posiciones de los índices de los elementos de una lista, de esta forma </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> fruit = [<span class="green">'apple'</span>, <span class="green">'banana'</span>, <span class="green">'clementine'</span>, <span class="green">'dragon fruit'</span>]
+<span class="brown">&gt;&gt;&gt;</span> length = <span class="violet">len</span>(fruit)
+<span class="brown">&gt;&gt;&gt;</span> <span class="orange">for</span> x <span class="orange">in</span> <span class="violet">range</span>(0, length):
+        <span class="violet">print</span>(f<span class="green">'the fruit at index {x} is {fruit[x]}'</span>)
+
+<span class="blue1">the fruit at index 0 is apple
+the fruit at index 1 is banana
+the fruit at index 2 is clementine
+the fruit at index 3 is dragon fruit</span>
+</pre>
+<p class="indent">
+  Primero, almacenamos la longitud de la lista en la variable <span class="literal1" translate="no">
+   length
+  </span>, y luego utilizamos esa variable en la función <span class="literal1" translate="no">
+   range
+  </span>para crear nuestro bucle. A medida que recorremos cada elemento de la lista, imprimimos un mensaje mostrando la posición del índice del elemento y su valor. También podrías utilizar la función <span class="literal1" translate="no">
+   len
+  </span>, si tuvieras una lista de cadenas y quisieras imprimir cada segundo o tercer elemento de la lista. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="app02_16.html">anterior</a><a href="app02.html">Subtema 17 de 25: (Ver todo)</a><a href="app02_18.html">siguiente</a><br/></p>
+<br/><a href="app02_17.docx" target="_blank"></a></footer>
+</body>
+</html>

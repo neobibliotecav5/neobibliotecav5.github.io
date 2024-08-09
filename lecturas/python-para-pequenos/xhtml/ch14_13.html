@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch14lev1sec12">
+<span class="calibre2" id="page_228">
+</span>
+  Añadir un objeto Plataforma </h3>
+<p class="noindent">
+  Vamos a añadir una plataforma al juego para ver cómo queda. Cambia las dos últimas líneas del archivo del juego ( <em class="calibre7">stickmangame.py </em>): </p>
+<pre class="pre" translate="no">   g = Game()
+<span class="ent">➊</span> platform1 = PlatformSprite(g, PhotoImage(<span class="orange">file</span>=<span class="green">'platform1.gif'</span>), 
+                              0, 480, 100, 10)
+<span class="ent">➋</span> g.sprites.append(platform1)
+   g.mainloop()
+</pre>
+<p class="indent">
+  Creamos un objeto de la clase <span class="literal1" translate="no">
+   PlatformSprite
+  </span>, pasándole la variable de nuestro juego ( <span class="literal1" translate="no">
+   g
+  </span>), junto con un objeto <span class="literal1" translate="no">
+   PhotoImage
+  </span>(que utiliza la primera de nuestras imágenes de plataforma, <em class="calibre7">plataforma1.gif </em>) <span class="ent">➊ </span>. También le pasamos la posición en la que queremos dibujar la plataforma (0 píxeles de ancho y 480 píxeles de bajo, cerca de la parte inferior del lienzo), junto con la altura y la anchura de nuestra imagen (100 píxeles de ancho y 10 píxeles de alto). Añadimos este sprite a la lista de sprites de nuestro objeto de juego <span class="ent">➋ </span>. </p>
+<p class="indent">
+  Si ejecutas ahora el juego, deberías ver una plataforma en la parte inferior izquierda de la pantalla, como en <a class="calibre6" href="ch14.xhtml#ch14fig06">la Figura 14-6 . </a></p>
+<div class="image1">
+<img alt="Image" class="calibre158" id="ch14fig06" src="../images/14fig06.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">
+   Figura 14-6: Visualización </em>de una plataforma</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch14_12.html">anterior</a><a href="ch14.html">Subtema 13 de 16: (Ver todo)</a><a href="ch14_14.html">siguiente</a><br/></p>
+<br/><a href="ch14_13.docx" target="_blank"></a></footer>
+</body>
+</html>

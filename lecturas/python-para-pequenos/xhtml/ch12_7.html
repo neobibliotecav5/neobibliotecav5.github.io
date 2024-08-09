@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch12lev1sec6">
+<span class="calibre2" id="page_197">
+</span>
+  Programando puzzles </h3>
+<p class="noindent">
+  De momento, nuestro juego es bastante sencillo. Podrías cambiar muchas cosas para crear un juego más interesante. Intenta mejorar tu código de las siguientes maneras, y luego compara tus respuestas con las soluciones en http://python-for-kids.com <em class="calibre7"><a class="calibre6" href="http://python-for-kids.com">. </a></em></p>
+<h4 class="h3" id="ch12lev2sec1">
+  #1: Retrasar el inicio del juego </h4>
+<p class="noindent">
+  Nuestro juego se inicia rápidamente, y tienes que hacer clic en el lienzo antes de que reconozca la pulsación de las teclas de flecha izquierda y derecha del teclado. ¿Puedes añadir un retraso al inicio del juego para dar al jugador tiempo suficiente para hacer clic en el lienzo? O mejor aún, ¿puedes añadir un evento vinculante para el clic del ratón, que inicie el juego sólo entonces? </p>
+<p class="indent">
+  Pista 1: Ya has añadido eventos a la clase <span class="literal1" translate="no">
+   Paddle
+  </span>, así que ése puede ser un buen punto de partida. </p>
+<p class="indent">
+  Pista 2: El evento para el botón izquierdo del ratón es la cadena <span class="literal1" translate="no">
+   ’&lt;Button-1&gt;’
+  </span>. </p>
+<h4 class="h3" id="ch12lev2sec2">
+  #2: Un "Game Over" adecuado </h4>
+<p class="noindent">
+  Todo se congela cuando el juego termina, lo que no es muy agradable para el jugador. Prueba a añadir el texto "Game Over" cuando la bola toque el fondo de la pantalla. Puedes utilizar la función <span class="literal1" translate="no">
+   create_text
+  </span>, pero también puede resultarte útil el parámetro con nombre <span class="literal1" translate="no">
+   state
+  </span>(toma valores como <span class="literal1" translate="no">
+   normal
+  </span>y <span class="literal1" translate="no">
+   hidden
+  </span>). Echa un vistazo a <span class="literal1" translate="no">
+   itemconfig
+  </span>en "Más formas de utilizar el identificador" en <a class="calibre6" href="ch10.xhtml#ch10lev1sec14">la página 165 . </a>Como reto adicional, añade un retardo para que el texto no aparezca inmediatamente. </p>
+<h4 class="h3" id="ch12lev2sec3">
+  #3: Acelera la pelota </h4>
+<p class="noindent">
+  En el tenis, cuando una pelota golpea tu raqueta, a veces sale volando más rápido que la velocidad a la que llegó, dependiendo de la fuerza con la que hagas el swing. En nuestro juego, la pelota va a la misma velocidad, se mueva o no la pala. Prueba a cambiar el programa para que la velocidad de la pala se transmita a la velocidad de la pelota. </p>
+<h4 class="h3" id="ch12lev2sec4">
+<span class="calibre2" id="page_198">
+</span>
+  #4: Registra la puntuación del jugador </h4>
+<p class="noindent">
+  ¿Qué te parece registrar la puntuación? Cada vez que la pelota golpee la pala, la puntuación debería aumentar. Prueba a mostrar la puntuación en la esquina superior derecha del lienzo. Puedes consultar <span class="literal1" translate="no">
+   itemconfig
+  </span>en "Más formas de utilizar el identificador" en <a class="calibre6" href="ch10.xhtml#ch10lev1sec14">la página 165 </a>para obtener una pista. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch12_6.html">anterior</a><a href="ch12.html">Subtema 7 de 7: (Ver todo)</a><br/></p>
+<br/><a href="ch12_7.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch10lev1sec2">
+  Uso de parámetros con nombre </h3>
+<p class="noindent">
+<em class="calibre7">Los </em>parámetros con nombre son como los parámetros normales, pero en lugar de utilizar el orden específico de los valores proporcionados a una función para determinar qué valor pertenece a qué parámetro (el primer valor es el primer parámetro, el segundo valor es el segundo parámetro, etc.), nombramos explícitamente los valores para que puedan aparecer en cualquier orden. </p>
+<p class="indent">
+  A veces las funciones tienen muchos parámetros, y no siempre necesitamos proporcionar un valor para cada uno. Con los parámetros con nombre, podemos proporcionar valores sólo para los parámetros a los que necesitamos dar valores. </p>
+<p class="indent">
+  Por ejemplo, supongamos que tenemos una función <span class="literal1" translate="no">
+   person
+  </span>que toma dos parámetros, <span class="literal1" translate="no">
+   width
+  </span>y <span class="literal1" translate="no">
+   height
+  </span>: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="orange">def</span> person(width, height):
+        <span class="violet">print</span>(f<span class="green">'I am {width} feet wide, {height} feet high'</span>)
+</pre>
+<p class="indent">
+  Normalmente, podríamos llamar a esta función así: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> person(4, 3)
+<span class="blue1">I am 4 feet wide, 3 feet high</span>
+</pre>
+<p class="indent">
+  Utilizando parámetros con nombre, podríamos llamar a esta función y especificar el nombre del parámetro con cada valor: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> person(height=3, width=4)
+<span class="blue1">I am 4 feet wide, 3 feet high</span>
+</pre>
+<p class="indent">
+  Los parámetros con nombre serán especialmente útiles a medida que hagamos más cosas con el módulo <span class="literal1" translate="no">
+   tkinter
+  </span>. </p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch10_2.html">anterior</a><a href="ch10.html">Subtema 3 de 17: (Ver todo)</a><a href="ch10_4.html">siguiente</a><br/></p>
+<br/><a href="ch10_3.docx" target="_blank"></a></footer>
+</body>
+</html>

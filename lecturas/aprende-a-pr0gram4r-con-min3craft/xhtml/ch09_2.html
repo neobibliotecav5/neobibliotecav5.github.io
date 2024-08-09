@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Aprende a programar con Minecraft</title>
+<link href="../styles/9781593276706.css" rel="stylesheet" type="text/css"/>
+<meta content="urn:uuid:40af8c70-d268-482b-9282-0b537fc6ae71" name="Adept.expected.resource"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h3" id="ch09lev1sec01"><strong><span class="blue1">Utilizar listas</span></strong></h3>
+<p class="noindent">Hacer una lista con Python es sencillo. Para definir una lista, pon entre corchetes cualquier número de valores, o ningún valor, lo que se denomina lista <em>vacía</em>. Cada elemento de una lista debe ir separado por una coma.</p>
+<p class="indent">Por ejemplo, una lista de ingredientes para una sopa de fideos podría tener este aspecto:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> noodleSoup = [<span class="green">"water"</span>, <span class="green">"soy sauce"</span>, <span class="green">"spring onions"</span>, <span class="green">"noodles"</span>, <span class="green">"beef"</span>]</p>
+<p class="indent">La lista sopa de <span class="literal">fideos</span> contiene varios elementos y todos ellos son cadenas. Puedes crear una lista vacía como ésta:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> emptyList = []</p>
+<p class="indent">Utiliza una lista vacía cuando quieras añadir valores más adelante en tu programa. Puedes almacenar cualquier tipo de datos en tu lista e incluso mezclar distintos tipos de datos. Por ejemplo, puedes tener una lista que contenga enteros y cadenas:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> wackyList = [<span class="green">"cardigan"</span>, 33, <span class="green">"goofballs"</span>]</p>
+<p class="indent">A veces tus listas serán muy largas, lo que dificultará su lectura por los humanos. Pero puedes formatear listas largas en varias líneas en Python para que los programadores puedan leerlas fácilmente. Utilizar varias líneas para los elementos no afecta a la ejecución del código Python. Por ejemplo, el siguiente formato para los ingredientes de la sopa funciona igual que la lista anterior de <span class="literal">sopa de fideos</span>:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> noodleSoup = [<span class="green">"water"</span>,<br translate="no"/> <span class="green">"soy sauce"</span>,<br translate="no"/> <span class="green">"spring onions"</span><br translate="no"/> <span class="green">"noodles",</span><br translate="no"/> <span class="green">"beef"</span>]</p>
+<p class="indent">A continuación veremos cómo puedes acceder a los elementos de una lista y modificarlos.</p>
+<h4 class="h4" id="ch09lev2sec01"><strong><span class="blue1">Acceder a un elemento de la lista</span></strong></h4>
+<p class="noindent">Para acceder a un valor de una lista, haz referencia a la posición del elemento en la lista, lo que se conoce como su <em>índice</em>. Utilizando el ejemplo de la sopa de fideos, puedes acceder al primer elemento de la lista así:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> <span class="rose">print</span>(noodleSoup[0])<br translate="no"/><span class="blue1">water</span></p>
+<p class="indent"><span epub:type="pagebreak" id="page_173"></span>Es importante tener en cuenta que el primer índice de una lista es 0. El segundo elemento es el índice 1, el tercero es el índice 2, y así sucesivamente. La razón es que los ordenadores cuentan desde cero cuando utilizan listas.</p>
+<p class="indent">Contar desde cero puede parecer una tontería, pero hay una buena razón para ello. Los primeros ordenadores eran muy lentos y tenían muy poca memoria. Era más rápido y eficaz empezar a contar los índices desde cero. Aunque hoy en día los ordenadores son mucho más rápidos, siguen contando desde cero.</p>
+<p class="indent">También es importante tener en cuenta que si intentas acceder a un índice de lista que sea mayor que el número de elementos de la lista, recibirás un mensaje de error. La siguiente línea intenta imprimir el elemento en la posición 5 del índice:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> <span class="rose">print</span>(noodleSoup[5])</p>
+<p class="indent">Aquí tienes parte del mensaje de error:</p>
+<p class="programs" translate="no"><span class="red">IndexError: list index out of range</span></p>
+<p class="indent">El <span class="literal">IndexError</span> me dice que no hay datos en el índice al que quiero acceder. La posición 5 del índice de la lista no tiene datos porque está fuera de la longitud de la lista. ¡Python no puede devolver un valor que no existe!</p>
+<h4 class="h4" id="ch09lev2sec02"><strong><span class="blue1">Cambiar un elemento de la lista</span></strong></h4>
+<p class="noindent">Al igual que puedes cambiar el valor de las variables, también puedes cambiar elementos individuales de las listas. Esto se debe a que las listas son <em>mutables</em>, lo que significa que pueden modificarse. Para cambiar un elemento de una lista, utiliza la posición del índice del elemento y establece su valor del mismo modo que establecerías el valor de una variable (utilizando un signo igual).</p>
+<p class="indent">Cambiemos el elemento ternera de la sopa de fideos por pollo. La ternera es el quinto elemento de la lista, por lo que tiene un índice de 4 (recuerda que en las listas se cuenta desde cero). Podemos cambiar fácilmente el elemento 4 por pollo, así:</p>
+<p class="programs" translate="no"><span class="mer">&gt;&gt;&gt;</span> noodleSoup[4] = <span class="green">"chicken"</span></p>
+<p class="indent">Ahora vamos a hacer algo guay con las listas en Minecraft.</p>
+<h4 class="h4a" id="ch09lev2sec03"><strong>Misión nº 47: Alto y Bajo</strong></h4>
+<p class="noindent">Cuando exploro el mundo de Minecraft, es interesante repasar mi viaje. Desde las montañas más altas hasta las cuevas más bajas, la exploración es una de mis actividades favoritas en el juego. A veces, cuando juego con amigos, hacemos carreras para ver quién llega más rápido al punto más alto o más bajo del juego. Para que nadie haga trampas, escribí un programa que almacena las coordenadas y más bajas y más altas que alcanza el jugador en 60 segundos.</p>
+<p class="indent">Cuando ejecuto el programa, me dice los lugares más alto y más bajo del juego a los que he viajado durante un minuto. <a href="ch09.xhtml#ch9ex1">El listado 9-1</a> contiene el código que he iniciado para ti. Cópialo en un nuevo archivo y guárdalo como <em>altoYbajo.py</em> en una nueva carpeta llamada <em>listas</em>.</p>
+<p class="sidenote" translate="no"><span epub:type="pagebreak" id="page_174"></span><span class="blue"><em>highAndLow.py</em></span></p>
+<p class="programs" translate="no"> <span class="orange">from</span> mcpi.minecraft <span class="orange">import</span> Minecraft<br translate="no"/>   mc = Minecraft.create()<br translate="no"/><br translate="no"/> <span class="orange">import</span> time<br translate="no"/><br translate="no"/><span class="ent">➊</span> heights = [100, 0]<br translate="no"/>   count = 0<br translate="no"/><br translate="no"/> <span class="orange">while</span> count &lt; 60:<br translate="no"/>       pos = mc.player.getTilePos()<br translate="no"/><br translate="no"/> <span class="orange">if</span> pos.y &lt; heights[0]:<br translate="no"/><span class="ent">➋</span> <span class="red"># Set the lowest height to the y variable</span><br translate="no"/> <span class="orange">elif</span> pos.y &gt; heights[1]:<br translate="no"/><span class="ent">➌</span> <span class="red"># Set the highest height to the y variable</span><br translate="no"/><br translate="no"/>       count += 1<br translate="no"/>       time.sleep(1)<br translate="no"/><br translate="no"/><span class="ent">➍</span> mc.postToChat(<span class="green">"Lowest: "</span>)   <span class="red"># Output lowest height</span><br translate="no"/><span class="ent">➎</span> mc.postToChat(<span class="green">"Highest: "</span>)  <span class="red"># Output highest height</span></p>
+<p class="examplet"><a id="ch9ex1"></a><em>Listado 9-1: Inicio del código para obtener las posiciones más baja y más alta que visita el jugador</em></p>
+<p class="indent">El programa almacenará las coordenadas y más bajas y más altas a las que ha viajado en una lista llamada <span class="literal">alturas</span> <span class="ent">➊.</span> El primer elemento de la lista (posición índice 0) almacena la coordenada más baja y el segundo (posición índice 1) almacena la más alta. Tenemos que empezar con un valor "más bajo" alto y un valor "más alto" bajo para que la primera vez que ejecutemos el programa, la posición del jugador sea el nuevo valor más bajo o más alto y se muestre en el chat. Aquí he utilizado por defecto un valor mínimo de 100 y un valor máximo de 0.</p>
+<p class="indent">El bucle <span class="literal">while</span> se ejecuta una vez por segundo durante 60 segundos para actualizar constantemente los valores de <span class="literal">las alturas</span>. La sentencia <span class="literal">if</span> comprueba si la altura actual del jugador es inferior al valor más bajo almacenado en la lista <span class="ent">➋.</span> A continuación, la sentencia <span class="literal">elif</span> comprueba si la altura actual es mayor que la posición más alta almacenada en la lista <span class="ent">➌.</span></p>
+<p class="indent">Para completar el código, tienes que establecer el valor de la altura más baja, <span class="literal">altura[0</span>], al valor de <span class="literal">pos.y</span> en <span class="ent">➋.</span> Recuerda que estableces los valores en listas como lo harías con una variable, por lo que la línea de código debería tener este aspecto: altura[0 <span class="literal">] = pos.y</span>. También tienes que establecer la altura más alta, <span class="literal">altura[1]</span>, al valor de <span class="literal">pos</span>.y <span class="ent">➌.</span></p>
+<p class="indent">Por último, tienes que mostrar el valor de las alturas <span class="ent">➍</span> más baja y <span class="ent">➎</span> más alta en las dos últimas líneas del programa. Para ello, tendrás que acceder a las posiciones de los índices de las alturas más baja y más alta de la lista de <span class="literal">alturas</span> (de nuevo, el índice 0 es la altura más baja y el índice 1 es la altura más alta).</p>
+<p class="indent">Ejecuta el programa y empieza a correr por el juego. Comprueba lo alto y lo bajo que puedes llegar. Después de 60 segundos, el bucle se detendrá y el programa mostrará tus alturas más alta y más baja. Ejecuta el programa varias veces y comprueba si puedes batir tu récord.</p>
+<p class="indent"><a href="ch09.xhtml#ch9fig1">La Figura 9-1</a> muestra uno de mis intentos.</p>
+<div class="image"><span epub:type="pagebreak" id="page_175"></span><img alt="image" src="../images/f09-01.jpg" translate="no"/></div>
+<p class="figcap"><a id="ch9fig1"></a><em>Figura 9-1: La coordenada y más baja que visité fue 15 y la más alta 102.</em></p>
+<div class="sidebar">
+<p class="sidebart" id="ch09sb01"><strong>OBJETIVO EXTRA: UN ERROR INESPERADO</strong></p>
+<p class="noindent">En <em>highAndLow.py</em>, los valores por defecto para las posiciones más baja y más alta se establecen en 100 y 0. Esto no es un problema siempre que vayas más abajo de 100 y más arriba de 0. Sin embargo, si no vas más abajo de 100 y más arriba de 0, el valor no cambiará, lo que puede hacer que el programa sea impreciso. ¿Puedes solucionar esto?</p>
+</div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch09_1.html">anterior</a><a href="ch09.html">Subtema 2 de 8: (Ver todo)</a><a href="ch09_3.html">siguiente</a><br/></p>
+<br/><a href="ch09_2.docx" target="_blank"></a></footer>
+</body>
+</html>

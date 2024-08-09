@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>Length</title><link rel="stylesheet" href="core.css" type="text/css"/><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"/></head><body><div class="sect1" title="Length"><div class="titlepage"><div><div><h1 class="title"><a id="length"/>Length</h1></div></div></div><p>Every array has a <code class="literal">length</code> property. Unlike most
+                other languages, JavaScript's array <code class="literal">length</code> is not
+                an upper bound. If you store an element with a subscript that is greater than or
+                equal to the current <code class="literal">length</code>, the <code class="literal">length</code> will increase to contain the new element. There
+                is no array bounds error.<a id="IDX-CHP-6-0296" class="indexterm"/><a id="IDX-CHP-6-0297" class="indexterm"/><a id="IDX-CHP-6-0298" class="indexterm"/><a id="IDX-CHP-6-0299" class="indexterm"/><a id="IDX-CHP-6-0300" class="indexterm"/></p><p>The <code class="literal">length</code> property is the largest integer
+                property name in the array plus one. This is not necessarily the number of
+                properties in the array:</p><a id="I_programlisting6_d1e4425"/><pre class="programlisting">var myArray = [];
+myArray.length             // 0
+
+myArray[1000000] = true;
+myArray.length             // 1000001
+// myArray contains one property.</pre><p>The <code class="literal">[]</code> postfix subscript operator converts its
+                expression to a string using the expression's <code class="literal">toString</code> method if it has one. That string will be used as the
+                property name. If the string looks like a positive integer that is greater than or
+                equal to the array's current <code class="literal">length</code> and is less
+                than 4,294,967,295, then the <code class="literal">length</code> of the array
+                is set to the new subscript plus one.</p><p>The <code class="literal">length</code> can be set explicitly. Making the
+                    <code class="literal">length</code> larger does not allocate more space
+                for the array. Making the <code class="literal">length</code> smaller will
+                cause all properties with a subscript that is greater than or equal to the new
+                    <code class="literal">length</code> to be deleted:</p><a id="I_programlisting6_d1e4455"/><pre class="programlisting">numbers.length = 3;
+// numbers is ['zero', 'one', 'two']</pre><p>A new element can be appended to the end of an array by assigning to the array's
+                current <code class="literal">length</code>:</p><a id="I_programlisting6_d1e4462"/><pre class="programlisting">numbers[numbers.length] = 'shi';
+// numbers is ['zero', 'one', 'two', 'shi']</pre><p>It is sometimes more convenient to use the <code class="literal">push</code>
+                method to accomplish the same thing:</p><a id="I_programlisting6_d1e4469"/><pre class="programlisting">numbers.push('go');
+// numbers is ['zero', 'one', 'two', 'shi', 'go']</pre></div></body></html>

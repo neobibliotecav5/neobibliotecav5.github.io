@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c13-0003">Crear una fila de alienígenas</h3>
+<p class="BodyFirst">Ahora estamos listos para generar una fila completa de alienígenas. Para crear una fila completa, primero crearemos un único alienígena, de modo que tengamos acceso a la anchura del alienígena. Colocaremos un alienígena en el lado izquierdo de la pantalla y seguiremos añadiendo alienígenas hasta que nos quedemos sin espacio:</p>
+<p class="CodeLabel" translate="no"><b>alien_invasion.py</b></p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">    def _create_fleet(self):</span>
+<span class="LiteralGray">        """Create the fleet of aliens."""</span>
+        # Create an alien and keep adding aliens until there's no room left.
+        # Spacing between aliens is one alien width.
+<span class="LiteralGray">        alien = Alien(self)</span>
+        alien_width = alien.rect.width
+
+<span aria-label="annotation1" class="CodeAnnotationHang">❶</span>         current_x = alien_width
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span>         while current_x &lt; (self.settings.screen_width - 2 * alien_width):
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span>             new_alien = Alien(self)
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span>             new_alien.x = current_x
+            new_alien.rect.x = current_x
+            self.aliens.add(new_alien)
+<span aria-label="annotation5" class="CodeAnnotationHang">❺</span>             current_x += 2 * alien_width</code></pre>
+<p>Obtenemos la anchura del alienígena del primer alienígena que hemos creado, y luego definimos una variable llamada <code translate="no">current_x</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> Se refiere a la posición horizontal del siguiente robot que queremos colocar en la pantalla. Inicialmente la fijamos a una anchura de alienígena, para desplazar al primer alienígena de la flota desde el borde izquierdo de la pantalla.</p>
+<p>A continuación, iniciamos el bucle <code translate="no">while</code> <span aria-label="annotation2" class="CodeAnnotation">❷;</span> vamos a seguir añadiendo aliens <em translate="no">while</em> hay espacio suficiente para colocar uno. Para determinar si hay espacio para colocar otro alienígena, compararemos <code translate="no">current_x</code> con algún valor máximo. Un primer intento de definir este bucle podría tener este aspecto:</p>
+<pre translate="no"><code translate="no">while current_x &lt; self.settings.screen_width:</code></pre>
+<p>Esto parece que podría funcionar, pero colocaría al último alienígena de la fila en el extremo derecho de la pantalla. Así que añadimos un pequeño margen en el lado derecho de la pantalla. Mientras haya espacio de al menos dos anchos de alienígena en el borde derecho de la pantalla, entramos en el bucle y añadimos otro alienígena a la flota.</p>
+<p><span epub:type="pagebreak" id="Page_260" title="260"></span>Siempre que haya espacio horizontal suficiente para continuar el bucle, queremos hacer dos cosas: crear un alienígena en la posición correcta y definir la posición horizontal del siguiente alienígena de la fila. Creamos un alienígena y lo asignamos a <code translate="no">new_alien</code> <span aria-label="annotation3" class="CodeAnnotation">❸.</span> Luego fijamos la posición horizontal precisa al valor actual de <code translate="no">current_x</code> <span aria-label="annotation4" class="CodeAnnotation">❹.</span> También posicionamos el <code translate="no">rect</code> del alienígena en este mismo <em translate="no">x</em>-valor, y añadimos el nuevo alienígena al grupo <code translate="no">self.aliens</code>.</p>
+<p>Por último, incrementamos el valor de <code translate="no">current_x</code> <span aria-label="annotation5" class="CodeAnnotation">❺.</span> Añadimos dos anchos de alienígena a la posición horizontal, para que pase el alienígena que acabamos de añadir y para dejar también algo de espacio entre los alienígenas. Python volverá a evaluar la condición al inicio del bucle <code translate="no">while</code> y decidirá si hay espacio para otro alienígena. Cuando no quede espacio, el bucle terminará, y deberíamos tener una fila completa de alienígenas.</p>
+<p>Cuando ejecutes ahora <em translate="no">Alien Invasion</em>, deberías ver aparecer la primera fila de alienígenas, como en la <a href="#figure13-3" id="figureanchor13-3">Figura 13-3</a>.</p>
+<figure>
+<img alt="" class="keyline" height="345" src="Images/f13003.png" translate="no" width="500"/>
+<figcaption><p>Figura<a id="figure13-3">13-3</a>: La primera fila de alienígenas</p></figcaption>
+</figure>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c13_6.html">anterior</a><a href="c13.html">Subtema 7 de 33: (Ver todo)</a><a href="c13_8.html">siguiente</a><br/></p>
+<br/><a href="c13_7.docx" target="_blank"></a></footer>
+</body>
+</html>

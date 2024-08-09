@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<title>Desconocido</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<link href="../stylesheet.css" rel="stylesheet" type="text/css"/>
+<link href="../page_styles.css" rel="stylesheet" type="text/css"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 class="h1" id="ch10lev1sec7">
+  Configurar el color </h3>
+<p class="noindent">
+  Vamos a añadir interés a nuestros gráficos con el color. Cambiaremos la función <span class="literal1" translate="no">
+   random_rectangle
+  </span>para pasar un color para el rectángulo como parámetro adicional ( <span class="literal1" translate="no">
+   fill_color
+  </span>). Introduce este código en una nueva ventana, y cuando guardes, llama al archivo <em class="calibre7">colorrect.py : </em></p>
+<pre class="pre" translate="no"><span class="orange">from</span> tkinter <span class="orange">import</span> *
+<span class="orange">import</span> random
+tk = Tk()
+canvas = Canvas(tk, width=400, height=400)
+canvas.pack()
+
+<span class="orange">def</span> random_rectangle(width, height, fill_color):
+    x1 = random.randrange(width)
+    y1 = random.randrange(height)
+    x2 = random.randrange(x1 + random.randrange(width))
+<span id="page_148"></span>    y2 = random.randrange(y1 + random.randrange(height))
+    canvas.create_rectangle(x1, y1, x2, y2, fill=fill_color)
+</pre>
+<p class="indent">
+  La función <span class="literal1" translate="no">
+   create_rectangle
+  </span>toma ahora un parámetro, <span class="literal1" translate="no">
+   fill_color
+  </span>, que especifica el color a utilizar al dibujar el rectángulo. </p>
+<p class="indent">
+  Podemos pasar colores con nombre a la función de esta forma para crear un montón de rectángulos de colores únicos. Si pruebas este ejemplo, considera la posibilidad de copiar y pegar, después de introducir la primera línea, para ahorrarte el tecleo. Para ello, selecciona el texto a copiar, pulsa CTRL-C para copiarlo, haz clic en una línea en blanco y pulsa CTRL-V para pegar. Añade este código a <em class="calibre7">colorrect.py </em>, justo debajo de la función </p>
+<div class="image">
+<img alt="Image" class="calibre107" src="../images/f0148-01.jpg" translate="no"/>
+</div>
+<pre class="pre" translate="no">random_rectangle(400, 400, <span class="green">'green'</span>)
+random_rectangle(400, 400, <span class="green">'red'</span>)
+random_rectangle(400, 400, <span class="green">'blue'</span>)
+random_rectangle(400, 400, <span class="green">'orange'</span>)
+random_rectangle(400, 400, <span class="green">'yellow'</span>)
+random_rectangle(400, 400, <span class="green">'pink'</span>)
+random_rectangle(400, 400, <span class="green">'purple'</span>)
+random_rectangle(400, 400, <span class="green">'violet'</span>)
+random_rectangle(400, 400, <span class="green">'magenta'</span>)
+random_rectangle(400, 400, <span class="green">'cyan'</span>)
+</pre>
+<p class="indent">
+  Muchos de estos colores con nombre mostrarán el color que esperas ver, pero otros pueden producir un mensaje de error (dependiendo de si utilizas Windows, macOS o Linux). Pero, ¿qué ocurre con un color personalizado que no es exactamente igual a un color con nombre? Recuerda que en el <a class="calibre6" href="ch09.xhtml#ch09">Capítulo 9 </a>establecimos el color de la pluma de la tortuga utilizando porcentajes de los colores rojo, verde y azul. Establecer la cantidad de cada color primario (rojo, verde y azul) que se utilizará en una combinación de colores con <span class="literal1" translate="no">
+   tkinter
+  </span>es un poco más complicado, pero lo resolveremos. </p>
+<p class="indent">
+  Cuando trabajamos con el módulo <span class="literal1" translate="no">
+   turtle
+  </span>, creamos el dorado utilizando un 90% de rojo, un 75% de verde y nada de azul. En <span class="literal1" translate="no">
+   tkinter
+  </span>, podemos crear el mismo color dorado utilizando esta línea: </p>
+<pre class="pre" translate="no">random_rectangle(400, 400, <span class="green">'#e5d800'</span>)
+</pre>
+<p class="indent">
+<span id="page_149">
+</span>
+  La almohadilla ( <span class="literal1" translate="no">
+   #
+  </span>) antes del valor <span class="literal1" translate="no">
+   ffd800
+  </span>indica a Python que estamos proporcionando un número <em class="calibre7">hexadecimal </em>. El hexadecimal es una forma de representar números habitual en programación informática. Utiliza una base de 16 (del 0 al 9, y luego de la A a la F) en lugar del decimal, que tiene una base de 10 (del 0 al 9). Si no has aprendido nada sobre bases en matemáticas, debes saber que puedes convertir un número decimal normal a hexadecimal utilizando un <em class="calibre7">marcador de formato </em>en una cadena: <span class="literal1" translate="no">
+   {:x}
+  </span>(consulta "Incrustar valores en cadenas" en <a class="calibre6" href="ch03.xhtml#ch03lev1sec4">la página 29 </a>). Por ejemplo, para convertir el número decimal 15 a hexadecimal, podrías hacer lo siguiente: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(f<span class="green">'{15:x}'</span>)
+<span class="blue1">f</span>
+</pre>
+<p class="indent">
+  Esto es una cadena f con un modificador de formato especial (que es <span class="literal1" translate="no">
+   :x
+  </span>) que indica a Python que convierta el número a hexadecimal. </p>
+<p class="indent">
+  Para asegurarnos de que nuestro número tiene al menos dos dígitos, podemos cambiar ligeramente el marcador de posición de formato, a esto: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(f<span class="green">'{15:02x}'</span>)
+<span class="blue1">0f</span>
+</pre>
+<p class="indent">
+  Esta vez tenemos un modificador de formato ligeramente diferente ( <span class="literal1" translate="no">
+   02x
+  </span>) que dice que queremos la conversión hexadecimal, pero con dos dígitos (utilizando 0 para cualquier dígito que falte). </p>
+<p class="indent">
+  El módulo <span class="literal1" translate="no">
+   tkinter
+  </span>proporciona una forma sencilla de obtener valores de color hexadecimales. Prueba a ejecutar el siguiente código en IDLE: </p>
+<pre class="pre" translate="no"><span class="orange">from</span> tkinter <span class="orange">import</span> *
+<span class="orange">from</span> tkinter <span class="orange">import</span> colorchooser
+tk = Tk()
+tk.update()
+<span class="violet">print</span>(colorchooser.askcolor())
+</pre>
+<p class="indent">
+  Este código muestra un selector de colores, que se muestra en la <a class="calibre6" href="ch10.xhtml#ch10fig08">Figura 10-8 . </a>Ten en cuenta que tienes que importar explícitamente el módulo <span class="literal1" translate="no">
+   colorchooser
+  </span>porque no está disponible automáticamente en Python cuando utilizas <span class="literal1" translate="no">
+   from tkinter import
+  </span><span class="literal1" translate="no">
+   *
+  </span> . </p>
+<div class="image" id="ch10fig08">
+<span id="page_150">
+</span>
+<img alt="Image" class="calibre108" src="../images/10fig08.jpg" translate="no"/>
+</div>
+<p class="figcap">
+<em class="calibre7">Figura 10-8: El selector de color tkinter (que puede tener un aspecto diferente en tu SO) </em></p>
+<p class="indent">
+  Cuando selecciones un color y pulses <strong class="calibre5">OK </strong>, se mostrará una tupla. Esta tupla contiene otra tupla con tres números y una cadena: </p>
+<pre class="pre" translate="no"><span class="brown">&gt;&gt;&gt;</span> <span class="violet">print</span>(colorchooser.askcolor())
+<span class="blue1">((157, 163, 164), '#9da3a4')</span>
+</pre>
+<p class="indent">
+  Los tres números representan las cantidades de rojo, verde y azul. En <span class="literal1" translate="no">
+   tkinter
+  </span>, la cantidad de cada color primario a utilizar en una combinación de colores se representa mediante un número entre 0 y 255 (que es diferente de utilizar un porcentaje para cada color primario con el módulo <span class="literal1" translate="no">
+   turtle
+  </span>). La cadena de la tupla contiene la versión hexadecimal de esos tres números. </p>
+<p class="indent">
+  Puedes copiar y pegar el valor de la cadena para utilizarlo, o almacenar la tupla como una variable y utilizar la posición del índice del valor hexadecimal. </p>
+<p class="indent">
+  Utilicemos la función <span class="literal1" translate="no">
+   random_rectangle
+  </span>para ver cómo funciona, sustituyendo todas las llamadas a <span class="literal1" translate="no">
+   random_rectangle
+  </span>en la parte inferior de <em class="calibre7">colorrect. </em>py por el siguiente código: </p>
+<pre class="pre" translate="no"><span class="orange">from</span> tkinter <span class="orange">import</span> colorchooser
+c = colorchooser.askcolor()
+random_rectangle(400, 400, c[1])
+</pre>
+<p class="indent">
+  Puedes ver el resultado en la <a class="calibre6" href="ch10.xhtml#ch10fig09">Figura 10-9 . </a></p>
+<div class="image" id="ch10fig09">
+<span id="page_151">
+</span>
+<img alt="Image" class="calibre109" src="../images/10fig09.jpg" translate="no"/>
+</div>
+<p class="figcap">
+
+   Figura<em class="calibre7">10-9: Dibujar un rectángulo morado </em></p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch10_7.html">anterior</a><a href="ch10.html">Subtema 8 de 17: (Ver todo)</a><a href="ch10_9.html">siguiente</a><br/></p>
+<br/><a href="ch10_8.docx" target="_blank"></a></footer>
+</body>
+</html>

@@ -1,0 +1,690 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Bibli👁teca de Alejandría V5.0 🏛</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="4ad8b6f6-a036-494a-88bd-c22deb313ac7" class="page sans"><header><h1 class="page-title">Bibli👁teca de Alejandría V5.0 🏛</h1><p class="page-description"></p></header><div class="page-body"><h1 id="f1b5d24e-e0c6-4fdd-bd89-2ff0fc809004" class=""><strong><em>Sistema de Clasificación Decimal Dewey</em></strong></h1><p id="6fae9c46-ffbf-44cc-b24c-7a2821e4c80b" class=""><strong>📚🔖 :::</strong></p><h1 id="3ccc219a-bba8-4d13-9cfa-626bb0dbddac" class=""><strong>🌌 Historia</strong></h1><p id="c5804ac8-53ab-45cd-a830-758ed92eb21f" class="">En 1876, un bibliotecario llamado Melvil Dewey (1851-1931) creó un sistema numérico decimal para organizar los libros de la biblioteca escolar en la que trabajaba y este sistema se llama &quot;Sistema de Clasificación Decimal&quot;.</p><p id="96d24eb3-ada8-45c7-b12f-6babb88bb073" class=""><br/>Dewey dividió el conocimiento en diez grandes categorías: generalidades, filosofía, religión, ciencias sociales, filología, ciencias naturales, técnica y ciencias prácticas, arte y literatura e historia. <br/></p><p id="92f55465-e38f-4115-9504-468ca156ceff" class="">
+</p><p id="e5ce0d2a-8ff8-4c77-936f-027023a66622" class="">Y cada cifra puede subdividirse muchas veces para lograr identificar claramente cada tema. </p><p id="dc118918-c21e-470e-86fa-4c6c49fc316b" class="">
+</p><p id="a367e251-d793-4964-83df-f6d670d6888b" class="">Esto se hace para organizar los libros en la estantería, de forma que todos los libros que traten un tema específico queden ubicados en el mismo lugar.</p><hr id="12ad2850-620b-484b-8812-215ba32f0d6d"/><h1 id="8540dbb7-15ea-4c71-b063-c3ac2cea9c02" class=""><strong>Nuestro enfoque:</strong></h1><h3 id="b0d47c37-5138-488e-b9a2-80e1deb3e3f8" class=""><strong>&gt;&gt;&gt; <a href="#enfoque1">000 Generalidades (Informática, Conocimiento y Sistemas)</a></strong></h3><h3 id="b2d00c1c-eb43-41d8-8e0a-9653594005c5" class=""><strong>&gt;&gt;&gt; <a href="#enfoque2">500 Matemáticas y Ciencias Naturales</a></strong></h3><h3 id="7527f5b8-7197-447e-ac09-23a9f295998f" class=""><strong>&gt;&gt;&gt; <a href="#enfoque3">600 Tecnología y Ciencias Aplicadas</a></strong></h3><p id="acd9fba9-1c83-4710-a20b-b1c1c172091d" class="">
+</p><hr id="aaebf3c4-083a-4c70-b362-2421dfab3c05"/><h1 id="67452bd6-36d8-41f6-bca6-d992e3878a41" class=""><strong>Sistema de clasificación decimal completo 👇🏼👇🏼👇🏼</strong></h1><p id="489b7f48-e503-4537-b88d-8e950e23c50b" class=""><strong>PESE A NUESTRO ENFOQUE EN CIENCIA Y TECNOLOGÍA, SIGUIENDO NUESTRO COMPROMISO DE PROVEER EL ACCESO AL CONOCIMIENTO MÁS AVANZADO DE LA HUMANIDAD, TAMBIÉN AGREGAMOS MATERIAL AL RESTO DE CATEGORÍAS (progresivamente).</strong></p><p id="3388c018-d413-48cf-b1be-8d258d59d134" class="">Conforme estamos avanzando en las categorías estamos extendiendo las sub-categorías. 🔥</p><h1 id="enfoque1" class="">::: <a href="https://neobibliotecav5.gumroad.com/">000 Generalidades (Informática, conocimiento y sistemas)</a></h1><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="95b72798-858d-45db-9569-2b87a01a07b0"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><span style="border-bottom:0.05em solid"><strong>000 - 099:</strong></span><span style="border-bottom:0.05em solid"> </span><strong><span style="border-bottom:0.05em solid">Aquí encontrará ayuda para las tareas escolares: diccionarios, enciclopedias y todo acerca de las computadoras.</span></strong></div></figure><p id="2c36d7b6-8051-41ce-b445-013b2df1f4bd" class=""><strong><a href="https://neobibliotecav5.gumroad.com/">000 Informática, información y trabajos generales</a></strong></p><p id="1f3eb7df-d48b-489d-8f8e-0378af34a713" class="">001 El conocimiento</p><p id="b92eaf26-7936-4220-a7fa-e3e6d40bbc93" class="">002 El libro (escritura, bibliotecas y temas relacionados con el libro)</p><p id="1f9647fd-ade8-4be6-9491-dd3c8bb51bd5" class="">003 Sistemas</p><p id="ee79e067-2e03-4d36-8f08-41d7ad47d08c" class="">004 Tratamiento de datos e informática</p><p id="cc340027-ee0f-4a9a-92b8-170d01a5796c" class=""><a href="https://neobibliotecav5.gumroad.com/"><strong>005 Programación informática, programas y datos</strong></a></p><p id="14fa7651-6818-4ecf-8b94-771e6df0b952" class=""><strong><a href="https://neobibliotecav5.gumroad.com/">006 Métodos informáticos especiales (por ejemplo, IA, multimedia, RV)</a></strong></p><p id="956652f5-2293-40e1-833c-432ffb411376" class=""><del>007-009 [Sin asignar]</del></p><h2 id="ec1c0a36-2a4b-4e07-8be2-c7bb35a520f7" class="">010 Bibliografías</h2><p id="b4cdcbac-8223-47b1-84be-a6c3b8aefa4d" class="">010 Bibliografía</p><p id="0d0d17b6-de9c-44dc-a58d-5e8b7ac930b2" class="">011 Bibliografías</p><p id="a852e039-774f-4cc0-8ec3-660dd442a982" class="">012 Bibliografías de particulares</p><p id="fa21636f-2ef3-446b-89fc-42bf95dadcc9" class=""><del>013 [Sin asignar]</del></p><p id="3dad365f-abf3-4ada-925f-439f0a619903" class="">014 Bibliografías de obras anónimas y seudónimas</p><p id="13b410cf-b2cd-4c0d-8c2c-517a6fe5988e" class="">015 Bibliografías de obras de lugares específicos</p><p id="16914e91-c737-4fe3-a49e-5da9e94111be" class="">016 Bibliografías de obras sobre temas específicos</p><p id="07b82846-5daa-4958-9aea-11b7e752f62b" class="">017 Catálogos temáticos generales</p><p id="55b30f2e-308c-4735-af89-bdfc0ca15b64" class="">018 Catálogos ordenados por autor, fecha, etc.</p><p id="9dfe9a3f-f460-4c91-aeee-a6a891e782c3" class="">019 Catálogos de diccionarios</p><h2 id="2fd288a4-fcb5-40f3-a029-7f53ca498d65" class="">020 Biblioteconomía y Documentación</h2><p id="054e339f-cf4c-4f4e-b0fa-01c9d28d30b9" class="">020 Biblioteconomía y ciencias de la información</p><p id="803d3635-32d2-4f1b-868d-29d5a02ac06f" class="">021 Relaciones de la biblioteca (con archivos, centros de información, etc.)</p><p id="4b43b7fb-7621-4f05-b964-2dcecd653ea6" class="">022 Administración de la planta física</p><p id="7f93c489-f5f9-47d6-8d91-019340685f24" class="">023 Administración de personal</p><p id="78286dd6-035b-4312-8dc0-d4bcf1ad19cb" class=""><del>024 [Sin asignar]</del></p><p id="73ac2168-737e-44d5-91c3-3fae4b201e95" class="">025 Funcionamiento de bibliotecas</p><p id="158cd657-5d44-4729-94f8-1720786225d0" class="">026 Bibliotecas para temas específicos</p><p id="24f79bc5-2841-491f-b5c7-2e4ba4c766ab" class="">027 Bibliotecas generales</p><p id="f724979c-f99a-4c73-a241-0d193e0e124a" class="">028 Lectura y uso de otros medios de información</p><p id="93910ab3-e617-4fca-850b-8a0b2a63771c" class=""><del>029 [Sin asignar]</del></p><h2 id="ac1b9875-9c6a-4364-9fb3-bec79c7fc594" class="">030 Enciclopedias y libros de datos</h2><p id="caa24842-ecb1-46c0-bb15-413c3e153983" class="">030 Obras enciclopédicas generales</p><p id="2d01a38b-7f45-4499-a224-2209c9ee249e" class="">031 Enciclopedias en inglés americano</p><p id="b0d153a4-176e-4854-b40f-36eb417f0538" class="">032 Enciclopedias en inglés</p><p id="b692d353-6c15-483d-98d1-dfc8765f5961" class="">033 Enciclopedias en otras lenguas germánicas</p><p id="4ec02d8e-0d6d-48e6-9f63-d7719c66b1b1" class="">034 Enciclopedias en francés, occitano y catalán</p><p id="6ded829a-d5ad-42c9-b784-160d670c8d26" class="">035 Enciclopedias en italiano, rumano y lenguas afines</p><p id="70a042d1-c78c-4040-8149-9a0677e9834b" class="">036 Enciclopedias en español y portugués</p><p id="5aaff7c8-b9a3-4aa7-bf38-9b5037e813b1" class="">037 Enciclopedias en lenguas eslavas</p><p id="5bee3dcf-dea8-45c7-b70e-2e3dd15c92d1" class="">038 Enciclopedias en lenguas escandinavas</p><p id="22de71e6-0318-4465-b2f1-a1dbc85a3cb8" class="">039 Enciclopedias en otras lenguas</p><h2 id="d7dd7513-b854-4f92-a2a8-465e9f83bec2" class=""><del>040 (No asignado)</del></h2><h2 id="b6675a9b-6001-4661-b718-76292351dec1" class="">050 Revistas, periódicos y publicaciones seriadas</h2><p id="4861fed3-0926-4344-bc9d-b9129de79e68" class="">050 Publicaciones seriadas generales</p><p id="66786e3b-1690-4876-bd90-914c7e36fee9" class="">051 Publicaciones seriadas en inglés americano</p><p id="63c2e6f1-6897-49e3-a38d-09a60680fb7b" class="">052 Publicaciones seriadas en inglés</p><p id="ba9c790b-d5fe-42b5-8d9a-9f27786d70fc" class="">053 Publicaciones seriadas en otras lenguas germánicas</p><p id="c140bcae-a2f4-41c0-8eb7-35e33809c2e5" class="">054 Publicaciones seriadas en francés, occitano y catalán</p><p id="9f2156d9-3a52-40a6-b2e5-b828890a4388" class="">055 Publicaciones seriadas en italiano, rumano y lenguas afines</p><p id="88cd542b-b085-4d75-bc6b-0fc1f4aec8f7" class="">056 Publicaciones seriadas en español y portugués</p><p id="830de236-d239-451d-98d8-93562c126907" class="">057 Publicaciones seriadas en lenguas eslavas</p><p id="5040566a-f5b0-4170-aa7b-44652d6a1e02" class="">058 Publicaciones seriadas en lenguas escandinavas</p><p id="1293e6d4-2ed7-4a3f-aab5-c966bec443a5" class="">059 Publicaciones seriadas en otras lenguas</p><h2 id="100373a8-b631-429e-8b9c-c92ff1b17b6b" class="">060 Asociaciones, organizaciones y museos</h2><p id="c6ac5de5-18a1-4daa-bc10-fc25a6df2f54" class="">060 Organizaciones generales y ciencia museística</p><p id="90517093-b5ca-48dd-8a05-9313da5c5273" class="">061 Organizaciones en Norteamérica</p><p id="95451117-5402-4c99-9afe-eb6475967b40" class="">062 Organizaciones en las Islas Británicas; en Inglaterra</p><p id="f94b6c66-f73f-4182-9d33-04f439b5b66c" class="">063 Organizaciones en Europa Central; en Alemania</p><p id="e9a64c32-1776-4f00-b2a4-fc6ebde8fc05" class="">064 Organizaciones en Francia y Mónaco</p><p id="9c92db2a-0f80-4f97-b630-bdeb2e0cfacb" class="">065 Organizaciones en Italia e islas adyacentes</p><p id="45886107-a0d9-4f11-b978-7df08a420802" class="">066 Organizaciones en Península Ibérica e islas adyacentes</p><p id="89a1b6fa-d55c-466b-b636-de9275dc9127" class="">067 Organizaciones en Europa del Este; en Rusia</p><p id="c515f555-c74a-446e-9d23-3ffd5a433dfc" class="">068 Organizaciones en otras zonas geográficas</p><p id="c4cf5587-e85e-4640-aede-90d4d8a3853a" class="">069 Ciencia museística</p><h2 id="ef0618e3-d020-47b9-917f-88d8995a1316" class="">070 Medios de comunicación, periodismo y edición</h2><p id="8102b6c7-d02f-426d-8dd2-edc9ede13cd6" class="">070 Medios de comunicación, periodismo y edición</p><p id="869c1fb7-3c9e-4d15-ab08-52840fefb43b" class="">071 Periódicos en Norteamérica</p><p id="2f0d4d59-2dc2-44f9-9bb2-44e04553b53a" class="">072 Periódicos en las Islas Británicas; en Inglaterra</p><p id="44a873fb-17c8-4ba9-8370-614090f0a350" class="">073 Periódicos en Europa Central; en Alemania</p><p id="5b7ac3ab-c7ee-4acc-a04f-fb578f224843" class="">074 Periódicos en Francia y Mónaco</p><p id="0014d872-8c69-48ad-838e-3e1ab56c4a1f" class="">075 Periódicos en Italia e islas adyacentes</p><p id="95cca28f-f4cf-470c-96bd-1fb25d374ce1" class="">076 Periódicos en la Península Ibérica e islas adyacentes</p><p id="3ebbdffa-9265-417f-9eea-b8bc596e6c91" class="">077 Periódicos en Europa del Este; en Rusia</p><p id="9957799b-d041-4a55-8e00-b4bf5d451e26" class="">078 Periódicos en Escandinavia</p><p id="d13305a2-46df-4d21-9244-54cd24774a80" class="">079 Periódicos en otras zonas geográficas</p><h2 id="f80f736c-46b2-42d4-8d77-3c058ade4e83" class="">080 Colecciones generales</h2><p id="23f017ae-beb2-4c9d-af44-8a327732db0f" class="">080 Colecciones generales</p><p id="ca8b23bb-d1bc-4be5-b0d4-f76dcf372932" class="">081 Colecciones en inglés americano</p><p id="b149484c-5689-41aa-ae41-351b0c6bb0f8" class="">082 Colecciones en inglés</p><p id="68473f53-5e23-42c6-b79e-b32eba1fc901" class="">083 Colecciones en otras lenguas germánicas</p><p id="da5ac4d9-e2ad-4866-a6fd-afed0d9dfd07" class="">084 Colecciones en francés, occitano, catalán</p><p id="878ff85d-e1ef-4ef4-a99d-f6cef673ef27" class="">085 Colecciones en italiano, rumano y lenguas afines</p><p id="734a3e24-9761-42b2-b891-ea25eda18fda" class="">086 Colecciones en español y portugués</p><p id="be0858ab-00b0-4818-97f7-871c7fbc4b2b" class="">087 Colecciones en lenguas eslavas</p><p id="48baf3b0-db5f-4832-9465-793c57a6f3f9" class="">088 Colecciones en lenguas escandinavas</p><p id="3b5b18ed-0ebc-4e9e-aa2f-87987efc4f9d" class="">089 Colecciones en otras lenguas</p><h2 id="f0cc59d7-0c64-4da4-b22d-c503612fe572" class="">090 Manuscritos y libros raros</h2><p id="255af97f-2e4f-42d1-870c-523bbebe2bc9" class="">090 Manuscritos y libros raros</p><p id="4a52ecaf-db85-49e9-899c-770f1cf34d49" class="">091 Manuscritos</p><p id="da80b97a-30e4-4d5f-a3c0-21faefa8e564" class="">092 Libros en bloque</p><p id="b54fc7b5-c5db-47e5-8031-adc639c83e98" class="">093 Incunables</p><p id="8b038f16-5e55-478a-a1a8-a74afe48d45c" class="">094 Libros impresos</p><p id="32c9b259-3461-4082-8d7f-2318422da272" class="">095 Libros notables por sus encuadernaciones</p><p id="20dfad23-d6a5-40b3-abe6-48c2f399285c" class="">096 Libros destacados por sus ilustraciones</p><p id="564a56c6-d2c6-410a-ab25-495f540ef1b9" class="">097 Libros destacados por su propiedad u origen</p><p id="7e0107ca-f663-4fd1-b93d-b067c680fae5" class="">098 Obras prohibidas, falsificaciones y engaños</p><p id="f7c68116-f2e7-455b-b36c-fb63f6ba51ca" class="">099 Libros destacados por su formato</p><p id="5712ce53-ffbb-4989-bd17-7ae84f8818c6" class="">
+</p><hr id="ce9b404f-115b-42b5-9394-fe9b1d972d50"/><h1 id="35875beb-cb6b-457e-b3c4-ee83cda61801" class="">::: 100 Filosofía y psicología</h1><p id="92df076c-a50b-4d67-ac57-21dd16d0b88c" class="block-color-default"><span style="border-bottom:0.05em solid">¿Quiere aprender acerca de las grandes preguntas de la humanidad? Aquí encontrará toda la información.</span></p><h2 id="96fd4251-ad2c-4a83-a17b-39f96eb18e03" class="">110 Metafísica<br/>120 Conocimiento, causa, fin, hombre<br/>130 Parapsicología, ocultismo, fenómenos paranormales<br/>140 Escuelas filosóficas específicas<br/>150 Psicología<br/>160 Lógica<br/>170 Ética (filosofía moral)<br/>180 Filosofía antigua, medieval, oriental<br/>190 Filosofía moderna occidental<br/></h2><p id="ac43803b-42aa-40ab-8c5f-73c2ef70c08d" class="">
+</p><h1 id="bce5d70f-04bd-45de-8f3b-2cada1897393" class="">::: 200 Religión</h1><p id="38573032-cbee-4ff6-97b2-075c759e1a40" class="block-color-default"><span style="border-bottom:0.05em solid">Aprenda acerca de las diferentes religiones del mundo.</span></p><h2 id="78fadf4d-afff-4952-947f-0535105a3161" class="">210 Filosofía y teoría de la religión<br/>220 Biblia<br/>230 Teología cristiana<br/>240 Moral y prácticas cristianas<br/>250 Iglesia local y órdenes religiosas<br/>260 Teología social y eclesiástica<br/>270 Historia y geografía de la iglesia cristiana<br/>280 Credos y sectas de la iglesia cristiana<br/>290 Otras religiones<br/></h2><p id="002f1096-064a-4284-9417-422269f001d9" class="">
+</p><h1 id="abf89b39-476c-4adc-bae3-71a31829d7af" class="">::: 300 Ciencias sociales</h1><p id="d05b73ba-6860-4c9b-8a18-40e850638eca" class="block-color-default"><span style="border-bottom:0.05em solid">Aquí encontrará información acerca de economía, negocios, política, profesiones, gobierno, leyes y educación.</span></p><h2 id="80d89682-0a7c-4cdb-a65a-b8b26e99d098" class="">310 Estadística<br/>320 Ciencia política<br/>330 Economía<br/>340 Derecho<br/>350 Administración pública y ciencia militar<br/>360 Problemas y servicios sociales<br/>370 Educación<br/>380 Comercio, comunicaciones y transporte<br/>390 Costumbres y folklore<br/></h2><p id="f74040ad-cfd0-4e03-b814-1e231991875d" class="">
+</p><h1 id="7e2aeae9-33a6-4799-98f6-42d46a444380" class="">::: 400 Lenguas</h1><p id="7a8df438-ed60-4982-ab5e-79a2bc1d9d4a" class="block-color-default"><span style="border-bottom:0.05em solid">¿Quiere aprender inglés o necesita ayuda con un idioma extranjero? Aquí encontrará toda la ayuda que busca.</span></p><h2 id="97aaf242-87b6-44e1-920c-1a28149ba03e" class="">410 Lingüística<br/>420 Inglés e inglés antiguo<br/>430 Lenguas germánicas; alemán<br/>440 Lenguas romances; francés<br/>450 Italiano, rumano, rético<br/>460 Español y portugués<br/>470 Lenguas itálicas; latín<br/>480 Lenguas helénicas; griego clásico<br/>490 Otras lenguas<br/></h2><p id="3d4bf673-1401-4bce-bf3b-5c353d821ffc" class="">
+</p><hr id="46d586ba-2746-4b6f-9a34-ece841b1bd91"/><h1 id="enfoque2" class="">::: 500 Matemáticas y Ciencias Naturales</h1><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="106dba42-5e2a-499d-8212-90edb419b684"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong><span style="border-bottom:0.05em solid">500 - 599: Aquí aprenderá acerca de plantas, animales, matemáticas, planetas, etc.</span></strong></div></figure><p id="2eaf7c76-571b-46a5-be60-ca99a99b43f6" class="">500 Ciencias naturales y matemáticas</p><p id="e19330b5-6334-4661-8a30-d6e3bea6e87a" class="">501 Filosofía y teoría</p><p id="d0711259-3de4-42de-b61f-869db7631a42" class="">502 Miscelánea</p><p id="8d762791-81af-404a-b2ac-a02d3e5aab72" class="">503 Diccionarios, enciclopedias, concordancias</p><p id="1f31fdb6-51b7-44bc-b53a-1a748df300d4" class=""><del>504 No asignado o ya no utilizado</del></p><p id="594da023-7768-4189-95e8-30e3e89052f3" class="">505 Publicaciones seriadas</p><p id="3623a45e-8372-4497-8d24-b066116a6a4c" class="">506 Organizaciones y gestión</p><p id="a0b43c21-f86e-4edb-ba61-8447d67840e3" class="">507 Educación, investigación, temas relacionados</p><p id="0e6395f8-315c-464c-bd26-495756869ab1" class="">508 Historia natural</p><p id="3fa9ce08-0ba6-4075-9e20-0ae49b71b6d7" class="">509 Historia, tratamiento geográfico, biografía</p><h2 id="4467234e-353a-4141-8785-1cd5a6886d1e" class="">510 Matemáticas</h2><p id="95a74829-5c0e-413e-b1a2-f7bd60bdc198" class="">510 Matemáticas</p><p id="bd3758c1-4deb-4744-94cf-b6d90237dff1" class="">511 Principios generales de matemáticas</p><p id="17d466f4-3392-4679-a8ef-7a29a288c568" class="">512 Álgebra</p><p id="7cae6639-fdc1-45e5-969c-5dd43145cbd2" class="">513 Aritmética</p><p id="b304c843-c032-41b0-82e1-6e12ba8c1767" class="">514 Topología</p><p id="0d032991-4932-4893-b497-1a72e50763cf" class="">515 Análisis</p><p id="12cb2c9a-b7ab-4afb-b0bd-0145ec59f300" class="">516 Geometría</p><p id="6575bf80-ffae-4983-9f5d-51a5cf2d3d74" class=""><del>517 No asignado o ya no utilizado</del></p><p id="5f1094e7-9173-4f44-9f07-b63e4b483f5e" class="">518 Análisis numérico</p><p id="b8696656-dafb-4a48-b367-1e42903ae4ba" class="">519 Probabilidades y matemáticas aplicadas</p><h2 id="4b512414-7d18-4cb0-b745-02319278c825" class="">520 Astronomía</h2><p id="65908ff1-4d67-473e-9313-ee9c4e9b770f" class="">520 Astronomía y ciencias afines</p><p id="93f4f1b0-9883-46b7-83ea-787125519b95" class="">521 Mecánica celeste</p><p id="39ffdcb5-1dd9-42fb-9b25-fbd922684e59" class="">522 Técnicas, procedimientos, aparatos, equipos, materiales</p><p id="2569f26a-8dd2-40ea-9511-b16947f387cf" class="">523 Cuerpos y fenómenos celestes específicos</p><p id="38057cbc-548a-4669-a641-37e2c90610e1" class="">524 No asignado o ya no se utiliza</p><p id="7a36ed22-b52a-49f4-9123-1d5e338e8f2e" class="">525 Tierra (Geografía astronómica)</p><p id="72ac8180-ca14-4638-bbd7-0cb5fd456054" class="">526 Geografía matemática</p><p id="6a452735-4d3d-4ec8-aa21-7e2c161ab0e4" class="">527 Navegación celeste</p><p id="81c4275f-02c8-4ea7-9c0b-a77ce40b2691" class="">528 Efemérides</p><p id="89913c9f-1496-4488-9ac1-9ae276afb2af" class="">529 Cronología</p><h2 id="4fb40ff8-3fe5-4103-a355-66af602f1fbf" class="">530 Física</h2><p id="e5d54a0a-ff1c-46a5-bc4e-4c21a92de151" class="">530 Física</p><p id="9d842d04-b00b-46a5-9736-38798a232e89" class="">531 Mecánica clásica</p><p id="187133cd-d4c5-46fe-a241-bdabd38899d8" class="">532 Mecánica de fluidos</p><p id="a1bec45e-ec88-4368-8a68-b6e5de8b6b27" class="">533 Neumática (mecánica de gases)</p><p id="1a42c660-b893-48dd-8f92-af74a2a5124a" class="">534 Sonido y vibraciones relacionadas</p><p id="27787728-93f4-4398-b3dc-f71c3354c7ce" class="">535 Luz y radiaciones afines</p><p id="7181b5aa-f8b0-412b-a8d8-248b99839134" class="">536 Calor</p><p id="1b98cb04-b98b-4ac2-b42a-cec03e32c48d" class="">537 Electricidad y electrónica</p><p id="a11c3782-52aa-4318-8291-afb9723d91f8" class="">538 Magnetismo</p><p id="ee36d746-1160-41c5-aa62-31a45fbcbd30" class="">539 Física moderna</p><h2 id="b3e93f94-a4bc-4252-82ba-190eb4f5ac67" class="">540 Química</h2><p id="b7247751-b17d-4cb6-9b41-b79aa841e4c9" class="">540 Química y ciencias afines</p><p id="6eed250b-9e6e-475e-a2bf-0f48e9126fe2" class="">541 Química física</p><p id="c8e8a45c-742f-43a7-936c-0d2245ffccdc" class="">542 Técnicas, procedimientos, aparatos, equipos, materiales</p><p id="46836245-dfe9-4540-9bdf-78729f206b55" class="">543 Química analítica</p><p id="de2b70b7-c104-41b7-9723-ac639c22dd37" class=""><del>544 Ya no se utiliza - antes &quot;Análisis cualitativo</del></p><p id="d9241f73-80b1-4082-9bcf-6256347b90e9" class=""><del>545 Ya no se utiliza - antes &quot;Análisis cuantitativo&quot;</del></p><p id="922b305e-5d17-4c7b-8472-41c27e55460a" class="">546 Química inorgánica</p><p id="2d328644-478e-4238-be94-d5105f98ad5b" class="">547 Química orgánica</p><p id="f718ab66-d2e2-4ce8-a41d-c842126914eb" class="">548 Cristalografía</p><p id="5d5d5f87-4a07-4601-b13d-3391cf4ceb49" class="">549 Mineralogía</p><h2 id="0aeebf3d-cf40-4f8c-9d5f-dcdbba4e27e0" class="">550 Geociencias / Ciencias de la tierra y geología</h2><p id="e118f2f6-4db1-422c-acb2-d47e516a4736" class="">550 Ciencias de la Tierra</p><p id="8b1de8b4-050b-4ef3-901c-1818a0704887" class="">551 Geología, hidrología, meteorología</p><p id="81b57491-cf45-44e1-8259-4417b07750c9" class="">552 Petrología</p><p id="5c691559-413b-495e-ab29-0462f8750cc1" class="">553 Geología económica</p><p id="2a9b7f16-cf0b-4bf4-8712-f02f9c242bc0" class="">554 Ciencias de la Tierra en Europa</p><p id="c296451a-8e22-4b10-bcaf-ea0a7ff7fef4" class="">555 Ciencias de la Tierra enAsia</p><p id="c92f1ddc-5894-4834-9517-4b9bab42d165" class="">556 Ciencias de la Tierra enÁfrica</p><p id="372333b8-7202-4a0d-a155-fc19a611957c" class="">557 Ciencias de la Tierra de América del Norte</p><p id="1d640308-8483-4dd0-8aed-c57241f0dc0b" class="">558 Ciencias de la Tierra de América del Sur</p><p id="42e9050a-0490-4788-b604-b6dc487aef49" class="">559 Ciencias de la Tierra de Australasia, islas del Océano Pacífico, islas del Océano Atlántico, islas árticas, Antártida, mundos extraterrestres</p><h2 id="32d95957-464a-40d2-98bd-07470dc38db1" class="">560 Paleontología y paleozoología: Fósiles y vida prehistórica</h2><p id="34719326-0537-43d0-93bb-7ac472586cdd" class="">560 Paleontología</p><p id="355a101f-615e-4d3a-ae25-e4f48efe9083" class="">561 Paleobotánica, microorganismos fósiles</p><p id="0afdbc4b-fb8a-4a74-861c-f94e75ba118d" class="">562 Invertebrados fósiles</p><p id="cdcd319c-7901-45cc-834e-66e5a604cea1" class="">563 Varios invertebrados fósiles marinos y costeros</p><p id="9c42ff90-7548-4c4b-9f26-39195bb08467" class="">564 Mollusca y Molluscoidea fósiles</p><p id="802940e9-938a-4978-b319-22ddec5f127e" class="">565 Artrópodos fósiles</p><p id="fbe5de62-0904-4eb8-91b7-9c78ac6b7d9c" class="">566 Cordados fósiles</p><p id="89b18647-fd31-48d7-bb15-15a56265b20c" class="">567 Vertebrados fósiles de sangre fría</p><p id="34b97b4e-a824-4329-803d-06774f7f93ff" class="">568 Aves fósiles</p><p id="af9f0ee4-fdb5-4613-afa2-a356a93df63a" class="">569 Mammalia fósil</p><h2 id="b439a0b3-909e-4651-969a-9459c822dd63" class="">570 Ciencias biológicas</h2><p id="2e6d1ab4-4f07-4a41-bd9d-5f2adebed1ab" class="">570 Biología</p><p id="d0fb0d7d-1ff1-4163-912d-d4020e141576" class="">571 Fisiología y materias afines</p><p id="3bf4b5f1-ff8e-4a7c-a2fe-515d8700c847" class="">572 Bioquímica</p><p id="5a6ad03a-bece-4c2c-9292-f549046b5ebc" class="">573 Sistemas fisiológicos específicos en animales, histología regional y fisiología en</p><p id="cd49f60a-732d-43c5-a2fe-9a3545c0d52d" class="">animales</p><p id="16cbc33d-4626-49b4-ba9f-4ebd2f2836f1" class=""><del>574 No asignada o ya no utilizada</del></p><p id="e2a3a6f2-cca2-4cf6-9dba-b737acce2629" class="">575 Partes y sistemas fisiológicos específicos de las plantas</p><p id="cd9a3904-9cb0-4789-bbad-e43513f7d621" class="">576 Genética y evolución</p><p id="03a88186-680f-4bff-b264-19769e4d1815" class="">577 Ecología</p><p id="cbcf5c0c-2152-465f-9ebd-d2615d543871" class="">578 Historia natural de los organismos y temas relacionados</p><p id="54b552fa-53a7-4a6b-b871-4e459d309c45" class="">579 Historia natural de los microorganismos, hongos y algas</p><h2 id="ab5224fc-d3cb-4dcf-8a6f-a3faba3abbeb" class="">580 Ciencias botánicas</h2><p id="cea76658-ba6e-4df9-aa89-1d29f4fe7ed4" class="">580 Plantas</p><p id="071e3194-f3a2-4e50-a11b-1b549eb76a32" class="">581 Temas específicos de la historia natural de las plantas</p><p id="02c7880d-478b-4410-8f89-5d68558fd7cd" class="">582 Plantas destacadas por características vegetativas y flores específicas</p><p id="d4f999ab-f302-450c-b306-05e1e5797b26" class="">583 Magnoliopsida (Dicotiledóneas)</p><p id="3ac9b5e9-adaf-4c3a-840e-8fec9b78dd43" class="">584 Liliopsida (Monocotiledóneas)</p><p id="366eefb3-aa35-43b2-ba1b-adb00ad37b18" class="">585 Pinophyta (Gimnospermas)</p><p id="15b1f522-dff9-400f-8194-c11623ba75be" class="">586 Criptogamia (Plantas sin semillas)</p><p id="1929b71a-77dd-456d-91ae-72bc7b8f6cac" class="">587 Pteridofita</p><p id="dc5e193c-700d-4bf2-a276-b2f0bfd17f68" class="">588 Briofita</p><p id="51162a06-a164-4c87-8c76-d1c0e9ad0b58" class=""><del>589 Ya no se utiliza: antigua Silvicultura</del></p><h2 id="13e085ba-8377-42ab-bd2a-502ee39efc4e" class="">590 Ciencias zoológicas</h2><p id="f067bce7-3efc-4876-9aed-db707fadbe20" class="">590 Animales</p><p id="427bd762-87fc-4790-9b50-32cb9dcc0658" class="">591 Temas específicos de historia natural de los animales</p><p id="d584ff68-884d-40cc-8118-72ee203edeb7" class="">592 Invertebrados</p><p id="fccb6d90-76c6-4b2f-b69e-facbbe45de06" class="">593 Invertebrados marinos y costeros diversos</p><p id="05f1be86-a620-4a37-9253-511f1cfe40ef" class="">594 Mollusca y Molluscoidea</p><p id="22ba795c-37f4-489f-9d5a-2e7760f43a28" class="">595 Artrópodos</p><p id="e07c1591-acd1-4f51-a145-23371705ddbf" class="">596 Cordados</p><p id="45746f70-9e76-4ff8-84f1-49162399f017" class="">597 Vertebrados de sangre fría</p><p id="2879f025-e7f3-49ae-bb5a-2694d0b04f88" class="">598 Aves</p><p id="cbbc0613-8ece-4d14-b8fb-e25f673dceef" class="">599 Mammalia (Mamíferos)</p><p id="e2d82208-9546-4777-86c0-9b92fb563910" class="">
+</p><hr id="fa2ee6a1-4f14-4896-a506-14db57e9a189"/><h1 id="enfoque3" class="">::: 600 Tecnología</h1><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="ba6cec20-1c69-450a-a4e4-5316ade0c975"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong><span style="border-bottom:0.05em solid">600 - 699: Infórmese acerca de la salud, ingeniería, la construcción, la carpintería y demás oficios que mueven a la economía.</span></strong></div></figure><p id="4ce37c1b-c4ad-4756-b8ff-e8e444c01360" class="">600 Tecnología (Ciencias aplicadas)</p><p id="69ac369d-96b4-453d-9a17-9bf9ebae91bf" class="">601 Filosofía y teoría</p><p id="dc2a63b6-a21b-4c00-b1fe-e13f845b92b2" class="">602 Miscelánea</p><p id="087e8b09-fb18-488d-b04a-6f5c80b7d9f3" class="">603 Diccionarios, enciclopedias, concordancias</p><p id="a8383a53-55c8-49a8-9253-0790831a5538" class="">604 Dibujo técnico, tecnología de materiales peligrosos; grupos de personas</p><p id="09fa066f-0f7e-4d63-9150-5f60b3b78e0b" class="">605 Publicaciones seriadas</p><p id="cb23b2b6-7ef0-44eb-acbb-366d9c2f2536" class="">606 Organizaciones</p><p id="8f55c885-8498-4993-9bc7-00ba61ff23b3" class="">607 Educación, investigación, temas relacionados</p><p id="de935d71-b106-47a4-9582-f0faa5866f3c" class="">608 Patentes</p><p id="7bfea0be-1136-4c56-b9a6-09c10bb9b075" class="">609 Historia, tratamiento geográfico, biografía</p><h2 id="08981c25-912d-4af7-bdf6-f27839c34357" class="">610 Ciencias médicas</h2><p id="3f06711d-c52b-4191-b78b-eff7114e0a16" class="">610 Medicina y salud</p><p id="8a71e0c3-1141-4b75-be23-b01476403ddc" class="">611 Anatomía humana, citología, histología</p><p id="3ea2fdd9-c554-44e6-a41d-dc468f320e0a" class="">612 Fisiología humana</p><p id="80993b97-a03d-46f9-b9d4-0e71d22c4785" class="">613 Salud y seguridad personal</p><p id="4ea5cd73-e5cc-4162-bf5f-e1d3ca84367b" class="">614 Medicina forense; incidencia de lesiones, heridas, enfermedades; medicina preventiva pública</p><p id="c182dc48-8a9b-44c2-a0ff-0841b1f46cb7" class="">pública</p><p id="9628b44f-7401-4c2e-9ad1-fffd32477816" class="">615 Farmacología y terapéutica</p><p id="30df441b-02c0-4337-ad23-e7bb439d0fe0" class="">616 Enfermedades</p><p id="2b3ab1fd-35db-4823-94ca-3c16eca7e4d3" class="">617 Cirugía, medicina regional, odontología, oftalmología, otología, audiología</p><p id="284ba677-83c1-4e79-96bf-0d2aec3bc604" class="">618 Ginecología, obstetricia, pediatría, geriatría</p><p id="87c89dd7-9d0f-4091-83b3-8fad294e7646" class=""><del>619 Ya no se utiliza: antes Medicina experimental</del></p><h2 id="90359dfb-dcf5-48a9-a6c2-97cfeca1afde" class="">620 Ingeniería</h2><p id="99b10ca8-4eda-448b-9bea-0ee7bd090e96" class="">620 Ingeniería y operaciones afines</p><p id="474559c6-37e2-4b7f-a55c-fbb1a3cb2722" class="">621 Física aplicada</p><p id="d68cb7fe-a444-4e26-90f5-9d17a836cfbd" class="">622 Minería y operaciones afines</p><p id="c2d42173-21e4-416c-bc0b-35c2ad46eea6" class="">623 Ingeniería militar y náutica</p><p id="db2a2fef-3631-4d31-857e-387d2bc074cb" class="">624 Ingeniería civil</p><p id="5ffbc141-ecdf-4144-9452-15170bf7f97b" class="">625 Ingeniería de ferrocarriles, carreteras</p><p id="a75f4718-8267-45bc-87dd-fa584f1b6794" class=""><del>626 No asignado o ya no utilizado</del></p><p id="085925f1-d454-4b16-a6bb-01e118b3be6c" class="">627 Ingeniería hidráulica</p><p id="0d97ea27-3d7d-4a4e-b97c-fa88c144fe06" class="">628 Ingeniería sanitaria</p><p id="7e1c5e73-9401-4f54-87ae-62891548be14" class="">629 Otras ramas de la ingeniería</p><h2 id="65e930e5-6b6b-4c59-9234-3b24c93008c1" class="">630 Agricultura</h2><p id="adb7a1fe-be93-465c-b22e-787faac1ed8e" class="">630 Agricultura y tecnologías relacionadas</p><p id="4931e827-267a-4d21-8dbc-aa1dc46c6e89" class="">631 Técnicas específicas; aparatos, equipos, materiales</p><p id="dc79cd6e-7117-4999-9a2f-3870478b6ef0" class="">632 Lesiones, enfermedades y plagas de las plantas</p><p id="ca80ab90-d9cd-458f-9c28-254e854f921d" class="">633 Cultivos de campo y plantaciones</p><p id="9f275df7-d303-428a-bfd0-a9201d1d2cc8" class="">634 Huertos, frutas, silvicultura</p><p id="b857f735-b9dd-4410-904b-b72aae34e8b1" class="">635 Cultivos de jardín (Horticultura)</p><p id="07921409-247c-4ece-a438-264e40091e46" class="">636 Cría de animales</p><p id="45cd7432-ad85-44c7-a0cf-22e49a1d231a" class="">637 Elaboración de productos lácteos y afines</p><p id="e9d7628b-33da-4b89-a5a3-e46a2f3e41ec" class="">638 Cultivo de insectos</p><p id="3b7d6ad3-596c-4829-abc1-5a5795bfb124" class="">639 Caza, pesca, conservación, tecnologías relacionadas</p><h2 id="27f209da-92b3-48e4-8729-6895485b073d" class="">640 Economía doméstica y familiar</h2><p id="4dad11e3-16a6-4465-976f-1567f89d5de2" class="">640 Gestión doméstica y familiar</p><p id="be0e74b8-629f-49c7-8bfb-64107df9d687" class="">641 Comida y bebida</p><p id="210ee1be-4391-43bc-9b95-e56c00a9f8fa" class="">642 Comidas y servicio de mesa</p><p id="597baf57-d76a-4697-8fd4-9a1e651117c4" class="">643 Vivienda y equipamiento del hogar</p><p id="3a13976f-d35f-4434-84ef-ead4d05aa8d4" class="">644 Servicios domésticos</p><p id="215eedd6-5cd2-4d8a-92ca-60f0662884b1" class="">645 Mobiliario doméstico</p><p id="ca8f9fee-4fe0-4e12-9ff1-4d2705fe8a79" class="">646 Costura, confección, gestión de la vida personal y familiar</p><p id="c7874830-8d7a-4359-86dd-180657cf999a" class="">647 Gestión de hogares públicos (servicio doméstico institucional)</p><p id="07e911ae-3d70-47e8-8eda-a0c81bbe1833" class="">648 Mantenimiento del hogar</p><p id="10ed4535-6411-4cfa-adb2-0e81cc4fbcbd" class="">649 Crianza de niños; atención domiciliaria a personas con discapacidades y enfermedades</p><h2 id="64aaf876-8e7e-437b-bc6b-635b591cf909" class="">650 Servicios administrativos empresariales: Gestión y relaciones públicas</h2><p id="f8340986-70d7-4964-8ca4-70d2db63cc66" class="">650 Gestión y servicios auxiliares</p><p id="3df19047-937d-4773-91fe-7c64f66a13a4" class="">651 Servicios de oficina</p><p id="ba45d525-b568-4f69-8dd1-9aad2e6210c9" class="">652 Procesos de comunicación escrita</p><p id="331c21aa-5d62-44a7-8782-cb9ab316a993" class="">653 Taquigrafía</p><p id="cdcad602-043b-4891-b704-7e5be8326269" class=""><del>654-656 No asignados o ya no utilizados</del></p><p id="fc8893d4-b96a-46a7-b021-5064dbb35b52" class="">657 Contabilidad</p><p id="22dc3f19-b2f0-479b-b8a0-2664a4f7a04a" class="">658 Gestión general</p><p id="ce766f7b-4998-4b8a-bbd4-6b6fbaa355bc" class="">659 Publicidad y relaciones públicas</p><h2 id="e0148bdf-b04c-473b-b67a-3e689cf335fb" class="">660 Química industrial</h2><p id="dd6092d7-77c3-448e-b305-d6452c01eb4f" class="">660 Ingeniería química y tecnologías afines</p><p id="d8f7f076-de2f-4b96-9245-59c3e2e4eb2e" class="">661 Tecnología de productos químicos industriales</p><p id="ada9e051-37c1-4779-9731-6a035247db62" class="">662 Tecnología de explosivos, combustibles y productos relacionados</p><p id="29880660-c538-4d2a-a243-8a71bd618553" class="">663 Tecnología de las bebidas</p><p id="c05645cb-2208-48f9-9dc4-a953c9619fe1" class="">664 Tecnología de los alimentos</p><p id="5c731d1c-e34b-4a94-bc1e-0a25dd922d5b" class="">665 Tecnología de aceites, grasas, ceras y gases industriales</p><p id="7255f136-ff92-43fd-94de-15af73cdb758" class="">666 Tecnología de la cerámica y afines</p><p id="14fadb01-f4b2-4a63-b084-d1fdad4dcdc7" class="">667 Tecnología de la limpieza, el color, el recubrimiento y afines</p><p id="324b18a4-6ec5-4743-9ae6-be05463efbf5" class="">668 Tecnología de otros productos orgánicos</p><p id="30864aa9-3c61-4cab-be81-5dd55f7ce565" class="">669 Metalurgia</p><h2 id="1f11f7de-29ac-4bf6-910f-920e9a8c3dd7" class="">670 Manufacturas</h2><p id="3848a441-9ed3-4aca-87a6-83e32867d446" class="">670 Fabricación</p><p id="4f37b155-d9ce-4ac7-a5fb-7a5f95ecc365" class="">671 Procesos metalúrgicos y productos metálicos primarios</p><p id="a0744701-1088-4b01-8f2d-c29edac59988" class="">672 Hierro, acero, otras aleaciones de hierro</p><p id="59d34b51-07bb-43bb-901f-517e39cf09fd" class="">673 Metales no ferrosos</p><p id="e035a4b7-7189-4882-a993-c220300c15a7" class="">674 Transformación de la madera, productos de madera, corcho</p><p id="e32d2bcb-7b3f-42f9-952d-bea6ddedad0e" class="">675 Transformación del cuero y la piel</p><p id="5d43b5c9-336e-42d3-9849-3d90bb864af4" class="">676 Tecnología de la pasta y el papel</p><p id="2ea94d59-4983-4e1a-8b6f-f461fca7589e" class="">677 Industria textil</p><p id="2d20d74b-fd35-41f3-a8a3-ab822bfc41e9" class="">678 Elastómeros y productos de elastómeros</p><p id="6dc3abb0-f399-40cf-865c-21c22db339d2" class="">679 Otros productos de materiales específicos</p><h2 id="a00b2f7d-1e02-425c-827e-77ead2e2eddb" class="">680 Manufacturas varias</h2><p id="206c3385-8e4c-4d4e-a0d5-211bca5dbc99" class="">680 Fabricación de productos para usos específicos</p><p id="0fda6da6-8d7f-489a-a3e3-fe37ea2fbc20" class="">681 Instrumentos de precisión y otros aparatos</p><p id="a7ebd2a0-76a5-4735-8e1c-b1fb69adfd63" class="">682 Pequeños trabajos de forja (herrería)</p><p id="b27c56f0-d91b-4384-ad3d-c5e14634210d" class="">683 Ferretería y electrodomésticos</p><p id="1af33713-67d8-42cf-abc2-30ec15756350" class="">684 Mobiliario y talleres domésticos</p><p id="efe86d3b-3b5c-40a3-9e01-588b96f6aa4f" class="">685 Artículos de cuero y piel, y productos afines</p><p id="1a761d4a-0f3c-4c7b-901d-aff8235cad0d" class="">686 Artes gráficas y afines</p><p id="2b7ecd07-b548-45a0-876e-c8420ac8eaa4" class="">687 Prendas de vestir y accesorios</p><p id="470bb89f-b6ec-4faf-9c56-a24c5d388300" class="">688 Otros productos finales y tecnología de embalaje</p><p id="fd85e9d1-5f37-4411-8f85-eaadcfc0435e" class=""><del>689 No asignado o ya no utilizado</del></p><h2 id="6be5ccdb-6318-4dc7-8926-bae0c06d8d14" class="">690 Construcciones</h2><p id="68d08996-6eee-4692-990c-6baf2cc1712d" class="">690 Construcción de edificios</p><p id="173e5ea1-fe26-4083-a697-6f530c35b304" class="">691 Materiales de construcción</p><p id="3e2b6fe8-4872-4aa4-896c-2825f716e55a" class="">692 Prácticas auxiliares de la construcción</p><p id="b098a119-e35f-4f04-bd86-fcba1485bbea" class="">693 Construcción en tipos específicos de materiales y para fines específicos</p><p id="d79bfc22-e973-4115-88a3-f4928b76a0b1" class="">694 Construcción en madera</p><p id="41380fe2-5ac2-43c2-a6cb-a8934c38f149" class="">695 Recubrimiento de tejados</p><p id="f5bef51e-151a-4b9c-9a9a-3288ba3b6457" class="">696 Servicios públicos</p><p id="dc947844-a940-45b4-a88c-939c4bfa41e2" class="">697 Ingeniería de calefacción, ventilación y aire acondicionado</p><p id="88d440d6-3030-47f1-982f-48114c35f40d" class="">698 Acabado de detalles</p><p id="d63b549b-64db-4693-9dc7-263fa2de0e79" class=""><del>699 No asignado o ya no utilizado</del></p><p id="ff204849-eab1-4aa4-a0ed-f762674cba0e" class="">
+</p><hr id="6a1fa767-cb93-4628-9f0d-0350e7222ee6"/><h1 id="46aea767-aad1-460e-b316-970ad972646c" class="">::: 700 Artes</h1><p id="299c866f-001b-4683-8f40-2138193d63bd" class=""><span style="border-bottom:0.05em solid">Si le gusta el arte, el diseño interior, la música o los deportes aquí encontrará lo que busca.</span></p><h2 id="ce8c40a3-22e1-4bad-913d-1beb3db7c93f" class="">710 Urbanismo y arquitectura del paisaje<br/>720 Arquitectura<br/>730 Artes plásticas; escultura<br/>740 Dibujo, artes decorativas<br/>750 Pintura y pinturas<br/>760 Artes gráficas; grabados<br/>770 Fotografía y fotografías<br/>780 Música<br/>790 Entretenimiento<br/></h2><p id="992e05ac-3b5c-4ec1-966e-0e3d9d05ae2e" class="">
+</p><hr id="6218cdd5-24ce-43f2-9c23-50b5d1c42eaa"/><h1 id="7b6dab89-1145-4ab9-b5f9-b3d9618b0996" class="">::: 800 Literatura</h1><p id="28800fcd-2181-4ff6-ac6a-a12317f4b43e" class=""><span style="border-bottom:0.05em solid">Aquí encontrará drama, poemas y crítica literaria de alrededor del mundo.</span></p><h2 id="4e4a5dae-cc9c-4dbd-9b26-16c851af783c" class="">810 Literatura americana en inglés<br/>820 Literatura inglesa e inglesa antigua<br/>830 Literaturas germánicas<br/>840 Literaturas de las lenguas romances<br/>850 Literaturas italiana, rumana<br/>860 Literaturas española y portuguesa<br/>870 Literaturas de las lenguas itálicas<br/>880 Literaturas de las lenguas helénicas<br/>890 Literaturas de otras lenguas<br/></h2><p id="9ef8abb4-57a6-4ca8-a4fe-e31292cc7dc8" class="">
+</p><h1 id="c7092487-d316-445c-8cf5-2d3897025958" class="">::: 900 Historia y geografía</h1><p id="92a54cf4-28f0-4dc9-b92d-938934f7776d" class=""><span style="border-bottom:0.05em solid">Viaje alrededor del mundo, aprenda la historia de los países.</span></p><h2 id="f95963ae-4e0d-48ca-82ce-4161b059b2aa" class="">910 Geografía; viajes<br/>920 Biografía y genealogía<br/>930 Historia del mundo antiguo<br/>940 Historia de Europa<br/>950 Historia de Asia<br/>960 Historia de África<br/>970 Historia de América del Norte<br/>980 Historia de América del Sur<br/>990 Historia de otras regiones<br/></h2><p id="0ffd2117-20af-4234-b8bc-18976904904e" class="">
+</p><hr id="dfa4bf62-ed3b-4a26-abf6-056be65d6677"/><p id="e5722774-0d1e-43f8-b7c3-6f4428a59a1c" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

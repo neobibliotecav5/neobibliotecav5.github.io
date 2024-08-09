@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/><title>Elements</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h2 class="title"><a id="regexp_factor"></a>Factor Regexp</h2><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject7_d1e5563"></a><img alt="image with no caption" src="httpatomoreillycomsourceoreillyimages238754.png" translate="no"/></div></div><p>A <span class="emphasis"><em translate="no">regexp factor</em></span> puede ser un carácter, un grupo entre paréntesis, una clase de caracteres o una secuencia de escape. Todos los caracteres se tratan literalmente, excepto los caracteres de control y los caracteres especiales:<a class="indexterm" id="IDX-CHP-7-0362"></a><a class="indexterm" id="IDX-CHP-7-0363"></a><a class="indexterm" id="IDX-CHP-7-0364"></a><a class="indexterm" id="IDX-CHP-7-0365"></a><a class="indexterm" id="IDX-CHP-7-0366"></a><a class="indexterm" id="IDX-CHP-7-0367"></a><a class="indexterm" id="IDX-CHP-7-0368"></a><a class="indexterm" id="IDX-CHP-7-0369"></a><a class="indexterm" id="IDX-CHP-7-0370"></a><a class="indexterm" id="IDX-CHP-7-0371"></a><a class="indexterm" id="IDX-CHP-7-0372"></a><a class="indexterm" id="IDX-CHP-7-0373"></a><a class="indexterm" id="IDX-CHP-7-0374"></a><a class="indexterm" id="IDX-CHP-7-0375"></a><a class="indexterm" id="IDX-CHP-7-0376"></a><a class="indexterm" id="IDX-CHP-7-0377"></a></p><a id="I_programlisting7_d1e5658"></a><pre class="programlisting" translate="no">\ / [ ] ( ) { } ? + * | . ^ $</pre><p>que deben escaparse con un prefijo <code class="literal" translate="no">\</code> si se quiere que coincidan literalmente. En caso de duda, cualquier carácter especial puede recibir un prefijo <code class="literal" translate="no">\</code> para hacerlo literal. El prefijo <code class="literal" translate="no">\</code> <span class="emphasis"><em translate="no">does not</em></span>
+                    hace que las letras o los dígitos sean literales.</p><p>Un <code class="literal" translate="no">.</code> sin mayúsculas coincide con cualquier carácter excepto con un carácter de final de línea.</p><p>Un <code class="literal" translate="no">^</code> sin esconder coincide con el principio del texto cuando la propiedad <code class="literal" translate="no">lastIndex</code> es cero. También puede coincidir con caracteres de final de línea si se especifica la bandera <code class="literal" translate="no">m</code>.</p><p>Un <code class="literal" translate="no">$</code> sin mayúsculas coincide con el final del texto. También puede coincidir con caracteres de final de línea si se especifica la opción <code class="literal" translate="no">m</code>.</p><div class="sect2" title="Regexp Escape"><div class="titlepage"><div><div></div></div></div></div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch07s03_3.html">anterior</a><a href="ch07s03.html">Subtema 4 de 9: (Ver todo)</a><a href="ch07s03_5.html">siguiente</a><br/></p>
+<br/><a href="ch07s03_4.docx" target="_blank"></a></footer>
+</body>
+</html>

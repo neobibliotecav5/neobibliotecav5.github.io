@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c03-0006">Eliminar elementos de una lista</h3>
+<p class="BodyFirst">A menudo, querrás eliminar un elemento o un conjunto de elementos de una lista. Por ejemplo, cuando un jugador derriba a un alienígena del cielo, lo más probable es que quieras eliminarlo de la lista de alienígenas activos. O cuando un usuario decide cancelar su cuenta en una aplicación web que has creado, querrás eliminar a ese usuario de la lista de usuarios activos. Puedes eliminar un elemento según su posición en la lista o según su valor.</p>
+<h4 id="h3-502703c03-0003">Eliminar un elemento utilizando la sentencia del</h4>
+<p class="BodyFirst">Si conoces la posición del elemento que quieres eliminar de una lista, puedes utilizar la sentencia <code translate="no">del</code>:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">motorcycles = ['honda', 'yamaha', 'suzuki']</span>
+print(motorcycles)
+
+del motorcycles[0]
+<span class="LiteralGray">print(motorcycles)</span></code></pre>
+<p>Aquí utilizamos la sentencia <code translate="no">del</code> para eliminar el primer elemento, <code translate="no">'honda'</code>, de la lista de motocicletas:</p>
+<pre translate="no"><code translate="no">['honda', 'yamaha', 'suzuki']
+['yamaha', 'suzuki']</code></pre>
+<p><span epub:type="pagebreak" id="Page_39" title="39"></span>Puedes eliminar un elemento de cualquier posición de una lista utilizando la sentencia <code translate="no">del</code> si conoces su índice. Por ejemplo, así se elimina el segundo elemento, <code translate="no">'yamaha'</code>, de la lista:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">motorcycles = ['honda', 'yamaha', 'suzuki']</span>
+<span class="LiteralGray">print(motorcycles)</span>
+
+del motorcycles[1]
+<span class="LiteralGray">print(motorcycles)</span></code></pre>
+<p>El segundo moto se elimina de la lista:</p>
+<pre translate="no"><code translate="no">['honda', 'yamaha', 'suzuki']
+['honda', 'suzuki']</code></pre>
+<p>En ambos ejemplos, ya no puedes acceder al valor que se ha eliminado de la lista después de utilizar la sentencia <code translate="no">del</code>.</p>
+<h4 id="h3-502703c03-0004">Eliminar un elemento con el método pop()</h4>
+<p class="BodyFirst">A veces querrás utilizar el valor de un elemento después de eliminarlo de una lista. Por ejemplo, podrías querer obtener la posición <em translate="no">x</em> y <em translate="no">y</em> de un alienígena que acaba de ser derribado, para poder dibujar una explosión en esa posición. En una aplicación web, puede que quieras eliminar a un usuario de una lista de miembros activos y luego añadirlo a una lista de miembros inactivos.</p>
+<p>El método <code translate="no">pop()</code> elimina el último elemento de una lista, pero te permite trabajar con ese elemento después de eliminarlo. El término <em translate="no">pop</em> proviene de pensar en una lista como en una pila de elementos y de quitar un elemento de la parte superior de la pila. En esta analogía, la parte superior de una pila corresponde al final de una lista.</p>
+<p>Vamos a sacar una moto de la lista de motos:</p>
+<pre translate="no"><code translate="no"><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> <span class="LiteralGray">motorcycles = ['honda', 'yamaha', 'suzuki']</span>
+<span class="LiteralGray">print(motorcycles)</span>
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> popped_motorcycle = motorcycles.pop()
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> <span class="LiteralGray">print(motorcycles)</span>
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> print(popped_motorcycle)</code></pre>
+<p>Empezamos definiendo e imprimiendo la lista <code translate="no">motorcycles</code> <span aria-label="annotation1" class="CodeAnnotation">❶.</span> A continuación, extraemos un valor de la lista y lo asignamos a la variable <code translate="no">popped_motorcycle</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> Imprimimos la lista <span aria-label="annotation3" class="CodeAnnotation">❸</span> para mostrar que se ha eliminado un valor de la lista. Luego imprimimos el valor eliminado <span aria-label="annotation4" class="CodeAnnotation">❹</span> para demostrar que aún tenemos acceso al valor que se eliminó.</p>
+<p>La salida muestra que el valor <code translate="no">'suzuki'</code> fue eliminado del final de la lista y ahora está asignado a la variable <code translate="no">popped_motorcycle</code>:</p>
+<pre translate="no"><code translate="no">['honda', 'yamaha', 'suzuki']
+['honda', 'yamaha']
+suzuki</code></pre>
+<p><span epub:type="pagebreak" id="Page_40" title="40"></span>¿Qué utilidad puede tener este método <code translate="no">pop()</code>? Imagina que las motos de la lista están almacenadas en orden cronológico, según la fecha en que las poseíamos. Si éste es el caso, podemos utilizar el método <code translate="no">pop()</code> para imprimir una frase sobre la última moto que compramos:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">motorcycles = ['honda', 'yamaha', 'suzuki']</span>
+
+last_owned = motorcycles.pop()
+print(f"The last motorcycle I owned was a {last_owned.title()}.")</code></pre>
+<p>La salida es una simple frase sobre la última moto que hemos poseído:</p>
+<pre translate="no"><code translate="no">The last motorcycle I owned was a Suzuki.</code></pre>
+<h4 id="h3-502703c03-0005">Eliminar elementos de cualquier posición de una lista</h4>
+<p class="BodyFirst">Puedes utilizar <code translate="no">pop()</code> para eliminar un elemento de cualquier posición de una lista incluyendo entre paréntesis el índice del elemento que quieres eliminar:</p>
+<pre translate="no"><code translate="no"><span class="LiteralGray">motorcycles = ['honda', 'yamaha', 'suzuki']</span>
+
+first_owned = motorcycles.pop(0)
+print(f"The first motorcycle I owned was a {first_owned.title()}.")</code></pre>
+<p>Empezamos eliminando la primera moto de la lista, y luego imprimimos un mensaje sobre esa moto. La salida es una simple frase que describe la primera moto que tuve:</p>
+<pre translate="no"><code translate="no">The first motorcycle I owned was a Honda.</code></pre>
+<p>Recuerda que cada vez que utilizas <code translate="no">pop()</code>, el elemento con el que trabajas deja de almacenarse en la lista.</p>
+<p>Si no estás seguro de si utilizar la sentencia <code translate="no">del</code> o el método <code translate="no">pop()</code>, aquí tienes una forma sencilla de decidirte: cuando quieras eliminar un elemento de una lista y no utilizar ese elemento de ninguna forma, utiliza la sentencia <code translate="no">del</code>; si quieres utilizar un elemento mientras lo eliminas, utiliza el método <code translate="no">pop()</code>.</p>
+<h4 id="h3-502703c03-0006">Eliminar un elemento por valor</h4>
+<p class="BodyFirst">A veces no conocerás la posición del valor que quieres eliminar de una lista. Si sólo conoces el valor del elemento que quieres eliminar, puedes utilizar el método <code translate="no">remove()</code>.</p>
+<p>Por ejemplo, supongamos que queremos eliminar el valor <code translate="no">'ducati'</code> de la lista de motocicletas:</p>
+<pre translate="no"><code translate="no">motorcycles = ['honda', 'yamaha', 'suzuki', 'ducati']
+print(motorcycles)
+
+motorcycles.remove('ducati')
+print(motorcycles)</code></pre>
+<p><span epub:type="pagebreak" id="Page_41" title="41"></span>Aquí el método <code translate="no">remove()</code> le dice a Python que averigüe dónde aparece <code translate="no">'ducati'</code> en la lista y elimine ese elemento:</p>
+<pre translate="no"><code translate="no">['honda', 'yamaha', 'suzuki', 'ducati']
+['honda', 'yamaha', 'suzuki']</code></pre>
+<p>También puedes utilizar el método <code translate="no">remove()</code> para trabajar con un valor que se elimina de una lista. Vamos a eliminar el valor <code translate="no">'ducati'</code> e imprimir una razón para eliminarlo de la lista:</p>
+<pre translate="no"><code translate="no"><span aria-label="annotation1" class="CodeAnnotationHang">❶</span> <span class="LiteralGray">motorcycles = ['honda', 'yamaha', 'suzuki', 'ducati']</span>
+<span class="LiteralGray">print(motorcycles)</span>
+
+<span aria-label="annotation2" class="CodeAnnotationHang">❷</span> too_expensive = 'ducati'
+<span aria-label="annotation3" class="CodeAnnotationHang">❸</span> motorcycles.remove(too_expensive)
+print(motorcycles)
+<span aria-label="annotation4" class="CodeAnnotationHang">❹</span> print(f"\nA {too_expensive.title()} is too expensive for me.")</code></pre>
+<p>Tras definir la lista <span aria-label="annotation1" class="CodeAnnotation">❶,</span> asignamos el valor <code translate="no">'ducati'</code> a una variable llamada <code translate="no">too_expensive</code> <span aria-label="annotation2" class="CodeAnnotation">❷.</span> A continuación, utilizamos esta variable para decirle a Python qué valor debe eliminar de la lista <span aria-label="annotation3" class="CodeAnnotation">❸.</span> El valor <code translate="no">'ducati'</code> se ha eliminado de la lista <span aria-label="annotation4" class="CodeAnnotation">❹</span> pero sigue siendo accesible a través de la variable <code translate="no">too_expensive</code>, lo que nos permite imprimir una declaración sobre por qué hemos eliminado <code translate="no">'ducati'</code> de la lista de motos:</p>
+<pre translate="no"><code translate="no">['honda', 'yamaha', 'suzuki', 'ducati']
+['honda', 'yamaha', 'suzuki']
+
+A Ducati is too expensive for me.</code></pre>
+<aside epub:type="sidebar">
+<div class="top hr"><hr/></div>
+<section class="note">
+</section></aside>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c03_9.html">anterior</a><a href="c03.html">Subtema 10 de 23: (Ver todo)</a><a href="c03_11.html">siguiente</a><br/></p>
+<br/><a href="c03_10.docx" target="_blank"></a></footer>
+</body>
+</html>

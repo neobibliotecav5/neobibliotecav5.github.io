@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/><title>Elements</title><link href="core.css" rel="stylesheet" type="text/css"/><meta content="DocBook XSL Stylesheets V1.74.0" name="generator"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h2 class="title"><a id="regexp_class"></a>Clase Regexp</h2><div class="informalfigure"><div class="mediaobject"><a id="I_mediaobject7_d1e5926"></a><img alt="image with no caption" src="httpatomoreillycomsourceoreillyimages238834.png" translate="no"/></div></div><p>A <span class="emphasis"><em translate="no">regexp class</em></span> es una forma cómoda de especificar uno de un conjunto de caracteres. Por ejemplo, si quisiéramos que coincidiera con una vocal, podríamos escribir <code class="literal" translate="no">(?:a|e|i|o|u)</code>, pero es más cómodo escribirlo como la clase <code class="literal" translate="no">[aeiou]</code>.<a class="indexterm" id="IDX-CHP-7-0391"></a><a class="indexterm" id="IDX-CHP-7-0392"></a><a class="indexterm" id="IDX-CHP-7-0393"></a><a class="indexterm" id="IDX-CHP-7-0394"></a></p><p>Las clases ofrecen otras dos ventajas. La primera es que se pueden especificar rangos de caracteres. Así, el conjunto de 32 caracteres especiales ASCII:</p><a id="I_programlisting7_d1e5966"></a><pre class="programlisting" translate="no">! " # $ % &amp; ' ( ) * +, - . / :
+; &lt; = &gt; ? @ [ \ ] ^ _ ` { | } ˜</pre><p>podría escribirse como</p><a id="I_programlisting7_d1e5970"></a><pre class="programlisting" translate="no">(?:!|"|#|\$|%|&amp;|'|\(|\)|\*|\+|,|-|\.|\/|:|;|&lt;|=|&gt;|@|\[|\\|]|\^|_|` |\{|\||\}|˜)</pre><p>pero es ligeramente más agradable escribirlo como:</p><a id="I_programlisting7_d1e5974"></a><pre class="programlisting" translate="no">[!-\/:-@\[-`{-˜]</pre><p>que incluye los caracteres de <code class="literal" translate="no">!</code>a <code class="literal" translate="no">/</code> y de <code class="literal" translate="no">:</code> a <code class="literal" translate="no">@</code> y de <code class="literal" translate="no">[</code> a <code class="literal" translate="no">`</code> y de <code class="literal" translate="no">{</code> a <code class="literal" translate="no">˜</code>. Sigue teniendo un aspecto bastante desagradable.</p><p>La otra comodidad es la complementación de una clase. Si el primer carácter después de <code class="literal" translate="no">[</code> es <code class="literal" translate="no">^</code>, entonces la clase excluye los caracteres especificados.</p><p>Así que <code class="literal" translate="no">[^!-\/:-@\[-`{-˜]</code> coincide con cualquier carácter que sea <span class="emphasis"><em translate="no">not</em></span> uno de los caracteres especiales ASCII.</p><div class="sect2" title="Regexp Class Escape"><div class="titlepage"><div><div></div></div></div></div>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="ch07s03_6.html">anterior</a><a href="ch07s03.html">Subtema 7 de 9: (Ver todo)</a><a href="ch07s03_8.html">siguiente</a><br/></p>
+<br/><a href="ch07s03_7.docx" target="_blank"></a></footer>
+</body>
+</html>

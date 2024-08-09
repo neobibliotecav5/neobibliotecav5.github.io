@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head><meta charset="utf-8"/>
+<link href="Styles/Style00.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">body{margin:1em;background-color:transparent!important;}#sbo-rt-content *{text-indent:0pt!important;}#sbo-rt-content .bq{margin-right:1em!important;}#sbo-rt-content *{word-wrap:break-word!important;word-break:break-word!important;}#sbo-rt-content table,#sbo-rt-content pre{overflow-x:unset!important;overflow:unset!important;overflow-y:unset!important;white-space:pre-wrap!important;}</style><meta content="width=device-width, initial-scale=1.0" name="viewport"/><style>
+    body {
+        width: 74%;
+        min-height: 84vh;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding-left: 13%;
+        padding-right: 13%;
+        padding-top: 3%;
+        }
+    
+    @media screen and (max-width: 768px) {
+        body {
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+            padding-top: 2%;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        body {
+            width: 96%;
+            padding-left: 2%;
+            padding-right: 2%;
+            padding-top: 1%;
+            font-size: 12px;
+        }
+    }
+</style>
+</head>
+<body>
+<h3 id="h2-502703c17-0011">Personalizar los colores de los marcadores</h3>
+<p class="BodyFirst">Una vez creado un gráfico, se puede personalizar casi cualquier aspecto del gráfico mediante un método de actualización. Ya hemos utilizado anteriormente el método <code translate="no">update_layout()</code>. Otro método, <code translate="no">update_traces()</code>, puede utilizarse para personalizar los datos que se representan en un gráfico.</p>
+<p>Cambiemos las barras a un azul más oscuro, con cierta transparencia:</p>
+<pre translate="no"><code translate="no"><em class="LiteralGrayItalic" translate="no">--snip--</em>
+<span class="LiteralGray">fig.update_layout(title_font_size=28, xaxis_title_font_size=20,</span>
+<span class="LiteralGray">        yaxis_title_font_size=20)</span>
+
+fig.update_traces(marker_color='SteelBlue', marker_opacity=0.6)
+
+<span class="LiteralGray">fig.show()</span></code></pre>
+<p>En Plotly, un <em translate="no">trace</em> se refiere a una colección de datos en un gráfico. El método <code translate="no">update_traces()</code> puede recibir varios argumentos diferentes; cualquier argumento que empiece por <code translate="no">marker_</code> afecta a los marcadores del gráfico. Aquí establecemos el color de cada marcador en <code translate="no">'SteelBlue'</code>; cualquier color CSS con nombre funcionará aquí. También establecemos la opacidad de cada marcador en <code translate="no">0.6</code>. Una opacidad de 1,0 será totalmente opaca, y una opacidad de 0 será totalmente invisible.</p>
+<footer>
+<style>
+        footer {
+            text-align: center;
+            margin-top: 2em;
+            padding-top: 1em;
+            padding-bottom: 2em;
+            border-top: 1px solid #eaeaea;
+        }
+        
+        footer a {
+            color: #0000FF; /* Color azul para los enlaces */
+            text-decoration: none; /* Opcional: elimina el subrayado de los enlaces */
+            margin-left: 1em;
+            margin-right: 1em;
+        }
+        footer a:hover {
+            text-decoration: underline; /* Opcional: subraya el enlace al pasar el mouse */
+        }
+    </style>
+<p><a href="c17_14.html">anterior</a><a href="c17.html">Subtema 15 de 20: (Ver todo)</a><a href="c17_16.html">siguiente</a><br/></p>
+<br/><a href="c17_15.docx" target="_blank"></a></footer>
+</body>
+</html>
